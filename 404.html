@@ -86,24 +86,19 @@
     .logo-icon {
       width: 48px;
       height: 48px;
-      min-width: 48px;
-      min-height: 48px;
-      max-width: 48px;
-      max-height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      border-radius: var(--radius-base);
-      box-shadow: var(--shadow-glow);
+      position: relative;
+      overflow: visible;
     }
 
     .logo-icon img {
-      width: 100%;
-      height: 100%;
-      max-width: 48px;
-      max-height: 48px;
+      width: 48px;
+      height: 48px;
       object-fit: contain;
+      position: relative;
+      z-index: 1;
     }
 
     .logo-text {
@@ -111,8 +106,8 @@
       flex-direction: column;
     }
 
-    .brand-name {
-      font-size: 22px;
+    .logo-text .brand-name {
+      font-size: 24px;
       font-weight: 700;
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
       -webkit-background-clip: text;
@@ -120,17 +115,17 @@
       background-clip: text;
     }
 
-    .brand-tagline {
-      font-size: 12px;
-      color: #9DA5B4;
+    .logo-text .brand-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
       font-weight: 500;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: var(--space-4);
-      font-size: 15px;
+      gap: var(--space-6);
+      font-size: 16px;
       font-weight: 500;
     }
 
@@ -139,7 +134,8 @@
       color: var(--text-secondary);
       position: relative;
       padding: var(--space-2) 0;
-      transition: 200ms ease;
+      transition: var(--transition-fast);
+      font-weight: 600;
     }
 
     .nav a::after {
@@ -164,7 +160,7 @@
     .lang-switcher {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: var(--space-2);
       padding: 8px 16px;
       border-radius: var(--radius-full);
       border: 1px solid var(--border-color);
@@ -173,14 +169,15 @@
       font-size: 14px;
       font-weight: 600;
       text-decoration: none;
-      transition: 250ms ease;
+      transition: var(--transition-base);
       cursor: pointer;
     }
 
     .lang-switcher:hover {
       border-color: var(--lavender-dark);
       color: var(--lavender-light);
-      background: rgba(139, 127, 255, 0.1);
+      background: var(--bg-secondary);
+      box-shadow: var(--shadow-glow);
     }
 
     .lang-switcher i {
@@ -191,19 +188,19 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 24px;
+      padding: 14px 28px;
       border-radius: var(--radius-full);
       border: none;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
+      font-family: inherit;
       background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
       color: #fff !important;
       text-decoration: none;
-      transition: 250ms ease;
-      box-shadow: 0 4px 20px rgba(139,127,255,0.4);
+      transition: var(--transition-base);
+      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
       white-space: nowrap;
-      gap: 8px;
     }
     
     .btn-primary i {
@@ -212,8 +209,9 @@
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(139,127,255,0.6);
-      filter: brightness(1.08);
+      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
+      filter: brightness(1.1);
+      color: #fff !important;
     }
 
     /* ========== 404 Section ========== */
@@ -537,7 +535,7 @@
 
   <header class="main-header">
     <div class="header-inner">
-      <a href="https://ecode.sa/ar" class="logo-container">
+      <a href="https://ecode.sa/" class="logo-container">
         <div class="logo-icon">
           <img src="https://ecode.sa/favicon.png" alt="eCode Logo">
         </div>
@@ -548,16 +546,15 @@
       </a>
 
       <nav class="nav">
-        <a href="https://ecode.sa/ar">الرئيسية</a>
-        <a href="https://ecode.sa/services">خدماتنا</a>
-        <a href="https://ecode.sa/plans">الباقات</a>
-        <a href="https://ecode.sa/portfolio">أعمالنا</a>
-        <a href="https://ecode.sa/en/404" class="lang-switcher">
-          <i class="fa-solid fa-globe"></i>
-          English
+        <a href="https://ecode.sa/ar/">الرئيسية</a>
+        <a href="https://ecode.sa/services/">خدماتنا</a>
+        <a href="https://ecode.sa/plans/">الباقات</a>
+        <a href="https://ecode.sa/portfolio/">أعمالنا</a>
+        <a href="https://ecode.sa/en/" class="lang-switcher">
+          <i class="fas fa-globe"></i>
+          <span>English</span>
         </a>
-        <a href="https://ecode.sa/contact" class="btn-primary">
-          <i class="fa-solid fa-envelope"></i>
+        <a href="https://ecode.sa/contact/" class="btn-primary" style="padding: 10px 20px; font-size: 15px;">
           تواصل معنا
         </a>
       </nav>
