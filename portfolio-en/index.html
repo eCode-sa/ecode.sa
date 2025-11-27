@@ -21,6 +21,7 @@
       --text-secondary: #9DA5B4;
       --text-muted: #6B7280;
       --border-color: #2D3748;
+      --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
       --space-4: 16px;
@@ -81,18 +82,16 @@
     .logo-icon {
       width: 48px;
       height: 48px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      border-radius: var(--radius-base);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: var(--shadow-glow);
+      overflow: visible;
     }
 
-    .logo-icon svg {
-      width: 28px;
-      height: 28px;
-      fill: white;
+    .logo-icon img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
     }
 
     .logo-text .brand-name {
@@ -281,12 +280,20 @@
       overflow: hidden;
     }
 
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
     .portfolio-image::before {
       content: '';
       position: absolute;
       width: 100%;
       height: 100%;
       background: linear-gradient(135deg, rgba(139, 127, 255, 0.1), rgba(91, 192, 248, 0.1));
+      z-index: 0;
     }
 
     .portfolio-image i {
@@ -487,9 +494,7 @@
     <div class="header-inner">
       <a href="https://ecode.sa/en/" class="logo-container">
         <div class="logo-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 6h16M4 12h16M4 18h16" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+          <img src="https://ecode.sa/favicon.png" alt="eCode Logo">
         </div>
         <div class="logo-text">
           <div class="brand-name">eCode</div>
@@ -497,22 +502,17 @@
         </div>
       </a>
 
-<nav class="nav">
-  <a href="https://ecode.sa/en/">Home</a>
-  <a href="https://ecode.sa/services-en/">Our Services</a>
-  <a href="https://ecode.sa/plans-en/">Plans</a>
-  <a href="https://ecode.sa/portfolio-en/">Portfolio</a>
-
-  <a href="https://ecode.sa/ar/" class="lang-switcher">
-    <i class="fas fa-globe"></i>
-    <span>العربية</span>
-  </a>
-</nav>
-
-  <a href="https://ecode.sa/contact-en/" class="btn-primary" style="padding: 10px 20px; font-size: 15px; color: #fff !important;">
-    Contact Us
-  </a>
-</nav>
+      <nav class="nav">
+        <a href="https://ecode.sa/en/">Home</a>
+        <a href="https://ecode.sa/services-en/">Our Services</a>
+        <a href="https://ecode.sa/plans-en/">Plans</a>
+        <a href="https://ecode.sa/portfolio-en/" class="active">Portfolio</a>
+        <a href="https://ecode.sa/ar/" class="lang-switcher">
+          <i class="fas fa-globe"></i>
+          <span>العربية</span>
+        </a>
+        <a href="https://ecode.sa/contact-en/" class="btn-primary">Contact Us</a>
+      </nav>
     </div>
   </header>
 
@@ -534,7 +534,7 @@
     <div class="portfolio-grid" id="portfolioGrid">
       <div class="portfolio-item" data-category="branding">
         <div class="portfolio-image">
-          <i class="fas fa-palette"></i>
+          <img src="https://ecode.sa/E-commerce-Store-Project.png" alt="E-commerce Store Project">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">Branding</span>
@@ -550,7 +550,7 @@
 
       <div class="portfolio-item" data-category="social">
         <div class="portfolio-image">
-          <i class="fas fa-chart-line"></i>
+          <img src="https://ecode.sa/Restaurant-Account-Management.png" alt="Restaurant Account Management">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">Social Media</span>
@@ -566,7 +566,7 @@
 
       <div class="portfolio-item" data-category="photography">
         <div class="portfolio-image">
-          <i class="fas fa-camera"></i>
+          <img src="https://ecode.sa/Product-Photography-Session.png" alt="Product Photography Session">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">Photography</span>
@@ -582,7 +582,7 @@
 
       <div class="portfolio-item" data-category="web">
         <div class="portfolio-image">
-          <i class="fas fa-code"></i>
+          <img src="https://ecode.sa/Consulting-Company-Website.png" alt="Consulting Company Website">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">Website</span>
@@ -598,7 +598,7 @@
 
       <div class="portfolio-item" data-category="campaigns">
         <div class="portfolio-image">
-          <i class="fas fa-bullhorn"></i>
+          <img src="https://ecode.sa/New-Product-Launch-Campaign.png" alt="New Product Launch Campaign">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">Ad Campaign</span>
@@ -614,7 +614,7 @@
 
       <div class="portfolio-item" data-category="branding social">
         <div class="portfolio-image">
-          <i class="fas fa-store"></i>
+          <img src="https://ecode.sa/Coffee-Shop-Project.png" alt="Coffee Shop Project">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">Branding + Content</span>
@@ -630,7 +630,7 @@
 
       <div class="portfolio-item" data-category="photography">
         <div class="portfolio-image">
-          <i class="fas fa-video"></i>
+          <img src="https://ecode.sa/Product-Promotional-Video.png" alt="Product Promotional Video">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">Video</span>
@@ -646,7 +646,7 @@
 
       <div class="portfolio-item" data-category="web">
         <div class="portfolio-image">
-          <i class="fas fa-shopping-cart"></i>
+          <img src="https://ecode.sa/Sports-Products-Store.png" alt="Sports Products Store">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">E-commerce</span>
@@ -662,7 +662,7 @@
 
       <div class="portfolio-item" data-category="campaigns social">
         <div class="portfolio-image">
-          <i class="fas fa-gift"></i>
+          <img src="https://ecode.sa/Ramadan-Campaign.png" alt="Ramadan Campaign">
         </div>
         <div class="portfolio-content">
           <span class="portfolio-category">Seasonal Campaign</span>
@@ -732,14 +732,14 @@
         <div class="footer-links">
           <h4>Quick Links</h4>
           <ul>
-    <li><a href="https://ecode.sa/en/">Home</a></li>
-    <li><a href="https://ecode.sa/services-en/">Our Services</a></li>
-    <li><a href="https://ecode.sa/plans-en/">Plans</a></li>
-    <li><a href="https://ecode.sa/portfolio-en/">Portfolio</a></li>
-    <li><a href="https://ecode.sa/contact-en/">Contact Us</a></li>
-    <li><a href="https://ecode.sa/terms-en/">Terms & Conditions</a></li>
-    <li><a href="https://ecode.sa/privacy-en/">Privacy Policy</a></li>
-  </ul>
+            <li><a href="https://ecode.sa/en/">Home</a></li>
+            <li><a href="https://ecode.sa/services-en/">Our Services</a></li>
+            <li><a href="https://ecode.sa/plans-en/">Plans</a></li>
+            <li><a href="https://ecode.sa/portfolio-en/">Portfolio</a></li>
+            <li><a href="https://ecode.sa/contact-en/">Contact Us</a></li>
+            <li><a href="https://ecode.sa/terms-en/">Terms & Conditions</a></li>
+            <li><a href="https://ecode.sa/privacy-en/">Privacy Policy</a></li>
+          </ul>
         </div>
 
         <div>
