@@ -603,77 +603,121 @@
         </div>
       </div>
 
-      <div class="contact-form">
-        <h2>Send Us a Message</h2>
-        <form action="https://formsubmit.co/ecode_sa@outlook.sa" method="POST">
-          <input type="hidden" name="_subject" value="New Request from eCode Website">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" style="display:none">
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label>Full Name *</label>
-              <input type="text" name="name" required placeholder="Enter your full name">
-            </div>
-
-            <div class="form-group">
-              <label>Phone Number *</label>
-              <input type="tel" name="phone" required placeholder="05X XXX XXXX">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Email Address *</label>
-            <input type="email" name="email" required placeholder="example@email.com">
-          </div>
-
-          <div class="form-group">
-            <label>Service Type *</label>
-            <select name="service" required>
-              <option value="">Select Service</option>
-              <option>Complete Visual Identity</option>
-              <option>Social Media Management</option>
-              <option>Design & Content Production</option>
-              <option>Photography</option>
-              <option>Video Production</option>
-              <option>Website Design</option>
-              <option>E-commerce Store</option>
-              <option>Ad Campaigns</option>
-              <option>Marketing Consultations</option>
-              <option>Other Service</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Company or Project Name</label>
-            <input type="text" name="company" placeholder="Optional">
-          </div>
-
-          <div class="form-group">
-            <label>Project Details *</label>
-            <textarea name="message" required placeholder="Write a brief about your project and needs... The clearer the details, the more accurate the quote"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label>Expected Budget</label>
-            <select name="budget">
-              <option value="">Select Budget (Optional)</option>
-              <option>Less than 5,000 SAR</option>
-              <option>5,000 - 10,000 SAR</option>
-              <option>10,000 - 20,000 SAR</option>
-              <option>20,000 - 50,000 SAR</option>
-              <option>More than 50,000 SAR</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn-submit">
-            <span>Send Request</span>
-            <i class="fas fa-paper-plane"></i>
-          </button>
-        </form>
+     <div class="contact-form">
+  <h2>Send Us a Message</h2>
+  <form id="contactFormEN" onsubmit="handleFormSubmitEN(event)">
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" name="name" id="nameEN" required placeholder="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" name="phone" id="phoneEN" required placeholder="05X XXX XXXX">
       </div>
     </div>
+    
+    <div class="form-group">
+      <label>Email Address *</label>
+      <input type="email" name="email" id="emailEN" required placeholder="example@email.com">
+    </div>
+    
+    <div class="form-group">
+      <label>Service Type *</label>
+      <select name="service" id="serviceEN" required>
+        <option value="">Select Service</option>
+        <option>Complete Visual Identity</option>
+        <option>Social Media Management</option>
+        <option>Design & Content Production</option>
+        <option>Photography</option>
+        <option>Video Production</option>
+        <option>Website Design</option>
+        <option>E-commerce Store</option>
+        <option>Ad Campaigns</option>
+        <option>Marketing Consultations</option>
+        <option>Other Service</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label>Company or Project Name</label>
+      <input type="text" name="company" id="companyEN" placeholder="Optional">
+    </div>
+    
+    <div class="form-group">
+      <label>Project Details *</label>
+      <textarea name="message" id="messageEN" required placeholder="Write a brief about your project and needs... The clearer the details, the more accurate the quote"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label>Expected Budget</label>
+      <select name="budget" id="budgetEN">
+        <option value="">Select Budget (Optional)</option>
+        <option>Less than 5,000 SAR</option>
+        <option>5,000 - 10,000 SAR</option>
+        <option>10,000 - 20,000 SAR</option>
+        <option>20,000 - 50,000 SAR</option>
+        <option>More than 50,000 SAR</option>
+      </select>
+    </div>
+    
+    <button type="submit" class="btn-submit">
+      <span>Send Request</span>
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </form>
+</div>
+
+<script>
+  function handleFormSubmitEN(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('nameEN').value;
+    const phone = document.getElementById('phoneEN').value;
+    const email = document.getElementById('emailEN').value;
+    const service = document.getElementById('serviceEN').value;
+    const company = document.getElementById('companyEN').value || 'Not specified';
+    const message = document.getElementById('messageEN').value;
+    const budget = document.getElementById('budgetEN').value || 'Not specified';
+    
+    // Compose email message
+    const subject = encodeURIComponent('New Request from ' + name);
+    const body = encodeURIComponent(`
+Hello eCode Team,
+
+I have a request for your services:
+
+━━━━━━━━━━━━━━━━━━━
+📋 Client Information:
+━━━━━━━━━━━━━━━━━━━
+
+👤 Name: ${name}
+📱 Phone: ${phone}
+📧 Email: ${email}
+🏢 Company/Project: ${company}
+
+━━━━━━━━━━━━━━━━━━━
+🎯 Request Details:
+━━━━━━━━━━━━━━━━━━━
+
+🔹 Service Type: ${service}
+
+💰 Expected Budget: ${budget}
+
+📝 Project Details:
+${message}
+
+━━━━━━━━━━━━━━━━━━━
+
+Looking forward to hearing from you,
+${name}
+    `.trim());
+    
+    // Open email client with pre-filled data
+    window.location.href = `mailto:ecode_sa@outlook.sa?subject=${subject}&body=${body}`;
+  }
+</script>
 
     <div class="working-hours">
       <h2>Working Hours</h2>
