@@ -17,7 +17,6 @@
       --soft-orange: #FFB86C;
       --coral-pink: #FF79C6;
       
-      /* Dark Mode Colors */
       --bg-primary: #0F1419;
       --bg-secondary: #1A1F2E;
       --bg-elevated: #242B3D;
@@ -113,20 +112,17 @@
     .logo-icon {
       width: 48px;
       height: 48px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      border-radius: var(--radius-base);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-glow);
+      overflow: visible;
     }
 
-    .logo-icon svg {
-      width: 28px;
-      height: 28px;
-      fill: white;
+    .logo-icon img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
       position: relative;
       z-index: 1;
     }
@@ -857,25 +853,19 @@
         </div>
       </a>
 
-    <!-- Navigation -->
-    <nav class="nav">
-      <a href="https://ecode.sa/">الرئيسية</a>
-      <a href="https://ecode.sa/services/">خدماتنا</a>
-      <a href="https://ecode.sa/plans/">الباقات</a>
-      <a href="https://ecode.sa/portfolio/">أعمالنا</a>
-
-      <a href="https://ecode.sa/en/" class="lang-switcher">
-        <i class="fas fa-globe"></i>
-        <span>English</span>
-      </a>
-
-      <a href="https://ecode.sa/contact/" class="btn-primary" style="padding: 10px 20px; font-size: 15px; color: #fff !important;">
-        تواصل معنا
-      </a>
-    </nav>
-
-  </div>
-</header>
+      <nav class="nav">
+        <a href="https://ecode.sa/">الرئيسية</a>
+        <a href="https://ecode.sa/services/">خدماتنا</a>
+        <a href="https://ecode.sa/plans/">الباقات</a>
+        <a href="https://ecode.sa/portfolio/">أعمالنا</a>
+        <a href="https://ecode.sa/en/" class="lang-switcher">
+          <i class="fas fa-globe"></i>
+          <span>English</span>
+        </a>
+        <a href="https://ecode.sa/contact/" class="btn-primary" style="padding: 10px 20px; font-size: 15px;">
+          تواصل معنا
+        </a>
+      </nav>
     </div>
   </header>
 
@@ -1235,22 +1225,6 @@
   </footer>
 
   <script>
-    // Language Switcher
-    function switchLanguage() {
-      const currentLang = document.documentElement.lang;
-      const newLang = currentLang === 'ar' ? 'en' : 'ar';
-      
-      // Save preference
-      localStorage.setItem('preferred_lang', newLang);
-      
-      // Redirect or reload
-      if (newLang === 'en') {
-        window.location.href = 'index-en.html';
-      } else {
-        window.location.href = 'index.html';
-      }
-    }
-
     // FAQ Accordion
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
