@@ -5,6 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>eCode | إلكترونيك كود - تصنع الأثر</title>
   <meta name="description" content="شركة سعودية تقدم حلول التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية">
+
+  <!-- PWA Manifest -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- iOS Meta Tags -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="eCode">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180x180.png">
+<link rel="apple-touch-icon" sizes="167x167" href="/icons/icon-167x167.png">
+
+<!-- iOS Splash Screens -->
+<link rel="apple-touch-startup-image" href="/splash/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+<link rel="apple-touch-startup-image" href="/splash/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)">
+<link rel="apple-touch-startup-image" href="/splash/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)">
+<link rel="apple-touch-startup-image" href="/splash/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)">
+<link rel="apple-touch-startup-image" href="/splash/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)">
+<link rel="apple-touch-startup-image" href="/splash/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)">
+<link rel="apple-touch-startup-image" href="/splash/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)">
+<link rel="apple-touch-startup-image" href="/splash/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)">
+<link rel="apple-touch-startup-image" href="/splash/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)">
+
+<!-- Android/Chrome -->
+<meta name="theme-color" content="#8B7FFF">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- Microsoft -->
+<meta name="msapplication-TileColor" content="#8B7FFF">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<meta name="msapplication-config" content="/browserconfig.xml">
   
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
@@ -1217,7 +1249,7 @@ ${name}
   }
 </script>
 
-  <footer class="footer">
+<footer class="footer">
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
@@ -1311,7 +1343,62 @@ ${name}
     document.querySelectorAll('section').forEach(section => {
       observer.observe(section);
     });
-  </script>
 
+    // تسجيل Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('✅ Service Worker registered:', registration.scope);
+            
+            // التحقق من وجود تحديثات
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // يوجد تحديث جديد
+                  if (confirm('يوجد تحديث جديد! هل تريد التحديث الآن؟')) {
+                    window.location.reload();
+                  }
+                }
+              });
+            });
+          })
+          .catch((error) => {
+            console.error('❌ Service Worker registration failed:', error);
+          });
+      });
+    }
+
+    // Install Prompt - زر "أضف للشاشة الرئيسية"
+    let deferredPrompt;
+    const installButton = document.getElementById('installButton');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // إظهار زر التثبيت
+      if (installButton) {
+        installButton.style.display = 'block';
+        
+        installButton.addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
+            deferredPrompt = null;
+            installButton.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    // عند التثبيت بنجاح
+    window.addEventListener('appinstalled', () => {
+      console.log('✅ PWA installed successfully');
+      deferredPrompt = null;
+    });
+  </script>
 </body>
 </html>
