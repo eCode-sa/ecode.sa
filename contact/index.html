@@ -691,52 +691,79 @@
 </div>
 
 <script>
-  function handleFormSubmit2(event) {
-    event.preventDefault();
+  async function handleFormSubmit2(event) {
+    event.preventDefault(); // منع تحديث الصفحة
     
-    const name = document.getElementById('name2').value;
-    const phone = document.getElementById('phone2').value;
-    const email = document.getElementById('email2').value;
-    const service = document.getElementById('service2').value;
-    const company = document.getElementById('company2').value || 'غير محدد';
-    const message = document.getElementById('message2').value;
-    const budget = document.getElementById('budget2').value || 'غير محدد';
+    // تعريف الزر لتغيير شكله أثناء التحميل
+    const btn = event.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
     
-    // تكوين نص الرسالة
-    const subject = encodeURIComponent('طلب جديد من ' + name);
-    const body = encodeURIComponent(`
-مرحباً فريق eCode،
+    // تغيير حالة الزر (جاري الإرسال)
+    btn.innerText = 'جاري الإرسال... ⏳';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
 
-لدي طلب للحصول على خدماتكم:
+    // تجميع البيانات (مع مراعاة الـ IDs الخاصة بهذا النموذج)
+    const formData = {
+        name: document.getElementById('name2').value,
+        phone: document.getElementById('phone2').value,
+        email: document.getElementById('email2').value,
+        service: document.getElementById('service2').value,
+        company: document.getElementById('company2').value || 'غير محدد',
+        message: document.getElementById('message2').value,
+        budget: document.getElementById('budget2').value || 'غير محدد',
+        date: new Date().toLocaleDateString('ar-SA'),
+        formType: 'Detailed Request' // عشان تميز في Make أن هذا الطلب المفصل
+    };
 
-━━━━━━━━━━━━━━━━━━━
-📋 بيانات العميل:
-━━━━━━━━━━━━━━━━━━━
+    try {
+        // نفس رابط الويب هوك (يستقبل جميع الطلبات)
+        const webhookUrl = "https://hook.eu1.make.com/m0r5843oyetl2f111beqnydz3yd3uust"; 
 
-👤 الاسم: ${name}
-📱 الجوال: ${phone}
-📧 البريد: ${email}
-🏢 الشركة/المشروع: ${company}
+        // إرسال البيانات
+        const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        });
 
-━━━━━━━━━━━━━━━━━━━
-🎯 تفاصيل الطلب:
-━━━━━━━━━━━━━━━━━━━
+        if (response.ok) {
+            // حالة النجاح
+            btn.innerText = 'تم إرسال طلبك بنجاح ✅';
+            btn.style.backgroundColor = '#7EDDA3';
+            btn.style.color = '#000';
+            btn.style.border = 'none';
+            
+            // تفريغ النموذج
+            event.target.reset();
+            
+            // إرجاع الزر لحالته الطبيعية
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.style.backgroundColor = ''; 
+                btn.style.color = '';
+                btn.style.border = '';
+            }, 3000);
+        } else {
+            throw new Error('Server response not ok');
+        }
 
-🔹 الخدمة المطلوبة: ${service}
-
-💰 الميزانية المتوقعة: ${budget}
-
-📝 تفاصيل المشروع:
-${message}
-
-━━━━━━━━━━━━━━━━━━━
-
-أتطلع للتواصل معكم،
-${name}
-    `.trim());
-    
-    // فتح تطبيق البريد مع البيانات معبأة
-    window.location.href = `mailto:info@ecode.sa?subject=${subject}&body=${body}`;
+    } catch (error) {
+        // حالة الخطأ
+        console.error('Error:', error);
+        btn.innerText = 'حدث خطأ! ❌';
+        btn.style.backgroundColor = '#ff6b6b';
+        
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+            btn.style.backgroundColor = '';
+        }, 3000);
+        
+        alert("عذراً، حدث خطأ في الاتصال. يرجى المحاولة لاحقاً.");
+    }
   }
 </script>
 
