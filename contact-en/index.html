@@ -691,52 +691,79 @@
 </div>
 
 <script>
-  function handleFormSubmitEN(event) {
-    event.preventDefault();
+  async function handleFormSubmitEN(event) {
+    event.preventDefault(); // Prevent page reload
     
-    const name = document.getElementById('nameEN').value;
-    const phone = document.getElementById('phoneEN').value;
-    const email = document.getElementById('emailEN').value;
-    const service = document.getElementById('serviceEN').value;
-    const company = document.getElementById('companyEN').value || 'Not specified';
-    const message = document.getElementById('messageEN').value;
-    const budget = document.getElementById('budgetEN').value || 'Not specified';
+    // UI: Change button state
+    const btn = event.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
     
-    // Compose email message
-    const subject = encodeURIComponent('New Request from ' + name);
-    const body = encodeURIComponent(`
-Hello eCode Team,
+    btn.innerText = 'Sending... ⏳';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
 
-I have a request for your services:
+    // Collect Data (Using EN IDs)
+    const formData = {
+        name: document.getElementById('nameEN').value,
+        phone: document.getElementById('phoneEN').value,
+        email: document.getElementById('emailEN').value,
+        service: document.getElementById('serviceEN').value,
+        company: document.getElementById('companyEN').value || 'Not specified',
+        message: document.getElementById('messageEN').value,
+        budget: document.getElementById('budgetEN').value || 'Not specified',
+        date: new Date().toLocaleDateString('en-US'),
+        language: 'English',
+        formType: 'Detailed Request'
+    };
 
-━━━━━━━━━━━━━━━━━━━
-📋 Client Information:
-━━━━━━━━━━━━━━━━━━━
+    try {
+        // Your Webhook URL
+        const webhookUrl = "https://hook.eu1.make.com/m0r5843oyetl2f111beqnydz3yd3uust"; 
 
-👤 Name: ${name}
-📱 Phone: ${phone}
-📧 Email: ${email}
-🏢 Company/Project: ${company}
+        // Send Data
+        const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        });
 
-━━━━━━━━━━━━━━━━━━━
-🎯 Request Details:
-━━━━━━━━━━━━━━━━━━━
+        if (response.ok) {
+            // Success State
+            btn.innerText = 'Sent Successfully ✅';
+            btn.style.backgroundColor = '#7EDDA3';
+            btn.style.color = '#000';
+            btn.style.border = 'none';
+            
+            // Reset Form
+            event.target.reset();
+            
+            // Revert Button
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.style.backgroundColor = ''; 
+                btn.style.color = '';
+                btn.style.border = '';
+            }, 3000);
+        } else {
+            throw new Error('Server response not ok');
+        }
 
-🔹 Service Type: ${service}
-
-💰 Expected Budget: ${budget}
-
-📝 Project Details:
-${message}
-
-━━━━━━━━━━━━━━━━━━━
-
-Looking forward to hearing from you,
-${name}
-    `.trim());
-    
-    // Open email client with pre-filled data
-    window.location.href = `mailto:info@ecode.sa?subject=${subject}&body=${body}`;
+    } catch (error) {
+        // Error State
+        console.error('Error:', error);
+        btn.innerText = 'Error! ❌';
+        btn.style.backgroundColor = '#ff6b6b';
+        
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+            btn.style.backgroundColor = '';
+        }, 3000);
+        
+        alert("Sorry, there was a connection error. Please try again later.");
+    }
   }
 </script>
 
