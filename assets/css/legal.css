@@ -1,0 +1,27 @@
+.legal-page {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.legal-section h2 {
+  margin-top: 32px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: var(--lavender-light);
+}
+
+.legal-section p,
+.legal-section ul {
+  margin-bottom: 16px;
+  line-height: 1.9;
+  color: var(--text-primary);
+}
+
+.legal-section ul {
+  padding-right: 20px;
+}
+
+.legal-section li {
+  margin-bottom: 8px;
+}
