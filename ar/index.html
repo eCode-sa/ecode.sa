@@ -343,7 +343,7 @@
             <li>4 فيديوهات مونتاج (Reels)</li>
             <li>إدارة حملتين ممولتين طوال الشهر</li>
           </ul>
-          <a href="https://ecode.sa/contact/" class="btn-primary" style="width:100%; text-align:center;">تواصل للتفاصيل</a>
+          <a href="https://ecode.sa/contact/" class="btn-primary" style="width:100%; text-align:center;">اطلب عرض سعر</a>
         </div>
 
         <div class="plan-card">
@@ -355,7 +355,7 @@
             <li>استشارة مجانية لتحديد الأنسب</li>
             <li>مرونة في العقود (مشروع أو شهري)</li>
           </ul>
-          <a href="https://ecode.sa/contact/" class="btn-secondary" style="width:100%; text-align:center;">تواصل معنا</a>
+          <a href="https://ecode.sa/contact/" class="btn-secondary" style="width:100%; text-align:center;">اطلب عرض سعر</a>
         </div>
       </div>
     </div>
@@ -448,7 +448,7 @@
     </div>
   </section>
 
-  <footer class="footer">
+    <footer class="footer">
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
@@ -490,17 +490,17 @@
         <div class="footer-links">
           <h4>روابط سريعة</h4>
           <ul>
-            <li><a href="https://ecode.sa/ar/">الرئيسية</a></li>
-            <li><a href="https://ecode.sa/services/">خدماتنا</a></li>
-            <li><a href="https://ecode.sa/plans/">الباقات</a></li>
-            <li><a href="https://ecode.sa/portfolio/">أعمالنا</a></li>
-            <li><a href="https://ecode.sa/contact/">تواصل معنا</a></li>
-            <li><a href="https://ecode.sa/terms/">الشروط والأحكام</a></li>
-            <li><a href="https://ecode.sa/privacy/">سياسة الخصوصية</a></li>
+            <li><a href="https://ecode.sa/ar">الرئيسية</a></li>
+            <li><a href="https://ecode.sa/services">خدماتنا</a></li>
+            <li><a href="https://ecode.sa/plans">الباقات</a></li>
+            <li><a href="https://ecode.sa/portfolio">أعمالنا</a></li>
+            <li><a href="https://ecode.sa/contact">تواصل معنا</a></li>
+            <li><a href="https://ecode.sa/terms">الشروط والأحكام</a></li>
+            <li><a href="https://ecode.sa/privacy">سياسة الخصوصية</a></li>
           </ul>
         </div>
 
-        <div>
+<div>
           <h4>تواصل معنا</h4>
           <p>الرياض — المملكة العربية السعودية</p>
           <p>جوال: <a href="tel:0503666316">0503666316</a></p>
@@ -514,14 +514,15 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا واتساب">
+  <!-- زر واتساب عائم -->
+  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
   <script>
-    // Form Handling
     async function handleFormSubmit(event) {
       event.preventDefault();
+      
       const btn = event.target.querySelector('button[type="submit"]');
       const originalText = btn.innerText;
       
@@ -531,59 +532,136 @@
 
       const formData = {
           name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
           phone: document.getElementById('phone').value,
           service: document.getElementById('service').value,
-          message: document.getElementById('message').value || 'لا توجد تفاصيل',
+          message: document.getElementById('message').value || 'لا يوجد تفاصيل إضافية',
           date: new Date().toLocaleDateString('ar-SA')
       };
 
       try {
           const webhookUrl = "https://hook.eu1.make.com/m0r5843oyetl2f111beqnydz3yd3uust"; 
+
           const response = await fetch(webhookUrl, {
-              method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData)
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData)
           });
 
           if (response.ok) {
               btn.innerText = 'تم الإرسال بنجاح ✅';
               btn.style.backgroundColor = '#7EDDA3';
               btn.style.color = '#000';
+              btn.style.border = 'none';
+              
               document.getElementById('contactForm').reset();
+              
               setTimeout(() => {
-                  btn.innerText = originalText; btn.disabled = false; btn.style.opacity = '1'; 
-                  btn.style.backgroundColor = ''; btn.style.color = '';
+                  btn.innerText = originalText;
+                  btn.disabled = false;
+                  btn.style.opacity = '1';
+                  btn.style.backgroundColor = ''; 
+                  btn.style.color = '';
+                  btn.style.border = '';
               }, 3000);
-          } else { throw new Error('Server error'); }
+          } else {
+              throw new Error('Server response not ok');
+          }
+
       } catch (error) {
-          btn.innerText = 'حدث خطأ! ❌'; btn.style.backgroundColor = '#ff6b6b';
-          setTimeout(() => { btn.innerText = originalText; btn.disabled = false; btn.style.backgroundColor = ''; }, 3000);
-          alert("عذراً، حدث خطأ. يرجى التواصل عبر الواتساب.");
+          console.error('Error:', error);
+          btn.innerText = 'حدث خطأ! ❌';
+          btn.style.backgroundColor = '#ff6b6b';
+          
+          setTimeout(() => {
+              btn.innerText = originalText;
+              btn.disabled = false;
+              btn.style.backgroundColor = '';
+          }, 3000);
+          
+          alert("عذرًا، حدث خطأ في الاتصال. يرجى المحاولة لاحقًا أو التواصل عبر الواتساب.");
       }
     }
 
-    // FAQ Toggle
+    // FAQ Accordion
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         const item = q.parentElement;
-        item.classList.toggle('active');
+        const wasActive = item.classList.contains('active');
+        
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        
+        if (!wasActive) {
+          item.classList.add('active');
+        }
       });
     });
 
-    // PWA Install (kept if needed)
+    // Smooth scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // تسجيل Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('✅ Service Worker registered:', registration.scope);
+            
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  if (confirm('يوجد تحديث جديد! هل تريد التحديث الآن؟')) {
+                    window.location.reload();
+                  }
+                }
+              });
+            });
+          })
+          .catch((error) => {
+            console.error('❌ Service Worker registration failed:', error);
+          });
+      });
+    }
+
+    // Install Prompt
     let deferredPrompt;
     const installButton = document.getElementById('installButton');
-    if(installButton){
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault(); deferredPrompt = e;
-        installButton.style.display = 'inline-flex';
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      if (installButton) {
+        installButton.style.display = 'block';
+        
         installButton.addEventListener('click', async () => {
           if (deferredPrompt) {
             deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
             deferredPrompt = null;
             installButton.style.display = 'none';
           }
         });
-      });
-    }
+      }
+    });
+
+    window.addEventListener('appinstalled', () => {
+      console.log('✅ PWA installed successfully');
+      deferredPrompt = null;
+    });
   </script>
 </body>
 </html>
