@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>الشروط والأحكام | eCode</title>
-  <meta name="description" content="الشروط والأحكام الخاصة بخدمات eCode. اقرأ شروط الاستخدام وسياسة التعامل قبل البدء بالتعاقد معنا">
+  <meta name="description" content="الشروط والأحكام الخاصة بـ eCode. يرجى قراءة هذه الشروط بعناية قبل استخدام خدماتنا أو موقعنا الإلكتروني">
   
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://ecode.sa/terms/">
   
-  <!-- Open Graph للسوشال ميديا -->
+  <!-- Open Graph -->
   <meta property="og:title" content="الشروط والأحكام | eCode">
-  <meta property="og:description" content="الشروط والأحكام الخاصة بخدمات eCode. اقرأ شروط الاستخدام وسياسة التعامل قبل البدء بالتعاقد معنا">
+  <meta property="og:description" content="الشروط والأحكام الخاصة بـ eCode. يرجى قراءة هذه الشروط بعناية قبل استخدام خدماتنا أو موقعنا الإلكتروني">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/terms/">
   <meta property="og:type" content="website">
@@ -21,17 +21,23 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="الشروط والأحكام | eCode">
-  <meta name="twitter:description" content="الشروط والأحكام الخاصة بخدمات eCode. اقرأ شروط الاستخدام وسياسة التعامل قبل البدء بالتعاقد معنا">
+  <meta name="twitter:description" content="الشروط والأحكام الخاصة بـ eCode. يرجى قراءة هذه الشروط بعناية قبل استخدام خدماتنا أو موقعنا الإلكتروني">
   <meta name="twitter:image" content="https://ecode.sa/favicon.png">
   
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  
   <style>
     :root {
+      /* الألوان الأساسية (الوضع الداكن - الافتراضي) */
       --lavender-light: #A99BFF;
       --lavender-dark: #8B7FFF;
       --sky-blue: #5BC0F8;
+      --mint-green: #7EDDA3;
+      --soft-orange: #FFB86C;
+      --coral-pink: #FF79C6;
+      
       --bg-primary: #0F1419;
       --bg-secondary: #1A1F2E;
       --bg-elevated: #242B3D;
@@ -40,6 +46,8 @@
       --text-muted: #6B7280;
       --border-color: #2D3748;
       --border-hover: #4A5568;
+      
+      --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
       --space-4: 16px;
@@ -47,13 +55,35 @@
       --space-8: 32px;
       --space-12: 48px;
       --space-16: 64px;
+      
       --radius-base: 16px;
       --radius-lg: 24px;
       --radius-full: 999px;
+      
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
       --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
       --shadow-glow: 0 0 20px rgba(139, 127, 255, 0.3);
+      
+      --transition-fast: 150ms ease;
       --transition-base: 250ms ease;
+    }
+
+    /* === إعدادات الوضع المضيء === */
+    [data-theme="light"] {
+      --bg-primary: #F3F4F6;
+      --bg-secondary: #FFFFFF;
+      --bg-elevated: #FFFFFF;
+      --text-primary: #1F2937;
+      --text-secondary: #4B5563;
+      --text-muted: #9CA3AF;
+      --border-color: #E5E7EB;
+      --border-hover: #D1D5DB;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --shadow-glow: 0 0 15px rgba(139, 127, 255, 0.2);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,16 +94,29 @@
       color: var(--text-primary);
       line-height: 1.7;
       font-size: 16px;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    h1 { font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--text-primary); }
+    h2 { font-size: 32px; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
+    p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
+    
     .main-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(15, 20, 25, 0.95);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-sm);
+      background: var(--bg-primary);
       border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-base);
+    }
+    
+    @supports (backdrop-filter: blur(12px)) {
+        .main-header {
+            background: color-mix(in srgb, var(--bg-primary), transparent 10%);
+            backdrop-filter: blur(12px);
+        }
     }
 
     .header-inner {
@@ -90,11 +133,13 @@
       display: flex;
       align-items: center;
       gap: var(--space-3);
-      text-decoration: none;
       transition: var(--transition-base);
+      text-decoration: none;
     }
 
-    .logo-container:hover { transform: scale(1.02); }
+    .logo-container:hover {
+      transform: scale(1.02);
+    }
 
     .logo-icon {
       width: 48px;
@@ -102,6 +147,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       overflow: visible;
     }
 
@@ -109,6 +155,13 @@
       width: 48px;
       height: 48px;
       object-fit: contain;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
     }
 
     .logo-text .brand-name {
@@ -117,6 +170,7 @@
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .logo-text .brand-tagline {
@@ -129,12 +183,27 @@
       display: flex;
       align-items: center;
       gap: var(--space-6);
+      font-size: 16px;
+      font-weight: 500;
     }
 
     .nav a {
       text-decoration: none;
       color: var(--text-secondary);
+      position: relative;
+      transition: var(--transition-fast);
+      padding: var(--space-2) 0;
       font-weight: 600;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
       transition: var(--transition-base);
     }
 
@@ -142,147 +211,192 @@
       color: var(--lavender-light);
     }
 
-    .lang-switcher {
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav a.active {
+      color: var(--lavender-light);
+    }
+
+    .nav a.active::after {
+      width: 100%;
+    }
+
+    /* === الأزرار الدائرية (اللغة والثيم) === */
+    .lang-switcher, .theme-toggle {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 50%;
       background: var(--bg-elevated);
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition-base);
       text-decoration: none;
     }
 
-    .lang-switcher:hover {
+    .lang-switcher:hover, .theme-toggle:hover {
       background: var(--bg-secondary);
       border-color: var(--lavender-dark);
       color: var(--lavender-light);
       box-shadow: var(--shadow-glow);
     }
 
+    /* === زر تواصل معنا (واسع) === */
     .btn-primary {
-      padding: 12px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      min-width: 140px;
       border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
       background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
       color: #fff !important;
       text-decoration: none;
-      font-size: 16px;
-      font-weight: 700;
       transition: var(--transition-base);
       box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
+      white-space: nowrap;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
+      filter: brightness(1.1);
       color: #fff !important;
     }
 
     .page-hero {
-      background: linear-gradient(135deg, #1A1F2E, #242B3D, #2D3748);
-      padding: 80px var(--space-6) 60px;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-elevated) 100%);
+      padding: 100px var(--space-6) 80px;
       text-align: center;
       border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139, 127, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 25s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-80px, 60px) scale(1.1); }
     }
 
     .page-hero h1 {
-      font-size: 48px;
+      font-size: 56px;
       font-weight: 700;
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
     }
 
     .page-hero p {
-      font-size: 18px;
+      font-size: 20px;
       color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .content-section {
+    .legal-content {
       max-width: 900px;
       margin: 0 auto;
       padding: var(--space-16) var(--space-6);
     }
 
-    .content-card {
+    .legal-card {
       background: var(--bg-secondary);
       border-radius: var(--radius-lg);
       padding: var(--space-12);
-      box-shadow: var(--shadow-md);
-      margin-bottom: var(--space-8);
       border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
     }
 
-    .content-card h2 {
-      font-size: 28px;
+    .legal-section {
+      margin-bottom: var(--space-8);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--space-8);
+    }
+
+    .legal-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .legal-section h2 {
+      font-size: 24px;
       font-weight: 700;
       color: var(--lavender-light);
-      margin-bottom: var(--space-6);
-      padding-bottom: var(--space-3);
-      border-bottom: 2px solid var(--border-color);
+      margin-bottom: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .content-card h3 {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--sky-blue);
-      margin-top: var(--space-8);
+    .legal-section p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-4);
+    }
+
+    .legal-section ul {
+      list-style: none;
       margin-bottom: var(--space-4);
     }
 
-    .content-card p {
-      font-size: 17px;
-      line-height: 1.8;
-      margin-bottom: var(--space-4);
+    .legal-section ul li {
+      padding: var(--space-2) 0;
+      padding-right: var(--space-6);
+      position: relative;
       color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.6;
     }
 
-    .content-card ul {
-      margin: var(--space-4) 0 var(--space-6);
-      padding-right: var(--space-8);
+    .legal-section ul li::before {
+      content: '•';
+      position: absolute;
+      right: 0;
+      color: var(--lavender-dark);
+      font-weight: bold;
+      font-size: 20px;
     }
 
-    .content-card li {
-      font-size: 17px;
-      line-height: 1.8;
-      margin-bottom: var(--space-3);
-      color: var(--text-secondary);
-    }
-
-    .content-card strong {
-      color: var(--lavender-light);
-      font-weight: 600;
-    }
-
-    .highlight-box {
-      background: rgba(139, 127, 255, 0.08);
-      border-right: 4px solid var(--lavender-dark);
-      padding: var(--space-6);
-      border-radius: var(--radius-base);
-      margin: var(--space-6) 0;
-    }
-
-    .highlight-box a {
-      color: var(--sky-blue);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .highlight-box a:hover {
-      color: var(--lavender-light);
-    }
-
+    /* === Footer Styles (Standardized) === */
     .footer {
       background: var(--bg-secondary);
       color: var(--text-primary);
       padding: var(--space-16) var(--space-6) var(--space-6);
       border-top: 1px solid var(--border-color);
+      margin-top: var(--space-16);
     }
 
     .footer-inner {
@@ -327,11 +441,12 @@
       margin-bottom: var(--space-2);
     }
 
+    /* Standardized Footer Social Bar */
     .social-bar {
       margin-top: var(--space-4);
       padding: var(--space-4);
       border-radius: var(--radius-lg);
-      background: rgba(139, 127, 255, 0.05);
+      background: rgba(139, 127, 255, 0.05); /* Same as main page */
       border: 1px solid var(--border-color);
       display: flex;
       flex-wrap: wrap;
@@ -353,12 +468,17 @@
       border: 1px solid var(--border-color);
     }
 
-    .social-link:hover {
+    /* Correct hover contrast: White Icon + Gradient Bg */
+    .footer .social-bar .social-link:hover {
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      color: #fff;
+      color: #ffffff !important;
       transform: translateY(-4px);
       box-shadow: var(--shadow-glow);
       border-color: transparent;
+    }
+    
+    .footer .social-bar .social-link:hover i {
+      color: #ffffff !important;
     }
 
     .footer-bottom {
@@ -370,10 +490,61 @@
       color: var(--text-muted);
     }
 
-    @media (max-width: 768px) {
-      .page-hero h1 { font-size: 32px; }
-      .content-card { padding: var(--space-6); }
-      .nav { flex-wrap: wrap; gap: var(--space-3); }
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
+      color: #FFF;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 32px;
+      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition-base);
+      animation: pulse-whatsapp 2s infinite;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
+      color: #FFF;
+      background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light));
+    }
+
+    @keyframes pulse-whatsapp {
+      0% {
+        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(139, 127, 255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0);
+      }
+    }
+
+    @media (max-width: 968px) {
+      .page-hero h1 { font-size: 40px; }
+      .nav { flex-wrap: wrap; gap: var(--space-3); font-size: 14px; }
+    }
+    
+    @media (max-width: 640px) {
+        .whatsapp-float {
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+            bottom: 20px;
+            left: 20px;
+        }
     }
   </style>
 </head>
@@ -381,7 +552,7 @@
 
   <header class="main-header">
     <div class="header-inner">
-      <a href="https://ecode.sa/ar/" class="logo-container">
+      <a href="https://ecode.sa/" class="logo-container">
         <div class="logo-icon">
           <img src="https://ecode.sa/favicon.png" alt="eCode Logo">
         </div>
@@ -396,149 +567,80 @@
         <a href="https://ecode.sa/services/">خدماتنا</a>
         <a href="https://ecode.sa/plans/">الباقات</a>
         <a href="https://ecode.sa/portfolio/">أعمالنا</a>
+        
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر">
+            <i class="fas fa-sun"></i>
+        </button>
 
-        <a href="https://ecode.sa/en/" class="lang-switcher">
-          <i class="fas fa-globe"></i>
-          <span>English</span>
+        <!-- Circular Language Button -->
+        <a href="https://ecode.sa/terms-en/" class="lang-switcher" aria-label="English">
+          <span style="font-size: 20px; line-height: 1;">🇬🇧</span>
         </a>
-
-        <a href="https://ecode.sa/contact/" class="btn-primary" style="padding: 10px 20px; font-size: 15px; color: #fff !important;">
-          تواصل معنا
-        </a>
+        
+        <a href="https://ecode.sa/contact/" class="btn-primary">تواصل معنا</a>
       </nav>
     </div>
   </header>
 
   <section class="page-hero">
     <h1>الشروط والأحكام</h1>
-    <p>آخر تحديث: فبراير 2025</p>
+    <p>يرجى قراءة هذه الشروط بعناية قبل استخدام خدماتنا</p>
   </section>
 
-  <section class="content-section">
-    <div class="content-card">
-      <div class="highlight-box">
-        <p><strong>تمثل هذه الشروط اتفاقًا ملزمًا</strong> بين العميل وشركة إلكترونيك كود عند طلب أي خدمة تصميم، إنتاج محتوى، تصوير، إدارة حسابات، تطوير مواقع، أو أي خدمة تقدمها الشركة.</p>
-        <p>استخدام خدماتنا يعني موافقتك الكاملة على كافة البنود التالية.</p>
+  <section class="legal-content">
+    <div class="legal-card">
+      <div class="legal-section">
+        <h2>1. مقدمة</h2>
+        <p>تحكم هذه الشروط والأحكام استخدامك لخدمات وموقع eCode. من خلال الوصول إلى موقعنا أو استخدام خدماتنا، فإنك توافق على الالتزام بهذه الشروط.</p>
       </div>
 
-      <h2>أولًا: تعريفات</h2>
-      <ul>
-        <li><strong>الشركة / eCode:</strong> شركة إلكترونيك كود لتقديم الحلول الإبداعية والتقنية.</li>
-        <li><strong>العميل:</strong> الفرد أو الجهة التي تطلب الخدمة.</li>
-        <li><strong>المشروع:</strong> العمل المتفق عليه بين الطرفين.</li>
-        <li><strong>الملفات النهائية:</strong> ملفات JPG/PNG/PDF/MP4…</li>
-        <li><strong>الملفات المفتوحة:</strong> PSD/AI/AE/Figma/RAW وغيرها.</li>
-      </ul>
+      <div class="legal-section">
+        <h2>2. الخدمات</h2>
+        <p>تقدم eCode خدمات التسويق الرقمي، إنشاء المحتوى، والحلول التقنية. سيتم الاتفاق على نطاق العمل المحدد، التسليمات، والجداول الزمنية في اتفاقية خدمة منفصلة أو عرض سعر لكل مشروع.</p>
+      </div>
 
-      <h2>ثانيًا: التزامات الشركة</h2>
-      <p>تلتزم eCode بالآتي:</p>
-      <ul>
-        <li>تقديم الخدمة حسب المتفق عليه</li>
-        <li>الالتزام بالمدة التقديرية (غير الملزمة)</li>
-        <li>تنفيذ الأعمال بمعايير مهنية</li>
-        <li>تسليم الملفات بعد استلام الدفعات كاملة</li>
-        <li>حماية سرية بيانات العميل</li>
-      </ul>
+      <div class="legal-section">
+        <h2>3. الدفع والاسترداد</h2>
+        <ul>
+          <li>يجب دفع عربون غير قابل للاسترداد لبدء العمل في أي مشروع.</li>
+          <li>سيتم توضيح جداول الدفع في اتفاقية الخدمة.</li>
+          <li>جميع الرسوم غير قابلة للاسترداد بمجرد بدء العمل، ما لم ينص على خلاف ذلك في هذه الشروط أو يقتضيه القانون.</li>
+        </ul>
+      </div>
 
-      <h2>ثالثًا: التزامات العميل</h2>
-      <p>يلتزم العميل بـ:</p>
-      <ul>
-        <li>تزويد الشركة بالمعلومات الصحيحة</li>
-        <li>الرد على الملاحظات في الوقت المناسب</li>
-        <li>توفير المواد المطلوبة (شعار/صور/محتوى…)</li>
-        <li>سداد الدفعات وفق الجدول المتفق عليه</li>
-        <li>عدم إساءة استخدام أي مخرجات يتم تسليمها</li>
-      </ul>
+      <div class="legal-section">
+        <h2>4. الملكية الفكرية</h2>
+        <p>عند سداد كامل الدفعات، سيمتلك العميل الحقوق الكاملة للمخرجات النهائية. تحتفظ eCode بالحق في استخدام الأعمال في معرض أعمالها ولأغراض التسويق ما لم يتم توقيع اتفاقية عدم إفصاح (NDA).</p>
+      </div>
 
-      <h2>رابعًا: آلية الدفع</h2>
-      <p>يتم اعتماد الآتي:</p>
-      <ul>
-        <li><strong>عربون غير قابل للاسترداد</strong> يحجز وقت وجهد الفريق.</li>
-        <li>يجوز في بعض المشاريع اعتماد دفعات متعددة حسب المراحل.</li>
-        <li>لا يتم البدء في المشروع قبل استلام العربون.</li>
-        <li>لا يتم التسليم النهائي قبل استكمال الدفعات كاملة.</li>
-      </ul>
+      <div class="legal-section">
+        <h2>5. مسؤوليات العميل</h2>
+        <p>يوافق العميل على تقديم جميع المعلومات والمواد والموافقات اللازمة في الوقت المناسب. قد يؤدي تأخر العميل إلى تعديل الجدول الزمني للمشروع ومواعيد التسليم.</p>
+      </div>
 
-      <h2>خامسًا: سياسة الإلغاء</h2>
-      <ul>
-        <li>في حال إلغاء المشروع من طرف العميل بعد البدء، لا يتم استرداد العربون.</li>
-        <li>في حال تنفيذ نسبة من العمل، يطالب العميل بقيمة الجزء المنجز.</li>
-        <li>للشركة الحق في إلغاء المشروع عند وجود سوء تعامل أو تأخر بالدفع.</li>
-      </ul>
+      <div class="legal-section">
+        <h2>6. حدود المسؤولية</h2>
+        <p>لن تكون eCode مسؤولة عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن أو فيما يتعلق باستخدام خدماتنا. لا تتجاوز مسؤوليتنا الإجمالية المبلغ المدفوع من قبل العميل مقابل الخدمة المحددة.</p>
+      </div>
 
-      <h2>سادسًا: سياسة المدة والتسليم</h2>
-      <ul>
-        <li>المدة المذكورة في العروض تقديرية وتتأثر بعدد التعديلات.</li>
-        <li>أي تأخير ناتج عن العميل (تأخر ردود، تأخر تسليم محتوى) يوقف المدة نهائيًا.</li>
-        <li>لا يحق للعميل المطالبة بتعويض مالي بسبب تأخير ناتج عن عوامل خارجة عن إرادة الشركة.</li>
-      </ul>
+      <div class="legal-section">
+        <h2>7. الإنهاء</h2>
+        <p>يجوز لأي من الطرفين إنهاء اتفاقية الخدمة بإشعار كتابي إذا أخل الطرف الآخر بأي شرط جوهري. في حالة الإنهاء من قبل العميل، يحق لـ eCode الحصول على مستحقاتها عن جميع الأعمال المنجزة حتى تاريخ الإنهاء.</p>
+      </div>
 
-      <h2>سابعًا: التعديلات</h2>
-      <ul>
-        <li>تشمل الباقة عددًا محددًا من التعديلات، وأي تعديل إضافي يتم احتسابه برسوم.</li>
-        <li>تعتبر التعديلات الجذرية مشروعًا جديدًا ويتم تسعيره بشكل منفصل.</li>
-      </ul>
+      <div class="legal-section">
+        <h2>8. القانون الواجب التطبيق</h2>
+        <p>تخضع هذه الشروط وتفسر وفقًا لقوانين المملكة العربية السعودية.</p>
+      </div>
 
-      <h2>ثامنًا: الملكية الفكرية</h2>
-      
-      <h3>1. الملكية الافتراضية</h3>
-      <ul>
-        <li>يحق للعميل الحصول على الملفات النهائية فقط.</li>
-        <li>تحتفظ eCode بالملفات المفتوحة ولا تُسلم إلا مقابل رسوم إضافية.</li>
-        <li>تحتفظ الشركة بحق عرض الأعمال ضمن معرض أعمالها ما لم يطلب العميل عدم ذلك كتابةً.</li>
-      </ul>
-
-      <h3>2. حقوق الصور والفيديو</h3>
-      <ul>
-        <li>الصور والفيديوهات المستخدمة من العميل تكون على مسؤوليته (ملكية / ترخيص).</li>
-        <li>الشركة غير مسؤولة عن أي انتهاك لحقوق ملكية يتسبب به العميل.</li>
-      </ul>
-
-      <h3>3. حقوق النشر التجاري</h3>
-      <p>لا يجوز للعميل بيع أو إعادة توزيع التصميم إلا بعد الحصول على رخصة خطية.</p>
-
-      <h2>تاسعًا: سرية المعلومات</h2>
-      <p>تتعهد eCode بالحفاظ على سرية:</p>
-      <ul>
-        <li>ملفات المشروع</li>
-        <li>بيانات العميل</li>
-        <li>مواد التصوير</li>
-      </ul>
-      <p>ولا يتم مشاركتها إلا مع المتعاونين المنفذين للعمل فقط.</p>
-
-      <h2>عاشرًا: إنهاء العلاقة التعاقدية</h2>
-      <p>يحق لـ eCode إنهاء العقد في الحالات التالية:</p>
-      <ul>
-        <li>تأخر العميل عن الدفع</li>
-        <li>إساءة استخدام الخدمات أو الموظفين</li>
-        <li>تقديم معلومات مضللة</li>
-        <li>انتهاك هذه الشروط</li>
-      </ul>
-
-      <h2>الحادي عشر: حدود المسؤولية</h2>
-      <p>لا تتحمل eCode أي مسؤولية عن:</p>
-      <ul>
-        <li>فقدان البيانات الناتج عن خطأ العميل</li>
-        <li>مشاكل تقنية لدى مزودي الخدمات مثل Google أو شركات الاستضافة</li>
-        <li>سوء استخدام العميل للمحتوى النهائي</li>
-        <li>الأضرار الناتجة عن الظروف الطارئة أو القوة القاهرة</li>
-      </ul>
-
-      <h2>الثاني عشر: القانون المُطبق</h2>
-      <p>تخضع هذه الشروط لأنظمة المملكة العربية السعودية، ويكون الاختصاص القضائي لمحاكم الرياض.</p>
-
-      <h2>الثالث عشر: موافقة العميل</h2>
-      <p>استخدامك للموقع أو طلبك لأي خدمة يعتبر:</p>
-      <ul>
-        <li>موافقة صريحة على سياسة الخصوصية</li>
-        <li>قبولًا كاملًا للشروط والأحكام</li>
-        <li>اعترافًا بأن جميع المراسلات الإلكترونية تعتبر ملزمة</li>
-      </ul>
-
-      <div class="highlight-box" style="margin-top: 48px;">
-        <p><strong>للاستفسارات أو الاعتراضات:</strong></p>
-        <p>البريد الإلكتروني: <a href="mailto:info@ecode.sa">info@ecode.sa</a></p>
-        <p>الجوال: <a href="tel:0503666316">0503666316</a></p>
+      <div class="legal-section">
+        <h2>9. اتصل بنا</h2>
+        <p>إذا كانت لديك أي أسئلة حول هذه الشروط والأحكام، يرجى الاتصال بنا:</p>
+        <ul>
+          <li>البريد الإلكتروني: info@ecode.sa</li>
+          <li>الهاتف: 0503666316</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -609,11 +711,42 @@
     </div>
   </footer>
 
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
   <script>
-    function switchLanguage() {
-      localStorage.setItem('preferred_lang', 'en');
-      window.location.href = 'terms-en.html';
+    // --- Theme Toggle Logic ---
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('theme', nextTheme);
+        updateThemeIcon(nextTheme);
     }
+
+    function updateThemeIcon(theme) {
+        const icon = document.querySelector('.theme-toggle i');
+        if (!icon) return; 
+        
+        if (theme === 'light') {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+
+    // Initialize Theme
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+    });
   </script>
 
 </body>
