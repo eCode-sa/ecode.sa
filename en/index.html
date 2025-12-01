@@ -6,6 +6,19 @@
   <title>eCode | Electronic Code - Making an Impact</title>
   <meta name="description" content="A Saudi company offering digital marketing solutions, content management, creative production, and technical solutions">
   
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- iOS Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="eCode">
+  <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+  
+  <!-- Android/Chrome -->
+  <meta name="theme-color" content="#8B7FFF">
+  <meta name="mobile-web-app-capable" content="yes">
+
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
@@ -110,7 +123,7 @@
       border-bottom: 1px solid var(--border-color);
       transition: var(--transition-base);
     }
-
+    
     @supports (backdrop-filter: blur(12px)) {
         .main-header {
             background: color-mix(in srgb, var(--bg-primary), transparent 10%);
@@ -206,27 +219,23 @@
       width: 100%;
     }
 
+    /* === Circular Buttons (Language & Theme) === */
     .lang-switcher, .theme-toggle {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--space-2);
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 50%;
       background: var(--bg-elevated);
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition-base);
       text-decoration: none;
-    }
-
-    .theme-toggle {
-        padding: 8px;
-        width: 40px;
-        height: 40px;
     }
 
     .lang-switcher:hover, .theme-toggle:hover {
@@ -236,11 +245,13 @@
       box-shadow: var(--shadow-glow);
     }
 
+    /* === "Contact Us" Button (Wide) === */
     .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 28px;
+      padding: 14px 32px;
+      min-width: 140px;
       border-radius: var(--radius-full);
       border: none;
       cursor: pointer;
@@ -446,8 +457,13 @@
       text-align: center;
     }
 
-    .stat-item { transition: var(--transition-base); }
-    .stat-item:hover { transform: scale(1.08); }
+    .stat-item {
+      transition: var(--transition-base);
+    }
+
+    .stat-item:hover {
+      transform: scale(1.08);
+    }
 
     .stat-number {
       font-size: 48px;
@@ -532,12 +548,12 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
+      right: 0;
       width: 100%;
       height: 4px;
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
       transform: scaleX(0);
-      transform-origin: left;
+      transform-origin: right;
       transition: var(--transition-base);
     }
 
@@ -567,13 +583,13 @@
       font-size: 16px;
       color: var(--text-secondary);
       position: relative;
-      padding-left: var(--space-6);
+      padding-right: var(--space-6);
     }
 
     .feature-card ul li::before {
       content: '';
       position: absolute;
-      left: 0;
+      right: 0;
       top: 14px;
       width: 6px;
       height: 6px;
@@ -930,6 +946,7 @@
         100% { transform: translateX(-50%); }
     }
 
+    /* === Footer Styles (Matching Main Page Exactly) === */
     .footer {
       background: var(--bg-secondary);
       color: var(--text-primary);
@@ -965,7 +982,7 @@
     .footer a {
       color: var(--text-secondary);
       text-decoration: none;
-      transition: var(--transition-fast);
+      transition: var(--transition-base);
     }
 
     .footer a:hover {
@@ -980,15 +997,15 @@
       margin-bottom: var(--space-2);
     }
 
+    /* Standardized Footer Social Bar */
     .social-bar {
       margin-top: var(--space-4);
       padding: var(--space-4);
       border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(139, 127, 255, 0.1), rgba(91, 192, 248, 0.1));
+      background: rgba(139, 127, 255, 0.05); /* Same as main page */
       border: 1px solid var(--border-color);
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       gap: var(--space-3);
     }
 
@@ -1007,12 +1024,16 @@
       border: 1px solid var(--border-color);
     }
 
-    .social-link:hover {
+    .footer .social-bar .social-link:hover {
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      color: #fff;
+      color: #ffffff !important;
       transform: translateY(-4px);
       box-shadow: var(--shadow-glow);
       border-color: transparent;
+    }
+    
+    .footer .social-bar .social-link:hover i {
+      color: #ffffff !important;
     }
 
     .footer-bottom {
@@ -1114,12 +1135,11 @@
             <i class="fas fa-sun"></i>
         </button>
 
-        <a href="https://ecode.sa/ar/" class="lang-switcher">
-          <i class="fas fa-globe"></i>
-          <span>العربية</span>
+        <a href="https://ecode.sa/ar/" class="lang-switcher" aria-label="العربية">
+          <span style="font-size: 20px; line-height: 1;">🇸🇦</span>
         </a>
 
-        <a href="https://ecode.sa/contact-en/" class="btn-primary" style="padding: 10px 20px; font-size: 15px; color: #fff !important;">
+        <a href="https://ecode.sa/contact-en/" class="btn-primary" style="padding: 14px 32px; font-size: 16px; color: #fff !important;">
           Contact Us
         </a>
       </nav>
