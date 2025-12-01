@@ -31,6 +31,8 @@
   <meta property="og:url" content="https://ecode.sa/ar/">
   <meta property="og:type" content="website">
   
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" href="/favicon.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -94,8 +96,16 @@
       --shadow-glow: 0 0 15px rgba(139, 127, 255, 0.2);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: "Tajawal", system-ui, sans-serif;
       background: var(--bg-primary);
@@ -145,7 +155,9 @@
       text-decoration: none;
     }
 
-    .logo-container:hover { transform: scale(1.02); }
+    .logo-container:hover {
+      transform: scale(1.02);
+    }
 
     .logo-icon {
       width: 48px;
@@ -165,7 +177,10 @@
       z-index: 1;
     }
 
-    .logo-text { display: flex; flex-direction: column; }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
 
     .logo-text .brand-name {
       font-size: 24px;
@@ -210,8 +225,13 @@
       transition: var(--transition-base);
     }
 
-    .nav a:hover { color: var(--lavender-light); }
-    .nav a:hover::after { width: 100%; }
+    .nav a:hover {
+      color: var(--lavender-light);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
 
     /* === الأزرار الدائرية (اللغة والثيم) === */
     .lang-switcher, .theme-toggle {
@@ -1018,6 +1038,7 @@
       border: 1px solid var(--border-color);
     }
 
+    /* Correct hover contrast: White Icon + Gradient Bg */
     .footer .social-bar .social-link:hover {
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
       color: #ffffff !important;
@@ -1039,7 +1060,7 @@
       color: var(--text-muted);
     }
 
-    /* زر واتساب عائم */
+    /* Floating WhatsApp Button */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
@@ -1119,24 +1140,22 @@
       </a>
 
       <nav class="nav">
-        <a href="https://ecode.sa/">الرئيسية</a>
+        <a href="https://ecode.sa/ar/">الرئيسية</a>
         <a href="https://ecode.sa/services/">خدماتنا</a>
         <a href="https://ecode.sa/plans/">الباقات</a>
         <a href="https://ecode.sa/portfolio/">أعمالنا</a>
         
-        <!-- زر تغيير الثيم -->
+        <!-- Theme Toggle -->
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر">
             <i class="fas fa-sun"></i>
         </button>
 
-        <!-- زر اللغة دائري -->
+        <!-- Circular Language Button -->
         <a href="https://ecode.sa/en/" class="lang-switcher" aria-label="English">
           <span style="font-size: 20px; line-height: 1;">🇬🇧</span>
         </a>
         
-        <a href="https://ecode.sa/contact/" class="btn-primary" style="padding: 14px 32px; font-size: 16px;">
-          تواصل معنا
-        </a>
+        <a href="https://ecode.sa/contact/" class="btn-primary">تواصل معنا</a>
       </nav>
     </div>
   </header>
@@ -1525,7 +1544,7 @@
         <div class="footer-links">
           <h4>روابط سريعة</h4>
           <ul>
-            <li><a href="https://ecode.sa/">الرئيسية</a></li>
+            <li><a href="https://ecode.sa/ar/">الرئيسية</a></li>
             <li><a href="https://ecode.sa/services/">خدماتنا</a></li>
             <li><a href="https://ecode.sa/plans/">الباقات</a></li>
             <li><a href="https://ecode.sa/portfolio/">أعمالنا</a></li>
@@ -1555,7 +1574,7 @@
   </a>
 
   <script>
-    // --- التعامل مع الثيم (الوضع المضيء/الداكن) ---
+    // --- Theme Toggle Logic ---
     function toggleTheme() {
         const html = document.documentElement;
         const currentTheme = html.getAttribute('data-theme');
@@ -1568,7 +1587,7 @@
 
     function updateThemeIcon(theme) {
         const icon = document.querySelector('.theme-toggle i');
-        if (!icon) return; // حماية في حال عدم وجود العنصر
+        if (!icon) return; 
         
         if (theme === 'light') {
             icon.classList.remove('fa-sun');
@@ -1579,7 +1598,7 @@
         }
     }
 
-    // تهيئة الثيم عند تحميل الصفحة
+    // Initialize Theme
     document.addEventListener('DOMContentLoaded', () => {
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
