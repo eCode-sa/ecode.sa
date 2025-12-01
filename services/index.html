@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>خدماتنا | eCode</title>
-  <meta name="description" content="خدمات eCode الشاملة: التسويق الرقمي، إدارة المحتوى، تصميم الهويات البصرية، تصوير احترافي، تطوير المواقع والحلول التقنية">
+  <meta name="description" content="اكتشف خدمات eCode في التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية لنمو أعمالك في السعودية">
   
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://ecode.sa/services/">
   
-  <!-- Open Graph للسوشال ميديا -->
+  <!-- Open Graph -->
   <meta property="og:title" content="خدماتنا | eCode">
-  <meta property="og:description" content="خدمات eCode الشاملة: التسويق الرقمي، إدارة المحتوى، تصميم الهويات البصرية، تصوير احترافي، تطوير المواقع والحلول التقنية">
+  <meta property="og:description" content="اكتشف خدمات eCode في التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية لنمو أعمالك في السعودية">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/services/">
   <meta property="og:type" content="website">
@@ -21,18 +21,23 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="خدماتنا | eCode">
-  <meta name="twitter:description" content="خدمات eCode الشاملة: التسويق الرقمي، إدارة المحتوى، تصميم الهويات البصرية، تصوير احترافي، تطوير المواقع والحلول التقنية">
+  <meta name="twitter:description" content="اكتشف خدمات eCode في التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية لنمو أعمالك في السعودية">
   <meta name="twitter:image" content="https://ecode.sa/favicon.png">
   
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  
   <style>
     :root {
+      /* الألوان الأساسية (الوضع الداكن - الافتراضي) */
       --lavender-light: #A99BFF;
       --lavender-dark: #8B7FFF;
       --sky-blue: #5BC0F8;
       --mint-green: #7EDDA3;
+      --soft-orange: #FFB86C;
+      --coral-pink: #FF79C6;
+      
       --bg-primary: #0F1419;
       --bg-secondary: #1A1F2E;
       --bg-elevated: #242B3D;
@@ -41,6 +46,8 @@
       --text-muted: #6B7280;
       --border-color: #2D3748;
       --border-hover: #4A5568;
+      
+      --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
       --space-4: 16px;
@@ -48,14 +55,35 @@
       --space-8: 32px;
       --space-12: 48px;
       --space-16: 64px;
+      
       --radius-base: 16px;
       --radius-lg: 24px;
       --radius-full: 999px;
+      
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
       --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
       --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
       --shadow-glow: 0 0 20px rgba(139, 127, 255, 0.3);
+      
+      --transition-fast: 150ms ease;
       --transition-base: 250ms ease;
+    }
+
+    /* === إعدادات الوضع المضيء === */
+    [data-theme="light"] {
+      --bg-primary: #F3F4F6;
+      --bg-secondary: #FFFFFF;
+      --bg-elevated: #FFFFFF;
+      --text-primary: #1F2937;
+      --text-secondary: #4B5563;
+      --text-muted: #9CA3AF;
+      --border-color: #E5E7EB;
+      --border-hover: #D1D5DB;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --shadow-glow: 0 0 15px rgba(139, 127, 255, 0.2);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,16 +94,29 @@
       color: var(--text-primary);
       line-height: 1.7;
       font-size: 16px;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    h1 { font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--text-primary); }
+    h2 { font-size: 32px; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
+    p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
+    
     .main-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(15, 20, 25, 0.95);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-sm);
+      background: var(--bg-primary);
       border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-base);
+    }
+    
+    @supports (backdrop-filter: blur(12px)) {
+        .main-header {
+            background: color-mix(in srgb, var(--bg-primary), transparent 10%);
+            backdrop-filter: blur(12px);
+        }
     }
 
     .header-inner {
@@ -92,11 +133,13 @@
       display: flex;
       align-items: center;
       gap: var(--space-3);
-      text-decoration: none;
       transition: var(--transition-base);
+      text-decoration: none;
     }
 
-    .logo-container:hover { transform: scale(1.02); }
+    .logo-container:hover {
+      transform: scale(1.02);
+    }
 
     .logo-icon {
       width: 48px;
@@ -104,6 +147,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       overflow: visible;
     }
 
@@ -111,6 +155,13 @@
       width: 48px;
       height: 48px;
       object-fit: contain;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
     }
 
     .logo-text .brand-name {
@@ -119,6 +170,7 @@
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .logo-text .brand-tagline {
@@ -131,18 +183,36 @@
       display: flex;
       align-items: center;
       gap: var(--space-6);
+      font-size: 16px;
+      font-weight: 500;
     }
 
     .nav a {
       text-decoration: none;
       color: var(--text-secondary);
-      font-weight: 600;
-      transition: var(--transition-base);
       position: relative;
+      padding: var(--space-2) 0;
+      transition: var(--transition-fast);
+      font-weight: 600;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
+      transition: var(--transition-base);
     }
 
     .nav a:hover {
       color: var(--lavender-light);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
     }
 
     .nav a.active {
@@ -150,58 +220,84 @@
     }
 
     .nav a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
+      width: 100%;
     }
 
-    .lang-switcher {
+    /* === الأزرار الدائرية (اللغة والثيم) === */
+    .lang-switcher, .theme-toggle {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 50%;
       background: var(--bg-elevated);
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition-base);
       text-decoration: none;
     }
 
-    .lang-switcher:hover {
+    .lang-switcher:hover, .theme-toggle:hover {
       background: var(--bg-secondary);
       border-color: var(--lavender-dark);
       color: var(--lavender-light);
       box-shadow: var(--shadow-glow);
     }
 
+    /* === زر تواصل معنا (واسع) === */
     .btn-primary {
-      padding: 10px 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      min-width: 140px;
       border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
       background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
       color: #fff !important;
       text-decoration: none;
-      font-size: 15px;
-      font-weight: 700;
       transition: var(--transition-base);
       box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
+      white-space: nowrap;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
+      filter: brightness(1.1);
       color: #fff !important;
     }
 
+    .btn-secondary {
+      padding: 10px var(--space-6);
+      border-radius: var(--radius-full);
+      border: 2px solid var(--text-primary);
+      background: transparent;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: var(--transition-base);
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      transform: translateY(-2px);
+    }
+
     .page-hero {
-      background: linear-gradient(135deg, #1A1F2E, #242B3D, #2D3748);
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-elevated) 100%);
       padding: 100px var(--space-6) 80px;
       text-align: center;
       border-bottom: 1px solid var(--border-color);
@@ -218,6 +314,12 @@
       height: 600px;
       background: radial-gradient(circle, rgba(139, 127, 255, 0.1) 0%, transparent 70%);
       border-radius: 50%;
+      animation: float 25s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-80px, 60px) scale(1.1); }
     }
 
     .page-hero h1 {
@@ -227,6 +329,7 @@
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
       position: relative;
       z-index: 1;
     }
@@ -254,6 +357,7 @@
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .section-subtitle {
@@ -265,7 +369,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: var(--space-8);
       margin-bottom: var(--space-16);
     }
@@ -304,17 +408,23 @@
     }
 
     .service-icon {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
+      width: 60px;
+      height: 60px;
+      background: rgba(139, 127, 255, 0.1);
       border-radius: var(--radius-base);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: var(--space-6);
-      font-size: 32px;
-      color: #fff;
-      box-shadow: var(--shadow-glow);
+      font-size: 28px;
+      color: var(--lavender-light);
+      border: 1px solid rgba(139, 127, 255, 0.2);
+    }
+
+    [data-theme="light"] .service-icon {
+        background: rgba(139, 127, 255, 0.1);
+        color: var(--lavender-dark);
+        border-color: rgba(139, 127, 255, 0.2);
     }
 
     .service-card h3 {
@@ -328,29 +438,7 @@
       font-size: 16px;
       color: var(--text-secondary);
       margin-bottom: var(--space-6);
-      line-height: 1.8;
-    }
-
-    .service-features {
-      list-style: none;
-      margin-bottom: var(--space-6);
-    }
-
-    .service-features li {
-      padding: var(--space-2) 0;
-      padding-right: var(--space-6);
-      position: relative;
-      color: var(--text-secondary);
-      font-size: 15px;
-    }
-
-    .service-features li::before {
-      content: '✓';
-      position: absolute;
-      right: 0;
-      color: var(--mint-green);
-      font-weight: bold;
-      font-size: 18px;
+      line-height: 1.7;
     }
 
     .service-link {
@@ -359,64 +447,41 @@
       gap: var(--space-2);
       color: var(--lavender-light);
       text-decoration: none;
+      font-size: 14px;
       font-weight: 600;
-      transition: var(--transition-base);
+      transition: var(--transition-fast);
     }
 
     .service-link:hover {
-      color: var(--sky-blue);
       gap: var(--space-3);
+      color: var(--sky-blue);
     }
 
     .cta-section {
       background: linear-gradient(135deg, var(--bg-secondary), var(--bg-elevated));
-      border-radius: var(--radius-lg);
-      padding: var(--space-16);
+      padding: var(--space-16) var(--space-6);
       text-align: center;
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
       margin-top: var(--space-16);
     }
 
     .cta-section h2 {
-      font-size: 36px;
-      font-weight: 700;
+      font-size: 32px;
       margin-bottom: var(--space-4);
-      background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-primary);
     }
 
     .cta-section p {
       font-size: 18px;
       color: var(--text-secondary);
       margin-bottom: var(--space-8);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .cta-buttons {
-      display: flex;
-      gap: var(--space-4);
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-secondary {
-      padding: 14px 28px;
-      border-radius: var(--radius-full);
-      border: 2px solid var(--lavender-dark);
-      background: transparent;
-      color: var(--lavender-light);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 700;
-      transition: var(--transition-base);
-    }
-
-    .btn-secondary:hover {
-      background: var(--lavender-dark);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
+    /* === Footer Styles (Standardized) === */
     .footer {
       background: var(--bg-secondary);
       color: var(--text-primary);
@@ -467,11 +532,12 @@
       margin-bottom: var(--space-2);
     }
 
+    /* Standardized Footer Social Bar */
     .social-bar {
       margin-top: var(--space-4);
       padding: var(--space-4);
       border-radius: var(--radius-lg);
-      background: rgba(139, 127, 255, 0.05);
+      background: rgba(139, 127, 255, 0.05); /* Same as main page */
       border: 1px solid var(--border-color);
       display: flex;
       flex-wrap: wrap;
@@ -493,12 +559,17 @@
       border: 1px solid var(--border-color);
     }
 
-    .social-link:hover {
+    /* Correct hover contrast: White Icon + Gradient Bg */
+    .footer .social-bar .social-link:hover {
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      color: #fff;
+      color: #ffffff !important;
       transform: translateY(-4px);
       box-shadow: var(--shadow-glow);
       border-color: transparent;
+    }
+    
+    .footer .social-bar .social-link:hover i {
+      color: #ffffff !important;
     }
 
     .footer-bottom {
@@ -510,10 +581,62 @@
       color: var(--text-muted);
     }
 
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
+      color: #FFF;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 32px;
+      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition-base);
+      animation: pulse-whatsapp 2s infinite;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
+      color: #FFF;
+      background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light));
+    }
+
+    @keyframes pulse-whatsapp {
+      0% {
+        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(139, 127, 255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0);
+      }
+    }
+
     @media (max-width: 968px) {
       .services-grid { grid-template-columns: 1fr; }
       .page-hero h1 { font-size: 40px; }
       .nav { flex-wrap: wrap; gap: var(--space-3); font-size: 14px; }
+    }
+    
+    @media (max-width: 640px) {
+        .whatsapp-float {
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+            bottom: 20px;
+            left: 20px;
+        }
     }
   </style>
 </head>
@@ -521,7 +644,7 @@
 
   <header class="main-header">
     <div class="header-inner">
-      <a href="https://ecode.sa/ar/" class="logo-container">
+      <a href="https://ecode.sa/" class="logo-container">
         <div class="logo-icon">
           <img src="https://ecode.sa/favicon.png" alt="eCode Logo">
         </div>
@@ -536,145 +659,91 @@
         <a href="https://ecode.sa/services/" class="active">خدماتنا</a>
         <a href="https://ecode.sa/plans/">الباقات</a>
         <a href="https://ecode.sa/portfolio/">أعمالنا</a>
+        
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر">
+            <i class="fas fa-sun"></i>
+        </button>
 
-        <a href="https://ecode.sa/en/" class="lang-switcher">
-          <i class="fas fa-globe"></i>
-          <span>English</span>
+        <!-- Circular Language Button -->
+        <a href="https://ecode.sa/services-en/" class="lang-switcher" aria-label="English">
+          <span style="font-size: 20px; line-height: 1;">🇬🇧</span>
         </a>
-
-        <a href="https://ecode.sa/contact/" class="btn-primary" style="padding: 10px 20px; font-size: 15px; color: #fff !important;">
-          تواصل معنا
-        </a>
+        
+        <a href="https://ecode.sa/contact/" class="btn-primary">تواصل معنا</a>
       </nav>
     </div>
   </header>
 
   <section class="page-hero">
-    <h1>خدماتنا المتكاملة</h1>
-    <p>نقدم مجموعة شاملة من الحلول التقنية والتسويقية التي تساعدك على تحقيق أهدافك وتنمية أعمالك</p>
+    <h1>خدماتنا</h1>
+    <p>نقدم حلولاً متكاملة لمساعدة أعمالك على النمو والازدهار في العالم الرقمي</p>
   </section>
 
   <section class="services-section">
-    <h2 class="section-title">ماذا نقدم لك؟</h2>
-    <p class="section-subtitle">حلول متكاملة تغطي كل احتياجاتك الرقمية</p>
+    <h2 class="section-title">ماذا نقدم؟</h2>
+    <p class="section-subtitle">نجمع بين الإبداع والتقنية لنحقق لك النتائج</p>
 
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">
           <i class="fas fa-bullhorn"></i>
         </div>
-        <h3>التسويق الرقمي</h3>
-        <p>نبني استراتيجيات تسويقية متكاملة تصل بعلامتك التجارية للجمهور المستهدف وتحقق نتائج قابلة للقياس.</p>
-        <ul class="service-features">
-          <li>إدارة حسابات التواصل الاجتماعي</li>
-          <li>إعداد وتنفيذ الحملات الإعلانية</li>
-          <li>تحليل البيانات وتقارير الأداء</li>
-          <li>استراتيجيات النمو والتفاعل</li>
-          <li>إدارة المحتوى والجدولة</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="service-link">
-          اطلب الخدمة <i class="fas fa-arrow-left"></i>
-        </a>
+        <h3>إدارة حسابات التواصل الاجتماعي</h3>
+        <p>إدارة شاملة لحساباتك على منصات التواصل، تشمل التخطيط، صناعة المحتوى، النشر، والتفاعل مع الجمهور لزيادة الوعي بعلامتك التجارية.</p>
+        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
       </div>
 
       <div class="service-card">
         <div class="service-icon">
-          <i class="fas fa-palette"></i>
+          <i class="fas fa-ad"></i>
         </div>
-        <h3>التصميم والهوية البصرية</h3>
-        <p>نصمم هويات بصرية مميزة تعكس قيم علامتك وتترك انطباعًا قويًا لدى جمهورك.</p>
-        <ul class="service-features">
-          <li>تصميم الشعارات والهويات المتكاملة</li>
-          <li>تصميم البوستات والبنرات</li>
-          <li>تصميم المطبوعات والبروشورات</li>
-          <li>تصميم الإنفوجرافيك</li>
-          <li>دليل الهوية البصرية الشامل</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="service-link">
-          اطلب الخدمة <i class="fas fa-arrow-left"></i>
-        </a>
+        <h3>الحملات الإعلانية الممولة</h3>
+        <p>إطلاق حملات إعلانية استراتيجية على منصات مثل إنستقرام، تيك توك، سناب شات، وجوجل للوصول إلى جمهورك المستهدف وزيادة المبيعات.</p>
+        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-paint-brush"></i>
+        </div>
+        <h3>الهوية البصرية والعلامة التجارية</h3>
+        <p>تصميم هويات بصرية فريدة ومميزة تشمل الشعار، الألوان، الخطوط، ودليل الاستخدام لتعزيز صورة علامتك التجارية في أذهان العملاء.</p>
+        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
       </div>
 
       <div class="service-card">
         <div class="service-icon">
           <i class="fas fa-camera"></i>
         </div>
-        <h3>التصوير وإنتاج المحتوى</h3>
-        <p>ننتج محتوى مرئي احترافي يحكي قصة علامتك ويجذب انتباه جمهورك على كل المنصات.</p>
-        <ul class="service-features">
-          <li>تصوير المنتجات والخدمات</li>
-          <li>تصوير الفعاليات والمناسبات</li>
-          <li>إنتاج محتوى السوشال ميديا</li>
-          <li>مونتاج الفيديوهات القصيرة والطويلة</li>
-          <li>إنتاج الفيديوهات الترويجية</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="service-link">
-          اطلب الخدمة <i class="fas fa-arrow-left"></i>
-        </a>
+        <h3>التصوير والإنتاج المرئي</h3>
+        <p>خدمات تصوير احترافي للمنتجات وإنتاج فيديوهات ترويجية عالية الجودة لعرض منتجاتك وخدماتك بأفضل صورة ممكنة.</p>
+        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
       </div>
 
       <div class="service-card">
         <div class="service-icon">
-          <i class="fas fa-code"></i>
+          <i class="fas fa-laptop-code"></i>
         </div>
-        <h3>تطوير المواقع والتطبيقات</h3>
-        <p>نبني مواقع ومتاجر إلكترونية احترافية سريعة وآمنة ومحسّنة لمحركات البحث.</p>
-        <ul class="service-features">
-          <li>تصميم وتطوير المواقع التعريفية</li>
-          <li>المتاجر الإلكترونية المتكاملة</li>
-          <li>صفحات الهبوط (Landing Pages)</li>
-          <li>ربط بوابات الدفع الإلكتروني</li>
-          <li>تهيئة محركات البحث SEO</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="service-link">
-          اطلب الخدمة <i class="fas fa-arrow-left"></i>
-        </a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-pen-fancy"></i>
-        </div>
-        <h3>كتابة المحتوى</h3>
-        <p>نكتب محتوى إبداعي واحترافي يعبّر عن رسالة علامتك ويتفاعل مع جمهورك المستهدف.</p>
-        <ul class="service-features">
-          <li>كتابة النصوص التسويقية</li>
-          <li>محتوى السوشال ميديا</li>
-          <li>المقالات والمدونات</li>
-          <li>كتابة وصف المنتجات</li>
-          <li>السيناريوهات والنصوص الإعلانية</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="service-link">
-          اطلب الخدمة <i class="fas fa-arrow-left"></i>
-        </a>
+        <h3>تصميم وتطوير المواقع الإلكترونية</h3>
+        <p>تصميم وبرمجة مواقع إلكترونية ومتاجر متجاوبة مع جميع الأجهزة، سهلة الاستخدام، ومحسنة لمحركات البحث (SEO) لتناسب احتياجات عملك.</p>
+        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
       </div>
 
       <div class="service-card">
         <div class="service-icon">
           <i class="fas fa-chart-line"></i>
         </div>
-        <h3>الاستشارات التسويقية</h3>
-        <p>نقدم استشارات متخصصة تساعدك على بناء استراتيجية تسويقية ناجحة وتحقيق أهدافك.</p>
-        <ul class="service-features">
-          <li>تحليل السوق والمنافسين</li>
-          <li>بناء استراتيجيات التسويق</li>
-          <li>تطوير خطط المحتوى</li>
-          <li>تحسين الأداء الرقمي</li>
-          <li>استشارات النمو والتوسع</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="service-link">
-          اطلب الخدمة <i class="fas fa-arrow-left"></i>
-        </a>
+        <h3>استراتيجيات التسويق الرقمي</h3>
+        <p>بناء خطط تسويقية رقمية متكاملة تعتمد على البيانات ودراسة السوق لتحقيق أهدافك التجارية على المدى الطويل.</p>
+        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
       </div>
     </div>
 
     <div class="cta-section">
-      <h2>جاهز للبدء؟</h2>
-      <p>تواصل معنا الآن واحصل على استشارة مجانية لتحديد الخدمات المناسبة لمشروعك</p>
-      <div class="cta-buttons">
-        <a href="https://ecode.sa/contact/" class="btn-primary" style="padding: 14px 32px; font-size: 16px;">تواصل معنا الآن</a>
-        <a href="https://ecode.sa/plans/" class="btn-secondary">شاهد الباقات</a>
-      </div>
+      <h2>جاهز للانتقال بمشروعك للمستوى التالي؟</h2>
+      <p>تواصل معنا اليوم للحصول على استشارة مجانية ولنناقش كيف يمكننا مساعدتك في تحقيق أهدافك.</p>
+      <a href="https://ecode.sa/contact/" class="btn-primary">ابدأ الآن</a>
     </div>
   </section>
 
@@ -682,7 +751,7 @@
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
-          <h4>eCode — إلكترونيك كود</h4>
+          <h4>eCode – إلكترونيك كود</h4>
           <p>تصنع الأثر</p>
           <p style="margin-top: 16px;">شركة سعودية تقدم حلول التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية.</p>
           
@@ -732,7 +801,7 @@
 
         <div>
           <h4>تواصل معنا</h4>
-          <p>الرياض — المملكة العربية السعودية</p>
+          <p>الرياض – المملكة العربية السعودية</p>
           <p>جوال: <a href="tel:0503666316">0503666316</a></p>
           <p>البريد: <a href="mailto:info@ecode.sa">info@ecode.sa</a></p>
         </div>
@@ -744,11 +813,42 @@
     </div>
   </footer>
 
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
   <script>
-    function switchLanguage() {
-      localStorage.setItem('preferred_lang', 'en');
-      window.location.href = 'services-en.html';
+    // --- Theme Toggle Logic ---
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('theme', nextTheme);
+        updateThemeIcon(nextTheme);
     }
+
+    function updateThemeIcon(theme) {
+        const icon = document.querySelector('.theme-toggle i');
+        if (!icon) return; 
+        
+        if (theme === 'light') {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+
+    // Initialize Theme
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+    });
   </script>
 
 </body>
