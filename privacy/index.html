@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>سياسة الخصوصية | eCode</title>
-  <meta name="description" content="سياسة الخصوصية لموقع eCode. تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند التعامل معنا">
+  <meta name="description" content="سياسة الخصوصية لـ eCode. تعرف على كيفية جمعنا واستخدامنا وحمايتنا لبياناتك الشخصية وفقًا للأنظمة في المملكة العربية السعودية">
   
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://ecode.sa/privacy/">
   
-  <!-- Open Graph للسوشال ميديا -->
+  <!-- Open Graph -->
   <meta property="og:title" content="سياسة الخصوصية | eCode">
-  <meta property="og:description" content="سياسة الخصوصية لموقع eCode. تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند التعامل معنا">
+  <meta property="og:description" content="سياسة الخصوصية لـ eCode. تعرف على كيفية جمعنا واستخدامنا وحمايتنا لبياناتك الشخصية وفقًا للأنظمة في المملكة العربية السعودية">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/privacy/">
   <meta property="og:type" content="website">
@@ -21,17 +21,23 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="سياسة الخصوصية | eCode">
-  <meta name="twitter:description" content="سياسة الخصوصية لموقع eCode. تعرف على كيفية جمع واستخدام وحماية بياناتك الشخصية عند التعامل معنا">
+  <meta name="twitter:description" content="سياسة الخصوصية لـ eCode. تعرف على كيفية جمعنا واستخدامنا وحمايتنا لبياناتك الشخصية وفقًا للأنظمة في المملكة العربية السعودية">
   <meta name="twitter:image" content="https://ecode.sa/favicon.png">
   
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  
   <style>
     :root {
+      /* الألوان الأساسية (الوضع الداكن - الافتراضي) */
       --lavender-light: #A99BFF;
       --lavender-dark: #8B7FFF;
       --sky-blue: #5BC0F8;
+      --mint-green: #7EDDA3;
+      --soft-orange: #FFB86C;
+      --coral-pink: #FF79C6;
+      
       --bg-primary: #0F1419;
       --bg-secondary: #1A1F2E;
       --bg-elevated: #242B3D;
@@ -40,6 +46,8 @@
       --text-muted: #6B7280;
       --border-color: #2D3748;
       --border-hover: #4A5568;
+      
+      --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
       --space-4: 16px;
@@ -47,14 +55,37 @@
       --space-8: 32px;
       --space-12: 48px;
       --space-16: 64px;
+      
       --radius-base: 16px;
       --radius-lg: 24px;
       --radius-full: 999px;
+      
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
       --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
       --shadow-glow: 0 0 20px rgba(139, 127, 255, 0.3);
+      
+      --transition-fast: 150ms ease;
       --transition-base: 250ms ease;
     }
+
+    /* === إعدادات الوضع المضيء === */
+    [data-theme="light"] {
+      --bg-primary: #F3F4F6;
+      --bg-secondary: #FFFFFF;
+      --bg-elevated: #FFFFFF;
+      --text-primary: #1F2937;
+      --text-secondary: #4B5563;
+      --text-muted: #9CA3AF;
+      --border-color: #E5E7EB;
+      --border-hover: #D1D5DB;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --shadow-glow: 0 0 15px rgba(139, 127, 255, 0.2);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -63,16 +94,31 @@
       color: var(--text-primary);
       line-height: 1.7;
       font-size: 16px;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
+
+    h1 { font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--text-primary); }
+    h2 { font-size: 32px; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
+    p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
+    
     .main-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(15, 20, 25, 0.95);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-sm);
+      background: var(--bg-primary);
       border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-base);
     }
+    
+    @supports (backdrop-filter: blur(12px)) {
+        .main-header {
+            background: color-mix(in srgb, var(--bg-primary), transparent 10%);
+            backdrop-filter: blur(12px);
+        }
+    }
+
     .header-inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -82,221 +128,331 @@
       justify-content: space-between;
       gap: var(--space-4);
     }
+
     .logo-container {
       display: flex;
       align-items: center;
       gap: var(--space-3);
-      text-decoration: none;
       transition: var(--transition-base);
+      text-decoration: none;
     }
-    .logo-container:hover { transform: scale(1.02); }
+
+    .logo-container:hover {
+      transform: scale(1.02);
+    }
+
     .logo-icon {
       width: 48px;
       height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       overflow: visible;
     }
+
     .logo-icon img {
       width: 48px;
       height: 48px;
       object-fit: contain;
+      position: relative;
+      z-index: 1;
     }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
     .logo-text .brand-name {
       font-size: 24px;
       font-weight: 700;
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
+
     .logo-text .brand-tagline {
       font-size: 13px;
       color: var(--text-muted);
       font-weight: 500;
     }
+
     .nav {
       display: flex;
       align-items: center;
       gap: var(--space-6);
+      font-size: 16px;
+      font-weight: 500;
     }
+
     .nav a {
       text-decoration: none;
       color: var(--text-secondary);
+      position: relative;
+      transition: var(--transition-fast);
+      padding: var(--space-2) 0;
       font-weight: 600;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
       transition: var(--transition-base);
     }
+
     .nav a:hover {
       color: var(--lavender-light);
     }
-    .lang-switcher {
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav a.active {
+      color: var(--lavender-light);
+    }
+
+    .nav a.active::after {
+      width: 100%;
+    }
+
+    /* === الأزرار الدائرية (اللغة والثيم) === */
+    .lang-switcher, .theme-toggle {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 50%;
       background: var(--bg-elevated);
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition-base);
       text-decoration: none;
     }
-    .lang-switcher:hover {
+
+    .lang-switcher:hover, .theme-toggle:hover {
       background: var(--bg-secondary);
       border-color: var(--lavender-dark);
       color: var(--lavender-light);
       box-shadow: var(--shadow-glow);
     }
+
+    /* === زر تواصل معنا (واسع) === */
     .btn-primary {
-      padding: 12px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      min-width: 140px;
       border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
       background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
       color: #fff !important;
       text-decoration: none;
-      font-size: 16px;
-      font-weight: 700;
       transition: var(--transition-base);
       box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
+      white-space: nowrap;
     }
+
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
+      filter: brightness(1.1);
       color: #fff !important;
     }
+
     .page-hero {
-      background: linear-gradient(135deg, #1A1F2E, #242B3D, #2D3748);
-      padding: 80px var(--space-6) 60px;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-elevated) 100%);
+      padding: 100px var(--space-6) 80px;
       text-align: center;
       border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
     }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139, 127, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 25s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-80px, 60px) scale(1.1); }
+    }
+
     .page-hero h1 {
-      font-size: 48px;
+      font-size: 56px;
       font-weight: 700;
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
     }
+
     .page-hero p {
-      font-size: 18px;
+      font-size: 20px;
       color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
-    .content-section {
+
+    .legal-content {
       max-width: 900px;
       margin: 0 auto;
       padding: var(--space-16) var(--space-6);
     }
-    .content-card {
+
+    .legal-card {
       background: var(--bg-secondary);
       border-radius: var(--radius-lg);
       padding: var(--space-12);
-      box-shadow: var(--shadow-md);
-      margin-bottom: var(--space-8);
       border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
     }
-    .content-card h2 {
-      font-size: 28px;
+
+    .legal-section {
+      margin-bottom: var(--space-8);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--space-8);
+    }
+
+    .legal-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .legal-section h2 {
+      font-size: 24px;
       font-weight: 700;
       color: var(--lavender-light);
-      margin-bottom: var(--space-6);
-      padding-bottom: var(--space-3);
-      border-bottom: 2px solid var(--border-color);
-    }
-    .content-card h3 {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--sky-blue);
-      margin-top: var(--space-8);
       margin-bottom: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .content-card p {
-      font-size: 17px;
+
+    .legal-section p {
+      font-size: 16px;
+      color: var(--text-secondary);
       line-height: 1.8;
       margin-bottom: var(--space-4);
+    }
+
+    .legal-section ul {
+      list-style: none;
+      margin-bottom: var(--space-4);
+    }
+
+    .legal-section ul li {
+      padding: var(--space-2) 0;
+      padding-right: var(--space-6);
+      position: relative;
       color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.6;
     }
-    .content-card ul {
-      margin: var(--space-4) 0 var(--space-6);
-      padding-right: var(--space-8);
+
+    .legal-section ul li::before {
+      content: '•';
+      position: absolute;
+      right: 0;
+      color: var(--lavender-dark);
+      font-weight: bold;
+      font-size: 20px;
     }
-    .content-card li {
-      font-size: 17px;
-      line-height: 1.8;
-      margin-bottom: var(--space-3);
-      color: var(--text-secondary);
-    }
-    .content-card strong {
-      color: var(--lavender-light);
-      font-weight: 600;
-    }
-    .highlight-box {
-      background: rgba(139, 127, 255, 0.08);
-      border-right: 4px solid var(--lavender-dark);
-      padding: var(--space-6);
-      border-radius: var(--radius-base);
-      margin: var(--space-6) 0;
-    }
-    .highlight-box a {
-      color: var(--sky-blue);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .highlight-box a:hover {
-      color: var(--lavender-light);
-    }
+
+    /* === Footer Styles (Standardized) === */
     .footer {
       background: var(--bg-secondary);
       color: var(--text-primary);
       padding: var(--space-16) var(--space-6) var(--space-6);
       border-top: 1px solid var(--border-color);
+      margin-top: var(--space-16);
     }
+
     .footer-inner {
       max-width: 1200px;
       margin: 0 auto;
     }
+
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: var(--space-8);
       margin-bottom: var(--space-8);
     }
+
     .footer h4 {
       margin-bottom: var(--space-4);
       font-size: 20px;
       color: var(--text-primary);
     }
+
     .footer p {
       color: var(--text-secondary);
       margin-bottom: var(--space-2);
       font-size: 16px;
     }
+
     .footer a {
       color: var(--text-secondary);
       text-decoration: none;
       transition: var(--transition-base);
     }
+
     .footer a:hover {
       color: var(--lavender-light);
     }
+
     .footer-links ul {
       list-style: none;
     }
+
     .footer-links li {
       margin-bottom: var(--space-2);
     }
+
+    /* Standardized Footer Social Bar */
     .social-bar {
       margin-top: var(--space-4);
       padding: var(--space-4);
       border-radius: var(--radius-lg);
-      background: rgba(139, 127, 255, 0.05);
+      background: rgba(139, 127, 255, 0.05); /* Same as main page */
       border: 1px solid var(--border-color);
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-3);
     }
+
     .social-link {
       width: 40px;
       height: 40px;
@@ -311,13 +467,20 @@
       font-size: 18px;
       border: 1px solid var(--border-color);
     }
-    .social-link:hover {
+
+    /* Correct hover contrast: White Icon + Gradient Bg */
+    .footer .social-bar .social-link:hover {
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      color: #fff;
+      color: #ffffff !important;
       transform: translateY(-4px);
       box-shadow: var(--shadow-glow);
       border-color: transparent;
     }
+    
+    .footer .social-bar .social-link:hover i {
+      color: #ffffff !important;
+    }
+
     .footer-bottom {
       border-top: 1px solid var(--border-color);
       margin-top: var(--space-8);
@@ -326,17 +489,70 @@
       font-size: 14px;
       color: var(--text-muted);
     }
-    @media (max-width: 768px) {
-      .page-hero h1 { font-size: 32px; }
-      .content-card { padding: var(--space-6); }
-      .nav { flex-wrap: wrap; gap: var(--space-3); }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
+      color: #FFF;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 32px;
+      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition-base);
+      animation: pulse-whatsapp 2s infinite;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
+      color: #FFF;
+      background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light));
+    }
+
+    @keyframes pulse-whatsapp {
+      0% {
+        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(139, 127, 255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0);
+      }
+    }
+
+    @media (max-width: 968px) {
+      .page-hero h1 { font-size: 40px; }
+      .nav { flex-wrap: wrap; gap: var(--space-3); font-size: 14px; }
+    }
+    
+    @media (max-width: 640px) {
+        .whatsapp-float {
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+            bottom: 20px;
+            left: 20px;
+        }
     }
   </style>
 </head>
 <body>
+
   <header class="main-header">
     <div class="header-inner">
-      <a href="https://ecode.sa/ar/" class="logo-container">
+      <a href="https://ecode.sa/" class="logo-container">
         <div class="logo-icon">
           <img src="https://ecode.sa/favicon.png" alt="eCode Logo">
         </div>
@@ -345,130 +561,104 @@
           <div class="brand-tagline">تصنع الأثر</div>
         </div>
       </a>
+
       <nav class="nav">
         <a href="https://ecode.sa/ar/">الرئيسية</a>
         <a href="https://ecode.sa/services/">خدماتنا</a>
         <a href="https://ecode.sa/plans/">الباقات</a>
         <a href="https://ecode.sa/portfolio/">أعمالنا</a>
-        <a href="https://ecode.sa/en/" class="lang-switcher">
-          <i class="fas fa-globe"></i>
-          <span>English</span>
+        
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر">
+            <i class="fas fa-sun"></i>
+        </button>
+
+        <!-- Circular Language Button -->
+        <a href="https://ecode.sa/privacy-en/" class="lang-switcher" aria-label="English">
+          <span style="font-size: 20px; line-height: 1;">🇬🇧</span>
         </a>
-        <a href="https://ecode.sa/contact/" class="btn-primary" style="padding: 10px 20px; font-size: 15px; color: #fff !important;">
-          تواصل معنا
-        </a>
+        
+        <a href="https://ecode.sa/contact/" class="btn-primary">تواصل معنا</a>
       </nav>
     </div>
   </header>
+
   <section class="page-hero">
     <h1>سياسة الخصوصية</h1>
-    <p>آخر تحديث: فبراير 2025</p>
+    <p>نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية</p>
   </section>
-  <section class="content-section">
-    <div class="content-card">
-      <div class="highlight-box">
-        <p><strong>تم إعداد هذه السياسة</strong> لضمان التزام شركة إلكترونيك كود – Electronic Code Company (eCode) بمعايير حماية البيانات، وتنظيم معالجة المعلومات المقدمة من العملاء ومستخدمي الموقع.</p>
-        <p>استخدامك لموقعنا أو خدماتنا يعني موافقتك على جميع البنود المذكورة في هذه السياسة.</p>
+
+  <section class="legal-content">
+    <div class="legal-card">
+      <div class="legal-section">
+        <h2>1. مقدمة</h2>
+        <p>مرحبًا بكم في eCode ("نحن"، "لنا"). نحن نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية وفقًا لنظام حماية البيانات الشخصية في المملكة العربية السعودية.</p>
       </div>
-      <h2>أولًا: نطاق السياسة وتطبيقها</h2>
-      <p>تنطبق هذه السياسة على جميع البيانات التي تقوم eCode بجمعها أو معالجتها أو تخزينها، سواء عند استخدام موقع الشركة، أو النماذج الإلكترونية، أو التواصل المباشر عبر البريد الإلكتروني أو الواتساب أو أي وسيلة اتصال أخرى.</p>
-      
-      <p><strong>تشمل السياسة:</strong></p>
-      <ul>
-        <li>العملاء</li>
-        <li>الزوار</li>
-        <li>المتقدمين بطلبات الخدمات</li>
-        <li>الأفراد الظاهرين في الصور أو المواد المصورة ضمن المشاريع</li>
-      </ul>
-      <h2>ثانيًا: البيانات التي نجمعها</h2>
-      <h3>1. البيانات الشخصية التي يقدمها العميل مباشرة</h3>
-      <p>عند تعبئة النماذج أو طلب خدمة، قد نجمع:</p>
-      <ul>
-        <li>الاسم الكامل</li>
-        <li>رقم الجوال</li>
-        <li>البريد الإلكتروني</li>
-        <li>بيانات النشاط أو المشروع</li>
-        <li>المستندات المرفوعة</li>
-        <li>الصور والفيديوهات والملفات المطلوبة لتنفيذ الأعمال</li>
-        <li>موقع العميل (اختياري)</li>
-      </ul>
-      <h3>2. البيانات الفنية التي تُجمع تلقائيًا</h3>
-      <p>عند الدخول للموقع يتم جمع بيانات تقنية بهدف تحسين الأداء:</p>
-      <ul>
-        <li>عنوان IP</li>
-        <li>نوع المتصفح ونظام التشغيل</li>
-        <li>وقت وتاريخ الزيارة</li>
-        <li>الصفحات التي تمت زيارتها</li>
-        <li>بيانات التحليلات (Analytics)</li>
-        <li>ملفات الكوكيز Cookies</li>
-      </ul>
-      <h3>3. بيانات التصوير والإنتاج الإعلامي</h3>
-      <p>في حال طلب العميل خدمة تصوير أو إنتاج محتوى، فقد تشمل البيانات:</p>
-      <ul>
-        <li>صور أشخاص</li>
-        <li>فيديوهات</li>
-        <li>تسجيلات صوتية</li>
-        <li>مواقع التصوير</li>
-        <li>بيانات الجلسات الإبداعية</li>
-      </ul>
-      <p><strong>ملاحظة هامة:</strong> يقتصر استخدام هذه المواد على الغرض المتفق عليه داخل المشروع فقط، ولا يحق لـ eCode نشرها أو استخدامها في أعمال أخرى دون موافقة خطية من العميل.</p>
-      <h2>ثالثًا: كيفية استخدام البيانات</h2>
-      <p>تستخدم eCode البيانات للأغراض التالية:</p>
-      <ul>
-        <li>تنفيذ الطلبات والمشاريع</li>
-        <li>التواصل مع العميل بخصوص المشروع</li>
-        <li>إرسال الفواتير والتحديثات</li>
-        <li>تقديم دعم فني أو متابعة</li>
-        <li>تحسين جودة الخدمات</li>
-        <li>حفظ السجلات والمستندات</li>
-        <li>حماية حقوق الشركة من إساءة الاستخدام</li>
-      </ul>
-      <p><strong>لا نستخدم البيانات في أي أغراض تسويقية دون موافقة صريحة من العميل.</strong></p>
-      <h2>رابعًا: مشاركة البيانات مع أطراف ثالثة</h2>
-      <p>قد نشارك بعض البيانات مع الأطراف التالية حسب الحاجة:</p>
-      <ul>
-        <li>المتعاونون والمستقلون الذين يعملون على تنفيذ المشروع</li>
-        <li>مزودو الاستضافة والخدمات السحابية</li>
-        <li>مزودو أنظمة الدفع</li>
-        <li>جهات قانونية أو حكومية عند الطلب</li>
-      </ul>
-      <p>جميع الأطراف ملتزمون بسرية البيانات وبحدود الاستخدام اللازمة فقط.</p>
-      <h2>خامسًا: تخزين البيانات وحمايتها</h2>
-      <p>تقوم eCode بتخزين البيانات بطرق آمنة، وتستخدم:</p>
-      <ul>
-        <li>تشفير الملفات</li>
-        <li>تقييد الوصول للمصرح لهم فقط</li>
-        <li>نسخ احتياطية دورية</li>
-      </ul>
-      <p>وتتخذ جميع الإجراءات اللازمة وفقًا لنظام حماية البيانات الشخصية في المملكة العربية السعودية.</p>
-      <h2>سادسًا: الحقوق المتعلقة بالبيانات</h2>
-      <p><strong>يحق للعميل:</strong></p>
-      <ul>
-        <li>طلب الاطلاع على بياناته</li>
-        <li>طلب تعديل البيانات</li>
-        <li>طلب حذف البيانات (مع مراعاة التزامات المشاريع القائمة)</li>
-        <li>سحب الموافقة على معالجة بياناته المستقبلية</li>
-      </ul>
-      <p>تتم الاستجابة خلال مدة لا تتجاوز 30 يومًا.</p>
-      <h2>سابعًا: حذف البيانات</h2>
-      <p>تحذف eCode بيانات العميل بعد:</p>
-      <ul>
-        <li>انتهاء المشروع + 6 أشهر</li>
-      </ul>
-      <p>ما لم تنص الأنظمة أو العقود على مدة أطول.</p>
-      <h2>ثامنًا: الروابط الخارجية</h2>
-      <p>قد يحتوي موقعنا على روابط لجهات خارجية.</p>
-      <p>لا تتحمل eCode أي مسؤولية عن محتوى أو أمان أو سياسات تلك المواقع.</p>
-      <h2>تاسعًا: التعديلات على السياسة</h2>
-      <p>يحق لـ eCode تعديل هذه السياسة في أي وقت.</p>
-      <p>ويُعد استمرارك في استخدام الموقع موافقة على التعديلات.</p>
-      <div class="highlight-box" style="margin-top: 48px;">
-        <p><strong>للاستفسارات حول سياسة الخصوصية:</strong></p>
-        <p>البريد الإلكتروني: <a href="mailto:info@ecode.sa">info@ecode.sa</a></p>
-        <p>الجوال: <a href="tel:0503666316">0503666316</a></p>
+
+      <div class="legal-section">
+        <h2>2. المعلومات التي نجمعها</h2>
+        <p>قد نقوم بجمع أنواع المعلومات التالية:</p>
+        <ul>
+          <li><strong>المعلومات الشخصية:</strong> الاسم، البريد الإلكتروني، رقم الهاتف، وأي معلومات أخرى تقدمها عند تعبئة النماذج على موقعنا.</li>
+          <li><strong>معلومات المشروع:</strong> تفاصيل حول مشروعك، الميزانية، والمتطلبات المحددة التي تشاركها معنا.</li>
+          <li><strong>البيانات التقنية:</strong> عنوان IP، نوع المتصفح، معلومات الجهاز، وبيانات الاستخدام التي يتم جمعها عبر ملفات تعريف الارتباط (Cookies).</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>3. كيف نستخدم معلوماتك</h2>
+        <p>نستخدم البيانات المجمعة للأغراض التالية:</p>
+        <ul>
+          <li>لتقديم وتحسين خدماتنا لك.</li>
+          <li>للتواصل معك بخصوص مشروعك أو استفساراتك.</li>
+          <li>لإرسال رسائل تسويقية لك (في حال موافقتك).</li>
+          <li>لتحليل استخدام الموقع وتحسين تجربة المستخدم.</li>
+          <li>للامتثال للالتزامات القانونية.</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>4. مشاركة البيانات والإفصاح عنها</h2>
+        <p>نحن لا نبيع بياناتك الشخصية لأطراف ثالثة. قد نشارك معلوماتك مع:</p>
+        <ul>
+          <li><strong>مقدمي الخدمات:</strong> شركاء موثوقين يساعدوننا في تشغيل موقعنا وأعمالنا (مثل خدمات الاستضافة والتحليلات).</li>
+          <li><strong>الجهات القانونية:</strong> إذا كان ذلك مطلوبًا بموجب القانون أو لحماية حقوقنا وسلامتنا.</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>5. أمن البيانات</h2>
+        <p>نطبق تدابير تقنية وتنظيمية مناسبة لحماية بياناتك الشخصية من الوصول غير المصرح به، التغيير، الإفصاح، أو الإتلاف. ومع ذلك، لا توجد طريقة نقل عبر الإنترنت آمنة بنسبة 100%.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>6. حقوقك</h2>
+        <p>بموجب النظام، لديك الحق في:</p>
+        <ul>
+          <li>الوصول إلى بياناتك الشخصية.</li>
+          <li>طلب تصحيح البيانات غير الدقيقة.</li>
+          <li>طلب حذف بياناتك.</li>
+          <li>سحب موافقتك على معالجة البيانات.</li>
+        </ul>
+        <p>لممارسة هذه الحقوق، يرجى التواصل معنا عبر <a href="mailto:info@ecode.sa" style="color: var(--lavender-light);">info@ecode.sa</a>.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>7. التغييرات على هذه السياسة</h2>
+        <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سيتم نشر أي تغييرات على هذه الصفحة مع تحديث تاريخ "آخر تعديل".</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>8. اتصل بنا</h2>
+        <p>إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا:</p>
+        <ul>
+          <li>البريد الإلكتروني: info@ecode.sa</li>
+          <li>الهاتف: 0503666316</li>
+        </ul>
       </div>
     </div>
   </section>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-grid">
@@ -507,6 +697,7 @@
             </a>
           </div>
         </div>
+
         <div class="footer-links">
           <h4>روابط سريعة</h4>
           <ul>
@@ -519,6 +710,7 @@
             <li><a href="https://ecode.sa/privacy/">سياسة الخصوصية</a></li>
           </ul>
         </div>
+
         <div>
           <h4>تواصل معنا</h4>
           <p>الرياض — المملكة العربية السعودية</p>
@@ -526,16 +718,50 @@
           <p>البريد: <a href="mailto:info@ecode.sa">info@ecode.sa</a></p>
         </div>
       </div>
+
       <div class="footer-bottom">
         © 2025 شركة إلكترونيك كود. جميع الحقوق محفوظة.
       </div>
     </div>
   </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
   <script>
-    function switchLanguage() {
-      localStorage.setItem('preferred_lang', 'en');
-      window.location.href = 'privacy-en.html';
+    // --- Theme Toggle Logic ---
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('theme', nextTheme);
+        updateThemeIcon(nextTheme);
     }
+
+    function updateThemeIcon(theme) {
+        const icon = document.querySelector('.theme-toggle i');
+        if (!icon) return; 
+        
+        if (theme === 'light') {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+
+    // Initialize Theme
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+    });
   </script>
+
 </body>
 </html>
