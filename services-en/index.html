@@ -4,29 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Services | eCode</title>
-  <meta name="description" content="Discover eCode's services in digital marketing, content management, creative production, and technical solutions to grow your business in Saudi Arabia">
+  <meta name="description" content="Discover eCode's comprehensive services in digital marketing, content management, creative production, and technical solutions to grow your business in Saudi Arabia">
   
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://ecode.sa/services/">
   
-  <!-- Open Graph for Social Media -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Our Services | eCode">
-  <meta property="og:description" content="Discover eCode's services in digital marketing, content management, creative production, and technical solutions to grow your business in Saudi Arabia">
+  <meta property="og:description" content="Discover eCode's comprehensive services in digital marketing, content management, creative production, and technical solutions to grow your business in Saudi Arabia">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/services/">
   <meta property="og:type" content="website">
   
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Our Services | eCode">
-  <meta name="twitter:description" content="Discover eCode's services in digital marketing, content management, creative production, and technical solutions to grow your business in Saudi Arabia">
-  <meta name="twitter:image" content="https://ecode.sa/favicon.png">
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  
   <style>
     :root {
       /* Base Colors (Dark Mode - Default) */
@@ -97,11 +95,7 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    h1 { font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--text-primary); }
-    h2 { font-size: 32px; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
-    h3 { font-size: 24px; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
-    p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
-    
+    /* ========== Header ========== */
     .main-header {
       position: sticky;
       top: 0;
@@ -110,7 +104,7 @@
       border-bottom: 1px solid var(--border-color);
       transition: var(--transition-base);
     }
-    
+
     @supports (backdrop-filter: blur(12px)) {
         .main-header {
             background: color-mix(in srgb, var(--bg-primary), transparent 10%);
@@ -132,10 +126,9 @@
       display: flex;
       align-items: center;
       gap: var(--space-3);
-      transition: var(--transition-base);
       text-decoration: none;
+      transition: var(--transition-base);
     }
-
     .logo-container:hover { transform: scale(1.02); }
 
     .logo-icon {
@@ -144,17 +137,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: visible;
     }
-
-    .logo-icon img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-    }
+    .logo-icon img { width: 48px; height: 48px; object-fit: contain; }
 
     .logo-text { display: flex; flex-direction: column; }
-
     .logo-text .brand-name {
       font-size: 24px;
       font-weight: 700;
@@ -163,7 +149,6 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .logo-text .brand-tagline {
       font-size: 13px;
       color: var(--text-muted);
@@ -181,12 +166,12 @@
     .nav a {
       text-decoration: none;
       color: var(--text-secondary);
-      position: relative;
-      padding: var(--space-2) 0;
-      transition: var(--transition-fast);
       font-weight: 600;
+      transition: var(--transition-base);
+      padding: var(--space-2) 0;
+      position: relative;
     }
-
+    
     .nav a::after {
       content: '';
       position: absolute;
@@ -203,7 +188,6 @@
     .nav a.active { color: var(--lavender-light); }
     .nav a.active::after { width: 100%; }
 
-    /* === Circular Buttons (Language & Theme) === */
     .lang-switcher, .theme-toggle {
       display: flex;
       align-items: center;
@@ -216,10 +200,9 @@
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
       font-size: 16px;
-      font-weight: 600;
       cursor: pointer;
-      transition: var(--transition-base);
       text-decoration: none;
+      transition: var(--transition-base);
     }
 
     .lang-switcher:hover, .theme-toggle:hover {
@@ -229,7 +212,6 @@
       box-shadow: var(--shadow-glow);
     }
 
-    /* === "Contact Us" Button (Wide) === */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -241,7 +223,6 @@
       cursor: pointer;
       font-size: 16px;
       font-weight: 700;
-      font-family: inherit;
       background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
       color: #fff !important;
       text-decoration: none;
@@ -249,12 +230,10 @@
       box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
       white-space: nowrap;
     }
-
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
       filter: brightness(1.1);
-      color: #fff !important;
     }
 
     .btn-secondary {
@@ -276,6 +255,7 @@
       transform: translateY(-2px);
     }
 
+    /* ========== Page Hero ========== */
     .page-hero {
       background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-elevated) 100%);
       padding: 100px var(--space-6) 80px;
@@ -303,7 +283,7 @@
     }
 
     .page-hero h1 {
-      font-size: 56px;
+      font-size: 48px;
       font-weight: 700;
       margin-bottom: var(--space-4);
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
@@ -317,12 +297,13 @@
     .page-hero p {
       font-size: 20px;
       color: var(--text-secondary);
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
+    /* ========== Services Section ========== */
     .services-section {
       max-width: 1200px;
       margin: 0 auto;
@@ -334,10 +315,7 @@
       font-weight: 700;
       text-align: center;
       margin-bottom: var(--space-3);
-      background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text-primary);
     }
 
     .section-subtitle {
@@ -349,7 +327,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: var(--space-8);
       margin-bottom: var(--space-16);
     }
@@ -357,11 +335,14 @@
     .service-card {
       background: var(--bg-secondary);
       border-radius: var(--radius-lg);
-      padding: var(--space-12);
+      padding: var(--space-8);
       border: 1px solid var(--border-color);
       transition: var(--transition-base);
       position: relative;
       overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .service-card::before {
@@ -382,23 +363,33 @@
       box-shadow: var(--shadow-lg);
       border-color: var(--lavender-dark);
     }
+    .service-card:hover::before { transform: scaleX(1); }
 
-    .service-card:hover::before {
-      transform: scaleX(1);
+    /* Special Style for Coming Soon Cards */
+    .service-card.coming-soon {
+        opacity: 0.85;
+        border-style: dashed;
+    }
+
+    .service-header {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
     }
 
     .service-icon {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       background: rgba(139, 127, 255, 0.1);
       border-radius: var(--radius-base);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: var(--space-6);
-      font-size: 28px;
+      font-size: 24px;
       color: var(--lavender-light);
       border: 1px solid rgba(139, 127, 255, 0.2);
+      flex-shrink: 0;
     }
 
     [data-theme="light"] .service-icon {
@@ -407,11 +398,27 @@
         border-color: rgba(139, 127, 255, 0.2);
     }
 
+    .service-title-group {
+        display: flex;
+        flex-direction: column;
+    }
+
     .service-card h3 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: var(--space-4);
+      line-height: 1.3;
+    }
+
+    .service-tag {
+        font-size: 12px;
+        color: var(--mint-green);
+        font-weight: 600;
+        margin-top: 4px;
+    }
+    
+    .service-tag.advanced {
+        color: var(--soft-orange);
     }
 
     .service-card p {
@@ -419,6 +426,39 @@
       color: var(--text-secondary);
       margin-bottom: var(--space-6);
       line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .service-features {
+      list-style: none;
+      margin-top: auto; /* Push to bottom */
+      padding: 0;
+      margin-bottom: var(--space-6);
+      background: var(--bg-elevated);
+      border-radius: var(--radius-base);
+      padding: var(--space-4);
+    }
+
+    .service-features li {
+      padding: var(--space-2) 0;
+      padding-left: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .service-features li:last-child { border-bottom: none; }
+
+    .service-features li::before {
+      content: '•';
+      position: absolute;
+      left: 8px;
+      color: var(--lavender-light);
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+      top: 8px;
     }
 
     .service-link {
@@ -427,41 +467,69 @@
       gap: var(--space-2);
       color: var(--lavender-light);
       text-decoration: none;
-      font-size: 14px;
       font-weight: 600;
       transition: var(--transition-fast);
+      margin-top: auto;
     }
 
     .service-link:hover {
-      gap: var(--space-3);
       color: var(--sky-blue);
+      gap: var(--space-3);
     }
 
+    /* Disabled Button Style for Coming Soon */
+    .service-link.disabled {
+        color: var(--text-muted);
+        cursor: default;
+        pointer-events: none;
+    }
+    
+    /* CTA Section */
     .cta-section {
       background: linear-gradient(135deg, var(--bg-secondary), var(--bg-elevated));
+      border-radius: var(--radius-lg);
       padding: var(--space-16) var(--space-6);
       text-align: center;
-      border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
       margin-top: var(--space-16);
     }
 
     .cta-section h2 {
-      font-size: 32px;
-      margin-bottom: var(--space-4);
-      color: var(--text-primary);
+        font-size: 32px;
+        margin-bottom: var(--space-4);
     }
-
+    
     .cta-section p {
-      font-size: 18px;
-      color: var(--text-secondary);
-      margin-bottom: var(--space-8);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+        max-width: 600px;
+        margin: 0 auto var(--space-8);
+    }
+    
+    .btn-secondary {
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--lavender-dark);
+      background: transparent;
+      color: var(--lavender-light);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      transition: var(--transition-base);
     }
 
-    /* === Footer Styles (Standardized) === */
+    .btn-secondary:hover {
+      background: var(--lavender-dark);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ========== Footer ========== */
     .footer {
       background: var(--bg-secondary);
       color: var(--text-primary);
@@ -470,10 +538,7 @@
       margin-top: var(--space-16);
     }
 
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
 
     .footer-grid {
       display: grid;
@@ -482,42 +547,19 @@
       margin-bottom: var(--space-8);
     }
 
-    .footer h4 {
-      margin-bottom: var(--space-4);
-      font-size: 20px;
-      color: var(--text-primary);
-    }
+    .footer h4 { margin-bottom: var(--space-4); font-size: 20px; color: var(--text-primary); }
+    .footer p { color: var(--text-secondary); margin-bottom: var(--space-2); font-size: 16px; }
+    .footer a { color: var(--text-secondary); text-decoration: none; transition: var(--transition-base); }
+    .footer a:hover { color: var(--lavender-light); }
 
-    .footer p {
-      color: var(--text-secondary);
-      margin-bottom: var(--space-2);
-      font-size: 16px;
-    }
+    .footer-links ul { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: var(--space-2); }
 
-    .footer a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: var(--transition-base);
-    }
-
-    .footer a:hover {
-      color: var(--lavender-light);
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: var(--space-2);
-    }
-
-    /* Standardized Footer Social Bar */
     .social-bar {
       margin-top: var(--space-4);
       padding: var(--space-4);
       border-radius: var(--radius-lg);
-      background: rgba(139, 127, 255, 0.05); /* Same as main page */
+      background: rgba(139, 127, 255, 0.05);
       border: 1px solid var(--border-color);
       display: flex;
       flex-wrap: wrap;
@@ -539,7 +581,6 @@
       border: 1px solid var(--border-color);
     }
 
-    /* Correct hover contrast: White Icon + Gradient Bg */
     .footer .social-bar .social-link:hover {
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
       color: #ffffff !important;
@@ -547,10 +588,7 @@
       box-shadow: var(--shadow-glow);
       border-color: transparent;
     }
-    
-    .footer .social-bar .social-link:hover i {
-      color: #ffffff !important;
-    }
+    .footer .social-bar .social-link:hover i { color: #ffffff !important; }
 
     .footer-bottom {
       border-top: 1px solid var(--border-color);
@@ -561,7 +599,7 @@
       color: var(--text-muted);
     }
 
-    /* Floating WhatsApp Button */
+    /* WhatsApp Button */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
@@ -583,24 +621,16 @@
       animation: pulse-whatsapp 2s infinite;
       border: 2px solid rgba(255, 255, 255, 0.2);
     }
-
     .whatsapp-float:hover {
       transform: translateY(-5px) scale(1.1);
       box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
       color: #FFF;
       background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light));
     }
-
     @keyframes pulse-whatsapp {
-      0% {
-        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7);
-      }
-      70% {
-        box-shadow: 0 0 0 15px rgba(139, 127, 255, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0);
-      }
+      0% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(139, 127, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0); }
     }
 
     @media (max-width: 968px) {
@@ -608,15 +638,8 @@
       .page-hero h1 { font-size: 40px; }
       .nav { flex-wrap: wrap; gap: var(--space-3); font-size: 14px; }
     }
-    
     @media (max-width: 640px) {
-        .whatsapp-float {
-            width: 55px;
-            height: 55px;
-            font-size: 28px;
-            bottom: 20px;
-            right: 20px;
-        }
+        .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 20px; right: 20px; }
     }
   </style>
 </head>
@@ -656,74 +679,310 @@
   </header>
 
   <section class="page-hero">
-    <h1>Our Services</h1>
-    <p>We provide integrated solutions to help your business grow and thrive in the digital world</p>
+    <h1>Our Comprehensive Services</h1>
+    <p>Integrated solutions covering all your digital needs, from concept to execution and growth</p>
   </section>
 
   <section class="services-section">
-    <h2 class="section-title">What We Offer</h2>
-    <p class="section-subtitle">We combine creativity with technology to deliver results</p>
+    <h2 class="section-title">What Do We Offer?</h2>
+    <p class="section-subtitle">A diverse list of services to meet all your project needs</p>
 
     <div class="services-grid">
+      
+      <!-- 1. Social Media Management -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-bullhorn"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-share-alt"></i></div>
+            <div class="service-title-group">
+                <h3>Social Media Management</h3>
+                <span class="service-tag">Social Media Management</span>
+            </div>
         </div>
-        <h3>Social Media Management</h3>
-        <p>Comprehensive management of your social media accounts including strategy, content creation, scheduling, and community engagement to increase brand awareness.</p>
-        <a href="https://ecode.sa/contact-en/" class="service-link">Learn more →</a>
+        <p>Comprehensive management of your presence on social platforms (Instagram, TikTok, X, Snapchat, LinkedIn, Facebook).</p>
+        <ul class="service-features">
+          <li>Creating monthly content plans</li>
+          <li>Writing marketing & ad copy</li>
+          <li>Professional post design</li>
+          <li>Story & Reels/TikTok creation</li>
+          <li>Community management</li>
+          <li>Periodic performance reports</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
       </div>
 
+      <!-- 2. Branding & Visual Identity -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-ad"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-fingerprint"></i></div>
+            <div class="service-title-group">
+                <h3>Branding & Visual Identity</h3>
+                <span class="service-tag">Branding & Identity</span>
+            </div>
         </div>
-        <h3>Paid Advertising Campaigns</h3>
-        <p>Strategic ad campaigns on platforms like Instagram, TikTok, Snapchat, and Google Ads to reach your target audience and drive conversions.</p>
-        <a href="https://ecode.sa/contact-en/" class="service-link">Learn more →</a>
+        <p>Building an integrated identity that expresses your project's personality, including logo design and various identity applications.</p>
+        <ul class="service-features">
+          <li>Main logo + icon design</li>
+          <li>Color palette & font selection</li>
+          <li>Identity application mockups</li>
+          <li>Brand Guidelines book</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
       </div>
 
+      <!-- 3. Motion Graphics -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-paint-brush"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-video"></i></div>
+            <div class="service-title-group">
+                <h3>Motion Graphics Video</h3>
+                <span class="service-tag">Motion Graphics</span>
+            </div>
         </div>
-        <h3>Visual Identity & Branding</h3>
-        <p>Creating unique and memorable visual identities including logos, color palettes, and brand guidelines that resonate with your audience.</p>
-        <a href="https://ecode.sa/contact-en/" class="service-link">Learn more →</a>
+        <p>Introductory and marketing motion graphic videos, including scriptwriting, design, and professional animation.</p>
+        <ul class="service-features">
+          <li>Scriptwriting & scene breakdown</li>
+          <li>Graphic elements design</li>
+          <li>Animation & transitions</li>
+          <li>Sound effects & voiceover</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
       </div>
 
+      <!-- 4. Product Photography -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-camera"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-box-open"></i></div>
+            <div class="service-title-group">
+                <h3>Product Photography</h3>
+                <span class="service-tag">Product Photography</span>
+            </div>
         </div>
-        <h3>Photography & Videography</h3>
-        <p>Professional product photography and video production services to showcase your products and services in the best light.</p>
-        <a href="https://ecode.sa/contact-en/" class="service-link">Learn more →</a>
+        <p>Professional photography for e-commerce and brand products to highlight quality and increase appeal.</p>
+        <ul class="service-features">
+          <li>White or custom background shots</li>
+          <li>Multiple angles per product</li>
+          <li>Lighting & color retouching</li>
+          <li>Lifestyle shots for products</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
       </div>
 
+      <!-- 5. Corporate/Portrait Photography -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-laptop-code"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+            <div class="service-title-group">
+                <h3>Corporate & Portrait Photography</h3>
+                <span class="service-tag">Corporate Photography</span>
+            </div>
         </div>
-        <h3>Website Design & Development</h3>
-        <p>Designing and developing responsive, user-friendly, and SEO-optimized websites and e-commerce stores tailored to your business needs.</p>
-        <a href="https://ecode.sa/contact-en/" class="service-link">Learn more →</a>
+        <p>On-site photography sessions at client location, including team portraits, offices, and stores.</p>
+        <ul class="service-features">
+          <li>People photography (Profile/Team)</li>
+          <li>Office/Store/Clinic shots</li>
+          <li>On-site lighting setup</li>
+          <li>Professional photo editing</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
       </div>
 
+      <!-- 6. Video Intro -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-chart-line"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-film"></i></div>
+            <div class="service-title-group">
+                <h3>Video Intro Production</h3>
+                <span class="service-tag">Video Intro</span>
+            </div>
         </div>
-        <h3>Digital Marketing Strategy</h3>
-        <p>Developing comprehensive digital marketing strategies based on data and market research to achieve your long-term business goals.</p>
-        <a href="https://ecode.sa/contact-en/" class="service-link">Learn more →</a>
+        <p>Real footage video to introduce a place or service, showcasing your work details professionally and attractively.</p>
+        <ul class="service-features">
+          <li>General shots & B-roll details</li>
+          <li>Staff/Client filming options</li>
+          <li>Script & on-screen text titles</li>
+          <li>Professional editing & music</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
+      </div>
+
+      <!-- 7. Ads Management -->
+      <div class="service-card">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-ad"></i></div>
+            <div class="service-title-group">
+                <h3>Ads Management</h3>
+                <span class="service-tag">Ads Management</span>
+            </div>
+        </div>
+        <p>Managing paid ad campaigns on digital platforms (Meta, TikTok, Snapchat, Google) to achieve your marketing goals.</p>
+        <ul class="service-features">
+          <li>Campaign setup & planning</li>
+          <li>Ad design & copywriting</li>
+          <li>Targeting & audience setup</li>
+          <li>Ongoing optimization</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
+      </div>
+
+      <!-- 8. Website Design & Development -->
+      <div class="service-card">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="service-title-group">
+                <h3>Website Design & Development</h3>
+                <span class="service-tag">Website Development</span>
+            </div>
+        </div>
+        <p>Designing and programming professional corporate websites, aligned with identity and responsive across all devices.</p>
+        <ul class="service-features">
+          <li>Main & inner page design</li>
+          <li>Responsive design</li>
+          <li>Contact forms setup</li>
+          <li>UX improvement</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
+      </div>
+
+      <!-- 9. E-Commerce Setup (Salla) - Coming Soon -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div class="service-title-group">
+                <h3>E-Commerce Setup (Salla)</h3>
+                <span class="service-tag">Coming Soon</span>
+            </div>
+        </div>
+        <p>Setting up a complete e-commerce store via Salla platform, including settings, interface design, and adding products.</p>
+        <ul class="service-features">
+          <li>Account creation & settings</li>
+          <li>Store interface design</li>
+          <li>Product addition & payment/shipping setup</li>
+          <li>Policy pages setup</li>
+        </ul>
+        <a href="#" class="service-link disabled">Coming Soon</a>
+      </div>
+
+      <!-- 10. Digital Analytics -->
+      <div class="service-card">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
+            <div class="service-title-group">
+                <h3>Digital Analytics</h3>
+                <span class="service-tag">Digital Analytics</span>
+            </div>
+        </div>
+        <p>Analyzing account performance on social and ad platforms to provide insights and recommendations for better results.</p>
+        <ul class="service-features">
+          <li>Post & campaign performance analysis</li>
+          <li>Target audience analysis</li>
+          <li>Competitor comparison</li>
+          <li>Comprehensive report & recommendations</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
+      </div>
+
+      <!-- 11. UX Audit - Coming Soon -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-mouse-pointer"></i></div>
+            <div class="service-title-group">
+                <h3>UX Audit</h3>
+                <span class="service-tag">Coming Soon</span>
+            </div>
+        </div>
+        <p>Evaluating user experience on digital sites and stores to improve usability and increase conversion rates.</p>
+        <ul class="service-features">
+          <li>User journey review</li>
+          <li>Mobile experience analysis</li>
+          <li>Ease of access evaluation</li>
+          <li>Strengths & weaknesses report</li>
+        </ul>
+        <a href="#" class="service-link disabled">Coming Soon</a>
+      </div>
+
+      <!-- 12. Privacy & Cookies Policy - Coming Soon -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-file-contract"></i></div>
+            <div class="service-title-group">
+                <h3>Privacy & Cookies Policy</h3>
+                <span class="service-tag">Coming Soon</span>
+            </div>
+        </div>
+        <p>Drafting legal policies for websites and stores, including privacy policy, cookies policy, and terms & conditions.</p>
+        <ul class="service-features">
+          <li>PDPL-compliant privacy policy</li>
+          <li>Cookies policy drafting</li>
+          <li>Custom clauses per activity</li>
+          <li>Ready-to-publish texts</li>
+        </ul>
+        <a href="#" class="service-link disabled">Coming Soon</a>
+      </div>
+
+      <!-- 13. Events Coverage - Coming Soon -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
+            <div class="service-title-group">
+                <h3>Events Coverage</h3>
+                <span class="service-tag">Coming Soon</span>
+            </div>
+        </div>
+        <p>On-site media coverage for events and conferences via photo and video to document the event for marketing use.</p>
+        <ul class="service-features">
+          <li>Event photography coverage</li>
+          <li>Video coverage + Highlight reel</li>
+          <li>Editing & delivery</li>
+        </ul>
+        <a href="#" class="service-link disabled">Coming Soon</a>
+      </div>
+
+      <!-- 14. Full Animation (Explainer Video) - Advanced -->
+      <div class="service-card">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-magic"></i></div>
+            <div class="service-title-group">
+                <h3>Full Animation (Explainer)</h3>
+                <span class="service-tag advanced">Advanced Level</span>
+            </div>
+        </div>
+        <p>Full explainer animation video to explain a service, product, or platform with storytelling and advanced visual effects.</p>
+        <ul class="service-features">
+          <li>Script & Storyboard preparation</li>
+          <li>Custom style & character design</li>
+          <li>Advanced animation</li>
+          <li>Professional voiceover</li>
+        </ul>
+        <a href="https://ecode.sa/contact-en/" class="service-link">Request Service →</a>
+      </div>
+
+      <!-- 15. Mobile App Development - Coming Soon -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="service-title-group">
+                <h3>Mobile App Development</h3>
+                <span class="service-tag">Coming Soon</span>
+            </div>
+        </div>
+        <p>Development service for simple or medium-complexity mobile apps, including design, programming, and store upload.</p>
+        <ul class="service-features">
+          <li>UI/UX design</li>
+          <li>Core screens development</li>
+          <li>Database integration (if needed)</li>
+          <li>App store upload</li>
+        </ul>
+        <a href="#" class="service-link disabled">Coming Soon</a>
       </div>
     </div>
 
     <div class="cta-section">
-      <h2>Ready to take your business to the next level?</h2>
-      <p>Contact us today for a free consultation and let's discuss how we can help you achieve your goals.</p>
-      <a href="https://ecode.sa/contact-en/" class="btn-primary">Get Started Now</a>
+      <h2>Have a Project in Mind?</h2>
+      <p>Contact us now for a free consultation and discuss how we can turn your idea into reality.</p>
+      <div class="cta-buttons">
+        <a href="https://ecode.sa/contact-en/" class="btn-primary">Start Your Project</a>
+        <a href="https://ecode.sa/plans-en/" class="btn-secondary">View Plans</a>
+      </div>
     </div>
   </section>
 
