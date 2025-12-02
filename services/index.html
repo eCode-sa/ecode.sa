@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>خدماتنا | eCode</title>
-  <meta name="description" content="اكتشف خدمات eCode في التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية لنمو أعمالك في السعودية">
+  <meta name="description" content="اكتشف خدمات eCode الشاملة في التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية لنمو أعمالك في السعودية">
   
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
@@ -13,20 +13,17 @@
   
   <!-- Open Graph -->
   <meta property="og:title" content="خدماتنا | eCode">
-  <meta property="og:description" content="اكتشف خدمات eCode في التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية لنمو أعمالك في السعودية">
+  <meta property="og:description" content="اكتشف خدمات eCode الشاملة في التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية لنمو أعمالك في السعودية">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/services/">
   <meta property="og:type" content="website">
   
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="خدماتنا | eCode">
-  <meta name="twitter:description" content="اكتشف خدمات eCode في التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية لنمو أعمالك في السعودية">
-  <meta name="twitter:image" content="https://ecode.sa/favicon.png">
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
   
   <style>
     :root {
@@ -102,7 +99,8 @@
     h2 { font-size: 32px; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
     h3 { font-size: 24px; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
     p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
-    
+
+    /* ========== Header ========== */
     .main-header {
       position: sticky;
       top: 0;
@@ -111,7 +109,7 @@
       border-bottom: 1px solid var(--border-color);
       transition: var(--transition-base);
     }
-    
+
     @supports (backdrop-filter: blur(12px)) {
         .main-header {
             background: color-mix(in srgb, var(--bg-primary), transparent 10%);
@@ -133,13 +131,10 @@
       display: flex;
       align-items: center;
       gap: var(--space-3);
-      transition: var(--transition-base);
       text-decoration: none;
+      transition: var(--transition-base);
     }
-
-    .logo-container:hover {
-      transform: scale(1.02);
-    }
+    .logo-container:hover { transform: scale(1.02); }
 
     .logo-icon {
       width: 48px;
@@ -147,23 +142,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: visible;
     }
+    .logo-icon img { width: 48px; height: 48px; object-fit: contain; }
 
-    .logo-icon img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-      position: relative;
-      z-index: 1;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-
+    .logo-text { display: flex; flex-direction: column; }
     .logo-text .brand-name {
       font-size: 24px;
       font-weight: 700;
@@ -172,7 +154,6 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .logo-text .brand-tagline {
       font-size: 13px;
       color: var(--text-muted);
@@ -190,12 +171,12 @@
     .nav a {
       text-decoration: none;
       color: var(--text-secondary);
-      position: relative;
-      padding: var(--space-2) 0;
-      transition: var(--transition-fast);
       font-weight: 600;
+      transition: var(--transition-base);
+      padding: var(--space-2) 0;
+      position: relative;
     }
-
+    
     .nav a::after {
       content: '';
       position: absolute;
@@ -207,23 +188,11 @@
       transition: var(--transition-base);
     }
 
-    .nav a:hover {
-      color: var(--lavender-light);
-    }
+    .nav a:hover { color: var(--lavender-light); }
+    .nav a:hover::after { width: 100%; }
+    .nav a.active { color: var(--lavender-light); }
+    .nav a.active::after { width: 100%; }
 
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    .nav a.active {
-      color: var(--lavender-light);
-    }
-
-    .nav a.active::after {
-      width: 100%;
-    }
-
-    /* === الأزرار الدائرية (اللغة والثيم) === */
     .lang-switcher, .theme-toggle {
       display: flex;
       align-items: center;
@@ -236,10 +205,9 @@
       border: 1px solid var(--border-color);
       color: var(--text-secondary);
       font-size: 16px;
-      font-weight: 600;
       cursor: pointer;
-      transition: var(--transition-base);
       text-decoration: none;
+      transition: var(--transition-base);
     }
 
     .lang-switcher:hover, .theme-toggle:hover {
@@ -249,7 +217,6 @@
       box-shadow: var(--shadow-glow);
     }
 
-    /* === زر تواصل معنا (واسع) === */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -261,7 +228,6 @@
       cursor: pointer;
       font-size: 16px;
       font-weight: 700;
-      font-family: inherit;
       background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
       color: #fff !important;
       text-decoration: none;
@@ -269,33 +235,13 @@
       box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
       white-space: nowrap;
     }
-
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
       filter: brightness(1.1);
-      color: #fff !important;
     }
 
-    .btn-secondary {
-      padding: 10px var(--space-6);
-      border-radius: var(--radius-full);
-      border: 2px solid var(--text-primary);
-      background: transparent;
-      color: var(--text-primary);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 600;
-      transition: var(--transition-base);
-      display: inline-block;
-    }
-
-    .btn-secondary:hover {
-      background: var(--text-primary);
-      color: var(--bg-primary);
-      transform: translateY(-2px);
-    }
-
+    /* ========== Page Hero ========== */
     .page-hero {
       background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-elevated) 100%);
       padding: 100px var(--space-6) 80px;
@@ -323,7 +269,7 @@
     }
 
     .page-hero h1 {
-      font-size: 56px;
+      font-size: 48px;
       font-weight: 700;
       margin-bottom: var(--space-4);
       background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
@@ -337,12 +283,13 @@
     .page-hero p {
       font-size: 20px;
       color: var(--text-secondary);
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
+    /* ========== Services Section ========== */
     .services-section {
       max-width: 1200px;
       margin: 0 auto;
@@ -354,10 +301,7 @@
       font-weight: 700;
       text-align: center;
       margin-bottom: var(--space-3);
-      background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text-primary);
     }
 
     .section-subtitle {
@@ -369,7 +313,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: var(--space-8);
       margin-bottom: var(--space-16);
     }
@@ -377,11 +321,14 @@
     .service-card {
       background: var(--bg-secondary);
       border-radius: var(--radius-lg);
-      padding: var(--space-12);
+      padding: var(--space-8);
       border: 1px solid var(--border-color);
       transition: var(--transition-base);
       position: relative;
       overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .service-card::before {
@@ -402,36 +349,56 @@
       box-shadow: var(--shadow-lg);
       border-color: var(--lavender-dark);
     }
+    .service-card:hover::before { transform: scaleX(1); }
 
-    .service-card:hover::before {
-      transform: scaleX(1);
+    /* Special Style for Coming Soon Cards */
+    .service-card.coming-soon {
+        opacity: 0.85;
+        border-style: dashed;
+    }
+
+    .service-header {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
     }
 
     .service-icon {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       background: rgba(139, 127, 255, 0.1);
       border-radius: var(--radius-base);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: var(--space-6);
-      font-size: 28px;
+      font-size: 24px;
       color: var(--lavender-light);
       border: 1px solid rgba(139, 127, 255, 0.2);
+      flex-shrink: 0;
     }
 
-    [data-theme="light"] .service-icon {
-        background: rgba(139, 127, 255, 0.1);
-        color: var(--lavender-dark);
-        border-color: rgba(139, 127, 255, 0.2);
+    .service-title-group {
+        display: flex;
+        flex-direction: column;
     }
 
     .service-card h3 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: var(--space-4);
+      line-height: 1.3;
+    }
+
+    .service-tag {
+        font-size: 12px;
+        color: var(--mint-green);
+        font-weight: 600;
+        margin-top: 4px;
+    }
+    
+    .service-tag.advanced {
+        color: var(--soft-orange);
     }
 
     .service-card p {
@@ -439,6 +406,39 @@
       color: var(--text-secondary);
       margin-bottom: var(--space-6);
       line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .service-features {
+      list-style: none;
+      margin-top: auto; /* Push to bottom */
+      padding: 0;
+      margin-bottom: var(--space-6);
+      background: var(--bg-elevated);
+      border-radius: var(--radius-base);
+      padding: var(--space-4);
+    }
+
+    .service-features li {
+      padding: var(--space-2) 0;
+      padding-right: 24px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .service-features li:last-child { border-bottom: none; }
+
+    .service-features li::before {
+      content: '•';
+      position: absolute;
+      right: 8px;
+      color: var(--lavender-light);
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+      top: 8px;
     }
 
     .service-link {
@@ -447,41 +447,69 @@
       gap: var(--space-2);
       color: var(--lavender-light);
       text-decoration: none;
-      font-size: 14px;
       font-weight: 600;
       transition: var(--transition-fast);
+      margin-top: auto;
     }
 
     .service-link:hover {
-      gap: var(--space-3);
       color: var(--sky-blue);
+      gap: var(--space-3);
     }
 
+    /* Disabled Button Style for Coming Soon */
+    .service-link.disabled {
+        color: var(--text-muted);
+        cursor: default;
+        pointer-events: none;
+    }
+    
+    /* CTA Section */
     .cta-section {
       background: linear-gradient(135deg, var(--bg-secondary), var(--bg-elevated));
+      border-radius: var(--radius-lg);
       padding: var(--space-16) var(--space-6);
       text-align: center;
-      border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
       margin-top: var(--space-16);
     }
 
     .cta-section h2 {
-      font-size: 32px;
-      margin-bottom: var(--space-4);
-      color: var(--text-primary);
+        font-size: 32px;
+        margin-bottom: var(--space-4);
     }
-
+    
     .cta-section p {
-      font-size: 18px;
-      color: var(--text-secondary);
-      margin-bottom: var(--space-8);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+        max-width: 600px;
+        margin: 0 auto var(--space-8);
+    }
+    
+    .btn-secondary {
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--lavender-dark);
+      background: transparent;
+      color: var(--lavender-light);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      transition: var(--transition-base);
     }
 
-    /* === Footer Styles (Standardized) === */
+    .btn-secondary:hover {
+      background: var(--lavender-dark);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ========== Footer ========== */
     .footer {
       background: var(--bg-secondary);
       color: var(--text-primary);
@@ -490,10 +518,7 @@
       margin-top: var(--space-16);
     }
 
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
 
     .footer-grid {
       display: grid;
@@ -502,42 +527,19 @@
       margin-bottom: var(--space-8);
     }
 
-    .footer h4 {
-      margin-bottom: var(--space-4);
-      font-size: 20px;
-      color: var(--text-primary);
-    }
+    .footer h4 { margin-bottom: var(--space-4); font-size: 20px; color: var(--text-primary); }
+    .footer p { color: var(--text-secondary); margin-bottom: var(--space-2); font-size: 16px; }
+    .footer a { color: var(--text-secondary); text-decoration: none; transition: var(--transition-base); }
+    .footer a:hover { color: var(--lavender-light); }
 
-    .footer p {
-      color: var(--text-secondary);
-      margin-bottom: var(--space-2);
-      font-size: 16px;
-    }
+    .footer-links ul { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: var(--space-2); }
 
-    .footer a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: var(--transition-base);
-    }
-
-    .footer a:hover {
-      color: var(--lavender-light);
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: var(--space-2);
-    }
-
-    /* Standardized Footer Social Bar */
     .social-bar {
       margin-top: var(--space-4);
       padding: var(--space-4);
       border-radius: var(--radius-lg);
-      background: rgba(139, 127, 255, 0.05); /* Same as main page */
+      background: rgba(139, 127, 255, 0.05);
       border: 1px solid var(--border-color);
       display: flex;
       flex-wrap: wrap;
@@ -559,7 +561,6 @@
       border: 1px solid var(--border-color);
     }
 
-    /* Correct hover contrast: White Icon + Gradient Bg */
     .footer .social-bar .social-link:hover {
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
       color: #ffffff !important;
@@ -567,10 +568,7 @@
       box-shadow: var(--shadow-glow);
       border-color: transparent;
     }
-    
-    .footer .social-bar .social-link:hover i {
-      color: #ffffff !important;
-    }
+    .footer .social-bar .social-link:hover i { color: #ffffff !important; }
 
     .footer-bottom {
       border-top: 1px solid var(--border-color);
@@ -581,7 +579,7 @@
       color: var(--text-muted);
     }
 
-    /* Floating WhatsApp Button */
+    /* WhatsApp Button */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
@@ -603,24 +601,16 @@
       animation: pulse-whatsapp 2s infinite;
       border: 2px solid rgba(255, 255, 255, 0.2);
     }
-
     .whatsapp-float:hover {
       transform: translateY(-5px) scale(1.1);
       box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
       color: #FFF;
       background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light));
     }
-
     @keyframes pulse-whatsapp {
-      0% {
-        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7);
-      }
-      70% {
-        box-shadow: 0 0 0 15px rgba(139, 127, 255, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0);
-      }
+      0% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(139, 127, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0); }
     }
 
     @media (max-width: 968px) {
@@ -628,15 +618,8 @@
       .page-hero h1 { font-size: 40px; }
       .nav { flex-wrap: wrap; gap: var(--space-3); font-size: 14px; }
     }
-    
     @media (max-width: 640px) {
-        .whatsapp-float {
-            width: 55px;
-            height: 55px;
-            font-size: 28px;
-            bottom: 20px;
-            left: 20px;
-        }
+        .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 20px; left: 20px; }
     }
   </style>
 </head>
@@ -676,74 +659,310 @@
   </header>
 
   <section class="page-hero">
-    <h1>خدماتنا</h1>
-    <p>نقدم حلولاً متكاملة لمساعدة أعمالك على النمو والازدهار في العالم الرقمي</p>
+    <h1>خدماتنا الشاملة</h1>
+    <p>حلول متكاملة تغطي جميع احتياجاتك الرقمية، من الفكرة إلى التنفيذ والنمو</p>
   </section>
 
   <section class="services-section">
-    <h2 class="section-title">ماذا نقدم؟</h2>
-    <p class="section-subtitle">نجمع بين الإبداع والتقنية لنحقق لك النتائج</p>
+    <h2 class="section-title">ماذا نقدم لك؟</h2>
+    <p class="section-subtitle">قائمة خدماتنا المتنوعة لتلبية كافة احتياجات مشروعك</p>
 
     <div class="services-grid">
+      
+      <!-- 1. إدارة حسابات التواصل الاجتماعي -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-bullhorn"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-share-alt"></i></div>
+            <div class="service-title-group">
+                <h3>إدارة حسابات التواصل الاجتماعي</h3>
+                <span class="service-tag">Social Media Management</span>
+            </div>
         </div>
-        <h3>إدارة حسابات التواصل الاجتماعي</h3>
-        <p>إدارة شاملة لحساباتك على منصات التواصل، تشمل التخطيط، صناعة المحتوى، النشر، والتفاعل مع الجمهور لزيادة الوعي بعلامتك التجارية.</p>
-        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
+        <p>إدارة شاملة لحضور العميل على منصات التواصل (Instagram, TikTok, X, Snapchat, LinkedIn, Facebook).</p>
+        <ul class="service-features">
+          <li>إعداد خطط محتوى شهرية</li>
+          <li>كتابة المحتوى التسويقي والإعلاني</li>
+          <li>تصميم منشورات احترافية</li>
+          <li>إعداد ونشر الستوري و Reels</li>
+          <li>إدارة التعليقات والرسائل</li>
+          <li>تقارير أداء دورية</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
       </div>
 
+      <!-- 2. تصميم الهوية البصرية -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-ad"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-fingerprint"></i></div>
+            <div class="service-title-group">
+                <h3>تصميم الهوية البصرية</h3>
+                <span class="service-tag">Branding & Identity</span>
+            </div>
         </div>
-        <h3>الحملات الإعلانية الممولة</h3>
-        <p>إطلاق حملات إعلانية استراتيجية على منصات مثل إنستقرام، تيك توك، سناب شات، وجوجل للوصول إلى جمهورك المستهدف وزيادة المبيعات.</p>
-        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
+        <p>بناء هوية متكاملة تعبر عن شخصية المشروع، وتشمل تصميم الشعار وتطبيقات الهوية المختلفة.</p>
+        <ul class="service-features">
+          <li>تصميم شعار رئيسي + أيقونة</li>
+          <li>اختيار الألوان والخطوط</li>
+          <li>إعداد نماذج تطبيقات للهوية</li>
+          <li>إعداد دليل الهوية (Brand Book)</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
       </div>
 
+      <!-- 3. إنتاج فيديو موشن جرافيك -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-paint-brush"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-video"></i></div>
+            <div class="service-title-group">
+                <h3>إنتاج فيديو موشن جرافيك</h3>
+                <span class="service-tag">Motion Graphics</span>
+            </div>
         </div>
-        <h3>الهوية البصرية والعلامة التجارية</h3>
-        <p>تصميم هويات بصرية فريدة ومميزة تشمل الشعار، الألوان، الخطوط، ودليل الاستخدام لتعزيز صورة علامتك التجارية في أذهان العملاء.</p>
-        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
+        <p>فيديوهات موشن جرافيك تعريفية وتسويقية، تشمل كتابة السكربت، التصميم، والتحريك الاحترافي.</p>
+        <ul class="service-features">
+          <li>كتابة السكربت وتقسيم المشاهد</li>
+          <li>تصميم العناصر الرسومية</li>
+          <li>تحريك العناصر والانتقالات</li>
+          <li>إضافة مؤثرات صوتية وتعليق صوتي</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
       </div>
 
+      <!-- 4. تصوير المنتجات -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-camera"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-box-open"></i></div>
+            <div class="service-title-group">
+                <h3>تصوير المنتجات</h3>
+                <span class="service-tag">Product Photography</span>
+            </div>
         </div>
-        <h3>التصوير والإنتاج المرئي</h3>
-        <p>خدمات تصوير احترافي للمنتجات وإنتاج فيديوهات ترويجية عالية الجودة لعرض منتجاتك وخدماتك بأفضل صورة ممكنة.</p>
-        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
+        <p>تصوير احترافي لمنتجات المتاجر الإلكترونية والعلامات التجارية لإبراز جودتها وزيادة جاذبيتها.</p>
+        <ul class="service-features">
+          <li>تصوير بخلفيات بيضاء أو مخصصة</li>
+          <li>زوايا متعددة لكل منتج</li>
+          <li>تحسين الإضاءة والألوان</li>
+          <li>لقطات Lifestyle للمنتج</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
       </div>
 
+      <!-- 5. التصوير الفوتوغرافي للمواقع والأشخاص -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-laptop-code"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+            <div class="service-title-group">
+                <h3>تصوير المواقع والأشخاص</h3>
+                <span class="service-tag">Corporate Photography</span>
+            </div>
         </div>
-        <h3>تصميم وتطوير المواقع الإلكترونية</h3>
-        <p>تصميم وبرمجة مواقع إلكترونية ومتاجر متجاوبة مع جميع الأجهزة، سهلة الاستخدام، ومحسنة لمحركات البحث (SEO) لتناسب احتياجات عملك.</p>
-        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
+        <p>جلسات تصوير ميدانية في موقع العميل، تشمل تصوير فريق العمل والمكاتب والمتاجر.</p>
+        <ul class="service-features">
+          <li>تصوير الأشخاص (بروفايل - فريق العمل)</li>
+          <li>تصوير المكاتب والعيادات والمتاجر</li>
+          <li>تجهيز الإضاءة والمعدات</li>
+          <li>تعديل ومعالجة الصور</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
       </div>
 
+      <!-- 6. تصوير الفيديو التعريفي -->
       <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-chart-line"></i>
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-film"></i></div>
+            <div class="service-title-group">
+                <h3>تصوير الفيديو التعريفي</h3>
+                <span class="service-tag">Video Intro</span>
+            </div>
         </div>
-        <h3>استراتيجيات التسويق الرقمي</h3>
-        <p>بناء خطط تسويقية رقمية متكاملة تعتمد على البيانات ودراسة السوق لتحقيق أهدافك التجارية على المدى الطويل.</p>
-        <a href="https://ecode.sa/contact/" class="service-link">اعرف المزيد ←</a>
+        <p>فيديو تصوير حقيقي للتعريف بالمكان أو الخدمة، يعرض تفاصيل عملك بشكل احترافي وجذاب.</p>
+        <ul class="service-features">
+          <li>تصوير لقطات عامة وتفاصيل (B-roll)</li>
+          <li>إمكانية تصوير الموظفين أو العملاء</li>
+          <li>كتابة نص وإضافة نصوص على الشاشة</li>
+          <li>مونتاج احترافي مع موسيقى</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
+      </div>
+
+      <!-- 7. إدارة الحملات الإعلانية -->
+      <div class="service-card">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-ad"></i></div>
+            <div class="service-title-group">
+                <h3>إدارة الحملات الإعلانية</h3>
+                <span class="service-tag">Ads Management</span>
+            </div>
+        </div>
+        <p>إدارة الحملات الإعلانية على المنصات الرقمية (Meta, TikTok, Snapchat, Google) لتحقيق أهدافك التسويقية.</p>
+        <ul class="service-features">
+          <li>إعداد وتخطيط الحملات</li>
+          <li>تصميم الإعلانات وكتابة النصوص</li>
+          <li>ضبط الاستهداف والجمهور</li>
+          <li>المتابعة والتحسين المستمر</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
+      </div>
+
+      <!-- 8. تصميم وتطوير المواقع التعريفية -->
+      <div class="service-card">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="service-title-group">
+                <h3>تصميم وتطوير المواقع</h3>
+                <span class="service-tag">Website Development</span>
+            </div>
+        </div>
+        <p>تصميم وبرمجة مواقع تعريفية للشركات والمشاريع، متوافقة مع الهوية ومتجاوبة مع جميع الأجهزة.</p>
+        <ul class="service-features">
+          <li>تصميم صفحات رئيسية وداخلية</li>
+          <li>تصميم متجاوب (Responsive)</li>
+          <li>إعداد نماذج التواصل</li>
+          <li>تحسين تجربة المستخدم (UX)</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
+      </div>
+
+      <!-- 9. إنشاء المتاجر الإلكترونية (سلة) - قريبًا -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div class="service-title-group">
+                <h3>إنشاء المتاجر (سلة)</h3>
+                <span class="service-tag">قريباً</span>
+            </div>
+        </div>
+        <p>تأسيس متجر إلكتروني كامل عبر منصة سلة، يشمل ضبط الإعدادات وتصميم الواجهة وإضافة المنتجات.</p>
+        <ul class="service-features">
+          <li>إنشاء الحساب وضبط الإعدادات</li>
+          <li>تصميم واجهة المتجر</li>
+          <li>إضافة المنتجات وربط الدفع والشحن</li>
+          <li>إعداد صفحات السياسات</li>
+        </ul>
+        <a href="#" class="service-link disabled">قريباً</a>
+      </div>
+
+      <!-- 10. تحليل الحسابات الرقمية -->
+      <div class="service-card">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
+            <div class="service-title-group">
+                <h3>تحليل الحسابات الرقمية</h3>
+                <span class="service-tag">Digital Analytics</span>
+            </div>
+        </div>
+        <p>تحليل أداء الحسابات على السوشيال والمنصات الإعلانية لتقديم رؤى وتوصيات لتحسين النتائج.</p>
+        <ul class="service-features">
+          <li>تحليل أداء المنشورات والحملات</li>
+          <li>تحليل الجمهور المستهدف</li>
+          <li>مقارنة مع المنافسين</li>
+          <li>إعداد تقرير شامل مع التوصيات</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
+      </div>
+
+      <!-- 11. تحسين تجربة المستخدم - قريبًا -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-mouse-pointer"></i></div>
+            <div class="service-title-group">
+                <h3>تحسين تجربة المستخدم</h3>
+                <span class="service-tag">قريباً</span>
+            </div>
+        </div>
+        <p>تقييم تجربة المستخدم على المواقع والمتاجر الرقمية لتحسين سهولة الاستخدام وزيادة معدلات التحويل.</p>
+        <ul class="service-features">
+          <li>مراجعة مسار المستخدم</li>
+          <li>تحليل تجربة الجوال</li>
+          <li>تقييم سهولة الوصول للمعلومات</li>
+          <li>تقرير بنقاط القوة والضعف</li>
+        </ul>
+        <a href="#" class="service-link disabled">قريباً</a>
+      </div>
+
+      <!-- 12. إعداد سياسة الخصوصية والكوكيز - قريبًا -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-file-contract"></i></div>
+            <div class="service-title-group">
+                <h3>السياسات القانونية</h3>
+                <span class="service-tag">قريباً</span>
+            </div>
+        </div>
+        <p>صياغة سياسات قانونية للمواقع والمتاجر، تشمل سياسة الخصوصية والكوكيز والشروط والأحكام.</p>
+        <ul class="service-features">
+          <li>إعداد سياسة خصوصية متوافقة (PDPL)</li>
+          <li>إعداد سياسة الكوكيز</li>
+          <li>تخصيص البنود حسب النشاط</li>
+          <li>تسليم نصوص جاهزة للنشر</li>
+        </ul>
+        <a href="#" class="service-link disabled">قريباً</a>
+      </div>
+
+      <!-- 13. تغطية الفعاليات - قريبًا -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
+            <div class="service-title-group">
+                <h3>تغطية الفعاليات</h3>
+                <span class="service-tag">قريباً</span>
+            </div>
+        </div>
+        <p>تغطية إعلامية للفعاليات حضورياً بالصور والفيديو لتوثيق الحدث واستخدامه في التسويق.</p>
+        <ul class="service-features">
+          <li>تغطية فوتوغرافية للحدث</li>
+          <li>تصوير فيديو مع Highlight</li>
+          <li>تعديل وتسليم المواد</li>
+        </ul>
+        <a href="#" class="service-link disabled">قريباً</a>
+      </div>
+
+      <!-- 14. موشن جرافيك كامل - مستوى متقدم -->
+      <div class="service-card">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-magic"></i></div>
+            <div class="service-title-group">
+                <h3>موشن جرافيك كامل</h3>
+                <span class="service-tag advanced">مستوى متقدم</span>
+            </div>
+        </div>
+        <p>فيديو أنيميشن كامل (Explainer Video) لشرح خدمة أو منتج بأسلوب قصصي ومؤثرات بصرية متقدمة.</p>
+        <ul class="service-features">
+          <li>إعداد سكربت و Storyboard</li>
+          <li>تصميم Style خاص وتصميم شخصيات</li>
+          <li>تحريك متقدم (Character Animation)</li>
+          <li>تعليق صوتي احترافي</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="service-link">اطلب الخدمة ←</a>
+      </div>
+
+      <!-- 15. تصميم وبرمجة تطبيقات الجوال - قريبًا -->
+      <div class="service-card coming-soon">
+        <div class="service-header">
+            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="service-title-group">
+                <h3>تطبيقات الجوال</h3>
+                <span class="service-tag">قريباً</span>
+            </div>
+        </div>
+        <p>خدمة تطوير تطبيقات جوال بسيطة أو متوسطة التعقيد، تشمل التصميم والبرمجة والرفع على المتاجر.</p>
+        <ul class="service-features">
+          <li>تصميم واجهات UI/UX</li>
+          <li>بناء شاشات التطبيق الأساسية</li>
+          <li>ربط بقاعدة بيانات (عند الحاجة)</li>
+          <li>الرفع على متاجر التطبيقات</li>
+        </ul>
+        <a href="#" class="service-link disabled">قريباً</a>
       </div>
     </div>
 
     <div class="cta-section">
-      <h2>جاهز للانتقال بمشروعك للمستوى التالي؟</h2>
-      <p>تواصل معنا اليوم للحصول على استشارة مجانية ولنناقش كيف يمكننا مساعدتك في تحقيق أهدافك.</p>
-      <a href="https://ecode.sa/contact/" class="btn-primary">ابدأ الآن</a>
+      <h2>هل لديك مشروع في ذهنك؟</h2>
+      <p>تواصل معنا الآن للحصول على استشارة مجانية ومناقشة كيف يمكننا تحويل فكرتك إلى واقع.</p>
+      <div class="cta-buttons">
+        <a href="https://ecode.sa/contact/" class="btn-primary">ابدأ مشروعك الآن</a>
+        <a href="https://ecode.sa/plans/" class="btn-secondary">شاهد الباقات</a>
+      </div>
     </div>
   </section>
 
@@ -751,7 +970,7 @@
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
-          <h4>eCode – إلكترونيك كود</h4>
+          <h4>eCode — إلكترونيك كود</h4>
           <p>تصنع الأثر</p>
           <p style="margin-top: 16px;">شركة سعودية تقدم حلول التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية.</p>
           
@@ -801,7 +1020,7 @@
 
         <div>
           <h4>تواصل معنا</h4>
-          <p>الرياض – المملكة العربية السعودية</p>
+          <p>الرياض — المملكة العربية السعودية</p>
           <p>جوال: <a href="tel:0503666316">0503666316</a></p>
           <p>البريد: <a href="mailto:info@ecode.sa">info@ecode.sa</a></p>
         </div>
