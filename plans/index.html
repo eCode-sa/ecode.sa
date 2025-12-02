@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>باقاتنا | eCode</title>
-  <meta name="description" content="باقات eCode للتسويق الرقمي وإدارة المحتوى. اختر الباقة المناسبة لنشاطك التجاري مع حلول مرنة وأسعار تنافسية">
+  <meta name="description" content="باقات eCode الشاملة لخدمات التسويق، التصميم، البرمجة، والإنتاج الفني. خيارات مرنة تناسب جميع أحجام الأعمال">
   
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
@@ -13,31 +13,25 @@
   
   <!-- Open Graph -->
   <meta property="og:title" content="باقاتنا | eCode">
-  <meta property="og:description" content="باقات eCode للتسويق الرقمي وإدارة المحتوى. اختر الباقة المناسبة لنشاطك التجاري مع حلول مرنة وأسعار تنافسية">
+  <meta property="og:description" content="باقات eCode الشاملة لخدمات التسويق، التصميم، البرمجة، والإنتاج الفني. خيارات مرنة تناسب جميع أحجام الأعمال">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/plans/">
   <meta property="og:type" content="website">
   
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="باقاتنا | eCode">
-  <meta name="twitter:description" content="باقات eCode للتسويق الرقمي وإدارة المحتوى. اختر الباقة المناسبة لنشاطك التجاري مع حلول مرنة وأسعار تنافسية">
-  <meta name="twitter:image" content="https://ecode.sa/favicon.png">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   
   <style>
     :root {
-      /* الألوان الأساسية (الوضع الداكن - الافتراضي) */
       --lavender-light: #A99BFF;
       --lavender-dark: #8B7FFF;
       --sky-blue: #5BC0F8;
       --mint-green: #7EDDA3;
       --soft-orange: #FFB86C;
-      --coral-pink: #FF79C6;
-      
       --bg-primary: #0F1419;
       --bg-secondary: #1A1F2E;
       --bg-elevated: #242B3D;
@@ -45,31 +39,14 @@
       --text-secondary: #9DA5B4;
       --text-muted: #6B7280;
       --border-color: #2D3748;
-      --border-hover: #4A5568;
-      
-      --space-1: 4px;
-      --space-2: 8px;
-      --space-3: 12px;
-      --space-4: 16px;
-      --space-6: 24px;
-      --space-8: 32px;
-      --space-12: 48px;
-      --space-16: 64px;
-      
       --radius-base: 16px;
       --radius-lg: 24px;
       --radius-full: 999px;
-      
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
       --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
       --shadow-glow: 0 0 20px rgba(139, 127, 255, 0.3);
-      
-      --transition-fast: 150ms ease;
       --transition-base: 250ms ease;
     }
 
-    /* === إعدادات الوضع المضيء === */
     [data-theme="light"] {
       --bg-primary: #F3F4F6;
       --bg-secondary: #FFFFFF;
@@ -78,287 +55,108 @@
       --text-secondary: #4B5563;
       --text-muted: #9CA3AF;
       --border-color: #E5E7EB;
-      --border-hover: #D1D5DB;
-      
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
       --shadow-glow: 0 0 15px rgba(139, 127, 255, 0.2);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
     body {
       font-family: "Tajawal", system-ui, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.7;
-      font-size: 16px;
+      line-height: 1.6;
       overflow-x: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    h1 { font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--text-primary); }
-    h2 { font-size: 32px; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
-    h3 { font-size: 24px; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
-    p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
-    
-    .main-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border-color);
-      transition: var(--transition-base);
-    }
-
-    @supports (backdrop-filter: blur(12px)) {
-        .main-header {
-            background: color-mix(in srgb, var(--bg-primary), transparent 10%);
-            backdrop-filter: blur(12px);
-        }
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--space-4) var(--space-6);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      text-decoration: none;
-      transition: var(--transition-base);
-    }
-
-    .logo-container:hover { transform: scale(1.02); }
-
-    .logo-icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: visible;
-    }
-
-    .logo-icon img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-    }
-
+    /* Header Styles */
+    .main-header { position: sticky; top: 0; z-index: 50; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); }
+    .header-inner { max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon img { width: 48px; height: 48px; object-fit: contain; }
     .logo-text { display: flex; flex-direction: column; }
+    .logo-text .brand-name { font-size: 24px; font-weight: 700; background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .logo-text .brand-tagline { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .nav { display: flex; align-items: center; gap: 24px; }
+    .nav a { text-decoration: none; color: var(--text-secondary); font-weight: 600; transition: 0.3s; }
+    .nav a:hover, .nav a.active { color: var(--lavender-light); }
 
-    .logo-text .brand-name {
-      font-size: 24px;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    /* Circular Buttons (Theme & Lang) */
+    .theme-toggle, .lang-switcher {
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      background: var(--bg-elevated); border: 1px solid var(--border-color); color: var(--text-secondary);
+      cursor: pointer; text-decoration: none; transition: 0.3s;
+    }
+    .theme-toggle:hover, .lang-switcher:hover {
+      background: var(--bg-secondary); border-color: var(--lavender-dark); color: var(--lavender-light); box-shadow: var(--shadow-glow);
     }
 
-    .logo-text .brand-tagline {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: var(--space-6);
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--text-secondary);
-      position: relative;
-      padding: var(--space-2) 0;
-      transition: var(--transition-fast);
-      font-weight: 600;
-    }
-
-    .nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      transition: var(--transition-base);
-    }
-
-    .nav a:hover { color: var(--lavender-light); }
-    .nav a:hover::after { width: 100%; }
-    .nav a.active { color: var(--lavender-light); }
-    .nav a.active::after { width: 100%; }
-
-    /* === الأزرار الدائرية (اللغة والثيم) === */
-    .lang-switcher, .theme-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 42px;
-      height: 42px;
-      padding: 0;
-      border-radius: 50%;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-base);
-      text-decoration: none;
-    }
-
-    .lang-switcher:hover, .theme-toggle:hover {
-      background: var(--bg-secondary);
-      border-color: var(--lavender-dark);
-      color: var(--lavender-light);
-      box-shadow: var(--shadow-glow);
-    }
-
-    /* === زر تواصل معنا (واسع) === */
+    /* Wide Contact Button */
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 32px;
-      min-width: 140px;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 700;
-      font-family: inherit;
+      padding: 14px 32px; min-width: 140px; border-radius: var(--radius-full);
       background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
-      color: #fff !important;
-      text-decoration: none;
-      transition: var(--transition-base);
-      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
-      white-space: nowrap;
+      color: #fff !important; font-weight: 700; text-decoration: none; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: 0.3s;
     }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6); }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
-      filter: brightness(1.1);
-      color: #fff !important;
-    }
-
-    .btn-secondary {
-      padding: 10px var(--space-6);
-      border-radius: var(--radius-full);
-      border: 2px solid var(--text-primary);
-      background: transparent;
-      color: var(--text-primary);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 600;
-      transition: var(--transition-base);
-      display: inline-block;
-    }
-
-    .btn-secondary:hover {
-      background: var(--text-primary);
-      color: var(--bg-primary);
-      transform: translateY(-2px);
-    }
-
+    /* Page Specific Styles */
     .page-hero {
       background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-elevated) 100%);
-      padding: 100px var(--space-6) 80px;
+      padding: 80px 24px;
       text-align: center;
       border-bottom: 1px solid var(--border-color);
       position: relative;
       overflow: hidden;
     }
-
     .page-hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
       background: radial-gradient(circle, rgba(139, 127, 255, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: float 25s ease-in-out infinite;
+      border-radius: 50%; animation: float 25s ease-in-out infinite;
     }
+    @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-80px, 60px) scale(1.1); } }
 
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-80px, 60px) scale(1.1); }
-    }
+    .page-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; z-index: 1; }
+    .page-hero p { font-size: 20px; color: var(--text-secondary); max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
 
-    .page-hero h1 {
-      font-size: 56px;
-      font-weight: 700;
-      margin-bottom: var(--space-4);
-      background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-      z-index: 1;
-    }
-
-    .page-hero p {
-      font-size: 20px;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .plans-section {
+    .plans-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: var(--space-16) var(--space-6);
+      padding: 64px 24px;
     }
 
-    .section-title {
-      font-size: 40px;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: var(--space-3);
-      background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    /* Category Header */
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
     }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 18px;
-      color: var(--text-muted);
-      margin-bottom: var(--space-12);
+    .category-icon {
+      width: 50px; height: 50px; background: rgba(139, 127, 255, 0.1); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--lavender-light);
+      border: 1px solid rgba(139, 127, 255, 0.2);
     }
+    [data-theme="light"] .category-icon {
+      background: rgba(139, 127, 255, 0.1); color: var(--lavender-dark); border-color: rgba(139, 127, 255, 0.2);
+    }
+    .category-title { font-size: 28px; font-weight: 700; color: var(--text-primary); }
+    .category-subtitle { font-size: 16px; color: var(--text-secondary); }
 
+    /* Plans Grid */
     .plans-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: var(--space-8);
-      margin-bottom: var(--space-16);
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
     }
 
     .plan-card {
       background: var(--bg-secondary);
       border-radius: var(--radius-lg);
-      padding: var(--space-12);
+      padding: 32px;
       border: 1px solid var(--border-color);
       transition: var(--transition-base);
       position: relative;
@@ -366,262 +164,73 @@
       display: flex;
       flex-direction: column;
     }
+    .plan-card:hover { transform: translateY(-5px); border-color: var(--lavender-dark); box-shadow: var(--shadow-lg); }
+    
+    .plan-header { margin-bottom: 24px; text-align: center; }
+    .plan-name { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+    .plan-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; min-height: 40px;}
+    .plan-price { font-size: 32px; font-weight: 800; color: var(--lavender-light); margin-bottom: 8px; }
+    .plan-period { font-size: 14px; color: var(--text-secondary); font-weight: normal; }
 
-    .plan-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: var(--transition-base);
+    .plan-features { list-style: none; margin-bottom: 32px; flex-grow: 1; padding: 0; }
+    .plan-features li { 
+      padding: 8px 0; 
+      border-bottom: 1px solid rgba(255,255,255,0.05); 
+      font-size: 15px; 
+      color: var(--text-secondary); 
+      display: flex; 
+      align-items: flex-start; 
+      gap: 10px; 
     }
+    .plan-features li::before { content: '✓'; color: var(--mint-green); font-weight: bold; flex-shrink: 0; }
+    .plan-features li:last-child { border-bottom: none; }
 
-    .plan-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--lavender-dark);
-    }
-
-    .plan-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .plan-card.featured {
-      border: 2px solid var(--lavender-dark);
-      box-shadow: 0 0 30px rgba(139, 127, 255, 0.2);
-    }
-
-    .plan-tag {
-      display: inline-block;
-      padding: var(--space-2) var(--space-4);
-      border-radius: var(--radius-full);
-      background: rgba(139, 127, 255, 0.15);
-      color: var(--lavender-light);
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: var(--space-4);
-      border: 1px solid rgba(139, 127, 255, 0.3);
-    }
-
-    [data-theme="light"] .plan-tag {
-        color: var(--lavender-dark);
-        border-color: var(--lavender-dark);
-    }
-
-    .plan-card.featured .plan-tag {
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      color: #fff;
-      border: none;
-    }
-
-    [data-theme="light"] .plan-card.featured .plan-tag {
-        color: #fff;
-    }
-
-    .plan-icon {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      border-radius: var(--radius-base);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-6);
-      font-size: 32px;
-      color: #fff;
-      box-shadow: var(--shadow-glow);
-    }
-
-    .plan-card h3 {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: var(--space-4);
-    }
-
-    .plan-card p {
-      font-size: 16px;
-      color: var(--text-secondary);
-      margin-bottom: var(--space-8);
-      line-height: 1.8;
-    }
-
-    .plan-features {
-      list-style: none;
-      margin-bottom: var(--space-8);
-      flex-grow: 1;
-    }
-
-    .plan-features li {
-      padding: var(--space-3) 0;
-      padding-right: var(--space-8);
-      position: relative;
-      color: var(--text-secondary);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .plan-features li::before {
-      content: '✓';
-      position: absolute;
-      right: 0;
-      color: var(--mint-green);
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .plan-cta {
-      width: 100%;
-      padding: 14px 24px;
-      border-radius: var(--radius-full);
-      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
-      color: #fff;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 700;
-      transition: var(--transition-base);
-      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
-      border: none;
-      cursor: pointer;
-      text-align: center;
+    .plan-btn {
       display: block;
-    }
-
-    .plan-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
-      color: #fff;
-    }
-
-    .comparison-section {
-      margin-top: var(--space-16);
-      background: var(--bg-secondary);
-      border-radius: var(--radius-lg);
-      padding: var(--space-12);
-      border: 1px solid var(--border-color);
-      overflow-x: auto;
-    }
-
-    .comparison-section h2 {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--lavender-light);
-      margin-bottom: var(--space-8);
-      text-align: center;
-    }
-
-    table {
       width: 100%;
-      border-collapse: collapse;
-      min-width: 600px;
+      padding: 12px;
+      text-align: center;
+      background: transparent;
+      border: 2px solid var(--lavender-dark);
+      color: var(--text-primary);
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s;
     }
+    .plan-btn:hover { background: var(--lavender-dark); color: #fff; }
 
-    th, td {
-      padding: var(--space-4);
-      text-align: right;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    th {
-      background: var(--bg-elevated);
-      color: var(--lavender-light);
+    /* Featured Plan */
+    .plan-card.featured { border: 2px solid var(--lavender-dark); background: rgba(139, 127, 255, 0.03); }
+    .plan-card.featured .plan-btn { background: var(--lavender-dark); color: #fff; border: none; }
+    .plan-card.featured .plan-btn:hover { background: var(--lavender-light); }
+    
+    /* Coming Soon Badge */
+    .coming-soon-badge {
+      background: rgba(255, 184, 108, 0.2);
+      color: var(--soft-orange);
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 12px;
       font-weight: 600;
-      font-size: 16px;
+      margin-right: 10px;
     }
 
-    td {
-      color: var(--text-secondary);
-      font-size: 15px;
-    }
+    /* Footer Styles */
+    .footer { background: var(--bg-secondary); padding: 64px 24px 24px; border-top: 1px solid var(--border-color); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-bottom: 32px; }
+    
+    .footer h4 { margin-bottom: 16px; font-size: 20px; color: var(--text-primary); }
+    .footer p { color: var(--text-secondary); margin-bottom: 8px; font-size: 16px; }
+    .footer a { color: var(--text-secondary); text-decoration: none; transition: var(--transition-base); }
+    .footer a:hover { color: var(--lavender-light); }
+    .footer-links ul { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 8px; }
 
-    .check-icon {
-      color: var(--mint-green);
-      font-size: 20px;
-    }
-
-    /* === Footer Styles (Standardized) === */
-    .footer {
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      padding: var(--space-16) var(--space-6) var(--space-6);
-      border-top: 1px solid var(--border-color);
-      margin-top: var(--space-16);
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--space-8);
-      margin-bottom: var(--space-8);
-    }
-
-    .footer h4 {
-      margin-bottom: var(--space-4);
-      font-size: 20px;
-      color: var(--text-primary);
-    }
-
-    .footer p {
-      color: var(--text-secondary);
-      margin-bottom: var(--space-2);
-      font-size: 16px;
-    }
-
-    .footer a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: var(--transition-base);
-    }
-
-    .footer a:hover {
-      color: var(--lavender-light);
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: var(--space-2);
-    }
-
-    /* Standardized Footer Social Bar */
-    .social-bar {
-      margin-top: var(--space-4);
-      padding: var(--space-4);
-      border-radius: var(--radius-lg);
-      background: rgba(139, 127, 255, 0.05); /* Same as main page */
-      border: 1px solid var(--border-color);
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-3);
-    }
-
-    .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-elevated);
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: var(--transition-base);
-      font-size: 18px;
-      border: 1px solid var(--border-color);
-    }
-
-    /* Correct hover contrast: White Icon + Gradient Bg */
+    .social-bar { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+    .social-link { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-color); text-decoration: none; transition: 0.3s; }
+    
     .footer .social-bar .social-link:hover {
       background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
       color: #ffffff !important;
@@ -629,76 +238,30 @@
       box-shadow: var(--shadow-glow);
       border-color: transparent;
     }
+    .footer .social-bar .social-link:hover i { color: #ffffff !important; }
+
+    .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 16px; text-align: center; font-size: 14px; color: var(--text-muted); }
     
-    .footer .social-bar .social-link:hover i {
-      color: #ffffff !important;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--border-color);
-      margin-top: var(--space-8);
-      padding-top: var(--space-4);
-      text-align: center;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    /* Floating WhatsApp Button */
+    /* WhatsApp Float */
     .whatsapp-float {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
-      color: #FFF;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 32px;
-      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: var(--transition-base);
-      animation: pulse-whatsapp 2s infinite;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light)); color: #FFF;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 32px; box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4); z-index: 100; text-decoration: none;
+      transition: var(--transition-base); animation: pulse-whatsapp 2s infinite; border: 2px solid rgba(255, 255, 255, 0.2);
     }
-
-    .whatsapp-float:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6);
-      color: #FFF;
-      background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light));
-    }
-
-    @keyframes pulse-whatsapp {
-      0% {
-        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7);
-      }
-      70% {
-        box-shadow: 0 0 0 15px rgba(139, 127, 255, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(139, 127, 255, 0);
-      }
-    }
+    .whatsapp-float:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6); color: #FFF; background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light)); }
+    @keyframes pulse-whatsapp { 0% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(139, 127, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0); } }
 
     @media (max-width: 968px) {
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .nav { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 12px; }
       .plans-grid { grid-template-columns: 1fr; }
       .page-hero h1 { font-size: 40px; }
-      .nav { flex-wrap: wrap; gap: var(--space-3); font-size: 14px; }
     }
     
     @media (max-width: 640px) {
-        .whatsapp-float {
-            width: 55px;
-            height: 55px;
-            font-size: 28px;
-            bottom: 20px;
-            left: 20px;
-        }
+        .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 20px; left: 20px; }
     }
   </style>
 </head>
@@ -706,7 +269,7 @@
 
   <header class="main-header">
     <div class="header-inner">
-      <a href="https://ecode.sa/ar/" class="logo-container">
+      <a href="https://ecode.sa/" class="logo-container">
         <div class="logo-icon">
           <img src="https://ecode.sa/favicon.png" alt="eCode Logo">
         </div>
@@ -719,15 +282,15 @@
       <nav class="nav">
         <a href="https://ecode.sa/ar/">الرئيسية</a>
         <a href="https://ecode.sa/services/">خدماتنا</a>
-        <a href="https://ecode.sa/plans/" class="active">الباقات</a>
+        <a href="https://ecode.sa/plans/">الباقات</a>
         <a href="https://ecode.sa/portfolio/">أعمالنا</a>
         
         <!-- Theme Toggle -->
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تبديل المظهر">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر">
             <i class="fas fa-sun"></i>
         </button>
 
-        <!-- زر اللغة دائري -->
+        <!-- Circular Language Button -->
         <a href="https://ecode.sa/plans-en/" class="lang-switcher" aria-label="English">
           <span style="font-size: 20px; line-height: 1;">🇬🇧</span>
         </a>
@@ -738,268 +301,856 @@
   </header>
 
   <section class="page-hero">
-    <h1>باقات تناسب كل احتياج</h1>
-    <p>اختر الباقة المثالية لعملك واحصل على حلول متكاملة تدفع نمو أعمالك للأمام</p>
+    <h1>باقات وحلول eCode</h1>
+    <p>اختر الباقة التي تناسب احتياجات مشروعك، صممت لتمنحك أفضل قيمة مقابل السعر</p>
   </section>
 
-  <section class="plans-section">
-    <h2 class="section-title">اختر باقتك المثالية</h2>
-    <p class="section-subtitle">جميع الباقات قابلة للتخصيص حسب احتياجاتك</p>
+  <div class="plans-container">
 
+    <!-- 1. Social Media -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-share-alt"></i></div>
+      <div>
+        <div class="category-title">إدارة حسابات التواصل الاجتماعي</div>
+        <div class="category-subtitle">Social Media Management</div>
+      </div>
+    </div>
     <div class="plans-grid">
       <div class="plan-card">
-        <span class="plan-tag">للمشاريع الناشئة</span>
-        <div class="plan-icon">
-          <i class="fas fa-rocket"></i>
+        <div class="plan-header">
+          <div class="plan-name">Basic</div>
+          <div class="plan-desc">للبدايات والمشاريع الصغيرة</div>
+          <div class="plan-price">2,000 <span class="plan-period">ريال / شهر</span></div>
         </div>
-        <h3>باقة الانطلاقة</h3>
-        <p>حل مثالي للبدء بحضور رقمي احترافي وإطلاق علامتك التجارية بشكل متميز</p>
-        
         <ul class="plan-features">
-          <li>تصميم شعار احترافي</li>
-          <li>هوية بصرية أساسية</li>
-          <li>إدارة حساب واحد (شهر واحد)</li>
-          <li>8 تصاميم شهرياً</li>
-          <li>صفحة هبوط بسيطة</li>
-          <li>دعم فني عبر البريد</li>
+          <li>1 منصة (Instagram أو TikTok أو X)</li>
+          <li>8 منشورات ثابتة شهرياً</li>
+          <li>4 ستوري</li>
+          <li>كتابة المحتوى لكل منشور</li>
+          <li>تصميم احترافي بسيط (نفس الهوية)</li>
+          <li>تقرير أداء نهاية الشهر</li>
         </ul>
-        
-        <a href="https://ecode.sa/contact/" class="plan-cta">اطلب عرض سعر</a>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
       </div>
-
       <div class="plan-card featured">
-        <span class="plan-tag">⭐ الأكثر طلباً</span>
-        <div class="plan-icon">
-          <i class="fas fa-star"></i>
+        <div class="plan-header">
+          <div class="plan-name">Standard</div>
+          <div class="plan-desc">الأكثر طلباً للانتشار</div>
+          <div class="plan-price">3,500 <span class="plan-period">ريال / شهر</span></div>
         </div>
-        <h3>باقة النمو</h3>
-        <p>الباقة الأمثل للشركات الطموحة التي تسعى لتوسيع نطاق حضورها الرقمي</p>
-        
         <ul class="plan-features">
-          <li>هوية بصرية متكاملة</li>
-          <li>إدارة حسابين (3 أشهر)</li>
-          <li>15 تصميم شهرياً</li>
-          <li>محتوى تسويقي</li>
-          <li>حملة إعلانية شهرية</li>
-          <li>تقارير أداء شهرية</li>
-          <li>جلسة تصوير واحدة</li>
-          <li>دعم فني مباشر</li>
+          <li>منصتان (مثل Instagram + TikTok)</li>
+          <li>12 منشور ثابت + 6 ستوري</li>
+          <li>صياغة محتوى + HOOK لكل منشور</li>
+          <li>تصميمات احترافية متناسقة</li>
+          <li>1 فيديو قصير (Reel/TikTok)</li>
+          <li>إدارة التعليقات والرسائل</li>
+          <li>تقرير أداء تحليلي شهري</li>
         </ul>
-        
-        <a href="https://ecode.sa/contact/" class="plan-cta">اطلب عرض سعر</a>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
       </div>
-
       <div class="plan-card">
-        <span class="plan-tag">للشركات الكبرى</span>
-        <div class="plan-icon">
-          <i class="fas fa-crown"></i>
+        <div class="plan-header">
+          <div class="plan-name">Premium</div>
+          <div class="plan-desc">إدارة وتشغيل شامل</div>
+          <div class="plan-price">6,000 <span class="plan-period">ريال / شهر</span></div>
         </div>
-        <h3>باقة التميز</h3>
-        <p>حل شامل للعلامات التجارية الكبرى مع خدمات متكاملة ودعم مستمر</p>
-        
         <ul class="plan-features">
-          <li>هوية بصرية كاملة + دليل</li>
-          <li>إدارة 3+ حسابات (6 أشهر)</li>
-          <li>25 تصميم شهرياً</li>
-          <li>محتوى إبداعي متنوع</li>
-          <li>حملات إعلانية متقدمة</li>
-          <li>تقارير تحليلية تفصيلية</li>
-          <li>2 جلسة تصوير شهرياً</li>
-          <li>موقع إلكتروني متكامل</li>
-          <li>مدير حساب مخصص</li>
-          <li>دعم فني على مدار الساعة</li>
+          <li>3 منصات</li>
+          <li>16 منشور ثابت + 8 ستوري</li>
+          <li>2 فيديو قصير (Reels)</li>
+          <li>جلسة تصوير منتجات (10 صور)</li>
+          <li>كتابة المحتوى الإعلاني + الإخراج</li>
+          <li>إدارة مجتمع يومية</li>
+          <li>اجتماعين تنسيقيين في الشهر</li>
+          <li>تقرير أداء تفصيلي + توصيات</li>
         </ul>
-        
-        <a href="https://ecode.sa/contact/" class="plan-cta">اطلب عرض سعر</a>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
       </div>
     </div>
 
-    <div class="comparison-section">
-      <h2>مقارنة شاملة بين الباقات</h2>
-      <div class="comparison-table">
-        <table>
-          <thead>
-            <tr>
-              <th>الميزة</th>
-              <th>الانطلاقة</th>
-              <th>النمو</th>
-              <th>التميز</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>تصميم الشعار</td>
-              <td><i class="fas fa-check check-icon"></i></td>
-              <td><i class="fas fa-check check-icon"></i></td>
-              <td><i class="fas fa-check check-icon"></i></td>
-            </tr>
-            <tr>
-              <td>الهوية البصرية</td>
-              <td>أساسية</td>
-              <td>متكاملة</td>
-              <td>شاملة + دليل</td>
-            </tr>
-            <tr>
-              <td>عدد الحسابات</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3+</td>
-            </tr>
-            <tr>
-              <td>التصاميم الشهرية</td>
-              <td>8</td>
-              <td>15</td>
-              <td>25</td>
-            </tr>
-            <tr>
-              <td>الحملات الإعلانية</td>
-              <td>-</td>
-              <td>شهرياً</td>
-              <td>متقدمة</td>
-            </tr>
-            <tr>
-              <td>جلسات التصوير</td>
-              <td>-</td>
-              <td>1</td>
-              <td>2 شهرياً</td>
-            </tr>
-            <tr>
-              <td>الموقع الإلكتروني</td>
-              <td>صفحة هبوط</td>
-              <td>-</td>
-              <td><i class="fas fa-check check-icon"></i></td>
-            </tr>
-            <tr>
-              <td>التقارير</td>
-              <td>-</td>
-              <td>شهرية</td>
-              <td>تفصيلية</td>
-            </tr>
-            <tr>
-              <td>الدعم الفني</td>
-              <td>بريد</td>
-              <td>مباشر</td>
-              <td>24/7</td>
-            </tr>
-            <tr>
-              <td>مدير حساب مخصص</td>
-              <td>-</td>
-              <td>-</td>
-              <td><i class="fas fa-check check-icon"></i></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- 2. Branding -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-fingerprint"></i></div>
+      <div>
+        <div class="category-title">تصميم الهوية البصرية</div>
+        <div class="category-subtitle">Branding Packages</div>
       </div>
     </div>
-  </section>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic</div>
+          <div class="plan-desc">الهوية الأساسية</div>
+          <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>شعار رئيسي + نسخة ثانوية</li>
+          <li>اختيار الألوان والخطوط</li>
+          <li>3 نماذج تطبيقات بسيطة</li>
+          <li>تسليم PNG + JPG</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Standard</div>
+          <div class="plan-desc">الهوية التجارية الكاملة</div>
+          <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>شعار رئيسي + ثانوي + أيقونة</li>
+          <li>لوحة ألوان كاملة + خطوط</li>
+          <li>دليل هوية مختصر</li>
+          <li>نماذج تطبيقات السوشل</li>
+          <li>5 تطبيقات جاهزة (كروت، بنر...)</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium</div>
+          <div class="plan-desc">الهوية المؤسسية الاحترافية</div>
+          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تطوير هوية كاملة + Moodboard</li>
+          <li>شعار كامل + نسخ مونوكروم</li>
+          <li>Brand Book كامل (20-30 صفحة)</li>
+          <li>10 تطبيقات جاهزة</li>
+          <li>تسليم ملفات مفتوحة (AI + PDF)</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
 
+    <!-- 3. Motion Graphics -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-video"></i></div>
+      <div>
+        <div class="category-title">إنتاج فيديو موشن جرافيك</div>
+        <div class="category-subtitle">Motion Graphics</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic Motion</div>
+          <div class="plan-desc">فيديو مختصر</div>
+          <div class="plan-price">700 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>15 ثانية</li>
+          <li>كتابة نص قصير</li>
+          <li>تحريك خفيف + عناصر بسيطة</li>
+          <li>موسيقى خلفية مجانية</li>
+          <li>تعديل واحد</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Standard Motion</div>
+          <div class="plan-desc">فيديو تفاعلي</div>
+          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>30 ثانية</li>
+          <li>نص كامل + ترتيب مشاهد</li>
+          <li>تحريك احترافي + عناصر مخصصة</li>
+          <li>موسيقى احترافية</li>
+          <li>2 تعديلات</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium Motion</div>
+          <div class="plan-desc">إعلان كامل</div>
+          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>60 ثانية</li>
+          <li>سكربت كامل + Storyboard</li>
+          <li>تصميم عناصر مخصصة بالكامل</li>
+          <li>أنيميشن احترافي (Cinematic)</li>
+          <li>تعليق صوتي احترافي</li>
+          <li>تسليم Full HD</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
+
+    <!-- 4. Product Photography -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-box-open"></i></div>
+      <div>
+        <div class="category-title">تصوير المنتجات</div>
+        <div class="category-subtitle">Product Photography</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic</div>
+          <div class="plan-desc">تصوير بسيط</div>
+          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>10 منتجات</li>
+          <li>خلفية بيضاء</li>
+          <li>3 زوايا لكل منتج</li>
+          <li>تعديل أساسي</li>
+          <li>جودة HD</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Standard</div>
+          <div class="plan-desc">تصوير احترافي</div>
+          <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>20 منتج</li>
+          <li>خلفية بيضاء أو مخصصة</li>
+          <li>4-5 زوايا لكل منتج</li>
+          <li>تعديل احترافي</li>
+          <li>صور مهيأة للمتجر</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium</div>
+          <div class="plan-desc">تصوير إبداعي</div>
+          <div class="plan-price">5,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>30 منتج</li>
+          <li>خلفيات متعددة + Lifestyle</li>
+          <li>5-7 زوايا لكل منتج</li>
+          <li>تعديل كامل + إزالة شوائب</li>
+          <li>إعداد وترتيب الجلسة</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
+
+    <!-- 5. Corporate Photography -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-camera"></i></div>
+      <div>
+        <div class="category-title">التصوير الفوتوغرافي</div>
+        <div class="category-subtitle">Corporate Photography</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic</div>
+          <div class="plan-desc">جلسة ساعة واحدة</div>
+          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>موقع واحد</li>
+          <li>10 صور عالية الجودة</li>
+          <li>تعديل أساسي</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Standard</div>
+          <div class="plan-desc">جلسة ساعتين</div>
+          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>موقع واحد</li>
+          <li>15-20 صورة</li>
+          <li>إضاءة احترافية</li>
+          <li>تعديل احترافي</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium</div>
+          <div class="plan-desc">جلسة 3 ساعات</div>
+          <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>موقع أو موقعين</li>
+          <li>20-30 صورة</li>
+          <li>تغطية شاملة (موظفين/مكان)</li>
+          <li>تعديل شامل</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
+
+    <!-- 6. Video Intro -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-film"></i></div>
+      <div>
+        <div class="category-title">الفيديو التعريفي</div>
+        <div class="category-subtitle">Video Intro</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic Intro</div>
+          <div class="plan-desc">فيديو بسيط</div>
+          <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>30 ثانية</li>
+          <li>موقع واحد</li>
+          <li>لقطات عامة</li>
+          <li>مونتاج احترافي</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Standard Intro</div>
+          <div class="plan-desc">فيديو شامل</div>
+          <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>60 ثانية</li>
+          <li>لقطات متعددة (B-roll)</li>
+          <li>نصوص شاشة</li>
+          <li>تعديلين مجانيين</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium Intro</div>
+          <div class="plan-desc">فيديو تسويقي كامل</div>
+          <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>90 ثانية</li>
+          <li>موقع أو موقعين</li>
+          <li>لقطات سينمائية + Storyboard</li>
+          <li>مونتاج ومؤثرات احترافية</li>
+          <li>موسيقى خاصة</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
+
+    <!-- 7. Ads Management -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-ad"></i></div>
+      <div>
+        <div class="category-title">إدارة الحملات الإعلانية</div>
+        <div class="category-subtitle">Ads Management</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic Ads</div>
+          <div class="plan-desc">حملة صغيرة</div>
+          <div class="plan-price">1,500 <span class="plan-period">ريال / شهر</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>منصة واحدة</li>
+          <li>حملة واحدة</li>
+          <li>تصميم إعلان واحد</li>
+          <li>استهداف أساسي</li>
+          <li>تقرير أسبوعي</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Standard Ads</div>
+          <div class="plan-desc">حملات مبيعات</div>
+          <div class="plan-price">3,000 <span class="plan-period">ريال / شهر</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>منصتان</li>
+          <li>حملتان مختلفتان</li>
+          <li>3 تصاميم إعلانية</li>
+          <li>كتابة نصوص احترافية</li>
+          <li>استهداف دقيق + Lookalike</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium Ads</div>
+          <div class="plan-desc">إدارة كاملة</div>
+          <div class="plan-price">3,500 <span class="plan-period">ريال / شهر</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>3 منصات</li>
+          <li>4 حملات</li>
+          <li>5 تصاميم (صور/فيديو)</li>
+          <li>استهداف متقدم + Retargeting</li>
+          <li>تحسين يومي</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
+
+    <!-- 8. Website Design -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
+      <div>
+        <div class="category-title">تصميم المواقع التعريفية</div>
+        <div class="category-subtitle">Website Packages</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Landing Page</div>
+          <div class="plan-desc">صفحة هبوط</div>
+          <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>صفحة واحدة متجاوبة</li>
+          <li>تعريف وخدمات</li>
+          <li>نموذج تواصل</li>
+          <li>رفع الموقع</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Business Site</div>
+          <div class="plan-desc">موقع تعريفي كامل</div>
+          <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>4-6 صفحات</li>
+          <li>تصميم متجاوب</li>
+          <li>كتابة محتوى بسيط</li>
+          <li>SEO أساسي</li>
+          <li>خرائط ونماذج احترافية</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium Site</div>
+          <div class="plan-desc">موقع احترافي</div>
+          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>6-10 صفحات</li>
+          <li>تصميم UX خاص</li>
+          <li>محتوى كامل</li>
+          <li>ربط متقدم</li>
+          <li>SEO متوسط</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
+
+    <!-- 9. E-Commerce (Salla) -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-shopping-cart"></i></div>
+      <div>
+        <div class="category-title">إنشاء المتاجر (سلة) <span class="coming-soon-badge">قريبًا</span></div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic Store</div>
+          <div class="plan-desc">متجر جاهز</div>
+          <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>إنشاء الحساب والإعدادات</li>
+          <li>20 منتج</li>
+          <li>تصميم واجهة بسيطة</li>
+          <li>ربط الدفع والشحن</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Business Store</div>
+          <div class="plan-desc">متجر احترافي</div>
+          <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تصميم احترافي</li>
+          <li>50 منتج</li>
+          <li>كوبونات وشحن متقدم</li>
+          <li>SEO أساسي</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium Store</div>
+          <div class="plan-desc">متجر كامل ومهيّأ</div>
+          <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>صفحات إضافية</li>
+          <li>100 منتج ووصف احترافي</li>
+          <li>إعداد حملات وتنبيهات</li>
+          <li>تدريب شامل</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+    </div>
+
+    <!-- 10. Digital Analytics -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-chart-pie"></i></div>
+      <div>
+        <div class="category-title">تحليل الحسابات الرقمية</div>
+        <div class="category-subtitle">Digital Analytics</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic Analytics</div>
+          <div class="plan-desc">تحليل مبسّط</div>
+          <div class="plan-price">1,200 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تحليل 15-20 منشور</li>
+          <li>تحليل التفاعل والوصول</li>
+          <li>تحليل الجمهور</li>
+          <li>تقرير مختصر</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-name">Standard Analytics</div>
+          <div class="plan-desc">تحليل متخصص</div>
+          <div class="plan-price">1,800 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تحليل 30 منشور</li>
+          <li>تحليل 3 منافسين</li>
+          <li>توصيات محتوى</li>
+          <li>تحليل دقيق للجمهور</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium Analytics</div>
+          <div class="plan-desc">تحليل شامل + خطة</div>
+          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تحليل شامل لمدة سنة</li>
+          <li>تحليل 5 منافسين</li>
+          <li>استراتيجية نشر كاملة</li>
+          <li>تحليل سلوكيات معمق</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
+
+    <!-- 11. UX Audit (Coming Soon) -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-mouse-pointer"></i></div>
+      <div>
+        <div class="category-title">تحسين تجربة المستخدم <span class="coming-soon-badge">قريبًا</span></div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic UX</div>
+          <div class="plan-desc">فحص سريع</div>
+          <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>مراجعة الصفحة الرئيسية</li>
+          <li>تقييم العناصر الأساسية</li>
+          <li>توصيات بسيطة</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Standard UX</div>
+          <div class="plan-desc">تحليل احترافي</div>
+          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>مراجعة 3 صفحات رئيسية</li>
+          <li>تحليل مسار المستخدم</li>
+          <li>توصيات عملية</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium UX</div>
+          <div class="plan-desc">تحليل شامل + خطة</div>
+          <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>مراجعة 5 صفحات</li>
+          <li>تحليل شامل للرحلة</li>
+          <li>خطة تحسين جاهزة</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+    </div>
+
+    <!-- 12. Privacy Policy (Coming Soon) -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-file-contract"></i></div>
+      <div>
+        <div class="category-title">السياسات القانونية <span class="coming-soon-badge">قريبًا</span></div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic Policy</div>
+          <div class="plan-desc">سياسة مبسطة</div>
+          <div class="plan-price">800 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>سياسة خصوصية مبسطة</li>
+          <li>البنود الأساسية</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Standard Policy</div>
+          <div class="plan-desc">متوافقة مع النظام السعودي</div>
+          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>متوافقة مع PDPL</li>
+          <li>سياسة الكوكيز</li>
+          <li>تخصيص حسب النشاط</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium Compliance</div>
+          <div class="plan-desc">سياسة شاملة</div>
+          <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>متوافقة مع PDPL & GDPR</li>
+          <li>سياسة كوكيز متقدمة</li>
+          <li>شروط وأحكام</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+    </div>
+
+    <!-- 13. Events Coverage (Coming Soon) -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-calendar-check"></i></div>
+      <div>
+        <div class="category-title">تغطية الفعاليات <span class="coming-soon-badge">قريبًا</span></div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic Event</div>
+          <div class="plan-desc">تغطية فوتوغرافية</div>
+          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تغطية 3 ساعات</li>
+          <li>30-50 صورة</li>
+          <li>تعديل أساسي</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Standard Event</div>
+          <div class="plan-desc">صور + فيديو</div>
+          <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تغطية 4 ساعات</li>
+          <li>50-80 صورة</li>
+          <li>فيديو Highlight</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium Event</div>
+          <div class="plan-desc">تغطية احترافية كاملة</div>
+          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تغطية 6 ساعات</li>
+          <li>فريق كامل (صور + فيديو احترافي)</li>
+          <li>لقطات احترافية</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+    </div>
+
+    <!-- 14. Full Animation -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-film"></i></div>
+      <div>
+        <div class="category-title">موشن جرافيك كامل (Explainer)</div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic</div>
+          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>30 ثانية</li>
+          <li>رسوم جاهزة</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Standard</div>
+          <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>60 ثانية</li>
+          <li>رسم مخصص</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium</div>
+          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>90-120 ثانية</li>
+          <li>أنيميشن متقدم + شخصيات</li>
+        </ul>
+        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
+      </div>
+    </div>
+
+    <!-- 15. Mobile App (Coming Soon) -->
+    <div class="category-header">
+      <div class="category-icon"><i class="fas fa-mobile-alt"></i></div>
+      <div>
+        <div class="category-title">تطبيقات الجوال <span class="coming-soon-badge">قريبًا</span></div>
+      </div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic App</div>
+          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>3 شاشات أساسية</li>
+          <li>أندرويد فقط</li>
+          <li>تصميم UI بسيط</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Standard App</div>
+          <div class="plan-price">12,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>5-7 شاشات</li>
+          <li>iOS & Android</li>
+          <li>ربط قواعد بيانات بسيطة</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Premium App</div>
+          <div class="plan-price">15,000 <span class="plan-period">ريال</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>تطبيق متكامل</li>
+          <li>قاعدة بيانات + لوحة تحكم</li>
+        </ul>
+        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
           <h4>eCode — إلكترونيك كود</h4>
           <p>تصنع الأثر</p>
-          <p style="margin-top: 16px;">شركة سعودية تقدم حلول التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية.</p>
-          
           <div class="social-bar">
-            <a class="social-link" href="mailto:info@ecode.sa" title="Email">
-              <i class="fa-solid fa-envelope"></i>
-            </a>
-            <a class="social-link" href="https://wa.me/966503666316" target="_blank" title="WhatsApp">
-              <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok">
-              <i class="fa-brands fa-tiktok"></i>
-            </a>
-            <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat">
-              <i class="fa-brands fa-snapchat"></i>
-            </a>
-            <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn">
-              <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X">
-              <i class="fa-brands fa-x-twitter"></i>
-            </a>
+            <a href="mailto:info@ecode.sa" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://wa.me/966503666316" class="social-link"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com/@eCode_sa" class="social-link"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.facebook.com/ecode.sa" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@ecode_sa" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/ecode_sa" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.snapchat.com/add/ecode_sa" class="social-link"><i class="fa-brands fa-snapchat"></i></a>
+            <a href="https://www.linkedin.com/company/ecode-sa" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://x.com/eCode_sa" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
           </div>
         </div>
-
-        <div class="footer-links">
+        <div>
           <h4>روابط سريعة</h4>
-          <ul>
-            <li><a href="https://ecode.sa/ar/">الرئيسية</a></li>
-            <li><a href="https://ecode.sa/services/">خدماتنا</a></li>
-            <li><a href="https://ecode.sa/plans/">الباقات</a></li>
-            <li><a href="https://ecode.sa/portfolio/">أعمالنا</a></li>
-            <li><a href="https://ecode.sa/contact/">تواصل معنا</a></li>
-            <li><a href="https://ecode.sa/terms/">الشروط والأحكام</a></li>
-            <li><a href="https://ecode.sa/privacy/">سياسة الخصوصية</a></li>
-          </ul>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <a href="https://ecode.sa/ar/" style="text-decoration: none; color: var(--text-secondary);">الرئيسية</a>
+            <a href="https://ecode.sa/services/" style="text-decoration: none; color: var(--text-secondary);">خدماتنا</a>
+            <a href="https://ecode.sa/plans/" style="text-decoration: none; color: var(--text-secondary);">الباقات</a>
+            <a href="https://ecode.sa/portfolio/" style="text-decoration: none; color: var(--text-secondary);">أعمالنا</a>
+            <a href="https://ecode.sa/contact/" style="text-decoration: none; color: var(--text-secondary);">تواصل معنا</a>
+            <a href="https://ecode.sa/terms/" style="text-decoration: none; color: var(--text-secondary);">الشروط والأحكام</a>
+            <a href="https://ecode.sa/privacy/" style="text-decoration: none; color: var(--text-secondary);">سياسة الخصوصية</a>
+          </div>
         </div>
-
         <div>
           <h4>تواصل معنا</h4>
           <p>الرياض — المملكة العربية السعودية</p>
-          <p>جوال: <a href="tel:0503666316">0503666316</a></p>
-          <p>البريد: <a href="mailto:info@ecode.sa">info@ecode.sa</a></p>
+          <p>جوال: <a href="tel:0503666316" style="color: var(--lavender-light);">0503666316</a></p>
+          <p>البريد: <a href="mailto:info@ecode.sa" style="color: var(--lavender-light);">info@ecode.sa</a></p>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        © 2025 شركة إلكترونيك كود. جميع الحقوق محفوظة.
-      </div>
+      <div class="footer-bottom">© 2025 شركة إلكترونيك كود. جميع الحقوق محفوظة.</div>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
+  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
   <script>
-    function switchLanguage() {
-      localStorage.setItem('preferred_lang', 'en');
-      window.location.href = 'plans-en.html';
-    }
-
-    // --- Theme Toggle Logic ---
     function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
-        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        html.setAttribute('data-theme', nextTheme);
-        localStorage.setItem('theme', nextTheme);
-        updateThemeIcon(nextTheme);
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
     }
-
-    function updateThemeIcon(theme) {
-        const icon = document.querySelector('.theme-toggle i');
-        if (!icon) return; 
-        
-        if (theme === 'light') {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        } else {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-    }
-
-    // Initialize Theme
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
-    });
+    
+    // Load Theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
   </script>
 
 </body>
