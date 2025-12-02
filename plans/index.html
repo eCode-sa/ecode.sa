@@ -145,7 +145,8 @@
     .category-title { font-size: 28px; font-weight: 700; color: var(--text-primary); }
     .category-subtitle { font-size: 16px; color: var(--text-secondary); }
 
-    /* Plans Grid */
+    /* Plans Grid - Updated to Accordion Style */
+    /* We keep the grid structure but change items to details/summary */
     .plans-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -153,26 +154,68 @@
       margin-bottom: 80px;
     }
 
+    /* Custom Accordion Styles */
     .plan-card {
       background: var(--bg-secondary);
       border-radius: var(--radius-lg);
-      padding: 32px;
       border: 1px solid var(--border-color);
       transition: var(--transition-base);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      /* Important for accordion */
+      padding: 0; 
     }
+    
     .plan-card:hover { transform: translateY(-5px); border-color: var(--lavender-dark); box-shadow: var(--shadow-lg); }
     
-    .plan-header { margin-bottom: 24px; text-align: center; }
+    /* Style the summary to look like the header */
+    .plan-summary {
+        padding: 32px;
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        outline: none;
+    }
+
+    .plan-summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .plan-summary::after {
+        content: '+';
+        position: absolute;
+        top: 32px;
+        left: 32px; /* RTL so left */
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--lavender-light);
+        transition: transform 0.3s ease;
+    }
+
+    details[open] .plan-summary::after {
+        transform: rotate(45deg);
+    }
+
+    .plan-details-content {
+        padding: 0 32px 32px 32px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .plan-header { margin-bottom: 10px; text-align: center; } /* Reduced margin inside summary */
     .plan-name { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
-    .plan-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; min-height: 40px;}
+    .plan-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; min-height: auto;} /* Auto height for summary */
     .plan-price { font-size: 32px; font-weight: 800; color: var(--lavender-light); margin-bottom: 8px; }
     .plan-period { font-size: 14px; color: var(--text-secondary); font-weight: normal; }
 
-    .plan-features { list-style: none; margin-bottom: 32px; flex-grow: 1; padding: 0; }
+    .plan-features { list-style: none; margin-bottom: 32px; flex-grow: 1; padding: 0; margin-top: 20px; }
     .plan-features li { 
       padding: 8px 0; 
       border-bottom: 1px solid rgba(255,255,255,0.05); 
@@ -197,6 +240,7 @@
       font-weight: 700;
       text-decoration: none;
       transition: 0.3s;
+      cursor: pointer;
     }
     .plan-btn:hover { background: var(--lavender-dark); color: #fff; }
 
@@ -247,7 +291,7 @@
       position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px;
       background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light)); color: #FFF;
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 32px; box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4); z-index: 100; text-decoration: none;
+      font-size: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 100; text-decoration: none;
       transition: var(--transition-base); animation: pulse-whatsapp 2s infinite; border: 2px solid rgba(255, 255, 255, 0.2);
     }
     .whatsapp-float:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6); color: #FFF; background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light)); }
@@ -267,32 +311,26 @@
 </head>
 <body>
 
+  <!-- Header -->
   <header class="main-header">
     <div class="header-inner">
-      <a href="https://ecode.sa/" class="logo-container">
-        <div class="logo-icon">
-          <img src="https://ecode.sa/favicon.png" alt="eCode Logo">
-        </div>
+      <a href="https://ecode.sa/ar/" class="logo-container">
+        <div class="logo-icon"><img src="https://ecode.sa/favicon.png" alt="eCode"></div>
         <div class="logo-text">
           <div class="brand-name">eCode</div>
           <div class="brand-tagline">تصنع الأثر</div>
         </div>
       </a>
-
       <nav class="nav">
         <a href="https://ecode.sa/ar/">الرئيسية</a>
         <a href="https://ecode.sa/services/">خدماتنا</a>
-        <a href="https://ecode.sa/plans/">الباقات</a>
+        <a href="https://ecode.sa/plans/" class="active">الباقات</a>
         <a href="https://ecode.sa/portfolio/">أعمالنا</a>
         
-        <!-- Theme Toggle -->
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر">
-            <i class="fas fa-sun"></i>
-        </button>
-
-        <!-- Circular Language Button -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر"><i class="fas fa-sun"></i></button>
+        
         <a href="https://ecode.sa/plans-en/" class="lang-switcher" aria-label="English">
-          <span style="font-size: 20px; line-height: 1;">🇬🇧</span>
+            <span style="font-size: 20px; line-height: 1;">🇬🇧</span>
         </a>
         
         <a href="https://ecode.sa/contact/" class="btn-primary">تواصل معنا</a>
@@ -300,6 +338,7 @@
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="page-hero">
     <h1>باقات وحلول eCode</h1>
     <p>اختر الباقة التي تناسب احتياجات مشروعك، صممت لتمنحك أفضل قيمة مقابل السعر</p>
@@ -316,57 +355,64 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic</div>
-          <div class="plan-desc">للبدايات والمشاريع الصغيرة</div>
-          <div class="plan-price">2,000 <span class="plan-period">ريال / شهر</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic</div>
+            <div class="plan-desc">للبدايات والمشاريع الصغيرة</div>
+            <div class="plan-price">2,000 <span class="plan-period">ريال / شهر</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>1 منصة (Instagram أو TikTok أو X)</li>
+            <li>8 منشورات ثابتة شهرياً</li>
+            <li>4 ستوري</li>
+            <li>كتابة المحتوى لكل منشور</li>
+            <li>تصميم احترافي بسيط (نفس الهوية)</li>
+            <li>تقرير أداء نهاية الشهر</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>1 منصة (Instagram أو TikTok أو X)</li>
-          <li>8 منشورات ثابتة شهرياً</li>
-          <li>4 ستوري</li>
-          <li>كتابة المحتوى لكل منشور</li>
-          <li>تصميم احترافي بسيط (نفس الهوية)</li>
-          <li>تقرير أداء نهاية الشهر</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Standard</div>
-          <div class="plan-desc">الأكثر طلباً للانتشار</div>
-          <div class="plan-price">3,500 <span class="plan-period">ريال / شهر</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard</div>
+            <div class="plan-desc">الأكثر طلباً للانتشار</div>
+            <div class="plan-price">3,500 <span class="plan-period">ريال / شهر</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>منصتان (مثل Instagram + TikTok)</li>
+            <li>12 منشور ثابت + 6 ستوري</li>
+            <li>1 فيديو قصير (Reel/TikTok)</li>
+            <li>إدارة التعليقات والرسائل</li>
+            <li>تقرير تحليلي شهري</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>منصتان (مثل Instagram + TikTok)</li>
-          <li>12 منشور ثابت + 6 ستوري</li>
-          <li>صياغة محتوى + HOOK لكل منشور</li>
-          <li>تصميمات احترافية متناسقة</li>
-          <li>1 فيديو قصير (Reel/TikTok)</li>
-          <li>إدارة التعليقات والرسائل</li>
-          <li>تقرير أداء تحليلي شهري</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium</div>
-          <div class="plan-desc">إدارة وتشغيل شامل</div>
-          <div class="plan-price">6,000 <span class="plan-period">ريال / شهر</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium</div>
+            <div class="plan-desc">إدارة وتشغيل شامل</div>
+            <div class="plan-price">6,000 <span class="plan-period">ريال / شهر</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>3 منصات</li>
+            <li>16 منشور ثابت + 8 ستوري</li>
+            <li>2 فيديو قصير (Reels)</li>
+            <li>جلسة تصوير منتجات (10 صور)</li>
+            <li>إدارة مجتمع يومية</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>3 منصات</li>
-          <li>16 منشور ثابت + 8 ستوري</li>
-          <li>2 فيديو قصير (Reels)</li>
-          <li>جلسة تصوير منتجات (10 صور)</li>
-          <li>كتابة المحتوى الإعلاني + الإخراج</li>
-          <li>إدارة مجتمع يومية</li>
-          <li>اجتماعين تنسيقيين في الشهر</li>
-          <li>تقرير أداء تفصيلي + توصيات</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 2. Branding -->
@@ -378,50 +424,60 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic</div>
-          <div class="plan-desc">الهوية الأساسية</div>
-          <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic</div>
+            <div class="plan-desc">الهوية الأساسية</div>
+            <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>شعار رئيسي + ثانوي</li>
+            <li>اختيار الألوان والخطوط</li>
+            <li>3 نماذج تطبيقات</li>
+            <li>تسليم PNG + JPG</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>شعار رئيسي + نسخة ثانوية</li>
-          <li>اختيار الألوان والخطوط</li>
-          <li>3 نماذج تطبيقات بسيطة</li>
-          <li>تسليم PNG + JPG</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Standard</div>
-          <div class="plan-desc">الهوية التجارية الكاملة</div>
-          <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard</div>
+            <div class="plan-desc">الهوية التجارية الكاملة</div>
+            <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>شعار كامل + أيقونة</li>
+            <li>دليل هوية مختصر</li>
+            <li>5 تطبيقات جاهزة (كروت، بنر...)</li>
+            <li>نماذج تطبيقات السوشل</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>شعار رئيسي + ثانوي + أيقونة</li>
-          <li>لوحة ألوان كاملة + خطوط</li>
-          <li>دليل هوية مختصر</li>
-          <li>نماذج تطبيقات السوشل</li>
-          <li>5 تطبيقات جاهزة (كروت، بنر...)</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium</div>
-          <div class="plan-desc">الهوية المؤسسية الاحترافية</div>
-          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium</div>
+            <div class="plan-desc">الهوية المؤسسية الاحترافية</div>
+            <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تطوير هوية كاملة + Moodboard</li>
+            <li>Brand Book كامل (20-30 صفحة)</li>
+            <li>10 تطبيقات جاهزة</li>
+            <li>تسليم ملفات مفتوحة (AI)</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>تطوير هوية كاملة + Moodboard</li>
-          <li>شعار كامل + نسخ مونوكروم</li>
-          <li>Brand Book كامل (20-30 صفحة)</li>
-          <li>10 تطبيقات جاهزة</li>
-          <li>تسليم ملفات مفتوحة (AI + PDF)</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 3. Motion Graphics -->
@@ -433,52 +489,60 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic Motion</div>
-          <div class="plan-desc">فيديو مختصر</div>
-          <div class="plan-price">700 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic Motion</div>
+            <div class="plan-desc">فيديو مختصر (إعلان سريع)</div>
+            <div class="plan-price">700 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>15 ثانية</li>
+            <li>كتابة نص قصير</li>
+            <li>تحريك خفيف</li>
+            <li>بدون تعليق صوتي</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>15 ثانية</li>
-          <li>كتابة نص قصير</li>
-          <li>تحريك خفيف + عناصر بسيطة</li>
-          <li>موسيقى خلفية مجانية</li>
-          <li>تعديل واحد</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Standard Motion</div>
-          <div class="plan-desc">فيديو تفاعلي</div>
-          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard Motion</div>
+            <div class="plan-desc">فيديو تفاعلي</div>
+            <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>30 ثانية</li>
+            <li>تحريك احترافي + عناصر مخصصة</li>
+            <li>موسيقى احترافية</li>
+            <li>تعديلين بعد التسليم</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>30 ثانية</li>
-          <li>نص كامل + ترتيب مشاهد</li>
-          <li>تحريك احترافي + عناصر مخصصة</li>
-          <li>موسيقى احترافية</li>
-          <li>2 تعديلات</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium Motion</div>
-          <div class="plan-desc">إعلان كامل</div>
-          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium Motion</div>
+            <div class="plan-desc">إعلان كامل</div>
+            <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>60 ثانية</li>
+            <li>تصميم ورسم كامل + Storyboard</li>
+            <li>تعليق صوتي احترافي</li>
+            <li>تسليم Full HD</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>60 ثانية</li>
-          <li>سكربت كامل + Storyboard</li>
-          <li>تصميم عناصر مخصصة بالكامل</li>
-          <li>أنيميشن احترافي (Cinematic)</li>
-          <li>تعليق صوتي احترافي</li>
-          <li>تسليم Full HD</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 4. Product Photography -->
@@ -490,51 +554,57 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic</div>
-          <div class="plan-desc">تصوير بسيط</div>
-          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic</div>
+            <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>10 منتجات</li>
+            <li>خلفية بيضاء</li>
+            <li>3 زوايا لكل منتج</li>
+            <li>تعديل أساسي</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>10 منتجات</li>
-          <li>خلفية بيضاء</li>
-          <li>3 زوايا لكل منتج</li>
-          <li>تعديل أساسي</li>
-          <li>جودة HD</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Standard</div>
-          <div class="plan-desc">تصوير احترافي</div>
-          <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard</div>
+            <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>20 منتج</li>
+            <li>خلفية بيضاء أو مخصصة</li>
+            <li>تعديل احترافي</li>
+            <li>صور مهيأة للمتجر</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>20 منتج</li>
-          <li>خلفية بيضاء أو مخصصة</li>
-          <li>4-5 زوايا لكل منتج</li>
-          <li>تعديل احترافي</li>
-          <li>صور مهيأة للمتجر</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium</div>
-          <div class="plan-desc">تصوير إبداعي</div>
-          <div class="plan-price">5,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium</div>
+            <div class="plan-price">5,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>30 منتج</li>
+            <li>تصوير Lifestyle إبداعي</li>
+            <li>تعديل شامل + إزالة شوائب</li>
+            <li>صور عالية الجودة جداً</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>30 منتج</li>
-          <li>خلفيات متعددة + Lifestyle</li>
-          <li>5-7 زوايا لكل منتج</li>
-          <li>تعديل كامل + إزالة شوائب</li>
-          <li>إعداد وترتيب الجلسة</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 5. Corporate Photography -->
@@ -546,47 +616,57 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic</div>
-          <div class="plan-desc">جلسة ساعة واحدة</div>
-          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic</div>
+            <div class="plan-desc">جلسة ساعة واحدة</div>
+            <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>10 صور عالية الجودة</li>
+            <li>موقع واحد</li>
+            <li>تعديل أساسي</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>موقع واحد</li>
-          <li>10 صور عالية الجودة</li>
-          <li>تعديل أساسي</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Standard</div>
-          <div class="plan-desc">جلسة ساعتين</div>
-          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard</div>
+            <div class="plan-desc">جلسة ساعتين</div>
+            <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>15-20 صورة</li>
+            <li>إضاءة احترافية</li>
+            <li>تعديل احترافي</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>موقع واحد</li>
-          <li>15-20 صورة</li>
-          <li>إضاءة احترافية</li>
-          <li>تعديل احترافي</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium</div>
-          <div class="plan-desc">جلسة 3 ساعات</div>
-          <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium</div>
+            <div class="plan-desc">جلسة 3 ساعات</div>
+            <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>20-30 صورة</li>
+            <li>موقعين (اختياري)</li>
+            <li>تغطية شاملة (موظفين/مكان)</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>موقع أو موقعين</li>
-          <li>20-30 صورة</li>
-          <li>تغطية شاملة (موظفين/مكان)</li>
-          <li>تعديل شامل</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 6. Video Intro -->
@@ -598,49 +678,55 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic Intro</div>
-          <div class="plan-desc">فيديو بسيط</div>
-          <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic Intro</div>
+            <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>30 ثانية</li>
+            <li>موقع واحد</li>
+            <li>مونتاج احترافي</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>30 ثانية</li>
-          <li>موقع واحد</li>
-          <li>لقطات عامة</li>
-          <li>مونتاج احترافي</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Standard Intro</div>
-          <div class="plan-desc">فيديو شامل</div>
-          <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard Intro</div>
+            <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>60 ثانية</li>
+            <li>لقطات B-roll متعددة</li>
+            <li>نصوص شاشة</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>60 ثانية</li>
-          <li>لقطات متعددة (B-roll)</li>
-          <li>نصوص شاشة</li>
-          <li>تعديلين مجانيين</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium Intro</div>
-          <div class="plan-desc">فيديو تسويقي كامل</div>
-          <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium Intro</div>
+            <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>90 ثانية</li>
+            <li>لقطات سينمائية</li>
+            <li>سيناريو كامل</li>
+            <li>نسختين (HD + Social)</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>90 ثانية</li>
-          <li>موقع أو موقعين</li>
-          <li>لقطات سينمائية + Storyboard</li>
-          <li>مونتاج ومؤثرات احترافية</li>
-          <li>موسيقى خاصة</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 7. Ads Management -->
@@ -652,51 +738,56 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic Ads</div>
-          <div class="plan-desc">حملة صغيرة</div>
-          <div class="plan-price">1,500 <span class="plan-period">ريال / شهر</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic Ads</div>
+            <div class="plan-price">1,500 <span class="plan-period">ريال / شهر</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>منصة واحدة</li>
+            <li>حملة واحدة</li>
+            <li>تصميم إعلان واحد</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>منصة واحدة</li>
-          <li>حملة واحدة</li>
-          <li>تصميم إعلان واحد</li>
-          <li>استهداف أساسي</li>
-          <li>تقرير أسبوعي</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Standard Ads</div>
-          <div class="plan-desc">حملات مبيعات</div>
-          <div class="plan-price">3,000 <span class="plan-period">ريال / شهر</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard Ads</div>
+            <div class="plan-price">3,000 <span class="plan-period">ريال / شهر</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>منصتان</li>
+            <li>حملتان مختلفتان</li>
+            <li>3 تصاميم إعلانية</li>
+            <li>اختبار A/B</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>منصتان</li>
-          <li>حملتان مختلفتان</li>
-          <li>3 تصاميم إعلانية</li>
-          <li>كتابة نصوص احترافية</li>
-          <li>استهداف دقيق + Lookalike</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium Ads</div>
-          <div class="plan-desc">إدارة كاملة</div>
-          <div class="plan-price">3,500 <span class="plan-period">ريال / شهر</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium Ads</div>
+            <div class="plan-price">3,500 <span class="plan-period">ريال / شهر</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>3 منصات</li>
+            <li>4 حملات</li>
+            <li>5 تصاميم إعلانية</li>
+            <li>استهداف متقدم + Retargeting</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>3 منصات</li>
-          <li>4 حملات</li>
-          <li>5 تصاميم (صور/فيديو)</li>
-          <li>استهداف متقدم + Retargeting</li>
-          <li>تحسين يومي</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 8. Website Design -->
@@ -708,50 +799,56 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Landing Page</div>
-          <div class="plan-desc">صفحة هبوط</div>
-          <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Landing Page</div>
+            <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>صفحة واحدة متجاوبة</li>
+            <li>تعريف وخدمات</li>
+            <li>نموذج تواصل</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>صفحة واحدة متجاوبة</li>
-          <li>تعريف وخدمات</li>
-          <li>نموذج تواصل</li>
-          <li>رفع الموقع</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Business Site</div>
-          <div class="plan-desc">موقع تعريفي كامل</div>
-          <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Business Site</div>
+            <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>4-6 صفحات</li>
+            <li>لوحة تحكم</li>
+            <li>SEO أساسي</li>
+            <li>خرائط ونماذج متقدمة</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>4-6 صفحات</li>
-          <li>تصميم متجاوب</li>
-          <li>كتابة محتوى بسيط</li>
-          <li>SEO أساسي</li>
-          <li>خرائط ونماذج احترافية</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium Site</div>
-          <div class="plan-desc">موقع احترافي</div>
-          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium Site</div>
+            <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>6-10 صفحات</li>
+            <li>تصميم UX خاص</li>
+            <li>محتوى كامل</li>
+            <li>ربط متقدم</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>6-10 صفحات</li>
-          <li>تصميم UX خاص</li>
-          <li>محتوى كامل</li>
-          <li>ربط متقدم</li>
-          <li>SEO متوسط</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 9. E-Commerce (Salla) -->
@@ -762,48 +859,54 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic Store</div>
-          <div class="plan-desc">متجر جاهز</div>
-          <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic Store</div>
+            <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>ضبط الإعدادات</li>
+            <li>20 منتج</li>
+            <li>ربط الدفع والشحن</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>إنشاء الحساب والإعدادات</li>
-          <li>20 منتج</li>
-          <li>تصميم واجهة بسيطة</li>
-          <li>ربط الدفع والشحن</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Business Store</div>
-          <div class="plan-desc">متجر احترافي</div>
-          <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Business Store</div>
+            <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تصميم احترافي</li>
+            <li>50 منتج</li>
+            <li>كوبونات وشحن متقدم</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>تصميم احترافي</li>
-          <li>50 منتج</li>
-          <li>كوبونات وشحن متقدم</li>
-          <li>SEO أساسي</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium Store</div>
-          <div class="plan-desc">متجر كامل ومهيّأ</div>
-          <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium Store</div>
+            <div class="plan-price">5,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>صفحات إضافية</li>
+            <li>100 منتج</li>
+            <li>إعداد حملات وتنبيهات</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>صفحات إضافية</li>
-          <li>100 منتج ووصف احترافي</li>
-          <li>إعداد حملات وتنبيهات</li>
-          <li>تدريب شامل</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
+      </details>
     </div>
 
     <!-- 10. Digital Analytics -->
@@ -815,48 +918,54 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic Analytics</div>
-          <div class="plan-desc">تحليل مبسّط</div>
-          <div class="plan-price">1,200 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic</div>
+            <div class="plan-price">1,200 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تحليل 15 منشور</li>
+            <li>تحليل التفاعل</li>
+            <li>تقرير 5 صفحات</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>تحليل 15-20 منشور</li>
-          <li>تحليل التفاعل والوصول</li>
-          <li>تحليل الجمهور</li>
-          <li>تقرير مختصر</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-header">
-          <div class="plan-name">Standard Analytics</div>
-          <div class="plan-desc">تحليل متخصص</div>
-          <div class="plan-price">1,800 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card featured">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard</div>
+            <div class="plan-price">1,800 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تحليل 30 منشور</li>
+            <li>تحليل 3 منافسين</li>
+            <li>توصيات محتوى</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>تحليل 30 منشور</li>
-          <li>تحليل 3 منافسين</li>
-          <li>توصيات محتوى</li>
-          <li>تحليل دقيق للجمهور</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium Analytics</div>
-          <div class="plan-desc">تحليل شامل + خطة</div>
-          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium</div>
+            <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تحليل شامل لمدة سنة</li>
+            <li>تحليل 5 منافسين</li>
+            <li>استراتيجية نشر كاملة</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>تحليل شامل لمدة سنة</li>
-          <li>تحليل 5 منافسين</li>
-          <li>استراتيجية نشر كاملة</li>
-          <li>تحليل سلوكيات معمق</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 11. UX Audit (Coming Soon) -->
@@ -867,45 +976,51 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic UX</div>
-          <div class="plan-desc">فحص سريع</div>
-          <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic UX</div>
+            <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>مراجعة الصفحة الرئيسية</li>
+            <li>تقييم العناصر الأساسية</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>مراجعة الصفحة الرئيسية</li>
-          <li>تقييم العناصر الأساسية</li>
-          <li>توصيات بسيطة</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Standard UX</div>
-          <div class="plan-desc">تحليل احترافي</div>
-          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard UX</div>
+            <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>مراجعة 3 صفحات</li>
+            <li>تحليل مسار المستخدم</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>مراجعة 3 صفحات رئيسية</li>
-          <li>تحليل مسار المستخدم</li>
-          <li>توصيات عملية</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium UX</div>
-          <div class="plan-desc">تحليل شامل + خطة</div>
-          <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium UX</div>
+            <div class="plan-price">3,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>مراجعة 5 صفحات</li>
+            <li>تحليل شامل + خطة تحسين</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>مراجعة 5 صفحات</li>
-          <li>تحليل شامل للرحلة</li>
-          <li>خطة تحسين جاهزة</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
+      </details>
     </div>
 
     <!-- 12. Privacy Policy (Coming Soon) -->
@@ -916,44 +1031,50 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic Policy</div>
-          <div class="plan-desc">سياسة مبسطة</div>
-          <div class="plan-price">800 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic Policy</div>
+            <div class="plan-price">800 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>سياسة خصوصية مبسطة</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>سياسة خصوصية مبسطة</li>
-          <li>البنود الأساسية</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Standard Policy</div>
-          <div class="plan-desc">متوافقة مع النظام السعودي</div>
-          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard Policy</div>
+            <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>متوافقة مع النظام السعودي</li>
+            <li>سياسة الكوكيز</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>متوافقة مع PDPL</li>
-          <li>سياسة الكوكيز</li>
-          <li>تخصيص حسب النشاط</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium Compliance</div>
-          <div class="plan-desc">سياسة شاملة</div>
-          <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium Policy</div>
+            <div class="plan-price">2,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>امتثال شامل (GDPR/PDPL)</li>
+            <li>شروط وأحكام</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>متوافقة مع PDPL & GDPR</li>
-          <li>سياسة كوكيز متقدمة</li>
-          <li>شروط وأحكام</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
+      </details>
     </div>
 
     <!-- 13. Events Coverage (Coming Soon) -->
@@ -964,45 +1085,51 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic Event</div>
-          <div class="plan-desc">تغطية فوتوغرافية</div>
-          <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic Event</div>
+            <div class="plan-price">1,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تغطية 3 ساعات</li>
+            <li>صور فقط (30-50 صورة)</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>تغطية 3 ساعات</li>
-          <li>30-50 صورة</li>
-          <li>تعديل أساسي</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Standard Event</div>
-          <div class="plan-desc">صور + فيديو</div>
-          <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard Event</div>
+            <div class="plan-price">3,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تغطية 4 ساعات</li>
+            <li>صور + فيديو Highlight</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>تغطية 4 ساعات</li>
-          <li>50-80 صورة</li>
-          <li>فيديو Highlight</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium Event</div>
-          <div class="plan-desc">تغطية احترافية كاملة</div>
-          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium Event</div>
+            <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تغطية 6 ساعات</li>
+            <li>فريق كامل (صور + فيديو)</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>تغطية 6 ساعات</li>
-          <li>فريق كامل (صور + فيديو احترافي)</li>
-          <li>لقطات احترافية</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
+      </details>
     </div>
 
     <!-- 14. Full Animation -->
@@ -1013,39 +1140,51 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic</div>
-          <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic</div>
+            <div class="plan-price">2,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>30 ثانية</li>
+            <li>رسوم جاهزة</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>30 ثانية</li>
-          <li>رسوم جاهزة</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Standard</div>
-          <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard</div>
+            <div class="plan-price">4,500 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>60 ثانية</li>
+            <li>رسم مخصص</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>60 ثانية</li>
-          <li>رسم مخصص</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium</div>
-          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium</div>
+            <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>90-120 ثانية</li>
+            <li>أنيميشن متقدم + شخصيات</li>
+          </ul>
+          <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
         </div>
-        <ul class="plan-features">
-          <li>90-120 ثانية</li>
-          <li>أنيميشن متقدم + شخصيات</li>
-        </ul>
-        <a href="https://ecode.sa/contact/" class="plan-btn">اطلب الباقة</a>
-      </div>
+      </details>
     </div>
 
     <!-- 15. Mobile App (Coming Soon) -->
@@ -1056,41 +1195,53 @@
       </div>
     </div>
     <div class="plans-grid">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Basic App</div>
-          <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Basic App</div>
+            <div class="plan-price">7,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>3 شاشات أساسية</li>
+            <li>أندرويد فقط</li>
+            <li>تصميم UI بسيط</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>3 شاشات أساسية</li>
-          <li>أندرويد فقط</li>
-          <li>تصميم UI بسيط</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Standard App</div>
-          <div class="plan-price">12,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Standard App</div>
+            <div class="plan-price">12,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>5-7 شاشات</li>
+            <li>iOS & Android</li>
+            <li>ربط قواعد بيانات بسيطة</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>5-7 شاشات</li>
-          <li>iOS & Android</li>
-          <li>ربط قواعد بيانات بسيطة</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-name">Premium App</div>
-          <div class="plan-price">15,000 <span class="plan-period">ريال</span></div>
+      </details>
+      <details class="plan-card">
+        <summary class="plan-summary">
+          <div class="plan-header">
+            <div class="plan-name">Premium App</div>
+            <div class="plan-price">15,000 <span class="plan-period">ريال</span></div>
+          </div>
+        </summary>
+        <div class="plan-details-content">
+          <ul class="plan-features">
+            <li>تطبيق متكامل</li>
+            <li>قاعدة بيانات + لوحة تحكم</li>
+          </ul>
+          <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
         </div>
-        <ul class="plan-features">
-          <li>تطبيق متكامل</li>
-          <li>قاعدة بيانات + لوحة تحكم</li>
-        </ul>
-        <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">قريبًا</span>
-      </div>
+      </details>
     </div>
 
   </div>
