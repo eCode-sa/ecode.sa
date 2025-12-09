@@ -9,1271 +9,883 @@
   <!-- SEO Tags -->
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
-  <link rel="canonical" href="https://ecode.sa/plans/">
+  <link rel="canonical" href="https://ecode.sa/en/plans/">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Our Plans | eCode">
   <meta property="og:description" content="eCode plans for digital marketing and content management. Choose the right plan for your business with flexible solutions and competitive pricing">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
-  <meta property="og:url" content="https://ecode.sa/plans/">
+  <meta property="og:url" content="https://ecode.sa/en/plans/">
   <meta property="og:type" content="website">
   
-  <!-- Favicons -->
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <!-- Favicons (Back 2 levels) -->
+  <link rel="shortcut icon" href="../../favicon.ico" />
+  <link rel="icon" type="image/png" href="../../favicon.png" />
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   
-  <style>
-    :root {
-      --lavender-light: #A99BFF;
-      --lavender-dark: #8B7FFF;
-      --sky-blue: #5BC0F8;
-      --mint-green: #7EDDA3;
-      --soft-orange: #FFB86C;
-      --bg-primary: #0F1419;
-      --bg-secondary: #1A1F2E;
-      --bg-elevated: #242B3D;
-      --text-primary: #E6EDF3;
-      --text-secondary: #9DA5B4;
-      --text-muted: #6B7280;
-      --border-color: #2D3748;
-      --radius-base: 16px;
-      --radius-lg: 24px;
-      --radius-full: 999px;
-      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-      --shadow-glow: 0 0 20px rgba(139, 127, 255, 0.3);
-      --transition-base: 250ms ease;
-    }
-
-    [data-theme="light"] {
-      --bg-primary: #F3F4F6;
-      --bg-secondary: #FFFFFF;
-      --bg-elevated: #FFFFFF;
-      --text-primary: #1F2937;
-      --text-secondary: #4B5563;
-      --text-muted: #9CA3AF;
-      --border-color: #E5E7EB;
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-      --shadow-glow: 0 0 15px rgba(139, 127, 255, 0.2);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Inter", system-ui, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Header Styles */
-    .main-header { position: sticky; top: 0; z-index: 50; background: var(--bg-primary); border-bottom: 1px solid var(--border-color); }
-    .header-inner { max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
-    .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-icon img { width: 48px; height: 48px; object-fit: contain; }
-    .logo-text { display: flex; flex-direction: column; }
-    .logo-text .brand-name { font-size: 24px; font-weight: 700; background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .logo-text .brand-tagline { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .nav { display: flex; align-items: center; gap: 24px; }
-    .nav a { text-decoration: none; color: var(--text-secondary); font-weight: 600; transition: 0.3s; }
-    .nav a:hover, .nav a.active { color: var(--lavender-light); }
-
-    /* Circular Buttons */
-    .theme-toggle, .lang-switcher {
-      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      background: var(--bg-elevated); border: 1px solid var(--border-color); color: var(--text-secondary);
-      cursor: pointer; text-decoration: none; transition: 0.3s;
-    }
-    .theme-toggle:hover, .lang-switcher:hover {
-      background: var(--bg-secondary); border-color: var(--lavender-dark); color: var(--lavender-light); box-shadow: var(--shadow-glow);
-    }
-
-    /* Wide Contact Button */
-    .btn-primary {
-      padding: 14px 32px; min-width: 140px; border-radius: var(--radius-full);
-      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
-      color: #fff !important; font-weight: 700; text-decoration: none; border: none; cursor: pointer;
-      display: inline-flex; align-items: center; justify-content: center;
-      transition: 0.3s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6); }
-
-    /* Page Hero */
-    .page-hero {
-      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-elevated) 100%);
-      padding: 80px 24px;
-      text-align: center;
-      border-bottom: 1px solid var(--border-color);
-      position: relative;
-      overflow: hidden;
-    }
-    .page-hero::before {
-      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(139, 127, 255, 0.1) 0%, transparent 70%);
-      border-radius: 50%; animation: float 25s ease-in-out infinite;
-    }
-    @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-80px, 60px) scale(1.1); } }
-
-    .page-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; z-index: 1; }
-    .page-hero p { font-size: 20px; color: var(--text-secondary); max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
-
-    .plans-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 64px 24px;
-    }
-
-    /* Main Accordion Container Styles */
-    .category-accordion {
-      margin-bottom: 24px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .category-summary {
-      padding: 24px;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg-elevated);
-      transition: background 0.3s;
-    }
-    
-    .category-summary:hover {
-      background: var(--bg-secondary);
-    }
-
-    .category-summary::-webkit-details-marker {
-        display: none;
-    }
-
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-grow: 1;
-    }
-
-    .category-icon {
-      width: 50px; height: 50px; background: rgba(139, 127, 255, 0.1); border-radius: 12px;
-      display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--lavender-light);
-      border: 1px solid rgba(139, 127, 255, 0.2);
-    }
-    [data-theme="light"] .category-icon {
-      background: rgba(139, 127, 255, 0.1); color: var(--lavender-dark); border-color: rgba(139, 127, 255, 0.2);
-    }
-    
-    .category-title { font-size: 20px; font-weight: 700; color: var(--text-primary); }
-    .category-subtitle { font-size: 14px; color: var(--text-secondary); display: block; margin-top: 4px; }
-
-    .accordion-icon {
-        font-size: 20px;
-        color: var(--text-muted);
-        transition: transform 0.3s ease;
-    }
-
-    details[open] .accordion-icon {
-        transform: rotate(180deg);
-    }
-
-    .category-content {
-        padding: 32px;
-        border-top: 1px solid var(--border-color);
-        background: var(--bg-primary);
-        animation: slideDown 0.3s ease-out;
-    }
-
-    @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Plans Grid inside Accordion */
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-    }
-
-    .plan-card {
-      background: var(--bg-secondary);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      border: 1px solid var(--border-color);
-      transition: var(--transition-base);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .plan-card:hover { transform: translateY(-5px); border-color: var(--lavender-dark); box-shadow: var(--shadow-lg); }
-    
-    .plan-header { margin-bottom: 24px; text-align: center; }
-    .plan-name { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
-    .plan-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; min-height: 40px;}
-    .plan-price { font-size: 32px; font-weight: 800; color: var(--lavender-light); margin-bottom: 8px; }
-    .plan-period { font-size: 14px; color: var(--text-secondary); font-weight: normal; }
-
-    .plan-features { list-style: none; margin-bottom: 32px; flex-grow: 1; padding: 0; }
-    .plan-features li { 
-      padding: 8px 0; 
-      border-bottom: 1px solid rgba(255,255,255,0.05); 
-      font-size: 15px; 
-      color: var(--text-secondary); 
-      display: flex; 
-      align-items: flex-start; 
-      gap: 10px; 
-    }
-    .plan-features li::before { content: '✓'; color: var(--mint-green); font-weight: bold; flex-shrink: 0; }
-    .plan-features li:last-child { border-bottom: none; }
-
-    .plan-btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      text-align: center;
-      background: transparent;
-      border: 2px solid var(--lavender-dark);
-      color: var(--text-primary);
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      text-decoration: none;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-    .plan-btn:hover { background: var(--lavender-dark); color: #fff; }
-
-    /* Featured Plan */
-    .plan-card.featured { border: 2px solid var(--lavender-dark); background: rgba(139, 127, 255, 0.03); }
-    .plan-card.featured .plan-btn { background: var(--lavender-dark); color: #fff; border: none; }
-    .plan-card.featured .plan-btn:hover { background: var(--lavender-light); }
-    
-    /* Coming Soon Badge */
-    .coming-soon-badge {
-      background: rgba(255, 184, 108, 0.2);
-      color: var(--soft-orange);
-      padding: 4px 12px;
-      border-radius: 99px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-left: 10px;
-    }
-
-    /* Footer Styles */
-    .footer { background: var(--bg-secondary); padding: 64px 24px 24px; border-top: 1px solid var(--border-color); }
-    .footer-inner { max-width: 1200px; margin: 0 auto; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-bottom: 32px; }
-    
-    .footer h4 { margin-bottom: 16px; font-size: 20px; color: var(--text-primary); }
-    .footer p { color: var(--text-secondary); margin-bottom: 8px; font-size: 16px; }
-    .footer a { color: var(--text-secondary); text-decoration: none; transition: var(--transition-base); }
-    .footer a:hover { color: var(--lavender-light); }
-    .footer-links ul { list-style: none; padding: 0; }
-    .footer-links li { margin-bottom: 8px; }
-
-    .social-bar { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
-    .social-link { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-color); text-decoration: none; transition: 0.3s; }
-    
-    .footer .social-bar .social-link:hover {
-      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-      color: #ffffff !important;
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-glow);
-      border-color: transparent;
-    }
-    .footer .social-bar .social-link:hover i { color: #ffffff !important; }
-
-    .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 16px; text-align: center; font-size: 14px; color: var(--text-muted); }
-    
-    /* WhatsApp Float */
-    .whatsapp-float {
-      position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light)); color: #FFF;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 100; text-decoration: none;
-      transition: var(--transition-base); animation: pulse-whatsapp 2s infinite; border: 2px solid rgba(255, 255, 255, 0.2);
-    }
-    .whatsapp-float:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6); color: #FFF; background: linear-gradient(135deg, var(--sky-blue), var(--lavender-light)); }
-    @keyframes pulse-whatsapp { 0% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(139, 127, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0); } }
-
-    @media (max-width: 968px) {
-      .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .nav { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 12px; }
-      .plans-grid { grid-template-columns: 1fr; }
-      .page-hero h1 { font-size: 40px; }
-    }
-    
-    @media (max-width: 640px) {
-        .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 20px; right: 20px; }
-    }
-  </style>
+  <!-- Main CSS (Back 2 levels) -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="main-header">
-    <div class="header-inner">
-      <a href="https://ecode.sa/en/" class="logo-container">
-        <div class="logo-icon"><img src="https://ecode.sa/favicon.png" alt="eCode"></div>
-        <div class="logo-text">
-          <div class="brand-name">eCode</div>
-          <div class="brand-tagline">Making an Impact</div>
+  <!-- English Header -->
+  <header id="main-header" class="main-header"></header>
+
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+        <h1>eCode Plans & Solutions</h1>
+        <p>Choose the plan that suits your project needs, designed to give you the best value for money</p>
+    </section>
+
+    <div class="plans-container">
+
+        <!-- 1. Social Media Management -->
+        <details class="category-accordion" open>
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-share-alt"></i></div>
+            <div>
+                <div class="category-title">Social Media Management</div>
+                <div class="category-subtitle">Monthly management for your social presence</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic</div>
+                <div class="plan-desc">For Startups</div>
+                <div class="plan-price">2,000 <span class="plan-period">SAR / Month</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>1 Platform (Instagram/TikTok/X)</li>
+                <li>8 Static Posts Monthly</li>
+                <li>4 Stories</li>
+                <li>Content Writing & Basic Design</li>
+                <li>End of Month Report</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Standard</div>
+                <div class="plan-desc">Most Popular</div>
+                <div class="plan-price">3,500 <span class="plan-period">SAR / Month</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>2 Platforms (e.g. IG + TikTok)</li>
+                <li>12 Static Posts + 6 Stories</li>
+                <li>1 Short Video (Reel/TikTok)</li>
+                <li>Community Management</li>
+                <li>Analytical Report</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium</div>
+                <div class="plan-desc">Full Management</div>
+                <div class="plan-price">6,000 <span class="plan-period">SAR / Month</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>3 Platforms</li>
+                <li>16 Static Posts + 8 Stories</li>
+                <li>2 Short Videos</li>
+                <li>Mini Product Photoshoot (10 pics)</li>
+                <li>Daily Community Management</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
         </div>
-      </a>
-      <nav class="nav">
-        <a href="https://ecode.sa/en/">Home</a>
-        <a href="https://ecode.sa/services-en/">Our Services</a>
-        <a href="https://ecode.sa/plans-en/" class="active">Plans</a>
-        <a href="https://ecode.sa/portfolio-en/">Portfolio</a>
-        
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme"><i class="fas fa-sun"></i></button>
-        
-        <a href="https://ecode.sa/plans/" class="lang-switcher" aria-label="Arabic">
-            <span style="font-size: 20px; line-height: 1;">🇸🇦</span>
-        </a>
-        
-        <a href="https://ecode.sa/contact-en/" class="btn-primary">Contact Us</a>
-      </nav>
+        </details>
+
+        <!-- 2. Branding -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-fingerprint"></i></div>
+            <div>
+                <div class="category-title">Branding & Visual Identity</div>
+                <div class="category-subtitle">Create a unique identity for your business</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic</div>
+                <div class="plan-desc">Core Identity</div>
+                <div class="plan-price">2,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Main Logo + Submark</li>
+                <li>Color Palette & Fonts</li>
+                <li>3 Mockups</li>
+                <li>PNG + JPG Files</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Standard</div>
+                <div class="plan-desc">Full Brand Identity</div>
+                <div class="plan-price">4,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Main Logo + Icon</li>
+                <li>Mini Brand Guidelines</li>
+                <li>5 Ready-to-use Assets</li>
+                <li>Social Media Templates</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium</div>
+                <div class="plan-desc">Corporate Identity</div>
+                <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Full Identity + Moodboard</li>
+                <li>Comprehensive Brand Book (20-30 pages)</li>
+                <li>10 Ready-to-use Assets</li>
+                <li>Open Source Files (AI)</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 3. Motion Graphics -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-video"></i></div>
+            <div>
+                <div class="category-title">Motion Graphics</div>
+                <div class="category-subtitle">Engaging animated videos</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic Motion</div>
+                <div class="plan-desc">Short Ad</div>
+                <div class="plan-price">700 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>15 Seconds</li>
+                <li>Short Script</li>
+                <li>Light Animation</li>
+                <li>No Voiceover</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Standard Motion</div>
+                <div class="plan-desc">Interactive Video</div>
+                <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>30 Seconds</li>
+                <li>Professional Animation</li>
+                <li>Pro Music</li>
+                <li>2 Revisions</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium Motion</div>
+                <div class="plan-desc">Full Ad</div>
+                <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>60 Seconds</li>
+                <li>Full Design + Storyboard</li>
+                <li>Pro Voiceover</li>
+                <li>Full HD Delivery</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 4. Product Photography -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-box-open"></i></div>
+            <div>
+                <div class="category-title">Product Photography</div>
+                <div class="category-subtitle">Professional shots for your products</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic</div>
+                <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>10 Products</li>
+                <li>White Background</li>
+                <li>3 Angles per product</li>
+                <li>Basic Editing</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Standard</div>
+                <div class="plan-price">3,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>20 Products</li>
+                <li>White/Custom Background</li>
+                <li>Pro Retouching</li>
+                <li>Web Optimized</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium</div>
+                <div class="plan-price">5,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>30 Products</li>
+                <li>Creative Lifestyle</li>
+                <li>Full Retouching</li>
+                <li>Ultra High Quality</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 5. Corporate Photography -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-camera"></i></div>
+            <div>
+                <div class="category-title">Corporate Photography</div>
+                <div class="category-subtitle">Professional sessions for your team & office</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic</div>
+                <div class="plan-desc">1 Hour Session</div>
+                <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>1 Location</li>
+                <li>10 High Quality Photos</li>
+                <li>Basic Editing</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Standard</div>
+                <div class="plan-desc">2 Hours Session</div>
+                <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>1 Location</li>
+                <li>15-20 Photos</li>
+                <li>Pro Lighting</li>
+                <li>Pro Retouching</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium</div>
+                <div class="plan-desc">3 Hours Session</div>
+                <div class="plan-price">3,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>1-2 Locations</li>
+                <li>20-30 Photos</li>
+                <li>Comprehensive Coverage</li>
+                <li>Full Retouching</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 6. Video Intro -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-film"></i></div>
+            <div>
+                <div class="category-title">Video Intro Production</div>
+                <div class="category-subtitle">Showcase your business professionally</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic Intro</div>
+                <div class="plan-desc">Short Video</div>
+                <div class="plan-price">2,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>30 Seconds</li>
+                <li>1 Location</li>
+                <li>General Shots</li>
+                <li>Pro Editing</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Standard Intro</div>
+                <div class="plan-desc">Comprehensive Video</div>
+                <div class="plan-price">3,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>60 Seconds</li>
+                <li>Multiple B-roll</li>
+                <li>On-screen Text</li>
+                <li>2 Revisions</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium Intro</div>
+                <div class="plan-desc">Full Marketing Video</div>
+                <div class="plan-price">5,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>90 Seconds</li>
+                <li>Cinematic Shots + Storyboard</li>
+                <li>Color Grading</li>
+                <li>Custom Music</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 7. Ads Management -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-ad"></i></div>
+            <div>
+                <div class="category-title">Ads Management</div>
+                <div class="category-subtitle">Paid campaigns on social platforms</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic Ads</div>
+                <div class="plan-desc">Small Campaign</div>
+                <div class="plan-price">1,500 <span class="plan-period">SAR / Month</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>1 Platform</li>
+                <li>1 Campaign Setup</li>
+                <li>1 Ad Design</li>
+                <li>Basic Targeting</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Standard Ads</div>
+                <div class="plan-desc">Sales Campaign</div>
+                <div class="plan-price">3,000 <span class="plan-period">SAR / Month</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>2 Platforms</li>
+                <li>2 Campaigns</li>
+                <li>3 Ad Designs</li>
+                <li>Pro Copywriting</li>
+                <li>Detailed Targeting</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium Ads</div>
+                <div class="plan-desc">Full Management</div>
+                <div class="plan-price">3,500 <span class="plan-period">SAR / Month</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>3 Platforms</li>
+                <li>4 Campaigns</li>
+                <li>5 Pro Ad Designs</li>
+                <li>Advanced Targeting + Re-targeting</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 8. Website Design -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
+            <div>
+                <div class="category-title">Website Design</div>
+                <div class="category-subtitle">Website Packages</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Landing Page</div>
+                <div class="plan-desc">One Page</div>
+                <div class="plan-price">3,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>One Page Responsive</li>
+                <li>Services & Info</li>
+                <li>Contact Form</li>
+                <li>Hosting Setup</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Business Site</div>
+                <div class="plan-desc">Complete Website</div>
+                <div class="plan-price">5,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>4-6 Pages</li>
+                <li>Responsive Design</li>
+                <li>Basic SEO</li>
+                <li>Maps & Advanced Forms</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium Site</div>
+                <div class="plan-desc">Pro Corporate Site</div>
+                <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>6-10 Pages</li>
+                <li>Custom UX Design</li>
+                <li>Full Content</li>
+                <li>Advanced Integration</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 9. E-Commerce (Salla) -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div>
+                <div class="category-title">E-Commerce Setup (Salla) <span class="coming-soon-badge">Soon</span></div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic Store</div>
+                <div class="plan-price">3,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Account Setup</li>
+                <li>20 Products</li>
+                <li>Payment & Shipping Integration</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Business Store</div>
+                <div class="plan-price">4,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Pro Interface Design</li>
+                <li>50 Products</li>
+                <li>Coupons & Advanced Shipping</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium Store</div>
+                <div class="plan-price">5,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Extra Pages</li>
+                <li>100 Products</li>
+                <li>Campaigns & Notifications</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 10. Digital Analytics -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-chart-pie"></i></div>
+            <div>
+                <div class="category-title">Digital Analytics</div>
+                <div class="category-subtitle">Analytics Packages</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic</div>
+                <div class="plan-price">1,200 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>15-20 Posts Analysis</li>
+                <li>Engagement Analysis</li>
+                <li>Brief PDF Report</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="plan-header">
+                <div class="plan-name">Standard</div>
+                <div class="plan-price">1,800 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>30 Posts Analysis</li>
+                <li>3 Competitors Analysis</li>
+                <li>Content Recommendations</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium</div>
+                <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>1 Year Analysis</li>
+                <li>5 Competitors</li>
+                <li>Full Posting Strategy</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 11. UX Audit (Coming Soon) -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-mouse-pointer"></i></div>
+            <div>
+                <div class="category-title">UX Audit <span class="coming-soon-badge">Soon</span></div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic UX</div>
+                <div class="plan-price">2,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Homepage Review</li>
+                <li>Basic Elements Check</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Standard UX</div>
+                <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>3 Main Pages Review</li>
+                <li>User Journey Analysis</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium UX</div>
+                <div class="plan-price">3,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>5 Key Pages</li>
+                <li>Full Journey Analysis + Plan</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 12. Legal Policies (Coming Soon) -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-file-contract"></i></div>
+            <div>
+                <div class="category-title">Legal Policies <span class="coming-soon-badge">Soon</span></div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic Policy</div>
+                <div class="plan-price">800 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Simple Privacy Policy</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Standard Policy</div>
+                <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>PDPL Compliant</li>
+                <li>Cookies Policy</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium Policy</div>
+                <div class="plan-price">2,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Full Compliance</li>
+                <li>Terms & Conditions</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 13. Events Coverage (Coming Soon) -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-calendar-check"></i></div>
+            <div>
+                <div class="category-title">Events Coverage <span class="coming-soon-badge">Soon</span></div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic Event</div>
+                <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>3 Hours Coverage</li>
+                <li>30-50 Photos</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Standard Event</div>
+                <div class="plan-price">3,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>4 Hours Coverage</li>
+                <li>Photos + Highlight Video</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium Event</div>
+                <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>6 Hours Coverage</li>
+                <li>Full Team (Photo + Video)</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 14. Full Animation -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-film"></i></div>
+            <div>
+                <div class="category-title">Full Animation (Explainer)</div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic</div>
+                <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>30 Seconds</li>
+                <li>Stock Graphics</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Standard</div>
+                <div class="plan-price">4,500 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>60 Seconds</li>
+                <li>Custom Illustration</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium</div>
+                <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>90-120 Seconds</li>
+                <li>Advanced Animation + Characters</li>
+                </ul>
+                <a href="https://ecode.sa/en/contact/" class="plan-btn">Request Plan</a>
+            </div>
+            </div>
+        </div>
+        </details>
+
+        <!-- 15. Mobile App (Coming Soon) -->
+        <details class="category-accordion">
+        <summary class="category-summary">
+            <div class="category-header">
+            <div class="category-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div>
+                <div class="category-title">Mobile App Development <span class="coming-soon-badge">Soon</span></div>
+            </div>
+            </div>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </summary>
+        <div class="category-content">
+            <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Basic App</div>
+                <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>3 Main Screens</li>
+                <li>Android Only</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Standard App</div>
+                <div class="plan-price">12,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>5-7 Screens</li>
+                <li>iOS & Android</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            <div class="plan-card">
+                <div class="plan-header">
+                <div class="plan-name">Premium App</div>
+                <div class="plan-price">15,000 <span class="plan-period">SAR</span></div>
+                </div>
+                <ul class="plan-features">
+                <li>Full App</li>
+                <li>Database + Dashboard</li>
+                </ul>
+                <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
+            </div>
+            </div>
+        </div>
+        </details>
+
     </div>
-  </header>
+  </main>
 
-  <!-- Hero -->
-  <section class="page-hero">
-    <h1>eCode Plans & Solutions</h1>
-    <p>Choose the plan that suits your project needs, designed to give you the best value for money</p>
-  </section>
+  <!-- English Footer -->
+  <footer id="main-footer" class="footer"></footer>
 
-  <div class="plans-container">
-
-    <!-- 1. Social Media Management -->
-    <details class="category-accordion" open>
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-share-alt"></i></div>
-          <div>
-            <div class="category-title">Social Media Management</div>
-            <div class="category-subtitle">Monthly management for your social presence</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic</div>
-              <div class="plan-desc">For Startups</div>
-              <div class="plan-price">2,000 <span class="plan-period">SAR / Month</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>1 Platform (Instagram/TikTok/X)</li>
-              <li>8 Static Posts Monthly</li>
-              <li>4 Stories</li>
-              <li>Content Writing & Basic Design</li>
-              <li>End of Month Report</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Standard</div>
-              <div class="plan-desc">Most Popular</div>
-              <div class="plan-price">3,500 <span class="plan-period">SAR / Month</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>2 Platforms (e.g. IG + TikTok)</li>
-              <li>12 Static Posts + 6 Stories</li>
-              <li>1 Short Video (Reel/TikTok)</li>
-              <li>Community Management</li>
-              <li>Analytical Report</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium</div>
-              <div class="plan-desc">Full Management</div>
-              <div class="plan-price">6,000 <span class="plan-period">SAR / Month</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>3 Platforms</li>
-              <li>16 Static Posts + 8 Stories</li>
-              <li>2 Short Videos</li>
-              <li>Mini Product Photoshoot (10 pics)</li>
-              <li>Daily Community Management</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 2. Branding -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-fingerprint"></i></div>
-          <div>
-            <div class="category-title">Branding & Visual Identity</div>
-            <div class="category-subtitle">Create a unique identity for your business</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic</div>
-              <div class="plan-desc">Core Identity</div>
-              <div class="plan-price">2,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Main Logo + Submark</li>
-              <li>Color Palette & Fonts</li>
-              <li>3 Mockups</li>
-              <li>PNG + JPG Files</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Standard</div>
-              <div class="plan-desc">Full Brand Identity</div>
-              <div class="plan-price">4,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Main Logo + Icon</li>
-              <li>Mini Brand Guidelines</li>
-              <li>5 Ready-to-use Assets</li>
-              <li>Social Media Templates</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium</div>
-              <div class="plan-desc">Corporate Identity</div>
-              <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Full Identity + Moodboard</li>
-              <li>Comprehensive Brand Book (20-30 pages)</li>
-              <li>10 Ready-to-use Assets</li>
-              <li>Open Source Files (AI)</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 3. Motion Graphics -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-video"></i></div>
-          <div>
-            <div class="category-title">Motion Graphics</div>
-            <div class="category-subtitle">Engaging animated videos</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic Motion</div>
-              <div class="plan-desc">Short Ad</div>
-              <div class="plan-price">700 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>15 Seconds</li>
-              <li>Short Script</li>
-              <li>Light Animation</li>
-              <li>No Voiceover</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Standard Motion</div>
-              <div class="plan-desc">Interactive Video</div>
-              <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>30 Seconds</li>
-              <li>Professional Animation</li>
-              <li>Pro Music</li>
-              <li>2 Revisions</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium Motion</div>
-              <div class="plan-desc">Full Ad</div>
-              <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>60 Seconds</li>
-              <li>Full Design + Storyboard</li>
-              <li>Pro Voiceover</li>
-              <li>Full HD Delivery</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 4. Product Photography -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-box-open"></i></div>
-          <div>
-            <div class="category-title">Product Photography</div>
-            <div class="category-subtitle">Professional shots for your products</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic</div>
-              <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>10 Products</li>
-              <li>White Background</li>
-              <li>3 Angles per product</li>
-              <li>Basic Editing</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Standard</div>
-              <div class="plan-price">3,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>20 Products</li>
-              <li>White/Custom Background</li>
-              <li>Pro Retouching</li>
-              <li>Web Optimized</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium</div>
-              <div class="plan-price">5,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>30 Products</li>
-              <li>Creative Lifestyle</li>
-              <li>Full Retouching</li>
-              <li>Ultra High Quality</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 5. Corporate Photography -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-camera"></i></div>
-          <div>
-            <div class="category-title">Corporate Photography</div>
-            <div class="category-subtitle">Professional sessions for your team & office</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic</div>
-              <div class="plan-desc">1 Hour Session</div>
-              <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>1 Location</li>
-              <li>10 High Quality Photos</li>
-              <li>Basic Editing</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Standard</div>
-              <div class="plan-desc">2 Hours Session</div>
-              <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>1 Location</li>
-              <li>15-20 Photos</li>
-              <li>Pro Lighting</li>
-              <li>Pro Retouching</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium</div>
-              <div class="plan-desc">3 Hours Session</div>
-              <div class="plan-price">3,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>1-2 Locations</li>
-              <li>20-30 Photos</li>
-              <li>Comprehensive Coverage</li>
-              <li>Full Retouching</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 6. Video Intro -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-film"></i></div>
-          <div>
-            <div class="category-title">Video Intro Production</div>
-            <div class="category-subtitle">Showcase your business professionally</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic Intro</div>
-              <div class="plan-price">2,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>30 Seconds</li>
-              <li>1 Location</li>
-              <li>General Shots</li>
-              <li>Pro Editing</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Standard Intro</div>
-              <div class="plan-price">3,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>60 Seconds</li>
-              <li>Multiple B-roll</li>
-              <li>On-screen Text</li>
-              <li>2 Revisions</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium Intro</div>
-              <div class="plan-price">5,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>90 Seconds</li>
-              <li>Cinematic Shots + Storyboard</li>
-              <li>Color Grading</li>
-              <li>Custom Music</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 7. Ads Management -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-ad"></i></div>
-          <div>
-            <div class="category-title">Ads Management</div>
-            <div class="category-subtitle">Paid campaigns on social platforms</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic Ads</div>
-              <div class="plan-desc">Small Campaign</div>
-              <div class="plan-price">1,500 <span class="plan-period">SAR / Month</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>1 Platform</li>
-              <li>1 Campaign Setup</li>
-              <li>1 Ad Design</li>
-              <li>Basic Targeting</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Standard Ads</div>
-              <div class="plan-desc">Sales Campaign</div>
-              <div class="plan-price">3,000 <span class="plan-period">SAR / Month</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>2 Platforms</li>
-              <li>2 Campaigns</li>
-              <li>3 Ad Designs</li>
-              <li>Pro Copywriting</li>
-              <li>Detailed Targeting + Lookalike</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium Ads</div>
-              <div class="plan-desc">Full Management</div>
-              <div class="plan-price">3,500 <span class="plan-period">SAR / Month</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>3 Platforms</li>
-              <li>4 Campaigns</li>
-              <li>5 Pro Ad Designs</li>
-              <li>Advanced Targeting + Re-targeting</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 8. Website Design -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
-          <div>
-            <div class="category-title">Website Design</div>
-            <div class="category-subtitle">Website Packages</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Landing Page</div>
-              <div class="plan-price">3,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>One Page Responsive</li>
-              <li>Services & Info</li>
-              <li>Contact Form</li>
-              <li>Hosting Setup</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Business Site</div>
-              <div class="plan-desc">Complete Website</div>
-              <div class="plan-price">5,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>4-6 Pages</li>
-              <li>Responsive Design</li>
-              <li>Basic SEO</li>
-              <li>Maps & Advanced Forms</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium Site</div>
-              <div class="plan-desc">Pro Corporate Site</div>
-              <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>6-10 Pages</li>
-              <li>Custom UX Design</li>
-              <li>Full Content</li>
-              <li>Advanced Integration</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 9. E-Commerce (Salla) -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-shopping-cart"></i></div>
-          <div>
-            <div class="category-title">E-Commerce Setup (Salla) <span class="coming-soon-badge">Soon</span></div>
-            <div class="category-subtitle">Launch your online store</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic Store</div>
-              <div class="plan-desc">Ready Store</div>
-              <div class="plan-price">3,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Account Setup</li>
-              <li>20 Products</li>
-              <li>Payment & Shipping Integration</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Business Store</div>
-              <div class="plan-desc">Pro Store</div>
-              <div class="plan-price">4,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Pro Interface Design</li>
-              <li>50 Products</li>
-              <li>Coupons & Advanced Shipping</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium Store</div>
-              <div class="plan-desc">Full Marketing Store</div>
-              <div class="plan-price">5,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Extra Pages</li>
-              <li>100 Products</li>
-              <li>Campaigns & Notifications</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 10. Digital Analytics -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-chart-pie"></i></div>
-          <div>
-            <div class="category-title">Digital Analytics</div>
-            <div class="category-subtitle">Analytics Packages</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic</div>
-              <div class="plan-desc">Simple Analysis</div>
-              <div class="plan-price">1,200 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>15-20 Posts Analysis</li>
-              <li>Engagement Analysis</li>
-              <li>Audience Analysis</li>
-              <li>Brief PDF Report</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-header">
-              <div class="plan-name">Standard</div>
-              <div class="plan-desc">Specialized Analysis</div>
-              <div class="plan-price">1,800 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>30 Posts Analysis</li>
-              <li>3 Competitors Analysis</li>
-              <li>Content Recommendations</li>
-              <li>Pro PDF Report</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium</div>
-              <div class="plan-desc">Full Analysis + Strategy</div>
-              <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>1 Year Analysis</li>
-              <li>5 Competitors</li>
-              <li>Full Posting Strategy</li>
-              <li>Detailed PDF Report</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 11. UX Audit (Coming Soon) -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-mouse-pointer"></i></div>
-          <div>
-            <div class="category-title">UX Audit <span class="coming-soon-badge">Soon</span></div>
-            <div class="category-subtitle">UX Audit Packages</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic UX</div>
-              <div class="plan-desc">Quick Check</div>
-              <div class="plan-price">2,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Homepage Review</li>
-              <li>Basic Elements Check</li>
-              <li>Simple Recommendations</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Standard UX</div>
-              <div class="plan-desc">Pro Analysis</div>
-              <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>3 Main Pages Review</li>
-              <li>User Journey Analysis</li>
-              <li>Actionable Recommendations</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium UX</div>
-              <div class="plan-desc">Full Audit + Plan</div>
-              <div class="plan-price">3,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>5 Key Pages</li>
-              <li>Full Journey Analysis</li>
-              <li>Ready Improvement Plan</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 12. Privacy Policy (Coming Soon) -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-file-contract"></i></div>
-          <div>
-            <div class="category-title">Legal Policies <span class="coming-soon-badge">Soon</span></div>
-            <div class="category-subtitle">Privacy & Cookies Policy</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic Policy</div>
-              <div class="plan-desc">Simple Policy</div>
-              <div class="plan-price">800 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Simple Privacy Policy</li>
-              <li>Basic Clauses</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Standard</div>
-              <div class="plan-desc">Saudi Compliance</div>
-              <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>PDPL Compliant</li>
-              <li>Cookies Policy</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium</div>
-              <div class="plan-desc">Full Compliance</div>
-              <div class="plan-price">2,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>PDPL & GDPR Compliant</li>
-              <li>Advanced Cookies Policy</li>
-              <li>Terms & Conditions</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 13. Events Coverage (Coming Soon) -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-calendar-check"></i></div>
-          <div>
-            <div class="category-title">Events Coverage <span class="coming-soon-badge">Soon</span></div>
-            <div class="category-subtitle">Events Coverage</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic Event</div>
-              <div class="plan-desc">Photography Only</div>
-              <div class="plan-price">1,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>3 Hours Coverage</li>
-              <li>30-50 Photos</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Standard Event</div>
-              <div class="plan-desc">Photo + Video</div>
-              <div class="plan-price">3,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>4 Hours Coverage</li>
-              <li>Photos + Highlight Video</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium Event</div>
-              <div class="plan-desc">Full Pro Coverage</div>
-              <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>6 Hours Coverage</li>
-              <li>Full Team (Photo + Video)</li>
-              <li>Professional Cinematic Shots</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 14. Full Animation -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-film"></i></div>
-          <div>
-            <div class="category-title">Full Animation (Explainer)</div>
-            <div class="category-subtitle">Full Animation</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic</div>
-              <div class="plan-price">2,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>30 Seconds</li>
-              <li>Stock Graphics</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Standard</div>
-              <div class="plan-price">4,500 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>60 Seconds</li>
-              <li>Custom Illustration</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium</div>
-              <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>90-120 Seconds</li>
-              <li>Advanced Animation + Characters</li>
-            </ul>
-            <a href="https://ecode.sa/contact-en/" class="plan-btn">Request Plan</a>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <!-- 15. Mobile App (Coming Soon) -->
-    <details class="category-accordion">
-      <summary class="category-summary">
-        <div class="category-header">
-          <div class="category-icon"><i class="fas fa-mobile-alt"></i></div>
-          <div>
-            <div class="category-title">Mobile App Development <span class="coming-soon-badge">Soon</span></div>
-            <div class="category-subtitle">Mobile App Packages</div>
-          </div>
-        </div>
-        <i class="fas fa-chevron-down accordion-icon"></i>
-      </summary>
-      <div class="category-content">
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Basic App</div>
-              <div class="plan-price">7,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>3 Main Screens</li>
-              <li>Android Only</li>
-              <li>Simple UI</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Standard App</div>
-              <div class="plan-price">12,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>5-7 Screens</li>
-              <li>iOS & Android</li>
-              <li>Simple Database</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-          <div class="plan-card">
-            <div class="plan-header">
-              <div class="plan-name">Premium App</div>
-              <div class="plan-price">15,000 <span class="plan-period">SAR</span></div>
-            </div>
-            <ul class="plan-features">
-              <li>Full App</li>
-              <li>Full Database + Dashboard</li>
-            </ul>
-            <span class="plan-btn" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</span>
-          </div>
-        </div>
-      </div>
-    </details>
-
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div>
-          <h4>eCode – Electronic Code</h4>
-          <p>Making an Impact</p>
-          <div class="social-bar">
-            <a href="mailto:info@ecode.sa" class="social-link"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://wa.me/966503666316" class="social-link"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.youtube.com/@eCode_sa" class="social-link"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.facebook.com/ecode.sa" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.tiktok.com/@ecode_sa" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/ecode_sa" class="social-link"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.snapchat.com/add/ecode_sa" class="social-link"><i class="fa-brands fa-snapchat"></i></a>
-            <a href="https://www.linkedin.com/company/ecode-sa" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://x.com/eCode_sa" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
-          </div>
-        </div>
-        <div>
-          <h4>Quick Links</h4>
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <a href="https://ecode.sa/en/" style="text-decoration: none; color: var(--text-secondary);">Home</a>
-            <a href="https://ecode.sa/services-en/" style="text-decoration: none; color: var(--text-secondary);">Our Services</a>
-            <a href="https://ecode.sa/plans-en/" style="text-decoration: none; color: var(--text-secondary);">Plans</a>
-            <a href="https://ecode.sa/portfolio-en/" style="text-decoration: none; color: var(--text-secondary);">Portfolio</a>
-            <a href="https://ecode.sa/contact-en/" style="text-decoration: none; color: var(--text-secondary);">Contact Us</a>
-            <li><a href="https://ecode.sa/terms-en/"style="text-decoration: none; color: var(--text-secondary);">Terms & Conditions</a></li>
-            <li><a href="https://ecode.sa/privacy-en/"style="text-decoration: none; color: var(--text-secondary);">Privacy Policy</a></li>
-          </div>
-        </div>
-        <div>
-          <h4>Contact Us</h4>
-          <p>Riyadh – Kingdom of Saudi Arabia</p>
-          <p>Phone: <a href="tel:0503666316" style="color: var(--lavender-light);">0503666316</a></p>
-          <p>Email: <a href="mailto:info@ecode.sa" style="color: var(--lavender-light);">info@ecode.sa</a></p>
-        </div>
-      </div>
-      <div class="footer-bottom">© 2025 Electronic Code Company. All rights reserved.</div>
-    </div>
-  </footer>
-
-  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-
-  <script>
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme');
-      const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-      html.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('theme', nextTheme);
-    }
-    
-    // Load Theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  </script>
-
+  <!-- Common JS Scripts (Back 2 levels) -->
+  <script src="../../assets/js/layout.js"></script>
+  <script src="../../assets/js/main.js"></script>
 </body>
 </html>
