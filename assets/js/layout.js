@@ -1,65 +1,58 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. تحميل الهيدر
-    fetch('/components/header.html')
-        .then(response => response.text())
+    // تأكد من صحة هذا الرابط لموقعك
+    const baseURL = "https://ecode.sa/components/"; 
+    
+    // 1. اكتشاف لغة الصفحة الحالية من وسم html
+    // إذا كانت en نستخدم اللاحقة -en، غير ذلك نتركها فارغة للعربي
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    const fileSuffix = currentLang === 'en' ? '-en' : '';
+
+    // 2. جلب الهيدر المناسب (header.html أو header-en.html)
+    fetch(baseURL + 'header' + fileSuffix + '.html')
+        .then(response => {
+            if (!response.ok) throw new Error("Header file not found");
+            return response.text();
+        })
         .then(data => {
             document.getElementById('main-header').innerHTML = data;
-            
-            // بعد تحميل الهيدر، يجب تفعيل زر الثيم لأنه لم يكن موجوداً
             initializeTheme();
-            
-            // تحديد الصفحة الحالية في القائمة (Active State)
             highlightActivePage();
-        });
+        })
+        .catch(err => console.error('Error loading header:', err));
 
-    // 2. تحميل الفوتر
-    fetch('/components/footer.html')
-        .then(response => response.text())
+    // 3. جلب الفوتر المناسب (footer.html أو footer-en.html)
+    fetch(baseURL + 'footer' + fileSuffix + '.html')
+        .then(response => {
+            if (!response.ok) throw new Error("Footer file not found");
+            return response.text();
+        })
         .then(data => {
             document.getElementById('main-footer').innerHTML = data;
-        });
+        })
+        .catch(err => console.error('Error loading footer:', err));
 });
 
-// --- منطق الثيم (Dark/Light) ---
-// تم نقله هنا ليعمل مع الهيدر المحمل ديناميكياً
+// --- دوال الثيم وتلوين الروابط ---
 function initializeTheme() {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
 }
 
 function toggleTheme() {
     const html = document.documentElement;
-    const currentTheme = html.getAttribute('data-theme');
-    const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    html.setAttribute('data-theme', nextTheme);
-    localStorage.setItem('theme', nextTheme);
-    updateThemeIcon(nextTheme);
+    const current = html.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
 }
 
-function updateThemeIcon(theme) {
-    // نبحث عن الأيقونة داخل الهيدر المحمل
-    const icon = document.querySelector('.theme-toggle i');
-    if (!icon) return; 
-    
-    if (theme === 'light') {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    } else {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    }
-}
-
-// دالة لتلوين الرابط النشط في القائمة
 function highlightActivePage() {
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.href;
     const navLinks = document.querySelectorAll('.nav a');
     
     navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.style.color = 'var(--lavender-light)'; // أو إضافة كلاس active
+        if (link.href === currentPath) {
+            link.style.color = 'var(--lavender-light)';
         }
     });
 }
