@@ -1011,6 +1011,13 @@ section {
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
+/* التعديل الجديد: إجبار اللون الأبيض في حالة الزيارة والضغط */
+.whatsapp-float:visited, 
+.whatsapp-float:active, 
+.whatsapp-float:focus {
+    color: #ffffff !important;
+}
+
 .whatsapp-float i {
     color: #ffffff !important; /* Force icon color explicitly */
 }
