@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AndroHealth - نظام إدارة عيادات الأسنان المتكامل</title>
+    
+    <!-- استدعاء خط تجوال -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- استدعاء Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- استدعاء أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- تهيئة ألوان الهوية الخاصة باندروهيلث -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ahRed: '#FB4747',
+                        ahBlue: '#4267B2',
+                        ahDark: '#1e293b', 
+                        ahLight: '#F8FAFC',
+                        ahGray: '#E2E8F0',
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F8FAFC;
+            overflow-x: hidden;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #F8FAFC 0%, #ffffff 100%);
+        }
+        .btn-primary {
+            background-color: #FB4747;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #d93d3d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 71, 71, 0.2);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .partner-logo {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        /* Pulse Animation */
+        @keyframes pulse-custom {
+            0% { box-shadow: 0 0 0 0 rgba(251, 71, 71, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(251, 71, 71, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(251, 71, 71, 0); }
+        }
+        .pulse-btn {
+            animation: pulse-custom 2s infinite;
+        }
+    </style>
+</head>
+<body class="text-ahDark">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo Section (Clickable) -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <a href="https://ahhis.com/" target="_blank">
+                        <img src="https://ahhis.com/wp-content/uploads/2023/09/Androhealth-Logo.png" alt="AndroHealth Logo" class="h-10 w-auto hover:opacity-80 transition">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 space-x-reverse items-center">
+                    <a href="#specialties" class="text-gray-600 hover:text-ahRed font-medium transition">التخصصات</a>
+                    <a href="#features" class="text-gray-600 hover:text-ahRed font-medium transition">المزايا</a>
+                    <a href="#system-features" class="text-gray-600 hover:text-ahRed font-medium transition">الخصائص</a>
+                    <a href="#integration" class="text-gray-600 hover:text-ahRed font-medium transition">نفيس</a>
+                    <a href="https://outlook.office365.com/book/QuickDemoSchedule@androomeda.com/?ismsaljsauthenabled=true" target="_blank" class="btn-primary px-6 py-2 rounded-lg font-bold shadow-md">احجز موعد الان</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-ahRed focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 p-4">
+            <div class="flex flex-col space-y-4">
+                <a href="#specialties" class="text-gray-600 font-medium">التخصصات</a>
+                <a href="#features" class="text-gray-600 font-medium">المزايا</a>
+                <a href="#system-features" class="text-gray-600 font-medium">الخصائص</a>
+                <a href="#integration" class="text-gray-600 font-medium">التكامل</a>
+                <a href="https://outlook.office365.com/book/QuickDemoSchedule@androomeda.com/?ismsaljsauthenabled=true" target="_blank" class="text-ahRed font-bold">احجز موعد الان</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 hero-gradient relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Text Content -->
+                <div class="text-center lg:text-right" data-aos="fade-up">
+                    <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-ahBlue text-sm font-bold mb-4 border border-blue-100">
+                        الحل الأمثل لأطباء الأسنان
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900">
+                        ابتسامة مرضاك تبدأ<br>
+                        بإدارة <span class="text-ahRed">متقنة</span> لعيادتك
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        نظام سحابي متكامل يجمع بين "المجسم التفاعلي للأسنان" (Dental Chart)، إدارة المواعيد الدقيقة، والفوترة المتوافقة مع "نفيس"، لتركز أنت على العلاج ونحن نتكفل بالإدارة.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://outlook.office365.com/book/QuickDemoSchedule@androomeda.com/?ismsaljsauthenabled=true" target="_blank" class="btn-primary px-8 py-4 rounded-xl font-bold text-lg shadow-lg pulse-btn text-center">
+                            احجز موعد الان
+                        </a>
+                        <a href="#specialties" class="bg-white text-ahBlue border border-ahBlue px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition text-center shadow-sm">
+                            استكشف الحلول
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-gray-400 grayscale opacity-80">
+                       <div class="flex items-center gap-2">
+                           <i class="fa-solid fa-check-circle text-ahRed"></i>
+                           <span class="text-sm font-semibold">مخطط أسنان تفاعلي</span>
+                       </div>
+                       <div class="flex items-center gap-2">
+                           <i class="fa-solid fa-check-circle text-ahRed"></i>
+                           <span class="text-sm font-semibold">إدارة التأمين</span>
+                       </div>
+                       <div class="flex items-center gap-2">
+                           <i class="fa-solid fa-check-circle text-ahRed"></i>
+                           <span class="text-sm font-semibold">ربط مع نفيس</span>
+                       </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Placeholder -->
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-72 h-72 bg-ahRed opacity-5 rounded-full filter blur-3xl"></div>
+                    <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-ahBlue opacity-5 rounded-full filter blur-3xl"></div>
+                    
+                    <!-- Main Dashboard Image Mockup -->
+                    <div class="relative rounded-2xl shadow-2xl overflow-hidden border-4 border-white bg-white">
+                        <div class="bg-gray-50 aspect-[4/3] relative group overflow-hidden">
+                            <!-- Dashboard Image - Using the provided general dashboard as placeholder for system look -->
+                            <img src="https://ahhis.com/wp-content/uploads/2025/09/طبيب-يستعمل-النظام-1.avif" 
+                                 alt="AndroHealth Dental Dashboard" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialties Section -->
+    <section id="specialties" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-ahBlue font-bold text-lg mb-2">حلول متخصصة</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900">نظام واحد.. يخدم جميع تخصصات الأسنان</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- General & Surgery -->
+                <div class="bg-ahLight p-6 rounded-xl border border-gray-100 hover:shadow-lg transition group">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-ahRed group-hover:text-white transition">
+                        <i class="fa-solid fa-tooth text-xl text-ahRed group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">جراحة وعلاج الأسنان</h4>
+                    <p class="text-sm text-gray-600">توثيق العمليات الجراحية، الخلع، وعلاج الجذور بدقة على المخطط.</p>
+                </div>
+
+                <!-- Orthodontics -->
+                <div class="bg-ahLight p-6 rounded-xl border border-gray-100 hover:shadow-lg transition group">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-ahBlue group-hover:text-white transition">
+                        <i class="fa-solid fa-teeth-open text-xl text-ahBlue group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">تقويم الأسنان</h4>
+                    <p class="text-sm text-gray-600">متابعة الجلسات الدورية، خطط التقويم طويلة المدى، وصور قبل وبعد.</p>
+                </div>
+
+                <!-- Cosmetic Dentistry -->
+                <div class="bg-ahLight p-6 rounded-xl border border-gray-100 hover:shadow-lg transition group">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition">
+                        <i class="fa-regular fa-gem text-xl text-green-600 group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">تجميل الأسنان</h4>
+                    <p class="text-sm text-gray-600">إدارة ابتسامة هوليوود، القشور الخزفية، وتبييض الأسنان.</p>
+                </div>
+
+                <!-- Pediatric Dentistry -->
+                <div class="bg-ahLight p-6 rounded-xl border border-gray-100 hover:shadow-lg transition group">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-child text-xl text-purple-600 group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">أسنان الأطفال</h4>
+                    <p class="text-sm text-gray-600">سجلات خاصة للأطفال، متابعة التسنين، والتثقيف الوقائي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section with Doctor Image -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Content -->
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6 text-ahRed">لماذا تختار AndroHealth لعيادتك؟</h3>
+                    
+                    <!-- Feature 1 -->
+                    <div class="flex gap-4 mb-8">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ahRed text-white flex items-center justify-center font-bold">1</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">المجسم التفاعلي للأسنان (Dental Chart)</h4>
+                            <p class="text-gray-600">
+                                نظام رسومي متطور يتيح لك تحديد كل سن، وتشخيص حالته، وتحديد الإجراء الطبي عليه بنقرة واحدة (حشوات، تيجان، خلع).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="flex gap-4 mb-8">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ahBlue text-white flex items-center justify-center font-bold">2</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">إدارة المواعيد والانتظار</h4>
+                            <p class="text-gray-600">
+                                نظام ذكي لتنظيم حجوزات المرضى، تقليل وقت الانتظار، وإرسال تذكيرات تلقائية لتقليل التغيب عن المواعيد.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="flex gap-4 mb-8">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold">3</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">الفوترة والتأمين</h4>
+                            <p class="text-gray-600">
+                                دعم كامل لشركات التأمين، إصدار فواتير إلكترونية فورية، وربط مباشر مع منصة نفيس للمطالبات.
+                            </p>
+                        </div>
+                    </div>
+
+                     <!-- Feature 4 -->
+                     <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center font-bold">4</div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">مخزون العيادة</h4>
+                            <p class="text-gray-600">
+                                تتبع استهلاك المواد الطبية في العيادة وتنبيهات عند قرب نفاد الكمية لضمان سير العمل.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image/Visual with Doctor -->
+                <div class="relative">
+                    <div class="absolute -top-6 -right-6 w-full h-full bg-ahBlue/5 rounded-2xl"></div>
+                    <div class="relative bg-white p-2 rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                        <img src="https://ahhis.com/wp-content/uploads/2025/02/Dental-1.png" 
+                             alt="Dentist using AndroHealth" class="rounded-xl w-full object-cover">
+                        
+                        <!-- Overlay simulating System Usage -->
+                        <div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-lg max-w-[220px] border-r-4 border-ahRed">
+                            <p class="font-bold text-sm text-gray-800 mb-1">المخطط السني</p>
+                            <p class="text-xs text-gray-500">اختر السن > حدد الإجراء > حفظ في الملف الطبي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Features Section (Based on Image) -->
+    <section id="system-features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-ahBlue font-bold text-lg mb-2">مواصفات تقنية</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900">خصائص النظام</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Feature Item 1 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">نظام سحابي</h4>
+                        <p class="text-sm text-gray-600">مستضاف في السعودية ومحقق معايير حماية البيانات</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 2 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <span class="font-bold text-xs">ICD-10</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">داعم لكود التشخيص السعودي</h4>
+                        <p class="text-sm text-gray-600">يدعم النظام اكواد التشخيص ICD10 وكذلك Snomed CT وغيرها .. المعتمدة من المركز الوطني للمعلومات الصحية</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 3 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-brands fa-windows"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">متجاوب مع أنظمة التشغيل</h4>
+                        <p class="text-sm text-gray-600">يعمل على أجهزة الكمبيوتر وأنظمة تشغيلها</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 4 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">داعم لمعيار الربط السعودي</h4>
+                        <p class="text-sm text-gray-600">يدعم النظام معايير الربط السعودية ومعتمد من منصة نفيس</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 5 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">ثنائي اللغة</h4>
+                        <p class="text-sm text-gray-600">( الإنجليزية والعربية )</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 6 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">داعم للتجمعات الصحية والفروع</h4>
+                        <p class="text-sm text-gray-600">داعم لهيكلة الفروع والأقسام في المنشآت الصحية</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 7 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">واجهات برمجية للربط</h4>
+                        <p class="text-sm text-gray-600">يوفر النظام APIs للربط مع الخدمات أو الأنظمة الأخرى وفق معايير الربط العالمية HL7</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 8 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-solid fa-tablet-screen-button"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">واجهة مستخدم متجاوبة GUI</h4>
+                        <p class="text-sm text-gray-600">لوحات مخصصة ومتجاوبة وسهلة الاستخدام على جميع المتصفحات والأجهزة اللوحية</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 9 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">اعدادات النظام</h4>
+                        <p class="text-sm text-gray-600">تمكين المستخدمين من تجهيز واعداد النظام دون الحاجة لخبرة برمجية عالية</p>
+                    </div>
+                </div>
+
+                <!-- Feature Item 10 -->
+                <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-ahRed text-xl">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">لغة برمجية واحدة! نظام واحد</h4>
+                        <p class="text-sm text-gray-600">نظام متكامل للمراكز الطبية من تسجيل المريض وحتى الخروج</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Section (Logos) -->
+    <section id="integration" class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-ahRed">شركاء النجاح والامتثال</h2>
+            <p class="text-gray-600 mb-12 max-w-2xl mx-auto">نضمن لك الامتثال الكامل للأنظمة السعودية والربط السلس مع الجهات المعنية.</p>
+            
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <!-- Saudi Tech -->
+                <div class="w-32 md:w-40">
+                    <img src="https://ahhis.com/wp-content/uploads/2024/08/Saudi-Tech.png" alt="Saudi Tech" class="partner-logo w-full h-auto">
+                </div>
+                
+                <!-- MoH -->
+                <div class="w-24 md:w-32">
+                    <img src="https://ahhis.com/wp-content/uploads/2024/08/MoH.gif" alt="Ministry of Health" class="partner-logo w-full h-auto">
+                </div>
+
+                <!-- CHI -->
+                <div class="w-24 md:w-32">
+                    <img src="https://ahhis.com/wp-content/uploads/2024/08/CHI.gif" alt="Council of Health Insurance" class="partner-logo w-full h-auto">
+                </div>
+
+                <!-- Nphies -->
+                <div class="w-24 md:w-32">
+                    <img src="https://ahhis.com/wp-content/uploads/2024/08/Naphies.gif" alt="Nphies" class="partner-logo w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contact Section -->
+    <section id="contact" class="py-20 bg-ahBlue text-white relative">
+        <div class="absolute inset-0 bg-pattern opacity-10"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-ahDark text-center">
+                <div class="mb-10">
+                    <h2 class="text-3xl font-bold mb-4 text-ahBlue">جاهز لنقل عيادتك للمستوى التالي؟</h2>
+                    <p class="text-gray-600 text-lg">احجز موعداً مع مستشارينا لاستعراض النظام وتخصيصه لاحتياجات مركزك.</p>
+                </div>
+
+                <a href="https://outlook.office365.com/book/QuickDemoSchedule@androomeda.com/?ismsaljsauthenabled=true" target="_blank" class="inline-block w-full md:w-auto btn-primary px-12 py-5 rounded-xl font-bold text-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                    احجز موعد الان
+                </a>
+                
+                <p class="text-xs text-gray-400 mt-6">سيتم توجيهك لصفحة الحجز المباشر لاختيار الوقت المناسب لك.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1e293b] text-white py-12 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                <!-- Company Info -->
+                <div class="text-center md:text-right">
+                    <!-- Clickable Logo -->
+                    <a href="https://ahhis.com/" target="_blank">
+                        <img src="https://ahhis.com/wp-content/uploads/2023/09/Androhealth-Logo.png" alt="AndroHealth" class="h-8 mb-4 mx-auto md:mx-0 brightness-0 invert opacity-80 hover:opacity-100 transition">
+                    </a>
+                    <p class="text-gray-400 text-sm mb-4">منتج من شركة اندروميدا لتقنية المعلومات</p>
+                    <div class="space-y-2 text-sm text-gray-300">
+                        <div class="flex items-center gap-2 justify-center md:justify-start">
+                            <i class="fa-solid fa-location-dot text-ahRed"></i>
+                            <span>الرياض – مركز دلمار – طريق الإمام سعود</span>
+                        </div>
+                        <div class="flex items-center gap-2 justify-center md:justify-start">
+                            <i class="fa-solid fa-phone text-ahRed"></i>
+                            <a href="tel:0114830044" class="hover:text-white transition" dir="ltr">011 483 0044</a>
+                        </div>
+                        <div class="flex items-center gap-2 justify-center md:justify-start">
+                            <i class="fa-solid fa-envelope text-ahRed"></i>
+                            <a href="mailto:cs@ahhis.com" class="hover:text-white transition">cs@ahhis.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex gap-4">
+                    <a href="https://x.com/androhealthHIS" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-black transition text-white" aria-label="X (Twitter)">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/showcase/androhealth/" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#0077b5] transition text-white" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.facebook.com/AndroHealthHIS/" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#1877F2] transition text-white" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/androhealthhis" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-500 transition text-white" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@Androhealth" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#FF0000] transition text-white" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">
+                &copy; 2025 Andromeda Information Technology. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
