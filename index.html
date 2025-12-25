@@ -14,7 +14,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="eCode">
   <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
-   
+    
   <!-- Android/Chrome -->
   <meta name="theme-color" content="#8B7FFF">
   <meta name="mobile-web-app-capable" content="yes">
@@ -23,21 +23,21 @@
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://ecode.sa/ar/">
-   
+    
   <!-- Open Graph -->
   <meta property="og:title" content="eCode | إلكترونيك كود - تصنع الأثر">
   <meta property="og:description" content="شركة سعودية تقدم حلول التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/ar/">
   <meta property="og:type" content="website">
-   
+    
   <!-- Favicons -->
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" href="/favicon.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
+   
   <!-- ملف التنسيق الخارجي -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -53,7 +53,7 @@
         <div class="hero-content">
             <h1>نطوّر. نبتكر. ننمّي أعمالك.</h1>
             <p>نقدم حلول تقنية وتسويقية حديثة ترفع جودة الأعمال، وتدعم نمو الشركات عبر الابتكار، السرعة، والدقة.</p>
-            
+             
             <div class="hero-actions">
             <a href="#contact" class="btn-primary">ابدأ الآن</a>
             <a href="#services" class="btn-secondary">استعراض الخدمات</a>
@@ -211,14 +211,14 @@
         <div class="section-inner">
         <h2 class="section-title">مستشار التسويق الذكي ✨</h2>
         <p class="section-subtitle">احصل على خطة تسويقية مبدئية لمشروعك خلال ثوانٍ باستخدام الذكاء الاصطناعي</p>
-        
+         
         <div class="ai-card">
             <textarea id="ai-project-desc" class="ai-textarea" placeholder="أدخل وصفًا موجزًا لمشروعك (مثال: متجر إلكتروني لبيع العطور الفاخرة يستهدف الشباب في السعودية)"></textarea>
             <button onclick="analyzeProjectWithAI()" id="ai-btn" class="ai-btn">
             <span>حلل مشروعي</span>
             <i class="fas fa-magic"></i>
             </button>
-            
+             
             <div id="ai-result" class="ai-result">
             <h3><i class="fas fa-lightbulb"></i> مقترحات الذكاء الاصطناعي:</h3>
             <div id="ai-result-content" class="ai-result-content"></div>
@@ -260,22 +260,22 @@
         <h2 class="section-title">جاهز للبدء؟</h2>
         <p class="section-subtitle">عبّي النموذج وراح نتواصل معك خلال 24 ساعة</p>
         <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
-            
+             
             <div class="form-group">
             <label>الاسم الكامل *</label>
             <input type="text" name="name" id="name" required placeholder="أدخل اسمك الكامل">
             </div>
-            
+             
             <div class="form-group">
             <label>البريد الإلكتروني *</label>
             <input type="email" name="email" id="email" required placeholder="example@email.com">
             </div>
-            
+             
             <div class="form-group">
             <label>رقم الجوال *</label>
             <input type="tel" name="phone" id="phone" required placeholder="05X XXX XXXX">
             </div>
-            
+             
             <div class="form-group">
             <label>نوع الخدمة المطلوبة *</label>
             <select name="service" id="service" required>
@@ -288,7 +288,7 @@
                 <option>أخرى</option>
             </select>
             </div>
-            
+             
             <div class="form-group">
             <label>تفاصيل المشروع</label>
             <textarea name="message" id="message" placeholder="اكتب نبذة عن مشروعك واحتياجاتك..."></textarea>
@@ -307,8 +307,52 @@
 
   <!-- ملف تحميل الهيدر والفوتر -->
   <script src="assets/js/layout.js"></script>
-  
+   
   <!-- ملف وظائف الصفحة (السلايدر والذكاء الاصطناعي) -->
   <script src="assets/js/main.js"></script>
+
+  <!-- =============== كود الأنيميشن الجديد =============== -->
+  <!-- 1. استدعاء مكتبة ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- 2. تفعيل الأنيميشن -->
+  <script>
+    const sr = ScrollReveal({
+      origin: 'bottom',   // الحركة تبدأ من الأسفل
+      distance: '60px',   // مسافة الحركة
+      duration: 2000,     // مدة الحركة (2 ثانية)
+      delay: 200,         // تأخير بسيط
+      // reset: true      // احذف علامة التعليق إذا أردت تكرار الحركة عند الصعود والنزول
+    });
+
+    // تحريك قسم الهيرو (الأعلى)
+    sr.reveal('.hero-content', {}); 
+    sr.reveal('.hero-visual', { delay: 400, origin: 'left' }); // الصورة تأتي من اليسار
+
+    // شريط الإحصائيات
+    sr.reveal('.stat-item', { interval: 100, origin: 'top' });
+
+    // العناوين الرئيسية لكل قسم
+    sr.reveal('.section-title', { origin: 'top', distance: '30px' });
+    sr.reveal('.section-subtitle', { origin: 'top', delay: 200, distance: '30px' });
+
+    // كروت الخدمات (تظهر بالتتابع)
+    sr.reveal('.feature-card', { interval: 200 });
+
+    // كروت "لماذا نحن"
+    sr.reveal('.why-item', { interval: 200, origin: 'left' });
+
+    // قسم الشركاء
+    sr.reveal('.partners-section', { delay: 200 });
+
+    // أداة الذكاء الاصطناعي
+    sr.reveal('.ai-card', { origin: 'bottom', scale: 0.9 }); // تظهر مع تكبير بسيط
+
+    // الأسئلة المتكررة
+    sr.reveal('.faq-item', { interval: 100 });
+
+    // نموذج التواصل
+    sr.reveal('.contact-form', { origin: 'bottom', distance: '80px' });
+  </script>
 </body>
 </html>
