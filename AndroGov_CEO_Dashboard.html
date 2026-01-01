@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AndroGov | مكتب الرئيس التنفيذي</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        androRed: '#FB4747',
+                        androBlue: '#4267B2',
+                        androDark: '#1e293b',
+                        androGray: '#F8FAFC',
+                        androGold: '#D4AF37',
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #F3F4F6; }
+        .sidebar-item:hover { background-color: #FEF2F2; color: #FB4747; border-right: 4px solid #FB4747; }
+        .sidebar-item.active { background-color: #FEF2F2; color: #FB4747; border-right: 4px solid #FB4747; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        #aiPanel { transition: margin-left 0.3s ease-in-out, opacity 0.3s ease-in-out; }
+        .ai-closed { margin-left: -24rem; opacity: 0; display: none; } 
+    </style>
+</head>
+<body class="text-gray-800 h-screen overflow-hidden flex">
+
+    <!-- CEO SIDEBAR -->
+    <aside class="w-20 lg:w-64 bg-white h-full shadow-lg flex flex-col justify-between z-20 shrink-0 transition-all duration-300">
+        <div>
+            <!-- Logo -->
+            <div class="h-20 flex items-center justify-center border-b border-gray-100 cursor-pointer" onclick="switchTab('dashboard')">
+                <div class="w-10 h-10 bg-androRed rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md hover:scale-105 transition-transform">
+                    A
+                </div>
+                <div class="hidden lg:block mr-2">
+                    <h1 class="font-bold text-lg text-gray-800">AndroGov</h1>
+                    <p class="text-[10px] text-gray-400 tracking-wider">EXECUTIVE SUITE</p>
+                </div>
+            </div>
+
+            <!-- Strategic Navigation -->
+            <nav class="mt-8 px-2 space-y-2">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="sidebar-item active w-full flex items-center gap-4 px-4 py-3 text-sm font-bold rounded-xl transition-all">
+                    <i class="fa-solid fa-chart-line text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">الرؤية العامة</span>
+                </button>
+                <button onclick="switchTab('approvals')" id="nav-approvals" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-file-signature text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">موافقات معلقة</span>
+                    <span class="hidden lg:flex mr-auto bg-androRed text-white text-[10px] w-5 h-5 items-center justify-center rounded-full">3</span>
+                </button>
+                <button onclick="switchTab('finance')" id="nav-finance" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-coins text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">الوضع المالي</span>
+                </button>
+                <button onclick="switchTab('projects')" id="nav-projects" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-layer-group text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">المشاريع (Products)</span>
+                </button>
+                <button onclick="switchTab('board')" id="nav-board" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-gavel text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">مجلس الإدارة</span>
+                </button>
+                
+                <div class="border-t border-gray-100 my-2 lg:mx-4"></div>
+                
+                <!-- Added Profile Link in Nav -->
+                <button onclick="switchTab('my-profile')" id="nav-my-profile" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-id-card text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">ملفي الشخصي</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- CEO Profile (Bottom Clickable) -->
+        <div class="p-4 border-t border-gray-100 bg-gray-50/50 cursor-pointer hover:bg-gray-100 transition-colors" onclick="switchTab('my-profile')">
+            <div class="flex items-center gap-3 justify-center lg:justify-start">
+                <div class="relative">
+                    <img src="https://ui-avatars.com/api/?name=CEO&background=1e293b&color=fff" class="w-10 h-10 rounded-full border-2 border-white shadow-md">
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+                </div>
+                <div class="hidden lg:block">
+                    <h4 class="text-sm font-bold text-gray-800">هشام السحيباني</h4>
+                    <span class="text-[10px] text-gray-500 uppercase tracking-wide">الرئيس التنفيذي</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col h-full relative overflow-hidden bg-[#F8FAFC]">
+        
+        <!-- Top Bar -->
+        <header class="h-20 bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+            <div>
+                <h2 id="page-title" class="text-2xl font-bold text-gray-800">صباح الخير، أستاذ هشام 👋</h2>
+                <p class="text-xs text-gray-500 mt-1">الخميس، 12 أكتوبر 2025 | آخر تحديث للبيانات: منذ 5 دقائق</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="relative w-10 h-10 bg-white rounded-full flex items-center justify-center border border-gray-200 shadow-sm hover:text-androRed transition">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-androRed rounded-full border-2 border-white"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic Content Container -->
+        <div id="content-area" class="flex-1 overflow-y-auto p-8 scrollbar-hide">
+            
+            <!-- 1. STRATEGIC OVERVIEW (Dashboard) -->
+            <section id="view-dashboard" class="fade-in">
+                <!-- KPIs -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <!-- Revenue -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group">
+                        <div class="absolute right-0 top-0 w-24 h-24 bg-green-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <p class="text-gray-500 text-sm font-medium relative z-10">الإيرادات (YTD)</p>
+                        <h3 class="text-3xl font-extrabold text-gray-800 mt-2 relative z-10">12.4M <span class="text-sm font-normal text-gray-400">ر.س</span></h3>
+                        <p class="text-green-600 text-xs mt-3 font-bold flex items-center gap-1 relative z-10"><i class="fa-solid fa-arrow-trend-up"></i> +15%</p>
+                    </div>
+                    <!-- Projects -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group">
+                        <div class="absolute right-0 top-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <p class="text-gray-500 text-sm font-medium relative z-10">المشاريع النشطة</p>
+                        <h3 class="text-3xl font-extrabold text-gray-800 mt-2 relative z-10">4 <span class="text-sm font-normal text-gray-400">منتجات</span></h3>
+                        <div class="flex gap-2 mt-3 relative z-10">
+                            <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded">AndroHealth</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded">BQ</span>
+                        </div>
+                    </div>
+                    <!-- Decisions -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-l-androRed border-y border-r border-gray-100 relative overflow-hidden cursor-pointer hover:shadow-md transition-all" onclick="switchTab('approvals')">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-500 text-sm font-medium">قرارات معلقة</p>
+                                <h3 class="text-3xl font-extrabold text-androRed mt-2">3</h3>
+                                <p class="text-gray-400 text-xs mt-3">تنتظر توقيعك</p>
+                            </div>
+                            <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center text-androRed animate-pulse">
+                                <i class="fa-solid fa-pen-nib"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Compliance -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                        <p class="text-gray-500 text-sm font-medium">صحة الحوكمة</p>
+                        <div class="flex items-end gap-2 mt-2">
+                            <h3 class="text-3xl font-extrabold text-gray-800">94%</h3>
+                            <span class="text-sm text-green-500 mb-1 font-bold">ممتاز</span>
+                        </div>
+                        <div class="w-full bg-gray-100 h-1.5 rounded-full mt-4 overflow-hidden"><div class="bg-gradient-to-r from-androRed to-androBlue h-full w-[94%]"></div></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Revenue Chart -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-gray-800 text-lg">الأداء المالي (2025)</h3>
+                            <select class="bg-gray-50 border border-gray-200 text-xs rounded-lg px-3 py-2 outline-none">
+                                <option>السنوي</option>
+                            </select>
+                        </div>
+                        <div class="h-72"><canvas id="revenueChart"></canvas></div>
+                    </div>
+                    <!-- Updates -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                        <h3 class="font-bold text-gray-800 text-lg mb-4">تحديثات تنفيذية</h3>
+                        <div class="flex-1 space-y-5 overflow-y-auto pr-2 custom-scroll">
+                            <div class="flex gap-4">
+                                <div class="flex flex-col items-center"><div class="w-2 h-2 bg-androBlue rounded-full"></div><div class="w-0.5 h-full bg-gray-100 mt-1"></div></div>
+                                <div class="pb-2">
+                                    <p class="text-xs text-gray-400 mb-1">10:00 ص - المالية</p>
+                                    <h5 class="text-sm font-bold text-gray-800">إغلاق الحسابات الشهرية</h5>
+                                    <p class="text-xs text-gray-600 mt-1">هامش الربح +2%.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex flex-col items-center"><div class="w-2 h-2 bg-androRed rounded-full"></div></div>
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-1">أمس - BQ Auctions</p>
+                                    <h5 class="text-sm font-bold text-gray-800">تأخر إطلاق V2.0</h5>
+                                    <p class="text-xs text-gray-600 mt-1">مشكلة في بوابة الدفع.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. APPROVALS -->
+            <section id="view-approvals" class="hidden fade-in">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-gray-800">موافقات بانتظار الاعتماد</h3>
+                    <p class="text-sm text-gray-500">لديك 3 طلبات تتطلب توقيعك الرقمي</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col md:flex-row gap-6 items-center">
+                        <div class="w-12 h-12 bg-blue-50 text-androBlue rounded-full flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                        <div class="flex-1 text-center md:text-right">
+                            <div class="flex items-center gap-2 justify-center md:justify-start mb-1">
+                                <h4 class="font-bold text-gray-800 text-lg">شراء أجهزة طبية</h4>
+                                <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full">مالي > 50k</span>
+                            </div>
+                            <p class="text-sm text-gray-600">المبلغ: <span class="font-bold">120,000 ر.س</span> | المورد: شركة التقنية الطبية</p>
+                            <p class="text-xs text-gray-400 mt-1">تم التدقيق من: CFO</p>
+                        </div>
+                        <div class="flex gap-3 w-full md:w-auto">
+                            <button class="flex-1 md:flex-none bg-androDark text-white px-8 py-2 rounded-lg hover:bg-slate-800 transition text-sm shadow-lg flex items-center justify-center gap-2"><i class="fa-solid fa-pen-nib"></i><span>توقيع</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. FINANCE -->
+            <section id="view-finance" class="hidden fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <p class="text-gray-500 text-sm">السيولة النقدية (Cash Flow)</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">4,250,000 ر.س</h3>
+                        <div class="w-full bg-gray-100 h-2 rounded-full mt-4"><div class="bg-green-500 h-full w-[70%]"></div></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <p class="text-gray-500 text-sm">المصروفات التشغيلية (OPEX)</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">850,000 ر.س</h3>
+                        <p class="text-red-500 text-xs mt-2">↑ 5% عن الميزانية</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <p class="text-gray-500 text-sm">الذمم المدينة (Receivables)</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">1,100,000 ر.س</h3>
+                        <p class="text-yellow-600 text-xs mt-2">عملاء حكوميين</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="font-bold text-gray-800 mb-4">توزيع الإيرادات حسب المنتج</h3>
+                    <div class="h-64"><canvas id="financeChart"></canvas></div>
+                </div>
+            </section>
+
+            <!-- 4. PROJECTS -->
+            <section id="view-projects" class="hidden fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- AndroHealth -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600"><i class="fa-solid fa-heart-pulse"></i></div>
+                                <div><h4 class="font-bold text-gray-800">AndroHealth</h4><p class="text-xs text-gray-500">نظام المستشفيات</p></div>
+                            </div>
+                            <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded">مستقر</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div><div class="flex justify-between text-xs mb-1"><span>إنجاز Roadmap Q4</span><span>85%</span></div><div class="w-full bg-gray-100 h-1.5 rounded-full"><div class="bg-blue-600 h-full w-[85%]"></div></div></div>
+                            <div class="text-sm text-gray-600 mt-2 bg-gray-50 p-3 rounded">⚠️ تنبيه: ضغط عالي على سيرفرات الربط مع "نفيس".</div>
+                        </div>
+                    </div>
+                    <!-- BQ Auctions -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-purple-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600"><i class="fa-solid fa-gavel"></i></div>
+                                <div><h4 class="font-bold text-gray-800">BQ Auctions</h4><p class="text-xs text-gray-500">منصة المزادات</p></div>
+                            </div>
+                            <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">تحذير</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div><div class="flex justify-between text-xs mb-1"><span>إطلاق النسخة 2.0</span><span>60%</span></div><div class="w-full bg-gray-100 h-1.5 rounded-full"><div class="bg-purple-600 h-full w-[60%]"></div></div></div>
+                            <div class="text-sm text-gray-600 mt-2 bg-gray-50 p-3 rounded">🔴 مشكلة حرجة: تأخير في اعتماد API المدفوعات.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. BOARD -->
+            <section id="view-board" class="hidden fade-in">
+                <div class="bg-gradient-to-l from-androDark to-slate-800 text-white p-8 rounded-2xl mb-8 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">اجتماع مجلس الإدارة القادم (Q4)</h3>
+                        <p class="text-gray-300 text-sm"><i class="fa-regular fa-calendar ml-2"></i>الأحد، 25 ديسمبر 2025 | الساعة 10:00 صباحاً</p>
+                    </div>
+                    <button class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg backdrop-blur-sm border border-white/30">عرض جدول الأعمال</button>
+                </div>
+                
+                <h4 class="font-bold text-gray-800 mb-4 text-lg">أرشيف المحاضر والقرارات</h4>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <table class="w-full text-sm text-right">
+                        <thead class="bg-gray-50 text-gray-500">
+                            <tr><th class="px-6 py-4">العنوان</th><th class="px-6 py-4">التاريخ</th><th class="px-6 py-4">النوع</th><th class="px-6 py-4">الإجراء</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-gray-800">محضر اجتماع المجلس رقم 3/2025</td>
+                                <td class="px-6 py-4">15/09/2025</td>
+                                <td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">دوري</span></td>
+                                <td class="px-6 py-4"><button class="text-androBlue hover:underline"><i class="fa-solid fa-download"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-gray-800">قرار بالتمرير: زيادة رأس المال العامل</td>
+                                <td class="px-6 py-4">01/08/2025</td>
+                                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">قرار</span></td>
+                                <td class="px-6 py-4"><button class="text-androBlue hover:underline"><i class="fa-solid fa-download"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 6. MY PROFILE (NEW) -->
+            <section id="view-my-profile" class="hidden fade-in">
+                <!-- Header Card -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 flex items-start gap-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-l from-androDark to-slate-800 opacity-10"></div>
+                    
+                    <img src="https://ui-avatars.com/api/?name=CEO&background=1e293b&color=fff&size=128" class="w-24 h-24 rounded-full border-4 border-white shadow-md z-10">
+                    <div class="flex-1 z-10 pt-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800">هشام السحيباني</h2>
+                                <p class="text-gray-500">الرئيس التنفيذي | الرقم الوظيفي: 1001</p>
+                            </div>
+                            <button class="bg-gray-100 text-gray-600 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"><i class="fa-solid fa-pen ml-2"></i>تعديل البيانات</button>
+                        </div>
+                        
+                        <div class="flex gap-6 mt-6">
+                            <div class="text-center">
+                                <div class="text-xs text-gray-500 mb-1">تاريخ الانضمام</div>
+                                <div class="font-medium text-gray-800">01/01/2014</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-gray-500 mb-1">المدير المباشر</div>
+                                <div class="font-medium text-gray-800">رئيس مجلس الإدارة</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-gray-500 mb-1">الموقع</div>
+                                <div class="font-medium text-gray-800">المقر الرئيسي - الرياض</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Balances -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                        <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">أرصدتي</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-androBlue"><i class="fa-solid fa-umbrella-beach"></i></div>
+                                    <span class="text-sm">إجازة سنوية</span>
+                                </div>
+                                <span class="font-bold text-gray-800">30 يوم</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600"><i class="fa-solid fa-briefcase-medical"></i></div>
+                                    <span class="text-sm">إجازة مرضية</span>
+                                </div>
+                                <span class="font-bold text-gray-800">30 يوم</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 bg-androDark text-white py-2 rounded-lg text-sm hover:bg-slate-700">طلب إجازة جديدة</button>
+                    </div>
+
+                    <!-- Assets -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:col-span-2">
+                        <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">العهد المستلمة (Assets)</h3>
+                        <table class="w-full text-sm text-right">
+                            <thead class="bg-gray-50 text-gray-500">
+                                <tr>
+                                    <th class="px-4 py-2">نوع الأصل</th>
+                                    <th class="px-4 py-2">الوصف</th>
+                                    <th class="px-4 py-2">تاريخ الاستلام</th>
+                                    <th class="px-4 py-2">الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr>
+                                    <td class="px-4 py-3"><i class="fa-solid fa-laptop text-gray-400 ml-2"></i>لابتوب</td>
+                                    <td class="px-4 py-3">Apple MacBook Pro 16" M3 Max</td>
+                                    <td class="px-4 py-3">01/01/2025</td>
+                                    <td class="px-4 py-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">ممتاز</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3"><i class="fa-solid fa-stamp text-gray-400 ml-2"></i>عهدة رسمية</td>
+                                    <td class="px-4 py-3">ختم الشركة الرسمي (Company Seal)</td>
+                                    <td class="px-4 py-3">01/01/2014</td>
+                                    <td class="px-4 py-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">نشط - عهدة حساسة</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3"><i class="fa-solid fa-key text-gray-400 ml-2"></i>دخول آمن</td>
+                                    <td class="px-4 py-3">RSA SecurID Token (Root Access)</td>
+                                    <td class="px-4 py-3">15/06/2023</td>
+                                    <td class="px-4 py-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">نشط</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <div class="h-10"></div>
+        </div>
+    </main>
+
+    <!-- AI STRATEGIC ADVISOR -->
+    <aside id="aiPanel" class="w-96 bg-white shadow-2xl z-30 flex flex-col border-r border-gray-100 relative shrink-0">
+        <!-- Header -->
+        <div class="h-20 bg-gradient-to-br from-[#1e293b] to-[#0f172a] flex items-center justify-between px-6 text-white shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-androGold/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-androGold/50"><i class="fa-solid fa-brain text-androGold text-lg"></i></div>
+                <div><h3 class="font-bold text-sm text-white">المستشار الاستراتيجي</h3><p class="text-[10px] text-gray-400">AndroGov AI - CEO Mode</p></div>
+            </div>
+            <button onclick="toggleAI()" class="text-white/50 hover:text-white transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <!-- Chat -->
+        <div class="flex-1 bg-[#F1F5F9] p-4 overflow-y-auto space-y-4 text-sm">
+            <div class="flex justify-end"><div class="bg-white text-gray-800 p-4 rounded-2xl rounded-tr-none shadow-sm border border-gray-200 max-w-[90%]"><p class="text-gray-600">لدي تحليل سريع: انخفاض 5% في مبيعات BQ. هل تريد التفاصيل؟</p></div></div>
+            <div class="flex justify-start"><div class="bg-androBlue text-white p-3 rounded-2xl rounded-tl-none shadow-md max-w-[90%]">ما هو السبب؟ والتأثير المالي؟</div></div>
+            <div class="flex justify-end"><div class="bg-white text-gray-800 p-4 rounded-2xl rounded-tr-none shadow-sm border border-gray-200 max-w-[90%]">
+                <p class="text-gray-600 mb-2">بناءً على البيانات:</p>
+                <ul class="list-disc list-inside space-y-1 text-xs text-gray-600 mb-3"><li>تأخر إجراءات التوثيق.</li><li>تأجيل تحصيل 250k للربع القادم.</li></ul>
+                <div class="bg-yellow-50 p-2 rounded border border-yellow-100 text-xs text-yellow-800"><i class="fa-solid fa-lightbulb mr-1"></i> توصية: تعيين مسؤول توثيق إضافي.</div>
+            </div></div>
+        </div>
+        <!-- Input -->
+        <div class="p-4 bg-white border-t border-gray-100 shrink-0">
+            <div class="flex gap-2"><input type="text" placeholder="اطلب تقريراً..." class="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-androBlue"><button class="bg-androDark text-white w-12 h-12 rounded-lg flex items-center justify-center hover:bg-slate-700 shadow-lg"><i class="fa-solid fa-arrow-left"></i></button></div>
+        </div>
+    </aside>
+
+    <!-- Floating Toggle Button -->
+    <button id="aiToggleBtn" onclick="toggleAI()" class="fixed bottom-8 left-8 w-16 h-16 bg-androDark text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all z-50 hidden border-4 border-gray-200"><i class="fa-solid fa-brain text-2xl text-androGold"></i></button>
+
+    <script>
+        // NAVIGATION
+        function switchTab(tabId) {
+            document.querySelectorAll('section').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(`view-${tabId}`);
+            if(target) target.classList.remove('hidden');
+            
+            document.querySelectorAll('.sidebar-item').forEach(el => { el.classList.remove('active', 'text-gray-800'); el.classList.add('text-gray-500'); });
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if(activeNav) { activeNav.classList.add('active', 'text-gray-800'); activeNav.classList.remove('text-gray-500'); }
+            
+            // Re-render chart if switching to finance to ensure correct size
+            if(tabId === 'finance') {
+                financeChart.resize();
+                financeChart.update();
+            }
+        }
+
+        // AI TOGGLE
+        function toggleAI() {
+            const panel = document.getElementById('aiPanel');
+            const btn = document.getElementById('aiToggleBtn');
+            if (!panel.classList.contains('ai-closed')) {
+                panel.classList.add('ai-closed');
+                setTimeout(() => { panel.classList.add('hidden'); btn.classList.remove('hidden'); }, 300);
+            } else {
+                panel.classList.remove('hidden');
+                setTimeout(() => { panel.classList.remove('ai-closed'); }, 10);
+                btn.classList.add('hidden');
+            }
+        }
+
+        // REVENUE CHART (Dashboard)
+        const ctxRev = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctxRev, {
+            type: 'line',
+            data: {
+                labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر'],
+                datasets: [{
+                    label: 'الإيرادات الفعلية', data: [1.2, 1.5, 1.4, 1.8, 2.1, 2.0, 2.5, 2.8, 3.1],
+                    borderColor: '#4267B2', backgroundColor: 'rgba(66, 103, 178, 0.1)', tension: 0.4, fill: true
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { callback: v => v + 'M' } } } }
+        });
+
+        // FINANCE CHART (Finance Page)
+        const ctxFin = document.getElementById('financeChart').getContext('2d');
+        const financeChart = new Chart(ctxFin, {
+            type: 'doughnut',
+            data: {
+                labels: ['AndroHealth (HIS)', 'BQ Auctions', 'CyanCare', 'عقود حكومية'],
+                datasets: [{
+                    data: [45, 30, 15, 10],
+                    backgroundColor: ['#4267B2', '#7D34C4', '#22D3EE', '#1e293b']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { family: 'Tajawal' } } } } }
+        });
+    </script>
+</body>
+</html>
