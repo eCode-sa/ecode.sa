@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AndroGov | مركز قيادة الحوكمة</title>
+    <title>AndroGov | نظام الحوكمة الشامل</title>
     
-    <!-- Fonts: Tajawal for Arabic Identity -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
@@ -41,21 +41,26 @@
 
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #F3F4F6; }
-        .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
         .sidebar-item:hover { background-color: #FEF2F2; color: #FB4747; border-right: 4px solid #FB4747; }
         .sidebar-item.active { background-color: #FEF2F2; color: #FB4747; border-right: 4px solid #FB4747; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .ai-typing-dot { animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Tab Styles */
+        .tab-btn.active { border-bottom: 2px solid #FB4747; color: #FB4747; font-weight: bold; }
+        
+        /* Transition for AI Panel */
+        #aiPanel { transition: margin-left 0.3s ease-in-out, opacity 0.3s ease-in-out; }
+        .ai-closed { margin-left: -20rem; opacity: 0; display: none; } 
     </style>
 </head>
 <body class="text-gray-800 h-screen overflow-hidden flex">
 
     <!-- SIDEBAR NAVIGATION -->
-    <aside class="w-64 bg-white h-full shadow-lg flex flex-col justify-between z-20 hidden md:flex">
+    <aside class="w-64 bg-white h-full shadow-lg flex flex-col justify-between z-20 hidden md:flex shrink-0">
         <div>
             <!-- Logo Area -->
-            <div class="h-20 flex items-center justify-center border-b border-gray-100">
+            <div class="h-20 flex items-center justify-center border-b border-gray-100 cursor-pointer" onclick="showSection('dashboard')">
                 <div class="flex items-center gap-2">
                     <div class="w-10 h-10 bg-androRed rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
                         A
@@ -69,36 +74,41 @@
 
             <!-- Navigation Links -->
             <nav class="mt-6 px-2 space-y-1">
-                <a href="#" class="sidebar-item active flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all">
+                <button onclick="showSection('dashboard')" id="nav-dashboard" class="sidebar-item active w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all">
                     <i class="fa-solid fa-gauge-high w-5 text-center"></i>
                     <span>لوحة القيادة</span>
-                </a>
-                <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
+                </button>
+                <button onclick="showSection('policies')" id="nav-policies" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
                     <i class="fa-solid fa-scale-balanced w-5 text-center"></i>
                     <span>مركز السياسات</span>
-                </a>
-                <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
+                </button>
+                <button onclick="showSection('risks')" id="nav-risks" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
                     <i class="fa-solid fa-triangle-exclamation w-5 text-center"></i>
                     <span>سجل المخاطر</span>
                     <span class="mr-auto bg-androRed text-white text-[10px] px-2 py-0.5 rounded-full">2</span>
-                </a>
-                <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
+                </button>
+                <button onclick="showSection('disclosure')" id="nav-disclosure" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
                     <i class="fa-solid fa-file-signature w-5 text-center"></i>
                     <span>سجل الإفصاحات</span>
-                </a>
-                <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
+                </button>
+                <button onclick="showSection('audit')" id="nav-audit" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
                     <i class="fa-solid fa-magnifying-glass-dollar w-5 text-center"></i>
                     <span>التدقيق الداخلي</span>
-                </a>
-                <a href="#" class="sidebar-item flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
+                </button>
+                <button onclick="showSection('committees')" id="nav-committees" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
                     <i class="fa-solid fa-users-rectangle w-5 text-center"></i>
                     <span>لجان المجلس</span>
-                </a>
+                </button>
+                 <div class="border-t border-gray-100 my-2"></div>
+                <button onclick="showSection('my-profile')" id="nav-my-profile" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 text-sm font-medium rounded-lg transition-all">
+                    <i class="fa-regular fa-id-card w-5 text-center"></i>
+                    <span>ملفي الشخصي</span>
+                </button>
             </nav>
         </div>
 
         <!-- User Profile (Bottom) -->
-        <div class="p-4 border-t border-gray-100">
+        <div class="p-4 border-t border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors" onclick="showSection('my-profile')">
             <div class="flex items-center gap-3">
                 <img src="https://ui-avatars.com/api/?name=GRCO&background=FB4747&color=fff" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
                 <div>
@@ -111,218 +121,425 @@
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 flex flex-col h-full relative overflow-hidden">
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 flex flex-col h-full relative overflow-hidden bg-[#F3F4F6]">
         
-        <!-- Top Header -->
-        <header class="h-20 bg-white shadow-sm flex items-center justify-between px-8 z-10">
-            <!-- Search -->
-            <div class="relative w-96">
-                <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-4 -translate-y-1/2 text-gray-400"></i>
-                <input type="text" placeholder="ابحث في اللوائح، المخالفات، أو الموظفين..." 
-                       class="w-full bg-gray-50 border border-gray-200 rounded-full py-2.5 pr-12 pl-4 text-sm focus:outline-none focus:ring-2 focus:ring-androRed/20 transition-all">
-            </div>
-
-            <!-- Actions -->
+        <!-- Header -->
+        <header class="h-20 bg-white shadow-sm flex items-center justify-between px-8 z-10 shrink-0">
+            <h2 id="page-title" class="text-xl font-bold text-gray-800">لوحة القيادة</h2>
             <div class="flex items-center gap-6">
+                 <!-- Search -->
+                <div class="relative w-64 hidden lg:block">
+                    <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-3 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" placeholder="بحث سريع..." class="w-full bg-gray-50 border border-gray-200 rounded-full py-2 pr-10 pl-4 text-sm focus:outline-none focus:border-androRed transition-all">
+                </div>
                 <button class="relative text-gray-500 hover:text-androRed transition-colors">
                     <i class="fa-regular fa-bell text-xl"></i>
                     <span class="absolute -top-1 -right-1 w-4 h-4 bg-androRed text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white">3</span>
                 </button>
-                <div class="h-8 w-px bg-gray-200"></div>
-                <div class="flex items-center gap-2 text-sm font-medium text-gray-600">
-                    <i class="fa-regular fa-calendar"></i>
-                    <span>الخميس، 12 أكتوبر 2025</span>
-                </div>
             </div>
         </header>
 
-        <!-- Dashboard Content Scrollable Area -->
-        <div class="flex-1 overflow-y-auto p-8 scrollbar-hide">
-            
-            <!-- SECTION A: Compliance Pulse (KPIs) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <!-- Compliance Score -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between group hover:shadow-md transition-all">
-                    <div>
-                        <p class="text-gray-500 text-sm mb-1">نسبة الامتثال العام</p>
-                        <h3 class="text-3xl font-bold text-gray-800">94%</h3>
-                        <p class="text-green-500 text-xs mt-2 flex items-center gap-1">
-                            <i class="fa-solid fa-arrow-trend-up"></i> +2.4% عن الشهر الماضي
-                        </p>
-                    </div>
-                    <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-500 text-xl">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                </div>
+        <!-- CONTENT SECTIONS CONTAINER -->
+        <div id="content-container" class="flex-1 overflow-y-auto p-8 scrollbar-hide relative">
 
-                <!-- Active Risks -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-l-androRed border-y border-r border-gray-100 flex items-center justify-between group hover:shadow-md transition-all">
-                    <div>
-                        <p class="text-gray-500 text-sm mb-1">المخاطر النشطة</p>
-                        <h3 class="text-3xl font-bold text-gray-800">2</h3>
-                        <p class="text-androRed text-xs mt-2 font-medium">تتطلب تدخلاً فورياً</p>
-                    </div>
-                    <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-androRed text-xl">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                </div>
-
-                <!-- Approval Bypass -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between group hover:shadow-md transition-all">
-                    <div>
-                        <p class="text-gray-500 text-sm mb-1">تجاوزات الصلاحيات</p>
-                        <h3 class="text-3xl font-bold text-gray-800">1</h3>
-                        <p class="text-yellow-500 text-xs mt-2">تحت المراجعة</p>
-                    </div>
-                    <div class="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-500 text-xl">
-                        <i class="fa-solid fa-gavel"></i>
-                    </div>
-                </div>
-
-                <!-- Pending Updates -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between group hover:shadow-md transition-all">
-                    <div>
-                        <p class="text-gray-500 text-sm mb-1">تحديثات معلقة</p>
-                        <h3 class="text-3xl font-bold text-gray-800">3</h3>
-                        <p class="text-gray-400 text-xs mt-2">بانتظار اعتماد المجلس</p>
-                    </div>
-                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-androBlue text-xl">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION B: Governance Radar & Risk Map -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <!-- Radar Chart -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="font-bold text-gray-800 text-lg">مؤشر الامتثال حسب القطاع</h3>
-                        <button class="text-gray-400 hover:text-androRed"><i class="fa-solid fa-ellipsis"></i></button>
-                    </div>
-                    <div class="h-64 flex justify-center">
-                        <canvas id="complianceChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Alerts List -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h3 class="font-bold text-gray-800 text-lg mb-4">تنبيهات حرجة</h3>
-                    <div class="space-y-4">
-                        <!-- Alert Item 1 -->
-                        <div class="p-3 bg-red-50 rounded-lg border border-red-100 flex items-start gap-3">
-                            <i class="fa-solid fa-server text-androRed mt-1"></i>
-                            <div>
-                                <h5 class="text-sm font-bold text-gray-800">محاولة وصول غير مصرح</h5>
-                                <p class="text-xs text-gray-600 mt-1">الموظف: NCSO - سيرفر BQ</p>
-                                <div class="mt-2 flex gap-2">
-                                    <button class="text-[10px] bg-androRed text-white px-2 py-1 rounded hover:bg-red-600">تحقيق</button>
-                                    <button class="text-[10px] text-gray-500 hover:text-gray-700">تجاهل</button>
-                                </div>
-                            </div>
+            <!-- 1. DASHBOARD SECTION -->
+            <section id="section-dashboard" class="fade-in">
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                     <!-- Compliance -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm mb-1">نسبة الامتثال</p>
+                            <h3 class="text-3xl font-bold text-gray-800">94%</h3>
+                            <p class="text-green-500 text-xs mt-2"><i class="fa-solid fa-arrow-up"></i> +2.4%</p>
                         </div>
-                        <!-- Alert Item 2 -->
-                        <div class="p-3 bg-yellow-50 rounded-lg border border-yellow-100 flex items-start gap-3">
-                            <i class="fa-solid fa-file-contract text-yellow-600 mt-1"></i>
-                            <div>
-                                <h5 class="text-sm font-bold text-gray-800">سياسة غير موقعة</h5>
-                                <p class="text-xs text-gray-600 mt-1">3 مبرمجين (AndroHealth)</p>
-                                <button class="mt-2 text-[10px] border border-yellow-600 text-yellow-600 px-2 py-1 rounded hover:bg-yellow-100">إرسال تذكير</button>
+                        <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-500 text-xl"><i class="fa-solid fa-shield-halved"></i></div>
+                    </div>
+                    <!-- Risks -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-l-androRed border-y border-r border-gray-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm mb-1">مخاطر نشطة</p>
+                            <h3 class="text-3xl font-bold text-gray-800">2</h3>
+                            <p class="text-androRed text-xs mt-2">تتطلب إجراء</p>
+                        </div>
+                        <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-androRed text-xl"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    </div>
+                    <!-- Pending approvals -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm mb-1">طلبات معلقة</p>
+                            <h3 class="text-3xl font-bold text-gray-800">5</h3>
+                            <p class="text-yellow-500 text-xs mt-2">تحت المراجعة</p>
+                        </div>
+                        <div class="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-500 text-xl"><i class="fa-regular fa-clock"></i></div>
+                    </div>
+                     <!-- My Tasks -->
+                     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between cursor-pointer hover:bg-gray-50" onclick="showSection('my-profile')">
+                        <div>
+                            <p class="text-gray-500 text-sm mb-1">رصيد إجازاتي</p>
+                            <h3 class="text-3xl font-bold text-gray-800">21</h3>
+                            <p class="text-androBlue text-xs mt-2">يوم متبقي</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-androBlue text-xl"><i class="fa-solid fa-plane-departure"></i></div>
+                    </div>
+                </div>
+
+                <!-- Radar & Alerts Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Radar Chart -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
+                        <h3 class="font-bold text-gray-800 text-lg mb-4">مؤشر الامتثال حسب القطاع</h3>
+                        <div class="h-64 flex justify-center">
+                            <canvas id="complianceChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Quick Alerts -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="font-bold text-gray-800 text-lg mb-4">آخر التنبيهات</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-red-50 rounded border border-red-100 text-sm">
+                                <div class="font-bold text-gray-800 mb-1">محاولة دخول غير مصرح</div>
+                                <div class="text-xs text-gray-500">سيرفر BQ - منذ 10 دقائق</div>
+                            </div>
+                            <div class="p-3 bg-yellow-50 rounded border border-yellow-100 text-sm">
+                                <div class="font-bold text-gray-800 mb-1">انتهاء عقد مورد</div>
+                                <div class="text-xs text-gray-500">شركة الأمن - خلال 5 أيام</div>
+                            </div>
+                             <div class="p-3 bg-blue-50 rounded border border-blue-100 text-sm">
+                                <div class="font-bold text-gray-800 mb-1">اجتماع لجنة المراجعة</div>
+                                <div class="text-xs text-gray-500">غداً الساعة 10:00 ص</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- SECTION C: Live Audit Stream -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="p-6 border-b border-gray-100 flex justify-between items-center">
-                    <h3 class="font-bold text-gray-800 text-lg">سجل العمليات الحية (Audit Stream)</h3>
-                    <span class="flex items-center gap-2 text-xs text-green-600 bg-green-50 px-3 py-1 rounded-full animate-pulse">
-                        <span class="w-2 h-2 bg-green-600 rounded-full"></span> تحديث مباشر
-                    </span>
+            <!-- 2. POLICIES CENTER SECTION -->
+            <section id="section-policies" class="hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <p class="text-gray-500">المصدر الوحيد للحقيقة لجميع لوائح وسياسات اندروميدا.</p>
+                    <button class="bg-androBlue text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition"><i class="fa-solid fa-plus ml-2"></i>إضافة سياسة جديدة</button>
                 </div>
-                <div class="overflow-x-auto">
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                     <table class="w-full text-sm text-right">
-                        <thead class="bg-gray-50 text-gray-500">
+                        <thead class="bg-gray-50 text-gray-500 border-b border-gray-200">
                             <tr>
-                                <th class="px-6 py-4 font-medium">الوقت</th>
-                                <th class="px-6 py-4 font-medium">العملية</th>
-                                <th class="px-6 py-4 font-medium">المُبادِر</th>
-                                <th class="px-6 py-4 font-medium">القيمة</th>
-                                <th class="px-6 py-4 font-medium">الحالة</th>
-                                <th class="px-6 py-4 font-medium">الإجراء</th>
+                                <th class="px-6 py-4">اسم السياسة</th>
+                                <th class="px-6 py-4">الفئة</th>
+                                <th class="px-6 py-4">آخر تحديث</th>
+                                <th class="px-6 py-4">الحالة</th>
+                                <th class="px-6 py-4">الإجراء</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
-                            <!-- Row 1 -->
-                            <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-6 py-4 text-gray-500">10:30 ص</td>
-                                <td class="px-6 py-4 font-medium text-gray-800">طلب شراء سيرفرات BQ</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">TL</div>
-                                        <span>Tech Lead</span>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-gray-800 font-bold">50,000 ر.س</td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">بانتظار التدقيق</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-androRed hover:underline">مراجعة</button>
-                                </td>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-bold text-gray-800"><i class="fa-regular fa-file-pdf text-red-500 ml-2"></i>لائحة الموارد البشرية</td>
+                                <td class="px-6 py-4"><span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">إداري</span></td>
+                                <td class="px-6 py-4 text-gray-500">10 أكتوبر 2025</td>
+                                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">معتمد</span></td>
+                                <td class="px-6 py-4"><button class="text-androBlue hover:underline">عرض</button></td>
                             </tr>
-                            <!-- Row 2 -->
-                            <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-6 py-4 text-gray-500">09:15 ص</td>
-                                <td class="px-6 py-4 font-medium text-gray-800">صلاحية دخول طارئة</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs">NS</div>
-                                        <span>NCSO</span>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-gray-400">-</td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">تم الاعتماد</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-eye"></i></button>
-                                </td>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-bold text-gray-800"><i class="fa-regular fa-file-pdf text-red-500 ml-2"></i>سياسة أمن المعلومات (CyanCare)</td>
+                                <td class="px-6 py-4"><span class="bg-purple-100 text-purple-600 px-2 py-1 rounded text-xs">تقني/أمني</span></td>
+                                <td class="px-6 py-4 text-gray-500">01 نوفمبر 2025</td>
+                                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">معتمد</span></td>
+                                <td class="px-6 py-4"><button class="text-androBlue hover:underline">عرض</button></td>
                             </tr>
-                            <!-- Row 3 -->
-                            <tr class="bg-red-50/50 hover:bg-red-50 transition-colors border-l-4 border-l-androRed">
-                                <td class="px-6 py-4 text-gray-500">08:00 ص</td>
-                                <td class="px-6 py-4 font-medium text-gray-800">تعديل لائحة العمولات</td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center text-xs">SM</div>
-                                        <span>Sales Mgr</span>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-gray-400">-</td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">مرفوض آلياً</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-androRed hover:underline font-bold">التفاصيل</button>
-                                </td>
+                             <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-bold text-gray-800"><i class="fa-regular fa-file-pdf text-red-500 ml-2"></i>لائحة المشتريات والعقود</td>
+                                <td class="px-6 py-4"><span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded text-xs">مالي</span></td>
+                                <td class="px-6 py-4 text-gray-500">--</td>
+                                <td class="px-6 py-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">مسودة</span></td>
+                                <td class="px-6 py-4"><button class="text-androBlue hover:underline">تحرير</button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </section>
+
+            <!-- 3. RISK REGISTER SECTION -->
+            <section id="section-risks" class="hidden fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-l-red-500 shadow-sm">
+                        <div class="text-gray-500 text-xs">مخاطر عالية</div>
+                        <div class="text-2xl font-bold text-gray-800">2</div>
+                    </div>
+                     <div class="bg-white p-4 rounded-lg border-l-4 border-l-yellow-500 shadow-sm">
+                        <div class="text-gray-500 text-xs">مخاطر متوسطة</div>
+                        <div class="text-2xl font-bold text-gray-800">4</div>
+                    </div>
+                     <div class="bg-white p-4 rounded-lg border-l-4 border-l-green-500 shadow-sm">
+                        <div class="text-gray-500 text-xs">مخاطر منخفضة</div>
+                        <div class="text-2xl font-bold text-gray-800">12</div>
+                    </div>
+                </div>
+                
+                <h3 class="font-bold text-gray-800 mb-4">سجل المخاطر النشطة</h3>
+                <div class="space-y-4">
+                     <!-- Risk Card 1 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+                        <div class="w-10 h-10 bg-red-100 text-red-500 rounded-full flex items-center justify-center shrink-0"><i class="fa-solid fa-server"></i></div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h4 class="font-bold text-gray-800">فشل النسخ الاحتياطي لقاعدة بيانات BQ</h4>
+                                <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded">عالي جداً</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">فشل في عملية الباكب اليومي للسيرفر رقم 4. المسؤول: NCSO.</p>
+                            <div class="mt-3 flex gap-2">
+                                <button class="text-xs bg-gray-100 px-3 py-1 rounded hover:bg-gray-200">عرض التفاصيل</button>
+                                <button class="text-xs bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">تصعيد</button>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Risk Card 2 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+                        <div class="w-10 h-10 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center shrink-0"><i class="fa-solid fa-user-clock"></i></div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h4 class="font-bold text-gray-800">نقص في كوادر الدعم الفني (AndroHealth)</h4>
+                                <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">متوسط</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">زيادة تذاكر العملاء بنسبة 40% مع ثبات عدد الموظفين.</p>
+                             <div class="mt-3 flex gap-2">
+                                <button class="text-xs bg-gray-100 px-3 py-1 rounded hover:bg-gray-200">عرض خطة التوظيف</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. DISCLOSURE & CONFLICT OF INTEREST -->
+            <section id="section-disclosure" class="hidden fade-in">
+                <div class="bg-white rounded-xl p-8 text-center border border-gray-200 mb-6">
+                    <i class="fa-solid fa-hand-holding-heart text-4xl text-androBlue mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">إقرار الإفصاح السنوي</h3>
+                    <p class="text-gray-500 mb-6 max-w-lg mx-auto">حسب المادة 72 من نظام الشركات، يجب على جميع أعضاء مجلس الإدارة والمدراء التنفيذيين الإفصاح عن أي مصالح مباشرة أو غير مباشرة في العقود التي تتم لحساب الشركة.</p>
+                    <button class="bg-androBlue text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">تقديم إقرار جديد</button>
+                </div>
+                
+                <h3 class="font-bold text-gray-800 mb-4">سجل الإفصاحات الأخير</h3>
+                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <table class="w-full text-sm text-right">
+                        <thead class="bg-gray-50 text-gray-500 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4">الاسم</th>
+                                <th class="px-6 py-4">المنصب</th>
+                                <th class="px-6 py-4">نوع المصلحة</th>
+                                <th class="px-6 py-4">التاريخ</th>
+                                <th class="px-6 py-4">الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-medium text-gray-800">هشام السحيباني</td>
+                                <td class="px-6 py-4">الرئيس التنفيذي</td>
+                                <td class="px-6 py-4">لا يوجد تعارض مصالح</td>
+                                <td class="px-6 py-4 text-gray-500">01/01/2025</td>
+                                <td class="px-6 py-4"><span class="text-green-600"><i class="fa-solid fa-check-circle ml-1"></i>تم التحقق</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
             
-            <div class="h-10"></div> <!-- Spacer -->
+            <!-- 5. INTERNAL AUDIT -->
+            <section id="section-audit" class="hidden fade-in">
+                 <div class="flex gap-4 mb-6 overflow-x-auto">
+                    <div class="bg-white p-4 min-w-[200px] rounded-lg border border-gray-200">
+                        <div class="text-gray-500 text-xs mb-1">تدقيق الربع الأول</div>
+                        <div class="font-bold text-gray-800">مكتمل 100%</div>
+                        <div class="w-full bg-gray-200 h-1.5 rounded-full mt-2 overflow-hidden"><div class="bg-green-500 h-full w-full"></div></div>
+                    </div>
+                     <div class="bg-white p-4 min-w-[200px] rounded-lg border border-gray-200">
+                        <div class="text-gray-500 text-xs mb-1">تدقيق الربع الثاني</div>
+                        <div class="font-bold text-gray-800">جاري العمل 45%</div>
+                        <div class="w-full bg-gray-200 h-1.5 rounded-full mt-2 overflow-hidden"><div class="bg-androBlue h-full w-[45%]"></div></div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <h3 class="font-bold text-gray-800 mb-4">سجل العمليات المدققة</h3>
+                    <table class="w-full text-sm text-right">
+                        <thead class="bg-gray-50 text-gray-500">
+                            <tr>
+                                <th class="px-4 py-3">الرقم المرجعي</th>
+                                <th class="px-4 py-3">العملية</th>
+                                <th class="px-4 py-3">المبلغ</th>
+                                <th class="px-4 py-3">ملاحظات المراجع</th>
+                                <th class="px-4 py-3">الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr>
+                                <td class="px-4 py-3 font-mono text-gray-500">#TRX-992</td>
+                                <td class="px-4 py-3">صرف عمولات مبيعات Q1</td>
+                                <td class="px-4 py-3 font-bold">120,000 ر.س</td>
+                                <td class="px-4 py-3 text-green-600">مطابق للائحة العمولات</td>
+                                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">نظيف</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-mono text-gray-500">#TRX-998</td>
+                                <td class="px-4 py-3">تجديد استضافة سيرفرات</td>
+                                <td class="px-4 py-3 font-bold">15,000 ر.س</td>
+                                <td class="px-4 py-3 text-red-500">لم يتم إرفاق الفاتورة الضريبية الأصلية</td>
+                                <td class="px-4 py-3"><span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs">ملاحظة</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+             <!-- 6. COMMITTEES -->
+             <section id="section-committees" class="hidden fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Audit Committee -->
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                        <div class="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="font-bold text-gray-800">لجنة المراجعة</h3>
+                            <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded">3 أعضاء</span>
+                        </div>
+                        <div class="p-4 space-y-3">
+                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                <i class="fa-solid fa-file-contract text-gray-400"></i>
+                                <div class="flex-1">
+                                    <div class="text-sm font-medium">محضر اجتماع رقم 4/2025</div>
+                                    <div class="text-xs text-gray-500">بتاريخ 12/09/2025</div>
+                                </div>
+                                <i class="fa-solid fa-download text-gray-400 hover:text-androBlue"></i>
+                            </div>
+                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                <i class="fa-solid fa-file-contract text-gray-400"></i>
+                                <div class="flex-1">
+                                    <div class="text-sm font-medium">تقرير المراجع الخارجي Q2</div>
+                                    <div class="text-xs text-gray-500">مسودة للمناقشة</div>
+                                </div>
+                                <i class="fa-solid fa-download text-gray-400 hover:text-androBlue"></i>
+                            </div>
+                            <button class="w-full mt-2 border border-androBlue text-androBlue rounded py-2 text-sm hover:bg-blue-50">جدولة اجتماع جديد</button>
+                        </div>
+                    </div>
+
+                    <!-- Nomination Committee -->
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                        <div class="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="font-bold text-gray-800">لجنة الترشيحات والمكافآت</h3>
+                            <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded">3 أعضاء</span>
+                        </div>
+                        <div class="p-4 flex flex-col items-center justify-center h-48 text-gray-400">
+                            <i class="fa-solid fa-folder-open text-3xl mb-2"></i>
+                            <p class="text-sm">لا توجد ملفات حديثة</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- 7. MY PROFILE (Employee View) -->
+             <section id="section-my-profile" class="hidden fade-in">
+                <!-- Header Card -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 flex items-start gap-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-l from-androRed to-red-400 opacity-10"></div>
+                    
+                    <img src="https://ui-avatars.com/api/?name=GRCO&background=FB4747&color=fff&size=128" class="w-24 h-24 rounded-full border-4 border-white shadow-md z-10">
+                    <div class="flex-1 z-10 pt-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800">ضابط الحوكمة (GRCO)</h2>
+                                <p class="text-gray-500">إدارة الحوكمة والمخاطر | الرقم الوظيفي: 1045</p>
+                            </div>
+                            <button class="bg-gray-100 text-gray-600 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"><i class="fa-solid fa-pen ml-2"></i>تعديل البيانات</button>
+                        </div>
+                        
+                        <div class="flex gap-6 mt-6">
+                            <div class="text-center">
+                                <div class="text-xs text-gray-500 mb-1">تاريخ الانضمام</div>
+                                <div class="font-medium text-gray-800">01/01/2020</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-gray-500 mb-1">المدير المباشر</div>
+                                <div class="font-medium text-gray-800">الرئيس التنفيذي</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-gray-500 mb-1">الموقع</div>
+                                <div class="font-medium text-gray-800">المقر الرئيسي - الرياض</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Balances -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                        <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">أرصدتي</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-androBlue"><i class="fa-solid fa-umbrella-beach"></i></div>
+                                    <span class="text-sm">إجازة سنوية</span>
+                                </div>
+                                <span class="font-bold text-gray-800">21 يوم</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600"><i class="fa-solid fa-briefcase-medical"></i></div>
+                                    <span class="text-sm">إجازة مرضية</span>
+                                </div>
+                                <span class="font-bold text-gray-800">30 يوم</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600"><i class="fa-solid fa-money-bill-wave"></i></div>
+                                    <span class="text-sm">رصيد العهدة</span>
+                                </div>
+                                <span class="font-bold text-gray-800">0.00 ر.س</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 bg-androRed text-white py-2 rounded-lg text-sm hover:bg-red-600">طلب إجازة جديدة</button>
+                    </div>
+
+                    <!-- Assets -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:col-span-2">
+                        <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">العهد المستلمة (Assets)</h3>
+                        <table class="w-full text-sm text-right">
+                            <thead class="bg-gray-50 text-gray-500">
+                                <tr>
+                                    <th class="px-4 py-2">نوع الأصل</th>
+                                    <th class="px-4 py-2">الموديل</th>
+                                    <th class="px-4 py-2">السيريال</th>
+                                    <th class="px-4 py-2">تاريخ الاستلام</th>
+                                    <th class="px-4 py-2">الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr>
+                                    <td class="px-4 py-3"><i class="fa-solid fa-laptop text-gray-400 ml-2"></i>لابتوب</td>
+                                    <td class="px-4 py-3">MacBook Pro M2</td>
+                                    <td class="px-4 py-3 font-mono text-xs">C02XYZ123</td>
+                                    <td class="px-4 py-3">01/02/2024</td>
+                                    <td class="px-4 py-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">جيد</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3"><i class="fa-solid fa-id-card text-gray-400 ml-2"></i>بطاقة دخول</td>
+                                    <td class="px-4 py-3">Access Card L3</td>
+                                    <td class="px-4 py-3 font-mono text-xs">AC-9988</td>
+                                    <td class="px-4 py-3">01/01/2020</td>
+                                    <td class="px-4 py-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">نشط</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+             </section>
+
         </div>
     </main>
 
-    <!-- ANDROGOV AI ASSISTANT PANEL -->
-    <aside class="w-80 bg-white shadow-2xl z-30 flex flex-col border-r border-gray-100 relative">
+    <!-- ANDROGOV AI ASSISTANT PANEL (Collapsible) -->
+    <aside id="aiPanel" class="w-80 bg-white shadow-2xl z-30 flex flex-col border-r border-gray-100 relative shrink-0">
         <!-- AI Header -->
-        <div class="h-20 bg-gradient-to-br from-androDark to-slate-800 flex items-center justify-between px-6 text-white">
+        <div class="h-20 bg-gradient-to-br from-androDark to-slate-800 flex items-center justify-between px-6 text-white shrink-0">
             <div class="flex items-center gap-3">
                 <div class="relative">
                     <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -335,42 +552,29 @@
                     <p class="text-[10px] text-gray-300 opacity-80">مساعد الحوكمة الذكي</p>
                 </div>
             </div>
-            <button class="text-white/50 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            <!-- Toggle Button (Close) -->
+            <button onclick="toggleAI()" class="text-white/50 hover:text-white cursor-pointer transition-colors p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
 
         <!-- Chat Area -->
         <div class="flex-1 bg-gray-50 p-4 overflow-y-auto space-y-4" id="chatContainer">
-            <!-- Time -->
             <div class="text-center text-[10px] text-gray-400">اليوم 10:32 ص</div>
-
-            <!-- User Message -->
             <div class="flex justify-start">
                 <div class="bg-white border border-gray-200 text-gray-800 p-3 rounded-2xl rounded-tr-none text-sm max-w-[90%] shadow-sm">
                     هل يوجد تعارض في طلب الشراء رقم <span class="text-blue-600 font-bold">#554</span> مع اللائحة؟
                 </div>
             </div>
-
-            <!-- AI Response -->
             <div class="flex justify-end">
                 <div class="bg-androBlue text-white p-3 rounded-2xl rounded-tl-none text-sm max-w-[90%] shadow-md">
                     <p class="mb-2">نعم، يوجد تعارضين:</p>
                     <ul class="list-disc list-inside space-y-1 text-xs opacity-90 mb-2">
                         <li>القيمة (50,000) تتجاوز صلاحية المدير التقني.</li>
-                        <li>لم يتم إرفاق 3 عروض أسعار (مطلوب للمبالغ فوق 20k).</li>
+                        <li>لم يتم إرفاق 3 عروض أسعار.</li>
                     </ul>
-                    <p class="font-bold text-xs border-t border-white/20 pt-2 mt-2">الإجراء: النظام قام بتجميد الطلب تلقائياً.</p>
                 </div>
             </div>
-
-            <!-- User Message -->
-            <div class="flex justify-start">
-                <div class="bg-white border border-gray-200 text-gray-800 p-3 rounded-2xl rounded-tr-none text-sm max-w-[90%] shadow-sm">
-                    ما هو الإجراء الصحيح الآن؟
-                </div>
-            </div>
-
-            <!-- AI Typing Indicator -->
-            <div class="flex justify-end hidden" id="typingIndicator">
+             <!-- AI Typing Indicator -->
+             <div class="flex justify-end hidden" id="typingIndicator">
                 <div class="bg-androBlue/10 text-androBlue p-3 rounded-2xl rounded-tl-none text-sm flex gap-1 items-center">
                     <span class="w-1.5 h-1.5 bg-androBlue rounded-full ai-typing-dot" style="animation-delay: 0s;"></span>
                     <span class="w-1.5 h-1.5 bg-androBlue rounded-full ai-typing-dot" style="animation-delay: 0.2s;"></span>
@@ -380,100 +584,119 @@
         </div>
 
         <!-- Input Area -->
-        <div class="p-4 bg-white border-t border-gray-100">
+        <div class="p-4 bg-white border-t border-gray-100 shrink-0">
             <div class="flex gap-2">
-                <input type="text" placeholder="اكتب سؤالك للمساعد..." class="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-androBlue transition-colors">
+                <input type="text" placeholder="اكتب سؤالك..." class="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-androBlue transition-colors">
                 <button class="bg-androBlue text-white w-10 h-10 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors shadow-sm">
                     <i class="fa-solid fa-paper-plane text-sm"></i>
                 </button>
             </div>
-            <div class="flex gap-2 mt-2 overflow-x-auto scrollbar-hide">
-                <button class="whitespace-nowrap px-3 py-1 bg-gray-50 text-gray-500 text-[10px] rounded-full hover:bg-gray-100 border border-gray-200">أنشئ مسودة قرار</button>
-                <button class="whitespace-nowrap px-3 py-1 bg-gray-50 text-gray-500 text-[10px] rounded-full hover:bg-gray-100 border border-gray-200">تحليل مخاطر</button>
-            </div>
         </div>
     </aside>
 
+    <!-- Floating Toggle Button (Appears when AI is closed) -->
+    <button id="aiToggleBtn" onclick="toggleAI()" class="fixed bottom-6 left-6 w-14 h-14 bg-androDark text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-slate-800 transition-all z-50 hidden hover:scale-110">
+        <div class="relative">
+            <i class="fa-solid fa-robot text-xl"></i>
+            <span class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-androDark rounded-full"></span>
+        </div>
+    </button>
+
     <script>
-        // --- CHARTS CONFIGURATION ---
-        
-        // Radar Chart: Compliance by Department
+        // --- AI PANEL TOGGLE LOGIC ---
+        function toggleAI() {
+            const panel = document.getElementById('aiPanel');
+            const btn = document.getElementById('aiToggleBtn');
+            
+            // If panel is currently visible (doesn't have 'hidden' or special closed class)
+            if (!panel.classList.contains('ai-closed')) {
+                // Close it
+                panel.classList.add('ai-closed');
+                setTimeout(() => {
+                    panel.classList.add('hidden'); // Remove from flow after transition
+                    btn.classList.remove('hidden'); // Show floating button
+                    btn.classList.add('animate-bounce'); // Add simple attention animation once
+                    setTimeout(() => btn.classList.remove('animate-bounce'), 1000);
+                }, 300); // Match CSS transition time
+            } else {
+                // Open it
+                panel.classList.remove('hidden');
+                setTimeout(() => {
+                    panel.classList.remove('ai-closed');
+                }, 10); // Slight delay to allow display:block to apply before opacity transition
+                btn.classList.add('hidden');
+            }
+        }
+
+        // --- NAVIGATION LOGIC ---
+        function showSection(sectionId) {
+            // 1. Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            // 2. Show target section
+            const target = document.getElementById(`section-${sectionId}`);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+
+            // 3. Update Sidebar Active State
+            const navItems = document.querySelectorAll('.sidebar-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                // Reset styling for non-active
+                item.classList.add('text-gray-600'); 
+            });
+
+            // Set active style for clicked button
+            const activeBtn = document.getElementById(`nav-${sectionId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.classList.remove('text-gray-600');
+            }
+
+            // 4. Update Header Title
+            const titles = {
+                'dashboard': 'لوحة القيادة',
+                'policies': 'مركز السياسات واللوائح',
+                'risks': 'سجل المخاطر التشغيلية',
+                'disclosure': 'سجل الإفصاح وتعارض المصالح',
+                'audit': 'التدقيق الداخلي',
+                'committees': 'لجان المجلس',
+                'my-profile': 'ملفي الشخصي (الموارد البشرية)'
+            };
+            document.getElementById('page-title').innerText = titles[sectionId] || 'AndroGov';
+        }
+
+        // --- CHARTS CONFIGURATION (Only init if on dashboard) ---
         const ctxRadar = document.getElementById('complianceChart').getContext('2d');
         new Chart(ctxRadar, {
             type: 'radar',
             data: {
-                labels: ['التقنية (Tech)', 'المبيعات (Sales)', 'الموارد البشرية (HR)', 'الطبية (Medical)', 'المالية (Finance)', 'الإمدادات (Gov)'],
+                labels: ['التقنية', 'المبيعات', 'الموارد البشرية', 'الطبية', 'المالية', 'الإمدادات'],
                 datasets: [{
-                    label: 'نسبة الامتثال الحالية',
+                    label: 'الحالي',
                     data: [85, 70, 95, 98, 92, 88],
                     fill: true,
-                    backgroundColor: 'rgba(66, 103, 178, 0.2)', // androBlue with opacity
+                    backgroundColor: 'rgba(66, 103, 178, 0.2)',
                     borderColor: '#4267B2',
                     pointBackgroundColor: '#4267B2',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#4267B2'
                 }, {
-                    label: 'الحد الأدنى المقبول',
-                    data: [80, 80, 80, 90, 90, 80],
+                    label: 'الهدف',
+                    data: [90, 90, 90, 95, 95, 90],
                     fill: true,
-                    backgroundColor: 'rgba(251, 71, 71, 0.05)', // androRed very light
+                    backgroundColor: 'rgba(251, 71, 71, 0.05)',
                     borderColor: 'rgba(251, 71, 71, 0.4)',
-                    pointBackgroundColor: 'rgba(251, 71, 71, 0.4)',
-                    pointBorderColor: '#fff',
                     borderDash: [5, 5]
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                elements: {
-                    line: { borderWidth: 2 }
-                },
-                scales: {
-                    r: {
-                        angleLines: { display: true },
-                        suggestedMin: 50,
-                        suggestedMax: 100,
-                        ticks: { backdropColor: 'transparent', font: { family: 'Tajawal' } },
-                        pointLabels: { font: { family: 'Tajawal', size: 12, weight: 'bold' } }
-                    }
-                },
-                plugins: {
-                    legend: { position: 'bottom', labels: { font: { family: 'Tajawal' } } }
-                }
+                scales: { r: { suggestedMin: 50, suggestedMax: 100, ticks: { display: false } } },
+                plugins: { legend: { position: 'bottom', labels: { font: { family: 'Tajawal' } } } }
             }
         });
-
-        // --- AI CHAT SIMULATION ---
-        setTimeout(() => {
-            const typingIndicator = document.getElementById('typingIndicator');
-            const chatContainer = document.getElementById('chatContainer');
-            
-            // Show typing
-            typingIndicator.classList.remove('hidden');
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-
-            // Simulate response after 2 seconds
-            setTimeout(() => {
-                typingIndicator.classList.add('hidden');
-                const newMsg = document.createElement('div');
-                newMsg.className = 'flex justify-end animate-fade-in-up';
-                newMsg.innerHTML = `
-                    <div class="bg-androBlue text-white p-3 rounded-2xl rounded-tl-none text-sm max-w-[90%] shadow-md">
-                        <p>يجب إعادة الطلب إلى <span class="font-bold">منسق المشتريات (PSSC)</span> لاستكمال عروض الأسعار، ثم رفعه للمدير المالي.</p>
-                        <div class="mt-2 flex gap-2">
-                             <button class="bg-white/20 hover:bg-white/30 text-white text-[10px] px-2 py-1 rounded transition">تنفيذ الإجراء (رفض وإعادة)</button>
-                        </div>
-                    </div>
-                `;
-                chatContainer.insertBefore(newMsg, typingIndicator); // Insert before typing indicator div (conceptually) or just append
-                chatContainer.insertBefore(typingIndicator, newMsg.nextSibling); // Keep typing indicator at bottom
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }, 2000);
-
-        }, 1500);
-
     </script>
 </body>
 </html>
