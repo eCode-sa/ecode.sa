@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AndroGov | الموارد البشرية والشؤون الإدارية</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        androRed: '#FB4747',
+                        androBlue: '#4267B2',
+                        androDark: '#1e293b',
+                        androGray: '#F8FAFC',
+                        hrGreen: '#10B981', // HR Theme Color
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #F3F4F6; }
+        .sidebar-item:hover { background-color: #FEF2F2; color: #FB4747; border-right: 4px solid #FB4747; }
+        .sidebar-item.active { background-color: #FEF2F2; color: #FB4747; border-right: 4px solid #FB4747; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        #aiPanel { transition: margin-left 0.3s ease-in-out, opacity 0.3s ease-in-out; }
+        .ai-closed { margin-left: -24rem; opacity: 0; display: none; } 
+    </style>
+</head>
+<body class="text-gray-800 h-screen overflow-hidden flex">
+
+    <!-- HR SIDEBAR -->
+    <aside class="w-20 lg:w-64 bg-white h-full shadow-lg flex flex-col justify-between z-20 shrink-0 transition-all duration-300">
+        <div>
+            <!-- Logo -->
+            <div class="h-20 flex items-center justify-center border-b border-gray-100 cursor-pointer" onclick="switchTab('dashboard')">
+                <div class="w-10 h-10 bg-androRed rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md hover:scale-105 transition-transform">
+                    A
+                </div>
+                <div class="hidden lg:block mr-2">
+                    <h1 class="font-bold text-lg text-gray-800">AndroGov</h1>
+                    <p class="text-[10px] text-gray-400 tracking-wider">HR & ADMIN</p>
+                </div>
+            </div>
+
+            <!-- HR Navigation -->
+            <nav class="mt-8 px-2 space-y-2">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="sidebar-item active w-full flex items-center gap-4 px-4 py-3 text-sm font-bold rounded-xl transition-all">
+                    <i class="fa-solid fa-users text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">نظرة عامة</span>
+                </button>
+                <button onclick="switchTab('employees')" id="nav-employees" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-id-badge text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">شؤون الموظفين</span>
+                </button>
+                <button onclick="switchTab('recruitment')" id="nav-recruitment" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-user-plus text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">التوظيف</span>
+                    <span class="hidden lg:flex mr-auto bg-green-500 text-white text-[10px] w-5 h-5 items-center justify-center rounded-full">5</span>
+                </button>
+                <button onclick="switchTab('payroll')" id="nav-payroll" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-money-check-dollar text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">الرواتب (Payroll)</span>
+                </button>
+                <button onclick="switchTab('requests')" id="nav-requests" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-file-circle-check text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">الطلبات الإدارية</span>
+                </button>
+                
+                <div class="border-t border-gray-100 my-2 lg:mx-4"></div>
+                
+                <!-- My Profile Link -->
+                <button onclick="switchTab('my-profile')" id="nav-my-profile" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 text-gray-500 text-sm font-medium rounded-xl transition-all">
+                    <i class="fa-solid fa-user-gear text-lg w-6 text-center"></i>
+                    <span class="hidden lg:block">ملفي الشخصي</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- HR Director Profile -->
+        <div class="p-4 border-t border-gray-100 bg-gray-50/50 cursor-pointer hover:bg-gray-100 transition-colors" onclick="switchTab('my-profile')">
+            <div class="flex items-center gap-3 justify-center lg:justify-start">
+                <div class="relative">
+                    <img src="https://ui-avatars.com/api/?name=Mansoor+Alyami&background=10B981&color=fff" class="w-10 h-10 rounded-full border-2 border-white shadow-md">
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+                </div>
+                <div class="hidden lg:block">
+                    <h4 class="text-sm font-bold text-gray-800">منصور اليامي</h4>
+                    <span class="text-[10px] text-gray-500 uppercase tracking-wide">مدير الشؤون الإدارية</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col h-full relative overflow-hidden bg-[#F8FAFC]">
+        
+        <!-- Top Bar -->
+        <header class="h-20 bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+            <div>
+                <h2 id="page-title" class="text-2xl font-bold text-gray-800">أهلاً، أستاذ منصور 👋</h2>
+                <p class="text-xs text-gray-500 mt-1">الخميس، 12 أكتوبر 2025 | نسبة الحضور اليوم: <span class="text-green-600 font-bold">96%</span></p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="bg-androRed text-white px-4 py-2 rounded-full text-sm hover:bg-red-600 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>قرار إداري جديد</span>
+                </button>
+                <div class="h-8 w-px bg-gray-300"></div>
+                <button class="relative w-10 h-10 bg-white rounded-full flex items-center justify-center border border-gray-200 shadow-sm hover:text-androRed transition">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic Content Container -->
+        <div id="content-area" class="flex-1 overflow-y-auto p-8 scrollbar-hide">
+            
+            <!-- 1. DASHBOARD OVERVIEW -->
+            <section id="view-dashboard" class="fade-in">
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <!-- Total Employees -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm mb-1">إجمالي الموظفين</p>
+                            <h3 class="text-3xl font-extrabold text-gray-800">42</h3>
+                            <p class="text-green-600 text-xs mt-2"><i class="fa-solid fa-arrow-up"></i> +3 هذا الشهر</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-50 text-androBlue rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-users"></i></div>
+                    </div>
+                    <!-- Attendance -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm mb-1">الحضور اليوم</p>
+                            <h3 class="text-3xl font-extrabold text-gray-800">38</h3>
+                            <p class="text-yellow-600 text-xs mt-2">4 في إجازة / عمل عن بعد</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-50 text-green-600 rounded-full flex items-center justify-center text-xl"><i class="fa-regular fa-calendar-check"></i></div>
+                    </div>
+                    <!-- Pending Requests -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between cursor-pointer hover:bg-gray-50" onclick="switchTab('requests')">
+                        <div>
+                            <p class="text-gray-500 text-sm mb-1">طلبات معلقة</p>
+                            <h3 class="text-3xl font-extrabold text-androRed">7</h3>
+                            <p class="text-gray-400 text-xs mt-2">إجازات، عهد، خطابات</p>
+                        </div>
+                        <div class="w-12 h-12 bg-red-50 text-androRed rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-inbox"></i></div>
+                    </div>
+                    <!-- Payroll Status -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm mb-1">رواتب أكتوبر</p>
+                            <h3 class="text-3xl font-extrabold text-gray-800">92%</h3>
+                            <p class="text-blue-600 text-xs mt-2">جاهزة للاعتماد</p>
+                        </div>
+                        <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Headcount Chart -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-gray-800 text-lg">توزيع الموظفين حسب القسم</h3>
+                            <button class="text-gray-400 hover:text-androRed"><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                        <div class="h-64"><canvas id="headcountChart"></canvas></div>
+                    </div>
+                    <!-- Expiring Documents -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h3 class="font-bold text-gray-800 text-lg mb-4">تنبيهات الوثائق (Expiry)</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3 p-3 bg-red-50 rounded-lg border border-red-100">
+                                <div class="text-center bg-white w-10 h-10 rounded flex flex-col items-center justify-center shadow-sm text-xs font-bold text-red-600">
+                                    <span>OCT</span><span>15</span>
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-bold text-gray-800">إقامة: محمد علي (مطور)</h5>
+                                    <p class="text-xs text-red-500">تنتهي خلال 3 أيام</p>
+                                </div>
+                                <button class="mr-auto text-xs bg-white border border-gray-300 px-2 py-1 rounded hover:bg-gray-100">تجديد</button>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-yellow-50 rounded-lg border border-yellow-100">
+                                <div class="text-center bg-white w-10 h-10 rounded flex flex-col items-center justify-center shadow-sm text-xs font-bold text-yellow-600">
+                                    <span>NOV</span><span>01</span>
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-bold text-gray-800">رخصة البلدية (الفرع)</h5>
+                                    <p class="text-xs text-yellow-600">تنتهي خلال 20 يوم</p>
+                                </div>
+                                <button class="mr-auto text-xs bg-white border border-gray-300 px-2 py-1 rounded hover:bg-gray-100">تجديد</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. EMPLOYEES LIST -->
+            <section id="view-employees" class="hidden fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex gap-2">
+                        <input type="text" placeholder="بحث باسم الموظف..." class="bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm w-64 focus:outline-none focus:border-androRed">
+                        <select class="bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm outline-none"><option>جميع الأقسام</option><option>التقنية</option><option>الطبية</option></select>
+                    </div>
+                    <button class="bg-androBlue text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 flex items-center gap-2"><i class="fa-solid fa-user-plus"></i> إضافة موظف</button>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <table class="w-full text-sm text-right">
+                        <thead class="bg-gray-50 text-gray-500">
+                            <tr>
+                                <th class="px-6 py-4">الاسم</th>
+                                <th class="px-6 py-4">المنصب</th>
+                                <th class="px-6 py-4">القسم</th>
+                                <th class="px-6 py-4">تاريخ التعيين</th>
+                                <th class="px-6 py-4">الحالة</th>
+                                <th class="px-6 py-4">الإجراء</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gray-200 overflow-hidden"><img src="https://ui-avatars.com/api/?name=Ali+Ahmed&background=random" alt=""></div>
+                                    <span class="font-bold text-gray-800">علي أحمد</span>
+                                </td>
+                                <td class="px-6 py-4">Senior Developer</td>
+                                <td class="px-6 py-4">تطوير البرمجيات</td>
+                                <td class="px-6 py-4">01/03/2022</td>
+                                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">نشط</span></td>
+                                <td class="px-6 py-4"><button class="text-androBlue hover:underline">الملف</button></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gray-200 overflow-hidden"><img src="https://ui-avatars.com/api/?name=Sarah+Khalid&background=random" alt=""></div>
+                                    <span class="font-bold text-gray-800">سارة خالد</span>
+                                </td>
+                                <td class="px-6 py-4">HR Specialist</td>
+                                <td class="px-6 py-4">الموارد البشرية</td>
+                                <td class="px-6 py-4">15/06/2023</td>
+                                <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">نشط</span></td>
+                                <td class="px-6 py-4"><button class="text-androBlue hover:underline">الملف</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 3. RECRUITMENT -->
+            <section id="view-recruitment" class="hidden fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-4 rounded-lg border-t-4 border-t-blue-500 shadow-sm">
+                        <h4 class="font-bold text-gray-800 mb-2">وظائف مفتوحة</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm p-2 bg-gray-50 rounded"><span>Full-stack Dev</span><span class="bg-blue-100 text-blue-600 px-2 rounded text-xs">3 مرشحين</span></div>
+                            <div class="flex justify-between text-sm p-2 bg-gray-50 rounded"><span>Sales Rep</span><span class="bg-blue-100 text-blue-600 px-2 rounded text-xs">1 مرشح</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-t-4 border-t-yellow-500 shadow-sm">
+                        <h4 class="font-bold text-gray-800 mb-2">مقابلات اليوم</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-sm p-2 border-b border-gray-100">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span>10:00 ص - خالد العتيبي (Dev)</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm p-2 border-b border-gray-100">
+                                <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                                <span>02:00 م - هند فهد (Marketing)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. PAYROLL -->
+            <section id="view-payroll" class="hidden fade-in">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                    <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">مسير رواتب شهر أكتوبر 2025</h3>
+                            <p class="text-gray-500 text-sm">الحالة: <span class="text-yellow-600 font-bold">بانتظار الاعتماد</span></p>
+                        </div>
+                        <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition shadow-sm flex items-center gap-2">
+                            <i class="fa-solid fa-check"></i> اعتماد وإرسال للمالية
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="text-xs text-gray-500">إجمالي الرواتب الأساسية</p>
+                            <p class="font-bold text-gray-800 text-lg">345,000 ر.س</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="text-xs text-gray-500">بدل السكن والنقل</p>
+                            <p class="font-bold text-gray-800 text-lg">85,000 ر.س</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="text-xs text-gray-500">الخصومات (غياب/تأخير)</p>
+                            <p class="font-bold text-red-500 text-lg">-2,400 ر.س</p>
+                        </div>
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                            <p class="text-xs text-blue-600">صافي المبلغ المحول</p>
+                            <p class="font-bold text-blue-800 text-lg">427,600 ر.س</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. REQUESTS -->
+            <section id="view-requests" class="hidden fade-in">
+                <h3 class="font-bold text-gray-800 mb-4">الطلبات الواردة</h3>
+                <div class="space-y-3">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center"><i class="fa-solid fa-plane"></i></div>
+                            <div>
+                                <h5 class="font-bold text-gray-800 text-sm">طلب إجازة سنوية</h5>
+                                <p class="text-xs text-gray-500">من: فهد الدوسري (14 يوم) | الرصيد المتبقي: 20 يوم</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="bg-green-100 text-green-700 px-3 py-1 rounded text-xs hover:bg-green-200">موافقة</button>
+                            <button class="bg-red-100 text-red-700 px-3 py-1 rounded text-xs hover:bg-red-200">رفض</button>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center"><i class="fa-solid fa-file-contract"></i></div>
+                            <div>
+                                <h5 class="font-bold text-gray-800 text-sm">طلب تعريف بالراتب</h5>
+                                <p class="text-xs text-gray-500">من: سارة خالد | الغرض: بنك الراجحي</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="bg-androBlue text-white px-3 py-1 rounded text-xs hover:bg-blue-700">إصدار تلقائي</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. MY PROFILE (MANSOOR) -->
+            <section id="view-my-profile" class="hidden fade-in">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 flex items-start gap-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-l from-green-600 to-green-400 opacity-10"></div>
+                    <img src="https://ui-avatars.com/api/?name=Mansoor+Alyami&background=10B981&color=fff&size=128" class="w-24 h-24 rounded-full border-4 border-white shadow-md z-10">
+                    <div class="flex-1 z-10 pt-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800">منصور اليامي</h2>
+                                <p class="text-gray-500">مدير الشؤون الإدارية وعضو مجلس الإدارة | الرقم الوظيفي: 1005</p>
+                            </div>
+                            <button class="bg-gray-100 text-gray-600 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"><i class="fa-solid fa-pen ml-2"></i>تعديل</button>
+                        </div>
+                        <div class="flex gap-6 mt-6">
+                            <div class="text-center"><div class="text-xs text-gray-500 mb-1">تاريخ الانضمام</div><div class="font-medium text-gray-800">11/03/1442 هـ</div></div>
+                            <div class="text-center"><div class="text-xs text-gray-500 mb-1">عدد الأسهم</div><div class="font-medium text-gray-800">30,000 سهم</div></div>
+                            <div class="text-center"><div class="text-xs text-gray-500 mb-1">الحالة</div><div class="font-medium text-green-600">على رأس العمل</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                        <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">أرصدتي</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center"><span class="text-sm flex gap-2 items-center"><i class="fa-solid fa-umbrella-beach text-blue-500"></i> إجازة سنوية</span><span class="font-bold">45 يوم</span></div>
+                            <div class="flex justify-between items-center"><span class="text-sm flex gap-2 items-center"><i class="fa-solid fa-money-bill text-green-500"></i> عهدة نقدية</span><span class="font-bold">5,000 ر.س</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:col-span-2">
+                        <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">صلاحيات النظام (Admin Permissions)</h3>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">إدارة الموظفين</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">اعتماد الرواتب</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">إصدار القرارات</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">الاطلاع على العقود</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="h-10"></div>
+        </div>
+    </main>
+
+    <!-- HR AI ASSISTANT -->
+    <aside id="aiPanel" class="w-96 bg-white shadow-2xl z-30 flex flex-col border-r border-gray-100 relative shrink-0">
+        <!-- Header -->
+        <div class="h-20 bg-gradient-to-br from-[#1e293b] to-[#0f172a] flex items-center justify-between px-6 text-white shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-green-500/50"><i class="fa-solid fa-user-tie text-green-400 text-lg"></i></div>
+                <div><h3 class="font-bold text-sm text-white">مستشار الموارد البشرية</h3><p class="text-[10px] text-gray-400">AndroGov AI - HR Mode</p></div>
+            </div>
+            <button onclick="toggleAI()" class="text-white/50 hover:text-white transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <!-- Chat -->
+        <div class="flex-1 bg-[#F1F5F9] p-4 overflow-y-auto space-y-4 text-sm">
+            <div class="flex justify-end"><div class="bg-white text-gray-800 p-4 rounded-2xl rounded-tr-none shadow-sm border border-gray-200 max-w-[90%]"><p class="text-gray-600">أهلاً أستاذ منصور. كيف يمكنني مساعدتك في الشؤون الإدارية اليوم؟</p></div></div>
+            <div class="flex justify-start"><div class="bg-androBlue text-white p-3 rounded-2xl rounded-tl-none shadow-md max-w-[90%]">اكتب لي مسودة إنذار لموظف بسبب الغياب المتكرر.</div></div>
+            <div class="flex justify-end"><div class="bg-white text-gray-800 p-4 rounded-2xl rounded-tr-none shadow-sm border border-gray-200 max-w-[90%]">
+                <p class="font-bold mb-2 text-gray-800">مسودة قرار إداري (إنذار أول)</p>
+                <p class="text-xs text-gray-600 mb-2 bg-gray-50 p-2 rounded border border-gray-100">
+                    استناداً للمادة (..) من لائحة تنظيم العمل، ونظراً لغيابكم أيام (...) دون عذر مقبول.<br>
+                    نفيدكم بتوجيه إنذار كتابي أول، ونأمل الالتزام مستقبلاً تفادياً للعقوبات الأشد.
+                </p>
+                <button class="text-[10px] bg-androRed text-white px-2 py-1 rounded hover:bg-red-600">تصدير PDF</button>
+            </div></div>
+        </div>
+        <!-- Input -->
+        <div class="p-4 bg-white border-t border-gray-100 shrink-0">
+            <div class="flex gap-2"><input type="text" placeholder="اطلب صيغة عقد، استفسار نظامي..." class="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-androBlue"><button class="bg-androDark text-white w-12 h-12 rounded-lg flex items-center justify-center hover:bg-slate-700 shadow-lg"><i class="fa-solid fa-paper-plane"></i></button></div>
+        </div>
+    </aside>
+
+    <!-- Floating Toggle -->
+    <button id="aiToggleBtn" onclick="toggleAI()" class="fixed bottom-8 left-8 w-16 h-16 bg-androDark text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all z-50 hidden border-4 border-gray-200"><i class="fa-solid fa-user-tie text-2xl text-green-400"></i></button>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('section').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(`view-${tabId}`);
+            if(target) target.classList.remove('hidden');
+            document.querySelectorAll('.sidebar-item').forEach(el => { el.classList.remove('active', 'text-gray-800'); el.classList.add('text-gray-500'); });
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if(activeNav) { activeNav.classList.add('active', 'text-gray-800'); activeNav.classList.remove('text-gray-500'); }
+        }
+
+        function toggleAI() {
+            const panel = document.getElementById('aiPanel');
+            const btn = document.getElementById('aiToggleBtn');
+            if (!panel.classList.contains('ai-closed')) {
+                panel.classList.add('ai-closed');
+                setTimeout(() => { panel.classList.add('hidden'); btn.classList.remove('hidden'); }, 300);
+            } else {
+                panel.classList.remove('hidden');
+                setTimeout(() => { panel.classList.remove('ai-closed'); }, 10);
+                btn.classList.add('hidden');
+            }
+        }
+
+        // Headcount Chart
+        const ctx = document.getElementById('headcountChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['التقنية', 'المبيعات', 'الطبية', 'الموارد البشرية', 'المالية'],
+                datasets: [{
+                    label: 'عدد الموظفين',
+                    data: [15, 8, 10, 4, 5],
+                    backgroundColor: ['#4267B2', '#7D34C4', '#22D3EE', '#10B981', '#F59E0B'],
+                    borderRadius: 5
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+        });
+    </script>
+</body>
+</html>
