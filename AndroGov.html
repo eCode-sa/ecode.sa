@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AndroGov | نظام إدارة العمليات الموحد</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#FB4747',
+                        brandBlue: '#4267B2',
+                        brandDark: '#1E293B',
+                        brandGray: '#F1F5F9',
+                        // Department Accents
+                        ceoGold: '#D97706',
+                        grcRed: '#DC2626',
+                        finGreen: '#059669',
+                        hrPurple: '#7C3AED',
+                        medCyan: '#0891B2',
+                        techBlue: '#2563EB',
+                        opsSlate: '#475569'
+                    },
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background: #F8FAFC; overflow: hidden; }
+        
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background-color: #CBD5E1; border-radius: 20px; }
+        
+        /* Animations */
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .slide-in-right { animation: slideInRight 0.3s ease-out forwards; }
+        @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+        /* Sidebar Item */
+        .nav-item.active { background: #F1F5F9; border-right: 4px solid currentColor; font-weight: 700; }
+        
+        /* AI Chat Bubble */
+        .chat-bubble { max-width: 85%; padding: 12px; border-radius: 12px; font-size: 0.85rem; line-height: 1.5; margin-bottom: 10px; position: relative; }
+        .chat-user { background: #E2E8F0; color: #1E293B; margin-left: auto; border-bottom-left-radius: 0; }
+        .chat-ai { color: white; margin-right: auto; border-bottom-right-radius: 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="flex h-screen w-screen text-slate-800">
+
+    <!-- ================= LOGIN SCREEN (Overlay) ================= -->
+    <div id="loginOverlay" class="fixed inset-0 z-50 bg-slate-900 flex items-center justify-center p-4 transition-all duration-500">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-6xl h-[85vh] flex overflow-hidden">
+            <!-- Left Side: Branding -->
+            <div class="w-1/3 bg-gradient-to-br from-brandDark to-slate-800 p-10 flex flex-col justify-between text-white relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                <div>
+                    <!-- Updated Logo -->
+                    <img src="https://ait.sa/wp-content/uploads/2024/03/cropped-Square-Logo.png" alt="Andromeda Logo" class="w-24 h-24 mb-6 rounded-2xl shadow-lg bg-white p-1 object-contain">
+                    <h1 class="text-4xl font-bold mb-2">AndroGov</h1>
+                    <p class="text-slate-400 text-sm">نظام تشغيل الشركة الموحد v4.0</p>
+                </div>
+                <div class="space-y-4 text-sm text-slate-300">
+                    <p><i class="fa-solid fa-check-circle text-green-400 ml-2"></i>أنظمة الموارد البشرية والرواتب</p>
+                    <p><i class="fa-solid fa-check-circle text-green-400 ml-2"></i>الحوكمة والامتثال (GRC)</p>
+                    <p><i class="fa-solid fa-check-circle text-green-400 ml-2"></i>إدارة المنتجات الطبية</p>
+                    <p><i class="fa-solid fa-check-circle text-green-400 ml-2"></i>العمليات والدعم الفني</p>
+                </div>
+                <div class="text-xs text-slate-500">© 2025 Andromeda IT. All rights reserved.</div>
+            </div>
+
+            <!-- Right Side: Role Selection -->
+            <div class="w-2/3 p-10 overflow-y-auto custom-scroll bg-slate-50">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">اختر بوابة الدخول (Role Demo)</h2>
+                
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Cards generated by JS -->
+                    <div id="roleGrid" class="contents"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MAIN APP LAYOUT ================= -->
+    
+    <!-- 1. SIDEBAR -->
+    <aside class="w-64 bg-white border-l border-slate-200 flex flex-col shrink-0 z-20 transition-all duration-300" id="mainSidebar">
+        <!-- Logo Header -->
+        <div class="h-20 flex items-center px-6 border-b border-slate-100 cursor-pointer" onclick="logout()">
+            <!-- Updated Sidebar Logo -->
+            <img src="https://ait.sa/wp-content/uploads/2024/03/cropped-Square-Logo.png" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm bg-white p-0.5 object-contain">
+            <div class="mr-3">
+                <h1 class="font-bold text-lg text-slate-800 tracking-tight">AndroGov</h1>
+                <p id="deptName" class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">SYSTEM</p>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav id="navMenu" class="flex-1 overflow-y-auto custom-scroll p-3 space-y-1">
+            <!-- Nav Items injected by JS -->
+        </nav>
+
+        <!-- User Profile Widget (Bottom) -->
+        <div id="sidebarProfile" class="p-4 bg-slate-50 border-t border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors" onclick="loadPage('profile')">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <img id="userAvatar" src="" class="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover">
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p id="userName" class="text-sm font-bold text-slate-800 truncate">User</p>
+                    <p id="userTitle" class="text-[10px] text-slate-500 truncate">Role</p>
+                </div>
+                <i class="fa-solid fa-chevron-left text-xs text-slate-300"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 2. CONTENT AREA -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden bg-[#F8FAFC] relative">
+        
+        <!-- Top Header -->
+        <header class="h-20 bg-white/90 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-8 shrink-0 z-10">
+            <div>
+                <h2 id="pageHeaderTitle" class="text-2xl font-bold text-slate-800">لوحة القيادة</h2>
+                <p id="pageHeaderSub" class="text-xs text-slate-500 mt-1">آخر تحديث: منذ لحظات</p>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div id="quickActionBtn"></div> <!-- Dynamic Button -->
+                
+                <div class="h-8 w-px bg-slate-200"></div>
+                
+                <button class="relative w-10 h-10 bg-white rounded-full border border-slate-200 flex items-center justify-center hover:text-brandRed hover:border-brandRed transition-colors shadow-sm">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+                
+                <button onclick="logout()" class="text-slate-400 hover:text-red-600 transition-colors text-sm font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-power-off"></i> خروج
+                </button>
+            </div>
+        </header>
+
+        <!-- SCROLLABLE PAGE CONTENT -->
+        <div id="mainContainer" class="flex-1 overflow-y-auto custom-scroll p-8 pb-20">
+            <!-- Dynamic Content Injected Here -->
+        </div>
+
+    </main>
+
+    <!-- 3. AI ASSISTANT PANEL (Collapsible) -->
+    <aside id="aiSidebar" class="w-96 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-all duration-300 relative z-20 shadow-xl">
+        <!-- AI Header -->
+        <div id="aiHeader" class="h-20 flex items-center justify-between px-6 shrink-0 text-white bg-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
+                    <i id="aiIcon" class="fa-solid fa-robot text-lg"></i>
+                </div>
+                <div>
+                    <h3 id="aiName" class="font-bold text-sm">المساعد الذكي</h3>
+                    <p id="aiRole" class="text-[10px] opacity-80">General Mode</p>
+                </div>
+            </div>
+            <button onclick="toggleAI()" class="text-white/60 hover:text-white transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+
+        <!-- Chat Area -->
+        <div id="chatArea" class="flex-1 bg-slate-50 p-4 overflow-y-auto custom-scroll space-y-4">
+            <!-- Messages go here -->
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-4 bg-white border-t border-slate-100 shrink-0">
+            <!-- Quick Chips -->
+            <div id="aiChips" class="flex gap-2 overflow-x-auto custom-scroll pb-2 mb-2"></div>
+            
+            <div class="flex gap-2">
+                <input type="text" placeholder="اكتب طلبك هنا..." class="flex-1 bg-slate-100 border-0 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brandBlue transition-all">
+                <button class="bg-slate-800 text-white w-12 rounded-xl flex items-center justify-center hover:bg-slate-700 transition shadow-lg">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Floating AI Toggle (When Closed) -->
+    <button id="aiFloatBtn" onclick="toggleAI()" class="fixed bottom-8 left-8 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white z-30 hidden hover:scale-110 transition-transform border-4 border-white bg-slate-800">
+        <i class="fa-solid fa-robot text-xl"></i>
+    </button>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // ================== DATA STORE ==================
+        const db = {
+            roles: {
+                'ceo': {
+                    id: 'ceo', name: 'هشام السحيباني', title: 'الرئيس التنفيذي', color: 'ceoGold', 
+                    bgClass: 'bg-amber-600', icon: 'fa-chess-king', dept: 'EXECUTIVE SUITE',
+                    welcome: 'أهلاً أستاذ هشام. القوائم المالية الأولية لـ Q3 جاهزة للمراجعة.',
+                    stats: [
+                        { label: 'الإيرادات (YTD)', value: '12.4M', trend: '+15%', color: 'green' },
+                        { label: 'التدفق النقدي', value: '4.2M', trend: 'Healthy', color: 'blue' },
+                        { label: 'موافقات معلقة', value: '3', trend: 'Urgent', color: 'red' }
+                    ],
+                    menu: [
+                        { id: 'dashboard', label: 'الرؤية العامة', icon: 'fa-chart-line' },
+                        { id: 'approvals', label: 'مركز الاعتماد', icon: 'fa-file-signature' },
+                        { id: 'finance', label: 'التقارير المالية', icon: 'fa-coins' },
+                        { id: 'strategy', label: 'الخطة الاستراتيجية', icon: 'fa-map' },
+                        { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
+                    ],
+                    action: { label: 'توقيع عقود', icon: 'fa-pen-nib' }
+                },
+                'grc': {
+                    id: 'grc', name: 'أيمن المغربي', title: 'مسؤول الحوكمة (GRCO)', color: 'grcRed', 
+                    bgClass: 'bg-red-600', icon: 'fa-scale-balanced', dept: 'GOVERNANCE',
+                    welcome: 'مرحباً أستاذ أيمن. هناك 3 سياسات تحتاج للتحديث لتوافق مع نظام الشركات الجديد.',
+                    stats: [
+                        { label: 'نسبة الامتثال', value: '94%', trend: '+2%', color: 'green' },
+                        { label: 'المخاطر النشطة', value: '2', trend: 'High', color: 'red' },
+                        { label: 'السياسات', value: '15', trend: 'Updated', color: 'blue' }
+                    ],
+                    menu: [
+                        { id: 'dashboard', label: 'مركز الامتثال', icon: 'fa-shield-halved' },
+                        { id: 'risks', label: 'سجل المخاطر', icon: 'fa-triangle-exclamation' },
+                        { id: 'policies', label: 'السياسات واللوائح', icon: 'fa-file-contract' },
+                        { id: 'audit', label: 'التدقيق الداخلي', icon: 'fa-magnifying-glass' },
+                        { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
+                    ],
+                    action: { label: 'إضافة سياسة', icon: 'fa-plus' }
+                },
+                'hr': {
+                    id: 'hr', name: 'منصور اليامي', title: 'مدير الشؤون الإدارية', color: 'hrPurple', 
+                    bgClass: 'bg-purple-600', icon: 'fa-users-gear', dept: 'HR & ADMIN',
+                    welcome: 'أهلاً أستاذ منصور. نسبة الحضور اليوم 96%. هناك 4 عقود تنتهي هذا الشهر.',
+                    stats: [
+                        { label: 'عدد الموظفين', value: '42', trend: '+3', color: 'blue' },
+                        { label: 'الحضور اليوم', value: '38', trend: '96%', color: 'green' },
+                        { label: 'انتهاء وثائق', value: '5', trend: 'Warning', color: 'yellow' }
+                    ],
+                    menu: [
+                        { id: 'dashboard', label: 'شؤون الموظفين', icon: 'fa-users' },
+                        { id: 'recruitment', label: 'التوظيف', icon: 'fa-user-plus' },
+                        { id: 'payroll', label: 'الرواتب', icon: 'fa-money-bill' },
+                        { id: 'govt', label: 'العلاقات الحكومية', icon: 'fa-passport' },
+                        { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
+                    ],
+                    action: { label: 'قرار إداري', icon: 'fa-pen' }
+                },
+                'finance': {
+                    id: 'finance', name: 'محمد البخيتي', title: 'المدير المالي (CFO)', color: 'finGreen', 
+                    bgClass: 'bg-emerald-600', icon: 'fa-money-bill-trend-up', dept: 'FINANCE',
+                    welcome: 'أهلاً أستاذ محمد. تم استلام فاتورة من مورد "أمازون" بقيمة 50,000 ريال للموافقة.',
+                    stats: [
+                        { label: 'السيولة النقدية', value: '4.2M', trend: 'Stable', color: 'green' },
+                        { label: 'مصاريف (MTD)', value: '850k', trend: 'On Budget', color: 'blue' },
+                        { label: 'فواتير مستحقة', value: '4', trend: 'Due Soon', color: 'yellow' }
+                    ],
+                    menu: [
+                        { id: 'dashboard', label: 'المركز المالي', icon: 'fa-chart-pie' },
+                        { id: 'invoices', label: 'الموافقات المالية', icon: 'fa-file-invoice-dollar' },
+                        { id: 'budget', label: 'الموازنات', icon: 'fa-scale-balanced' },
+                        { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
+                    ],
+                    action: { label: 'تقرير مالي', icon: 'fa-print' }
+                },
+                'medical': {
+                    id: 'medical', name: 'د. وعد حسين', title: 'المشرف الطبي العام', color: 'medCyan', 
+                    bgClass: 'bg-cyan-600', icon: 'fa-heart-pulse', dept: 'MEDICAL PRODUCT',
+                    welcome: 'مرحباً دكتورة وعد. تم تحديث بروتوكول وزارة الصحة للوصفات المخدرة. هل أطلعك عليه؟',
+                    stats: [
+                        { label: 'امتثال الأنظمة', value: '100%', trend: 'MOH', color: 'green' },
+                        { label: 'تذاكر طبية', value: '5', trend: 'Clients', color: 'red' },
+                        { label: 'ميزات قيد التطوير', value: '8', trend: 'Dev', color: 'blue' }
+                    ],
+                    menu: [
+                        { id: 'dashboard', label: 'الإشراف الطبي', icon: 'fa-stethoscope' },
+                        { id: 'compliance', label: 'الامتثال (Compliance)', icon: 'fa-clipboard-check' },
+                        { id: 'requirements', label: 'المتطلبات الطبية', icon: 'fa-list-check' },
+                        { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
+                    ],
+                    action: { label: 'مراجعة ميزة', icon: 'fa-magnifying-glass-chart' }
+                },
+                'tech_lead': {
+                    id: 'tech_lead', name: 'رند الحوراني', title: 'مدير الفريق التقني', color: 'techBlue', 
+                    bgClass: 'bg-blue-600', icon: 'fa-code', dept: 'TECH TEAM (JOR)',
+                    welcome: 'Hi Rand. Server load is stable. 2 Pull Requests waiting for review.',
+                    stats: [
+                        { label: 'Active Sprints', value: '2', trend: 'On Track', color: 'green' },
+                        { label: 'Pending PRs', value: '5', trend: 'Review', color: 'blue' },
+                        { label: 'Bugs', value: '0', trend: 'Critical', color: 'gray' }
+                    ],
+                    menu: [
+                        { id: 'dashboard', label: 'Sprint Board', icon: 'fa-kanban' },
+                        { id: 'servers', label: 'System Status', icon: 'fa-server' },
+                        { id: 'repo', label: 'Repository', icon: 'fa-code-branch' },
+                        { id: 'profile', label: 'My Profile', icon: 'fa-id-card' }
+                    ],
+                    action: { label: 'Deploy', icon: 'fa-cloud-arrow-up' }
+                },
+                'pssc': {
+                    id: 'pssc', name: 'هادي', title: 'منسق المشتريات (PSSC)', color: 'opsSlate', 
+                    bgClass: 'bg-slate-600', icon: 'fa-box-open', dept: 'PROCUREMENT',
+                    welcome: 'أهلاً هادي. هناك طلب شراء أثاث جديد يحتاج إلى 3 عروض أسعار.',
+                    stats: [
+                        { label: 'طلبات جديدة', value: '4', trend: 'New', color: 'blue' },
+                        { label: 'تحت التوصيل', value: '12', trend: 'Pending', color: 'yellow' },
+                        { label: 'الزوار اليوم', value: '15', trend: 'Reception', color: 'gray' }
+                    ],
+                    menu: [
+                        { id: 'dashboard', label: 'المشتريات', icon: 'fa-cart-shopping' },
+                        { id: 'suppliers', label: 'الموردين', icon: 'fa-truck' },
+                        { id: 'assets', label: 'العهد والأصول', icon: 'fa-barcode' },
+                        { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
+                    ],
+                    action: { label: 'أمر شراء', icon: 'fa-file-contract' }
+                },
+                'cs': {
+                    id: 'cs', name: 'خالد', title: 'أخصائي خدمة عملاء', color: 'hrPurple', 
+                    bgClass: 'bg-pink-600', icon: 'fa-headset', dept: 'CUSTOMER SUCCESS',
+                    welcome: 'صباح الخير خالد. عميل "مستشفى الحياة" يطلب دعم عاجل.',
+                    stats: [
+                        { label: 'تذاكر مفتوحة', value: '5', trend: '2 High', color: 'red' },
+                        { label: 'رضا العملاء', value: '4.8', trend: 'Excellent', color: 'green' },
+                        { label: 'مواعيد اليوم', value: '3', trend: 'Meetings', color: 'blue' }
+                    ],
+                    menu: [
+                        { id: 'dashboard', label: 'لوحة الدعم', icon: 'fa-headset' },
+                        { id: 'tickets', label: 'التذاكر', icon: 'fa-ticket' },
+                        { id: 'clients', label: 'العملاء', icon: 'fa-address-book' },
+                        { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
+                    ],
+                    action: { label: 'تذكرة جديدة', icon: 'fa-plus' }
+                }
+            },
+            
+            // PROFILE DATA MOCKUP
+            profiles: {
+                'ceo': { id: '1001', join: '2014', manager: 'مجلس الإدارة', assets: ['ختم الشركة', 'Laptop MacBook Pro'], leave: 30 },
+                'grc': { id: '1045', join: '2020', manager: 'الرئيس التنفيذي', assets: ['Laptop Dell XPS', 'Access Card L3'], leave: 25 },
+                'hr': { id: '1005', join: '2020', manager: 'الرئيس التنفيذي', assets: ['Laptop HP', 'Master Key'], leave: 45 },
+                'finance': { id: '1002', join: '2015', manager: 'الرئيس التنفيذي', assets: ['Laptop Lenovo', 'Bank Token'], leave: 25 },
+                'medical': { id: '3001', join: '2024', manager: 'الرئيس التنفيذي', assets: ['iPad Pro', 'Medical Access'], leave: 28 },
+                'tech_lead': { id: '4001', join: '2021', manager: 'مدير التطوير', assets: ['MacBook Pro M2', 'Server Access'], leave: 21 },
+                'pssc': { id: '5001', join: '2022', manager: 'المدير المالي', assets: ['Desktop PC', 'Warehouse Key'], leave: 21 },
+                'cs': { id: '2040', join: '2023', manager: 'مدير المبيعات', assets: ['Laptop HP', 'Headset Jabra'], leave: 15 }
+            }
+        };
+
+        let currentRole = null;
+
+        // ================== INIT & LOGIN ==================
+        
+        function initLoginScreen() {
+            const grid = document.getElementById('roleGrid');
+            grid.innerHTML = '';
+            
+            Object.values(db.roles).forEach(role => {
+                grid.innerHTML += `
+                    <div onclick="login('${role.id}')" class="bg-white p-4 rounded-xl border border-slate-200 cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all group">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 ${role.bgClass} text-white rounded-full flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid ${role.icon}"></i>
+                            </div>
+                            <div class="text-right flex-1 min-w-0">
+                                <h4 class="font-bold text-sm text-slate-800 truncate">${role.title}</h4>
+                                <p class="text-[10px] text-slate-500 truncate">${role.name}</p>
+                            </div>
+                        </div>
+                        <div class="text-[10px] bg-slate-50 text-slate-400 py-1 px-2 rounded border border-slate-100 text-center group-hover:bg-slate-100">
+                            Login as ${role.id.toUpperCase()}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function login(roleId) {
+            currentRole = db.roles[roleId];
+            
+            // Hide Login Overlay
+            const overlay = document.getElementById('loginOverlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.classList.add('hidden'), 500);
+
+            // Configure UI
+            configureSidebar();
+            configureHeader();
+            loadPage('dashboard'); // Load Default Page
+            initAI();
+        }
+
+        function logout() {
+            const overlay = document.getElementById('loginOverlay');
+            overlay.classList.remove('hidden');
+            // Force reflow
+            void overlay.offsetWidth; 
+            overlay.style.opacity = '1';
+            
+            // Optional: Close AI panel if open to reset view
+            const aiPanel = document.getElementById('aiSidebar');
+            if (!aiPanel.classList.contains('ai-closed')) {
+                 toggleAI();
+            }
+        }
+
+        function resetSystem() {
+            logout();
+        }
+
+        // ================== UI CONFIGURATION ==================
+
+        function configureSidebar() {
+            document.getElementById('deptName').innerText = currentRole.dept;
+
+            // Nav Items
+            const nav = document.getElementById('navMenu');
+            nav.innerHTML = '';
+            currentRole.menu.forEach(item => {
+                nav.innerHTML += `
+                    <button onclick="loadPage('${item.id}')" id="nav-${item.id}" class="nav-item w-full flex items-center gap-4 px-4 py-3 text-sm font-medium text-slate-600 rounded-xl hover:bg-slate-50 transition-all mb-1">
+                        <i class="fa-solid ${item.icon} text-lg w-6 text-center opacity-70"></i>
+                        <span>${item.label}</span>
+                    </button>
+                `;
+            });
+
+            // Profile Widget
+            document.getElementById('userAvatar').src = `https://ui-avatars.com/api/?name=${currentRole.name}&background=random&color=fff`;
+            document.getElementById('userName').innerText = currentRole.name;
+            document.getElementById('userTitle').innerText = currentRole.title;
+        }
+
+        function configureHeader() {
+            // Quick Action Button
+            const btnContainer = document.getElementById('quickActionBtn');
+            btnContainer.innerHTML = `
+                <button class="${currentRole.bgClass} text-white px-5 py-2 rounded-full text-sm hover:opacity-90 transition shadow-md flex items-center gap-2">
+                    <i class="fa-solid ${currentRole.action.icon}"></i>
+                    <span>${currentRole.action.label}</span>
+                </button>
+            `;
+        }
+
+        // ================== PAGE ROUTING & CONTENT ==================
+
+        function loadPage(pageId) {
+            // Update Active Nav
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active', 'text-slate-900', 'bg-slate-50'));
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if(activeNav) activeNav.classList.add('active', 'text-slate-900');
+
+            // Update Header Title
+            const menuLabel = currentRole.menu.find(m => m.id === pageId)?.label || 'صفحة النظام';
+            document.getElementById('pageHeaderTitle').innerText = menuLabel;
+
+            // Generate Content
+            const container = document.getElementById('mainContainer');
+            container.innerHTML = ''; // Clear current
+
+            if (pageId === 'dashboard') {
+                renderDashboard(container);
+            } else if (pageId === 'profile') {
+                renderProfile(container);
+            } else {
+                renderGenericPage(container, pageId, menuLabel);
+            }
+        }
+
+        function renderDashboard(container) {
+            // 1. KPIs Row
+            let kpiHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 fade-in">`;
+            currentRole.stats.forEach(stat => {
+                kpiHTML += `
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <p class="text-slate-400 text-xs font-medium mb-1">${stat.label}</p>
+                            <h3 class="text-3xl font-bold text-slate-800">${stat.value}</h3>
+                            <p class="text-${stat.color}-500 text-xs mt-2 font-bold bg-${stat.color}-50 inline-block px-2 py-0.5 rounded">${stat.trend}</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-${stat.color}-50 flex items-center justify-center text-${stat.color}-600 text-xl">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                    </div>
+                `;
+            });
+            kpiHTML += `</div>`;
+
+            // 2. Main Content (Chart & Feed)
+            let mainHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 fade-in" style="animation-delay: 0.1s">
+                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-slate-800">تحليل الأداء (Analytics)</h3>
+                            <select class="bg-slate-50 border-0 rounded-lg text-xs px-3 py-1"><option>شهري</option><option>سنوي</option></select>
+                        </div>
+                        <div class="h-64 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 border border-slate-100 border-dashed">
+                            <i class="fa-solid fa-chart-area text-4xl mb-2 block"></i>
+                            <span class="block">Interactive Chart Placeholder</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <h3 class="font-bold text-slate-800 mb-4">نشاطات حديثة</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-3">
+                                <div class="w-2 h-full bg-slate-200 rounded-full"></div>
+                                <div class="pb-4 border-b border-slate-50 last:border-0">
+                                    <p class="text-xs text-slate-400 mb-1">10:30 AM</p>
+                                    <p class="text-sm text-slate-700 font-medium">تسجيل دخول للنظام</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="w-2 h-full bg-blue-200 rounded-full"></div>
+                                <div class="pb-4 border-b border-slate-50 last:border-0">
+                                    <p class="text-xs text-slate-400 mb-1">09:15 AM</p>
+                                    <p class="text-sm text-slate-700 font-medium">تحديث بيانات من السيرفر</p>
+                                </div>
+                            </div>
+                             <div class="flex gap-3">
+                                <div class="w-2 h-full bg-green-200 rounded-full"></div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-1">أمس</p>
+                                    <p class="text-sm text-slate-700 font-medium">إغلاق 3 مهام</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = kpiHTML + mainHTML;
+        }
+
+        function renderProfile(container) {
+            const pData = db.profiles[currentRole.id];
+            
+            let html = `
+                <div class="fade-in">
+                    <!-- Header Card -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 mb-8 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-slate-800 to-slate-600 opacity-10"></div>
+                        <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
+                            <img src="https://ui-avatars.com/api/?name=${currentRole.name}&size=128" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
+                            <div class="text-center md:text-right flex-1">
+                                <h2 class="text-2xl font-bold text-slate-800">${currentRole.name}</h2>
+                                <p class="text-slate-500">${currentRole.title} | ${currentRole.dept}</p>
+                                <div class="flex gap-2 justify-center md:justify-start mt-4">
+                                    <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">الرقم الوظيفي: ${pData.id}</span>
+                                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-bold">نشط</span>
+                                </div>
+                            </div>
+                            <button class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-lg text-sm hover:bg-slate-50 shadow-sm">
+                                <i class="fa-solid fa-pen ml-2"></i>تحديث البيانات
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Details Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Employment Info -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                            <h3 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-50">المعلومات الوظيفية</h3>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">تاريخ الانضمام</span>
+                                    <span class="font-medium text-slate-800">${pData.join}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">المدير المباشر</span>
+                                    <span class="font-medium text-slate-800">${pData.manager}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">رصيد الإجازات</span>
+                                    <span class="font-bold text-green-600">${pData.leave} يوم</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assets -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                            <h3 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-50">سجل العهد (Assets)</h3>
+                            <ul class="space-y-3">
+                                ${pData.assets.map(asset => `
+                                    <li class="flex items-center gap-3 bg-slate-50 p-3 rounded-lg">
+                                        <div class="w-8 h-8 bg-white rounded flex items-center justify-center text-slate-400 shadow-sm"><i class="fa-solid fa-box"></i></div>
+                                        <span class="text-sm font-medium text-slate-700">${asset}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML = html;
+        }
+
+        function renderGenericPage(container, pageId, title) {
+            let html = `
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center py-20">
+                        <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 text-3xl mx-auto mb-6">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">${title}</h3>
+                        <p class="text-slate-500 max-w-md mx-auto">هذه الصفحة تمثل وحدة تشغيلية نشطة في النظام. يمكنك تخيل الجداول والبيانات هنا بناءً على الصلاحيات.</p>
+                        
+                        <div class="mt-8 flex justify-center gap-4">
+                            <button class="px-4 py-2 bg-slate-800 text-white rounded-lg text-sm hover:bg-slate-700 transition">إضافة سجل جديد</button>
+                            <button class="px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm hover:bg-slate-50 transition">تصدير PDF</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-slate-700 mb-4">سجلات حديثة (Demo Data)</h4>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+                            <table class="w-full text-sm text-right">
+                                <thead class="bg-slate-50 text-slate-500">
+                                    <tr>
+                                        <th class="px-6 py-4">المعرف</th>
+                                        <th class="px-6 py-4">العنوان</th>
+                                        <th class="px-6 py-4">الحالة</th>
+                                        <th class="px-6 py-4">التاريخ</th>
+                                        <th class="px-6 py-4">الإجراء</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 text-slate-700">
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-6 py-4 font-mono text-slate-400">#DOC-001</td>
+                                        <td class="px-6 py-4 font-bold">سجل تجريبي 1</td>
+                                        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">نشط</span></td>
+                                        <td class="px-6 py-4">2025-10-12</td>
+                                        <td class="px-6 py-4"><button class="text-brandBlue hover:underline">عرض</button></td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-6 py-4 font-mono text-slate-400">#DOC-002</td>
+                                        <td class="px-6 py-4 font-bold">سجل تجريبي 2</td>
+                                        <td class="px-6 py-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">معلق</span></td>
+                                        <td class="px-6 py-4">2025-10-11</td>
+                                        <td class="px-6 py-4"><button class="text-brandBlue hover:underline">عرض</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML = html;
+        }
+
+        // ================== AI ASSISTANT ==================
+
+        function initAI() {
+            // Set Header Color
+            document.getElementById('aiHeader').className = `h-20 flex items-center justify-between px-6 shrink-0 text-white transition-colors ${currentRole.bgClass}`;
+            document.getElementById('aiRole').innerText = `Assistant for: ${currentRole.title}`;
+            
+            // Clear Chat
+            const chatArea = document.getElementById('chatArea');
+            chatArea.innerHTML = '';
+            
+            // Welcome Message
+            addAIMessage(currentRole.welcome);
+
+            // Floating Button Color
+            document.getElementById('aiFloatBtn').className = `fixed bottom-8 left-8 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white z-30 hidden hover:scale-110 transition-transform border-4 border-white ${currentRole.bgClass}`;
+        }
+
+        function addAIMessage(text) {
+            const chatArea = document.getElementById('chatArea');
+            chatArea.innerHTML += `
+                <div class="flex justify-end fade-in">
+                    <div class="chat-bubble bg-white text-slate-700 shadow-sm border border-slate-100">
+                        <div class="flex items-center gap-2 mb-1 border-b border-slate-50 pb-1">
+                            <i class="fa-solid fa-robot text-xs text-${currentRole.color.replace('role', '').toLowerCase()}-500"></i>
+                            <span class="text-[10px] font-bold text-slate-400">AndroGov AI</span>
+                        </div>
+                        ${text}
+                    </div>
+                </div>
+            `;
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        function toggleAI() {
+            const sidebar = document.getElementById('aiSidebar');
+            const floatBtn = document.getElementById('aiFloatBtn');
+            const isHidden = sidebar.classList.contains('ai-closed');
+
+            if (isHidden) {
+                // OPEN
+                sidebar.classList.remove('hidden');
+                setTimeout(() => sidebar.classList.remove('ai-closed'), 10);
+                floatBtn.classList.add('hidden');
+            } else {
+                // CLOSE
+                sidebar.classList.add('ai-closed');
+                setTimeout(() => sidebar.classList.add('hidden'), 300);
+                floatBtn.classList.remove('hidden');
+            }
+        }
+
+        // Initialize System
+        initLoginScreen();
+
+    </script>
+</body>
+</html>
