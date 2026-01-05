@@ -63,6 +63,14 @@
         .chat-bubble { max-width: 85%; padding: 12px; border-radius: 12px; font-size: 0.85rem; line-height: 1.5; margin-bottom: 10px; position: relative; }
         .chat-user { background: #E2E8F0; color: #1E293B; margin-left: auto; border-bottom-left-radius: 0; }
         .chat-ai { color: white; margin-right: auto; border-bottom-right-radius: 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+
+        /* Notification Badge Pulse */
+        .notification-pulse { animation: pulse-red 2s infinite; }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(251, 71, 71, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(251, 71, 71, 0); } 100% { box-shadow: 0 0 0 0 rgba(251, 71, 71, 0); } }
+        
+        /* Modal Transitions */
+        .modal { transition: opacity 0.3s ease-in-out; opacity: 0; pointer-events: none; }
+        .modal.active { opacity: 1; pointer-events: auto; }
     </style>
 </head>
 <body class="flex h-screen w-screen text-slate-800">
@@ -77,15 +85,15 @@
                     <!-- Updated Logo -->
                     <img src="https://ait.sa/wp-content/uploads/2024/03/cropped-Square-Logo.png" alt="Andromeda Logo" class="w-24 h-24 mb-6 rounded-2xl shadow-lg bg-white p-1 object-contain">
                     <h1 class="text-4xl font-bold mb-2">AndroGov</h1>
-                    <p class="text-slate-400 text-sm">نظام تشغيل الشركة الموحد v4.0</p>
+                    <p class="text-slate-400 text-sm">نظام تشغيل الشركة الموحد v7.0</p>
                 </div>
                 <div class="space-y-4 text-sm text-slate-300">
-                    <p><i class="fa-solid fa-check-circle text-green-400 ml-2"></i>أنظمة الموارد البشرية والرواتب</p>
-                    <p><i class="fa-solid fa-check-circle text-green-400 ml-2"></i>الحوكمة والامتثال (GRC)</p>
-                    <p><i class="fa-solid fa-check-circle text-green-400 ml-2"></i>إدارة المنتجات الطبية</p>
-                    <p><i class="fa-solid fa-check-circle text-green-400 ml-2"></i>العمليات والدعم الفني</p>
+                    <p><i class="fa-solid fa-fingerprint text-green-400 ml-2"></i>الحضور الذكي والبصمة</p>
+                    <p><i class="fa-solid fa-file-contract text-green-400 ml-2"></i>مركز السياسات واللوائح</p>
+                    <p><i class="fa-solid fa-bell text-green-400 ml-2"></i>نظام التنبيهات المخصص</p>
+                    <p><i class="fa-solid fa-robot text-green-400 ml-2"></i>المساعد الذكي (AI)</p>
                 </div>
-                <div class="text-xs text-slate-500">© 2025 Andromeda IT. All rights reserved.</div>
+                <div class="text-xs text-slate-500">© 2026 Andromeda IT. All rights reserved.</div>
             </div>
 
             <!-- Right Side: Role Selection -->
@@ -106,8 +114,8 @@
     <aside class="w-64 bg-white border-l border-slate-200 flex flex-col shrink-0 z-20 transition-all duration-300" id="mainSidebar">
         <!-- Logo Header -->
         <div class="h-20 flex items-center px-6 border-b border-slate-100 cursor-pointer" onclick="logout()">
-            <!-- Updated Sidebar Logo -->
-            <img src="https://ait.sa/wp-content/uploads/2024/03/cropped-Square-Logo.png" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm bg-white p-0.5 object-contain">
+            <!-- ID Added here to fix the error -->
+            <img id="sidebarLogo" src="https://ait.sa/wp-content/uploads/2024/03/cropped-Square-Logo.png" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm bg-white p-0.5 object-contain transition-all border-2 border-transparent">
             <div class="mr-3">
                 <h1 class="font-bold text-lg text-slate-800 tracking-tight">AndroGov</h1>
                 <p id="deptName" class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">SYSTEM</p>
@@ -139,7 +147,7 @@
     <main class="flex-1 flex flex-col h-full overflow-hidden bg-[#F8FAFC] relative">
         
         <!-- Top Header -->
-        <header class="h-20 bg-white/90 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-8 shrink-0 z-10">
+        <header class="h-20 bg-white/90 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-8 shrink-0 z-10 relative">
             <div>
                 <h2 id="pageHeaderTitle" class="text-2xl font-bold text-slate-800">لوحة القيادة</h2>
                 <p id="pageHeaderSub" class="text-xs text-slate-500 mt-1">آخر تحديث: منذ لحظات</p>
@@ -150,10 +158,26 @@
                 
                 <div class="h-8 w-px bg-slate-200"></div>
                 
-                <button class="relative w-10 h-10 bg-white rounded-full border border-slate-200 flex items-center justify-center hover:text-brandRed hover:border-brandRed transition-colors shadow-sm">
-                    <i class="fa-regular fa-bell"></i>
-                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></span>
-                </button>
+                <!-- Notification Bell with Dropdown -->
+                <div class="relative">
+                    <button onclick="toggleNotifications()" class="relative w-10 h-10 bg-white rounded-full border border-slate-200 flex items-center justify-center hover:text-brandRed hover:border-brandRed transition-colors shadow-sm" id="notifBtn">
+                        <i class="fa-regular fa-bell"></i>
+                        <span id="notifBadge" class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-white notification-pulse"></span>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="notifDropdown" class="absolute top-12 left-0 w-80 bg-white rounded-xl shadow-xl border border-slate-100 hidden overflow-hidden z-50 transform origin-top-left transition-all">
+                        <div class="bg-slate-50 p-3 border-b border-slate-100 flex justify-between items-center">
+                            <h4 class="font-bold text-sm text-slate-700">التنبيهات</h4>
+                            <span class="text-[10px] text-brandBlue cursor-pointer hover:underline">تحديد الكل كمقروء</span>
+                        </div>
+                        <div id="notifList" class="max-h-64 overflow-y-auto custom-scroll">
+                            <!-- Dynamic Notifications -->
+                        </div>
+                        <div class="p-2 text-center border-t border-slate-100">
+                            <button class="text-xs text-slate-500 hover:text-brandBlue w-full py-1">عرض كل التنبيهات</button>
+                        </div>
+                    </div>
+                </div>
                 
                 <button onclick="logout()" class="text-slate-400 hover:text-red-600 transition-colors text-sm font-medium flex items-center gap-2">
                     <i class="fa-solid fa-power-off"></i> خروج
@@ -162,14 +186,14 @@
         </header>
 
         <!-- SCROLLABLE PAGE CONTENT -->
-        <div id="mainContainer" class="flex-1 overflow-y-auto custom-scroll p-8 pb-20">
+        <div id="mainContainer" class="flex-1 overflow-y-auto custom-scroll p-8 pb-20" onclick="closeDropdowns()">
             <!-- Dynamic Content Injected Here -->
         </div>
 
     </main>
 
     <!-- 3. AI ASSISTANT PANEL (Collapsible) -->
-    <aside id="aiSidebar" class="w-96 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-all duration-300 relative z-20 shadow-xl">
+    <aside id="aiSidebar" class="w-96 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-all duration-300 relative z-20 shadow-xl hidden ai-closed">
         <!-- AI Header -->
         <div id="aiHeader" class="h-20 flex items-center justify-between px-6 shrink-0 text-white bg-slate-800">
             <div class="flex items-center gap-3">
@@ -191,9 +215,6 @@
 
         <!-- Input Area -->
         <div class="p-4 bg-white border-t border-slate-100 shrink-0">
-            <!-- Quick Chips -->
-            <div id="aiChips" class="flex gap-2 overflow-x-auto custom-scroll pb-2 mb-2"></div>
-            
             <div class="flex gap-2">
                 <input type="text" placeholder="اكتب طلبك هنا..." class="flex-1 bg-slate-100 border-0 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brandBlue transition-all">
                 <button class="bg-slate-800 text-white w-12 rounded-xl flex items-center justify-center hover:bg-slate-700 transition shadow-lg">
@@ -207,6 +228,47 @@
     <button id="aiFloatBtn" onclick="toggleAI()" class="fixed bottom-8 left-8 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white z-30 hidden hover:scale-110 transition-transform border-4 border-white bg-slate-800">
         <i class="fa-solid fa-robot text-xl"></i>
     </button>
+
+    <!-- EXCUSE REQUEST MODAL (Attendance Feature) -->
+    <div id="excuseModal" class="fixed inset-0 z-[60] bg-slate-900/50 flex items-center justify-center p-4 modal backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="modalContent">
+            <div class="bg-brandBlue p-4 text-white flex justify-between items-center">
+                <h3 class="font-bold flex items-center gap-2"><i class="fa-solid fa-file-signature"></i> تقديم عذر / اعتراض</h3>
+                <button onclick="closeModal('excuseModal')" class="text-white/70 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">نوع الطلب</label>
+                    <select class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brandBlue outline-none">
+                        <option>نسيان بصمة (دخول)</option>
+                        <option>نسيان بصمة (خروج)</option>
+                        <option>مهمة عمل خارجية</option>
+                        <option>عذر طبي</option>
+                        <option>ظرف عائلي</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">التاريخ</label>
+                    <input type="date" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brandBlue outline-none" value="2025-10-12">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">الملاحظات / السبب</label>
+                    <textarea class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm h-24 focus:ring-2 focus:ring-brandBlue outline-none resize-none" placeholder="اكتب سبب التأخير أو عدم البصمة هنا..."></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">المرفقات (اختياري)</label>
+                    <div class="border-2 border-dashed border-slate-300 rounded-lg p-4 text-center cursor-pointer hover:bg-slate-50 transition">
+                        <i class="fa-solid fa-cloud-arrow-up text-slate-400 text-xl mb-1"></i>
+                        <p class="text-xs text-slate-500">اسحب الملف هنا أو اضغط للرفع</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-2">
+                <button onclick="closeModal('excuseModal')" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-200 rounded-lg transition">إلغاء</button>
+                <button onclick="submitExcuse()" class="px-4 py-2 text-sm bg-brandBlue text-white rounded-lg hover:bg-blue-700 transition shadow-sm">إرسال للموارد البشرية</button>
+            </div>
+        </div>
+    </div>
 
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
@@ -226,10 +288,15 @@
                         { id: 'dashboard', label: 'الرؤية العامة', icon: 'fa-chart-line' },
                         { id: 'approvals', label: 'مركز الاعتماد', icon: 'fa-file-signature' },
                         { id: 'finance', label: 'التقارير المالية', icon: 'fa-coins' },
-                        { id: 'strategy', label: 'الخطة الاستراتيجية', icon: 'fa-map' },
                         { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
                     ],
-                    action: { label: 'توقيع عقود', icon: 'fa-pen-nib' }
+                    action: { label: 'توقيع عقود', icon: 'fa-pen-nib' },
+                    notifications: [
+                        { msg: 'طلب شراء أصول بقيمة 50k بانتظار الاعتماد', type: 'urgent', time: '10m' },
+                        { msg: 'تقرير الأداء الشهري جاهز', type: 'info', time: '1h' },
+                        { msg: 'دعوة لاجتماع مجلس الإدارة', type: 'normal', time: '2h' }
+                    ],
+                    policies: ['لائحة الصلاحيات المالية', 'سياسة الحوكمة الاستراتيجية', 'ميثاق مجلس الإدارة']
                 },
                 'grc': {
                     id: 'grc', name: 'أيمن المغربي', title: 'مسؤول الحوكمة (GRCO)', color: 'grcRed', 
@@ -244,10 +311,14 @@
                         { id: 'dashboard', label: 'مركز الامتثال', icon: 'fa-shield-halved' },
                         { id: 'risks', label: 'سجل المخاطر', icon: 'fa-triangle-exclamation' },
                         { id: 'policies', label: 'السياسات واللوائح', icon: 'fa-file-contract' },
-                        { id: 'audit', label: 'التدقيق الداخلي', icon: 'fa-magnifying-glass' },
                         { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
                     ],
-                    action: { label: 'إضافة سياسة', icon: 'fa-plus' }
+                    action: { label: 'إضافة سياسة', icon: 'fa-plus' },
+                    notifications: [
+                        { msg: 'محاولة دخول غير مصرح (تم الحظر)', type: 'urgent', time: '5m' },
+                        { msg: 'تذكير: تحديث سجل المخاطر الربع سنوي', type: 'normal', time: '1d' }
+                    ],
+                    policies: ['دليل الحوكمة الشامل', 'سياسة إدارة المخاطر', 'سياسة الإبلاغ عن المخالفات']
                 },
                 'hr': {
                     id: 'hr', name: 'منصور اليامي', title: 'مدير الشؤون الإدارية', color: 'hrPurple', 
@@ -262,10 +333,15 @@
                         { id: 'dashboard', label: 'شؤون الموظفين', icon: 'fa-users' },
                         { id: 'recruitment', label: 'التوظيف', icon: 'fa-user-plus' },
                         { id: 'payroll', label: 'الرواتب', icon: 'fa-money-bill' },
-                        { id: 'govt', label: 'العلاقات الحكومية', icon: 'fa-passport' },
+                        { id: 'attendance', label: 'مراقبة الحضور', icon: 'fa-fingerprint' }, 
                         { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
                     ],
-                    action: { label: 'قرار إداري', icon: 'fa-pen' }
+                    action: { label: 'قرار إداري', icon: 'fa-pen' },
+                    notifications: [
+                        { msg: '5 إقامات تنتهي خلال شهر', type: 'urgent', time: '2h' },
+                        { msg: 'طلب عذر "نسيان بصمة" من خالد', type: 'normal', time: '3h' }
+                    ],
+                    policies: ['لائحة تنظيم العمل', 'سلم الرواتب والمزايا', 'سياسة الإجازات والدوام']
                 },
                 'finance': {
                     id: 'finance', name: 'محمد البخيتي', title: 'المدير المالي (CFO)', color: 'finGreen', 
@@ -282,12 +358,17 @@
                         { id: 'budget', label: 'الموازنات', icon: 'fa-scale-balanced' },
                         { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
                     ],
-                    action: { label: 'تقرير مالي', icon: 'fa-print' }
+                    action: { label: 'تقرير مالي', icon: 'fa-print' },
+                    notifications: [
+                        { msg: 'تم إيداع دفعة عميل (120,000 ر.س)', type: 'success', time: '30m' },
+                        { msg: 'طلب اعتماد صرف رواتب أكتوبر', type: 'urgent', time: '4h' }
+                    ],
+                    policies: ['السياسة المالية والمحاسبية', 'سياسة المشتريات والتعاقد', 'دليل المصروفات النثرية']
                 },
                 'medical': {
                     id: 'medical', name: 'د. وعد حسين', title: 'المشرف الطبي العام', color: 'medCyan', 
                     bgClass: 'bg-cyan-600', icon: 'fa-heart-pulse', dept: 'MEDICAL PRODUCT',
-                    welcome: 'مرحباً دكتورة وعد. تم تحديث بروتوكول وزارة الصحة للوصفات المخدرة. هل أطلعك عليه؟',
+                    welcome: 'مرحباً دكتورة وعد. تم تحديث بروتوكول وزارة الصحة للوصفات المخدرة.',
                     stats: [
                         { label: 'امتثال الأنظمة', value: '100%', trend: 'MOH', color: 'green' },
                         { label: 'تذاكر طبية', value: '5', trend: 'Clients', color: 'red' },
@@ -299,7 +380,12 @@
                         { id: 'requirements', label: 'المتطلبات الطبية', icon: 'fa-list-check' },
                         { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
                     ],
-                    action: { label: 'مراجعة ميزة', icon: 'fa-magnifying-glass-chart' }
+                    action: { label: 'مراجعة ميزة', icon: 'fa-magnifying-glass-chart' },
+                    notifications: [
+                        { msg: 'تحديث جديد لمعايير "نفيس"', type: 'urgent', time: '1d' },
+                        { msg: 'شكوى طبية من عميل VIP', type: 'normal', time: '2d' }
+                    ],
+                    policies: ['سياسة السجلات الطبية', 'معايير الترميز الطبي (ICD-10)', 'بروتوكول الطب الاتصالي']
                 },
                 'tech_lead': {
                     id: 'tech_lead', name: 'رند الحوراني', title: 'مدير الفريق التقني', color: 'techBlue', 
@@ -312,11 +398,17 @@
                     ],
                     menu: [
                         { id: 'dashboard', label: 'Sprint Board', icon: 'fa-kanban' },
+                        { id: 'attendance', label: 'بصمتي (My Logs)', icon: 'fa-fingerprint' },
                         { id: 'servers', label: 'System Status', icon: 'fa-server' },
-                        { id: 'repo', label: 'Repository', icon: 'fa-code-branch' },
                         { id: 'profile', label: 'My Profile', icon: 'fa-id-card' }
                     ],
-                    action: { label: 'Deploy', icon: 'fa-cloud-arrow-up' }
+                    action: { label: 'Deploy', icon: 'fa-cloud-arrow-up' },
+                    notifications: [
+                        { msg: 'Pipeline Build Failed (AndroHealth)', type: 'urgent', time: '10m' },
+                        { msg: 'New Merge Request from Ali', type: 'normal', time: '1h' },
+                        { msg: 'تم تسجيل غياب (أمس)', type: 'urgent', time: '1d' }
+                    ],
+                    policies: ['Coding Standards Guidelines', 'Deployment Policy', 'Security Best Practices']
                 },
                 'pssc': {
                     id: 'pssc', name: 'هادي', title: 'منسق المشتريات (PSSC)', color: 'opsSlate', 
@@ -329,11 +421,16 @@
                     ],
                     menu: [
                         { id: 'dashboard', label: 'المشتريات', icon: 'fa-cart-shopping' },
-                        { id: 'suppliers', label: 'الموردين', icon: 'fa-truck' },
+                        { id: 'attendance', label: 'بصمتي', icon: 'fa-fingerprint' },
                         { id: 'assets', label: 'العهد والأصول', icon: 'fa-barcode' },
                         { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
                     ],
-                    action: { label: 'أمر شراء', icon: 'fa-file-contract' }
+                    action: { label: 'أمر شراء', icon: 'fa-file-contract' },
+                    notifications: [
+                        { msg: 'تم اعتماد طلب شراء السيرفرات', type: 'success', time: '1h' },
+                        { msg: 'طلب صيانة جديد (مكيفات)', type: 'normal', time: '3h' }
+                    ],
+                    policies: ['دليل الموردين المعتمدين', 'سياسة المشتريات والعقود', 'إجراءات استلام الأصول']
                 },
                 'cs': {
                     id: 'cs', name: 'خالد', title: 'أخصائي خدمة عملاء', color: 'hrPurple', 
@@ -347,10 +444,15 @@
                     menu: [
                         { id: 'dashboard', label: 'لوحة الدعم', icon: 'fa-headset' },
                         { id: 'tickets', label: 'التذاكر', icon: 'fa-ticket' },
-                        { id: 'clients', label: 'العملاء', icon: 'fa-address-book' },
+                        { id: 'attendance', label: 'بصمتي', icon: 'fa-fingerprint' },
                         { id: 'profile', label: 'ملفي الشخصي', icon: 'fa-id-card' }
                     ],
-                    action: { label: 'تذكرة جديدة', icon: 'fa-plus' }
+                    action: { label: 'تذكرة جديدة', icon: 'fa-plus' },
+                    notifications: [
+                        { msg: 'تذكرة جديدة #992 (عالية الأهمية)', type: 'urgent', time: '5m' },
+                        { msg: 'تم قبول عذر التأخير', type: 'success', time: '1h' }
+                    ],
+                    policies: ['دليل التعامل مع العملاء', 'اتفاقية مستوى الخدمة (SLA)', 'سيناريوهات الرد (Scripts)']
                 }
             },
             
@@ -364,7 +466,15 @@
                 'tech_lead': { id: '4001', join: '2021', manager: 'مدير التطوير', assets: ['MacBook Pro M2', 'Server Access'], leave: 21 },
                 'pssc': { id: '5001', join: '2022', manager: 'المدير المالي', assets: ['Desktop PC', 'Warehouse Key'], leave: 21 },
                 'cs': { id: '2040', join: '2023', manager: 'مدير المبيعات', assets: ['Laptop HP', 'Headset Jabra'], leave: 15 }
-            }
+            },
+
+            // ATTENDANCE DATA MOCKUP
+            attendanceLogs: [
+                { date: '12/10/2025', day: 'الخميس', in: '08:00 ص', out: '--', status: 'present', note: 'على رأس العمل' },
+                { date: '11/10/2025', day: 'الأربعاء', in: '08:05 ص', out: '04:00 م', status: 'late', note: 'تأخير 5 دقائق' },
+                { date: '10/10/2025', day: 'الثلاثاء', in: '--', out: '--', status: 'absent', note: 'غياب (بدون عذر)' },
+                { date: '09/10/2025', day: 'الاثنين', in: '08:00 ص', out: '04:15 م', status: 'present', note: '' },
+            ]
         };
 
         let currentRole = null;
@@ -388,7 +498,7 @@
                             </div>
                         </div>
                         <div class="text-[10px] bg-slate-50 text-slate-400 py-1 px-2 rounded border border-slate-100 text-center group-hover:bg-slate-100">
-                            Login as ${role.id.toUpperCase()}
+                            الدخول كـ ${role.id.toUpperCase()}
                         </div>
                     </div>
                 `;
@@ -406,34 +516,31 @@
             // Configure UI
             configureSidebar();
             configureHeader();
-            loadPage('dashboard'); // Load Default Page
+            loadPage('dashboard');
             initAI();
         }
 
         function logout() {
             const overlay = document.getElementById('loginOverlay');
             overlay.classList.remove('hidden');
-            // Force reflow
-            void overlay.offsetWidth; 
+            void overlay.offsetWidth; // Force Reflow
             overlay.style.opacity = '1';
             
-            // Optional: Close AI panel if open to reset view
+            // Close AI
             const aiPanel = document.getElementById('aiSidebar');
-            if (!aiPanel.classList.contains('ai-closed')) {
-                 toggleAI();
-            }
-        }
-
-        function resetSystem() {
-            logout();
+            aiPanel.classList.add('ai-closed', 'hidden');
+            document.getElementById('aiFloatBtn').classList.add('hidden');
         }
 
         // ================== UI CONFIGURATION ==================
 
         function configureSidebar() {
+            const logo = document.getElementById('sidebarLogo');
+            // Extract the color part from bgClass (e.g. bg-amber-600 -> amber-600) for border
+            const colorClass = currentRole.bgClass.replace('bg-', 'border-');
+            logo.className = `w-10 h-10 rounded-lg shadow-sm bg-white p-0.5 object-contain transition-all border-2 ${colorClass}`;
             document.getElementById('deptName').innerText = currentRole.dept;
 
-            // Nav Items
             const nav = document.getElementById('navMenu');
             nav.innerHTML = '';
             currentRole.menu.forEach(item => {
@@ -445,14 +552,12 @@
                 `;
             });
 
-            // Profile Widget
             document.getElementById('userAvatar').src = `https://ui-avatars.com/api/?name=${currentRole.name}&background=random&color=fff`;
             document.getElementById('userName').innerText = currentRole.name;
             document.getElementById('userTitle').innerText = currentRole.title;
         }
 
         function configureHeader() {
-            // Quick Action Button
             const btnContainer = document.getElementById('quickActionBtn');
             btnContainer.innerHTML = `
                 <button class="${currentRole.bgClass} text-white px-5 py-2 rounded-full text-sm hover:opacity-90 transition shadow-md flex items-center gap-2">
@@ -460,38 +565,63 @@
                     <span>${currentRole.action.label}</span>
                 </button>
             `;
+            
+            // Populate Notifications
+            const notifList = document.getElementById('notifList');
+            notifList.innerHTML = '';
+            if(currentRole.notifications) {
+                currentRole.notifications.forEach(n => {
+                    let iconClass = n.type === 'urgent' ? 'fa-circle-exclamation text-red-500' : (n.type === 'success' ? 'fa-check-circle text-green-500' : 'fa-bell text-blue-500');
+                    let bgClass = n.type === 'urgent' ? 'bg-red-50' : 'bg-white';
+                    notifList.innerHTML += `
+                        <div class="p-3 border-b border-slate-50 hover:bg-slate-50 transition ${bgClass} cursor-pointer">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid ${iconClass} mt-1 text-sm"></i>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-700">${n.msg}</p>
+                                    <p class="text-[10px] text-slate-400 mt-1">${n.time} ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                document.getElementById('notifBadge').innerText = currentRole.notifications.length;
+            } else {
+                notifList.innerHTML = '<div class="p-4 text-center text-slate-400 text-xs">لا توجد تنبيهات</div>';
+                document.getElementById('notifBadge').innerText = '0';
+            }
         }
 
         // ================== PAGE ROUTING & CONTENT ==================
 
         function loadPage(pageId) {
-            // Update Active Nav
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active', 'text-slate-900', 'bg-slate-50'));
             const activeNav = document.getElementById(`nav-${pageId}`);
             if(activeNav) activeNav.classList.add('active', 'text-slate-900');
 
-            // Update Header Title
             const menuLabel = currentRole.menu.find(m => m.id === pageId)?.label || 'صفحة النظام';
             document.getElementById('pageHeaderTitle').innerText = menuLabel;
 
-            // Generate Content
             const container = document.getElementById('mainContainer');
-            container.innerHTML = ''; // Clear current
+            container.innerHTML = '';
 
             if (pageId === 'dashboard') {
                 renderDashboard(container);
             } else if (pageId === 'profile') {
                 renderProfile(container);
+            } else if (pageId === 'attendance') {
+                // If HR, show monitoring view. If others, show personal log.
+                if(currentRole.id === 'hr') renderHRAttendance(container);
+                else renderEmployeeAttendance(container);
             } else {
                 renderGenericPage(container, pageId, menuLabel);
             }
         }
 
         function renderDashboard(container) {
-            // 1. KPIs Row
-            let kpiHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 fade-in">`;
+            let html = `<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 fade-in">`;
             currentRole.stats.forEach(stat => {
-                kpiHTML += `
+                html += `
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between hover:shadow-md transition-shadow">
                         <div>
                             <p class="text-slate-400 text-xs font-medium mb-1">${stat.label}</p>
@@ -504,59 +634,43 @@
                     </div>
                 `;
             });
-            kpiHTML += `</div>`;
-
-            // 2. Main Content (Chart & Feed)
-            let mainHTML = `
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 fade-in" style="animation-delay: 0.1s">
-                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="font-bold text-slate-800">تحليل الأداء (Analytics)</h3>
-                            <select class="bg-slate-50 border-0 rounded-lg text-xs px-3 py-1"><option>شهري</option><option>سنوي</option></select>
-                        </div>
-                        <div class="h-64 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 border border-slate-100 border-dashed">
-                            <i class="fa-solid fa-chart-area text-4xl mb-2 block"></i>
-                            <span class="block">Interactive Chart Placeholder</span>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <h3 class="font-bold text-slate-800 mb-4">نشاطات حديثة</h3>
-                        <div class="space-y-4">
-                            <div class="flex gap-3">
-                                <div class="w-2 h-full bg-slate-200 rounded-full"></div>
-                                <div class="pb-4 border-b border-slate-50 last:border-0">
-                                    <p class="text-xs text-slate-400 mb-1">10:30 AM</p>
-                                    <p class="text-sm text-slate-700 font-medium">تسجيل دخول للنظام</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-3">
-                                <div class="w-2 h-full bg-blue-200 rounded-full"></div>
-                                <div class="pb-4 border-b border-slate-50 last:border-0">
-                                    <p class="text-xs text-slate-400 mb-1">09:15 AM</p>
-                                    <p class="text-sm text-slate-700 font-medium">تحديث بيانات من السيرفر</p>
-                                </div>
-                            </div>
-                             <div class="flex gap-3">
-                                <div class="w-2 h-full bg-green-200 rounded-full"></div>
-                                <div>
-                                    <p class="text-xs text-slate-400 mb-1">أمس</p>
-                                    <p class="text-sm text-slate-700 font-medium">إغلاق 3 مهام</p>
-                                </div>
-                            </div>
-                        </div>
+            html += `</div>`;
+            
+            html += `
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 fade-in" style="animation-delay: 0.1s">
+                    <h3 class="font-bold text-slate-800 mb-4">نشاطات حديثة</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-3"><div class="w-2 h-full bg-slate-200 rounded-full"></div><div class="pb-4 border-b border-slate-50 last:border-0"><p class="text-xs text-slate-400 mb-1">10:30 AM</p><p class="text-sm text-slate-700 font-medium">تسجيل دخول للنظام</p></div></div>
+                        <div class="flex gap-3"><div class="w-2 h-full bg-blue-200 rounded-full"></div><div class="pb-4 border-b border-slate-50 last:border-0"><p class="text-xs text-slate-400 mb-1">09:15 AM</p><p class="text-sm text-slate-700 font-medium">تحديث بيانات</p></div></div>
                     </div>
                 </div>
             `;
-
-            container.innerHTML = kpiHTML + mainHTML;
+            container.innerHTML = html;
         }
 
         function renderProfile(container) {
             const pData = db.profiles[currentRole.id];
-            
+            // Policies list
+            let policiesHTML = '';
+            if(currentRole.policies) {
+                currentRole.policies.forEach(p => {
+                    policiesHTML += `
+                        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100 hover:bg-slate-100 transition">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-file-pdf text-red-500 text-lg"></i>
+                                <span class="text-sm font-medium text-slate-700">${p}</span>
+                            </div>
+                            <button class="text-xs text-brandBlue hover:underline font-bold">تحميل</button>
+                        </div>
+                    `;
+                });
+            } else {
+                policiesHTML = '<p class="text-xs text-slate-400">لا توجد سياسات مخصصة.</p>';
+            }
+
             let html = `
                 <div class="fade-in">
-                    <!-- Header Card -->
+                    <!-- Header -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 mb-8 relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-slate-800 to-slate-600 opacity-10"></div>
                         <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
@@ -569,35 +683,33 @@
                                     <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-bold">نشط</span>
                                 </div>
                             </div>
-                            <button class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-lg text-sm hover:bg-slate-50 shadow-sm">
-                                <i class="fa-solid fa-pen ml-2"></i>تحديث البيانات
-                            </button>
                         </div>
                     </div>
 
-                    <!-- Details Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Employment Info -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Info -->
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
                             <h3 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-50">المعلومات الوظيفية</h3>
                             <div class="space-y-4 text-sm">
-                                <div class="flex justify-between">
-                                    <span class="text-slate-500">تاريخ الانضمام</span>
-                                    <span class="font-medium text-slate-800">${pData.join}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-slate-500">المدير المباشر</span>
-                                    <span class="font-medium text-slate-800">${pData.manager}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-slate-500">رصيد الإجازات</span>
-                                    <span class="font-bold text-green-600">${pData.leave} يوم</span>
-                                </div>
+                                <div class="flex justify-between"><span class="text-slate-500">تاريخ الانضمام</span><span class="font-medium text-slate-800">${pData.join}</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500">المدير المباشر</span><span class="font-medium text-slate-800">${pData.manager}</span></div>
+                                <div class="flex justify-between"><span class="text-slate-500">رصيد الإجازات</span><span class="font-bold text-green-600">${pData.leave} يوم</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Policy Hub -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                            <h3 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-50 flex justify-between items-center">
+                                <span>سياساتي (My Policies)</span>
+                                <span class="text-xs bg-brandBlue text-white px-2 py-1 rounded">مخصص للدور</span>
+                            </h3>
+                            <div class="space-y-2">
+                                ${policiesHTML}
                             </div>
                         </div>
 
                         <!-- Assets -->
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 lg:col-span-2">
                             <h3 class="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-50">سجل العهد (Assets)</h3>
                             <ul class="space-y-3">
                                 ${pData.assets.map(asset => `
@@ -614,114 +726,115 @@
             container.innerHTML = html;
         }
 
-        function renderGenericPage(container, pageId, title) {
-            let html = `
+        // --- ATTENDANCE VIEWS ---
+        function renderEmployeeAttendance(container) {
+            let logsHTML = '';
+            db.attendanceLogs.forEach(log => {
+                let statusBadge = '';
+                let actionBtn = '';
+                if(log.status === 'present') statusBadge = '<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">حاضر</span>';
+                if(log.status === 'late') statusBadge = '<span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">تأخير</span>';
+                if(log.status === 'absent') {
+                    statusBadge = '<span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">غائب</span>';
+                    actionBtn = `<button onclick="openModal('excuseModal')" class="text-xs bg-brandBlue text-white px-3 py-1 rounded hover:bg-blue-700 transition shadow-sm">تقديم عذر</button>`;
+                } else if (log.status === 'late') {
+                    actionBtn = `<button onclick="openModal('excuseModal')" class="text-xs border border-slate-300 text-slate-600 px-3 py-1 rounded hover:bg-slate-50">اعتراض</button>`;
+                }
+
+                logsHTML += `
+                    <tr class="hover:bg-slate-50 border-b border-slate-100 last:border-0">
+                        <td class="px-6 py-4 text-sm font-medium text-slate-800">${log.date}</td>
+                        <td class="px-6 py-4 text-sm text-slate-500">${log.day}</td>
+                        <td class="px-6 py-4 text-sm font-mono text-green-600">${log.in}</td>
+                        <td class="px-6 py-4 text-sm font-mono text-red-500">${log.out}</td>
+                        <td class="px-6 py-4">${statusBadge}</td>
+                        <td class="px-6 py-4 text-xs text-slate-400">${log.note}</td>
+                        <td class="px-6 py-4 text-right">${actionBtn}</td>
+                    </tr>
+                `;
+            });
+
+            container.innerHTML = `
                 <div class="fade-in">
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center py-20">
-                        <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 text-3xl mx-auto mb-6">
-                            <i class="fa-solid fa-folder-open"></i>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                            <div><p class="text-slate-400 text-xs mb-1">الجهاز المرتبط</p><h3 class="text-lg font-bold text-slate-800">ZKTeco iClock</h3><p class="text-green-500 text-xs mt-1">Online <i class="fa-solid fa-circle text-[8px] animate-pulse"></i></p></div>
+                            <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-500"><i class="fa-solid fa-fingerprint text-xl"></i></div>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-2">${title}</h3>
-                        <p class="text-slate-500 max-w-md mx-auto">هذه الصفحة تمثل وحدة تشغيلية نشطة في النظام. يمكنك تخيل الجداول والبيانات هنا بناءً على الصلاحيات.</p>
-                        
-                        <div class="mt-8 flex justify-center gap-4">
-                            <button class="px-4 py-2 bg-slate-800 text-white rounded-lg text-sm hover:bg-slate-700 transition">إضافة سجل جديد</button>
-                            <button class="px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm hover:bg-slate-50 transition">تصدير PDF</button>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                            <div><p class="text-slate-400 text-xs mb-1">رصيد التأخير</p><h3 class="text-2xl font-bold text-yellow-600">45 دقيقة</h3><p class="text-slate-400 text-xs mt-1">المسموح: 120 د</p></div>
+                            <div class="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600"><i class="fa-solid fa-clock text-xl"></i></div>
                         </div>
                     </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="font-bold text-slate-700 mb-4">سجلات حديثة (Demo Data)</h4>
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
-                            <table class="w-full text-sm text-right">
-                                <thead class="bg-slate-50 text-slate-500">
-                                    <tr>
-                                        <th class="px-6 py-4">المعرف</th>
-                                        <th class="px-6 py-4">العنوان</th>
-                                        <th class="px-6 py-4">الحالة</th>
-                                        <th class="px-6 py-4">التاريخ</th>
-                                        <th class="px-6 py-4">الإجراء</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-100 text-slate-700">
-                                    <tr class="hover:bg-slate-50">
-                                        <td class="px-6 py-4 font-mono text-slate-400">#DOC-001</td>
-                                        <td class="px-6 py-4 font-bold">سجل تجريبي 1</td>
-                                        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">نشط</span></td>
-                                        <td class="px-6 py-4">2025-10-12</td>
-                                        <td class="px-6 py-4"><button class="text-brandBlue hover:underline">عرض</button></td>
-                                    </tr>
-                                    <tr class="hover:bg-slate-50">
-                                        <td class="px-6 py-4 font-mono text-slate-400">#DOC-002</td>
-                                        <td class="px-6 py-4 font-bold">سجل تجريبي 2</td>
-                                        <td class="px-6 py-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">معلق</span></td>
-                                        <td class="px-6 py-4">2025-10-11</td>
-                                        <td class="px-6 py-4"><button class="text-brandBlue hover:underline">عرض</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                        <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h3 class="font-bold text-slate-800">سجل البصمة (Live Feed)</h3></div>
+                        <div class="overflow-x-auto"><table class="w-full text-right"><thead class="bg-slate-50 text-slate-500 text-xs uppercase"><tr><th class="px-6 py-3">التاريخ</th><th class="px-6 py-3">اليوم</th><th class="px-6 py-3">دخول</th><th class="px-6 py-3">خروج</th><th class="px-6 py-3">الحالة</th><th class="px-6 py-3">ملاحظات</th><th class="px-6 py-3">الإجراء</th></tr></thead><tbody>${logsHTML}</tbody></table></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderHRAttendance(container) {
+            container.innerHTML = `
+                <div class="fade-in">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs text-slate-400">حضور اليوم</p><h3 class="text-2xl font-bold text-green-600">38/42</h3></div>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs text-slate-400">تأخير > 15د</p><h3 class="text-2xl font-bold text-yellow-600">3</h3></div>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs text-slate-400">غياب بدون عذر</p><h3 class="text-2xl font-bold text-red-600">1</h3></div>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><p class="text-xs text-slate-400">اعتراضات معلقة</p><h3 class="text-2xl font-bold text-brandBlue">3</h3></div>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                        <h3 class="font-bold text-slate-800 mb-4">طلبات الأعذار الواردة</h3>
+                        <div class="space-y-4">
+                            <div class="border border-slate-100 rounded-xl p-4 flex items-start gap-4 hover:shadow-md transition">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full"></div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start"><div><h4 class="font-bold text-sm text-slate-800">علي أحمد (مطور)</h4><p class="text-xs text-slate-500">نسيان بصمة خروج | 10/10/2025</p></div><span class="bg-yellow-50 text-yellow-700 text-[10px] px-2 py-1 rounded-full">معلق</span></div>
+                                    <div class="flex gap-2 mt-3"><button class="bg-green-600 text-white px-4 py-1 rounded text-xs">قبول</button><button class="bg-red-50 text-red-600 px-4 py-1 rounded text-xs">رفض</button></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
-            container.innerHTML = html;
         }
 
-        // ================== AI ASSISTANT ==================
+        function renderGenericPage(container, pageId, title) {
+            container.innerHTML = `
+                <div class="fade-in bg-white p-12 rounded-2xl shadow-sm border border-slate-100 text-center">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 text-3xl mx-auto mb-6"><i class="fa-solid fa-folder-open"></i></div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">${title}</h3>
+                    <p class="text-slate-500">هذه الصفحة تمثل وحدة تشغيلية نشطة في النظام.</p>
+                </div>
+            `;
+        }
 
+        // ================== INTERACTIONS ==================
+
+        function toggleNotifications() { document.getElementById('notifDropdown').classList.toggle('hidden'); }
+        function closeDropdowns() { document.getElementById('notifDropdown').classList.add('hidden'); }
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        function submitExcuse() { closeModal('excuseModal'); alert('تم رفع الطلب بنجاح إلى الموارد البشرية!'); }
+
+        // AI Logic
         function initAI() {
-            // Set Header Color
             document.getElementById('aiHeader').className = `h-20 flex items-center justify-between px-6 shrink-0 text-white transition-colors ${currentRole.bgClass}`;
             document.getElementById('aiRole').innerText = `Assistant for: ${currentRole.title}`;
-            
-            // Clear Chat
-            const chatArea = document.getElementById('chatArea');
-            chatArea.innerHTML = '';
-            
-            // Welcome Message
-            addAIMessage(currentRole.welcome);
-
-            // Floating Button Color
             document.getElementById('aiFloatBtn').className = `fixed bottom-8 left-8 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white z-30 hidden hover:scale-110 transition-transform border-4 border-white ${currentRole.bgClass}`;
-        }
-
-        function addAIMessage(text) {
             const chatArea = document.getElementById('chatArea');
-            chatArea.innerHTML += `
-                <div class="flex justify-end fade-in">
-                    <div class="chat-bubble bg-white text-slate-700 shadow-sm border border-slate-100">
-                        <div class="flex items-center gap-2 mb-1 border-b border-slate-50 pb-1">
-                            <i class="fa-solid fa-robot text-xs text-${currentRole.color.replace('role', '').toLowerCase()}-500"></i>
-                            <span class="text-[10px] font-bold text-slate-400">AndroGov AI</span>
-                        </div>
-                        ${text}
-                    </div>
-                </div>
-            `;
-            chatArea.scrollTop = chatArea.scrollHeight;
+            chatArea.innerHTML = `<div class="flex justify-end fade-in"><div class="chat-bubble chat-ai ${currentRole.bgClass}">${currentRole.welcome}</div></div>`;
         }
 
         function toggleAI() {
             const sidebar = document.getElementById('aiSidebar');
             const floatBtn = document.getElementById('aiFloatBtn');
             const isHidden = sidebar.classList.contains('ai-closed');
-
-            if (isHidden) {
-                // OPEN
-                sidebar.classList.remove('hidden');
-                setTimeout(() => sidebar.classList.remove('ai-closed'), 10);
-                floatBtn.classList.add('hidden');
-            } else {
-                // CLOSE
-                sidebar.classList.add('ai-closed');
-                setTimeout(() => sidebar.classList.add('hidden'), 300);
-                floatBtn.classList.remove('hidden');
-            }
+            if (isHidden) { sidebar.classList.remove('hidden'); setTimeout(() => sidebar.classList.remove('ai-closed'), 10); floatBtn.classList.add('hidden'); }
+            else { sidebar.classList.add('ai-closed'); setTimeout(() => sidebar.classList.add('hidden'), 300); floatBtn.classList.remove('hidden'); }
         }
 
-        // Initialize System
         initLoginScreen();
-
     </script>
 </body>
 </html>
