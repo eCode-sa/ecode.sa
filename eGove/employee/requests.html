@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلباتي وإجازاتي | AndroGov</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brandRed: '#FB4747', brandDark: '#1E293B' }, fontFamily: { sans: ['Tajawal', 'sans-serif'] } } }
+        }
+    </script>
+    <style>.num-font { font-family: sans-serif; }</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans opacity-0 transition-opacity duration-500">
+
+    <div id="sidebar-container"></div>
+
+    <div class="main-content-wrapper lg:mr-72 transition-all duration-300">
+        <div id="header-container"></div>
+
+        <main class="p-8 space-y-6">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold dark:text-white">مركز الطلبات الذاتية</h1>
+                <button class="bg-brandRed text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-red-500/30 hover:bg-red-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> تقديم طلب جديد
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-brandRed to-red-600 p-6 rounded-3xl text-white shadow-xl relative overflow-hidden">
+                    <p class="text-white/80 text-sm font-medium">رصيد الإجازات السنوية</p>
+                    <h2 class="text-4xl font-extrabold mt-2 num-font">21 <span class="text-lg font-light">يوم</span></h2>
+                    <i class="fa-solid fa-umbrella-beach absolute -bottom-4 -left-4 text-white/10 text-8xl"></i>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-400 text-sm font-medium">طلبات قيد المراجعة</p>
+                        <h2 class="text-3xl font-bold mt-1 dark:text-white num-font">02</h2>
+                    </div>
+                    <div class="w-14 h-14 bg-orange-50 dark:bg-orange-900/20 rounded-2xl flex items-center justify-center text-orange-500">
+                        <i class="fa-solid fa-clock-rotate-left text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-50 dark:border-slate-800">
+                    <h3 class="font-bold dark:text-white">سجل الطلبات</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right">
+                        <thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-400 text-xs font-bold uppercase">
+                            <tr>
+                                <th class="px-6 py-4">نوع الطلب</th>
+                                <th class="px-6 py-4">تاريخ التقديم</th>
+                                <th class="px-6 py-4">المدة / التفاصيل</th>
+                                <th class="px-6 py-4 text-center">الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-50 dark:divide-slate-800 text-sm">
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
+                                <td class="px-6 py-4 font-bold dark:text-white">إجازة سنوية</td>
+                                <td class="px-6 py-4 text-slate-500 num-font">2026/01/15</td>
+                                <td class="px-6 py-4 text-slate-500">5 أيام</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-[10px] font-bold">قيد المراجعة</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
+                                <td class="px-6 py-4 font-bold dark:text-white">تعريف راتب</td>
+                                <td class="px-6 py-4 text-slate-500 num-font">2026/01/02</td>
+                                <td class="px-6 py-4 text-slate-500">إلكتروني</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-bold">مكتمل</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="data/company_policy.js"></script>
+    <script src="js/core/i18n.js"></script>
+    <script src="js/components/layout.js"></script>
+    <script src="js/components/bot.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
+        const ctoUser = {
+            id: 'USR_008',
+            name: 'الحسين الحميدي',
+            displayName: 'الحسين الحميدي',
+            role: 'Technical Support', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
+            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
+        };
+        
+        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
+        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
+        localStorage.setItem('activeRole', 'employee');
+
+        // 3. التأكد من وجود الوضع الليلي المفضل
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'light');
+        }
+
+        // 4. تشغيل المحرك
+        if (typeof Layout !== 'undefined') {
+            Layout.init();
+            
+            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
+            document.body.style.opacity = '1';
+            console.log("🚀 employee Layout Engine v10.5 Started Successfully");
+        } else {
+            console.error("❌ Layout.js file not found! Check your script paths.");
+        }
+    });
+</script>
+</body>
+</html>
