@@ -1,416 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#FB4747">
-    <title data-i18n="pageTitle">الخدمات والصيانة | AndroGov</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: { brandRed: '#FB4747', brandDark: '#0F172A', moneyGreen: '#10B981', alertOrange: '#F59E0B' },
-                    fontFamily: { sans: ['Tajawal', 'Inter', 'sans-serif'], en: ['Inter', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-    <style>.num-font { font-family: 'Inter', sans-serif; font-feature-settings: "tnum"; }</style>
-</head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 opacity-0">
-
-    <div id="sidebar-container"></div>
-    
-    <div class="main-content-wrapper transition-all duration-300 flex flex-col min-h-screen rtl:lg:mr-64 ltr:lg:ml-64">
-        
-        <div id="header-container"></div>
-
-        <main class="p-6 space-y-6">
-            
-            <div class="flex flex-col md:flex-row justify-between items-end gap-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                        <i class="fa-solid fa-building-user text-brandRed"></i> <span data-i18n="headerTitle">الخدمات اللوجستية والصيانة</span>
-                    </h1>
-                    <p class="text-sm text-slate-500 mt-1" data-i18n="headerDesc">إدارة طلبات الصيانة، نظافة المكاتب، والخدمات العامة</p>
-                </div>
-                <div class="flex gap-2">
-                    <button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold shadow-sm hover:bg-slate-50 transition flex items-center gap-2 text-slate-600 dark:text-white">
-                        <i class="fa-solid fa-clipboard-list"></i> <span data-i18n="btnReports">تقارير الإنجاز</span>
-                    </button>
-                    <button onclick="document.getElementById('ticketModal').classList.remove('hidden')" class="px-4 py-2 bg-brandRed text-white rounded-lg text-xs font-bold shadow-lg hover:bg-red-700 transition flex items-center gap-2">
-                        <i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="btnNewTicket">بلاغ صيانة جديد</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="statActive">بلاغات نشطة</p>
-                        <h3 class="text-2xl font-bold num-font mt-1 text-orange-500">5</h3>
-                        <p class="text-[10px] text-slate-400" data-i18n="statActiveSub">2 منها طارئة</p>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center"><i class="fa-solid fa-helmet-safety"></i></div>
-                </div>
-                
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="statDone">إنجاز الشهر</p>
-                        <h3 class="text-2xl font-bold num-font mt-1 text-green-600">24</h3>
-                        <p class="text-[10px] text-slate-400" data-i18n="statDoneSub">طلب مكتمل</p>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center"><i class="fa-solid fa-check-double"></i></div>
-                </div>
-
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="statTime">زمن الاستجابة</p>
-                        <h3 class="text-2xl font-bold num-font mt-1 text-blue-600">4h</h3>
-                        <p class="text-[10px] text-slate-400" data-i18n="statTimeSub">متوسط (ممتاز)</p>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-stopwatch"></i></div>
-                </div>
-
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="statCost">تكلفة الصيانة</p>
-                        <h3 class="text-2xl font-bold num-font mt-1 text-slate-800 dark:text-white">3,200</h3>
-                        <p class="text-[9px] text-slate-400">SAR / March</p>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center"><i class="fa-solid fa-wallet"></i></div>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row gap-4 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
-                <div class="relative flex-1">
-                    <input type="text" data-i18n-placeholder="searchPlace" placeholder="بحث برقم البلاغ أو الموقع..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg py-2 px-4 pl-10 text-sm focus:outline-none focus:border-brandRed dark:text-white">
-                    <i class="fa-solid fa-magnifying-glass absolute top-2.5 left-3 text-slate-400"></i>
-                </div>
-                <select class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg py-2 px-4 text-sm text-slate-600 dark:text-white focus:outline-none">
-                    <option data-i18n="filterLocAll">كل المواقع</option>
-                    <option data-i18n="filterLocHQ">المقر الرئيسي</option>
-                    <option data-i18n="filterLocNorth">فرع الشمال</option>
-                    <option data-i18n="filterLocStore">المستودع</option>
-                </select>
-                <select class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg py-2 px-4 text-sm text-slate-600 dark:text-white focus:outline-none">
-                    <option data-i18n="filterTypeAll">كل الأنواع</option>
-                    <option data-i18n="filterTypeAC">تكييف</option>
-                    <option data-i18n="filterTypePlumb">سباكة</option>
-                    <option data-i18n="filterTypeClean">نظافة</option>
-                    <option data-i18n="filterTypeElec">كهرباء</option>
-                </select>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-right rtl:text-right ltr:text-left">
-                        <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-500 text-xs font-bold uppercase">
-                            <tr>
-                                <th class="p-4" data-i18n="colTicket">رقم البلاغ / التاريخ</th>
-                                <th class="p-4" data-i18n="colLocation">الموقع</th>
-                                <th class="p-4" data-i18n="colCategory">الفئة</th>
-                                <th class="p-4" data-i18n="colDesc">الوصف</th>
-                                <th class="p-4 text-center" data-i18n="colPriority">الأولوية</th>
-                                <th class="p-4 text-center" data-i18n="colStatus">الحالة</th>
-                                <th class="p-4 text-center" data-i18n="colAction">الإجراء</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700 dark:text-slate-300">
-                            
-                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
-                                <td class="p-4">
-                                    <span class="font-bold font-mono">#LOG-205</span>
-                                    <span class="block text-[10px] text-slate-400 font-mono">2026-03-22 09:30</span>
-                                </td>
-                                <td class="p-4" data-i18n="locHQ">المقر الرئيسي (الدور 3)</td>
-                                <td class="p-4"><span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded text-[10px] font-bold" data-i18n="catAC">تكييف</span></td>
-                                <td class="p-4 text-xs truncate max-w-xs" data-i18n="desc1">المكيف المركزي في قاعة الاجتماعات لا يبرد</td>
-                                <td class="p-4 text-center">
-                                    <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="prioHigh">عالية</span>
-                                </td>
-                                <td class="p-4 text-center">
-                                    <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="statPending">قيد المعالجة</span>
-                                </td>
-                                <td class="p-4 text-center">
-                                    <button class="text-slate-400 hover:text-brandRed transition"><i class="fa-solid fa-eye"></i></button>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
-                                <td class="p-4">
-                                    <span class="font-bold font-mono">#LOG-204</span>
-                                    <span class="block text-[10px] text-slate-400 font-mono">2026-03-21 14:00</span>
-                                </td>
-                                <td class="p-4" data-i18n="locNorth">فرع الشمال</td>
-                                <td class="p-4"><span class="bg-purple-50 text-purple-600 px-2 py-0.5 rounded text-[10px] font-bold" data-i18n="catClean">نظافة</span></td>
-                                <td class="p-4 text-xs truncate max-w-xs" data-i18n="desc2">طلب تنظيف عميق للموكيت</td>
-                                <td class="p-4 text-center">
-                                    <span class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-[10px] font-bold" data-i18n="prioNormal">عادية</span>
-                                </td>
-                                <td class="p-4 text-center">
-                                    <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="statDone">مكتمل</span>
-                                </td>
-                                <td class="p-4 text-center">
-                                    <button class="text-slate-400 hover:text-brandRed transition"><i class="fa-solid fa-eye"></i></button>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
-                                <td class="p-4">
-                                    <span class="font-bold font-mono">#LOG-203</span>
-                                    <span class="block text-[10px] text-slate-400 font-mono">2026-03-20 10:15</span>
-                                </td>
-                                <td class="p-4" data-i18n="locHQ">المقر الرئيسي (المطبخ)</td>
-                                <td class="p-4"><span class="bg-orange-50 text-orange-600 px-2 py-0.5 rounded text-[10px] font-bold" data-i18n="catPlumb">سباكة</span></td>
-                                <td class="p-4 text-xs truncate max-w-xs" data-i18n="desc3">تسريب مياه أسفل الحوض</td>
-                                <td class="p-4 text-center">
-                                    <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="prioMedium">متوسطة</span>
-                                </td>
-                                <td class="p-4 text-center">
-                                    <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="statDone">مكتمل</span>
-                                </td>
-                                <td class="p-4 text-center">
-                                    <button class="text-slate-400 hover:text-brandRed transition"><i class="fa-solid fa-eye"></i></button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </main>
-    </div>
-
-    <div id="ticketModal" class="fixed inset-0 bg-black/60 hidden z-50 flex items-center justify-center backdrop-blur-sm p-4">
-        <div class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-2xl shadow-xl p-6">
-            <div class="flex justify-between items-center mb-6 border-b pb-4 dark:border-slate-700">
-                <h3 class="font-bold text-lg dark:text-white" data-i18n="modTitle">إنشاء بلاغ صيانة</h3>
-                <button onclick="document.getElementById('ticketModal').classList.add('hidden')"><i class="fa-solid fa-xmark text-slate-400"></i></button>
-            </div>
-            
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblLocation">الموقع</label>
-                    <select class="w-full bg-slate-50 dark:bg-slate-700 border dark:border-slate-600 rounded-lg p-2 text-sm dark:text-white">
-                        <option>المقر الرئيسي - الرياض</option>
-                        <option>فرع الشمال</option>
-                        <option>المستودع</option>
-                    </select>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblCategory">نوع الصيانة</label>
-                        <select class="w-full bg-slate-50 dark:bg-slate-700 border dark:border-slate-600 rounded-lg p-2 text-sm dark:text-white">
-                            <option>كهرباء</option>
-                            <option>سباكة</option>
-                            <option>تكييف</option>
-                            <option>نظافة</option>
-                            <option>أثاث</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblPriority">الأولوية</label>
-                        <select class="w-full bg-slate-50 dark:bg-slate-700 border dark:border-slate-600 rounded-lg p-2 text-sm dark:text-white">
-                            <option>عادية</option>
-                            <option>متوسطة</option>
-                            <option class="text-red-600 font-bold">عالية (طارئة)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblDesc">وصف المشكلة</label>
-                    <textarea class="w-full bg-slate-50 dark:bg-slate-700 border dark:border-slate-600 rounded-lg p-2 text-sm dark:text-white h-24" placeholder="يرجى وصف المشكلة بدقة..."></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblPhoto">إرفاق صورة (اختياري)</label>
-                    <input type="file" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
-                </div>
-            </div>
-
-            <div class="mt-6 flex justify-end gap-3 pt-4 border-t dark:border-slate-700">
-                <button onclick="document.getElementById('ticketModal').classList.add('hidden')" class="px-4 py-2 text-slate-500 text-xs font-bold hover:bg-slate-50 rounded-lg dark:hover:bg-slate-700" data-i18n="btnCancel">إلغاء</button>
-                <button onclick="alert('تم رفع البلاغ بنجاح'); document.getElementById('ticketModal').classList.add('hidden')" class="px-6 py-2 bg-brandRed text-white rounded-lg text-xs font-bold hover:bg-red-700 shadow-md" data-i18n="btnSubmit">إرسال البلاغ</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="data/company_policy.js"></script>
-    <script src="js/core/i18n.js"></script>
-    <script src="js/components/layout.js"></script>
-    <script src="js/components/bot.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
-        const ctoUser = {
-            id: 'USR_005',
-            name: 'منصور اليامي  ',
-            displayName: 'مدير الشؤون الادارية ',
-            role: 'CAO', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
-            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
-        };
-        
-        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
-        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
-        localStorage.setItem('activeRole', 'CAO');
-
-        // 3. التأكد من وجود الوضع الليلي المفضل
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'light');
-        }
-
-        // 4. تشغيل المحرك
-        if (typeof Layout !== 'undefined') {
-            Layout.init();
-            
-            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
-            document.body.style.opacity = '1';
-            console.log("🚀 CAO Layout Engine v10.5 Started Successfully");
-        } else {
-            console.error("❌ Layout.js file not found! Check your script paths.");
-        }
-    });
-</script>
-
-    <script>
-        // --- 1. الترجمة ---
-        const pageContent = {
-            ar: {
-                pageTitle: "الخدمات والصيانة | AndroGov",
-                headerTitle: "الخدمات اللوجستية والصيانة",
-                headerDesc: "إدارة طلبات الصيانة، نظافة المكاتب، والخدمات العامة",
-                btnReports: "تقارير الإنجاز",
-                btnNewTicket: "بلاغ صيانة جديد",
-                statActive: "بلاغات نشطة",
-                statActiveSub: "2 منها طارئة",
-                statDone: "إنجاز الشهر",
-                statDoneSub: "طلب مكتمل",
-                statTime: "زمن الاستجابة",
-                statTimeSub: "متوسط (ممتاز)",
-                statCost: "تكلفة الصيانة",
-                searchPlace: "بحث برقم البلاغ أو الموقع...",
-                filterLocAll: "كل المواقع",
-                filterLocHQ: "المقر الرئيسي",
-                filterLocNorth: "فرع الشمال",
-                filterLocStore: "المستودع",
-                filterTypeAll: "كل الأنواع",
-                filterTypeAC: "تكييف",
-                filterTypePlumb: "سباكة",
-                filterTypeClean: "نظافة",
-                filterTypeElec: "كهرباء",
-                colTicket: "رقم البلاغ / التاريخ",
-                colLocation: "الموقع",
-                colCategory: "الفئة",
-                colDesc: "الوصف",
-                colPriority: "الأولوية",
-                colStatus: "الحالة",
-                colAction: "الإجراء",
-                locHQ: "المقر الرئيسي (الدور 3)",
-                catAC: "تكييف",
-                desc1: "المكيف المركزي في قاعة الاجتماعات لا يبرد",
-                prioHigh: "عالية",
-                statPending: "قيد المعالجة",
-                locNorth: "فرع الشمال",
-                catClean: "نظافة",
-                desc2: "طلب تنظيف عميق للموكيت",
-                prioNormal: "عادية",
-                prioMedium: "متوسطة",
-                catPlumb: "سباكة",
-                desc3: "تسريب مياه أسفل الحوض",
-                modTitle: "إنشاء بلاغ صيانة",
-                lblLocation: "الموقع",
-                lblCategory: "نوع الصيانة",
-                lblPriority: "الأولوية",
-                lblDesc: "وصف المشكلة",
-                lblPhoto: "إرفاق صورة (اختياري)",
-                btnCancel: "إلغاء",
-                btnSubmit: "إرسال البلاغ"
-            },
-            en: {
-                pageTitle: "Logistics & Maintenance | AndroGov",
-                headerTitle: "Logistics & Maintenance",
-                headerDesc: "Manage maintenance tickets, office cleaning, and general services",
-                btnReports: "Performance Reports",
-                btnNewTicket: "New Ticket",
-                statActive: "Active Tickets",
-                statActiveSub: "2 Emergency",
-                statDone: "Monthly Done",
-                statDoneSub: "Completed",
-                statTime: "Response Time",
-                statTimeSub: "Average (Excellent)",
-                statCost: "Maintenance Cost",
-                searchPlace: "Search by ticket ID or location...",
-                filterLocAll: "All Locations",
-                filterLocHQ: "Headquarters",
-                filterLocNorth: "North Branch",
-                filterLocStore: "Warehouse",
-                filterTypeAll: "All Types",
-                filterTypeAC: "HVAC",
-                filterTypePlumb: "Plumbing",
-                filterTypeClean: "Cleaning",
-                filterTypeElec: "Electrical",
-                colTicket: "Ticket # / Date",
-                colLocation: "Location",
-                colCategory: "Category",
-                colDesc: "Description",
-                colPriority: "Priority",
-                colStatus: "Status",
-                colAction: "Action",
-                locHQ: "HQ (3rd Floor)",
-                catAC: "HVAC",
-                desc1: "Meeting room central AC not cooling",
-                prioHigh: "High",
-                statPending: "In Progress",
-                locNorth: "North Branch",
-                catClean: "Cleaning",
-                desc2: "Deep cleaning for carpets",
-                prioNormal: "Normal",
-                prioMedium: "Medium",
-                catPlumb: "Plumbing",
-                desc3: "Water leak under sink",
-                modTitle: "Create Maintenance Ticket",
-                lblLocation: "Location",
-                lblCategory: "Maintenance Type",
-                lblPriority: "Priority",
-                lblDesc: "Description",
-                lblPhoto: "Attach Photo (Optional)",
-                btnCancel: "Cancel",
-                btnSubmit: "Submit Ticket"
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePageLanguage();
-        });
-
-        function updatePageLanguage() {
-            const lang = localStorage.getItem('lang') || 'ar';
-            const dict = pageContent[lang];
-            
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if(dict[key]) el.innerText = dict[key];
-            });
-            
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if(dict[key]) el.placeholder = dict[key];
-            });
-        }
-    </script>
-</body>
-</html>
