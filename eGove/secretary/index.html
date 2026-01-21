@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | eGov</title>
+    
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <style>
+        /* تنسيقات خاصة بلوحة التحكم */
+        body { display: flex; height: 100vh; overflow: hidden; background: var(--bg-primary); }
+        
+        /* Sidebar */
+        .sidebar { width: 260px; background: var(--bg-secondary); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 20px; transition: 0.3s; }
+        .sidebar-header { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+        .sidebar-header img { width: 35px; }
+        .sidebar-header h3 { font-size: 18px; margin: 0; color: var(--text-primary); }
+        
+        .menu-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: var(--text-secondary); text-decoration: none; border-radius: 12px; margin-bottom: 5px; transition: 0.2s; }
+        .menu-item:hover, .menu-item.active { background: var(--bg-elevated); color: var(--lavender-light); }
+        .menu-item i { width: 20px; text-align: center; }
+
+        /* Main Content */
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        
+        /* Topbar */
+        .topbar { height: 70px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; background: var(--bg-primary); }
+        .page-title { font-size: 20px; font-weight: 700; color: var(--text-primary); }
+        .user-profile { display: flex; align-items: center; gap: 15px; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; color: var(--lavender-light); }
+
+        /* Dashboard Area */
+        .dashboard-container { flex: 1; overflow-y: auto; padding: 30px; }
+        .stat-card { background: var(--bg-secondary); padding: 20px; border-radius: 16px; border: 1px solid var(--border-color); }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        
+        /* حالة التحميل */
+        .loading { display: flex; justify-content: center; align-items: center; height: 100%; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="../../partners-slider/favicon.png" alt="Logo">
+            <h3>eGov System</h3>
+        </div>
+        
+        <nav id="sidebarMenu">
+            <div class="loading"><i class="fas fa-circle-notch fa-spin"></i></div>
+        </nav>
+
+        <div style="margin-top: auto;">
+            <a href="#" onclick="Auth.logout()" class="menu-item" style="color: #ff6b6b;">
+                <i class="fas fa-sign-out-alt"></i> تسجيل خروج
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="topbar">
+            <h2 class="page-title" id="pageTitle">لوحة المعلومات</h2>
+            <div class="user-profile">
+                <button class="theme-toggle" onclick="toggleTheme()" style="background:none; border:none; color:var(--text-secondary); cursor:pointer;">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div style="text-align: left;">
+                    <div style="font-weight: bold; font-size: 14px; color: var(--text-primary);" id="userNameDisplay">المستخدم</div>
+                    <div style="font-size: 12px; color: var(--text-muted);" id="userRoleDisplay">الدور الوظيفي</div>
+                </div>
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
+            </div>
+        </header>
+
+        <div class="dashboard-container" id="workspace">
+            <div class="grid-4">
+                <div class="stat-card">
+                    <h4 style="color: var(--text-muted); font-size: 14px;">المهام النشطة</h4>
+                    <h2 style="margin: 10px 0; color: var(--text-primary);">12</h2>
+                    <span style="color: var(--mint-green); font-size: 12px;">+2 اليوم</span>
+                </div>
+                <div class="stat-card">
+                    <h4 style="color: var(--text-muted); font-size: 14px;">التنبيهات</h4>
+                    <h2 style="margin: 10px 0; color: var(--text-primary);">5</h2>
+                    <span style="color: var(--soft-orange); font-size: 12px;">تستوجب الانتباه</span>
+                </div>
+                </div>
+            
+            <div class="stat-card" style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                <p>مساحة العمل الخاصة بالدور الوظيفي...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/core/config.js"></script>
+    <script src="../../assets/js/core/auth.js"></script>
+    <script>
+        // التحقق من الصلاحية عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            Auth.checkSession();
+            
+            // عرض اسم المستخدم ودوره
+            document.getElementById('userNameDisplay').innerText = localStorage.getItem('userName') || 'زائر';
+            document.getElementById('userRoleDisplay').innerText = localStorage.getItem('userRole') || 'Guest';
+
+            // بناء القائمة الجانبية (محاكاة)
+            // في الخطوة القادمة سنجعل هذا ديناميكياً لكل دور
+            const role = localStorage.getItem('userRole');
+            const menu = document.getElementById('sidebarMenu');
+            
+            let links = '';
+            if(role === 'board') {
+                links = `
+                    <a href="#" class="menu-item active"><i class="fas fa-home"></i> الرئيسية</a>
+                    <a href="#" class="menu-item"><i class="fas fa-calendar-check"></i> الاجتماعات</a>
+                    <a href="#" class="menu-item"><i class="fas fa-file-signature"></i> القرارات</a>
+                    <a href="#" class="menu-item"><i class="fas fa-chart-pie"></i> التقارير</a>
+                `;
+            } else if(role === 'hr') {
+                links = `
+                    <a href="#" class="menu-item active"><i class="fas fa-home"></i> الرئيسية</a>
+                    <a href="#" class="menu-item"><i class="fas fa-users"></i> الموظفين</a>
+                    <a href="#" class="menu-item"><i class="fas fa-money-bill-wave"></i> الرواتب</a>
+                `;
+            } else {
+                // روابط افتراضية للبقية حالياً
+                links = `
+                    <a href="#" class="menu-item active"><i class="fas fa-home"></i> الرئيسية</a>
+                    <a href="#" class="menu-item"><i class="fas fa-tasks"></i> المهام</a>
+                    <a href="#" class="menu-item"><i class="fas fa-inbox"></i> البريد</a>
+                `;
+            }
+            menu.innerHTML = links;
+        });
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+        }
+    </script>
+</body>
+</html>
