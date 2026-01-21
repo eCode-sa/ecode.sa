@@ -1,603 +1,450 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electronic Code | eGov Platform</title>
-    <meta content="Electronic Code - SaaS Governance Solutions" name="description">
-
+    <title>eCode | Electronic Code Co.</title>
+    <meta name="description" content="شركة إلكترونيك كود - حلول الحوكمة الرقمية والأنظمة الذكية في السعودية">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.rtl.min.css" id="bootstrap-css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <style>
-        /* =========================================
-           ROOT VARIABLES & THEMES
-           ========================================= */
-        :root {
-            --primary: #0d6efd;
-            --secondary: #37517e;
-            --bg-body: #ffffff;
-            --bg-card: #ffffff;
-            --bg-light: #f3f5fa;
-            --text-main: #444444;
-            --text-heading: #37517e;
-            --border-color: #eaeaea;
-            --shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
-            --chat-bg: #fff;
-        }
-
-        /* الوضع الليلي */
-        [data-theme="dark"] {
-            --primary: #3b82f6;
-            --secondary: #60a5fa;
-            --bg-body: #121212;
-            --bg-card: #1e1e1e;
-            --bg-light: #181818;
-            --text-main: #e0e0e0;
-            --text-heading: #ffffff;
-            --border-color: #333333;
-            --shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
-            --chat-bg: #1e1e1e;
-        }
-
-        /* إعدادات عامة */
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden;
-        }
-
-        /* دعم اللغة الإنجليزية */
-        html[lang="en"] body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        h1, h2, h3, h4, h5 { color: var(--text-heading); font-weight: 700; }
-
-        /* =========================================
-           HEADER STYLES
-           ========================================= */
-        .header {
-            background: var(--bg-card);
-            box-shadow: var(--shadow);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            transition: background-color 0.3s;
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-icon img { height: 40px; }
-        .logo-text { line-height: 1.1; }
-        .brand-name { font-size: 1.4rem; font-weight: 800; color: var(--text-heading); }
-        .brand-tagline { font-size: 0.75rem; color: var(--primary); font-weight: 600; letter-spacing: 0.5px; }
-
-        /* Navigation */
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-main);
-            font-weight: 600;
-            position: relative;
-        }
-
-        .nav-link:hover, .nav-link.active { color: var(--primary); }
-
-        /* Buttons */
-        .btn-action {
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-light);
-            color: var(--text-heading);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-action:hover { background: var(--border-color); }
-
-        .btn-primary-custom {
-            background-color: var(--primary);
-            color: #fff !important;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
-        }
-        .btn-primary-custom:hover { transform: translateY(-2px); opacity: 0.9; }
-
-        /* =========================================
-           HERO SECTION
-           ========================================= */
-        .hero {
-            padding: 80px 0;
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            background: var(--bg-light);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-badge {
-            background: rgba(13, 110, 253, 0.1);
-            color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.3; }
-        .hero p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
-
-        /* =========================================
-           SERVICES CARDS
-           ========================================= */
-        .service-card {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-            height: 100%;
-            border: 1px solid var(--border-color);
-        }
-        .service-card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .icon-box {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        /* =========================================
-           FOOTER
-           ========================================= */
-        .footer {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border-color);
-            padding-top: 60px;
-            margin-top: 80px;
-        }
-        .legal-box {
-            background: var(--bg-light);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            border-right: 4px solid var(--primary);
-        }
-        html[lang="en"] .legal-box { border-right: none; border-left: 4px solid var(--primary); }
-
-        /* =========================================
-           AI BOT & WHATSAPP
-           ========================================= */
-        .floating-btn {
+        /* Chat Widget Styles */
+        .chat-widget-btn {
             position: fixed;
-            bottom: 30px;
+            bottom: 100px;
+            left: 30px;
             width: 60px;
             height: 60px;
+            background: linear-gradient(135deg, var(--sky-blue), var(--lavender-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
             cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .floating-btn:hover { transform: scale(1.1); }
-        
-        .whatsapp-btn {
-            left: 30px;
-            background: #25d366;
+            box-shadow: var(--shadow-glow);
+            z-index: 1000;
+            transition: var(--transition-base);
+            color: #fff;
+            font-size: 24px;
         }
         
-        .ai-btn {
-            right: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+        [dir="ltr"] .chat-widget-btn { left: auto; right: 30px; }
 
-        /* AI Chat Window */
+        .chat-widget-btn:hover { transform: scale(1.1); }
+
         .chat-window {
             position: fixed;
-            bottom: 100px;
-            right: 30px;
+            bottom: 110px;
+            left: 100px;
             width: 350px;
             height: 450px;
-            background: var(--chat-bg);
-            border-radius: 20px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-            display: none; /* Hidden by default */
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            display: none;
             flex-direction: column;
             z-index: 1001;
-            border: 1px solid var(--border-color);
             overflow: hidden;
-            animation: slideUp 0.3s ease;
+            animation: fadeInUp 0.3s ease;
         }
-        
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        [dir="ltr"] .chat-window { left: auto; right: 100px; }
 
         .chat-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--bg-elevated), var(--bg-secondary));
             padding: 15px;
-            color: white;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        
+        .chat-header h4 { font-size: 16px; margin: 0; color: var(--lavender-light); }
+        
         .chat-body {
             flex: 1;
             padding: 15px;
             overflow-y: auto;
-            font-size: 0.9rem;
+            background: var(--bg-primary);
         }
+
+        .chat-msg {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 14px;
+            max-width: 80%;
+        }
+
+        .msg-bot {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border-bottom-right-radius: 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .msg-user {
+            background: var(--lavender-dark);
+            color: #fff;
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+        [dir="ltr"] .msg-user { margin-right: 0; margin-left: auto; }
+
         .chat-footer {
             padding: 10px;
+            background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
             display: flex;
             gap: 10px;
         }
-        
-        .msg {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 10px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-        .msg.bot { background: var(--bg-light); color: var(--text-main); align-self: flex-start; }
-        .msg.user { background: var(--primary); color: white; align-self: flex-end; margin-right: auto; }
-        html[lang="en"] .msg.user { margin-right: 0; margin-left: auto; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .chat-window { width: 90%; right: 5%; bottom: 100px; }
-            .whatsapp-btn { left: 20px; }
-            .ai-btn { right: 20px; }
+        .chat-input {
+            flex: 1;
+            padding: 8px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        /* Mobile Menu Helper */
+        .mobile-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--text-primary); }
+        @media(max-width: 768px) { 
+            .mobile-toggle { display: block; } 
+            .nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-secondary); flex-direction: column; padding: 20px; border-bottom: 1px solid var(--border-color); }
+            .nav.active { display: flex; }
+            .chat-window { width: 90%; left: 5%; right: 5%; bottom: 100px; }
         }
     </style>
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="container header-inner">
+    <header class="main-header">
+        <div class="header-inner">
             <a href="#" class="logo-container">
                 <div class="logo-icon">
-                    <img src="partners-slider/favicon.png" alt="Logo" onerror="this.src='https://via.placeholder.com/40/0d6efd/FFFFFF?text=E'">
+                    <img src="partners-slider/favicon.png" alt="eCode Logo" onerror="this.style.display='none'">
+                    <i class="fa-solid fa-layer-group" style="font-size: 32px; color: var(--lavender-light);"></i>
                 </div>
                 <div class="logo-text">
-                    <div class="brand-name" data-i18n="brandName">eCode</div>
-                    <div class="brand-tagline" data-i18n="tagline">تصنع الأثر</div>
+                    <span class="brand-name" data-i18n="brand">eCode</span>
+                    <span class="brand-tagline" data-i18n="tagline">تصنع الأثر | Making Impact</span>
                 </div>
             </a>
 
-            <nav class="nav-links d-none d-md-flex">
-                <a href="#hero" class="nav-link" data-i18n="navHome">الرئيسية</a>
-                <a href="#services" class="nav-link" data-i18n="navServices">الخدمات</a>
-                <a href="#about" class="nav-link" data-i18n="navAbout">من نحن</a>
+            <div class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+
+            <nav class="nav" id="mainNav">
+                <a href="#hero" data-i18n="nav_home">الرئيسية</a>
+                <a href="#services" data-i18n="nav_services">الخدمات</a>
+                <a href="#about" data-i18n="nav_about">عن الشركة</a>
+                <a href="login.html" class="btn-primary">
+                    <i class="fa-solid fa-user me-2"></i> <span data-i18n="login">تسجيل الدخول</span>
+                </a>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Theme">
+                        <i class="fa-solid fa-moon" id="themeIcon"></i>
+                    </button>
+                    <button class="lang-switcher" onclick="toggleLang()" aria-label="Language">
+                        <span id="langText">EN</span>
+                    </button>
+                </div>
             </nav>
-
-            <div class="d-flex align-items-center gap-2">
-                <button class="btn-action" onclick="toggleTheme()" aria-label="Toggle Theme">
-                    <i class="fas fa-moon" id="theme-icon"></i>
-                </button>
-                
-                <button class="btn-action" onclick="toggleLang()" aria-label="Switch Language">
-                    <span id="lang-text" style="font-weight: bold;">EN</span>
-                </button>
-
-                <a href="login.html" class="btn-primary-custom d-none d-sm-block" data-i18n="btnLogin">دخول</a>
-                
-                <button class="btn-action d-md-none" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        
-        <div class="container d-md-none d-none mt-3" id="mobile-menu">
-            <div class="d-flex flex-column gap-3 p-3 bg-light rounded">
-                <a href="#hero" onclick="toggleMobileMenu()" data-i18n="navHome">الرئيسية</a>
-                <a href="#services" onclick="toggleMobileMenu()" data-i18n="navServices">الخدمات</a>
-                <a href="#about" onclick="toggleMobileMenu()" data-i18n="navAbout">من نحن</a>
-                <a href="login.html" class="btn btn-primary w-100" data-i18n="btnLogin">تسجيل الدخول</a>
-            </div>
         </div>
     </header>
 
     <section id="hero" class="hero">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-up">
-                    <div class="hero-badge">
-                        <i class="fas fa-shield-alt me-2"></i> <span data-i18n="badgeText">نظام مرخص وممتثل 100%</span>
-                    </div>
-                    <h1 data-i18n="heroTitle">حوكمة الشركات الرقمية<br>بذكاء اصطناعي</h1>
-                    <p data-i18n="heroDesc">
-                        نظام eGov من إلكترونيك كود هو الحل الأول في المملكة لإدارة المجالس واللجان وضمان الامتثال للوائح هيئة السوق المالية.
-                    </p>
-                    <div class="d-flex gap-3">
-                        <a href="#contact" class="btn-primary-custom" data-i18n="btnDemo">اطلب نسخة تجريبية</a>
-                        <button class="btn-action" onclick="toggleChat()" data-i18n="btnAskAI"> <i class="fas fa-robot"></i> اسأل الذكاء الاصطناعي</button>
-                    </div>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-tagline">
+                    <i class="fa-solid fa-shield-halved"></i> <span data-i18n="hero_badge">نظام مرخص وممتثل 100%</span>
                 </div>
-                <div class="col-lg-6 order-1 order-lg-2 text-center mb-5 mb-lg-0">
-                    <img src="assets/img/hero-img.png" class="img-fluid" alt="Dashboard" onerror="this.src='https://via.placeholder.com/600x400/eef2ff/0d6efd?text=eGov+Platform+Dashboard'">
+                <h1 data-i18n="hero_title">الحوكمة الرقمية<br>بمفهوم الابتكار</h1>
+                <p data-i18n="hero_desc">
+                    نمكن الشركات والجهات الحكومية من أتمتة المجالس، اللجان، وإدارة الامتثال باستخدام تقنيات الذكاء الاصطناعي، مع ضمان الحجية القانونية الكاملة.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary" data-i18n="btn_demo">اطلب عرض فني</a>
+                    <a href="#services" class="btn-secondary" data-i18n="btn_more">اكتشف المزيد</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <h3><i class="fa-solid fa-chart-pie" style="color: var(--mint-green);"></i> <span data-i18n="stat_title">تحليلات الأداء</span></h3>
+                <p data-i18n="stat_desc">متابعة لحظية لقرارات مجلس الإدارة ونسب الامتثال.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <strong>98%</strong>
+                        <span data-i18n="compliance_rate">نسبة الامتثال</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>24/7</strong>
+                        <span data-i18n="uptime">توافر النظام</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 data-i18n="servicesTitle">حلولنا المتكاملة</h2>
-                <p class="text-muted" data-i18n="servicesSub">تقنيات مصممة للامتثال والنمو</p>
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">+50</span>
+                <span class="stat-label" data-i18n="stat_1">جهة حكومية</span>
             </div>
+            <div class="stat-item">
+                <span class="stat-number">+10k</span>
+                <span class="stat-label" data-i18n="stat_2">قرار مؤتمت</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label" data-i18n="stat_3">حماية بيانات</span>
+            </div>
+        </div>
+    </div>
 
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-gavel"></i></div>
-                        <h4 data-i18n="serv1Title">إدارة المجالس</h4>
-                        <p class="text-muted" data-i18n="serv1Desc">أتمتة المحاضر، التصويت الرقمي، وتوقيع القرارات مع الامتثال القانوني.</p>
-                    </div>
+    <section id="services">
+        <div class="section-inner">
+            <h2 class="section-title" data-i18n="services_title">خدماتنا النوعية</h2>
+            <p class="section-subtitle" data-i18n="services_sub">منظومة تقنية متكاملة لإدارة المنشآت</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-gavel" style="color: var(--lavender-light);"></i> <span data-i18n="srv_1_title">إدارة المجالس</span></h3>
+                    <ul>
+                        <li data-i18n="srv_1_p1">أتمتة المحاضر والتصويت</li>
+                        <li data-i18n="srv_1_p2">توقيع رقمي معتمد</li>
+                    </ul>
+                    <a href="#" class="feature-link" data-i18n="read_more">اقرأ المزيد &larr;</a>
                 </div>
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-file-contract"></i></div>
-                        <h4 data-i18n="serv2Title">الامتثال والتدقيق</h4>
-                        <p class="text-muted" data-i18n="serv2Desc">سجلات تدقيق غير قابلة للتعديل لضمان الشفافية أمام الجهات الرقابية.</p>
-                    </div>
+                
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-file-invoice-dollar" style="color: var(--sky-blue);"></i> <span data-i18n="srv_2_title">نظام الموارد والرواتب</span></h3>
+                    <ul>
+                        <li data-i18n="srv_2_p1">ربط مباشر مع مدد</li>
+                        <li data-i18n="srv_2_p2">حساب مسيرات الرواتب</li>
+                    </ul>
+                    <a href="#" class="feature-link" data-i18n="read_more">اقرأ المزيد &larr;</a>
                 </div>
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-users-cog"></i></div>
-                        <h4 data-i18n="serv3Title">الموارد البشرية</h4>
-                        <p class="text-muted" data-i18n="serv3Desc">نظام HR متوافق مع نظام العمل السعودي، التأمينات، ومنصة مدد.</p>
-                    </div>
+
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-fingerprint" style="color: var(--mint-green);"></i> <span data-i18n="srv_3_title">التدقيق والامتثال</span></h3>
+                    <ul>
+                        <li data-i18n="srv_3_p1">سجلات تدقيق غير قابلة للتعديل</li>
+                        <li data-i18n="srv_3_p2">تنبيهات المخالفات الآلية</li>
+                    </ul>
+                    <a href="#" class="feature-link" data-i18n="read_more">اقرأ المزيد &larr;</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section">
+        <div class="partners-slider">
+            <div class="partners-track">
+                <div class="partner-item"><img src="partners-slider/eCode.png" alt="Partner"></div>
+                <div class="partner-item"><img src="partners-slider/favicon.png" alt="Partner"></div>
+                <div class="partner-item"><img src="partners-slider/eCode.png" alt="Partner"></div>
+                <div class="partner-item"><img src="partners-slider/favicon.png" alt="Partner"></div>
+                <div class="partner-item"><img src="partners-slider/eCode.png" alt="Partner"></div>
+                <div class="partner-item"><img src="partners-slider/favicon.png" alt="Partner"></div>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <div class="container pb-4">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="logo-container mb-3">
-                        <img src="partners-slider/favicon.png" width="30" onerror="this.style.display='none'">
-                        <span class="brand-name h5 mb-0" data-i18n="brandName">eCode</span>
-                    </div>
-                    <p class="text-muted" data-i18n="footerDesc">شركة سعودية رائدة في حلول الحوكمة الرقمية.</p>
-                    <div class="d-flex gap-3 mt-3">
-                        <a href="#" class="text-muted"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
-                        <a href="#" class="text-muted"><i class="fab fa-instagram fa-lg"></i></a>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <h4>Electronic Code</h4>
+                    <p data-i18n="footer_desc">شركة سعودية رائدة في حلول الحوكمة الرقمية، مسجلة ومرخصة.</p>
+                    <div class="social-bar">
+                        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                 </div>
 
-                <div class="col-lg-4">
-                    <h5 class="mb-3" data-i18n="contactTitle">تواصل معنا</h5>
-                    <p class="mb-1"><i class="fas fa-map-marker-alt text-primary mx-2"></i> <span data-i18n="address">الرياض، حي قرطبة</span></p>
-                    <p class="mb-1"><i class="fas fa-phone text-primary mx-2"></i> 0503666316</p>
-                    <p><i class="fas fa-envelope text-primary mx-2"></i> info@ecode.sa</p>
+                <div class="footer-links">
+                    <h4 data-i18n="quick_links">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="nav_home">الرئيسية</a></li>
+                        <li><a href="#" data-i18n="nav_services">الخدمات</a></li>
+                        <li><a href="#" data-i18n="privacy">سياسة الخصوصية</a></li>
+                    </ul>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="legal-box">
-                        <h6 class="mb-2 fw-bold" data-i18n="legalTitle">البيانات النظامية</h6>
-                        <div class="mb-1"><span data-i18n="cr">سجل تجاري:</span> <strong>7050139125</strong></div>
-                        <div><span data-i18n="vat">الرقم الضريبي:</span> <strong>3130161102</strong></div>
+                <div>
+                    <h4 data-i18n="contact_us">تواصل معنا</h4>
+                    <p>Riyadh, Saudi Arabia</p>
+                    <p>+966 53 072 2771</p>
+                    <p>info@ecode.sa</p>
+                    
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(139, 127, 255, 0.1); border-radius: 8px;">
+                        <p style="font-size: 14px; margin: 0;"><i class="fa-solid fa-file-contract"></i> CR: 7050139125</p>
+                        <p style="font-size: 14px; margin: 0;"><i class="fa-solid fa-receipt"></i> VAT: 3130161102</p>
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-5 pt-3 border-top text-muted small">
-                &copy; 2026 Electronic Code Co. All Rights Reserved.
+            
+            <div class="footer-bottom">
+                &copy; 2026 Electronic Code Company. All Rights Reserved.
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/966503666316" class="floating-btn whatsapp-btn" target="_blank" title="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/966530722771" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
     </a>
-    
-    <div class="floating-btn ai-btn" onclick="toggleChat()" title="AI Assistant">
-        <i class="fas fa-robot"></i>
+
+    <div class="chat-widget-btn" onclick="toggleChat()">
+        <i class="fa-solid fa-robot"></i>
     </div>
 
-    <div class="chat-window" id="chat-window">
+    <div class="chat-window" id="chatWindow">
         <div class="chat-header">
-            <div>
-                <i class="fas fa-robot me-2"></i> <span data-i18n="botName">المساعد الذكي</span>
-            </div>
-            <button class="btn btn-sm text-white" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+            <h4><i class="fa-solid fa-sparkles"></i> eCode AI</h4>
+            <i class="fa-solid fa-xmark" onclick="toggleChat()" style="cursor: pointer;"></i>
         </div>
-        <div class="chat-body" id="chat-body">
-            <div class="d-flex flex-column" id="chat-messages">
-                <div class="msg bot" data-i18n="botWelcome">مرحباً! أنا مساعد eCode الذكي. كيف يمكنني خدمتك اليوم؟</div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg msg-bot">
+                مرحباً بك في إلكترونيك كود! 🤖<br>كيف يمكنني مساعدتك في أتمتة أعمالك اليوم؟
             </div>
         </div>
         <div class="chat-footer">
-            <input type="text" class="form-control" id="chat-input" placeholder="اكتب سؤالك هنا..." onkeypress="handleEnter(event)">
-            <button class="btn btn-primary" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" class="chat-input" id="userMsg" placeholder="اكتب سؤالك..." onkeypress="handleEnter(event)">
+            <button class="btn-primary" style="padding: 5px 15px; min-width: auto;" onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
     <script>
-        // ================= DATA & TRANSLATIONS =================
-        const content = {
+        // --- 1. Language Data ---
+        const translations = {
             ar: {
-                brandName: "eCode",
-                tagline: "تصنع الأثر",
-                navHome: "الرئيسية", navServices: "الخدمات", navAbout: "من نحن", btnLogin: "دخول",
-                badgeText: "نظام مرخص وممتثل 100%",
-                heroTitle: "حوكمة الشركات الرقمية<br>بذكاء اصطناعي",
-                heroDesc: "نظام eGov من إلكترونيك كود هو الحل الأول في المملكة لإدارة المجالس واللجان وضمان الامتثال.",
-                btnDemo: "اطلب ديمو", btnAskAI: "اسأل المساعد",
-                servicesTitle: "حلولنا المتكاملة", servicesSub: "تقنيات مصممة للامتثال والنمو",
-                serv1Title: "إدارة المجالس", serv1Desc: "أتمتة المحاضر والتصويت الرقمي.",
-                serv2Title: "الامتثال والتدقيق", serv2Desc: "سجلات تدقيق غير قابلة للتعديل.",
-                serv3Title: "الموارد البشرية", serv3Desc: "متوافق مع نظام العمل ومدد.",
-                footerDesc: "شركة سعودية رائدة في حلول الحوكمة.",
-                contactTitle: "تواصل معنا", address: "الرياض، حي قرطبة",
-                legalTitle: "البيانات النظامية", cr: "س.ت:", vat: "الضريبي:",
-                botName: "المساعد الذكي", botWelcome: "مرحباً! أنا مساعد eCode الذكي. كيف يمكنني خدمتك؟"
+                brand: "eCode", tagline: "تصنع الأثر",
+                nav_home: "الرئيسية", nav_services: "الخدمات", nav_about: "عن الشركة", login: "تسجيل الدخول",
+                hero_badge: "نظام مرخص وممتثل 100%",
+                hero_title: "الحوكمة الرقمية<br>بمفهوم الابتكار",
+                hero_desc: "نظام eGov لإدارة المجالس واللجان بذكاء اصطناعي وامتثال قانوني كامل.",
+                btn_demo: "اطلب عرض فني", btn_more: "اكتشف المزيد",
+                stat_title: "تحليلات الأداء", stat_desc: "متابعة لحظية للقرارات.",
+                compliance_rate: "نسبة الامتثال", uptime: "توافر النظام",
+                stat_1: "جهة حكومية", stat_2: "قرار مؤتمت", stat_3: "حماية بيانات",
+                services_title: "خدماتنا النوعية", services_sub: "منظومة تقنية متكاملة",
+                srv_1_title: "إدارة المجالس", srv_1_p1: "أتمتة المحاضر", srv_1_p2: "توقيع رقمي",
+                srv_2_title: "الموارد البشرية", srv_2_p1: "ربط مع مدد", srv_2_p2: "مسيرات الرواتب",
+                srv_3_title: "التدقيق", srv_3_p1: "سجلات آمنة", srv_3_p2: "تنبيهات فورية",
+                read_more: "اقرأ المزيد ←",
+                footer_desc: "شركة سعودية رائدة في الحلول الرقمية.",
+                quick_links: "روابط سريعة", contact_us: "تواصل معنا", privacy: "الخصوصية"
             },
             en: {
-                brandName: "eCode",
-                tagline: "Making Impact",
-                navHome: "Home", navServices: "Services", navAbout: "About", btnLogin: "Login",
-                badgeText: "100% Compliant System",
-                heroTitle: "Digital Corporate Governance<br>Powered by AI",
-                heroDesc: "eGov system by Electronic Code is the premier KSA solution for board management and compliance.",
-                btnDemo: "Request Demo", btnAskAI: "Ask AI",
-                servicesTitle: "Integrated Solutions", servicesSub: "Tech designed for compliance and growth",
-                serv1Title: "Board Management", serv1Desc: "Automating minutes and digital voting.",
-                serv2Title: "Compliance & Audit", serv2Desc: "Immutable audit logs for transparency.",
-                serv3Title: "HR & Payroll", serv3Desc: "Compliant with Saudi Labor Law & Mudad.",
-                footerDesc: "Leading Saudi company in digital governance.",
-                contactTitle: "Contact Us", address: "Riyadh, Qurtubah Dist.",
-                legalTitle: "Legal Info", cr: "CR:", vat: "VAT:",
-                botName: "AI Assistant", botWelcome: "Hello! I am eCode AI. How can I help you?"
+                brand: "eCode", tagline: "Making Impact",
+                nav_home: "Home", nav_services: "Services", nav_about: "About Us", login: "Login",
+                hero_badge: "100% Compliant System",
+                hero_title: "Digital Governance<br>Reimagined",
+                hero_desc: "eGov system for automated Board & Committee management with AI and full legal compliance.",
+                btn_demo: "Request Demo", btn_more: "Learn More",
+                stat_title: "Performance Analytics", stat_desc: "Real-time decision tracking.",
+                compliance_rate: "Compliance Rate", uptime: "System Uptime",
+                stat_1: "Gov Entities", stat_2: "Decisions", stat_3: "Data Privacy",
+                services_title: "Our Services", services_sub: "Integrated Technical Ecosystem",
+                srv_1_title: "Board Mgmt", srv_1_p1: "Minutes Automation", srv_1_p2: "Digital Signature",
+                srv_2_title: "HR System", srv_2_p1: "Mudad Integration", srv_2_p2: "Payroll Engine",
+                srv_3_title: "Audit & Risk", srv_3_p1: "Immutable Logs", srv_3_p2: "Instant Alerts",
+                read_more: "Read More →",
+                footer_desc: "Leading Saudi Company in Digital Solutions.",
+                quick_links: "Quick Links", contact_us: "Contact Us", privacy: "Privacy Policy"
             }
         };
 
-        // ================= THEME LOGIC =================
+        // --- 2. Theme Toggle ---
         function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            const currentTheme = body.getAttribute('data-theme');
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
             
-            if (currentTheme === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                icon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'light');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                icon.className = 'fa-solid fa-moon'; // Icon for dark mode
             } else {
-                body.setAttribute('data-theme', 'dark');
-                icon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'dark');
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fa-solid fa-sun'; // Icon for light mode
             }
         }
 
-        // ================= LANGUAGE LOGIC =================
+        // --- 3. Language Toggle ---
         let currentLang = 'ar';
-
         function toggleLang() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('langText').innerText = currentLang === 'ar' ? 'EN' : 'عربي';
             
             // Update Text
-            document.getElementById('lang-text').innerText = currentLang === 'ar' ? 'EN' : 'عربي';
-            
-            // Swap Bootstrap CSS for Direction
-            const bsLink = document.getElementById('bootstrap-css');
-            if (currentLang === 'en') {
-                bsLink.href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css";
-            } else {
-                bsLink.href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.rtl.min.css";
-            }
-
-            // Update Content Elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (content[currentLang][key]) {
-                    el.innerHTML = content[currentLang][key]; // Use innerHTML for <br> support
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
                 }
             });
         }
 
-        // ================= MOBILE MENU =================
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('d-none');
+        // --- 4. Mobile Menu ---
+        function toggleMenu() {
+            document.getElementById('mainNav').classList.toggle('active');
         }
 
-        // ================= AI CHAT BOT LOGIC =================
+        // --- 5. AI Chat Logic ---
         function toggleChat() {
-            const win = document.getElementById('chat-window');
-            if (win.style.display === 'flex') {
-                win.style.display = 'none';
-            } else {
-                win.style.display = 'flex';
-                document.getElementById('chat-input').focus();
-            }
+            const win = document.getElementById('chatWindow');
+            win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
         }
 
         function handleEnter(e) {
-            if (e.key === 'Enter') sendMessage();
+            if (e.key === 'Enter') sendMsg();
         }
 
-        function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const text = input.value.trim();
-            if (!text) return;
+        function sendMsg() {
+            const input = document.getElementById('userMsg');
+            const txt = input.value.trim();
+            if (!txt) return;
 
-            // Add User Message
-            addMessage(text, 'user');
+            // Add User Msg
+            addChatMsg(txt, 'user');
             input.value = '';
 
-            // Simulate AI Typing
+            // Bot Reply Simulation
             setTimeout(() => {
-                const response = getBotResponse(text);
-                addMessage(response, 'bot');
+                let reply = (currentLang === 'ar') 
+                    ? "شكراً لتواصلك! سيقوم مستشار الحوكمة بالرد عليك قريباً. (هذا رد آلي)" 
+                    : "Thanks! A governance consultant will reply shortly. (Auto-reply)";
+                
+                if(txt.includes('سعر') || txt.includes('price')) 
+                    reply = (currentLang === 'ar') ? "باقاتنا تبدأ من الخطط الأساسية للشركات الناشئة. هل تود عرضاً؟" : "Our plans start basic for startups. Need a quote?";
+
+                addChatMsg(reply, 'bot');
             }, 1000);
         }
 
-        function addMessage(text, sender) {
-            const container = document.getElementById('chat-messages');
+        function addChatMsg(txt, type) {
+            const body = document.getElementById('chatBody');
             const div = document.createElement('div');
-            div.className = `msg ${sender}`;
-            div.innerText = text;
-            container.appendChild(div);
-            // Scroll to bottom
-            document.getElementById('chat-body').scrollTop = document.getElementById('chat-body').scrollHeight;
-        }
-
-        function getBotResponse(input) {
-            // Simple keyword matching for the demo
-            input = input.toLowerCase();
-            const lang = currentLang;
-
-            if (input.includes('سعر') || input.includes('price')) {
-                return lang === 'ar' ? "يرجى التواصل معنا عبر الواتساب للحصول على عرض أسعار مخصص." : "Please contact us via WhatsApp for a custom quote.";
-            }
-            if (input.includes('مكان') || input.includes('موقع') || input.includes('location')) {
-                return lang === 'ar' ? "مقرنا في الرياض، حي قرطبة، طريق الأمير محمد بن سلمان." : "We are located in Riyadh, Qurtubah Dist, Prince Mohammed Bin Salman Rd.";
-            }
-            if (input.includes('مرخص') || input.includes('legal') || input.includes('سجل')) {
-                return lang === 'ar' ? "نعم، نحن شركة مرخصة بسجل تجاري رقم 7050139125." : "Yes, we are a licensed company with CR 7050139125.";
-            }
-            return lang === 'ar' ? "أنا بوت تجريبي. يمكنك التواصل مع فريق المبيعات لمزيد من التفاصيل." : "I am a demo bot. Please contact sales for more details.";
+            div.className = `chat-msg msg-${type}`;
+            div.innerText = txt;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
         }
     </script>
 </body>
