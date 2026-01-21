@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FB4747">
+    <link rel="manifest" href="manifest.json">
+
+    <title data-i18n="pageTitle">AndroGov | اللجان المنبثقة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#FB4747',
+                        brandBlue: '#4267B2',
+                        brandDark: '#1E293B',
+                        brandGray: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Inter', 'sans-serif'],
+                        en: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+        }
+        /* Card Selection Effect */
+        .committee-card.active {
+            border-color: #4267B2;
+            background-color: #EFF6FF;
+        }
+        .dark .committee-card.active {
+            border-color: #4267B2;
+            background-color: #1E293B;
+        }
+        /* Transitions */
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed; inset: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px);
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+        }
+        .dark .loading-overlay { background: rgba(15, 23, 42, 0.9); }
+        .loading-overlay.hidden { display: none; }
+        .spinner {
+            width: 48px; height: 48px; border: 5px solid rgba(66, 103, 178, 0.1);
+            border-top-color: #4267B2; border-radius: 50%; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-brandGray dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300">
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p class="text-sm font-bold text-slate-600 dark:text-slate-300">جاري تحميل بيانات اللجان...</p>
+    </div>
+
+    <div id="sidebar-container" class="no-print"></div>
+    
+    <div class="main-content-wrapper ltr:md:ml-72 rtl:md:mr-72 transition-all duration-300 flex flex-col min-h-screen">
+        <div id="header-container" class="no-print"></div>
+
+        <main class="p-6 space-y-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div onclick="filterCommittees('audit')" id="card-audit" class="committee-card active bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-md border-2 border-transparent cursor-pointer hover:shadow-lg transition relative overflow-hidden group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 text-brandBlue rounded-xl flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <span class="bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded-full font-bold flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> <span data-i18n="statusActive">نشطة</span>
+                        </span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1" data-i18n="auditTitle">لجنة المراجعة</h3>
+                    <p class="text-xs text-slate-500 mb-4" data-i18n="auditTerm">الدورة الحالية (2025-2028)</p>
+                    <div class="space-y-2 border-t border-slate-100 dark:border-slate-700 pt-3">
+                        <div class="flex items-center gap-2 text-xs text-slate-500">
+                            <i class="fa-solid fa-users"></i> <span data-i18n="auditMembers">3 أعضاء</span> | <span class="text-brandBlue font-bold" data-i18n="auditSec">أمين السر: أنت</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="filterCommittees('nomination')" id="card-nomination" class="committee-card bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-md border-2 border-transparent cursor-pointer hover:shadow-lg transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-purple-50 dark:bg-purple-900/30 text-purple-600 rounded-xl flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+                        <span class="bg-slate-100 text-slate-500 text-[10px] px-2 py-1 rounded-full font-bold" data-i18n="statusSetup">تحت التشكيل</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1" data-i18n="nomTitle">المكافآت والترشيحات</h3>
+                    <p class="text-xs text-slate-500 mb-4" data-i18n="nomDesc">بانتظار قرار المجلس</p>
+                </div>
+
+                <div onclick="filterCommittees('executive')" id="card-executive" class="committee-card bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-md border-2 border-transparent cursor-pointer hover:shadow-lg transition">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-orange-50 dark:bg-orange-900/30 text-orange-600 rounded-xl flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <span class="bg-slate-100 text-slate-500 text-[10px] px-2 py-1 rounded-full font-bold" data-i18n="statusInactive">غير مفعلة</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1" data-i18n="execTitle">اللجنة التنفيذية</h3>
+                    <p class="text-xs text-slate-500 mb-4" data-i18n="execDesc">اختيارية</p>
+                </div>
+
+            </div>
+
+            <div id="workspace" class="grid grid-cols-1 lg:grid-cols-3 gap-6 fade-in">
+                
+                <div class="lg:col-span-2 bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col min-h-[500px]">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-slate-800 dark:text-white flex items-center gap-2" id="workspaceTitle">
+                            <i class="fa-solid fa-briefcase text-brandBlue"></i> <span data-i18n="workTitle">أعمال اللجنة</span>
+                        </h3>
+                        <div class="flex gap-2">
+                            <div class="relative">
+                                <input type="text" id="searchMtg" onkeyup="renderMeetings()" class="bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg pl-8 pr-3 py-1.5 text-xs outline-none" placeholder="بحث...">
+                                <i class="fa-solid fa-search absolute left-2.5 top-2 text-slate-400 text-xs"></i>
+                            </div>
+                            <button onclick="startCommWizard()" class="px-4 py-1.5 bg-brandBlue text-white rounded-lg text-xs font-bold hover:bg-blue-700 shadow-md flex items-center gap-2 transition">
+                                <i class="fa-solid fa-plus"></i> <span data-i18n="btnNewMtg">اجتماع جديد</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-slate-200 dark:border-slate-700 mb-4 flex gap-6">
+                        <button onclick="switchTab('upcoming')" id="tab-upcoming" class="pb-3 text-sm font-bold text-brandBlue border-b-2 border-brandBlue transition-colors" data-i18n="tabCurrent">القادمة / الحالية</button>
+                        <button onclick="switchTab('archive')" id="tab-archive" class="pb-3 text-sm font-bold text-slate-500 hover:text-slate-700 border-b-2 border-transparent transition-colors" data-i18n="tabArchive">الأرشيف (تمت)</button>
+                    </div>
+
+                    <div id="meetingsList" class="space-y-3 flex-1 overflow-y-auto custom-scroll pr-1">
+                        </div>
+                </div>
+
+                <div class="lg:col-span-1 space-y-6">
+                    
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
+                        <h3 class="font-bold text-sm mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-wallet text-green-500"></i> <span data-i18n="feesTitle">ملخص المكافآت (2026)</span>
+                        </h3>
+                        
+                        <div class="text-center py-4 bg-green-50 dark:bg-green-900/10 rounded-xl mb-4 border border-green-100 dark:border-green-900/30">
+                            <p class="text-xs text-green-600 mb-1">إجمالي المستحقات</p>
+                            <h2 class="text-3xl font-bold text-green-700 font-en" id="totalFees">0 SAR</h2>
+                        </div>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between p-2 bg-slate-50 rounded border border-slate-100 dark:bg-slate-700 dark:border-slate-600">
+                                <span data-i18n="feeMember">بدل العضو</span>
+                                <span class="font-bold font-en text-slate-700 dark:text-white">1,500 SAR</span>
+                            </div>
+                            <div class="flex justify-between p-2 bg-yellow-50 rounded border border-yellow-100 dark:bg-yellow-900/10 dark:border-yellow-900/30">
+                                <span class="font-bold text-yellow-800 dark:text-yellow-500" data-i18n="feeSec">بدل أمين السر</span>
+                                <span class="font-bold font-en text-slate-700 dark:text-white">1,000 SAR</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
+                        <h3 class="font-bold text-sm mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-users text-purple-500"></i> <span data-i18n="membersTitle">أعضاء اللجنة</span>
+                        </h3>
+                        <div class="space-y-3" id="membersListContainer">
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="commWizardModal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-3xl rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
+            
+            <div class="p-5 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-slate-900 rounded-t-2xl">
+                <div>
+                    <h3 class="font-bold text-lg flex items-center gap-2 text-slate-800 dark:text-white">
+                        <i class="fa-solid fa-plus-circle text-brandBlue"></i> <span data-i18n="wizTitle">اجتماع جديد</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1" id="comm-wizard-subtitle">الخطوة 1: الإعداد</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="flex gap-1">
+                        <div id="step-dot-1" class="w-2.5 h-2.5 rounded-full bg-brandBlue"></div>
+                        <div id="step-dot-2" class="w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                        <div id="step-dot-3" class="w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                    </div>
+                    <button onclick="closeCommWizard()" class="text-slate-400 hover:text-red-500 mr-4"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+            </div>
+
+            <div class="flex-1 p-6 overflow-y-auto">
+                
+                <div id="comm-step1" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblMtgNo">رقم الاجتماع</label>
+                            <input type="text" id="wz-ref" class="w-full border dark:border-slate-600 dark:bg-slate-700 rounded p-2 text-sm bg-slate-50 font-mono" readonly>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblDate">التاريخ</label>
+                            <input type="date" id="wz-date" class="w-full border dark:border-slate-600 dark:bg-slate-700 rounded p-2 text-sm dark:text-white">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblTitle">عنوان الاجتماع</label>
+                            <input type="text" id="wz-title" class="w-full border dark:border-slate-600 dark:bg-slate-700 rounded p-2 text-sm dark:text-white" placeholder="...">
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-slate-50 dark:bg-slate-700/30">
+                        <h4 class="font-bold text-sm mb-3 flex justify-between items-center text-slate-700 dark:text-white">
+                            <span data-i18n="lblAgenda">جدول الأعمال</span>
+                            <button onclick="addAgendaItem()" class="text-xs bg-white dark:bg-slate-600 px-2 py-1 rounded border shadow-sm hover:text-brandBlue"><i class="fa-solid fa-plus"></i></button>
+                        </h4>
+                        <div id="wizardAgendaList" class="space-y-2">
+                            </div>
+                    </div>
+                </div>
+
+                <div id="comm-step2" class="hidden space-y-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-100 dark:border-blue-900/50 flex justify-between items-center">
+                        <span class="text-xs font-bold text-blue-800 dark:text-blue-300" data-i18n="wizAttTitle">تسجيل الحضور والمكافآت</span>
+                        <span class="text-xs font-bold text-blue-600 dark:text-blue-400 font-mono" id="wz-total-fee">Total: 0 SAR</span>
+                    </div>
+                    <table class="w-full text-sm text-right rtl:text-right ltr:text-left border dark:border-slate-700 rounded-lg overflow-hidden">
+                        <thead class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                            <tr>
+                                <th class="p-2">الاسم</th>
+                                <th class="p-2">المنصب</th>
+                                <th class="p-2">البدل</th>
+                                <th class="p-2 text-center">حاضر</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y dark:divide-slate-700" id="wz-att-body">
+                            </tbody>
+                    </table>
+                </div>
+
+                <div id="comm-step3" class="hidden text-center py-8">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 dark:text-white">جاهز للحفظ</h3>
+                    <p class="text-sm text-slate-500 mb-6">سيتم حفظ الاجتماع وإرسال إشعارات للأعضاء.</p>
+                    <div class="bg-slate-50 dark:bg-slate-700 p-4 rounded-xl text-right rtl:text-right ltr:text-left text-sm space-y-2 inline-block w-full max-w-md border dark:border-slate-600">
+                        <p><span class="text-slate-500">العنوان:</span> <span class="font-bold dark:text-white" id="rev-title">...</span></p>
+                        <p><span class="text-slate-500">التاريخ:</span> <span class="font-bold dark:text-white" id="rev-date">...</span></p>
+                        <p><span class="text-slate-500">الحضور:</span> <span class="font-bold text-brandBlue" id="rev-count">0</span></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-5 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 rounded-b-2xl flex justify-between">
+                <button onclick="cwPrev()" id="cw-prev" class="px-5 py-2 border dark:border-slate-600 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 disabled:opacity-50" disabled data-i18n="prev">السابق</button>
+                <button onclick="cwNext()" id="cw-next" class="px-8 py-2 bg-brandBlue text-white rounded-xl text-xs font-bold hover:bg-blue-700 transition" data-i18n="next">التالي</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data/company_policy.js"></script>
+    <script src="js/core/config.js"></script>
+    <script src="js/core/i18n.js"></script>
+    <script src="js/helpers/policy-helpers.js"></script>
+    <script src="js/services/data-service.js"></script>
+    <script src="js/components/role-switcher.js"></script>
+    <script src="js/components/layout.js"></script>
+    <script src="js/components/bot.js"></script>
+
+    <script>
+        // --- DATA & STATE ---
+        let currentTab = 'upcoming';
+        let currentComm = 'audit';
+        let cwStep = 1;
+        
+        // Mock Meetings Data
+        let meetingsDB = [
+            { id: 1, type: 'audit', ref: 'AUD-01-2026', title: 'مراجعة القوائم المالية Q4', date: '2026-01-20', status: 'scheduled', attendees: 3 },
+            { id: 2, type: 'audit', ref: 'AUD-04-2025', title: 'تقرير التدقيق الداخلي', date: '2025-12-15', status: 'completed', attendees: 4 },
+            { id: 3, type: 'nomination', ref: 'NOM-01-2025', title: 'ترشيح أعضاء جدد', date: '2025-11-10', status: 'completed', attendees: 3 }
+        ];
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkSystem = setInterval(() => {
+                if (typeof Layout !== 'undefined' && typeof AppConfig !== 'undefined' && typeof DataService !== 'undefined') {
+                    clearInterval(checkSystem);
+                    
+                    if (!AppConfig.getCurrentUser()) {
+                        const defaultUser = DataService.getUserById('USR_004') || DataService.getUsers()[0];
+                        if (defaultUser) AppConfig.setCurrentUser(defaultUser);
+                    }
+
+                    Layout.init();
+                    document.getElementById('loadingOverlay')?.classList.add('hidden');
+                    initPage();
+                }
+            }, 50);
+        });
+
+        function initPage() {
+            updatePageLanguage();
+            renderMeetings();
+            renderMembers();
+        }
+
+        function updatePageLanguage() {
+            const lang = AppConfig.getLang();
+            const dict = t[lang];
+            
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(dict[key]) el.innerText = dict[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if(dict[key]) el.placeholder = dict[key];
+            });
+        }
+
+        // --- MAIN FUNCTIONS ---
+        function filterCommittees(type) {
+            currentComm = type;
+            
+            // Visual Active State
+            document.querySelectorAll('.committee-card').forEach(el => el.classList.remove('active'));
+            document.getElementById(`card-${type}`).classList.add('active');
+
+            // Render
+            renderMeetings();
+            renderMembers();
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Update UI Tabs
+            document.getElementById('tab-upcoming').className = tab === 'upcoming' ? "pb-3 text-sm font-bold text-brandBlue border-b-2 border-brandBlue transition-colors" : "pb-3 text-sm font-bold text-slate-500 hover:text-slate-700 border-b-2 border-transparent transition-colors";
+            document.getElementById('tab-archive').className = tab === 'archive' ? "pb-3 text-sm font-bold text-brandBlue border-b-2 border-brandBlue transition-colors" : "pb-3 text-sm font-bold text-slate-500 hover:text-slate-700 border-b-2 border-transparent transition-colors";
+
+            renderMeetings();
+        }
+
+        function renderMeetings() {
+            const container = document.getElementById('meetingsList');
+            const search = document.getElementById('searchMtg').value.toLowerCase();
+            const lang = AppConfig.getLang();
+            const dict = t[lang];
+
+            container.innerHTML = '';
+
+            const filtered = meetingsDB.filter(m => {
+                const isType = m.type === currentComm;
+                const isTab = currentTab === 'upcoming' ? m.status === 'scheduled' : m.status === 'completed';
+                const isSearch = m.title.toLowerCase().includes(search) || m.ref.toLowerCase().includes(search);
+                return isType && isTab && isSearch;
+            });
+
+            if(filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-14 h-14 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400">
+                            <i class="fa-solid fa-calendar-xmark"></i>
+                        </div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">${dict.emptyStateTitle}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(m => {
+                const statusColor = m.status === 'scheduled' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700';
+                const statusIcon = m.status === 'scheduled' ? 'fa-clock' : 'fa-check-circle';
+                const statusText = m.status === 'scheduled' ? (lang==='ar'?'مجدول':'Scheduled') : (lang==='ar'?'مكتمل':'Completed');
+
+                container.innerHTML += `
+                    <div class="p-4 border border-slate-100 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 transition flex justify-between items-center group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-500 font-bold text-xs flex-col">
+                                <span>${new Date(m.date).getDate()}</span>
+                                <span class="text-[9px] uppercase">${new Date(m.date).toLocaleString('default', {month:'short'})}</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-white group-hover:text-brandBlue transition">${m.title}</h4>
+                                <p class="text-xs text-slate-400 font-mono mt-0.5">${m.ref}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="${statusColor} text-[10px] px-2 py-1 rounded-full font-bold flex items-center gap-1">
+                                <i class="fa-regular ${statusIcon}"></i> ${statusText}
+                            </span>
+                            <button class="text-slate-400 hover:text-brandBlue transition px-2"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderMembers() {
+            const container = document.getElementById('membersListContainer');
+            const lang = AppConfig.getLang();
+            const dict = t[lang];
+            
+            // Mock members logic based on committee type
+            let members = [];
+            if(currentComm === 'audit') {
+                members = [
+                    { name: dict.mem1, role: dict.roleChair, img: 'M' },
+                    { name: dict.mem2, role: dict.roleMem, img: 'A' },
+                    { name: dict.mem3, role: dict.roleMem, img: 'A' },
+                    { name: dict.secName, role: dict.roleSec, img: 'A', isSec: true }
+                ];
+            } else {
+                container.innerHTML = `<p class="text-xs text-center text-slate-400 py-4">${dict.statusInactive}</p>`;
+                return;
+            }
+
+            container.innerHTML = members.map(m => `
+                <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                    <div class="w-8 h-8 rounded-full ${m.isSec ? 'bg-yellow-100 text-yellow-600' : 'bg-slate-200 text-slate-500'} flex items-center justify-center text-xs font-bold">${m.img}</div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-700 dark:text-slate-200">${m.name}</p>
+                        <p class="text-[10px] text-slate-400">${m.role}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- WIZARD LOGIC ---
+        function startCommWizard() {
+            if(currentComm !== 'audit') {
+                const lang = AppConfig.getLang();
+                alert(lang==='ar' ? 'عذراً، هذه اللجنة غير مفعلة حالياً.' : 'Sorry, this committee is inactive.');
+                return;
+            }
+            cwStep = 1;
+            document.getElementById('wz-ref').value = `AUD-${Math.floor(Math.random()*100)}-2026`;
+            document.getElementById('wz-date').valueAsDate = new Date();
+            document.getElementById('wizardAgendaList').innerHTML = '';
+            addAgendaItem(); // Add one default item
+            updateCwUI();
+            document.getElementById('commWizardModal').classList.remove('hidden');
+        }
+
+        function closeCommWizard() {
+            document.getElementById('commWizardModal').classList.add('hidden');
+        }
+
+        function updateCwUI() {
+            const lang = AppConfig.getLang();
+            const dict = t[lang];
+
+            // Steps visibility
+            for(let i=1; i<=3; i++) document.getElementById(`comm-step${i}`).classList.add('hidden');
+            document.getElementById(`comm-step${cwStep}`).classList.remove('hidden');
+
+            // Header Dots
+            for(let i=1; i<=3; i++) {
+                const dot = document.getElementById(`step-dot-${i}`);
+                dot.className = i === cwStep ? "w-2.5 h-2.5 rounded-full bg-brandBlue" : "w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600";
+            }
+
+            // Buttons
+            document.getElementById('cw-prev').disabled = cwStep === 1;
+            document.getElementById('cw-next').innerText = cwStep === 3 ? dict.send : dict.next;
+
+            // Load Attendance if Step 2
+            if(cwStep === 2) loadWizardAttendance();
+            // Load Summary if Step 3
+            if(cwStep === 3) loadWizardSummary();
+        }
+
+        function cwNext() {
+            if(cwStep < 3) {
+                cwStep++;
+                updateCwUI();
+            } else {
+                handleSave();
+            }
+        }
+
+        function cwPrev() {
+            if(cwStep > 1) {
+                cwStep--;
+                updateCwUI();
+            }
+        }
+
+        function addAgendaItem() {
+            const list = document.getElementById('wizardAgendaList');
+            const lang = AppConfig.getLang();
+            const ph = t[lang].itemPlh;
+            
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            div.innerHTML = `
+                <input type="text" class="flex-1 border dark:border-slate-600 dark:bg-slate-700 rounded px-2 py-1 text-xs dark:text-white" placeholder="${ph}">
+                <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-500"><i class="fa-solid fa-trash"></i></button>
+            `;
+            list.appendChild(div);
+        }
+
+        function loadWizardAttendance() {
+            const tbody = document.getElementById('wz-att-body');
+            const lang = AppConfig.getLang();
+            const dict = t[lang];
+            
+            // Mock Members
+            const members = [
+                { name: dict.mem1, role: dict.roleChair, fee: 1500 },
+                { name: dict.mem2, role: dict.roleMem, fee: 1500 },
+                { name: dict.mem3, role: dict.roleMem, fee: 1500 },
+                { name: dict.secName, role: dict.roleSec, fee: 1000, locked: true }
+            ];
+
+            tbody.innerHTML = members.map(m => `
+                <tr class="border-b dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                    <td class="p-2 font-bold dark:text-white">${m.name}</td>
+                    <td class="p-2 text-xs text-slate-500">${m.role}</td>
+                    <td class="p-2 text-xs font-mono text-green-600">${m.fee}</td>
+                    <td class="p-2 text-center">
+                        <input type="checkbox" checked ${m.locked ? 'disabled' : ''} class="w-4 h-4 accent-brandBlue att-check" data-fee="${m.fee}" onchange="calcTotalFee()">
+                    </td>
+                </tr>
+            `).join('');
+            
+            calcTotalFee();
+        }
+
+        function calcTotalFee() {
+            let total = 0;
+            document.querySelectorAll('.att-check:checked').forEach(cb => {
+                total += parseInt(cb.dataset.fee);
+            });
+            document.getElementById('wz-total-fee').innerText = `Total: ${total} SAR`;
+        }
+
+        function loadWizardSummary() {
+            document.getElementById('rev-title').innerText = document.getElementById('wz-title').value || '-';
+            document.getElementById('rev-date').innerText = document.getElementById('wz-date').value || '-';
+            document.getElementById('rev-count').innerText = document.querySelectorAll('.att-check:checked').length;
+        }
+
+        function handleSave() {
+            const lang = AppConfig.getLang();
+            const dict = t[lang];
+            
+            // Add new meeting to DB (Simulated)
+            const newMtg = {
+                id: Date.now(),
+                type: 'audit',
+                ref: document.getElementById('wz-ref').value,
+                title: document.getElementById('wz-title').value || 'New Meeting',
+                date: document.getElementById('wz-date').value,
+                status: 'scheduled',
+                attendees: document.querySelectorAll('.att-check:checked').length
+            };
+            meetingsDB.unshift(newMtg); // Add to top
+            
+            // Refresh View
+            renderMeetings();
+            
+            // Close
+            alert(dict.successMsg);
+            closeCommWizard();
+        }
+
+        // --- Translation Dictionary ---
+        const t = {
+            ar: {
+                pageTitle: "AndroGov | اللجان المنبثقة",
+                statusActive: "نشطة",
+                statusInactive: "غير مفعلة",
+                statusSetup: "تحت التشكيل",
+                auditTitle: "لجنة المراجعة",
+                auditTerm: "الدورة الحالية (2025-2028)",
+                auditMembers: "3 أعضاء",
+                auditSec: "أمين السر: أنت",
+                nomTitle: "المكافآت والترشيحات",
+                nomDesc: "بانتظار قرار المجلس",
+                execTitle: "اللجنة التنفيذية",
+                execDesc: "اختيارية",
+                workTitle: "أعمال اللجنة",
+                btnNewMtg: "اجتماع جديد",
+                tabCurrent: "القادمة / الحالية",
+                tabArchive: "الأرشيف (تمت)",
+                emptyStateTitle: "لا يوجد اجتماعات مجدولة حالياً",
+                feesTitle: "ملخص المكافآت (2026)",
+                feeMember: "بدل العضو",
+                feeSec: "بدل أمين السر",
+                membersTitle: "أعضاء اللجنة",
+                wizTitle: "اجتماع لجنة جديد",
+                lblMtgNo: "رقم الاجتماع",
+                lblDate: "التاريخ",
+                lblTitle: "عنوان الاجتماع",
+                lblAgenda: "جدول الأعمال",
+                itemPlh: "عنوان البند...",
+                wizAttTitle: "تسجيل الحضور والمكافآت",
+                colName: "الاسم",
+                colRole: "المنصب",
+                colFee: "البدل",
+                colPres: "حاضر",
+                mem1: "محمد بن منصور العنزي",
+                mem2: "عادل بن عدنان سعسع",
+                mem3: "أحمد بن سلطان السحيباني",
+                roleChair: "رئيس اللجنة",
+                roleMem: "عضو",
+                roleSec: "أمين السر",
+                secName: "أيمن المغربي",
+                prev: "السابق",
+                next: "التالي",
+                send: "حفظ وإرسال",
+                successMsg: "تم حفظ الاجتماع بنجاح!",
+                closeConfirm: "هل أنت متأكد من الإغلاق؟"
+            },
+            en: {
+                pageTitle: "Committees | AndroGov",
+                statusActive: "Active",
+                statusInactive: "Inactive",
+                statusSetup: "Setting Up",
+                auditTitle: "Audit Committee",
+                auditTerm: "Current Term (2025-2028)",
+                auditMembers: "3 Members",
+                auditSec: "Sec: You",
+                nomTitle: "Nomination & Remuneration",
+                nomDesc: "Pending Board",
+                execTitle: "Executive Committee",
+                execDesc: "Optional",
+                workTitle: "Committee Work",
+                btnNewMtg: "New Meeting",
+                tabCurrent: "Upcoming / Active",
+                tabArchive: "Archive (Done)",
+                emptyStateTitle: "No scheduled meetings",
+                feesTitle: "Fees Summary (2026)",
+                feeMember: "Member Fee",
+                feeSec: "Secretary Fee",
+                membersTitle: "Committee Members",
+                wizTitle: "New Committee Meeting",
+                lblMtgNo: "Ref No",
+                lblDate: "Date",
+                lblTitle: "Meeting Title",
+                lblAgenda: "Agenda",
+                itemPlh: "Item title...",
+                wizAttTitle: "Attendance & Fees",
+                colName: "Name",
+                colRole: "Role",
+                colFee: "Fee",
+                colPres: "Present",
+                mem1: "Mohammed Al-Enezi",
+                mem2: "Adel Sasa",
+                mem3: "Ahmed Al-Suhaibani",
+                roleChair: "Chairman",
+                roleMem: "Member",
+                roleSec: "Secretary",
+                secName: "Ayman Almaghrabi",
+                prev: "Previous",
+                next: "Next",
+                send: "Save & Send",
+                successMsg: "Meeting saved successfully!",
+                closeConfirm: "Are you sure you want to close?"
+            }
+        };
+    </script>
+</body>
+</html>
