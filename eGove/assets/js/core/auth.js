@@ -11,14 +11,14 @@ const Auth = {
         'ceo':         { email: 'ceo@ecode.sa', pass: '123456', role: 'ceo', label: 'الرئيس التنفيذي' },
         
         // الإدارات المساندة
-        'finance':     { email: 'cfo@ecode.sa', pass: '123456', role: 'finance', label: 'المدير المالي' },
+        'cfo':     { email: 'cfo@ecode.sa', pass: '123456', role: 'cfo', label: 'المدير المالي' },
         'hr':          { email: 'hr@ecode.sa', pass: '123456', role: 'hr', label: 'الموارد البشرية' },
-        'it':          { email: 'cto@ecode.sa', pass: '123456', role: 'it', label: 'تقنية المعلومات' },
+        'cto':          { email: 'cto@ecode.sa', pass: '123456', role: 'cto', label: 'تقنية المعلومات' },
         'sales':       { email: 'sales@ecode.sa', pass: '123456', role: 'sales', label: 'مدير المبيعات' },
         
         // الرقابة والمساهمين
         'audit':       { email: 'audit@ecode.sa', pass: '123456', role: 'audit', label: 'التدقيق الداخلي' },
-        'shareholder': { email: 'investor@ecode.sa', pass: '123456', role: 'shareholder', label: 'مساهم' },
+        'shareholder': { email: 'ir@ecode.sa', pass: '123456', role: 'shareholder', label: 'مساهم' },
         
         // أدمن النظام
         'admin':       { email: 'admin@ecode.sa', pass: '123456', role: 'admin', label: 'مسؤول الحوكمة' }
