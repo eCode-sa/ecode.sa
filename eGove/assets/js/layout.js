@@ -138,7 +138,7 @@ const Layout = {
 
         const sidebarHTML = `
             <div class="sidebar-header">
-                <img src="${this.rootPath}partners-slider/favicon.png" alt="Logo" class="logo-img">
+                <img src="${this.rootPath}../favicon.png" alt="Logo" class="logo-img">
                 <div class="brand-text">
                     <h3>eGov</h3>
                     <span style="font-size: 11px; color: var(--lavender-light);">${this.getRoleName(this.role)}</span>
