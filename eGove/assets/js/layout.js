@@ -3,7 +3,7 @@
  */
 
 const Layout = {
-    rootPath: '../../', 
+    rootPath: '../', 
 
     menus: {
         'admin': [
@@ -215,19 +215,12 @@ const Layout = {
     injectBot: function() {
         if (!document.getElementById('chatWindow')) {
             const botHTML = `
-                <div class="chat-widget-btn" onclick="toggleChat()">
-                    <i class="fas fa-robot"></i>
-                </div>
+                <div class="chat-widget-btn" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
                 <div class="chat-window" id="chatWindow" style="display: none;">
-                    <div class="chat-header">
-                        <h4>المساعد الذكي</h4>
-                        <i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer;"></i>
-                    </div>
-                    <div class="chat-body" id="chatBody">
-                        <div class="chat-msg msg-bot">مرحباً ${this.userName} 👋 كيف أساعدك؟</div>
-                    </div>
+                    <div class="chat-header"><h4>المساعد الذكي</h4><i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer;"></i></div>
+                    <div class="chat-body" id="chatBody"><div class="chat-msg msg-bot">مرحباً ${this.userName} 👋 كيف أساعدك؟</div></div>
                     <div class="chat-footer">
-                        <input type="text" class="chat-input" id="userMsg" placeholder="...">
+                        <input type="text" class="chat-input" id="userMsg" placeholder="..." onkeypress="handleEnter(event)">
                         <button class="btn-primary" onclick="sendMsg()" style="padding: 5px 10px;"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
@@ -251,6 +244,7 @@ const Layout = {
         document.documentElement.setAttribute('data-theme', savedTheme);
         const icon = document.getElementById('themeIcon');
         if(icon) icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        if(typeof I18n !== 'undefined') I18n.init();
     },
 
     toggleSidebar: function() {
@@ -264,7 +258,7 @@ const Layout = {
 
     logout: function() {
         localStorage.clear();
-        window.location.href = this.rootPath + '../';
+        window.location.href = this.rootPath + 'index.html';
     }
 };
 
