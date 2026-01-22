@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دخول النظام | eGov Platform</title>
-    
+    <title>بوابة eGov | الوصول الموحد</title>
+    <meta name="description" content="eGov - منصة الحوكمة الرقمية الذكية">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
+        /* تنسيقات خاصة بصفحة البوابة فقط */
         body { 
             display: flex; 
             align-items: center; 
@@ -19,19 +23,28 @@
             background: radial-gradient(circle at center, #1a1f2e 0%, #0f1419 100%);
             margin: 0;
             padding: 20px;
+            font-family: 'Tajawal', sans-serif;
         }
         
-        .login-wrapper { width: 100%; max-width: 500px; } /* زدنا العرض قليلاً */
+        .login-wrapper { width: 100%; max-width: 550px; position: relative; z-index: 2; }
+
+        /* الخلفية المتحركة الخفيفة */
+        .bg-animation {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('assets/img/pattern.png'); /* اختياري */
+            opacity: 0.05; z-index: 1; pointer-events: none;
+        }
 
         .login-card {
             background: var(--bg-secondary);
             border-radius: 24px;
-            padding: 40px 30px;
+            padding: 40px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
             text-align: center;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .login-card::before {
@@ -39,79 +52,93 @@
             background: linear-gradient(90deg, var(--lavender-dark), var(--sky-blue));
         }
 
-        .brand-logo { width: 70px; margin-bottom: 15px; }
+        .brand-logo { width: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(139, 127, 255, 0.3)); }
         
-        .form-group { margin-bottom: 15px; }
-        .form-control {
-            width: 100%; padding: 12px 15px; border-radius: 12px;
-            border: 1px solid var(--border-color); background: var(--bg-elevated);
-            color: var(--text-primary); font-family: 'Tajawal'; transition: 0.3s;
+        .system-title { font-size: 28px; font-weight: 800; color: var(--text-primary); margin-bottom: 5px; }
+        .system-desc { color: var(--text-secondary); font-size: 15px; margin-bottom: 30px; }
+
+        .form-group { margin-bottom: 15px; position: relative; }
+        .form-group i {
+            position: absolute; top: 50%; right: 15px; transform: translateY(-50%);
+            color: var(--text-muted); font-size: 14px;
         }
-        .form-control:focus { outline: none; border-color: var(--lavender-light); }
+        
+        .form-control {
+            width: 100%; padding: 14px 40px 14px 15px; border-radius: 12px;
+            border: 1px solid var(--border-color); background: var(--bg-elevated);
+            color: var(--text-primary); font-family: 'Tajawal'; transition: 0.3s; font-size: 14px;
+        }
+        .form-control:focus { outline: none; border-color: var(--lavender-light); box-shadow: 0 0 0 4px rgba(139, 127, 255, 0.1); }
 
         .alert-box {
-            background: rgba(255, 107, 107, 0.1); color: #ff6b6b; padding: 10px;
+            background: rgba(255, 107, 107, 0.1); color: #ff6b6b; padding: 12px;
             border-radius: 8px; font-size: 13px; margin-bottom: 20px; display: none;
+            border: 1px solid rgba(255, 107, 107, 0.2);
         }
 
-        /* --- New Demo Grid (Updated) --- */
-        .demo-roles { margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color); }
-        .demo-label { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; display: block; }
+        /* --- Demo Grid --- */
+        .demo-roles { margin-top: 30px; padding-top: 25px; border-top: 1px solid var(--border-color); }
+        .demo-label { font-size: 13px; color: var(--lavender-light); margin-bottom: 15px; display: block; font-weight: 600; }
 
         .roles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); /* متجاوب */
-            gap: 8px;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 10px;
         }
 
         .role-btn {
-            background: var(--bg-elevated); border: 1px solid var(--border-color);
-            color: var(--text-secondary); padding: 10px 5px; border-radius: 8px;
-            font-size: 10px; cursor: pointer; transition: 0.2s;
-            display: flex; flex-direction: column; align-items: center; gap: 6px;
-            height: 100%;
+            background: var(--bg-primary); border: 1px solid var(--border-color);
+            color: var(--text-secondary); padding: 12px 5px; border-radius: 10px;
+            font-size: 11px; cursor: pointer; transition: all 0.2s ease;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            height: 100%; font-weight: 500;
         }
 
         .role-btn:hover {
-            background: var(--bg-primary); border-color: var(--lavender-light);
-            color: var(--lavender-light); transform: translateY(-3px);
+            background: var(--bg-elevated); border-color: var(--lavender-light);
+            color: #fff; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .role-btn i { font-size: 16px; margin-bottom: 2px; }
-        
-        /* تلوين الأيقونات لسهولة التمييز */
+        .role-btn i { font-size: 18px; margin-bottom: 2px; color: var(--text-muted); transition: 0.2s; }
+        .role-btn:hover i { color: var(--lavender-light); }
+
+        /* Specific Icon Colors on Hover not needed as we unified the hover effect, 
+           but keep base colors for better UI if desired */
         .role-btn[onclick*="'board'"] i { color: #f1c40f; }
         .role-btn[onclick*="'ceo'"] i { color: #3498db; }
         .role-btn[onclick*="'admin'"] i { color: #e74c3c; }
-        .role-btn[onclick*="'cto'"] i { color: #9b59b6; }
+        .role-btn[onclick*="'audit'"] i { color: #2ecc71; }
 
+        .copyright { margin-top: 30px; color: var(--text-muted); font-size: 12px; opacity: 0.6; }
     </style>
 </head>
 <body>
 
     <div class="login-wrapper">
         <div class="login-card">
-            <img src="../favicon.png" alt="Logo" class="brand-logo">
-            <h2 style="margin: 0 0 5px; color: var(--text-primary);">eGov Platform</h2>
-            <p style="margin: 0 0 25px; color: var(--text-secondary); font-size: 14px;">بوابة الحوكمة الرقمية الموحدة</p>
+            <img src="partners-slider/favicon.png" alt="Logo" class="brand-logo">
+            <h1 class="system-title">eGov Platform</h1>
+            <p class="system-desc">نظام الحوكمة الرقمية والامتثال المؤسسي</p>
 
             <div id="loginAlert" class="alert-box"></div>
 
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
-                    <input type="email" id="email" class="form-control" placeholder="البريد الإلكتروني" required>
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="email" class="form-control" placeholder="البريد الإلكتروني المهني" required>
                 </div>
                 <div class="form-group">
+                    <i class="fa-solid fa-lock"></i>
                     <input type="password" id="password" class="form-control" placeholder="كلمة المرور" required>
                 </div>
                 
-                <button type="submit" class="btn-primary" style="width: 100%; border-radius: 12px; padding: 12px;">
-                    تسجيل الدخول <i class="fa-solid fa-arrow-left me-2"></i>
+                <button type="submit" class="btn-primary" style="width: 100%; border-radius: 12px; padding: 14px; font-size: 16px; margin-top: 10px;">
+                    تسجيل الدخول الآمن <i class="fa-solid fa-shield-halved me-2"></i>
                 </button>
             </form>
 
             <div class="demo-roles">
-                <span class="demo-label">⚡ اختر دوراً لتجربة النظام (Demo Access):</span>
+                <span class="demo-label">✨ اختر شخصية لتجربة النظام (Live Demo):</span>
                 <div class="roles-grid">
                     <button class="role-btn" onclick="Auth.fillDemo('board')" title="مجلس الإدارة">
                         <i class="fa-solid fa-gavel"></i> رئيس المجلس
@@ -123,20 +150,20 @@
                         <i class="fa-solid fa-user-tie"></i> الرئيس التنفيذي
                     </button>
                     <button class="role-btn" onclick="Auth.fillDemo('shareholder')" title="الجمعية العمومية">
-                        <i class="fa-solid fa-users-viewfinder"></i> مساهم
+                        <i class="fa-solid fa-users-viewfinder"></i> المساهمين
                     </button>
 
-                    <button class="role-btn" onclick="Auth.fillDemo('cto')" title="تقنية المعلومات">
-                        <i class="fa-solid fa-laptop-code"></i> التقنية (cto)
-                    </button>
                     <button class="role-btn" onclick="Auth.fillDemo('cfo')" title="الإدارة المالية">
                         <i class="fa-solid fa-coins"></i> المالية
                     </button>
-                    <button class="role-btn" onclick="Auth.fillDemo('sales')" title="المبيعات">
-                        <i class="fa-solid fa-chart-line"></i> المبيعات
-                    </button>
                     <button class="role-btn" onclick="Auth.fillDemo('hr')" title="الموارد البشرية">
                         <i class="fa-solid fa-users"></i> الموارد
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('cto')" title="تقنية المعلومات">
+                        <i class="fa-solid fa-laptop-code"></i> التقنية
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('sales')" title="المبيعات">
+                        <i class="fa-solid fa-chart-line"></i> المبيعات
                     </button>
                     
                     <button class="role-btn" onclick="Auth.fillDemo('audit')" title="التدقيق الداخلي">
@@ -147,16 +174,11 @@
                     </button>
                 </div>
             </div>
-
-            <div style="margin-top: 20px; font-size: 13px;">
-                <a href="index.html" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px dashed var(--text-muted);">
-                    &larr; العودة للصفحة الرئيسية
-                </a>
-            </div>
         </div>
         
-        <div style="text-align: center; margin-top: 20px; color: var(--text-muted); font-size: 12px; opacity: 0.7;">
-            &copy; 2026 Electronic Code Co. | Secure Login
+        <div class="copyright">
+            &copy; 2026 Electronic Code Company. All Rights Reserved. <br>
+            Powered by eCode Governance Engine v2.0
         </div>
     </div>
 
