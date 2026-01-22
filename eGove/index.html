@@ -3,174 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة eGov | الوصول الموحد</title>
-    
+    <title>eGov Portal | الوصول الموحد</title>
+    <meta name="description" content="نظام eGov للحوكمة الرقمية - إحدى منتجات شركة إلكترونيك كود">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        /* إعدادات الصفحة */
-        body { 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            min-height: 100vh; background: radial-gradient(circle at center, #1a1f2e 0%, #0f1419 100%);
-            margin: 0; padding: 20px; font-family: 'Tajawal', sans-serif; position: relative;
+        /* --- Portal Specific Styles --- */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #1a1f2e 0%, #0f1419 100%);
+            margin: 0;
+            font-family: 'Tajawal', sans-serif;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* --- Page Controls (Language & Theme) --- */
-        .page-controls {
-            position: absolute; top: 20px; left: 20px; /* يسار الصفحة في العربية */
-            display: flex; gap: 10px; z-index: 10;
+        /* خلفية جمالية خفيفة */
+        body::before {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            background-image: url('assets/img/pattern.png'); /* إذا توفرت */
+            opacity: 0.03; pointer-events: none; z-index: 0;
         }
-        
-        /* في الإنجليزية نعكس المكان */
-        [dir="ltr"] .page-controls { left: auto; right: 20px; }
+
+        /* --- Top Controls (Theme & Lang) --- */
+        .page-controls {
+            position: absolute; top: 25px; left: 25px;
+            display: flex; gap: 15px; z-index: 100;
+        }
+        [dir="ltr"] .page-controls { left: auto; right: 25px; }
 
         .control-btn {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color);
-            color: var(--text-secondary); width: 40px; height: 40px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer;
-            transition: 0.3s; font-size: 16px; text-decoration: none;
+            width: 45px; height: 45px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 18px; text-decoration: none;
         }
-
         .control-btn:hover {
-            background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark);
-            transform: rotate(15deg);
+            background: var(--lavender-dark); color: white;
+            border-color: var(--lavender-dark); transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 0 15px rgba(139, 127, 255, 0.4);
         }
 
-        /* --- Login Card --- */
-        .login-wrapper { width: 100%; max-width: 550px; position: relative; z-index: 2; }
+        /* --- Main Card --- */
+        .portal-wrapper { width: 100%; max-width: 900px; padding: 20px; z-index: 1; display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; }
+        
         .login-card {
-            background: var(--bg-secondary); border-radius: 24px; padding: 40px;
-            border: 1px solid var(--border-color); box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-            text-align: center; position: relative; overflow: hidden; backdrop-filter: blur(10px);
+            flex: 1; min-width: 320px; max-width: 450px;
+            background: rgba(30, 41, 59, 0.7); /* Glass Effect */
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px; padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center; position: relative; overflow: hidden;
+            transition: transform 0.3s;
         }
-        .login-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--lavender-dark), var(--sky-blue));
+        
+        /* الشريط العلوي الملون */
+        .login-card::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--lavender-light), var(--sky-blue));
         }
 
-        .brand-logo { width: 80px; margin-bottom: 20px; }
-        .system-title { font-size: 28px; font-weight: 800; color: var(--text-primary); margin-bottom: 5px; }
-        .system-desc { color: var(--text-secondary); font-size: 15px; margin-bottom: 30px; }
+        .brand-logo { height: 60px; margin-bottom: 20px; filter: drop-shadow(0 0 8px rgba(139, 127, 255, 0.2)); }
+        
+        .system-title { font-size: 26px; font-weight: 800; color: var(--text-primary); margin-bottom: 5px; letter-spacing: -0.5px; }
+        .system-desc { color: var(--text-secondary); font-size: 14px; margin-bottom: 30px; }
 
         /* --- Form --- */
         .form-group { margin-bottom: 15px; position: relative; }
         .form-group i {
             position: absolute; top: 50%; right: 15px; transform: translateY(-50%);
-            color: var(--text-muted); font-size: 14px; pointer-events: none;
+            color: var(--text-muted); font-size: 16px; pointer-events: none; transition: 0.3s;
         }
-        [dir="ltr"] .form-group i { right: auto; left: 15px; } /* تعديل الأيقونة للإنجليزية */
+        [dir="ltr"] .form-group i { right: auto; left: 15px; }
 
         .form-control {
-            width: 100%; padding: 14px 40px 14px 15px; border-radius: 12px;
-            border: 1px solid var(--border-color); background: var(--bg-elevated);
+            width: 100%; padding: 14px 45px 14px 15px; border-radius: 12px;
+            border: 1px solid var(--border-color); background: rgba(15, 20, 25, 0.6);
             color: var(--text-primary); font-family: 'Tajawal'; transition: 0.3s; font-size: 14px;
         }
-        [dir="ltr"] .form-control { padding: 14px 15px 14px 40px; } /* تعديل البادينغ للإنجليزية */
+        [dir="ltr"] .form-control { padding: 14px 15px 14px 45px; }
 
-        .form-control:focus { outline: none; border-color: var(--lavender-light); box-shadow: 0 0 0 4px rgba(139, 127, 255, 0.1); }
+        .form-control:focus { outline: none; border-color: var(--lavender-light); box-shadow: 0 0 0 3px rgba(139, 127, 255, 0.15); }
+        .form-control:focus + i { color: var(--lavender-light); }
 
-        /* --- Demo Roles --- */
-        .demo-roles { margin-top: 30px; padding-top: 25px; border-top: 1px solid var(--border-color); }
-        .demo-label { font-size: 13px; color: var(--lavender-light); margin-bottom: 15px; display: block; font-weight: 600; }
-        .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
-        .role-btn {
-            background: var(--bg-primary); border: 1px solid var(--border-color);
-            color: var(--text-secondary); padding: 12px 5px; border-radius: 10px;
-            font-size: 11px; cursor: pointer; transition: all 0.2s ease;
-            display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%;
+        .btn-login {
+            width: 100%; padding: 14px; border-radius: 12px; border: none;
+            background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
+            color: white; font-weight: 700; font-size: 16px; cursor: pointer;
+            transition: 0.3s; margin-top: 10px; box-shadow: 0 4px 15px rgba(139, 127, 255, 0.3);
         }
-        .role-btn:hover { background: var(--bg-elevated); border-color: var(--lavender-light); color: #fff; transform: translateY(-3px); }
-        .role-btn i { font-size: 18px; margin-bottom: 2px; }
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139, 127, 255, 0.5); }
+
+        /* --- Personas Grid (The 10 Roles) --- */
+        .personas-container {
+            margin-top: 30px; padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .personas-title {
+            font-size: 13px; color: var(--lavender-light); font-weight: 600;
+            margin-bottom: 15px; display: block; text-transform: uppercase; letter-spacing: 1px;
+        }
         
-        .copyright { margin-top: 30px; color: var(--text-muted); font-size: 12px; opacity: 0.6; text-align: center; }
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 أعمدة في صفين = 10 */
+            gap: 10px;
+        }
+        
+        @media (max-width: 500px) { .roles-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .role-btn {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color);
+            border-radius: 10px; padding: 10px 5px; cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 6px; transition: all 0.2s; height: 75px; position: relative; overflow: hidden;
+        }
+
+        .role-btn:hover {
+            background: var(--bg-elevated); border-color: var(--lavender-light);
+            transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .role-btn i { font-size: 18px; margin-bottom: 2px; transition: 0.3s; color: var(--text-secondary); }
+        .role-btn:hover i { color: var(--lavender-light); transform: scale(1.1); }
+        .role-btn span { font-size: 10px; color: var(--text-muted); font-weight: 500; line-height: 1.2; }
+        .role-btn:hover span { color: var(--text-primary); }
+
+        /* Icon Colors */
+        .role-btn[onclick*="board"] i { color: #f1c40f; } /* Gold */
+        .role-btn[onclick*="ceo"] i { color: #3498db; }   /* Blue */
+        .role-btn[onclick*="finance"] i { color: #2ecc71; } /* Green */
+        .role-btn[onclick*="admin"] i { color: #e74c3c; }   /* Red */
+
+        /* Footer */
+        .legal-footer {
+            margin-top: 25px; font-size: 12px; color: var(--text-muted); opacity: 0.7;
+            display: flex; justify-content: center; gap: 15px;
+        }
+        .legal-footer span i { margin-left: 5px; color: var(--mint-green); }
+        [dir="ltr"] .legal-footer span i { margin-left: 0; margin-right: 5px; }
+
     </style>
 </head>
 <body>
 
     <div class="page-controls">
-        <button class="control-btn" onclick="I18n.toggleLang()" title="Switch Language">
-            <span id="langText" style="font-weight: bold; font-family: sans-serif;">EN</span>
+        <button class="control-btn" onclick="I18n.toggleLang()" title="Language">
+            <span id="langText" style="font-weight: 800; font-family: sans-serif;">EN</span>
         </button>
-        <button class="control-btn" onclick="toggleTheme()" title="Switch Theme">
+        <button class="control-btn" onclick="toggleTheme()" title="Theme">
             <i class="fa-solid fa-moon" id="themeIcon"></i>
         </button>
     </div>
 
-    <div class="login-wrapper">
+    <div class="portal-wrapper">
         <div class="login-card">
-            <img src="../favicon.png" alt="Logo" class="brand-logo">
-            <h1 class="system-title">eGov Platform</h1>
+            <img src="../favicon.png" alt="eCode Logo" class="brand-logo">
+            <h1 class="system-title">eGov Portal</h1>
             <p class="system-desc" data-i18n="portal_desc">نظام الحوكمة الرقمية والامتثال المؤسسي</p>
-
-            <div id="loginAlert" class="alert-box" style="display:none; color: #ff6b6b; margin-bottom: 15px;"></div>
 
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
+                    <input type="email" id="email" class="form-control" data-i18n="email_placeholder" placeholder="البريد الإلكتروني" required>
                     <i class="fa-regular fa-envelope"></i>
-                    <input type="email" id="email" class="form-control" data-i18n="email_placeholder" placeholder="البريد الإلكتروني المهني" required>
                 </div>
                 <div class="form-group">
-                    <i class="fa-solid fa-lock"></i>
                     <input type="password" id="password" class="form-control" data-i18n="pass_placeholder" placeholder="كلمة المرور" required>
+                    <i class="fa-solid fa-lock"></i>
                 </div>
                 
-                <button type="submit" class="btn-primary" style="width: 100%; border-radius: 12px; padding: 14px; font-size: 16px; margin-top: 10px;">
-                    <span data-i18n="login_btn">تسجيل الدخول الآمن</span> <i class="fa-solid fa-shield-halved me-2"></i>
+                <button type="submit" class="btn-login">
+                    <span data-i18n="login_btn">دخول النظام</span> <i class="fa-solid fa-arrow-left me-2"></i>
                 </button>
             </form>
 
-            <div class="demo-roles">
-                <span class="demo-label">✨ اختر شخصية لتجربة النظام (Live Demo):</span>
+            <div class="personas-container">
+                <span class="personas-title" data-i18n="demo_label">اختر دوراً لتجربة النظام (Live Demo)</span>
                 <div class="roles-grid">
-                    <button class="role-btn" onclick="Auth.fillDemo('board')" title="مجلس الإدارة">
-                        <i class="fa-solid fa-gavel"></i> رئيس المجلس
-                    </button>
-                    <button class="role-btn" onclick="Auth.fillDemo('secretary')" title="أمانة السر">
-                        <i class="fa-solid fa-pen-nib"></i> أمين السر
-                    </button>
-                    <button class="role-btn" onclick="Auth.fillDemo('ceo')" title="الإدارة التنفيذية">
-                        <i class="fa-solid fa-user-tie"></i> الرئيس التنفيذي
-                    </button>
-                    <button class="role-btn" onclick="Auth.fillDemo('shareholder')" title="الجمعية العمومية">
-                        <i class="fa-solid fa-users-viewfinder"></i> المساهمين
-                    </button>
-
-                    <button class="role-btn" onclick="Auth.fillDemo('cfo')" title="الإدارة المالية">
-                        <i class="fa-solid fa-coins"></i> المالية
-                    </button>
-                    <button class="role-btn" onclick="Auth.fillDemo('hr')" title="الموارد البشرية">
-                        <i class="fa-solid fa-users"></i> الموارد
-                    </button>
-                    <button class="role-btn" onclick="Auth.fillDemo('cto')" title="تقنية المعلومات">
-                        <i class="fa-solid fa-laptop-code"></i> التقنية
-                    </button>
-                    <button class="role-btn" onclick="Auth.fillDemo('sales')" title="المبيعات">
-                        <i class="fa-solid fa-chart-line"></i> المبيعات
-                    </button>
-                    
-                    <button class="role-btn" onclick="Auth.fillDemo('audit')" title="التدقيق الداخلي">
-                        <i class="fa-solid fa-magnifying-glass"></i> التدقيق
-                    </button>
-                    <button class="role-btn" onclick="Auth.fillDemo('admin')" title="إدارة النظام">
-                        <i class="fa-solid fa-shield-halved"></i> GRC Admin
-                    </button>
+                    <div class="role-btn" onclick="Auth.fillDemo('board')" title="Chairman">
+                        <i class="fa-solid fa-gavel"></i> <span data-i18n="role_board">رئيس المجلس</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('secretary')" title="Secretary">
+                        <i class="fa-solid fa-file-signature"></i> <span data-i18n="role_sec">أمين السر</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('ceo')" title="CEO">
+                        <i class="fa-solid fa-user-tie"></i> <span data-i18n="role_ceo">الرئيس التنفيذي</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('shareholder')" title="Shareholder">
+                        <i class="fa-solid fa-users-viewfinder"></i> <span data-i18n="role_share">المساهمين</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('cfo')" title="CFO">
+                        <i class="fa-solid fa-coins"></i> <span data-i18n="role_cfo">المالية</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('hr')" title="HR Manager">
+                        <i class="fa-solid fa-users"></i> <span data-i18n="role_hr">الموارد</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('cto')" title="CTO">
+                        <i class="fa-solid fa-laptop-code"></i> <span data-i18n="role_it">التقنية</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('sales')" title="Sales Manager">
+                        <i class="fa-solid fa-chart-line"></i> <span data-i18n="role_sales">المبيعات</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('audit')" title="Internal Audit">
+                        <i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="role_audit">التدقيق</span>
+                    </div>
+                    <div class="role-btn" onclick="Auth.fillDemo('admin')" title="System Admin">
+                        <i class="fa-solid fa-shield-halved"></i> <span data-i18n="role_admin">مسؤول النظام</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="copyright" data-i18n="copyright">
-            &copy; 2026 Electronic Code Company. All Rights Reserved.
+
+            <div class="legal-footer">
+                <span><i class="fa-solid fa-certificate"></i> CR: 7050139125</span>
+                <span><i class="fa-solid fa-receipt"></i> VAT: 3130161102</span>
+            </div>
         </div>
     </div>
 
     <script src="assets/js/core/config.js"></script>
     <script src="assets/js/core/i18n.js"></script>
     <script src="assets/js/core/auth.js"></script>
-    
+
     <script>
+        // التعامل مع تسجيل الدخول
         function handleLogin(e) {
             e.preventDefault();
             const email = document.getElementById('email').value;
@@ -178,7 +246,7 @@
             Auth.login(email, pass);
         }
 
-        // دالة الثيم البسيطة لهذه الصفحة فقط (لأن layout.js غير مستخدم هنا)
+        // تبديل الثيم (مخصص لهذه الصفحة)
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('themeIcon');
@@ -186,21 +254,19 @@
             
             html.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
-            
-            if (next === 'dark') {
-                icon.className = 'fa-solid fa-sun'; // أيقونة الشمس للوضع المظلم
-            } else {
-                icon.className = 'fa-solid fa-moon'; // أيقونة القمر للوضع المضيء
-            }
+            icon.className = next === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
-        
-        // تهيئة الثيم عند التحميل
+
+        // التهيئة عند التحميل
         document.addEventListener('DOMContentLoaded', () => {
+            // استعادة الثيم المحفوظ
             const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
             const icon = document.getElementById('themeIcon');
-            if(savedTheme === 'dark') icon.className = 'fa-solid fa-sun';
-            else icon.className = 'fa-solid fa-moon';
+            icon.className = savedTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+
+            // استعادة اللغة المحفوظة (عبر i18n.js)
+            if (typeof I18n !== 'undefined') I18n.init();
         });
     </script>
 
