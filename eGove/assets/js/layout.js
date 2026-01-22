@@ -1,10 +1,10 @@
 /**
  * eGov Layout Engine
- * يقوم ببناء الواجهة الموحدة (Sidebar + Topbar) ديناميكياً بناءً على الصلاحيات
+ * المحرك المسؤول عن بناء الواجهة الموحدة (Sidebar + Topbar) وتكييفها حسب الدور الوظيفي
  */
 
 const Layout = {
-    // إعدادات المسارات (نفترض أن الملفات داخل مجلدات فرعية مثل /admin/)
+    // المسار الجذري (يفترض أن الملفات داخل مجلدات فرعية مثل /admin/index.html)
     rootPath: '../../', 
 
     // تعريف قوائم التنقل لكل دور وظيفي (10 شخصيات)
@@ -14,13 +14,13 @@ const Layout = {
             { icon: 'fa-users-cog', text: 'إدارة المستخدمين', link: 'users.html' },
             { icon: 'fa-shield-alt', text: 'سجلات التدقيق', link: 'audit.html' },
             { icon: 'fa-cogs', text: 'إعدادات النظام', link: 'settings.html' },
-            { icon: 'fa-briefcase', text: 'الملف الشخصي', link: 'profile.html' }
+            { icon: 'fa-briefcase', text: 'ملفي الشخصي', link: 'profile.html' }
         ],
         'board': [
             { icon: 'fa-gavel', text: 'ملخص المجلس', link: 'index.html' },
             { icon: 'fa-calendar-check', text: 'الاجتماعات', link: 'meetings.html' },
             { icon: 'fa-file-signature', text: 'القرارات والتصويت', link: 'decisions.html' },
-            { icon: 'fa-briefcase', text: 'الملف الشخصي', link: 'profile.html' }
+            { icon: 'fa-briefcase', text: 'ملفي الشخصي', link: 'profile.html' }
         ],
         'ceo': [
             { icon: 'fa-chart-line', text: 'نظرة عامة', link: 'index.html' },
@@ -36,14 +36,14 @@ const Layout = {
             { icon: 'fa-user-plus', text: 'الطلبات والتوظيف', link: 'recruitment.html' },
             { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
         ],
-        'ceo': [
+        'ceo': [ 
             { icon: 'fa-coins', text: 'المركز المالي', link: 'index.html' },
             { icon: 'fa-file-invoice', text: 'الفواتير والمدفوعات', link: 'invoices.html' },
             { icon: 'fa-calculator', text: 'الميزانية', link: 'budget.html' },
             { icon: 'fa-receipt', text: 'الضريبة والزكاة', link: 'tax.html' },
             { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
         ],
-        'cto': [
+        'cto': [ 
             { icon: 'fa-server', text: 'حالة الأنظمة', link: 'index.html' },
             { icon: 'fa-headset', text: 'تذاكر الدعم', link: 'tickets.html' },
             { icon: 'fa-laptop', text: 'الأصول التقنية', link: 'assets.html' },
@@ -73,8 +73,8 @@ const Layout = {
             { icon: 'fa-wallet', text: 'محفظتي', link: 'index.html' },
             { icon: 'fa-hand-holding-usd', text: 'توزيعات الأرباح', link: 'dividends.html' },
             { icon: 'fa-file-pdf', text: 'التقارير السنوية', link: 'reports.html' },
-            { icon: 'fa-vote-yea', text: 'التصويت', link: 'voting.html' }
-            { icon: 'fa-briefcase', text: 'الشخصي', link: 'profile.html' }
+            { icon: 'fa-vote-yea', text: 'التصويت', link: 'voting.html' },
+            { icon: 'fa-briefcase', text: 'ملفي الشخصي', link: 'profile.html' }
         ]
     },
 
@@ -83,7 +83,7 @@ const Layout = {
         this.role = localStorage.getItem('userRole') || 'guest';
         this.userName = localStorage.getItem('userName') || 'مستخدم';
         
-        // إذا لم يكن مسجلاً، أعده للبوابة
+        // التحقق من تسجيل الدخول
         if (!localStorage.getItem('authToken')) {
             window.location.href = this.rootPath + 'index.html';
             return;
@@ -96,10 +96,10 @@ const Layout = {
         this.handleResponsive();
     },
 
-    // بناء الهيكل الأساسي (Wrapping Content)
+    // بناء الهيكل الأساسي (تغليف المحتوى الموجود)
     buildStructure: function() {
         const bodyContent = document.body.innerHTML;
-        document.body.innerHTML = ''; // تفريغ الجسم مؤقتاً
+        document.body.innerHTML = ''; 
 
         const appContainer = document.createElement('div');
         appContainer.className = 'app-container';
@@ -118,8 +118,8 @@ const Layout = {
         topbar.className = 'topbar';
 
         const pageContent = document.createElement('main');
-        pageContent.className = 'page-content workspace'; // workspace للكلاسات السابقة
-        pageContent.innerHTML = bodyContent; // إعادة المحتوى الأصلي
+        pageContent.className = 'page-content workspace'; 
+        pageContent.innerHTML = bodyContent; 
 
         mainContent.appendChild(topbar);
         mainContent.appendChild(pageContent);
@@ -157,7 +157,7 @@ const Layout = {
                 ${menuHTML}
             </nav>
             <div class="sidebar-footer">
-                <a href="../eGov" onclick="Layout.logout()" class="menu-item logout-btn">
+                <a href="#" onclick="Layout.logout()" class="menu-item logout-btn" style="color: var(--coral-pink);">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>تسجيل الخروج</span>
                 </a>
@@ -254,7 +254,6 @@ const Layout = {
     },
 
     getNotifications: function(role) {
-        // إشعارات وهمية ذكية حسب الدور
         const common = `
             <div class="notif-item unread">
                 <i class="fas fa-info-circle text-info"></i>
@@ -298,6 +297,7 @@ const Layout = {
 
     logout: function() {
         localStorage.clear();
+        // العودة للبوابة الرئيسية (جذر المشروع)
         window.location.href = this.rootPath + 'index.html';
     },
 
