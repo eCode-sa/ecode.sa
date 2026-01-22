@@ -283,6 +283,9 @@
                     <div class="role-item" onclick="selectRole(this, 'cfo')"><span>المدير المالي</span> <i class="fas fa-chevron-left"></i></div>
                     <div class="role-item" onclick="selectRole(this, 'hr')"><span>مدير الموارد البشرية</span> <i class="fas fa-chevron-left"></i></div>
                     <div class="role-item" onclick="selectRole(this, 'it')"><span>مدير التقنية</span> <i class="fas fa-chevron-left"></i></div>
+                    <div class="role-item add-new-role" onclick="openModal('addRoleModal')" style="color: var(--mint-green); font-weight: bold; border-top: 1px solid var(--border-color); margin-top: auto;">
+                    <span><i class="fas fa-plus-circle"></i> إضافة وظيفة جديدة</span>
+                    </div>
                 </div>
 
                 <div class="permissions-panel">
@@ -348,6 +351,30 @@
             </div>
         </div>
     </div>
+
+    <div id="addRoleModal" class="modal-overlay" onclick="if(event.target == this) closeModal('addRoleModal')">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>تعريف وظيفة وقسم جديد</h3>
+            <button class="close-modal" onclick="closeModal('addRoleModal')"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">مسمى الوظيفة (Role)</label>
+            <input type="text" id="newRoleName" class="form-input" placeholder="مثال: مدير التسويق">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">القسم التابع له (Department)</label>
+            <input type="text" id="newDeptName" class="form-input" placeholder="مثال: التسويق الرقمي">
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeModal('addRoleModal')">إلغاء</button>
+            <button class="btn-submit" onclick="saveNewRole()">إنشاء الوظيفة</button>
+        </div>
+    </div>
+</div>
 
     <script src="../assets/js/system.js"></script>
     <script>
@@ -447,6 +474,103 @@
                 document.querySelector('.rule-input').value = '5000';
             }
         }
+        // --- دالة حفظ الوظيفة الجديدة ---
+    function saveNewRole() {
+        const roleName = document.getElementById('newRoleName').value;
+        const deptName = document.getElementById('newDeptName').value;
+
+        if (!roleName || !deptName) {
+            alert('الرجاء تعبئة جميع الحقول');
+            return;
+        }
+
+        // 1. إضافة الوظيفة للقائمة الجانبية في صفحة الصلاحيات
+        const rolesList = document.querySelector('.roles-list');
+        const addButton = document.querySelector('.add-new-role');
+        
+        const newRoleItem = document.createElement('div');
+        newRoleItem.className = 'role-item';
+        // جعلها قابلة للنقر واختيارها
+        newRoleItem.onclick = function() { selectRole(this, 'new'); };
+        newRoleItem.innerHTML = `<span>${roleName}</span> <i class="fas fa-chevron-left"></i>`;
+        
+        // إدراجها قبل زر الإضافة
+        rolesList.insertBefore(newRoleItem, addButton);
+
+        // 2. إضافة الوظيفة لقائمة "إضافة مستخدم" (عشان تقدر تضيف موظف عليها فوراً)
+        const userModalSelect = document.getElementById('modalRole');
+        const option = document.createElement('option');
+        option.value = roleName;
+        option.text = roleName;
+        userModalSelect.add(option);
+
+        // 3. الانتقال للوظيفة الجديدة لتعديل صلاحياتها
+        selectRole(newRoleItem, 'new');
+        
+        // 4. إغلاق النافذة وتفريغ الحقول
+        document.getElementById('newRoleName').value = '';
+        document.getElementById('newDeptName').value = '';
+        closeModal('addRoleModal');
+
+        alert(`تم إنشاء وظيفة "${roleName}" في قسم "${deptName}" بنجاح! يمكنك الآن تعديل صلاحياتها.`);
+    }
+
+    // --- تعديل دالة فتح المودال لتكون عامة ---
+    function openModal(modalId, mode = 'add') {
+        const modal = document.getElementById(modalId);
+        
+        // منطق خاص بمودال المستخدم فقط
+        if (modalId === 'userModal') {
+            const title = document.getElementById('modalTitle');
+            if(mode === 'add') {
+                title.innerText = "إضافة مستخدم جديد";
+                document.getElementById('editRowId').value = '';
+                document.getElementById('modalName').value = '';
+                document.getElementById('modalEmail').value = '';
+            } else {
+                title.innerText = "تعديل بيانات المستخدم";
+            }
+        }
+        
+        modal.style.display = 'flex';
+    }
+
+    // --- تعديل دالة إغلاق المودال لتكون عامة ---
+    function closeModal(modalId) {
+        // إذا لم يتم تمرير id، نغلق المودال الافتراضي (للتوافق مع الكود القديم)
+        const id = modalId || 'userModal'; 
+        document.getElementById(id).style.display = 'none';
+    }
+
+    // --- تحديث دالة اختيار الدور لتصفير الصلاحيات للجديد ---
+    function selectRole(el, role) {
+        // إزالة التفعيل من الجميع
+        document.querySelectorAll('.role-item').forEach(i => i.classList.remove('active'));
+        el.classList.add('active');
+        
+        const title = el.querySelector('span').innerText;
+        document.getElementById('selectedRoleTitle').innerText = 'صلاحيات: ' + title;
+        
+        // منطق المحاكاة (Simulation Logic)
+        const inputs = document.querySelectorAll('.permissions-panel input[type="checkbox"]');
+        const financialInput = document.querySelector('.rule-input');
+
+        if(role === 'new') {
+            // إذا وظيفة جديدة، صفر كل شي
+            inputs.forEach(input => input.checked = false);
+            financialInput.value = '0';
+        } else if (role === 'cfo') {
+            inputs.forEach(input => input.checked = true);
+            financialInput.value = '10000';
+        } else if (role === 'ceo') {
+            inputs.forEach(input => input.checked = true);
+            financialInput.value = '50000';
+        } else {
+            // افتراضي
+            inputs.forEach((input, index) => input.checked = index % 2 === 0); // عشوائي
+            financialInput.value = '1000';
+        }
+    }
     </script>
 </body>
 </html>
