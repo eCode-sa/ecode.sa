@@ -48,7 +48,7 @@ const Auth = {
         
         // --- إدارة النظام ---
         'admin': { 
-            email: 'admin@ecode.sa', pass: '123456', role: 'admin', label: 'GRCO',
+            email: 'admin@ecode.sa', pass: '123456', role: 'admin', label: "GRCO",
             path: 'admin/index.html'
         }
     },
