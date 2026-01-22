@@ -204,7 +204,7 @@ const Layout = {
                         <span class="role" style="font-size: 10px; color: var(--text-secondary);">${this.getRoleName(this.role)}</span>
                     </div>
                     <div class="user-avatar">
-                        <img src="${this.rootPath}partners-slider/favicon.png" alt="User">
+                        <img src="${this.rootPath}../favicon.png" alt="User">
                     </div>
                 </div>
             </div>
