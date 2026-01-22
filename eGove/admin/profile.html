@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ملفي الشخصي | eGov Admin</title>
     <style>
-        /* تخصيصات إضافية خاصة بالبروفايل */
+        /* تخصيصات البروفايل */
         .profile-header {
             background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
             height: 150px;
@@ -16,30 +16,23 @@
             background: var(--bg-secondary);
             border-radius: 16px;
             border: 1px solid var(--border-color);
-            overflow: hidden;
             margin-bottom: 25px;
+            /* إزالة overflow hidden للسماح بالقوائم المنبثقة إذا وجدت */
         }
         .avatar-container {
-            width: 120px;
-            height: 120px;
+            width: 120px; height: 120px;
             border-radius: 20px;
             border: 4px solid var(--bg-secondary);
             overflow: hidden;
-            position: absolute;
-            bottom: -60px;
-            right: 30px; /* RTL */
+            position: absolute; bottom: -60px; right: 30px; /* RTL */
             background: var(--bg-secondary);
             box-shadow: var(--shadow-md);
         }
         [dir="ltr"] .avatar-container { right: auto; left: 30px; }
         
         .profile-body {
-            padding: 70px 30px 30px; /* مساحة للصورة */
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 20px;
+            padding: 70px 30px 30px;
+            display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px;
         }
         
         .profile-info h1 { font-size: 24px; margin: 0 0 5px; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
@@ -47,39 +40,70 @@
         
         .tags-container { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
         .tag-badge {
-            background: var(--bg-elevated);
-            color: var(--text-secondary);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: flex; align-items: center; gap: 5px;
-            border: 1px solid var(--border-color);
+            background: var(--bg-elevated); color: var(--text-secondary);
+            padding: 5px 12px; border-radius: 20px; font-size: 12px;
+            display: flex; align-items: center; gap: 5px; border: 1px solid var(--border-color);
         }
-        .tag-badge i { color: var(--lavender-light); }
-
+        
         .action-buttons { display: flex; gap: 10px; }
         .btn-profile {
-            padding: 10px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px;
+            padding: 10px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer;
+            display: flex; align-items: center; gap: 8px; font-size: 13px; transition: 0.2s;
         }
+        .btn-profile:hover { transform: translateY(-2px); }
         .btn-primary { background: var(--lavender-dark); color: #fff; }
         .btn-secondary { background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border-color); }
         
         /* البطاقات الداخلية */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding-bottom: 30px; }
         .info-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; }
         .card-head { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
-        .card-head h3 { font-size: 16px; margin: 0; display: flex; align-items: center; gap: 8px; }
+        .card-head h3 { font-size: 16px; margin: 0; display: flex; align-items: center; gap: 8px; color: var(--text-primary); }
+
+        /* التحكم بظهور الراتب */
+        .salary-value {
+            font-size: 16px; font-weight: bold; font-family: monospace; transition: 0.3s;
+        }
+        .salary-value.blurred { filter: blur(8px); user-select: none; }
         
-        /* تأثير ضبابية الراتب */
-        .salary-blur { filter: blur(6px); transition: 0.3s; cursor: pointer; }
-        .salary-blur:hover { filter: blur(0); }
-        
+        .toggle-salary-btn {
+            background: rgba(255,255,255,0.1); border: none; color: #fff; cursor: pointer;
+            padding: 5px 10px; border-radius: 5px; font-size: 12px; display: flex; align-items: center; gap: 5px;
+        }
+        .toggle-salary-btn:hover { background: rgba(255,255,255,0.2); }
+
         /* سجل الحضور */
-        .attendance-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; text-align: center; }
+        .attendance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; text-align: center; }
         .day-card { background: var(--bg-elevated); padding: 10px; border-radius: 10px; border: 1px solid var(--border-color); }
         .day-name { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 5px; }
         .time-in { color: var(--mint-green); font-size: 12px; font-weight: bold; display: block; }
         .time-out { color: var(--text-secondary); font-size: 12px; display: block; }
+
+        /* النوافذ المنبثقة (Modals) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            z-index: 99999; display: none; align-items: center; justify-content: center;
+        }
+        .modal-box {
+            background: var(--bg-secondary); width: 400px; max-width: 90%;
+            border-radius: 16px; padding: 25px; border: 1px solid var(--border-color);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .modal-header h3 { margin: 0; color: var(--text-primary); }
+        .close-modal { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 18px; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; }
+        .form-input, .form-select {
+            width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);
+            background: var(--bg-primary); color: var(--text-primary); outline: none;
+        }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -88,7 +112,7 @@
         <div class="profile-card">
             <div class="profile-header">
                 <div class="avatar-container">
-                    <img src="../partners-slider/favicon.png" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+                    <img src="../partners-slider/favicon.png" alt="Profile" style="width:100%; height:100%; object-fit:contain; background: #fff; padding: 10px;">
                 </div>
             </div>
             <div class="profile-body">
@@ -107,8 +131,12 @@
                 </div>
                 
                 <div class="action-buttons">
-                    <button class="btn-profile btn-primary"><i class="fas fa-plane-departure"></i> <span data-i18n="reqLeave">طلب إجازة</span></button>
-                    <button class="btn-profile btn-secondary"><i class="fas fa-file-contract"></i> <span data-i18n="reqLetter">تعريف راتب</span></button>
+                    <button class="btn-profile btn-primary" onclick="openModal('leaveModal')">
+                        <i class="fas fa-plane-departure"></i> <span data-i18n="reqLeave">طلب إجازة</span>
+                    </button>
+                    <button class="btn-profile btn-secondary" onclick="openModal('letterModal')">
+                        <i class="fas fa-file-contract"></i> <span data-i18n="reqLetter">تعريف راتب</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -135,28 +163,27 @@
             <div class="info-card" style="background: linear-gradient(145deg, #1e293b, #0f172a); border: 1px solid #334155;">
                 <div class="card-head" style="border-color: #334155;">
                     <h3 style="color: #fff;"><i class="fas fa-lock" style="color: var(--coral-pink);"></i> <span data-i18n="financialData">البيانات المالية</span></h3>
-                    <span style="font-size: 10px; background: rgba(255,255,255,0.1); color: #fff; padding: 2px 8px; border-radius: 4px;">سري للغاية</span>
+                    <button class="toggle-salary-btn" onclick="toggleSalary()">
+                        <i class="fas fa-eye" id="salaryIcon"></i> <span id="salaryText">إظهار</span>
+                    </button>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: #fff;">
                     <div>
                         <span style="font-size: 11px; color: #94a3b8;">الراتب الأساسي</span>
-                        <div class="salary-blur" style="font-size: 16px; font-weight: bold; font-family: monospace;">6,274 SAR</div>
+                        <div class="salary-value blurred">6,274 SAR</div>
                     </div>
                     <div>
                         <span style="font-size: 11px; color: #94a3b8;">بدل سكن</span>
-                        <div class="salary-blur" style="font-size: 16px; font-weight: bold; font-family: monospace;">1,569 SAR</div>
+                        <div class="salary-value blurred">1,569 SAR</div>
                     </div>
                     <div>
                         <span style="font-size: 11px; color: #94a3b8;">بدل نقل</span>
-                        <div class="salary-blur" style="font-size: 16px; font-weight: bold; font-family: monospace;">627 SAR</div>
+                        <div class="salary-value blurred">627 SAR</div>
                     </div>
                     <div>
                         <span style="font-size: 11px; color: #94a3b8; color: var(--mint-green);">صافي الراتب</span>
-                        <div class="salary-blur" style="font-size: 20px; font-weight: bold; color: var(--mint-green); font-family: monospace;">11,470 SAR</div>
+                        <div class="salary-value blurred" style="font-size: 20px; color: var(--mint-green);">11,470 SAR</div>
                     </div>
-                </div>
-                <div style="text-align: center; margin-top: 10px; font-size: 10px; color: #64748b;">
-                    <i class="fas fa-eye"></i> ضع المؤشر للكشف
                 </div>
             </div>
 
@@ -196,6 +223,100 @@
         </div>
     </div>
 
+    <div id="leaveModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>طلب إجازة جديدة</h3>
+                <button class="close-modal" onclick="closeModal('leaveModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">نوع الإجازة</label>
+                <select class="form-select">
+                    <option>إجازة سنوية</option>
+                    <option>إجازة اضطرارية</option>
+                    <option>إجازة مرضية</option>
+                </select>
+            </div>
+            <div class="form-group" style="display:flex; gap:10px;">
+                <div style="flex:1">
+                    <label class="form-label">من تاريخ</label>
+                    <input type="date" class="form-input">
+                </div>
+                <div style="flex:1">
+                    <label class="form-label">إلى تاريخ</label>
+                    <input type="date" class="form-input">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-profile btn-secondary" onclick="closeModal('leaveModal')">إلغاء</button>
+                <button class="btn-profile btn-primary" onclick="alert('تم إرسال الطلب بنجاح!')">إرسال الطلب</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="letterModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>طلب تعريف راتب</h3>
+                <button class="close-modal" onclick="closeModal('letterModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">الجهة الموجه إليها</label>
+                <input type="text" class="form-input" placeholder="مثال: بنك الراجحي">
+            </div>
+            <div class="form-group">
+                <label class="form-label">اللغة</label>
+                <select class="form-select">
+                    <option>عربي</option>
+                    <option>إنجليزي</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-profile btn-secondary" onclick="closeModal('letterModal')">إلغاء</button>
+                <button class="btn-profile btn-primary" onclick="alert('تم إرسال الطلب بنجاح!')">إصدار الشهادة</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../assets/js/system.js"></script>
+
+    <script>
+        // وظيفة إظهار/إخفاء الراتب
+        function toggleSalary() {
+            const values = document.querySelectorAll('.salary-value');
+            const btnText = document.getElementById('salaryText');
+            const btnIcon = document.getElementById('salaryIcon');
+            
+            let isHidden = values[0].classList.contains('blurred');
+            
+            values.forEach(el => {
+                if(isHidden) el.classList.remove('blurred');
+                else el.classList.add('blurred');
+            });
+
+            if(isHidden) {
+                btnText.innerText = "إخفاء";
+                btnIcon.className = "fas fa-eye-slash";
+            } else {
+                btnText.innerText = "إظهار";
+                btnIcon.className = "fas fa-eye";
+            }
+        }
+
+        // وظائف النوافذ المنبثقة
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // إغلاق النافذة عند الضغط خارجها
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
