@@ -9,29 +9,66 @@ const DICTIONARY = {
         demo_label: "✨ اختر شخصية لتجربة النظام (Live Demo):",
         copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
         
-        // Roles
-        role_board: "رئيس المجلس",
-        role_sec: "أمين السر",
-        role_ceo: "الرئيس التنفيذي",
-        role_cfo: "المالية",
-        role_hr: "الموارد البشرية",
-        role_it: "التقنية (IT)",
-        role_sales: "المبيعات",
-        role_audit: "التدقيق الداخلي",
-        role_share: "المساهمين",
-        role_admin: "مسؤول النظام",
+        // --- Roles ---
+        role_board: "رئيس المجلس", role_sec: "أمين السر", role_ceo: "الرئيس التنفيذي",
+        role_cfo: "المدير المالي", role_hr: "مدير الموارد", role_it: "المدير التقني",
+        role_sales: "مدير المبيعات", role_audit: "التدقيق الداخلي", role_share: "مساهم",
+        role_admin: "مدير النظام",
 
-        // --- Dashboard General ---
+        // --- Sidebar Menus (Keys matches layout.js) ---
+        // Admin
+        menu_dashboard: "لوحة القيادة",
+        menu_users: "إدارة المستخدمين",
+        menu_audit_logs: "سجلات التدقيق",
+        menu_settings: "إعدادات النظام",
+        menu_profile: "الملف الشخصي",
+        // Board
+        menu_board_summary: "ملخص المجلس",
+        menu_meetings: "الاجتماعات",
+        menu_decisions: "القرارات",
+        // CEO
+        menu_overview: "نظرة عامة",
+        menu_strategy: "الاستراتيجية",
+        menu_finance_rep: "التقارير المالية",
+        menu_circulars: "التعاميم",
+        // HR
+        menu_employees: "الموظفين",
+        menu_payroll: "الرواتب",
+        menu_attendance: "الحضور",
+        menu_recruitment: "الطلبات والتوظيف",
+        // Finance
+        menu_finance_center: "المركز المالي",
+        menu_invoices: "الفواتير",
+        menu_budget: "الميزانية",
+        menu_zakat: "الزكاة والضريبة",
+        // Tech
+        menu_systems: "حالة الأنظمة",
+        menu_support: "الدعم الفني",
+        menu_assets: "الأصول التقنية",
+        menu_security: "الأمن السيبراني",
+        // Sales
+        menu_sales: "المبيعات",
+        menu_crm: "العملاء (CRM)",
+        menu_targets: "الأهداف",
+        menu_contracts: "العقود",
+        // Audit
+        menu_audit_plan: "خطة التدقيق",
+        menu_risks: "المخاطر",
+        menu_compliance: "الامتثال",
+        // Secretary
+        menu_sessions: "إدارة الجلسات",
+        menu_minutes: "سجل المحاضر",
+        menu_tasks: "التوصيات",
+        // Shareholder
+        menu_wallet: "محفظتي",
+        menu_dividends: "الأرباح",
+        menu_reports: "التقارير",
+        menu_voting: "التصويت",
+
+        // --- General ---
         welcome: "مرحباً بك",
         logout: "تسجيل الخروج",
-        notifications: "الإشعارات",
-        search: "بحث...",
-        
-        // --- Sidebar Menu ---
-        menu_home: "الرئيسية",
-        menu_tasks: "المهام",
-        menu_reports: "التقارير",
-        menu_settings: "الإعدادات"
+        notifications: "الإشعارات"
     },
     
     en: {
@@ -44,43 +81,79 @@ const DICTIONARY = {
         demo_label: "✨ Select a Persona for Live Demo:",
         copyright: "© 2026 Electronic Code Co. All Rights Reserved.",
         
-        // Roles
-        role_board: "Chairman",
-        role_sec: "Secretary",
-        role_ceo: "CEO",
-        role_cfo: "Finance (CFO)",
-        role_hr: "HR Manager",
-        role_it: "IT Manager",
-        role_sales: "Sales Manager",
-        role_audit: "Internal Audit",
-        role_share: "Shareholder",
+        // --- Roles ---
+        role_board: "Chairman", role_sec: "Secretary", role_ceo: "CEO",
+        role_cfo: "CFO", role_hr: "HR Manager", role_it: "CTO",
+        role_sales: "Sales Manager", role_audit: "Internal Audit", role_share: "Shareholder",
         role_admin: "System Admin",
 
-        // --- Dashboard General ---
+        // --- Sidebar Menus ---
+        // Admin
+        menu_dashboard: "Dashboard",
+        menu_users: "User Management",
+        menu_audit_logs: "Audit Logs",
+        menu_settings: "System Settings",
+        menu_profile: "My Profile",
+        // Board
+        menu_board_summary: "Board Summary",
+        menu_meetings: "Meetings",
+        menu_decisions: "Decisions",
+        // CEO
+        menu_overview: "Overview",
+        menu_strategy: "Strategy",
+        menu_finance_rep: "Financial Reports",
+        menu_circulars: "Circulars",
+        // HR
+        menu_employees: "Employees",
+        menu_payroll: "Payroll",
+        menu_attendance: "Attendance",
+        menu_recruitment: "Recruitment",
+        // Finance
+        menu_finance_center: "Financial Center",
+        menu_invoices: "Invoices",
+        menu_budget: "Budget",
+        menu_zakat: "Zakat & Tax",
+        // Tech
+        menu_systems: "System Status",
+        menu_support: "Tech Support",
+        menu_assets: "IT Assets",
+        menu_security: "Cybersecurity",
+        // Sales
+        menu_sales: "Sales",
+        menu_crm: "Clients (CRM)",
+        menu_targets: "Targets",
+        menu_contracts: "Contracts",
+        // Audit
+        menu_audit_plan: "Audit Plan",
+        menu_risks: "Risks",
+        menu_compliance: "Compliance",
+        // Secretary
+        menu_sessions: "Session Mgmt",
+        menu_minutes: "Minutes Registry",
+        menu_tasks: "Recommendations",
+        // Shareholder
+        menu_wallet: "My Wallet",
+        menu_dividends: "Dividends",
+        menu_reports: "Reports",
+        menu_voting: "Voting",
+
+        // --- General ---
         welcome: "Welcome",
         logout: "Logout",
-        notifications: "Notifications",
-        search: "Search...",
-        
-        // --- Sidebar Menu ---
-        menu_home: "Dashboard",
-        menu_tasks: "Tasks",
-        menu_reports: "Reports",
-        menu_settings: "Settings"
+        notifications: "Notifications"
     }
 };
 
 const I18n = {
-    // اللغة الافتراضية
     currentLang: localStorage.getItem('lang') || 'ar',
 
     init: function() {
-        // تطبيق اللغة
+        // تطبيق اللغة والاتجاه
         document.documentElement.setAttribute('lang', this.currentLang);
         document.documentElement.setAttribute('dir', this.currentLang === 'ar' ? 'rtl' : 'ltr');
         
-        // تحديث زر اللغة
-        const btn = document.getElementById('langText');
+        // تحديث زر اللغة (إذا وجد)
+        const btn = document.getElementById('langText'); // تأكد من وجود span بهذا الآيدي داخل الزر
         if(btn) btn.innerText = this.currentLang === 'ar' ? 'EN' : 'عربي';
 
         this.updateContent();
@@ -89,7 +162,10 @@ const I18n = {
     toggleLang: function() {
         this.currentLang = this.currentLang === 'ar' ? 'en' : 'ar';
         localStorage.setItem('lang', this.currentLang);
-        this.init();
+        
+        // إعادة تحميل الصفحة لتطبيق التغييرات على الـ Layout بالكامل
+        // هذا أضمن حل لأن الـ Layout يبنى بالجافاسكريبت
+        location.reload(); 
     },
 
     t: function(key) {
