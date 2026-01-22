@@ -1,57 +1,63 @@
 /**
- * eGov System Loader
- * ملف واحد لإدارة واستدعاء جميع ملفات النظام
+ * eGov System Loader v2.0
+ * النسخة الذكية: تكتب المسار المختصر وهو يكمل الباقي
  */
 
 (function() {
-    // 1. تحديد مسار الجذر تلقائياً
-    // إذا كنا داخل مجلد فرعي (مثل admin, ceo)، نعود للخلف خطوة، وإلا نبقى في الجذر
+    // 1. تحديد مكاننا (هل نحن في مجلد فرعي؟)
     const path = window.location.pathname;
-    const isSubFolder = path.includes('/admin/') || path.includes('/board/') || 
-                        path.includes('/ceo/') || path.includes('/hr/') || 
-                        path.includes('/cfo/') || path.includes('/cto/') || 
-                        path.includes('/sales/') || path.includes('/audit/') || 
-                        path.includes('/secretary/') || path.includes('/shareholder/');
+    const isSubPage = path.includes('/admin/') || path.includes('/board/') || 
+                      path.includes('/ceo/') || path.includes('/hr/') || 
+                      path.includes('/cfo/') || path.includes('/cto/') || 
+                      path.includes('/sales/') || path.includes('/audit/') || 
+                      path.includes('/secretary/') || path.includes('/shareholder/');
     
-    const rootPath = isSubFolder ? '../assets/' : 'assets/';
+    // تحديد "بادئة" المسار (Prefix)
+    const base = isSubPage ? '../' : '';
+    
+    // مسار مجلد الـ JS ومجلد الـ CSS
+    const jsRoot = base + 'assets/js/';
+    const cssRoot = base + 'assets/css/';
 
-    // 2. دالة لحقن ملفات CSS
-    function loadCSS(href) {
+    // 2. دالة التحميل
+    function loadCSS(filename) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = href;
+        // إذا كان رابط خارجي (http) خذه كما هو، وإلا أضف المسار الخاص بنا
+        link.href = filename.startsWith('http') ? filename : cssRoot + filename;
         document.head.appendChild(link);
     }
 
-    // 3. دالة لحقن ملفات JS بالتسلسل (لضمان الترتيب)
     function loadScripts(scripts) {
         if (scripts.length === 0) return;
         
-        const src = scripts[0];
+        const filename = scripts[0];
         const script = document.createElement('script');
-        script.src = src;
-        script.onload = () => loadScripts(scripts.slice(1)); // تحميل التالي بعد الانتهاء
+        // هنا السحر: نضيف jsRoot تلقائياً للملفات المحلية
+        script.src = filename.startsWith('http') ? filename : jsRoot + filename;
+        
+        script.onload = () => loadScripts(scripts.slice(1));
         document.body.appendChild(script);
     }
 
-    // === التنفيذ ===
+    // === التنفيذ (بالمسارات المختصة التي طلبتها) ===
 
-    // أ. تحميل الستايلات
+    // أ. الستايلات
+    loadCSS('style.css'); // هو سيعرف أنها في assets/css/style.css
     loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
-    loadCSS(rootPath + 'css/style.css');
 
-    // ب. تحميل السكربتات بالترتيب الصحيح
-    const coreScripts = [
-        rootPath + 'js/core/config.js',
-        rootPath + 'js/core/i18n.js',
-        rootPath + 'js/core/auth.js',
-        rootPath + 'js/layout.js', // Layout سيقوم بتشغيل نفسه عند التحميل
-        rootPath + 'js/components/bot.js'
+    // ب. السكربتات (أصبحت نظيفة الآن)
+    const appScripts = [
+        'core/config.js',   // بدلاً من assets/js/core/config.js
+        'core/i18n.js',
+        'core/auth.js',
+        'layout.js',        // موجود مباشرة في assets/js/
+        'components/bot.js' // موجود في assets/js/components/
     ];
 
-    // انتظر تحميل الصفحة ثم ابدأ
+    // التحميل
     document.addEventListener('DOMContentLoaded', () => {
-        loadScripts(coreScripts);
+        loadScripts(appScripts);
     });
 
 })();
