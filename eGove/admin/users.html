@@ -5,7 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة المستخدمين والصلاحيات | eGov Admin</title>
     <style>
-        /* --- تخصيصات عامة --- */
+        /* ============================
+           1. تنسيقات عامة وتخطيط
+           ============================ */
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-elevated: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --sky-blue: #38bdf8;
+            --mint-green: #34d399;
+            --coral-pink: #f87171;
+            --lavender-dark: #818cf8;
+        }
+
+        body { margin: 0; font-family: 'Tajawal', sans-serif; background: var(--bg-primary); color: var(--text-primary); }
+        .dashboard-content { padding: 30px; padding-bottom: 100px; height: calc(100vh - 80px); overflow-y: auto; }
+
+        /* التبويبات */
         .tab-container { display: flex; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
         .tab-btn {
             background: transparent; border: none; color: var(--text-secondary); font-size: 16px; font-weight: bold;
@@ -14,12 +33,58 @@
         .tab-btn.active { background: var(--bg-elevated); color: var(--sky-blue); }
         .tab-btn:hover { color: var(--text-primary); }
 
-        /* --- قسم المستخدمين --- */
+        /* التبديل بين الشاشات */
         .users-view { display: block; animation: fadeIn 0.5s; }
         .roles-view { display: none; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- قسم الصلاحيات --- */
+        /* ============================
+           2. تنسيقات صفحة المستخدمين
+           ============================ */
+        /* إحصائيات مصغرة */
+        .mini-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .mini-stat-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
+        .mini-stat-card:hover { transform: translateY(-3px); border-color: var(--lavender-dark); }
+        .mini-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .icon-blue { background: rgba(91, 192, 248, 0.1); color: var(--sky-blue); }
+        .icon-green { background: rgba(126, 221, 163, 0.1); color: var(--mint-green); }
+        .icon-purple { background: rgba(139, 127, 255, 0.1); color: var(--lavender-dark); }
+        .icon-red { background: rgba(255, 107, 107, 0.1); color: var(--coral-pink); }
+        .mini-info h4 { margin: 0; font-size: 24px; color: var(--text-primary); }
+        .mini-info span { font-size: 12px; color: var(--text-secondary); }
+
+        /* الجدول */
+        .users-table-container { background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; }
+        .users-table { width: 100%; border-collapse: collapse; }
+        .users-table th { text-align: right; padding: 15px 20px; color: var(--text-secondary); font-size: 12px; border-bottom: 1px solid var(--border-color); background: var(--bg-elevated); }
+        [dir="ltr"] .users-table th { text-align: left; }
+        .users-table td { padding: 15px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+        .users-table tr:hover { background: var(--bg-elevated); }
+        
+        .user-cell { display: flex; align-items: center; gap: 12px; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .user-name { display: block; font-weight: bold; color: var(--text-primary); font-size: 14px; }
+        .user-email { display: block; font-size: 11px; color: var(--text-secondary); }
+        
+        .role-badge { padding: 4px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; }
+        .role-admin { background: rgba(139, 127, 255, 0.15); color: var(--lavender-dark); }
+        .role-manager { background: rgba(91, 192, 248, 0.15); color: var(--sky-blue); }
+        .role-user { background: rgba(126, 221, 163, 0.15); color: var(--mint-green); }
+        
+        .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 5px; }
+        .dot-active { background: var(--mint-green); box-shadow: 0 0 5px var(--mint-green); }
+        .dot-inactive { background: var(--text-muted); }
+        
+        .action-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; font-size: 16px; padding: 5px; transition: 0.2s; }
+        .action-btn:hover { color: var(--sky-blue); transform: scale(1.1); }
+        .action-btn.delete:hover { color: var(--coral-pink); }
+        
+        /* حالة الحذف */
+        tr.deleted-row { opacity: 0.5; background: rgba(255, 0, 0, 0.05); text-decoration: line-through; pointer-events: none; }
+
+        /* ============================
+           3. تنسيقات صفحة الصلاحيات
+           ============================ */
         .roles-layout { display: grid; grid-template-columns: 250px 1fr; gap: 25px; height: calc(100vh - 200px); }
         
         .roles-list { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; height: 100%; }
@@ -44,6 +109,7 @@
         .rule-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
         .rule-input { background: rgba(0,0,0,0.3); border: 1px solid #475569; color: #fff; padding: 8px; border-radius: 6px; width: 100px; text-align: center; }
         
+        /* زر التبديل (Switch) */
         .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
@@ -51,56 +117,31 @@
         input:checked + .slider { background-color: var(--mint-green); }
         input:checked + .slider:before { transform: translateX(20px); }
 
-        tr.deleted-row { opacity: 0.5; background: rgba(255, 0, 0, 0.05); text-decoration: line-through; pointer-events: none; }
-        
-        @media (max-width: 768px) {
-            .roles-layout { grid-template-columns: 1fr; }
-            .roles-list { height: auto; max-height: 200px; overflow-y: auto; }
-        }
-        
-        /* --- جداول وأزرار --- */
-        .users-table-container { background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; }
-        .users-table { width: 100%; border-collapse: collapse; }
-        .users-table th { text-align: right; padding: 15px 20px; color: var(--text-secondary); font-size: 12px; border-bottom: 1px solid var(--border-color); background: var(--bg-elevated); }
-        [dir="ltr"] .users-table th { text-align: left; }
-        .users-table td { padding: 15px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
-        .users-table tr:hover { background: var(--bg-elevated); }
-        .user-cell { display: flex; align-items: center; gap: 12px; }
-        .user-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-        .user-name { display: block; font-weight: bold; color: var(--text-primary); font-size: 14px; }
-        .user-email { display: block; font-size: 11px; color: var(--text-secondary); }
-        .role-badge { padding: 4px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; }
-        .role-admin { background: rgba(139, 127, 255, 0.15); color: var(--lavender-dark); }
-        .role-manager { background: rgba(91, 192, 248, 0.15); color: var(--sky-blue); }
-        .role-user { background: rgba(126, 221, 163, 0.15); color: var(--mint-green); }
-        .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 5px; }
-        .dot-active { background: var(--mint-green); box-shadow: 0 0 5px var(--mint-green); }
-        .dot-inactive { background: var(--text-muted); }
-        .action-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; font-size: 16px; padding: 5px; transition: 0.2s; }
-        .action-btn:hover { color: var(--sky-blue); transform: scale(1.1); }
-        .action-btn.delete:hover { color: var(--coral-pink); }
-        
+        /* ============================
+           4. النوافذ المنبثقة (Modals)
+           ============================ */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .modal-box { background: var(--bg-secondary); width: 500px; max-width: 95%; border-radius: 20px; padding: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: slideUp 0.3s ease-out; border: 1px solid var(--border-color); }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
         .modal-header h3 { margin: 0; color: var(--text-primary); }
         .close-modal { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 18px; }
-        .form-input { width: 100%; padding: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); outline: none; margin-bottom: 10px; }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; }
+        .form-input, .form-select { width: 100%; padding: 10px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); outline: none; }
+        
         .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
         .btn-cancel { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); padding: 8px 16px; border-radius: 8px; cursor: pointer; }
         .btn-submit { background: var(--lavender-dark); color: #fff; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; }
-        
-        /* Mini Stats */
-        .mini-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .mini-stat-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
-        .mini-stat-card:hover { transform: translateY(-3px); border-color: var(--lavender-dark); }
-        .mini-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-        .icon-blue { background: rgba(91, 192, 248, 0.1); color: var(--sky-blue); }
-        .icon-green { background: rgba(126, 221, 163, 0.1); color: var(--mint-green); }
-        .icon-purple { background: rgba(139, 127, 255, 0.1); color: var(--lavender-dark); }
-        .icon-red { background: rgba(255, 107, 107, 0.1); color: var(--coral-pink); }
-        .mini-info h4 { margin: 0; font-size: 24px; color: var(--text-primary); }
-        .mini-info span { font-size: 12px; color: var(--text-secondary); }
+
+        @media (max-width: 768px) {
+            .roles-layout { grid-template-columns: 1fr; }
+            .roles-list { height: auto; max-height: 200px; overflow-y: auto; }
+            .users-table th:nth-child(3), .users-table td:nth-child(3),
+            .users-table th:nth-child(4), .users-table td:nth-child(4) { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -143,241 +184,94 @@
                     </thead>
                     <tbody id="usersTableBody">
                         <tr id="row-1">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_mutaz">معتز سعود</span>
-                                    <span class="user-email">ceo@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="role-badge role-admin" data-i18n="role_ceo">الرئيس التنفيذي</span>
-                            <span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_moataz">نائب رئيس المجلس (15%)</span>
-                        </td>
-                        <td data-i18n="dept_top_mgmt">الإدارة العليا</td>
-                        <td>2025-01-01</td>
-                        <td>
-                            <span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-2">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_ali">علي ابراهيم</span>
-                                    <span class="user-email">chairman@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="role-badge role-admin" data-i18n="role_board">رئيس المجلس</span>
-                            <span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_ali">مساهم (10%)</span>
-                        </td>
-                        <td data-i18n="dept_board">مجلس الإدارة</td>
-                        <td>2025-01-01</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-3">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_ayman">أيمن المغربي</span>
-                                    <span class="user-email">admin@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="role-badge role-admin" data-i18n="role_admin">مدير النظام</span>
-                            <span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_ayman">مسؤول الحوكمة - مساهم (50%)</span>
-                        </td>
-                        <td data-i18n="dept_it">تقنية المعلومات</td>
-                        <td>2025-01-05</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-4">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_abdulaziz">عبدالعزيز سلطان</span>
-                                    <span class="user-email">cto@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="role-badge role-manager" data-i18n="role_it">مسؤول التقنية</span></td>
-                        <td data-i18n="dept_tech_dev">التقنية والتطوير</td>
-                        <td>2025-02-01</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-5">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_ibrahim">ابراهيم اياد</span>
-                                    <span class="user-email">cfo@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="role-badge role-manager" data-i18n="role_cfo">المدير المالي</span></td>
-                        <td data-i18n="dept_finance">الإدارة المالية</td>
-                        <td>2025-02-15</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-6">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_ahmed">احمد عبد القادر</span>
-                                    <span class="user-email">admin.affairs@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="role-badge role-manager" data-i18n="role_hr">مدير الموارد</span></td>
-                       <td data-i18n="dept_support">الخدمات المساندة</td>
-                        <td>2025-03-01</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-7">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_amjad">امجاد علي</span>
-                                    <span class="user-email">sales@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="role-badge role-manager" data-i18n="role_sales">مدير المبيعات</span></td>
-                        <td data-i18n="dept_sales">المبيعات</td>
-                        <td>2025-03-20</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-8">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_inas">ايناس الطيب</span>
-                                    <span class="user-email">audit@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="role-badge role-user" data-i18n="role_audit">المدقق الداخلي</span></td>
-                        <td data-i18n="dept_audit">المراجعة والتدقيق</td>
-                        <td>2025-04-05</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-9">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_amal">امل خالد</span>
-                                    <span class="user-email">secretary@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="role-badge role-user" data-i18n="role_sec">أمين السر</span></td>
-                        <td data-i18n="dept_secretariat">أمانة المجلس</td>
-                        <td>2025-04-15</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-10">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_maymouna">ميمونه فاروق</span>
-                                    <span class="user-email">shareholder.m@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="role-badge role-user" data-i18n="role_share">مساهم</span>
-                            <span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_share_10">حصة (10%)</span>
-                        </td>
-                        <td data-i18n="dept_shareholders">المساهمين</td>
-                        <td>2025-05-01</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr id="row-11">
-                        <td>
-                            <div class="user-cell">
-                                <img src="../../favicon.png" class="user-avatar">
-                                <div>
-                                    <span class="user-name" data-i18n="name_osama">اسامه الجنيدي</span>
-                                    <span class="user-email">shareholder.o@ecode.sa</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="role-badge role-user" data-i18n="role_share">مساهم</span>
-                            <span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_share_15">حصة (15%)</span>
-                        </td>
-                        <td data-i18n="dept_shareholders">المساهمين</td>
-                        <td>2025-05-10</td>
-                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
-                        <td>
-                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-                        </tbody>
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_mutaz">معتز سعود</span><span class="user-email">ceo@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-admin" data-i18n="role_ceo">الرئيس التنفيذي</span><span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_moataz">نائب رئيس المجلس (15%)</span></td>
+                            <td data-i18n="dept_top_mgmt">الإدارة العليا</td>
+                            <td>2025-01-01</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-2">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_ali">علي ابراهيم</span><span class="user-email">chairman@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-admin" data-i18n="role_board">رئيس المجلس</span><span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_ali">مساهم (10%)</span></td>
+                            <td data-i18n="dept_board">مجلس الإدارة</td>
+                            <td>2025-01-01</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-3">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_ayman">أيمن المغربي</span><span class="user-email">admin@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-admin" data-i18n="role_admin">مدير النظام</span><span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_ayman">مسؤول الحوكمة - مساهم (50%)</span></td>
+                            <td data-i18n="dept_it">تقنية المعلومات</td>
+                            <td>2025-01-05</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-4">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_abdulaziz">عبدالعزيز سلطان</span><span class="user-email">cto@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-manager" data-i18n="role_it">مسؤول التقنية</span></td>
+                            <td data-i18n="dept_tech_dev">التقنية والتطوير</td>
+                            <td>2025-02-01</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-5">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_ibrahim">ابراهيم اياد</span><span class="user-email">cfo@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-manager" data-i18n="role_cfo">المدير المالي</span></td>
+                            <td data-i18n="dept_finance">الإدارة المالية</td>
+                            <td>2025-02-15</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-6">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_ahmed">احمد عبد القادر</span><span class="user-email">admin.affairs@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-manager" data-i18n="role_hr">مدير الموارد</span></td>
+                            <td data-i18n="dept_support">الخدمات المساندة</td>
+                            <td>2025-03-01</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-7">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_amjad">امجاد علي</span><span class="user-email">sales@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-manager" data-i18n="role_sales">مدير المبيعات</span></td>
+                            <td data-i18n="dept_sales">المبيعات</td>
+                            <td>2025-03-20</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-8">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_inas">ايناس الطيب</span><span class="user-email">audit@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-user" data-i18n="role_audit">المدقق الداخلي</span></td>
+                            <td data-i18n="dept_audit">المراجعة والتدقيق</td>
+                            <td>2025-04-05</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-9">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_amal">امل خالد</span><span class="user-email">secretary@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-user" data-i18n="role_sec">أمين السر</span></td>
+                            <td data-i18n="dept_secretariat">أمانة المجلس</td>
+                            <td>2025-04-15</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-10">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_maymouna">ميمونه فاروق</span><span class="user-email">shareholder.m@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-user" data-i18n="role_share">مساهم</span><span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_share_10">حصة (10%)</span></td>
+                            <td data-i18n="dept_shareholders">المساهمين</td>
+                            <td>2025-05-01</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        <tr id="row-11">
+                            <td><div class="user-cell"><img src="../../favicon.png" class="user-avatar"><div><span class="user-name" data-i18n="name_osama">اسامه الجنيدي</span><span class="user-email">shareholder.o@ecode.sa</span></div></div></td>
+                            <td><span class="role-badge role-user" data-i18n="role_share">مساهم</span><span style="font-size:10px; display:block; color:var(--text-secondary); margin-top:2px;" data-i18n="desc_share_15">حصة (15%)</span></td>
+                            <td data-i18n="dept_shareholders">المساهمين</td>
+                            <td>2025-05-10</td>
+                            <td><span class="status-dot dot-active"></span> <span data-i18n="status_active" class="status-text">نشط</span></td>
+                            <td><button class="action-btn" onclick="editUser(this)"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteUser(this)"><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -428,20 +322,19 @@
             <input type="hidden" id="editRowId">
             
             <div class="form-row">
-                <div class="form-group" style="margin-bottom:15px">
-                    <label class="form-label" data-i18n="lbl_first_name" style="display:block; color:var(--text-secondary); margin-bottom:5px; font-size:12px">الاسم الكامل</label>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_first_name">الاسم الكامل</label>
                     <input type="text" id="modalName" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_email">البريد الإلكتروني</label>
+                    <input type="email" id="modalEmail" class="form-input">
                 </div>
             </div>
 
-            <div class="form-group" style="margin-bottom:15px">
-                <label class="form-label" data-i18n="lbl_email" style="display:block; color:var(--text-secondary); margin-bottom:5px; font-size:12px">البريد الإلكتروني</label>
-                <input type="email" id="modalEmail" class="form-input">
-            </div>
-
-            <div class="form-group" style="margin-bottom:15px">
-                <label class="form-label" data-i18n="lbl_role" style="display:block; color:var(--text-secondary); margin-bottom:5px; font-size:12px">الدور الوظيفي</label>
-                <select id="modalRole" class="form-input" style="height:40px">
+            <div class="form-group">
+                <label class="form-label" data-i18n="lbl_role">الدور الوظيفي</label>
+                <select id="modalRole" class="form-select">
                     <option value="الرئيس التنفيذي">الرئيس التنفيذي</option>
                     <option value="مدير النظام">مدير النظام</option>
                     <option value="مدير مالي">مدير مالي</option>
@@ -458,7 +351,7 @@
 
     <script src="../assets/js/system.js"></script>
     <script>
-        // --- 1. التبديل بين التبويبات ---
+        // 1. التبديل بين التبويبات
         function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('tab-' + tab + '-btn').classList.add('active');
@@ -467,59 +360,80 @@
             document.getElementById('roles-view').style.display = tab === 'roles' ? 'block' : 'none';
         }
 
-        // --- 2. وظائف إدارة المستخدمين ---
-        
-        // فتح المودال (لإضافة أو تعديل)
+        // 2. وظائف إدارة المستخدمين
         function openModal(modalId, mode = 'add') {
-            document.getElementById('userModal').style.display = 'flex';
+            const modal = document.getElementById('userModal');
+            const title = document.getElementById('modalTitle');
+            
+            if(mode === 'add') {
+                title.innerText = "إضافة مستخدم جديد"; // سيتم ترجمته عبر i18n لاحقاً
+                document.getElementById('editRowId').value = '';
+                document.getElementById('modalName').value = '';
+                document.getElementById('modalEmail').value = '';
+            } else {
+                title.innerText = "تعديل بيانات المستخدم";
+            }
+            modal.style.display = 'flex';
         }
+
         function closeModal() {
             document.getElementById('userModal').style.display = 'none';
         }
 
-        // التعديل: سحب البيانات من الجدول للمودال
         function editUser(btn) {
             const row = btn.closest('tr');
             const name = row.querySelector('.user-name').innerText;
             const email = row.querySelector('.user-email').innerText;
-            const role = row.querySelector('.role-badge').innerText;
             
             document.getElementById('modalName').value = name;
             document.getElementById('modalEmail').value = email;
-            document.getElementById('modalRole').value = role;
-            document.getElementById('editRowId').value = row.id; // نحفظ الـ ID عشان نرجع نعدل نفس الصف
+            document.getElementById('editRowId').value = row.id;
             
             openModal('userModal', 'edit');
         }
 
-        // حفظ التعديلات في الجدول فوراً
         function saveUser() {
             const rowId = document.getElementById('editRowId').value;
             const name = document.getElementById('modalName').value;
             const email = document.getElementById('modalEmail').value;
             
             if(rowId) {
+                // تعديل
                 const row = document.getElementById(rowId);
                 row.querySelector('.user-name').innerText = name;
                 row.querySelector('.user-email').innerText = email;
-                // يمكن إضافة كود لتحديث السيرفر هنا
                 alert('تم تحديث البيانات بنجاح!');
+            } else {
+                // إضافة (محاكاة)
+                alert('تمت إضافة المستخدم الجديد بنجاح!');
             }
             closeModal();
         }
 
-        // الحذف (Soft Delete)
         function deleteUser(btn) {
             if(confirm('هل أنت متأكد من حذف هذا المستخدم؟ سيتم نقله لسلة المحذوفات.')) {
                 const row = btn.closest('tr');
-                row.classList.add('deleted-row'); // تغيير الستايل
-                row.querySelector('.status-dot').className = 'status-dot dot-inactive';
-                row.querySelector('.status-text').innerText = 'محذوف';
+                row.classList.add('deleted-row');
+                const statusSpan = row.querySelector('.status-text');
+                if(statusSpan) statusSpan.innerText = 'محذوف';
+                
+                const dot = row.querySelector('.status-dot');
+                if(dot) dot.className = 'status-dot dot-inactive';
+                
                 alert('تم نقل المستخدم إلى سلة المحذوفات.');
             }
         }
 
-        // --- 3. وظائف الصلاحيات ---
+        function filterUsers() {
+            let input = document.getElementById('userSearch').value.toLowerCase();
+            let rows = document.querySelectorAll('#usersTableBody tr');
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+
+        // 3. وظائف الصلاحيات
         function selectRole(el, role) {
             document.querySelectorAll('.role-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
@@ -527,10 +441,8 @@
             const title = el.querySelector('span').innerText;
             document.getElementById('selectedRoleTitle').innerText = 'صلاحيات: ' + title;
             
-            // هنا ممكن نضيف منطق لتغيير الـ Checkboxes بناءً على الدور
-            // كمثال بسيط:
             if(role === 'cfo') {
-                document.querySelector('.rule-input').value = '10000'; // المدير المالي صلاحيته أعلى
+                document.querySelector('.rule-input').value = '10000';
             } else {
                 document.querySelector('.rule-input').value = '5000';
             }
