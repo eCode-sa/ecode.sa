@@ -1,13 +1,7 @@
-/**
- * eGov Layout Engine
- * المحرك المسؤول عن بناء الواجهة الموحدة (Sidebar + Topbar) وتكييفها حسب الدور الوظيفي
- */
-
 const Layout = {
-    // المسار الجذري (يفترض أن الملفات داخل مجلدات فرعية مثل /admin/index.html)
-    rootPath: '../../', 
+    rootPath: '../../', // مسار العودة للجذر
 
-    // تعريف قوائم التنقل لكل دور وظيفي (10 شخصيات)
+    // === تعريف القوائم حسب الأدوار ===
     menus: {
         'admin': [
             { icon: 'fa-home', text: 'لوحة القيادة', link: 'index.html' },
@@ -78,61 +72,74 @@ const Layout = {
         ]
     },
 
-    // تهيئة النظام
+    // === دالة التشغيل الرئيسية ===
     init: function() {
+        // 1. التحقق من المستخدم
         this.role = localStorage.getItem('userRole') || 'guest';
         this.userName = localStorage.getItem('userName') || 'مستخدم';
         
-        // التحقق من تسجيل الدخول
-        if (!localStorage.getItem('authToken')) {
+        // التحقق من تسجيل الدخول (إلا إذا كنا في صفحة الدخول)
+        if (!localStorage.getItem('authToken') && !window.location.href.includes('login.html')) {
             window.location.href = this.rootPath + 'index.html';
             return;
         }
 
+        // 2. بناء الهيكل (هذه هي الخطوة المفقودة سابقاً)
         this.buildStructure();
+        
+        // 3. تعبئة المحتوى
         this.injectSidebar();
         this.injectTopbar();
         this.injectBot();
-        this.handleResponsive();
+        
+        // 4. استعادة الإعدادات
+        this.restoreSettings();
     },
 
-    // بناء الهيكل الأساسي (تغليف المحتوى الموجود)
+    // === بناء الهيكل الأساسي للصفحة (DOM Manipulation) ===
     buildStructure: function() {
-        const bodyContent = document.body.innerHTML;
-        document.body.innerHTML = ''; 
+        // حفظ محتوى الصفحة الأصلي (مثل الجداول والإحصائيات)
+        const originalContent = document.body.innerHTML;
+        document.body.innerHTML = ''; // تنظيف الجسم
 
+        // إنشاء الحاوية الرئيسية (Flex Container)
         const appContainer = document.createElement('div');
         appContainer.className = 'app-container';
-        
-        // 1. القائمة الجانبية
+
+        // إنشاء القائمة الجانبية
         const sidebar = document.createElement('aside');
         sidebar.id = 'appSidebar';
         sidebar.className = 'sidebar';
-        
-        // 2. المحتوى الرئيسي
+
+        // إنشاء منطقة المحتوى الرئيسية
         const mainContent = document.createElement('div');
         mainContent.className = 'main-content';
-        
+
+        // إنشاء الشريط العلوي
         const topbar = document.createElement('header');
         topbar.id = 'appTopbar';
         topbar.className = 'topbar';
 
+        // إنشاء حاوية للصفحة الداخلية وإعادة المحتوى الأصلي لها
         const pageContent = document.createElement('main');
-        pageContent.className = 'page-content workspace'; 
-        pageContent.innerHTML = bodyContent; 
+        pageContent.className = 'dashboard-container'; // تتوافق مع CSS
+        pageContent.id = 'workspace';
+        pageContent.innerHTML = originalContent;
 
+        // تجميع العناصر
         mainContent.appendChild(topbar);
         mainContent.appendChild(pageContent);
-
+        
         appContainer.appendChild(sidebar);
         appContainer.appendChild(mainContent);
-        
+
         document.body.appendChild(appContainer);
     },
 
-    // حقن القائمة الجانبية
+    // === حقن محتوى القائمة الجانبية ===
     injectSidebar: function() {
-        const menuItems = this.menus[this.role] || this.menus['admin']; // Fallback
+        // جلب القائمة المناسبة للدور، أو الافتراضية
+        const menuItems = this.menus[this.role] || this.menus['default'];
         
         let menuHTML = menuItems.map(item => {
             const isActive = window.location.href.includes(item.link) ? 'active' : '';
@@ -149,39 +156,42 @@ const Layout = {
                 <img src="${this.rootPath}partners-slider/favicon.png" alt="Logo" class="logo-img">
                 <div class="brand-text">
                     <h3>eGov</h3>
-                    <span>${this.getRoleName(this.role)}</span>
+                    <span style="font-size: 12px; color: var(--lavender-light);">${this.getRoleName(this.role)}</span>
                 </div>
             </div>
+            
             <nav class="sidebar-nav">
-                <div class="menu-category">القائمة الرئيسية</div>
+                <div class="menu-category">القائمة</div>
                 ${menuHTML}
             </nav>
-            <div class="sidebar-footer">
+
+            <div class="sidebar-footer" style="margin-top: auto;">
                 <a href="#" onclick="Layout.logout()" class="menu-item logout-btn" style="color: var(--coral-pink);">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>تسجيل الخروج</span>
+                    <span>خروج</span>
                 </a>
             </div>
         `;
+        
         document.getElementById('appSidebar').innerHTML = sidebarHTML;
     },
 
-    // حقن الشريط العلوي
+    // === حقن محتوى الشريط العلوي ===
     injectTopbar: function() {
         const topbarHTML = `
             <div class="topbar-left">
                 <button class="toggle-btn" onclick="Layout.toggleSidebar()">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h2 class="page-title">${document.title.split('|')[0]}</h2>
+                <h2 class="page-title">${document.title}</h2>
             </div>
             
             <div class="topbar-right">
-                <button class="icon-btn" onclick="I18n.toggleLang()" title="تغيير اللغة">
+                <button class="icon-btn" onclick="I18n.toggleLang()" title="اللغة">
                     <span style="font-weight: bold; font-size: 12px;">EN</span>
                 </button>
 
-                <button class="icon-btn" onclick="toggleTheme()" title="تغيير الثيم">
+                <button class="icon-btn" onclick="toggleTheme()" title="المظهر">
                     <i class="fas fa-moon" id="themeIcon"></i>
                 </button>
 
@@ -193,7 +203,13 @@ const Layout = {
                     <div class="dropdown-menu" id="notifDropdown">
                         <div class="dropdown-header">الإشعارات</div>
                         <div class="dropdown-body">
-                            ${this.getNotifications(this.role)}
+                            <div class="notif-item">
+                                <i class="fas fa-info-circle" style="color: var(--sky-blue);"></i>
+                                <div>
+                                    <p>مرحباً بك في نظام eGov الجديد</p>
+                                    <span style="font-size: 10px; color: var(--text-muted);">الآن</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -201,7 +217,7 @@ const Layout = {
                 <div class="user-profile">
                     <div class="user-info">
                         <span class="name">${this.userName}</span>
-                        <span class="role">${this.getRoleName(this.role)}</span>
+                        <span class="role" style="font-size: 10px; color: var(--text-secondary);">${this.getRoleName(this.role)}</span>
                     </div>
                     <div class="user-avatar">
                         <img src="${this.rootPath}partners-slider/favicon.png" alt="User">
@@ -210,111 +226,66 @@ const Layout = {
             </div>
         `;
         document.getElementById('appTopbar').innerHTML = topbarHTML;
-        
-        // استعادة حالة الثيم
-        if(typeof updateThemeIcon === 'function') {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            updateThemeIcon(savedTheme);
+    },
+
+    // === حقن البوت (اختياري) ===
+    injectBot: function() {
+        if (!document.getElementById('chatWindow')) {
+            const botHTML = `
+                <div class="chat-widget-btn" onclick="toggleChat()">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chat-window" id="chatWindow" style="display: none;">
+                    <div class="chat-header">
+                        <h4>المساعد الذكي</h4>
+                        <i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer;"></i>
+                    </div>
+                    <div class="chat-body" id="chatBody">
+                        <div class="chat-msg msg-bot">مرحباً ${this.userName} 👋 كيف أساعدك؟</div>
+                    </div>
+                    <div class="chat-footer">
+                        <input type="text" class="chat-input" id="userMsg" placeholder="...">
+                        <button class="btn-primary" onclick="sendMsg()" style="padding: 5px 10px;"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', botHTML);
         }
     },
 
-    // حقن البوت
-    injectBot: function() {
-        const botHTML = `
-            <div class="chat-widget-btn" onclick="toggleChat()">
-                <i class="fas fa-robot"></i>
-            </div>
-            <div class="chat-window" id="chatWindow">
-                <div class="chat-header">
-                    <h4><i class="fas fa-sparkles"></i> المساعد الذكي</h4>
-                    <i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer;"></i>
-                </div>
-                <div class="chat-body" id="chatBody">
-                    <div class="chat-msg msg-bot">مرحباً ${this.userName} 👋<br>أنا مساعدك الذكي في نظام eGov. كيف يمكنني مساعدتك في مهام ${this.getRoleName(this.role)} اليوم؟</div>
-                </div>
-                <div class="chat-footer">
-                    <input type="text" class="chat-input" id="userMsg" placeholder="اكتب سؤالك..." onkeypress="handleEnter(event)">
-                    <button class="send-btn" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', botHTML);
-    },
-
-    // --- Helper Functions ---
-
+    // === دوال مساعدة ===
     getRoleName: function(role) {
         const names = {
             'board': 'رئيس المجلس', 'ceo': 'الرئيس التنفيذي', 'hr': 'الموارد البشرية',
-            'cfo': 'المالية', 'cto': 'تقنية المعلومات', 'sales': 'المبيعات',
-            'audit': 'التدقيق', 'secretary': 'أمانة السر', 'shareholder': 'مساهم',
+            'cfo': 'المدير المالي', 'cto': 'المدير التقني', 'sales': 'المبيعات',
+            'audit': 'التدقيق', 'secretary': 'أمين السر', 'shareholder': 'مساهم',
             'admin': 'مدير النظام'
         };
-        return names[role] || 'مستخدم';
+        return names[role] || role;
     },
 
-    getNotifications: function(role) {
-        const common = `
-            <div class="notif-item unread">
-                <i class="fas fa-info-circle text-info"></i>
-                <div>
-                    <p>تم تحديث سياسة الخصوصية</p>
-                    <span>منذ 2 ساعة</span>
-                </div>
-            </div>`;
-            
-        let specific = '';
-        if(role === 'ceo' || role === 'board') {
-            specific = `
-            <div class="notif-item unread">
-                <i class="fas fa-file-signature text-warning"></i>
-                <div>
-                    <p>محضر اجتماع بانتظار التوقيع</p>
-                    <span>منذ 30 دقيقة</span>
-                </div>
-            </div>`;
-        } else if (role === 'hr') {
-            specific = `
-            <div class="notif-item unread">
-                <i class="fas fa-user-plus text-success"></i>
-                <div>
-                    <p>طلب توظيف جديد (مطور)</p>
-                    <span>منذ 15 دقيقة</span>
-                </div>
-            </div>`;
-        }
-        return specific + common;
+    restoreSettings: function() {
+        // استعادة الثيم
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        const icon = document.getElementById('themeIcon');
+        if(icon) icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     },
 
     toggleSidebar: function() {
         document.getElementById('appSidebar').classList.toggle('collapsed');
-        document.querySelector('.main-content').classList.toggle('expanded');
     },
 
     toggleNotifs: function() {
-        document.getElementById('notifDropdown').classList.toggle('show');
+        const dd = document.getElementById('notifDropdown');
+        if(dd) dd.classList.toggle('show');
     },
 
     logout: function() {
         localStorage.clear();
-        // العودة للبوابة الرئيسية (جذر المشروع)
         window.location.href = this.rootPath + 'index.html';
-    },
-
-    handleResponsive: function() {
-        if(window.innerWidth <= 768) {
-            document.getElementById('appSidebar').classList.add('collapsed');
-        }
     }
 };
 
-// تشغيل المحرك عند التحميل
+// تشغيل النظام عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => Layout.init());
-
-// إغلاق القوائم عند الضغط خارجها
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.notification-wrapper')) {
-        const dropdown = document.getElementById('notifDropdown');
-        if(dropdown) dropdown.classList.remove('show');
-    }
-});
