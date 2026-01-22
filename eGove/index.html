@@ -1,423 +1,208 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="dark">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eCode | Electronic Code Co.</title>
-    <meta name="description" content="شركة إلكترونيك كود - الحلول الرقمية والأنظمة الذكية في السعودية">
+    <title>بوابة eGov | الوصول الموحد</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        /* Chat Widget Styles */
-        .chat-widget-btn {
-            position: fixed;
-            bottom: 100px;
-            left: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--sky-blue), var(--lavender-dark));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow-glow);
-            z-index: 1000;
-            transition: var(--transition-base);
-            color: #fff;
-            font-size: 24px;
+        /* إعدادات الصفحة */
+        body { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            min-height: 100vh; background: radial-gradient(circle at center, #1a1f2e 0%, #0f1419 100%);
+            margin: 0; padding: 20px; font-family: 'Tajawal', sans-serif; position: relative;
+        }
+
+        /* --- Page Controls (Language & Theme) --- */
+        .page-controls {
+            position: absolute; top: 20px; left: 20px; /* يسار الصفحة في العربية */
+            display: flex; gap: 10px; z-index: 10;
         }
         
-        [dir="ltr"] .chat-widget-btn { left: auto; right: 30px; }
+        /* في الإنجليزية نعكس المكان */
+        [dir="ltr"] .page-controls { left: auto; right: 20px; }
 
-        .chat-widget-btn:hover { transform: scale(1.1); }
-
-        .chat-window {
-            position: fixed;
-            bottom: 110px;
-            left: 100px;
-            width: 350px;
-            height: 450px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            display: none;
-            flex-direction: column;
-            z-index: 1001;
-            overflow: hidden;
-            animation: fadeInUp 0.3s ease;
+        .control-btn {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color);
+            color: var(--text-secondary); width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            transition: 0.3s; font-size: 16px; text-decoration: none;
         }
 
-        [dir="ltr"] .chat-window { left: auto; right: 100px; }
-
-        .chat-header {
-            background: linear-gradient(135deg, var(--bg-elevated), var(--bg-secondary));
-            padding: 15px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .control-btn:hover {
+            background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark);
+            transform: rotate(15deg);
         }
+
+        /* --- Login Card --- */
+        .login-wrapper { width: 100%; max-width: 550px; position: relative; z-index: 2; }
+        .login-card {
+            background: var(--bg-secondary); border-radius: 24px; padding: 40px;
+            border: 1px solid var(--border-color); box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            text-align: center; position: relative; overflow: hidden; backdrop-filter: blur(10px);
+        }
+        .login-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--lavender-dark), var(--sky-blue));
+        }
+
+        .brand-logo { width: 80px; margin-bottom: 20px; }
+        .system-title { font-size: 28px; font-weight: 800; color: var(--text-primary); margin-bottom: 5px; }
+        .system-desc { color: var(--text-secondary); font-size: 15px; margin-bottom: 30px; }
+
+        /* --- Form --- */
+        .form-group { margin-bottom: 15px; position: relative; }
+        .form-group i {
+            position: absolute; top: 50%; right: 15px; transform: translateY(-50%);
+            color: var(--text-muted); font-size: 14px; pointer-events: none;
+        }
+        [dir="ltr"] .form-group i { right: auto; left: 15px; } /* تعديل الأيقونة للإنجليزية */
+
+        .form-control {
+            width: 100%; padding: 14px 40px 14px 15px; border-radius: 12px;
+            border: 1px solid var(--border-color); background: var(--bg-elevated);
+            color: var(--text-primary); font-family: 'Tajawal'; transition: 0.3s; font-size: 14px;
+        }
+        [dir="ltr"] .form-control { padding: 14px 15px 14px 40px; } /* تعديل البادينغ للإنجليزية */
+
+        .form-control:focus { outline: none; border-color: var(--lavender-light); box-shadow: 0 0 0 4px rgba(139, 127, 255, 0.1); }
+
+        /* --- Demo Roles --- */
+        .demo-roles { margin-top: 30px; padding-top: 25px; border-top: 1px solid var(--border-color); }
+        .demo-label { font-size: 13px; color: var(--lavender-light); margin-bottom: 15px; display: block; font-weight: 600; }
+        .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
+        .role-btn {
+            background: var(--bg-primary); border: 1px solid var(--border-color);
+            color: var(--text-secondary); padding: 12px 5px; border-radius: 10px;
+            font-size: 11px; cursor: pointer; transition: all 0.2s ease;
+            display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%;
+        }
+        .role-btn:hover { background: var(--bg-elevated); border-color: var(--lavender-light); color: #fff; transform: translateY(-3px); }
+        .role-btn i { font-size: 18px; margin-bottom: 2px; }
         
-        .chat-header h4 { font-size: 16px; margin: 0; color: var(--lavender-light); }
-        
-        .chat-body {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background: var(--bg-primary);
-        }
-
-        .chat-msg {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 12px;
-            font-size: 14px;
-            max-width: 80%;
-        }
-
-        .msg-bot {
-            background: var(--bg-elevated);
-            color: var(--text-primary);
-            border-bottom-right-radius: 0;
-            border: 1px solid var(--border-color);
-        }
-
-        .msg-user {
-            background: var(--lavender-dark);
-            color: #fff;
-            margin-right: auto;
-            border-bottom-left-radius: 0;
-        }
-        [dir="ltr"] .msg-user { margin-right: 0; margin-left: auto; }
-
-        .chat-footer {
-            padding: 10px;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 8px;
-            border-radius: var(--radius-full);
-            border: 1px solid var(--border-color);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-        }
-
-        /* Mobile Menu Helper */
-        .mobile-toggle { display: none; font-size: 24px; cursor: pointer; color: var(--text-primary); }
-        @media(max-width: 768px) { 
-            .mobile-toggle { display: block; } 
-            .nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-secondary); flex-direction: column; padding: 20px; border-bottom: 1px solid var(--border-color); }
-            .nav.active { display: flex; }
-            .chat-window { width: 90%; left: 5%; right: 5%; bottom: 100px; }
-        }
+        .copyright { margin-top: 30px; color: var(--text-muted); font-size: 12px; opacity: 0.6; text-align: center; }
     </style>
 </head>
-
 <body>
 
-    <header class="main-header">
-        <div class="header-inner">
-  <a href="home" class="logo-container">
-    <div class="logo-icon">
-      <img src="../favicon.png" alt="eCode Logo">
+    <div class="page-controls">
+        <button class="control-btn" onclick="I18n.toggleLang()" title="Switch Language">
+            <span id="langText" style="font-weight: bold; font-family: sans-serif;">EN</span>
+        </button>
+        <button class="control-btn" onclick="toggleTheme()" title="Switch Theme">
+            <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
     </div>
-    <div class="logo-text">
-      <span class="brand-name" data-i18n="brand">eCode</span>
-      <span class="brand-tagline" data-i18n="tagline">تصنع الأثر</span>
-    </div>
-  </a>
-            <div class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
 
-            <nav class="nav" id="mainNav">
-                <a href="index.html">الرئيسية</a>
-                <a href="services.html">خدماتنا</a>
-                <a href="plans.html">باقاتنا</a>
-                <a href="portfolio.html">أعمالنا</a>
-                <a href="login.html" class="btn-primary">
-                    <i class="fa-solid fa-user me-2"></i> <span data-i18n="login">تسجيل الدخول</span>
-                </a>
-                
-                <div style="display: flex; gap: 10px;">
-                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Theme">
-                        <i class="fa-solid fa-moon" id="themeIcon"></i>
-                    </button>
-                    <button class="lang-switcher" onclick="toggleLang()" aria-label="Language">
-                        <span id="langText">EN</span>
-                    </button>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <img src="partners-slider/favicon.png" alt="Logo" class="brand-logo">
+            <h1 class="system-title">eGov Platform</h1>
+            <p class="system-desc" data-i18n="portal_desc">نظام الحوكمة الرقمية والامتثال المؤسسي</p>
 
-    <section id="hero" class="hero">
-        <div class="hero-inner">
-            <div class="hero-content">
-                <div class="hero-tagline">
-                    <i class="fa-solid fa-shield-halved"></i> <span data-i18n="hero_badge">نظام مرخص وممتثل 100%</span>
-                </div>
-                <h1 data-i18n="hero_title">الحوكمة الرقمية<br>بمفهوم الابتكار</h1>
-                <p data-i18n="hero_desc">
-                    نمكن الشركات والجهات الحكومية من أتمتة المجالس، اللجان، وإدارة الامتثال باستخدام تقنيات الذكاء الاصطناعي، مع ضمان الحجية القانونية الكاملة.
-                </p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn-primary" data-i18n="btn_demo">اطلب عرض فني</a>
-                    <a href="#services" class="btn-secondary" data-i18n="btn_more">اكتشف المزيد</a>
-                </div>
-            </div>
+            <div id="loginAlert" class="alert-box" style="display:none; color: #ff6b6b; margin-bottom: 15px;"></div>
 
-            <div class="hero-visual">
-                <h3><i class="fa-solid fa-chart-pie" style="color: var(--mint-green);"></i> <span data-i18n="stat_title">تحليلات الأداء</span></h3>
-                <p data-i18n="stat_desc">متابعة لحظية لقرارات مجلس الإدارة ونسب الامتثال.</p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <strong>98%</strong>
-                        <span data-i18n="compliance_rate">نسبة الامتثال</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>24/7</strong>
-                        <span data-i18n="uptime">توافر النظام</span>
-                    </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="email" class="form-control" data-i18n="email_placeholder" placeholder="البريد الإلكتروني المهني" required>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="section-inner">
-            <h2 class="section-title" data-i18n="services_title">خدماتنا النوعية</h2>
-            <p class="section-subtitle" data-i18n="services_sub">منظومة تقنية متكاملة لإدارة المنشآت</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3><i class="fa-solid fa-gavel" style="color: var(--lavender-light);"></i> <span data-i18n="srv_1_title">إدارة المجالس</span></h3>
-                    <ul>
-                        <li data-i18n="srv_1_p1">أتمتة المحاضر والتصويت</li>
-                        <li data-i18n="srv_1_p2">توقيع رقمي معتمد</li>
-                    </ul>
-                    <a href="#" class="feature-link" data-i18n="read_more">اقرأ المزيد &larr;</a>
+                <div class="form-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" class="form-control" data-i18n="pass_placeholder" placeholder="كلمة المرور" required>
                 </div>
                 
-                <div class="feature-card">
-                    <h3><i class="fa-solid fa-file-invoice-dollar" style="color: var(--sky-blue);"></i> <span data-i18n="srv_2_title">نظام الموارد والرواتب</span></h3>
-                    <ul>
-                        <li data-i18n="srv_2_p1">ربط مباشر مع مدد</li>
-                        <li data-i18n="srv_2_p2">حساب مسيرات الرواتب</li>
-                    </ul>
-                    <a href="#" class="feature-link" data-i18n="read_more">اقرأ المزيد &larr;</a>
-                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; border-radius: 12px; padding: 14px; font-size: 16px; margin-top: 10px;">
+                    <span data-i18n="login_btn">تسجيل الدخول الآمن</span> <i class="fa-solid fa-shield-halved me-2"></i>
+                </button>
+            </form>
 
-                <div class="feature-card">
-                    <h3><i class="fa-solid fa-fingerprint" style="color: var(--mint-green);"></i> <span data-i18n="srv_3_title">التدقيق والامتثال</span></h3>
-                    <ul>
-                        <li data-i18n="srv_3_p1">سجلات تدقيق غير قابلة للتعديل</li>
-                        <li data-i18n="srv_3_p2">تنبيهات المخالفات الآلية</li>
-                    </ul>
-                    <a href="#" class="feature-link" data-i18n="read_more">اقرأ المزيد &larr;</a>
-                </div>
-            </div>
-        </div>
+            <div class="demo-roles">
+                <span class="demo-label">✨ اختر شخصية لتجربة النظام (Live Demo):</span>
+                <div class="roles-grid">
+                    <button class="role-btn" onclick="Auth.fillDemo('board')" title="مجلس الإدارة">
+                        <i class="fa-solid fa-gavel"></i> رئيس المجلس
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('secretary')" title="أمانة السر">
+                        <i class="fa-solid fa-pen-nib"></i> أمين السر
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('ceo')" title="الإدارة التنفيذية">
+                        <i class="fa-solid fa-user-tie"></i> الرئيس التنفيذي
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('shareholder')" title="الجمعية العمومية">
+                        <i class="fa-solid fa-users-viewfinder"></i> المساهمين
+                    </button>
 
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-grid">
-                <div>
-                    <h4>Electronic Code</h4>
-                    <p data-i18n="footer_desc">شركة سعودية رائدة في الحلول الرقمية.</p>
-                    <div class="social-bar">
-                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
-                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-links">
-                    <h4 data-i18n="quick_links">روابط سريعة</h4>
-                    <ul>
-                        <li><a href="index.html" data-i18n="home">الرئيسية</a></li>
-                        <li><a href="services.html" data-i18n="services">خدماتنا</a></li>
-                        <li><a href="plans.html" data-i18n="plans">الباقات</a></li>
-                        <li><a href="portfolio.html" data-i18n="portfolio">أعمالنا</a></li>
-                        <li><a href="contact.html" data-i18n="contact_us">تواصل معنا</a></li>
-                        <li><a href="terms.html" data-i18n="terms">الشروط والأحكام</a></li>
-                        <li><a href="privacy.html" data-i18n="privacy">سياسة الخصوصية</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 data-i18n="contact_us">تواصل معنا</h4>
-                    <p>Riyadh, Saudi Arabia</p>
-                    <p>00966503666316</p>
-                    <p>info@ecode.sa</p>
+                    <button class="role-btn" onclick="Auth.fillDemo('cfo')" title="الإدارة المالية">
+                        <i class="fa-solid fa-coins"></i> المالية
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('hr')" title="الموارد البشرية">
+                        <i class="fa-solid fa-users"></i> الموارد
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('cto')" title="تقنية المعلومات">
+                        <i class="fa-solid fa-laptop-code"></i> التقنية
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('sales')" title="المبيعات">
+                        <i class="fa-solid fa-chart-line"></i> المبيعات
+                    </button>
                     
-                    <div style="margin-top: 15px; padding: 10px; background: rgba(139, 127, 255, 0.1); border-radius: 8px;">
-                        <p style="font-size: 14px; margin: 0;"><i class="fa-solid fa-file-contract"></i> CR: 7050139125</p>
-                        <p style="font-size: 14px; margin: 0;"><i class="fa-solid fa-receipt"></i> VAT: 3130161102</p>
-                    </div>
+                    <button class="role-btn" onclick="Auth.fillDemo('audit')" title="التدقيق الداخلي">
+                        <i class="fa-solid fa-magnifying-glass"></i> التدقيق
+                    </button>
+                    <button class="role-btn" onclick="Auth.fillDemo('admin')" title="إدارة النظام">
+                        <i class="fa-solid fa-shield-halved"></i> GRC Admin
+                    </button>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                &copy; 2026 Electronic Code Company. All Rights Reserved.
-            </div>
         </div>
-    </footer>
-
-    <div class="chat-widget-btn" onclick="toggleChat()">
-        <i class="fa-solid fa-robot"></i>
-    </div>
-
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h4><i class="fa-solid fa-sparkles"></i> eCode AI</h4>
-            <i class="fa-solid fa-xmark" onclick="toggleChat()" style="cursor: pointer;"></i>
-        </div>
-        <div class="chat-body" id="chatBody">
-            <div class="chat-msg msg-bot">
-                مرحباً بك في إلكترونيك كود! 🤖<br>كيف يمكنني مساعدتك في أتمتة أعمالك اليوم؟
-            </div>
-        </div>
-        <div class="chat-footer">
-            <input type="text" class="chat-input" id="userMsg" placeholder="اكتب سؤالك..." onkeypress="handleEnter(event)">
-            <button class="btn-primary" style="padding: 5px 15px; min-width: auto;" onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i></button>
+        
+        <div class="copyright" data-i18n="copyright">
+            &copy; 2026 Electronic Code Company. All Rights Reserved.
         </div>
     </div>
 
+    <script src="assets/js/core/config.js"></script>
+    <script src="assets/js/core/i18n.js"></script>
+    <script src="assets/js/core/auth.js"></script>
+    
     <script>
-        // --- 1. Language Data ---
-        const translations = {
-            ar: {
-                brand: "eCode", tagline: "تصنع الأثر",
-                nav_home: "الرئيسية", nav_services: "الخدمات", nav_about: "عن الشركة", login: "تسجيل الدخول",
-                hero_badge: "نظام مرخص وممتثل 100%",
-                hero_title: "الحوكمة الرقمية<br>بمفهوم الابتكار",
-                hero_desc: "نظام eGov لإدارة المجالس واللجان بذكاء اصطناعي وامتثال قانوني كامل.",
-                btn_demo: "اطلب عرض فني", btn_more: "اكتشف المزيد",
-                stat_title: "تحليلات الأداء", stat_desc: "متابعة لحظية للقرارات.",
-                compliance_rate: "نسبة الامتثال", uptime: "توافر النظام",
-                stat_1: "جهة حكومية", stat_2: "قرار مؤتمت", stat_3: "حماية بيانات",
-                services_title: "خدماتنا النوعية", services_sub: "منظومة تقنية متكاملة",
-                srv_1_title: "إدارة المجالس", srv_1_p1: "أتمتة المحاضر", srv_1_p2: "توقيع رقمي",
-                srv_2_title: "الموارد البشرية", srv_2_p1: "ربط مع مدد", srv_2_p2: "مسيرات الرواتب",
-                srv_3_title: "التدقيق", srv_3_p1: "سجلات آمنة", srv_3_p2: "تنبيهات فورية",
-                read_more: "اقرأ المزيد ←",
-                footer_desc: "شركة سعودية رائدة في الحلول الرقمية.",
-                quick_links: "روابط سريعة", contact_us: "تواصل معنا", privacy: "سياسة الخصوصية", plans: "باقاتنا", home: "الرئيسية", services: "خدماتنا", portfolio: "أعمالنا", terms: "الشروط والأحكام"
-            },
-            en: {
-                brand: "eCode", tagline: "Making Impact",
-                nav_home: "Home", nav_services: "Services", nav_about: "About Us", login: "Login",
-                hero_badge: "100% Compliant System",
-                hero_title: "Digital Governance<br>Reimagined",
-                hero_desc: "eGov system for automated Board & Committee management with AI and full legal compliance.",
-                btn_demo: "Request Demo", btn_more: "Learn More",
-                stat_title: "Performance Analytics", stat_desc: "Real-time decision tracking.",
-                compliance_rate: "Compliance Rate", uptime: "System Uptime",
-                stat_1: "Gov Entities", stat_2: "Decisions", stat_3: "Data Privacy",
-                services_title: "Our Services", services_sub: "Integrated Technical Ecosystem",
-                srv_1_title: "Board Mgmt", srv_1_p1: "Minutes Automation", srv_1_p2: "Digital Signature",
-                srv_2_title: "HR System", srv_2_p1: "Mudad Integration", srv_2_p2: "Payroll Engine",
-                srv_3_title: "Audit & Risk", srv_3_p1: "Immutable Logs", srv_3_p2: "Instant Alerts",
-                read_more: "Read More →",
-                footer_desc: "Leading Saudi Company in Digital Solutions.",
-                quick_links: "Quick Links", contact_us: "Contact Us", privacy: "Privacy Policy", plans: "Plans", home: "Home", services: "Services", portfolio: "Portfolio", terms: "Terms & Conditions"
-            }
-        };
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            Auth.login(email, pass);
+        }
 
-        // --- 2. Theme Toggle ---
+        // دالة الثيم البسيطة لهذه الصفحة فقط (لأن layout.js غير مستخدم هنا)
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('themeIcon');
+            const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                icon.className = 'fa-solid fa-moon'; // Icon for dark mode
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            
+            if (next === 'dark') {
+                icon.className = 'fa-solid fa-sun'; // أيقونة الشمس للوضع المظلم
             } else {
-                html.setAttribute('data-theme', 'dark');
-                icon.className = 'fa-solid fa-sun'; // Icon for light mode
+                icon.className = 'fa-solid fa-moon'; // أيقونة القمر للوضع المضيء
             }
         }
-
-        // --- 3. Language Toggle ---
-        let currentLang = 'ar';
-        function toggleLang() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langText').innerText = currentLang === 'ar' ? 'EN' : 'عربي';
-            
-            // Update Text
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    el.innerHTML = translations[currentLang][key];
-                }
-            });
-        }
-
-        // --- 4. Mobile Menu ---
-        function toggleMenu() {
-            document.getElementById('mainNav').classList.toggle('active');
-        }
-
-        // --- 5. AI Chat Logic ---
-        function toggleChat() {
-            const win = document.getElementById('chatWindow');
-            win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function handleEnter(e) {
-            if (e.key === 'Enter') sendMsg();
-        }
-
-        function sendMsg() {
-            const input = document.getElementById('userMsg');
-            const txt = input.value.trim();
-            if (!txt) return;
-
-            // Add User Msg
-            addChatMsg(txt, 'user');
-            input.value = '';
-
-            // Bot Reply Simulation
-            setTimeout(() => {
-                let reply = (currentLang === 'ar') 
-                    ? "شكراً لتواصلك! سيقوم مستشار الحوكمة بالرد عليك قريباً. (هذا رد آلي)" 
-                    : "Thanks! A governance consultant will reply shortly. (Auto-reply)";
-                
-                if(txt.includes('سعر') || txt.includes('price')) 
-                    reply = (currentLang === 'ar') ? "باقاتنا تبدأ من الخطط الأساسية للشركات الناشئة. هل تود عرضاً؟" : "Our plans start basic for startups. Need a quote?";
-
-                addChatMsg(reply, 'bot');
-            }, 1000);
-        }
-
-        function addChatMsg(txt, type) {
-            const body = document.getElementById('chatBody');
-            const div = document.createElement('div');
-            div.className = `chat-msg msg-${type}`;
-            div.innerText = txt;
-            body.appendChild(div);
-            body.scrollTop = body.scrollHeight;
-        }
+        
+        // تهيئة الثيم عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const icon = document.getElementById('themeIcon');
+            if(savedTheme === 'dark') icon.className = 'fa-solid fa-sun';
+            else icon.className = 'fa-solid fa-moon';
+        });
     </script>
+
 </body>
 </html>
