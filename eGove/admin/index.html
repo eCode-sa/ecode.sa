@@ -17,42 +17,43 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#38bdf8', secondary: '#818cf8', success: '#34d399', warning: '#fbbf24', danger: '#f87171',
-                        dark: '#0f172a', surface: '#1e293b', border: '#334155'
+                        primary: '#38bdf8',   // أزرق سماوي
+                        secondary: '#818cf8', // بنفسجي فاتح
+                        success: '#34d399',   // أخضر نعناعي
+                        warning: '#fbbf24',   // برتقالي/أصفر
+                        danger: '#f87171',    // أحمر فاتح
+                        dark: '#0f172a',      // خلفية داكنة جداً
+                        surface: '#1e293b',   // خلفية الكروت
+                        border: '#334155'     // لون الحدود
                     },
-                    fontFamily: { sans: ['Tajawal', 'Inter', 'sans-serif'], en: ['Inter', 'sans-serif'] }
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'], en: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
 
     <style>
-        /* إجبار ظهور السكرول بار وتخصيصه */
-        * { scrollbar-width: thin; scrollbar-color: #475569 transparent; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background-color: #475569; border-radius: 20px; }
-        ::-webkit-scrollbar-thumb:hover { background-color: #64748B; }
+        /* --- حل مشكلة السكرول --- */
+        /* لمتصفحات Firefox */
+        * { scrollbar-width: thin; scrollbar-color: #475569 #0f172a; }
+        
+        /* لمتصفحات Chrome, Edge, Safari */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background-color: #475569; border-radius: 4px; border: 2px solid #0f172a; }
+        ::-webkit-scrollbar-thumb:hover { background-color: #64748b; }
 
-        /* تأثيرات حية */
+        /* أنيميشن */
         .loading-overlay { transition: opacity 0.5s ease, visibility 0.5s ease; }
         .loading-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .main-content-wrapper { transition: margin 300ms ease; }
         
-        /* وميض النبض (Live Dot) */
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(52, 211, 153, 0); }
-            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
-        }
-        .live-dot { animation: pulse-ring 2s infinite; display: inline-block; width: 8px; height: 8px; background-color: #34d399; border-radius: 50%; }
-        
-        /* تحديثات الأرقام */
-        .fade-update { animation: highlight 1s ease; }
-        @keyframes highlight { 0% { color: #34d399; } 100% { color: inherit; } }
+        /* نقطة البث الحي */
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); } 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); } }
+        .live-dot { width: 8px; height: 8px; background-color: #34d399; border-radius: 50%; display: inline-block; animation: pulse-green 2s infinite; }
     </style>
 </head>
-<body class="bg-dark text-slate-100 font-sans transition-colors duration-300 overflow-y-auto">
+<body class="bg-dark text-slate-100 font-sans transition-colors duration-300">
 
     <div id="loadingOverlay" class="fixed inset-0 bg-dark z-[9999] flex flex-col items-center justify-center">
         <div class="w-16 h-16 border-4 border-surface border-t-primary rounded-full animate-spin"></div>
@@ -71,7 +72,7 @@
                     <div class="w-12 h-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-bell animate-bounce"></i></div>
                     <div>
                         <h3 class="font-bold text-lg text-white" data-i18n="alertTitle">إجراء مطلوب: اعتماد "الدليل الداخلي"</h3>
-                        <p class="text-sm text-slate-400"><span data-i18n="alertDesc">مسودة بانتظار الاعتماد. الرافع:</span> <span class="font-bold text-primary">مدير النظام</span></p>
+                        <p class="text-sm text-slate-400"><span data-i18n="alertDesc">مسودة بانتظار الاعتماد النهائي. الرافع:</span> <span class="font-bold text-primary" data-i18n="uploaderName">مدير النظام</span></p>
                     </div>
                 </div>
                 <div class="p-4">
@@ -82,7 +83,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-surface p-5 rounded-2xl border border-border hover:border-primary transition-all hover:-translate-y-1">
                     <div class="flex justify-between items-start">
-                        <div><p class="text-xs text-slate-400 font-bold uppercase">رأس المال</p><h3 class="text-2xl font-bold mt-1 font-en text-white">100,000 <span class="text-xs text-slate-500">ر.س</span></h3></div>
+                        <div><p class="text-xs text-slate-400 font-bold uppercase">رأس المال</p><h3 class="text-2xl font-bold mt-1 font-en text-white">100,000 <span class="text-xs font-sans text-slate-500">ر.س</span></h3></div>
                         <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center"><i class="fa-solid fa-coins"></i></div>
                     </div>
                     <div class="mt-4 flex items-center gap-2 text-xs text-success font-bold bg-success/10 w-fit px-2 py-1 rounded"><i class="fa-solid fa-check"></i> مدفوع بالكامل</div>
@@ -114,15 +115,45 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
                 <div class="bg-surface p-6 rounded-2xl border border-border">
                     <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-chart-pie text-primary"></i> هيكل الملكية</h3>
                     <div class="h-48 relative flex justify-center"><canvas id="ownershipChart"></canvas></div>
                     <div class="mt-6 space-y-3" id="chartLegend"></div>
                 </div>
 
-                <div class="lg:col-span-2 bg-surface p-6 rounded-2xl border border-border">
+                <div class="bg-surface p-6 rounded-2xl border border-border">
+                    <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-users-gear text-secondary"></i> اللجان والمجلس</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-dark/50 rounded-xl border border-border hover:border-secondary transition-colors">
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="font-bold text-sm text-white">لجنة المراجعة</h4>
+                                <span class="bg-success/10 text-success text-[10px] px-2 py-0.5 rounded-full font-bold">دورة جديدة</span>
+                            </div>
+                            <div class="space-y-2 text-xs text-slate-400">
+                                <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-primary"></span> عضو 1 (رئيس)</div>
+                                <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-secondary"></span> عضو 2 (عضو)</div>
+                                <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-warning"></span> عضو 3 (عضو)</div>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-border flex justify-between text-[10px]">
+                                <span class="text-slate-500">آخر اجتماع: 22/12/2025</span>
+                                <span class="text-primary cursor-pointer hover:underline">المحضر</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-dark/30 border border-border">
+                            <div class="w-8 h-8 rounded bg-secondary/20 text-secondary flex items-center justify-center"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <p class="text-xs font-bold text-white">أمين السر</p>
+                                <p class="text-[10px] text-slate-400">سكرتير المجلس</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface p-6 rounded-2xl border border-border flex flex-col h-full">
                     <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-list-check text-success"></i> المهام التشغيلية</h3>
-                    <div class="space-y-3 max-h-48 overflow-y-auto pr-2" style="scrollbar-width: thin;">
+                    <div class="flex-1 space-y-3 overflow-y-auto max-h-64 pr-2" style="max-height: 250px;">
                         <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
                             <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
                             <div class="flex-1"><p class="text-xs font-bold text-white">اعتماد سياسة المكافآت</p><p class="text-[10px] text-slate-400 mt-1">تاريخ الاستحقاق: 01/02/2026</p></div>
@@ -133,12 +164,11 @@
                         </div>
                         <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
                             <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                            <div class="flex-1"><p class="text-xs font-bold text-white">تحديث بيانات السجل التجاري</p><p class="text-[10px] text-slate-400">وزارة التجارة</p></div>
+                            <div class="flex-1"><p class="text-xs font-bold text-white">تحديث السجل التجاري</p><p class="text-[10px] text-slate-400">وزارة التجارة</p></div>
                         </div>
-                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                            <div class="flex-1"><p class="text-xs font-bold text-white">تجديد الاشتراك في هيئة الزكاة</p><p class="text-[10px] text-slate-400">المالية</p></div>
-                        </div>
+                    </div>
+                    <div class="mt-auto pt-4 text-center">
+                        <a href="#" class="text-xs text-primary hover:text-white transition">عرض كل المهام (12)</a>
                     </div>
                 </div>
             </div>
@@ -148,7 +178,7 @@
                     <span class="text-slate-300 font-bold flex gap-2 items-center"><i class="fa-solid fa-terminal text-primary"></i> سجل النظام المباشر</span>
                     <span class="flex items-center gap-2 text-success text-xs font-bold"><span class="live-dot"></span> Live</span>
                 </div>
-                <div class="h-40 overflow-y-auto font-mono text-xs space-y-2 pr-1" id="audit-log-container" style="scroll-behavior: smooth;"></div>
+                <div class="h-40 overflow-y-auto font-mono text-xs space-y-2 pr-1" id="audit-log-container"></div>
             </div>
         </main>
     </div>
@@ -157,70 +187,39 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // إعدادات اللغة والاتجاه
-            const initialLang = localStorage.getItem('lang') || 'ar';
-            document.documentElement.lang = initialLang;
-            document.documentElement.dir = initialLang === 'ar' ? 'rtl' : 'ltr';
-            
-            // محاولة التحميل الآمن
-            let attempts = 0;
-            const checkSystem = setInterval(() => {
-                attempts++;
-                const isLoaded = (typeof Layout !== 'undefined' && typeof AppConfig !== 'undefined');
-                
-                if (isLoaded || attempts > 60) {
-                    clearInterval(checkSystem);
-                    if (isLoaded && AppConfig.getCurrentUser()) {
-                        Layout.init();
-                    } else if (isLoaded && !AppConfig.getCurrentUser()) {
-                        window.location.href = '../index.html'; 
-                        return;
-                    }
-                    
-                    initPage();
-                    // إخفاء شاشة التحميل
-                    const overlay = document.getElementById('loadingOverlay');
-                    overlay.style.opacity = '0';
-                    setTimeout(() => overlay.classList.add('hidden'), 500);
-                }
-            }, 50);
+            // إخفاء شاشة التحميل فوراً لتجنب التعليق
+            const overlay = document.getElementById('loadingOverlay');
+            setTimeout(() => {
+                if (overlay) overlay.classList.add('hidden');
+            }, 800); // تأخير بسيط 0.8 ثانية لظهور الانيميشن
 
-            window.addEventListener('languageChanged', () => {
-                updateContent();
-                initCharts();
-            });
+            // تهيئة العناصر
+            initCharts();
+            startLiveSimulation();
+            
+            // محاولة ربط الـ Layout إذا كان الملف موجوداً
+            if (typeof Layout !== 'undefined') {
+                Layout.init();
+                // ضبط الهوامش
+                const initialLang = localStorage.getItem('lang') || 'ar';
+                const mainContent = document.querySelector('.main-content-wrapper');
+                if (mainContent && initialLang === 'ar') {
+                    mainContent.classList.add('md:mr-72');
+                } else if (mainContent) {
+                    mainContent.classList.add('md:ml-72');
+                }
+            }
         });
 
-        // البيانات المعتمدة (التي طلبتها)
-        const pageData = {
-            ar: { heirs: "أيمن المغربي", ceo: "معتز", partner: "ميمونه", others: "آخرون" },
-            en: { heirs: "Ayman Al-Maghrabi", ceo: "Mutaz", partner: "Maimouna", others: "Others" }
-        };
-
-        function initPage() {
-            updateContent();
-            initCharts();
-            startLiveSimulation(); // تشغيل التأثيرات الحية
-        }
-
-        function updateContent() {
-            // النصوص الثابتة يتم تحديثها عبر i18n.js
-        }
-
-        // رسم الشارت (النسب المعتمدة: أيمن 50, معتز 15, ميمونه 15, آخرون 20)
+        // 1. رسم الشارت (بياناتك المعتمدة)
         function initCharts() {
             const ctx = document.getElementById('ownershipChart');
             if (!ctx) return;
-            const oldChart = Chart.getChart(ctx);
-            if(oldChart) oldChart.destroy();
-
-            const lang = localStorage.getItem('lang') || 'ar';
-            const t = pageData[lang];
 
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: [t.heirs, t.ceo, t.partner, t.others],
+                    labels: ['أيمن المغربي', 'معتز', 'ميمونه', 'آخرون'],
                     datasets: [{
                         data: [50, 15, 15, 20],
                         backgroundColor: ['#818cf8', '#38bdf8', '#34d399', '#94a3b8'],
@@ -233,38 +232,24 @@
                 }
             });
 
-            // تحديث الليجند
+            // الليجند اليدوي
             document.getElementById('chartLegend').innerHTML = `
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-secondary">●</span> ${t.heirs}</span> <span class="text-white">50%</span></div>
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-primary">●</span> ${t.ceo}</span> <span class="text-white">15%</span></div>
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-success">●</span> ${t.partner}</span> <span class="text-white">15%</span></div>
-                <div class="flex justify-between text-xs text-slate-400"><span><span class="text-slate-400">●</span> ${t.others}</span> <span class="text-white">20%</span></div>
+                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-secondary">●</span> أيمن المغربي</span> <span class="text-white">50%</span></div>
+                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-primary">●</span> معتز</span> <span class="text-white">15%</span></div>
+                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-success">●</span> ميمونه</span> <span class="text-white">15%</span></div>
+                <div class="flex justify-between text-xs text-slate-400"><span><span class="text-slate-400">●</span> آخرون</span> <span class="text-white">20%</span></div>
             `;
         }
 
-        // --- التفاعل الحي (Live Feel) ---
+        // 2. التفاعل الحي (Live Real Feel)
         function startLiveSimulation() {
-            
-            // 1. تحريك نسبة الامتثال قليلاً كل 4 ثواني
-            setInterval(() => {
-                const random = Math.floor(Math.random() * (94 - 91 + 1) + 91); // بين 91 و 94
-                const el = document.getElementById('complianceText');
-                el.innerText = random + '%';
-                el.classList.add('fade-update');
-                setTimeout(() => el.classList.remove('fade-update'), 1000);
-                document.getElementById('complianceBar').style.width = random + '%';
-            }, 4000);
-
-            // 2. تدفق سجلات النظام (Terminal)
             const container = document.getElementById('audit-log-container');
-            // رسائل محاكاة
             const messages = [
-                { type: 'SYS', msg: 'تم إكمال النسخ الاحتياطي التلقائي', color: 'text-success' },
-                { type: 'WARN', msg: 'محاولة دخول: معتز (من جوال جديد)', color: 'text-warning' },
-                { type: 'INFO', msg: 'رفع مستند: أيمن (مسودة الدليل)', color: 'text-primary' },
-                { type: 'INFO', msg: 'مزامنة البيانات السحابية...', color: 'text-slate-400' },
-                { type: 'CRIT', msg: 'جدار الحماية: حظر IP مشبوه', color: 'text-danger' },
-                { type: 'SYS', msg: 'فحص الحماية الدوري: آمن', color: 'text-success' }
+                { t: 'SYS', m: 'تم إكمال النسخ الاحتياطي بنجاح', c: 'text-success' },
+                { t: 'WARN', m: 'محاولة تسجيل دخول (معتز)', c: 'text-warning' },
+                { t: 'INFO', m: 'رفع مستند (مدير النظام)', c: 'text-primary' },
+                { t: 'INFO', m: 'مزامنة البيانات...', c: 'text-slate-400' },
+                { t: 'CRIT', m: 'جدار الحماية: حظر IP مشبوه', c: 'text-danger' }
             ];
 
             function addLog() {
@@ -273,17 +258,22 @@
                 
                 const div = document.createElement('div');
                 div.className = "flex gap-3 hover:bg-surface p-2 rounded border-b border-border/50 animate-pulse cursor-default";
-                div.innerHTML = `<span class="text-slate-500 w-12 font-mono">[${now}]</span><span class="${item.color} font-bold w-10">${item.type}</span><span class="text-slate-300 truncate">${item.msg}</span>`;
+                div.innerHTML = `<span class="text-slate-500 w-16 font-mono">[${now}]</span><span class="${item.c} font-bold w-10">${item.t}</span><span class="text-slate-300 truncate flex-1">${item.m}</span>`;
                 
                 container.prepend(div);
-                // حذف القديم لكي لا يثقل الصفحة
-                if (container.children.length > 20) container.lastElementChild.remove();
+                if (container.children.length > 8) container.lastElementChild.remove();
             }
-            
-            // إضافة سجل جديد كل 3 ثواني
-            setInterval(addLog, 3000);
-            // إضافة سجلات مبدئية
-            for(let i=0; i<4; i++) addLog();
+
+            // تحريك نسبة الامتثال
+            setInterval(() => {
+                const random = Math.floor(Math.random() * (95 - 90 + 1) + 90);
+                document.getElementById('complianceText').innerText = random + '%';
+                document.getElementById('complianceBar').style.width = random + '%';
+            }, 3000);
+
+            // إضافة سجلات
+            setInterval(addLog, 2500);
+            for(let i=0; i<3; i++) addLog();
         }
     </script>
 </body>
