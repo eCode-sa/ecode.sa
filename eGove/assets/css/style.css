@@ -351,10 +351,9 @@ p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
 /* حاوية المحتوى */
 .dashboard-content {
     padding: 30px;
-    overflow-y: auto;
-    /* ارتفاع كامل ناقص ارتفاع الشريط العلوي */
-    min-height: calc(100vh - 80px); 
-    animation: fadeIn 0.5s ease-out;
+    height: calc(100vh - 80px); /* الارتفاع المتبقي */
+    overflow-y: auto; /* السماح بالسكرول هنا حصراً */
+    padding-bottom: 100px;
 }
 
 /* شبكة الإحصائيات */
