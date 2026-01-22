@@ -284,31 +284,30 @@
                     <div class="role-item" onclick="selectRole(this, 'hr')"><span>مدير الموارد البشرية</span> <i class="fas fa-chevron-left"></i></div>
                     <div class="role-item" onclick="selectRole(this, 'it')"><span>مدير التقنية</span> <i class="fas fa-chevron-left"></i></div>
                     <div class="role-item add-new-role" onclick="openModal('addRoleModal')" style="color: var(--mint-green); font-weight: bold; border-top: 1px solid var(--border-color); margin-top: auto;">
-                    <span><i class="fas fa-plus-circle"></i> إضافة وظيفة جديدة</span>
+                        <span><i class="fas fa-plus-circle"></i> <span data-i18n="btn_add_new_role">إضافة وظيفة جديدة</span></span>
                     </div>
                 </div>
 
                 <div class="permissions-panel">
-                    <h2 id="selectedRoleTitle" style="color: var(--sky-blue); margin-bottom: 20px;">صلاحيات: الرئيس التنفيذي</h2>
-                    <div class="perm-group">
-                        <h4><i class="fas fa-coins text-warning"></i> الصلاحيات المالية</h4>
+                    <h2 id="selectedRoleTitle" style="color: var(--sky-blue); margin-bottom: 20px;"></h2> <div class="perm-group">
+                        <h4 data-i18n="lbl_financial_auth"><i class="fas fa-coins text-warning"></i> الصلاحيات المالية</h4>
                         <div class="smart-rule-box">
-                            <div style="font-weight: bold; margin-bottom: 10px;">الموافقة التلقائية (Auto-Approval)</div>
+                            <div style="font-weight: bold; margin-bottom: 10px;" data-i18n="lbl_auto_approve">الموافقة التلقائية (Auto-Approval)</div>
                             <div class="rule-row">
                                 <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                                <span>تفعيل الاعتماد المباشر للطلبات الأقل من:</span>
-                                <input type="number" value="5000" class="rule-input"> <span>ريال</span>
+                                <span data-i18n="lbl_approve_limit">تفعيل الاعتماد المباشر للطلبات الأقل من:</span>
+                                <input type="number" value="5000" class="rule-input"> <span data-i18n="lbl_currency">ريال</span>
                             </div>
-                            <div style="font-size: 12px; color: #94a3b8; margin-top: 10px;">* إذا كان الطلب أعلى من هذا الحد، يتم رفعه تلقائياً إلى <b style="color:#fff">مجلس الإدارة</b>.</div>
+                            <div style="font-size: 12px; color: #94a3b8; margin-top: 10px;" data-i18n="lbl_approve_note">* إذا كان الطلب أعلى من هذا الحد، يتم رفعه تلقائياً إلى مجلس الإدارة.</div>
                         </div>
                     </div>
                     <div class="perm-group">
-                        <h4><i class="fas fa-users-cog text-info"></i> الإدارة والمستخدمين</h4>
-                        <div class="perm-item"><span class="perm-label">إضافة مستخدمين جدد</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
-                        <div class="perm-item"><span class="perm-label">حذف حسابات</span><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-                        <div class="perm-item"><span class="perm-label">تعديل الصلاحيات</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+                        <h4 data-i18n="lbl_admin_auth"><i class="fas fa-users-cog text-info"></i> الإدارة والمستخدمين</h4>
+                        <div class="perm-item"><span class="perm-label" data-i18n="perm_add_user">إضافة مستخدمين جدد</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+                        <div class="perm-item"><span class="perm-label" data-i18n="perm_delete_user">حذف حسابات</span><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+                        <div class="perm-item"><span class="perm-label" data-i18n="perm_edit_perms">تعديل الصلاحيات</span><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
                     </div>
-                    <button class="btn-submit" onclick="alert('تم حفظ تحديثات الصلاحيات بنجاح!')" style="width:100%">حفظ التغييرات</button>
+                    <button class="btn-submit" onclick="alert('تم حفظ تحديثات الصلاحيات بنجاح!')" style="width:100%" data-i18n="btn_save_changes">حفظ التغييرات</button>
                 </div>
             </div>
         </div>
@@ -353,28 +352,28 @@
     </div>
 
     <div id="addRoleModal" class="modal-overlay" onclick="if(event.target == this) closeModal('addRoleModal')">
-    <div class="modal-box">
-        <div class="modal-header">
-            <h3>تعريف وظيفة وقسم جديد</h3>
-            <button class="close-modal" onclick="closeModal('addRoleModal')"><i class="fas fa-times"></i></button>
-        </div>
-        
-        <div class="form-group">
-            <label class="form-label">مسمى الوظيفة (Role)</label>
-            <input type="text" id="newRoleName" class="form-input" placeholder="مثال: مدير التسويق">
-        </div>
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 data-i18n="modal_add_role_title">تعريف وظيفة وقسم جديد</h3>
+                <button class="close-modal" onclick="closeModal('addRoleModal')"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" data-i18n="lbl_role_name">مسمى الوظيفة (Role)</label>
+                <input type="text" id="newRoleName" class="form-input" placeholder="...">
+            </div>
 
-        <div class="form-group">
-            <label class="form-label">القسم التابع له (Department)</label>
-            <input type="text" id="newDeptName" class="form-input" placeholder="مثال: التسويق الرقمي">
-        </div>
+            <div class="form-group">
+                <label class="form-label" data-i18n="lbl_dept_name">القسم التابع له (Department)</label>
+                <input type="text" id="newDeptName" class="form-input" placeholder="...">
+            </div>
 
-        <div class="modal-footer">
-            <button class="btn-cancel" onclick="closeModal('addRoleModal')">إلغاء</button>
-            <button class="btn-submit" onclick="saveNewRole()">إنشاء الوظيفة</button>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal('addRoleModal')" data-i18n="btn_cancel">إلغاء</button>
+                <button class="btn-submit" onclick="saveNewRole()" data-i18n="btn_create_role">إنشاء الوظيفة</button>
+            </div>
         </div>
     </div>
-</div>
 
     <script src="../assets/js/system.js"></script>
     <script>
@@ -465,8 +464,8 @@
             document.querySelectorAll('.role-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
             
-            const title = el.querySelector('span').innerText;
-            document.getElementById('selectedRoleTitle').innerText = 'صلاحيات: ' + title;
+            const prefix = (localStorage.getItem('lang') === 'en') ? 'Permissions: ' : 'صلاحيات: ';
+            document.getElementById('selectedRoleTitle').innerText = prefix + title;
             
             if(role === 'cfo') {
                 document.querySelector('.rule-input').value = '10000';
