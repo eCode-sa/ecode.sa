@@ -279,10 +279,10 @@
         <div id="roles-view" class="roles-view">
             <div class="roles-layout">
                 <div class="roles-list">
-                    <div class="role-item active" onclick="selectRole(this, 'ceo')"><span>الرئيس التنفيذي</span> <i class="fas fa-chevron-left"></i></div>
-                    <div class="role-item" onclick="selectRole(this, 'cfo')"><span>المدير المالي</span> <i class="fas fa-chevron-left"></i></div>
-                    <div class="role-item" onclick="selectRole(this, 'hr')"><span>مدير الموارد البشرية</span> <i class="fas fa-chevron-left"></i></div>
-                    <div class="role-item" onclick="selectRole(this, 'it')"><span>مدير التقنية</span> <i class="fas fa-chevron-left"></i></div>
+                    <div class="role-item active" onclick="selectRole(this, 'ceo')"><span>data-i18n="role_ceo"</span> <i class="fas fa-chevron-left"></i></div>
+                    <div class="role-item" onclick="selectRole(this, 'cfo')"><span>data-i18n="role_cfo"</span> <i class="fas fa-chevron-left"></i></div>
+                    <div class="role-item" onclick="selectRole(this, 'hr')"><span>data-i18n="role_hr"</span> <i class="fas fa-chevron-left"></i></div>
+                    <div class="role-item" onclick="selectRole(this, 'it')"><span>data-i18n="role_it</span> <i class="fas fa-chevron-left"></i></div>
                     <div class="role-item add-new-role" onclick="openModal('addRoleModal')" style="color: var(--mint-green); font-weight: bold; border-top: 1px solid var(--border-color); margin-top: auto;">
                         <span><i class="fas fa-plus-circle"></i> <span data-i18n="btn_add_new_role">إضافة وظيفة جديدة</span></span>
                     </div>
@@ -548,7 +548,7 @@
         el.classList.add('active');
         
         const title = el.querySelector('span').innerText;
-        document.getElementById('selectedRoleTitle').innerText = 'صلاحيات: ' + title;
+        document.getElementById('selectedRoleTitle').innerText = 'data-i18n="authorities":' + title;
         
         // منطق المحاكاة (Simulation Logic)
         const inputs = document.querySelectorAll('.permissions-panel input[type="checkbox"]');
