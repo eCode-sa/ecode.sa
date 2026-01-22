@@ -136,11 +136,19 @@ const DICTIONARY = {
         status_approved: "معتمد",
         status_pending: "تحت الإجراء",
         attendance: "الحضور",
-        
         lbl_discipline: "انضباط",
         day_sun: "الأحد", day_mon: "الاثنين", day_tue: "الثلاثاء", day_wed: "الأربعاء", day_thu: "الخميس",
         status_ontime: "حضور مبكر",
         status_late: "تأخير بسيط",
+        val_sick_leave: "إجازة مرضية",
+        val_petty_cash: "طلب عهدة مالية",
+        val_training_req: "دورة تدريبية",
+        val_equipment_req: "طلب أجهزة",
+        val_clearance: "إخلاء طرف",
+        status_rejected: "مرفوض",
+        status_new: "جديد",
+        status_hold: "معلق",
+        
 
         // --- عام ---
         welcome: "مرحباً بك",
@@ -263,15 +271,21 @@ const DICTIONARY = {
         lbl_to: "To Date",
         lbl_attachment: "Attachments (Medical Report / Other)",
         txt_upload_hint: "Click to upload or drag file here",
-        
         lbl_entity: "Directed To",
         lbl_lang: "Language",
         lang_ar: "Arabic",
         lang_en: "English",
-        
         btn_cancel: "Cancel",
         btn_submit: "Submit Request",
         btn_print: "Issue & Print",
+        val_sick_leave: "Sick Leave",
+        val_petty_cash: "Petty Cash",
+        val_training_req: "Training Course",
+        val_equipment_req: "Equipment Request",
+        val_clearance: "Clearance",
+        status_rejected: "Rejected",
+        status_new: "New",
+        status_hold: "On Hold",
 
         // --- Requests & Attendance ---
         lbl_requests_log: "Requests Log",
