@@ -1,69 +1,114 @@
-/* * نظام الترجمة واللغات (Internationalization)
- */
-
 const DICTIONARY = {
     ar: {
+        // --- Portal / Login ---
         brand: "eCode",
-        tagline: "تصنع الأثر",
-        nav_home: "الرئيسية",
-        nav_services: "الخدمات",
-        hero_title: "الحوكمة الرقمية<br>بمفهوم الابتكار",
-        btn_demo: "اطلب عرض فني",
-        contact_us: "تواصل معنا",
-        footer_desc: "شركة تقنية سعودية رائدة في حلول الحوكمة الرقمية.",
-        copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة."
+        portal_desc: "نظام الحوكمة الرقمية والامتثال المؤسسي",
+        email_placeholder: "البريد الإلكتروني المهني",
+        pass_placeholder: "كلمة المرور",
+        login_btn: "تسجيل الدخول الآمن",
+        demo_label: "✨ اختر شخصية لتجربة النظام (Live Demo):",
+        copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+        
+        // Roles
+        role_board: "رئيس المجلس",
+        role_sec: "أمين السر",
+        role_ceo: "الرئيس التنفيذي",
+        role_cfo: "المالية",
+        role_hr: "الموارد البشرية",
+        role_it: "التقنية (IT)",
+        role_sales: "المبيعات",
+        role_audit: "التدقيق الداخلي",
+        role_share: "المساهمين",
+        role_admin: "مسؤول النظام",
+
+        // --- Dashboard General ---
+        welcome: "مرحباً بك",
+        logout: "تسجيل الخروج",
+        notifications: "الإشعارات",
+        search: "بحث...",
+        
+        // --- Sidebar Menu ---
+        menu_home: "الرئيسية",
+        menu_tasks: "المهام",
+        menu_reports: "التقارير",
+        menu_settings: "الإعدادات"
     },
+    
     en: {
+        // --- Portal / Login ---
         brand: "eCode",
-        tagline: "Making Impact",
-        nav_home: "Home",
-        nav_services: "Services",
-        hero_title: "Digital Governance<br>Reimagined",
-        btn_demo: "Request Demo",
-        contact_us: "Contact Us",
-        footer_desc: "Leading Saudi Tech Company in Digital Governance.",
-        copyright: "© 2026 Electronic Code Co. All Rights Reserved."
+        portal_desc: "Digital Governance & Corporate Compliance System",
+        email_placeholder: "Professional Email",
+        pass_placeholder: "Password",
+        login_btn: "Secure Login",
+        demo_label: "✨ Select a Persona for Live Demo:",
+        copyright: "© 2026 Electronic Code Co. All Rights Reserved.",
+        
+        // Roles
+        role_board: "Chairman",
+        role_sec: "Secretary",
+        role_ceo: "CEO",
+        role_cfo: "Finance (CFO)",
+        role_hr: "HR Manager",
+        role_it: "IT Manager",
+        role_sales: "Sales Manager",
+        role_audit: "Internal Audit",
+        role_share: "Shareholder",
+        role_admin: "System Admin",
+
+        // --- Dashboard General ---
+        welcome: "Welcome",
+        logout: "Logout",
+        notifications: "Notifications",
+        search: "Search...",
+        
+        // --- Sidebar Menu ---
+        menu_home: "Dashboard",
+        menu_tasks: "Tasks",
+        menu_reports: "Reports",
+        menu_settings: "Settings"
     }
 };
 
 const I18n = {
-    // اللغة الحالية
-    currentLang: document.documentElement.getAttribute('lang') || 'ar',
+    // اللغة الافتراضية
+    currentLang: localStorage.getItem('lang') || 'ar',
 
-    // دالة جلب النص
+    init: function() {
+        // تطبيق اللغة
+        document.documentElement.setAttribute('lang', this.currentLang);
+        document.documentElement.setAttribute('dir', this.currentLang === 'ar' ? 'rtl' : 'ltr');
+        
+        // تحديث زر اللغة
+        const btn = document.getElementById('langText');
+        if(btn) btn.innerText = this.currentLang === 'ar' ? 'EN' : 'عربي';
+
+        this.updateContent();
+    },
+
+    toggleLang: function() {
+        this.currentLang = this.currentLang === 'ar' ? 'en' : 'ar';
+        localStorage.setItem('lang', this.currentLang);
+        this.init();
+    },
+
     t: function(key) {
         return DICTIONARY[this.currentLang][key] || key;
     },
 
-    // دالة تغيير اللغة
-    switchLang: function() {
-        const newLang = this.currentLang === 'ar' ? 'en' : 'ar';
-        this.currentLang = newLang;
-        
-        // تحديث الـ HTML
-        document.documentElement.setAttribute('lang', newLang);
-        document.documentElement.setAttribute('dir', newLang === 'ar' ? 'rtl' : 'ltr');
-        
-        // تحديث النصوص في الصفحة
-        this.updatePageContent();
-        
-        // حفظ التفضيل
-        localStorage.setItem('preferredLang', newLang);
-    },
-
-    // تحديث النصوص الموجودة في الصفحة بناءً على data-i18n
-    updatePageContent: function() {
+    updateContent: function() {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            el.innerHTML = this.t(key);
+            const text = this.t(key);
+            
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = text;
+            } else {
+                el.innerHTML = text;
+            }
         });
     }
 };
 
-// عند التحميل، تأكد من اللغة المحفوظة
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('preferredLang');
-    if (savedLang && savedLang !== I18n.currentLang) {
-        I18n.switchLang(); // التبديل للغة المحفوظة
-    }
-});
+// تشغيل عند التحميل
+document.addEventListener('DOMContentLoaded', () => I18n.init());
