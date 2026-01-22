@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المستخدمين | eGov Admin</title>
+    <style>
+        /* --- تخصيصات صفحة المستخدمين --- */
+        
+        /* 1. بطاقات الإحصائيات المصغرة */
+        .mini-stats {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px;
+        }
+        .mini-stat-card {
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 15px;
+            transition: 0.3s;
+        }
+        .mini-stat-card:hover { transform: translateY(-3px); border-color: var(--lavender-dark); }
+        .mini-icon {
+            width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        .icon-blue { background: rgba(91, 192, 248, 0.1); color: var(--sky-blue); }
+        .icon-green { background: rgba(126, 221, 163, 0.1); color: var(--mint-green); }
+        .icon-purple { background: rgba(139, 127, 255, 0.1); color: var(--lavender-dark); }
+        .icon-red { background: rgba(255, 107, 107, 0.1); color: var(--coral-pink); }
+        
+        .mini-info h4 { margin: 0; font-size: 24px; color: var(--text-primary); }
+        .mini-info span { font-size: 12px; color: var(--text-secondary); }
+
+        /* 2. شريط الأدوات */
+        .toolbar {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--bg-secondary); padding: 15px 20px; border-radius: 16px;
+            border: 1px solid var(--border-color); margin-bottom: 20px; flex-wrap: wrap; gap: 15px;
+        }
+        .search-box {
+            position: relative; flex: 1; max-width: 400px;
+        }
+        .search-input {
+            width: 100%; padding: 10px 40px 10px 15px; border-radius: 10px;
+            border: 1px solid var(--border-color); background: var(--bg-primary);
+            color: var(--text-primary); outline: none; transition: 0.3s;
+        }
+        .search-input:focus { border-color: var(--sky-blue); }
+        .search-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: var(--text-secondary); }
+        [dir="ltr"] .search-input { padding: 10px 15px 10px 40px; }
+        [dir="ltr"] .search-icon { right: auto; left: 15px; }
+
+        .btn-add {
+            background: var(--lavender-dark); color: #fff; padding: 10px 20px;
+            border-radius: 10px; border: none; font-weight: bold; cursor: pointer;
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .btn-add:hover { background: var(--lavender-light); transform: translateY(-2px); }
+
+        /* 3. جدول المستخدمين */
+        .users-table-container {
+            background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        .users-table { width: 100%; border-collapse: collapse; }
+        .users-table th {
+            text-align: right; padding: 15px 20px; color: var(--text-secondary);
+            font-size: 12px; border-bottom: 1px solid var(--border-color); background: var(--bg-elevated);
+        }
+        [dir="ltr"] .users-table th { text-align: left; }
+        .users-table td { padding: 15px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+        .users-table tr:hover { background: var(--bg-elevated); }
+
+        .user-cell { display: flex; align-items: center; gap: 12px; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .user-name { display: block; font-weight: bold; color: var(--text-primary); font-size: 14px; }
+        .user-email { display: block; font-size: 11px; color: var(--text-secondary); }
+
+        .role-badge { padding: 4px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; }
+        .role-admin { background: rgba(139, 127, 255, 0.15); color: var(--lavender-dark); }
+        .role-manager { background: rgba(91, 192, 248, 0.15); color: var(--sky-blue); }
+        .role-user { background: rgba(126, 221, 163, 0.15); color: var(--mint-green); }
+
+        .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 5px; }
+        .dot-active { background: var(--mint-green); box-shadow: 0 0 5px var(--mint-green); }
+        .dot-inactive { background: var(--text-muted); }
+
+        .action-btn {
+            background: transparent; border: none; color: var(--text-secondary);
+            cursor: pointer; font-size: 16px; padding: 5px; transition: 0.2s;
+        }
+        .action-btn:hover { color: var(--sky-blue); transform: scale(1.1); }
+        .action-btn.delete:hover { color: var(--coral-pink); }
+
+        /* 4. النوافذ المنبثقة (Modals) */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9999;
+            display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px);
+        }
+        .modal-box {
+            background: var(--bg-secondary); width: 500px; max-width: 95%;
+            border-radius: 20px; padding: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: slideUp 0.3s ease-out; border: 1px solid var(--border-color);
+        }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .modal-header h3 { margin: 0; color: var(--text-primary); }
+        .close-modal { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 18px; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; }
+        .form-input, .form-select {
+            width: 100%; padding: 10px; background: var(--bg-primary); border: 1px solid var(--border-color);
+            border-radius: 8px; color: var(--text-primary); outline: none;
+        }
+        .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+        .btn-cancel { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); padding: 8px 16px; border-radius: 8px; cursor: pointer; }
+        .btn-submit { background: var(--lavender-dark); color: #fff; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .mini-stats { grid-template-columns: 1fr 1fr; }
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .search-box { max-width: 100%; }
+            .users-table th:nth-child(3), .users-table td:nth-child(3),
+            .users-table th:nth-child(4), .users-table td:nth-child(4) { display: none; } /* إخفاء أعمدة للجوال */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-content">
+        
+        <div class="mini-stats">
+            <div class="mini-stat-card">
+                <div class="mini-icon icon-blue"><i class="fas fa-users"></i></div>
+                <div class="mini-info">
+                    <h4>124</h4>
+                    <span data-i18n="lbl_total_users">إجمالي المستخدمين</span>
+                </div>
+            </div>
+            <div class="mini-stat-card">
+                <div class="mini-icon icon-green"><i class="fas fa-user-check"></i></div>
+                <div class="mini-info">
+                    <h4>118</h4>
+                    <span data-i18n="lbl_active_users">نشط حالياً</span>
+                </div>
+            </div>
+            <div class="mini-stat-card">
+                <div class="mini-icon icon-purple"><i class="fas fa-user-shield"></i></div>
+                <div class="mini-info">
+                    <h4>12</h4>
+                    <span data-i18n="lbl_admins">مدراء النظام</span>
+                </div>
+            </div>
+            <div class="mini-stat-card">
+                <div class="mini-icon icon-red"><i class="fas fa-user-lock"></i></div>
+                <div class="mini-info">
+                    <h4>2</h4>
+                    <span data-i18n="lbl_blocked">محظورين</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="..." id="userSearch" onkeyup="filterUsers()" data-i18n="ph_search_users">
+            </div>
+            <button class="btn-add" onclick="openModal('addUserModal')">
+                <i class="fas fa-plus"></i> <span data-i18n="btn_add_user">مستخدم جديد</span>
+            </button>
+        </div>
+
+        <div class="users-table-container">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="col_user">المستخدم</th>
+                        <th data-i18n="col_role">الدور الوظيفي</th>
+                        <th data-i18n="col_dept">القسم</th>
+                        <th data-i18n="col_join_date">تاريخ الانضمام</th>
+                        <th data-i18n="col_status">الحالة</th>
+                        <th data-i18n="col_actions">إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <img src="../partners-slider/favicon.png" class="user-avatar">
+                                <div>
+                                    <span class="user-name">هشام السحيباني</span>
+                                    <span class="user-email">ceo@ecode.sa</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="role-badge role-admin" data-i18n="role_ceo">الرئيس التنفيذي</span></td>
+                        <td>الإدارة العليا</td>
+                        <td>2019-03-01</td>
+                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
+                        <td>
+                            <button class="action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <img src="https://ui-avatars.com/api/?name=Ali+Ahmed&background=random" class="user-avatar">
+                                <div>
+                                    <span class="user-name">علي أحمد</span>
+                                    <span class="user-email">ali@ecode.sa</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="role-badge role-manager" data-i18n="role_hr">مدير HR</span></td>
+                        <td>الموارد البشرية</td>
+                        <td>2020-05-15</td>
+                        <td><span class="status-dot dot-active"></span> <span data-i18n="status_active">نشط</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <img src="https://ui-avatars.com/api/?name=Sara+Moh&background=random" class="user-avatar">
+                                <div>
+                                    <span class="user-name">سارة محمد</span>
+                                    <span class="user-email">sara@ecode.sa</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="role-badge role-user" data-i18n="role_share">مساهم</span></td>
+                        <td>العلاقات العامة</td>
+                        <td>2021-11-20</td>
+                        <td><span class="status-dot dot-inactive"></span> <span data-i18n="status_inactive">خامل</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="addUserModal" class="modal-overlay" onclick="closeModalOnOutside(event, 'addUserModal')">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 data-i18n="modal_add_user_title">إضافة مستخدم جديد</h3>
+                <button class="close-modal" onclick="closeModal('addUserModal')"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_first_name">الاسم الأول</label>
+                    <input type="text" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_last_name">اسم العائلة</label>
+                    <input type="text" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" data-i18n="lbl_email">البريد الإلكتروني</label>
+                <input type="email" class="form-input">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_role">الدور الوظيفي</label>
+                    <select class="form-select">
+                        <option value="admin">Admin</option>
+                        <option value="manager">Manager</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_dept">القسم</label>
+                    <select class="form-select">
+                        <option>IT</option>
+                        <option>HR</option>
+                        <option>Finance</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal('addUserModal')" data-i18n="btn_cancel">إلغاء</button>
+                <button class="btn-submit" onclick="alert('تمت الإضافة!')" data-i18n="btn_save">حفظ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/system.js"></script>
+    <script>
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function closeModalOnOutside(e, id) { if(e.target.id === id) closeModal(id); }
+
+        function filterUsers() {
+            // وظيفة بحث بسيطة (للتوضيح)
+            let input = document.getElementById('userSearch').value.toLowerCase();
+            let rows = document.querySelectorAll('#usersTableBody tr');
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
