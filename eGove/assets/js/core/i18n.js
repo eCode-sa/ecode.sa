@@ -243,7 +243,7 @@ const DICTIONARY = {
         btn_cancel: "إلغاء",
 
         // --- أسماء المستخدمين ---
-        name_moataz: "معتز سعود",
+        name_mutaz: "معتز سعود",
         name_ali: "علي ابراهيم",
         name_ayman: "أيمن المغربي",
         name_abdulaziz: "عبدالعزيز سلطان",
@@ -511,7 +511,7 @@ const DICTIONARY = {
         btn_cancel: "Cancel",
 
         // --- User Names ---
-        name_moataz: "Moataz Saud",
+        name_mutaz: "Mutaz Saud",
         name_ali: "Ali Ibrahim",
         name_ayman: "Ayman Al-Maghrabi",
         name_abdulaziz: "Abdulaziz Sultan",
