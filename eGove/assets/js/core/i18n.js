@@ -80,6 +80,17 @@ const DICTIONARY = {
         compliance_status: "حالة الامتثال",
         gov_rating: "تصنيف الحوكمة: ممتاز",
 
+        // --- البروفايل ---
+        profName: "المستخدم",
+        profRole: "مدير النظام",
+        reqLeave: "طلب إجازة",
+        reqLetter: "تعريف راتب",
+        leaveBal: "رصيد الإجازات",
+        annual: "سنوية",
+        emergency: "اضطرارية",
+        financialData: "البيانات المالية",
+        attendance: "سجل الحضور الأسبوعي",
+
         // --- عام ---
         welcome: "مرحباً بك",
         logout: "تسجيل الخروج",
@@ -162,6 +173,17 @@ const DICTIONARY = {
         status_pending: "Pending Review",
         compliance_status: "Compliance Status",
         gov_rating: "Governance Rating: Excellent",
+
+        // --- البروفايل ---
+        profName: "User",
+        profRole: "System Admin",
+        reqLeave: "Leave Request",
+        reqLetter: "Salary Letter",
+        leaveBal: "Leave Balance",
+        annual: "Annual",
+        emergency: "Emergency",
+        financialData: "Financial Data",
+        attendance: "Weekly Attendance",
 
         // --- General ---
         welcome: "Welcome",
