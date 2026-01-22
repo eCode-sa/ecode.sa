@@ -1,9 +1,9 @@
 /**
- * eGov Layout Engine v5.0 (Loader Safe)
+ * eGov Layout Engine v6.0 (Complete & Fixed)
  */
 
 const Layout = {
-    // تحديد المسار ديناميكياً
+    // تحديد المسار ديناميكياً (يحل مشكلة الصور والروابط المكسورة)
     rootPath: (function() {
         const path = window.location.pathname;
         const subFolders = ['admin', 'board', 'ceo', 'cfo', 'cto', 'hr', 'sales', 'audit', 'secretary', 'shareholder'];
@@ -85,7 +85,7 @@ const Layout = {
         this.role = localStorage.getItem('userRole') || 'guest';
         this.userName = localStorage.getItem('userName') || 'مستخدم';
         
-        // التحقق من الجلسة
+        // حماية الصفحات (باستثناء صفحة الدخول)
         if (!localStorage.getItem('authToken') && !window.location.href.includes('index.html')) {
             window.location.href = this.rootPath + 'index.html';
             return;
@@ -132,6 +132,7 @@ const Layout = {
 
     injectSidebar: function() {
         const menuItems = this.menus[this.role] || this.menus['admin'];
+        
         let menuHTML = menuItems.map(item => {
             const isActive = window.location.href.includes(item.link) ? 'active' : '';
             return `
@@ -146,8 +147,8 @@ const Layout = {
             <div class="sidebar-header">
                 <img src="${this.rootPath}partners-slider/favicon.png" alt="Logo" class="logo-img">
                 <div class="brand-text">
-                    <h3 data-i18n="brand">eGov</h3>
-                    <span style="font-size: 11px; color: var(--lavender-light);" data-i18n="${roleKey}">${this.role}</span>
+                    <h3>eGov</h3>
+                    <span style="font-size: 11px; color: var(--lavender-light);" data-i18n="role_${this.role}">${this.role}</span>
                 </div>
             </div>
             <nav class="sidebar-nav">
@@ -163,6 +164,7 @@ const Layout = {
         `;
         document.getElementById('appSidebar').innerHTML = sidebarHTML;
         
+        // تحديث الترجمة بعد الحقن
         if(typeof I18n !== 'undefined') I18n.updateContent();
     },
 
@@ -201,16 +203,24 @@ const Layout = {
         `;
         document.getElementById('appTopbar').innerHTML = topbarHTML;
         
+        // استعادة الإعدادات (اللغة والثيم)
         this.restoreSettings();
     },
 
     injectBot: function() {
         if (!document.getElementById('chatWindow')) {
             const botHTML = `
-                <div class="chat-widget-btn" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
+                <div class="chat-widget-btn" onclick="toggleChat()">
+                    <i class="fas fa-robot"></i>
+                </div>
                 <div class="chat-window" id="chatWindow" style="display:none;">
-                    <div class="chat-header"><h4>المساعد الذكي</h4><i class="fas fa-times" onclick="toggleChat()" style="cursor:pointer;"></i></div>
-                    <div class="chat-body" id="chatBody"><div class="chat-msg msg-bot">مرحباً ${this.userName} 👋 كيف أساعدك؟</div></div>
+                    <div class="chat-header">
+                        <h4>المساعد الذكي</h4>
+                        <i class="fas fa-times" onclick="toggleChat()" style="cursor:pointer;"></i>
+                    </div>
+                    <div class="chat-body" id="chatBody">
+                        <div class="chat-msg msg-bot">مرحباً ${this.userName} 👋 كيف أساعدك؟</div>
+                    </div>
                     <div class="chat-footer">
                         <input type="text" class="chat-input" id="userMsg" placeholder="..." onkeypress="handleEnter(event)">
                         <button class="btn-primary" onclick="sendMsg()" style="padding:5px 10px;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%"><i class="fas fa-paper-plane"></i></button>
@@ -227,7 +237,7 @@ const Layout = {
     },
 
     // --- الوظائف التفاعلية ---
-    
+
     toggleTheme: function() {
         const html = document.documentElement;
         const current = html.getAttribute('data-theme');
@@ -242,6 +252,15 @@ const Layout = {
         if (typeof I18n !== 'undefined') I18n.toggleLang();
     },
 
+    toggleSidebar: function() { document.getElementById('appSidebar').classList.toggle('collapsed'); },
+    toggleNotifs: function() { document.getElementById('notifDropdown').classList.toggle('show'); },
+    
+    logout: function() { 
+        localStorage.clear(); 
+        // العودة لصفحة الدخول الرئيسية
+        window.location.href = this.rootPath + 'index.html'; 
+    },
+
     restoreSettings: function() {
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -249,18 +268,14 @@ const Layout = {
         if(icon) icon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
         
         if(typeof I18n !== 'undefined') I18n.init();
-    },
-
-    toggleSidebar: function() { document.getElementById('appSidebar').classList.toggle('collapsed'); },
-    toggleNotifs: function() { document.getElementById('notifDropdown').classList.toggle('show'); },
-    logout: function() { localStorage.clear(); window.location.href = this.rootPath + 'index.html'; }
+    }
 };
 
-// === [إصلاح التشغيل] تأكد من تشغيل الكود سواء كانت الصفحة محملة مسبقاً أو لا ===
+// === تشغيل النظام فوراً أو عند التحميل ===
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => Layout.init());
 } else {
-    Layout.init(); // الصفحة محملة بالفعل، شغل فوراً
+    Layout.init();
 }
 
 // إغلاق القوائم عند النقر خارجها
