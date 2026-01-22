@@ -151,7 +151,7 @@ const Layout = {
             </nav>
 
             <div class="sidebar-footer" style="margin-top: auto;">
-                <a href="../eGov" onclick="Layout.logout()" class="menu-item logout-btn" style="color: var(--coral-pink);">
+                <a href="../" onclick="Layout.logout()" class="menu-item logout-btn" style="color: var(--coral-pink);">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>خروج</span>
                 </a>
@@ -264,7 +264,7 @@ const Layout = {
 
     logout: function() {
         localStorage.clear();
-        window.location.href = this.rootPath + '../eGov';
+        window.location.href = this.rootPath + '../';
     }
 };
 
