@@ -6,12 +6,7 @@
     <title>ملفي الشخصي | eGov Admin</title>
     <style>
         /* --- تنسيقات الهيكل الأساسي --- */
-        .dashboard-content {
-            padding: 30px;
-            padding-bottom: 100px; /* مساحة إضافية للسكرول */
-            overflow-y: visible !important; /* ضمان ظهور السكرول */
-            height: auto !important;
-        }
+        /* لا حاجة لتعديل السكرول هنا، الاعتماد على style.css */
 
         /* --- بطاقة الهوية (Header) --- */
         .profile-card {
@@ -59,7 +54,7 @@
 
         /* --- الشبكة الذكية (Grid System) --- */
         .smart-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-bottom: 25px;
         }
 
         /* --- البطاقات العامة --- */
@@ -84,21 +79,27 @@
         .salary-val.blur { filter: blur(8px); cursor: pointer; user-select: none; }
         .net-salary { color: var(--mint-green); font-size: 22px; }
 
-        /* --- قسم المهارات والأداء --- */
-        .skill-item { margin-bottom: 15px; }
-        .skill-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; color: var(--text-secondary); }
-        .progress-bar { height: 8px; background: var(--bg-elevated); border-radius: 10px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--lavender-dark); border-radius: 10px; }
+        /* --- جدول الطلبات (Requests Table) --- */
+        .table-container { overflow-x: auto; }
+        .requests-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .requests-table th { text-align: right; padding: 15px; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); font-weight: normal; }
+        [dir="ltr"] .requests-table th { text-align: left; }
+        .requests-table td { padding: 15px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
+        .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .status-approved { background: rgba(126, 221, 163, 0.15); color: var(--mint-green); }
+        .status-pending { background: rgba(255, 184, 108, 0.15); color: var(--soft-orange); }
 
-        /* --- قسم رفع الملفات (جديد) --- */
-        .upload-area {
-            border: 2px dashed var(--border-color); border-radius: 12px;
-            padding: 30px; text-align: center; cursor: pointer; transition: 0.3s;
-            background: var(--bg-primary); margin-top: 10px;
+        /* --- سجل الحضور (Attendance) --- */
+        .attendance-strip { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
+        .day-box {
+            flex: 1; min-width: 80px; background: var(--bg-elevated); border-radius: 12px; padding: 10px; 
+            text-align: center; border: 1px solid var(--border-color);
         }
-        .upload-area:hover { border-color: var(--lavender-dark); background: var(--bg-elevated); }
-        .upload-icon { font-size: 24px; color: var(--text-secondary); margin-bottom: 10px; }
-        .upload-text { font-size: 13px; color: var(--text-muted); }
+        .day-name { font-size: 11px; color: var(--text-secondary); display: block; margin-bottom: 5px; }
+        .time-range { font-size: 12px; color: var(--text-primary); font-weight: bold; direction: ltr; }
+        .day-status { font-size: 10px; margin-top: 5px; display: block; }
+        .status-late { color: var(--coral-pink); }
+        .status-ontime { color: var(--mint-green); }
 
         /* --- النوافذ المنبثقة --- */
         .modal-overlay {
@@ -121,6 +122,12 @@
             color: var(--text-primary); outline: none; transition: 0.3s;
         }
         .form-input:focus { border-color: var(--lavender-dark); }
+        .upload-area {
+            border: 2px dashed var(--border-color); border-radius: 12px;
+            padding: 30px; text-align: center; cursor: pointer; transition: 0.3s;
+            background: var(--bg-primary); margin-top: 10px;
+        }
+        .upload-area:hover { border-color: var(--lavender-dark); background: var(--bg-elevated); }
         
         /* استجابة للجوال */
         @media (max-width: 768px) {
@@ -196,36 +203,70 @@
                 </div>
             </div>
 
-            <div class="info-card">
+            <div class="info-card" style="grid-column: 1 / -1;">
                 <div class="card-header">
-                    <div class="card-title"><i class="fas fa-chart-line" style="color: var(--sky-blue);"></i> <span data-i18n="lbl_performance">الأداء السنوي</span></div>
-                    <span style="font-size:12px; color:var(--mint-green); font-weight:bold;">4.8/5.0</span>
+                    <div class="card-title"><i class="fas fa-list-alt" style="color: var(--sky-blue);"></i> <span data-i18n="lbl_requests_log">سجل الطلبات</span></div>
+                    <span style="font-size:12px; color:var(--text-secondary);"><span data-i18n="lbl_total">الإجمالي:</span> 2</span>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <div class="skill-item">
-                        <div class="skill-label"><span data-i18n="skill_leadership">القيادة</span> <span>90%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label"><span data-i18n="skill_tech">الكفاءة التقنية</span> <span>95%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 95%; background: var(--mint-green);"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label"><span data-i18n="skill_comm">التواصل</span> <span>85%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: var(--soft-orange);"></div></div>
-                    </div>
+                <div class="table-container">
+                    <table class="requests-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="col_req_no">رقم الطلب</th>
+                                <th data-i18n="col_type">النوع</th>
+                                <th data-i18n="col_date">التاريخ</th>
+                                <th data-i18n="col_status">الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#REQ-1022</td>
+                                <td data-i18n="val_annual_leave">إجازة سنوية</td>
+                                <td>2026-02-10</td>
+                                <td><span class="status-badge status-approved" data-i18n="status_approved">معتمد</span></td>
+                            </tr>
+                            <tr>
+                                <td>#REQ-1045</td>
+                                <td data-i18n="val_salary_letter">خطاب تعريف راتب</td>
+                                <td>2026-02-15</td>
+                                <td><span class="status-badge status-pending" data-i18n="status_pending">تحت الإجراء</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
             <div class="info-card" style="grid-column: 1 / -1;">
                 <div class="card-header">
-                    <div class="card-title"><i class="fas fa-shield-alt" style="color: var(--lavender-light);"></i> <span data-i18n="lbl_permissions">صلاحيات النظام</span></div>
+                    <div class="card-title"><i class="fas fa-clock" style="color: var(--mint-green);"></i> <span data-i18n="attendance">سجل الحضور</span></div>
+                    <span style="font-size:12px; color:var(--mint-green); font-weight:bold;">98% <span data-i18n="lbl_discipline">انضباط</span></span>
                 </div>
-                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    <span class="meta-tag"><i class="fas fa-check text-success"></i> <span data-i18n="perm_full_access">دخول كامل للنظام</span></span>
-                    <span class="meta-tag"><i class="fas fa-check text-success"></i> <span data-i18n="perm_approve">اعتماد الطلبات</span></span>
-                    <span class="meta-tag"><i class="fas fa-check text-success"></i> <span data-i18n="perm_reports">استخراج التقارير</span></span>
-                    <span class="meta-tag"><i class="fas fa-check text-success"></i> <span data-i18n="perm_users">إدارة المستخدمين</span></span>
+                <div class="attendance-strip">
+                    <div class="day-box">
+                        <span class="day-name" data-i18n="day_sun">الأحد</span>
+                        <span class="time-range">07:55 - 16:05</span>
+                        <span class="day-status status-ontime" data-i18n="status_ontime">حضور مبكر</span>
+                    </div>
+                    <div class="day-box">
+                        <span class="day-name" data-i18n="day_mon">الاثنين</span>
+                        <span class="time-range">08:00 - 16:00</span>
+                        <span class="day-status status-ontime" data-i18n="status_ontime">حضور مبكر</span>
+                    </div>
+                    <div class="day-box">
+                        <span class="day-name" data-i18n="day_tue">الثلاثاء</span>
+                        <span class="time-range">08:15 - 16:10</span>
+                        <span class="day-status status-late" data-i18n="status_late">تأخير 15د</span>
+                    </div>
+                    <div class="day-box">
+                        <span class="day-name" data-i18n="day_wed">الأربعاء</span>
+                        <span class="time-range">07:50 - 16:00</span>
+                        <span class="day-status status-ontime" data-i18n="status_ontime">حضور مبكر</span>
+                    </div>
+                    <div class="day-box">
+                        <span class="day-name" data-i18n="day_thu">الخميس</span>
+                        <span class="time-range">07:58 - 15:55</span>
+                        <span class="day-status status-ontime" data-i18n="status_ontime">حضور مبكر</span>
+                    </div>
                 </div>
             </div>
 
@@ -235,16 +276,13 @@
     <div id="leaveModal" class="modal-overlay" onclick="closeModalOnOutside(event, 'leaveModal')">
         <div class="modal-box">
             <h2 style="margin-top:0; color:var(--text-primary); margin-bottom:20px;" data-i18n="reqLeave">طلب إجازة جديدة</h2>
-            
             <div class="form-group">
                 <label class="form-label" data-i18n="lbl_leave_type">نوع الإجازة</label>
                 <select class="form-input">
                     <option data-i18n="opt_annual">سنوية</option>
                     <option data-i18n="opt_sick">مرضية</option>
-                    <option data-i18n="opt_emergency">اضطرارية</option>
                 </select>
             </div>
-
             <div style="display: flex; gap: 15px;">
                 <div class="form-group" style="flex:1">
                     <label class="form-label" data-i18n="lbl_from">من تاريخ</label>
@@ -255,19 +293,17 @@
                     <input type="date" class="form-input">
                 </div>
             </div>
-
             <div class="form-group">
-                <label class="form-label" data-i18n="lbl_attachment">المرفقات (تقرير طبي / أخرى)</label>
+                <label class="form-label" data-i18n="lbl_attachment">المرفقات</label>
                 <div class="upload-area" onclick="document.getElementById('fileInput').click()">
                     <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                    <div class="upload-text" data-i18n="txt_upload_hint">اضغط هنا لرفع الملف أو اسحبه للإفلات</div>
+                    <div class="upload-text" data-i18n="txt_upload_hint">اضغط لرفع الملف</div>
                     <input type="file" id="fileInput" style="display: none;">
                 </div>
             </div>
-
             <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                 <button class="btn-action btn-outline" onclick="closeModal('leaveModal')" data-i18n="btn_cancel">إلغاء</button>
-                <button class="btn-action btn-primary" onclick="alert('تم رفع الطلب والمرفقات بنجاح!')" data-i18n="btn_submit">إرسال الطلب</button>
+                <button class="btn-action btn-primary" onclick="alert('تم رفع الطلب والمرفقات بنجاح!')" data-i18n="btn_submit">إرسال</button>
             </div>
         </div>
     </div>
@@ -276,19 +312,12 @@
         <div class="modal-box">
             <h2 style="margin-top:0; color:var(--text-primary); margin-bottom:20px;" data-i18n="reqLetter">طلب تعريف راتب</h2>
             <div class="form-group">
-                <label class="form-label" data-i18n="lbl_entity">الجهة الموجه إليها</label>
+                <label class="form-label" data-i18n="lbl_entity">الجهة</label>
                 <input type="text" class="form-input" placeholder="...">
-            </div>
-            <div class="form-group">
-                <label class="form-label" data-i18n="lbl_lang">اللغة</label>
-                <select class="form-input">
-                    <option data-i18n="lang_ar">عربي</option>
-                    <option data-i18n="lang_en">إنجليزي</option>
-                </select>
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                 <button class="btn-action btn-outline" onclick="closeModal('letterModal')" data-i18n="btn_cancel">إلغاء</button>
-                <button class="btn-action btn-primary" onclick="alert('تم إصدار التعريف!')" data-i18n="btn_print">إصدار وطباعة</button>
+                <button class="btn-action btn-primary" onclick="alert('تم الطلب!')" data-i18n="btn_submit">إرسال</button>
             </div>
         </div>
     </div>
@@ -299,11 +328,9 @@
             const vals = document.querySelectorAll('.salary-val');
             const icon = document.getElementById('salaryIcon');
             let hidden = vals[0].classList.contains('blur');
-            
             vals.forEach(v => v.classList.toggle('blur'));
             icon.className = hidden ? 'fas fa-eye-slash' : 'fas fa-eye';
         }
-
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
         function closeModalOnOutside(e, id) { if(e.target.id === id) closeModal(id); }
