@@ -80,16 +80,53 @@ const DICTIONARY = {
         compliance_status: "حالة الامتثال",
         gov_rating: "تصنيف الحوكمة: ممتاز",
 
-        // --- البروفايل ---
+        // --- صفحة البروفايل المحدثة ---
         profName: "المستخدم",
         profRole: "مدير النظام",
         reqLeave: "طلب إجازة",
         reqLetter: "تعريف راتب",
-        leaveBal: "رصيد الإجازات",
-        annual: "سنوية",
-        emergency: "اضطرارية",
         financialData: "البيانات المالية",
-        attendance: "سجل الحضور الأسبوعي",
+        basicSalary: "الراتب الأساسي",
+        housing: "بدل سكن",
+        transport: "بدل نقل",
+        netSalary: "صافي الراتب",
+        
+        // معلومات الهوية
+        lbl_id: "الرقم الوظيفي:",
+        lbl_dept: "الإدارة:",
+        val_dept: "التقنية والابتكار",
+
+        // الأداء والمهارات
+        lbl_performance: "الأداء السنوي",
+        skill_leadership: "القيادة وإدارة الفرق",
+        skill_tech: "الكفاءة التقنية",
+        skill_comm: "التواصل الفعال",
+
+        // الصلاحيات
+        lbl_permissions: "صلاحيات النظام",
+        perm_full_access: "دخول كامل للنظام",
+        perm_approve: "اعتماد الطلبات",
+        perm_reports: "تصدير التقارير",
+        perm_users: "إدارة المستخدمين",
+
+        // النوافذ المنبثقة
+        lbl_leave_type: "نوع الإجازة",
+        opt_annual: "سنوية",
+        opt_sick: "مرضية",
+        opt_emergency: "اضطرارية",
+        lbl_from: "من تاريخ",
+        lbl_to: "إلى تاريخ",
+        lbl_attachment: "المرفقات (تقرير طبي / أخرى)",
+        txt_upload_hint: "اضغط لرفع الملف أو اسحبه هنا",
+        
+        lbl_entity: "الجهة الموجه إليها",
+        lbl_lang: "اللغة",
+        lang_ar: "عربي",
+        lang_en: "إنجليزي",
+        
+        btn_cancel: "إلغاء",
+        btn_submit: "إرسال الطلب",
+        btn_print: "إصدار وطباعة",
 
         // --- عام ---
         welcome: "مرحباً بك",
@@ -174,16 +211,53 @@ const DICTIONARY = {
         compliance_status: "Compliance Status",
         gov_rating: "Governance Rating: Excellent",
 
-        // --- البروفايل ---
+        // --- Advanced Profile ---
         profName: "User",
         profRole: "System Admin",
         reqLeave: "Leave Request",
         reqLetter: "Salary Letter",
-        leaveBal: "Leave Balance",
-        annual: "Annual",
-        emergency: "Emergency",
         financialData: "Financial Data",
-        attendance: "Weekly Attendance",
+        basicSalary: "Basic Salary",
+        housing: "Housing",
+        transport: "Transport",
+        netSalary: "Net Salary",
+
+        // Identity Info
+        lbl_id: "Employee ID:",
+        lbl_dept: "Department:",
+        val_dept: "Tech & Innovation",
+
+        // Performance & Skills
+        lbl_performance: "Annual Performance",
+        skill_leadership: "Leadership",
+        skill_tech: "Technical Competence",
+        skill_comm: "Communication",
+
+        // Permissions
+        lbl_permissions: "System Permissions",
+        perm_full_access: "Full System Access",
+        perm_approve: "Approvals",
+        perm_reports: "Export Reports",
+        perm_users: "User Mgmt",
+
+        // Modals
+        lbl_leave_type: "Leave Type",
+        opt_annual: "Annual",
+        opt_sick: "Sick Leave",
+        opt_emergency: "Emergency",
+        lbl_from: "From Date",
+        lbl_to: "To Date",
+        lbl_attachment: "Attachments (Medical Report / Other)",
+        txt_upload_hint: "Click to upload or drag file here",
+        
+        lbl_entity: "Directed To",
+        lbl_lang: "Language",
+        lang_ar: "Arabic",
+        lang_en: "English",
+        
+        btn_cancel: "Cancel",
+        btn_submit: "Submit Request",
+        btn_print: "Issue & Print",
 
         // --- General ---
         welcome: "Welcome",
