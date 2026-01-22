@@ -1,8 +1,11 @@
+/* * eGov AI Assistant Logic */
+
 const eGovBot = {
     isOpen: false,
     
     toggle: function() {
         const win = document.getElementById('chatWindow');
+        if(!win) return; // حماية من الأخطاء
         this.isOpen = !this.isOpen;
         win.style.display = this.isOpen ? 'flex' : 'none';
         if(this.isOpen) document.getElementById('userMsg').focus();
@@ -16,7 +19,6 @@ const eGovBot = {
         this.addMessage(text, 'user');
         input.value = '';
 
-        // محاكاة التفكير والرد
         this.showTyping();
         
         setTimeout(() => {
@@ -30,7 +32,7 @@ const eGovBot = {
         const body = document.getElementById('chatBody');
         const div = document.createElement('div');
         div.className = `chat-msg msg-${sender}`;
-        div.innerHTML = text; // innerHTML للسماح بالروابط أو التنسيق
+        div.innerHTML = text; 
         body.appendChild(div);
         body.scrollTop = body.scrollHeight;
     },
@@ -50,7 +52,6 @@ const eGovBot = {
         if(el) el.remove();
     },
 
-    // قاعدة معرفة بسيطة (Knowledge Base)
     getReply: function(question) {
         const q = question.toLowerCase();
         
@@ -64,14 +65,14 @@ const eGovBot = {
             return "نحن شركة نظامية بسجل تجاري رقم (7050139125) ومرخصة من هيئة الزكاة.";
         }
         if (q.includes('demo') || q.includes('تجربة') || q.includes('نظام')) {
-            return "يمكنك طلب نسخة تجريبية (Demo) لنظام eGov عبر نموذج التواصل في الصفحة الرئيسية.";
+            return "أنت الآن تستخدم النسخة التجريبية الحية لنظام eGov.";
         }
         
         return "سؤال ممتاز! سيقوم أحد مستشارينا بالرد عليك تفصيلياً. يمكنك أيضاً التواصل معنا عبر الواتساب 0503666316.";
     }
 };
 
-// ربط الأحداث عالمياً
+// ربط الدوال بالنطاق العام (Global Scope) ليعمل الـ onclick في الـ HTML
 window.toggleChat = () => eGovBot.toggle();
 window.sendMsg = () => eGovBot.send();
 window.handleEnter = (e) => { if(e.key === 'Enter') eGovBot.send(); };
