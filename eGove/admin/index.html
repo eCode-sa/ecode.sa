@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="dark">
-<head>
+<html lang="ar" dir="rtl"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eCode | لوحة القيادة</title>
@@ -12,234 +11,193 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+        // إعدادات الثيم والألوان
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: 'class', // تفعيل الوضع الليلي عبر الكلاس
             theme: {
                 extend: {
                     colors: {
                         primary: '#38bdf8', secondary: '#818cf8', success: '#34d399', warning: '#fbbf24', danger: '#f87171',
                         dark: '#0f172a', surface: '#1e293b', border: '#334155'
                     },
-                    fontFamily: { sans: ['Tajawal', 'Inter', 'sans-serif'], en: ['Inter', 'sans-serif'] }
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'], en: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
 
     <style>
-        /* === 1. إصلاحات إجبارية للهيكل (Layout Force Fixes) === */
-        /* هذا الكود يصلح المشكلة التي في الصورة ويجبر القائمة والنافذة أن يكونا بجانب بعض */
+        /* سكرول بار أنيق */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background-color: #94a3b8; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background-color: #475569; }
         
-        body, .app-container {
-            background-color: #0f172a !important; /* خلفية داكنة إجبارية */
-            color: #f8fafc !important;
-            display: flex !important;
-            flex-direction: row !important; /* القائمة والمحتوى بجانب بعض */
-            min-height: 100vh !important;
-            width: 100% !important;
-            overflow: hidden !important;
-        }
-
-        /* إصلاح القائمة الجانبية (Sidebar) */
-        aside#appSidebar, .sidebar {
-            width: 280px !important;
-            background-color: #1e293b !important; /* لون الخلفية الداكن */
-            border-left: 1px solid #334155 !important;
-            height: 100vh !important;
-            position: sticky !important;
-            top: 0 !important;
-            flex-shrink: 0 !important;
-            z-index: 50 !important;
-            display: flex !important;
-            flex-direction: column !important;
-        }
-
-        /* إصلاح منطقة المحتوى الرئيسي */
-        .main-content, #main-content {
-            flex: 1 !important;
-            background-color: #0f172a !important;
-            display: flex !important;
-            flex-direction: column !important;
-            height: 100vh !important;
-            overflow: hidden !important;
-            margin: 0 !important; /* إزالة الهوامش الزائدة */
-        }
-
-        /* منطقة العمل (Dashboard Container) */
-        #workspace, .dashboard-container {
-            flex: 1 !important;
-            overflow-y: auto !important;
-            padding: 24px !important;
-            scrollbar-width: thin;
-            scrollbar-color: #475569 #0f172a;
-        }
-
-        /* === 2. تخصيص السكرول بار === */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background-color: #475569; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background-color: #64748B; }
-
-        /* === 3. تأثيرات بصرية === */
-        .loading-overlay { transition: opacity 0.5s ease; position: fixed; inset: 0; z-index: 9999; background: #0f172a; display: flex; align-items: center; justify-content: center; }
-        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        /* أنيميشن */
+        .loading-overlay { transition: opacity 0.5s ease, visibility 0.5s ease; }
+        .loading-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .main-content-wrapper { transition: margin 300ms ease; }
         
+        /* نقطة البث الحي */
+        @keyframes pulse-live { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
         .live-dot { width: 8px; height: 8px; background-color: #34d399; border-radius: 50%; display: inline-block; animation: pulse-live 1.5s infinite; }
-        @keyframes pulse-live { 0% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); } 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); } }
     </style>
 </head>
-<body class="bg-dark text-slate-100 font-sans">
+<body class="bg-gray-50 dark:bg-dark text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300">
 
-    <div id="loadingOverlay">
-        <div class="w-16 h-16 border-4 border-surface border-t-primary rounded-full animate-spin"></div>
+    <div id="loadingOverlay" class="fixed inset-0 bg-white dark:bg-dark z-[9999] flex flex-col items-center justify-center">
+        <div class="w-16 h-16 border-4 border-gray-200 dark:border-surface border-t-primary rounded-full animate-spin"></div>
+        <p class="mt-4 text-sm font-bold text-gray-500 dark:text-slate-400 animate-pulse">جاري تحميل النظام...</p>
     </div>
 
     <div id="sidebar-container"></div>
-    <div id="header-container"></div>
 
-    <main id="dashboard-content" class="p-6 space-y-6 hidden"> <div class="bg-surface rounded-2xl p-1 border-r-4 border-secondary shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="p-4 flex items-center gap-4">
-                <div class="w-12 h-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-bell animate-bounce"></i></div>
-                <div>
-                    <h3 class="font-bold text-lg text-white" data-i18n="alertTitle">إجراء مطلوب: اعتماد "الدليل الداخلي"</h3>
-                    <p class="text-sm text-slate-400"><span data-i18n="alertDesc">مسودة بانتظار الاعتماد النهائي. الرافع:</span> <span class="font-bold text-primary" data-i18n="uploaderName">مدير النظام</span></p>
-                </div>
-            </div>
-            <div class="p-4">
-                <button class="px-6 py-2.5 bg-secondary text-white rounded-xl text-sm font-bold hover:scale-105 transition-transform">مراجعة</button>
-            </div>
-        </div>
+    <div class="main-content-wrapper md:mr-72 transition-all duration-300 flex flex-col min-h-screen">
+        <div id="header-container"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-surface p-5 rounded-2xl border border-border hover:border-primary transition-all hover:-translate-y-1">
-                <div class="flex justify-between items-start">
-                    <div><p class="text-xs text-slate-400 font-bold uppercase">رأس المال</p><h3 class="text-2xl font-bold mt-1 font-en text-white">100,000 <span class="text-xs font-sans text-slate-500">ر.س</span></h3></div>
-                    <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center"><i class="fa-solid fa-coins"></i></div>
-                </div>
-                <div class="mt-4 flex items-center gap-2 text-xs text-success font-bold bg-success/10 w-fit px-2 py-1 rounded"><i class="fa-solid fa-check"></i> مدفوع بالكامل</div>
-            </div>
-
-            <div class="bg-surface p-5 rounded-2xl border border-border hover:border-secondary transition-all hover:-translate-y-1">
-                <div class="flex justify-between items-start">
-                    <div><p class="text-xs text-slate-400 font-bold uppercase">المساهمين</p><h3 class="text-2xl font-bold mt-1 font-en text-white">5 <span class="text-xs font-sans text-slate-500">أعضاء</span></h3></div>
-                    <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
-                </div>
-                <div class="mt-4 text-xs text-slate-400 truncate w-full">أيمن، معتز، ميمونه...</div>
-            </div>
-
-            <div class="bg-surface p-5 rounded-2xl border border-border hover:border-danger transition-all hover:-translate-y-1">
-                <div class="flex justify-between items-start">
-                    <div><p class="text-xs text-slate-400 font-bold uppercase">قرارات بالتمرير</p><h3 class="text-2xl font-bold mt-1 font-en text-danger">2</h3></div>
-                    <div class="w-10 h-10 rounded-xl bg-danger/10 text-danger flex items-center justify-center"><i class="fa-solid fa-signature"></i></div>
-                </div>
-                <div class="mt-4 flex items-center gap-1 text-xs text-slate-400"><span class="w-2 h-2 rounded-full bg-danger animate-pulse"></span> بانتظار: الرئيس التنفيذي</div>
-            </div>
-
-            <div class="bg-surface p-5 rounded-2xl border border-border hover:border-success transition-all hover:-translate-y-1">
-                <div class="flex justify-between items-start">
-                    <div><p class="text-xs text-slate-400 font-bold uppercase">نسبة الامتثال</p><h3 class="text-2xl font-bold mt-1 font-en text-success" id="complianceText">92%</h3></div>
-                    <div class="w-10 h-10 rounded-xl bg-success/10 text-success flex items-center justify-center"><i class="fa-solid fa-shield-halved"></i></div>
-                </div>
-                <div class="w-full bg-dark h-1.5 rounded-full mt-5 overflow-hidden"><div id="complianceBar" class="bg-success h-full w-[92%] transition-all duration-1000"></div></div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="bg-surface p-6 rounded-2xl border border-border">
-                <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-chart-pie text-primary"></i> هيكل الملكية</h3>
-                <div class="h-48 relative flex justify-center"><canvas id="ownershipChart"></canvas></div>
-                <div class="mt-6 space-y-3" id="chartLegend"></div>
-            </div>
-
-            <div class="lg:col-span-2 bg-surface p-6 rounded-2xl border border-border">
-                <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-list-check text-success"></i> المهام التشغيلية</h3>
-                <div class="space-y-3 max-h-48 overflow-y-auto pr-2" style="scrollbar-width: thin;">
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                        <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                        <div class="flex-1"><p class="text-xs font-bold text-white">اعتماد سياسة المكافآت</p><p class="text-[10px] text-slate-400 mt-1">تاريخ الاستحقاق: 01/02/2026</p></div>
-                    </div>
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                        <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                        <div class="flex-1"><p class="text-xs font-bold text-white">مراجعة تقرير الرواتب</p><p class="text-[10px] text-slate-400">من: الموارد البشرية</p></div>
-                    </div>
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                        <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                        <div class="flex-1"><p class="text-xs font-bold text-white">تحديث السجل التجاري</p><p class="text-[10px] text-slate-400">وزارة التجارة</p></div>
+        <main id="dashboard-content" class="p-6 space-y-6 hidden"> <div class="bg-white dark:bg-surface rounded-2xl p-1 border-r-4 border-secondary shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="p-4 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-indigo-50 dark:bg-secondary/10 text-secondary flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-bell animate-bounce"></i></div>
+                    <div>
+                        <h3 class="font-bold text-lg dark:text-white" data-i18n="alertTitle">إجراء مطلوب: اعتماد "الدليل الداخلي"</h3>
+                        <p class="text-sm text-gray-500 dark:text-slate-400"><span data-i18n="alertDesc">مسودة بانتظار الاعتماد النهائي. الرافع:</span> <span class="font-bold text-primary" data-i18n="uploaderName">مدير النظام</span></p>
                     </div>
                 </div>
+                <div class="p-4">
+                    <button onclick="alert('سيتم فتح نظام المراجعة...')" class="px-6 py-2.5 bg-secondary text-white rounded-xl text-sm font-bold hover:scale-105 transition-transform cursor-pointer shadow-md"><i class="fa-solid fa-file-signature"></i> <span data-i18n="reviewBtn">مراجعة واعتماد</span></button>
+                </div>
             </div>
-        </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="bg-surface p-6 rounded-2xl border border-border">
-                <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-users-gear text-secondary"></i> لجنة المراجعة</h3>
-                <div class="p-4 bg-dark/50 rounded-xl border border-border">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="bg-success/10 text-success text-[10px] px-2 py-0.5 rounded-full font-bold">دورة جديدة</span>
-                        <span class="text-slate-500 text-[10px]">اجتماع: 22/12/2025</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-surface p-5 rounded-2xl border border-gray-100 dark:border-border hover:border-primary transition-all shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div><p class="text-xs text-gray-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiCapital">رأس المال</p><h3 class="text-2xl font-bold mt-1 font-en dark:text-white">100,000 <span class="text-xs font-sans text-gray-400">ر.س</span></h3></div>
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-primary/10 text-primary flex items-center justify-center"><i class="fa-solid fa-coins"></i></div>
                     </div>
-                    <div class="space-y-2 text-xs text-slate-300">
-                        <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">1</div> عضو 1 (رئيس)</div>
-                        <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">2</div> عضو 2 (عضو)</div>
-                        <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-warning/20 flex items-center justify-center text-warning">3</div> عضو 3 (عضو)</div>
+                    <div class="mt-4 flex items-center gap-2 text-xs text-success font-bold bg-green-50 dark:bg-success/10 w-fit px-2 py-1 rounded"><i class="fa-solid fa-check"></i> <span data-i18n="fullyPaid">مدفوع بالكامل</span></div>
+                </div>
+
+                <div class="bg-white dark:bg-surface p-5 rounded-2xl border border-gray-100 dark:border-border hover:border-secondary transition-all shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div><p class="text-xs text-gray-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiShareholders">المساهمين</p><h3 class="text-2xl font-bold mt-1 font-en dark:text-white">5 <span class="text-xs font-sans text-gray-400">أعضاء</span></h3></div>
+                        <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-secondary/10 text-secondary flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
+                    </div>
+                    <div class="mt-4 text-xs text-gray-400 truncate w-full" id="shareholdersList">أيمن، معتز، ميمونه...</div>
+                </div>
+
+                <div class="bg-white dark:bg-surface p-5 rounded-2xl border border-gray-100 dark:border-border hover:border-danger transition-all shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div><p class="text-xs text-gray-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiGov">قرارات بالتمرير</p><h3 class="text-2xl font-bold mt-1 font-en text-danger">2</h3></div>
+                        <div class="w-10 h-10 rounded-xl bg-red-50 dark:bg-danger/10 text-danger flex items-center justify-center"><i class="fa-solid fa-signature"></i></div>
+                    </div>
+                    <div class="mt-4 flex items-center gap-1 text-xs text-gray-500 dark:text-slate-400"><span class="w-2 h-2 rounded-full bg-danger animate-pulse"></span> <span data-i18n="waitingFor">بانتظار: الرئيس التنفيذي</span></div>
+                </div>
+
+                <div class="bg-white dark:bg-surface p-5 rounded-2xl border border-gray-100 dark:border-border hover:border-success transition-all shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div><p class="text-xs text-gray-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiComp">نسبة الامتثال</p><h3 class="text-2xl font-bold mt-1 font-en text-success" id="complianceText">92%</h3></div>
+                        <div class="w-10 h-10 rounded-xl bg-green-50 dark:bg-success/10 text-success flex items-center justify-center"><i class="fa-solid fa-shield-halved"></i></div>
+                    </div>
+                    <div class="w-full bg-gray-200 dark:bg-dark h-1.5 rounded-full mt-5 overflow-hidden"><div id="complianceBar" class="bg-success h-full w-[92%] transition-all duration-1000"></div></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-surface p-6 rounded-2xl border border-gray-100 dark:border-border shadow-sm">
+                    <h3 class="font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-chart-pie text-primary"></i> <span data-i18n="chartTitle">هيكل الملكية</span></h3>
+                    <div class="h-48 relative flex justify-center"><canvas id="ownershipChart"></canvas></div>
+                    <div class="mt-6 space-y-3" id="chartLegend"></div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white dark:bg-surface p-6 rounded-2xl border border-gray-100 dark:border-border shadow-sm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-users-gear text-secondary"></i> لجنة المراجعة</h3>
+                            <div class="p-4 bg-gray-50 dark:bg-dark/50 rounded-xl border border-gray-100 dark:border-border">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="bg-green-100 dark:bg-success/10 text-success text-[10px] px-2 py-0.5 rounded-full font-bold">دورة جديدة</span>
+                                    <span class="text-gray-400 text-[10px]">اجتماع: 22/12/2025</span>
+                                </div>
+                                <div class="space-y-2 text-xs text-gray-600 dark:text-slate-300">
+                                    <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">1</div> عضو 1 (رئيس)</div>
+                                    <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">2</div> عضو 2 (عضو)</div>
+                                    <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-warning/20 flex items-center justify-center text-warning">3</div> عضو 3 (عضو)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-list-check text-success"></i> المهام التشغيلية</h3>
+                            <div class="space-y-3 max-h-48 overflow-y-auto pr-2" style="scrollbar-width: thin;">
+                                <div class="flex gap-3 items-start p-3 rounded-xl bg-gray-50 dark:bg-dark/50 border border-gray-100 dark:border-border">
+                                    <input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer mt-1">
+                                    <div class="flex-1"><p class="text-xs font-bold dark:text-white">اعتماد سياسة المكافآت</p><p class="text-[10px] text-gray-500 mt-1">01/02/2026</p></div>
+                                </div>
+                                <div class="flex gap-3 items-start p-3 rounded-xl bg-gray-50 dark:bg-dark/50 border border-gray-100 dark:border-border">
+                                    <input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer mt-1">
+                                    <div class="flex-1"><p class="text-xs font-bold dark:text-white">مراجعة الرواتب</p><p class="text-[10px] text-gray-500 mt-1">HR</p></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-dark rounded-2xl p-5 border border-border shadow-lg">
-                <div class="flex justify-between items-center mb-3 pb-2 border-b border-border">
+            <div class="bg-gray-900 dark:bg-dark rounded-2xl p-5 border border-gray-800 dark:border-border shadow-lg">
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-gray-700 dark:border-border">
                     <span class="text-slate-300 font-bold flex gap-2 items-center"><i class="fa-solid fa-terminal text-primary"></i> سجل النظام المباشر</span>
                     <span class="flex items-center gap-2 text-success text-xs font-bold"><span class="live-dot"></span> Live</span>
                 </div>
                 <div class="h-32 overflow-y-auto font-mono text-xs space-y-2 pr-1" id="audit-log-container" style="scrollbar-width: thin;"></div>
             </div>
-        </div>
-
-    </main>
+        </main>
+    </div>
 
     <script src="../assets/js/system.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. تشغيل البيانات والشارت فوراً
+            
+            // 1. تطبيق الثيم فوراً (حل مشكلة الدارك المود الإجباري)
+            const savedTheme = localStorage.getItem('theme') || 'dark'; // افتراضياً داكن إذا لم يحدد
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            // 2. تشغيل البيانات والشارت فوراً
             initCharts();
             startLiveSimulation();
 
-            // 2. التحقق من تحميل system.js
+            // 3. التحقق من تحميل system.js بأمان
             let attempts = 0;
             const checkSystem = setInterval(() => {
                 attempts++;
-                // نتحقق من وجود Layout أو إذا تأخرنا كثيراً نفك التعليق
-                if (typeof Layout !== 'undefined' || attempts > 20) {
+                
+                // نفحص وجود الملفات أو إذا مر وقت طويل (1.5 ثانية)
+                if (typeof Layout !== 'undefined' || attempts > 15) {
                     clearInterval(checkSystem);
                     
+                    // إذا الملف موجود، شغله
                     if (typeof Layout !== 'undefined') {
-                        // إذا الملف موجود، اطلب منه تهيئة القائمة
                         Layout.init(); 
-                        
-                        // نقل المحتوى لداخل الـ workspace الذي ينشئه system.js
-                        const workspace = document.getElementById('workspace');
-                        const myContent = document.getElementById('dashboard-content');
-                        if (workspace && myContent) {
-                            workspace.innerHTML = ''; // تنظيف
-                            workspace.appendChild(myContent); // نقل محتوياتنا
-                            myContent.classList.remove('hidden'); // إظهار
-                        } else {
-                            // إذا لم يجد workspace، أظهر المحتوى مكانه
-                            myContent.classList.remove('hidden');
-                        }
-                    } else {
-                        // إذا الملف مو موجود، أظهر المحتوى وخلاص
-                        document.getElementById('dashboard-content').classList.remove('hidden');
                     }
-
-                    // إخفاء اللودينج
-                    document.getElementById('loadingOverlay').classList.add('hidden');
+                    
+                    // في كل الأحوال، أظهر المحتوى وأخفِ اللودينج
+                    const content = document.getElementById('dashboard-content');
+                    if (content) content.classList.remove('hidden');
+                    
+                    const overlay = document.getElementById('loadingOverlay');
+                    if (overlay) {
+                        overlay.style.opacity = '0';
+                        setTimeout(() => overlay.classList.add('hidden'), 500);
+                    }
                 }
             }, 100);
         });
 
-        // بيانات الشارت (معتمدة)
+        // بيانات الشارت (كما طلبتها)
         const pageData = {
             ar: { heirs: "أيمن المغربي", ceo: "معتز", partner: "ميمونه", others: "آخرون" },
             en: { heirs: "Ayman", ceo: "Mutaz", partner: "Maimouna", others: "Others" }
@@ -247,9 +205,13 @@
 
         function initCharts() {
             const ctx = document.getElementById('ownershipChart');
-            if (!ctx) return;
+            if (!ctx) return; // حماية ضد الخطأ إذا الكانفاس غير موجود
+            
             const oldChart = Chart.getChart(ctx);
             if(oldChart) oldChart.destroy();
+
+            const lang = localStorage.getItem('lang') || 'ar';
+            const t = pageData[lang];
 
             new Chart(ctx, {
                 type: 'doughnut',
@@ -264,24 +226,31 @@
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '75%' }
             });
 
-            document.getElementById('chartLegend').innerHTML = `
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-secondary">●</span> أيمن المغربي</span> <span class="text-white">50%</span></div>
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-primary">●</span> معتز</span> <span class="text-white">15%</span></div>
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-success">●</span> ميمونه</span> <span class="text-white">15%</span></div>
-                <div class="flex justify-between text-xs text-slate-400"><span><span class="text-slate-400">●</span> آخرون</span> <span class="text-white">20%</span></div>
-            `;
+            const legend = document.getElementById('chartLegend');
+            if (legend) {
+                legend.innerHTML = `
+                    <div class="flex justify-between text-xs text-gray-500 dark:text-slate-400 mb-2"><span><span class="text-secondary">●</span> أيمن المغربي</span> <span class="font-bold dark:text-white">50%</span></div>
+                    <div class="flex justify-between text-xs text-gray-500 dark:text-slate-400 mb-2"><span><span class="text-primary">●</span> معتز</span> <span class="font-bold dark:text-white">15%</span></div>
+                    <div class="flex justify-between text-xs text-gray-500 dark:text-slate-400 mb-2"><span><span class="text-success">●</span> ميمونه</span> <span class="font-bold dark:text-white">15%</span></div>
+                    <div class="flex justify-between text-xs text-gray-500 dark:text-slate-400"><span><span class="text-gray-400">●</span> آخرون</span> <span class="font-bold dark:text-white">20%</span></div>
+                `;
+            }
         }
 
         function startLiveSimulation() {
             // تحريك النسبة
             setInterval(() => {
                 const r = Math.floor(Math.random() * (95 - 90 + 1) + 90);
-                document.getElementById('complianceText').innerText = r + '%';
-                document.getElementById('complianceBar').style.width = r + '%';
+                const txt = document.getElementById('complianceText');
+                const bar = document.getElementById('complianceBar');
+                if(txt) txt.innerText = r + '%';
+                if(bar) bar.style.width = r + '%';
             }, 3000);
 
             // سجلات
             const container = document.getElementById('audit-log-container');
+            if (!container) return; // حماية
+
             const msgs = [
                 { t: 'SYS', m: 'تم إكمال النسخ الاحتياطي بنجاح', c: 'text-success' },
                 { t: 'WARN', m: 'محاولة تسجيل دخول (معتز)', c: 'text-warning' },
@@ -294,8 +263,8 @@
                 const time = new Date().toLocaleTimeString('en-US', {hour12:false});
                 const item = msgs[Math.floor(Math.random() * msgs.length)];
                 const div = document.createElement('div');
-                div.className = "flex gap-3 hover:bg-surface p-2 rounded border-b border-border/50 animate-pulse";
-                div.innerHTML = `<span class="text-slate-500 w-12 font-mono">[${time}]</span><span class="${item.c} font-bold w-10">${item.t}</span><span class="text-slate-300 truncate">${item.m}</span>`;
+                div.className = "flex gap-3 hover:bg-gray-800 p-2 rounded border-b border-gray-800 animate-pulse";
+                div.innerHTML = `<span class="text-gray-500 w-12 font-mono">[${time}]</span><span class="${item.c} font-bold w-10">${item.t}</span><span class="text-gray-300 truncate">${item.m}</span>`;
                 container.prepend(div);
                 if(container.children.length > 8) container.lastElementChild.remove();
             }
