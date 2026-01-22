@@ -128,6 +128,7 @@ const DICTIONARY = {
         tab_roles: "هيكل الصلاحيات",
 
         // --- القوائم الجانبية ---
+        menu_home: "القائمة الرئيسية",
         menu_dashboard: "لوحة القيادة",
         menu_users: "إدارة المستخدمين",
         menu_audit_logs: "سجلات التدقيق",
@@ -506,6 +507,7 @@ const DICTIONARY = {
         tab_roles: "Permissions Structure",
 
         // --- Sidebar Menus ---
+        menu_home: "Main Menu",
         menu_dashboard: "Dashboard",
         menu_users: "User Management",
         menu_audit_logs: "Audit Logs",
