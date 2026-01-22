@@ -65,6 +65,21 @@ const DICTIONARY = {
         menu_reports: "التقارير",
         menu_voting: "التصويت",
 
+        // --- الداش بورد للدمن --- 
+        compliance_index: "مؤشر الامتثال العام",
+        active_users: "مستخدم نشط",
+        all_working: "الكل يعمل",
+        critical_alerts: "تنبيهات حرجة",
+        review_needed: "يرجى المراجعة",
+        system_status: "حالة الأنظمة",
+        recent_activities: "آخر النشاطات",
+        task_budget_approval: "اعتماد الميزانية",
+        task_policy_update: "تحديث سياسة الإجازات",
+        status_completed: "مكتمل",
+        status_pending: "قيد المراجعة",
+        compliance_status: "حالة الامتثال",
+        gov_rating: "تصنيف الحوكمة: ممتاز",
+
         // --- General ---
         welcome: "مرحباً بك",
         logout: "تسجيل الخروج",
@@ -136,6 +151,21 @@ const DICTIONARY = {
         menu_dividends: "Dividends",
         menu_reports: "Reports",
         menu_voting: "Voting",
+
+        // --- الداش بورد للدمن --- 
+        compliance_index: "General Compliance Index",
+        active_users: "Active Users",
+        all_working: "All Operational",
+        critical_alerts: "Critical Alerts",
+        review_needed: "Action Required",
+        system_status: "System Status",
+        recent_activities: "Recent Activities",
+        task_budget_approval: "Budget Approval",
+        task_policy_update: "Leave Policy Update",
+        status_completed: "Completed",
+        status_pending: "Pending Review",
+        compliance_status: "Compliance Status",
+        gov_rating: "Governance Rating: Excellent",
 
         // --- General ---
         welcome: "Welcome",
