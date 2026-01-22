@@ -124,6 +124,23 @@ const DICTIONARY = {
         btn_submit: "إرسال الطلب",
         btn_print: "إصدار وطباعة",
 
+        // --- سجل الطلبات والحضور ---
+        lbl_requests_log: "سجل الطلبات",
+        lbl_total: "الإجمالي",
+        col_req_no: "رقم الطلب",
+        col_type: "النوع",
+        col_date: "التاريخ",
+        col_status: "الحالة",
+        val_annual_leave: "إجازة سنوية",
+        val_salary_letter: "خطاب تعريف راتب",
+        status_approved: "معتمد",
+        status_pending: "تحت الإجراء",
+        
+        lbl_discipline: "انضباط",
+        day_sun: "الأحد", day_mon: "الاثنين", day_tue: "الثلاثاء", day_wed: "الأربعاء", day_thu: "الخميس",
+        status_ontime: "حضور مبكر",
+        status_late: "تأخير بسيط",
+
         // --- عام ---
         welcome: "مرحباً بك",
         logout: "تسجيل الخروج",
@@ -254,6 +271,23 @@ const DICTIONARY = {
         btn_cancel: "Cancel",
         btn_submit: "Submit Request",
         btn_print: "Issue & Print",
+
+        // --- Requests & Attendance ---
+        lbl_requests_log: "Requests Log",
+        lbl_total: "Total",
+        col_req_no: "Req No",
+        col_type: "Type",
+        col_date: "Date",
+        col_status: "Status",
+        val_annual_leave: "Annual Leave",
+        val_salary_letter: "Salary Letter",
+        status_approved: "Approved",
+        status_pending: "Pending",
+        
+        lbl_discipline: "Discipline",
+        day_sun: "Sun", day_mon: "Mon", day_tue: "Tue", day_wed: "Wed", day_thu: "Thu",
+        status_ontime: "On Time",
+        status_late: "Late",
 
         // --- General ---
         welcome: "Welcome",
