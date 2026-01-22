@@ -145,7 +145,7 @@ const Layout = {
 
         const sidebarHTML = `
             <div class="sidebar-header">
-                <img src="${this.rootPath}partners-slider/favicon.png" alt="Logo" class="logo-img">
+                <img src="${this.rootPath}../favicon.png" alt="Logo" class="logo-img">
                 <div class="brand-text">
                     <h3>eGov</h3>
                     <span style="font-size: 11px; color: var(--lavender-light);" data-i18n="role_${this.role}">${this.role}</span>
@@ -196,7 +196,7 @@ const Layout = {
                         <span class="role" style="font-size: 10px; color: var(--text-secondary);" data-i18n="role_${this.role}">${this.getRoleName(this.role)}</span>
                     </div>
                     <div class="user-avatar">
-                        <img src="${this.rootPath}partners-slider/favicon.png" alt="User">
+                        <img src="${this.rootPath}../favicon.png" alt="User">
                     </div>
                 </div>
             </div>
