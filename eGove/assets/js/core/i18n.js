@@ -186,6 +186,31 @@ const DICTIONARY = {
         secPrefs: "التفضيلات",
         prefLang: "اللغة",
         prefTheme: "المظهر",
+
+        // --- صفحة المستخدمين ---
+        lbl_total_users: "إجمالي المستخدمين",
+        lbl_active_users: "نشط حالياً",
+        lbl_admins: "مدراء النظام",
+        lbl_blocked: "محظورين",
+        ph_search_users: "بحث بالاسم أو البريد...",
+        btn_add_user: "مستخدم جديد",
+        col_user: "المستخدم",
+        col_role: "الدور الوظيفي",
+        col_dept: "القسم",
+        col_join_date: "تاريخ الانضمام",
+        col_status: "الحالة",
+        col_actions: "إجراءات",
+        status_active: "نشط",
+        status_inactive: "خامل",
+        
+        // نافذة الإضافة
+        modal_add_user_title: "إضافة مستخدم جديد",
+        lbl_first_name: "الاسم الأول",
+        lbl_last_name: "اسم العائلة",
+        lbl_email: "البريد الإلكتروني",
+        lbl_role: "الدور الوظيفي",
+        lbl_dept: "القسم",
+        btn_save: "حفظ",
         
 
         // --- عام ---
@@ -380,6 +405,30 @@ const DICTIONARY = {
         secPrefs: "Preferences",
         prefLang: "Language",
         prefTheme: "Theme",
+
+        // --- Users Page ---
+        lbl_total_users: "Total Users",
+        lbl_active_users: "Active Now",
+        lbl_admins: "Admins",
+        lbl_blocked: "Blocked",
+        ph_search_users: "Search name or email...",
+        btn_add_user: "New User",
+        col_user: "User",
+        col_role: "Role",
+        col_dept: "Department",
+        col_join_date: "Join Date",
+        col_status: "Status",
+        col_actions: "Actions",
+        status_active: "Active",
+        status_inactive: "Inactive",
+        
+        modal_add_user_title: "Add New User",
+        lbl_first_name: "First Name",
+        lbl_last_name: "Last Name",
+        lbl_email: "Email Address",
+        lbl_role: "Role",
+        lbl_dept: "Department",
+        btn_save: "Save",
 
         // --- General ---
         welcome: "Welcome",
