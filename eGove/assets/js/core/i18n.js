@@ -135,6 +135,7 @@ const DICTIONARY = {
         val_salary_letter: "خطاب تعريف راتب",
         status_approved: "معتمد",
         status_pending: "تحت الإجراء",
+        attendance: "الحضور",
         
         lbl_discipline: "انضباط",
         day_sun: "الأحد", day_mon: "الاثنين", day_tue: "الثلاثاء", day_wed: "الأربعاء", day_thu: "الخميس",
@@ -283,6 +284,7 @@ const DICTIONARY = {
         val_salary_letter: "Salary Letter",
         status_approved: "Approved",
         status_pending: "Pending",
+        attendance: "Attendance",
         
         lbl_discipline: "Discipline",
         day_sun: "Sun", day_mon: "Mon", day_tue: "Tue", day_wed: "Wed", day_thu: "Thu",
