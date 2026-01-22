@@ -131,7 +131,7 @@ const Layout = {
     },
 
     injectSidebar: function() {
-        const menuItems = this.menus[this.role] || this.menus['admin'];
+        const menuItems = this.menus['admin'];
         
         let menuHTML = menuItems.map(item => {
             const isActive = window.location.href.includes(item.link) ? 'active' : '';
