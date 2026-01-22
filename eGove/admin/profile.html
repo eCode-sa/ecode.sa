@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ملفي الشخصي | eGov Admin</title>
     <style>
-        /* --- تنسيقات الهيكل الأساسي --- */
-        /* لا حاجة لتعديل السكرول هنا، الاعتماد على style.css */
-
-        /* --- بطاقة الهوية (Header) --- */
+        /* --- تخصيصات البروفايل --- */
+        /* ملاحظة: تأكد أن dashboard-content في style.css لديها overflow-y: auto */
+        
+        /* بطاقة الهوية */
         .profile-card {
             background: var(--bg-secondary); border-radius: 20px; border: 1px solid var(--border-color);
-            margin-bottom: 25px; overflow: hidden; position: relative;
+            margin-bottom: 25px; overflow: visible; position: relative;
         }
         .profile-header-bg {
             background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-            height: 160px; width: 100%;
+            height: 160px; width: 100%; border-radius: 20px 20px 0 0;
         }
         .profile-body {
             padding: 20px 30px 30px; display: flex; align-items: flex-end; gap: 25px; flex-wrap: wrap;
@@ -33,15 +33,13 @@
             display: flex; align-items: center; gap: 10px; 
         }
         .verified-badge { color: var(--sky-blue); font-size: 20px; }
-        .role-text { color: var(--lavender-light); font-size: 14px; font-weight: bold; margin: 0; }
-
+        
         .meta-tags { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
         .meta-tag {
             background: var(--bg-elevated); border: 1px solid var(--border-color);
             color: var(--text-secondary); padding: 6px 14px; border-radius: 30px;
             font-size: 12px; display: flex; align-items: center; gap: 6px;
         }
-        .meta-tag i { color: var(--lavender-dark); }
 
         .profile-actions { display: flex; gap: 12px; margin-bottom: 10px; }
         .btn-action {
@@ -52,86 +50,66 @@
         .btn-primary { background: var(--lavender-dark); color: #fff; }
         .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); }
 
-        /* --- الشبكة الذكية (Grid System) --- */
-        .smart-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-bottom: 25px;
-        }
-
-        /* --- البطاقات العامة --- */
+        /* الشبكات والبطاقات */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px; margin-bottom: 25px; }
+        
         .info-card {
             background: var(--bg-secondary); border: 1px solid var(--border-color); 
-            border-radius: 20px; padding: 25px; height: 100%;
-            transition: 0.3s; display: flex; flex-direction: column;
+            border-radius: 20px; padding: 25px; height: 100%; display: flex; flex-direction: column;
         }
-        .info-card:hover { border-color: var(--lavender-dark); }
-        
         .card-header { 
             display: flex; justify-content: space-between; align-items: center; 
             margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); 
         }
         .card-title { font-size: 16px; font-weight: bold; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
-        
-        /* --- قسم البيانات المالية --- */
+
+        /* المالية */
         .finance-card { background: linear-gradient(145deg, #1e293b, #0f172a); border: 1px solid #334155; color: #fff; }
         .salary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .salary-item span { display: block; font-size: 12px; color: #94a3b8; margin-bottom: 5px; }
-        .salary-val { font-size: 18px; font-family: monospace; font-weight: bold; }
         .salary-val.blur { filter: blur(8px); cursor: pointer; user-select: none; }
-        .net-salary { color: var(--mint-green); font-size: 22px; }
+        .net-salary { color: var(--mint-green); font-size: 22px; font-weight: bold; font-family: monospace; }
 
-        /* --- جدول الطلبات (Requests Table) --- */
+        /* الأداء والمهارات (تمت إعادتها) */
+        .skill-item { margin-bottom: 15px; }
+        .skill-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; color: var(--text-secondary); }
+        .progress-bar { height: 8px; background: var(--bg-elevated); border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--lavender-dark); border-radius: 10px; }
+
+        /* الجداول */
         .table-container { overflow-x: auto; }
         .requests-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .requests-table th { text-align: right; padding: 15px; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); font-weight: normal; }
+        .requests-table th { text-align: right; padding: 15px; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); }
         [dir="ltr"] .requests-table th { text-align: left; }
         .requests-table td { padding: 15px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
         .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
         .status-approved { background: rgba(126, 221, 163, 0.15); color: var(--mint-green); }
         .status-pending { background: rgba(255, 184, 108, 0.15); color: var(--soft-orange); }
 
-        /* --- سجل الحضور (Attendance) --- */
-        .attendance-strip { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
-        .day-box {
-            flex: 1; min-width: 80px; background: var(--bg-elevated); border-radius: 12px; padding: 10px; 
-            text-align: center; border: 1px solid var(--border-color);
-        }
+        /* الحضور */
+        .attendance-strip { display: flex; gap: 10px; flex-wrap: wrap; }
+        .day-box { flex: 1; min-width: 80px; background: var(--bg-elevated); border-radius: 12px; padding: 10px; text-align: center; border: 1px solid var(--border-color); }
         .day-name { font-size: 11px; color: var(--text-secondary); display: block; margin-bottom: 5px; }
         .time-range { font-size: 12px; color: var(--text-primary); font-weight: bold; direction: ltr; }
-        .day-status { font-size: 10px; margin-top: 5px; display: block; }
-        .status-late { color: var(--coral-pink); }
-        .status-ontime { color: var(--mint-green); }
+        .status-late { color: var(--coral-pink); font-size: 10px; }
+        .status-ontime { color: var(--mint-green); font-size: 10px; }
 
-        /* --- النوافذ المنبثقة --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
-            z-index: 9999; display: none; align-items: center; justify-content: center;
-        }
-        .modal-box {
-            background: var(--bg-secondary); width: 500px; border-radius: 20px;
-            padding: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        /* الصلاحيات */
+        .perm-tag { background: rgba(91, 192, 248, 0.1); color: var(--sky-blue); padding: 5px 12px; border-radius: 6px; font-size: 12px; display:inline-block; margin: 0 5px 5px 0;}
+
+        /* النوافذ المنبثقة */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-box { background: var(--bg-secondary); width: 500px; border-radius: 20px; padding: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
         .form-group { margin-bottom: 20px; }
         .form-label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary); }
-        .form-input { 
-            width: 100%; padding: 12px; background: var(--bg-primary); 
-            border: 1px solid var(--border-color); border-radius: 10px; 
-            color: var(--text-primary); outline: none; transition: 0.3s;
-        }
-        .form-input:focus { border-color: var(--lavender-dark); }
-        .upload-area {
-            border: 2px dashed var(--border-color); border-radius: 12px;
-            padding: 30px; text-align: center; cursor: pointer; transition: 0.3s;
-            background: var(--bg-primary); margin-top: 10px;
-        }
-        .upload-area:hover { border-color: var(--lavender-dark); background: var(--bg-elevated); }
+        .form-input { width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); outline: none; }
         
-        /* استجابة للجوال */
+        .upload-area { border: 2px dashed var(--border-color); border-radius: 12px; padding: 30px; text-align: center; cursor: pointer; transition: 0.3s; background: var(--bg-primary); margin-top: 10px; }
+        .upload-area:hover { border-color: var(--lavender-dark); background: var(--bg-elevated); }
+
         @media (max-width: 768px) {
-            .profile-body { text-align: center; justify-content: center; }
+            .profile-body { justify-content: center; text-align: center; }
             .avatar-box { margin: -70px auto 0; }
             .profile-actions { width: 100%; justify-content: center; }
             .meta-tags { justify-content: center; }
@@ -148,43 +126,26 @@
                 <div class="avatar-box">
                     <img src="../../favicon.png" alt="Avatar">
                 </div>
-                
                 <div class="profile-info">
                     <h1>
                         <span data-i18n="profName">المستخدم</span> 
-                        <i class="fas fa-certificate verified-badge" title="Verified Employee"></i>
+                        <i class="fas fa-certificate verified-badge" title="Verified"></i>
                     </h1>
-                    <p class="role-text" data-i18n="profRole">مدير النظام</p>
-                    
+                    <p style="color: var(--lavender-light); margin:0;" data-i18n="profRole">مدير النظام</p>
                     <div class="meta-tags">
                         <div class="meta-tag"><i class="fas fa-fingerprint"></i> <span data-i18n="lbl_id">الرقم الوظيفي:</span> 10245</div>
                         <div class="meta-tag"><i class="fas fa-envelope"></i> admin@ecode.sa</div>
                         <div class="meta-tag"><i class="fas fa-sitemap"></i> <span data-i18n="lbl_dept">الإدارة:</span> <span data-i18n="val_dept">التقنية</span></div>
                     </div>
                 </div>
-
                 <div class="profile-actions">
-                    <button class="btn-action btn-primary" onclick="openModal('leaveModal')">
-                        <i class="fas fa-plus-circle"></i> <span data-i18n="reqLeave">طلب إجازة</span>
-                    </button>
-                    <button class="btn-action btn-outline" onclick="openModal('letterModal')">
-                        <i class="fas fa-file-alt"></i> <span data-i18n="reqLetter">تعريف راتب</span>
-                    </button>
+                    <button class="btn-action btn-primary" onclick="openModal('leaveModal')"><i class="fas fa-plus-circle"></i> <span data-i18n="reqLeave">طلب إجازة</span></button>
+                    <button class="btn-action btn-outline" onclick="openModal('letterModal')"><i class="fas fa-file-alt"></i> <span data-i18n="reqLetter">تعريف راتب</span></button>
                 </div>
             </div>
         </div>
 
-        <div class="smart-grid">
-            
-            <div class="info-card finance-card">
-                <div class="card-header" style="border-color: #334155;">
-                    <div class="card-title"><i class="fas fa-wallet" style="color: var(--coral-pink);"></i> <span data-i18n="financialData">البيانات المالية</span></div>
-                    <button onclick="toggleSalary()" style="background: rgba(255,255,255,0.1); border:none; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer;">
-                        <i class="fas fa-eye" id="salaryIcon"></i>
-                    </button>
-                </div>
-                
-                <div class="grid-2">
+        <div class="grid-2">
             <div class="info-card finance-card">
                 <div class="card-header" style="border-color: #334155;">
                     <div class="card-title"><i class="fas fa-wallet" style="color: var(--coral-pink);"></i> <span data-i18n="financialData">البيانات المالية</span></div>
@@ -220,74 +181,67 @@
             </div>
         </div>
 
-            <div class="info-card" style="grid-column: 1 / -1;">
-                <div class="card-header">
-                    <div class="card-title"><i class="fas fa-list-alt" style="color: var(--sky-blue);"></i> <span data-i18n="lbl_requests_log">سجل الطلبات</span></div>
-                    <span style="font-size:12px; color:var(--text-secondary);"><span data-i18n="lbl_total">الإجمالي:</span> 2</span>
-                </div>
-                <div class="table-container">
-                    <table class="requests-table">
-                        <thead>
-                            <tr>
-                                <th data-i18n="col_req_no">رقم الطلب</th>
-                                <th data-i18n="col_type">النوع</th>
-                                <th data-i18n="col_date">التاريخ</th>
-                                <th data-i18n="col_status">الحالة</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#REQ-1022</td>
-                                <td data-i18n="val_annual_leave">إجازة سنوية</td>
-                                <td>2026-02-10</td>
-                                <td><span class="status-badge status-approved" data-i18n="status_approved">معتمد</span></td>
-                            </tr>
-                            <tr>
-                                <td>#REQ-1045</td>
-                                <td data-i18n="val_salary_letter">خطاب تعريف راتب</td>
-                                <td>2026-02-15</td>
-                                <td><span class="status-badge status-pending" data-i18n="status_pending">تحت الإجراء</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="info-card" style="margin-bottom: 25px;">
+            <div class="card-header">
+                <div class="card-title"><i class="fas fa-list-alt" style="color: var(--lavender-light);"></i> <span data-i18n="lbl_requests_log">سجل الطلبات</span></div>
+                <span style="font-size:12px; color:var(--text-secondary);">Total: 2</span>
             </div>
+            <div class="table-container">
+                <table class="requests-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="col_req_no">رقم الطلب</th>
+                            <th data-i18n="col_type">النوع</th>
+                            <th data-i18n="col_date">التاريخ</th>
+                            <th data-i18n="col_status">الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#REQ-1022</td>
+                            <td data-i18n="val_annual_leave">إجازة سنوية</td>
+                            <td>2026-02-10</td>
+                            <td><span class="status-badge status-approved" data-i18n="status_approved">معتمد</span></td>
+                        </tr>
+                        <tr>
+                            <td>#REQ-1045</td>
+                            <td data-i18n="val_salary_letter">خطاب تعريف راتب</td>
+                            <td>2026-02-15</td>
+                            <td><span class="status-badge status-pending" data-i18n="status_pending">تحت الإجراء</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-            <div class="info-card" style="grid-column: 1 / -1;">
+        <div class="grid-2">
+            <div class="info-card">
                 <div class="card-header">
                     <div class="card-title"><i class="fas fa-clock" style="color: var(--mint-green);"></i> <span data-i18n="attendance">سجل الحضور</span></div>
                     <span style="font-size:12px; color:var(--mint-green); font-weight:bold;">98% <span data-i18n="lbl_discipline">انضباط</span></span>
                 </div>
                 <div class="attendance-strip">
-                    <div class="day-box">
-                        <span class="day-name" data-i18n="day_sun">الأحد</span>
-                        <span class="time-range">07:55 - 16:05</span>
-                        <span class="day-status status-ontime" data-i18n="status_ontime">حضور مبكر</span>
-                    </div>
-                    <div class="day-box">
-                        <span class="day-name" data-i18n="day_mon">الاثنين</span>
-                        <span class="time-range">08:00 - 16:00</span>
-                        <span class="day-status status-ontime" data-i18n="status_ontime">حضور مبكر</span>
-                    </div>
-                    <div class="day-box">
-                        <span class="day-name" data-i18n="day_tue">الثلاثاء</span>
-                        <span class="time-range">08:15 - 16:10</span>
-                        <span class="day-status status-late" data-i18n="status_late">تأخير 15د</span>
-                    </div>
-                    <div class="day-box">
-                        <span class="day-name" data-i18n="day_wed">الأربعاء</span>
-                        <span class="time-range">07:50 - 16:00</span>
-                        <span class="day-status status-ontime" data-i18n="status_ontime">حضور مبكر</span>
-                    </div>
-                    <div class="day-box">
-                        <span class="day-name" data-i18n="day_thu">الخميس</span>
-                        <span class="time-range">07:58 - 15:55</span>
-                        <span class="day-status status-ontime" data-i18n="status_ontime">حضور مبكر</span>
-                    </div>
+                    <div class="day-box"><span class="day-name" data-i18n="day_sun">الأحد</span><span class="time-range">07:55 - 16:05</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
+                    <div class="day-box"><span class="day-name" data-i18n="day_mon">الاثنين</span><span class="time-range">08:00 - 16:00</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
+                    <div class="day-box"><span class="day-name" data-i18n="day_tue">الثلاثاء</span><span class="time-range">08:15 - 16:10</span><span class="status-late" data-i18n="status_late">تأخير</span></div>
+                    <div class="day-box"><span class="day-name" data-i18n="day_wed">الأربعاء</span><span class="time-range">07:50 - 16:00</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
+                    <div class="day-box"><span class="day-name" data-i18n="day_thu">الخميس</span><span class="time-range">07:58 - 15:55</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
                 </div>
             </div>
 
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-title"><i class="fas fa-shield-alt" style="color: var(--lavender-light);"></i> <span data-i18n="lbl_permissions">صلاحيات النظام</span></div>
+                </div>
+                <div>
+                    <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_full_access">دخول كامل</span></span>
+                    <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_approve">اعتماد الطلبات</span></span>
+                    <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_reports">استخراج التقارير</span></span>
+                    <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_users">إدارة المستخدمين</span></span>
+                </div>
+            </div>
         </div>
+
     </div>
 
     <div id="leaveModal" class="modal-overlay" onclick="closeModalOnOutside(event, 'leaveModal')">
@@ -295,32 +249,23 @@
             <h2 style="margin-top:0; color:var(--text-primary); margin-bottom:20px;" data-i18n="reqLeave">طلب إجازة جديدة</h2>
             <div class="form-group">
                 <label class="form-label" data-i18n="lbl_leave_type">نوع الإجازة</label>
-                <select class="form-input">
-                    <option data-i18n="opt_annual">سنوية</option>
-                    <option data-i18n="opt_sick">مرضية</option>
-                </select>
+                <select class="form-input"><option data-i18n="opt_annual">سنوية</option><option data-i18n="opt_sick">مرضية</option></select>
             </div>
             <div style="display: flex; gap: 15px;">
-                <div class="form-group" style="flex:1">
-                    <label class="form-label" data-i18n="lbl_from">من تاريخ</label>
-                    <input type="date" class="form-input">
-                </div>
-                <div class="form-group" style="flex:1">
-                    <label class="form-label" data-i18n="lbl_to">إلى تاريخ</label>
-                    <input type="date" class="form-input">
-                </div>
+                <div class="form-group" style="flex:1"><label class="form-label" data-i18n="lbl_from">من تاريخ</label><input type="date" class="form-input"></div>
+                <div class="form-group" style="flex:1"><label class="form-label" data-i18n="lbl_to">إلى تاريخ</label><input type="date" class="form-input"></div>
             </div>
             <div class="form-group">
                 <label class="form-label" data-i18n="lbl_attachment">المرفقات</label>
                 <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                    <div class="upload-text" data-i18n="txt_upload_hint">اضغط لرفع الملف</div>
+                    <i class="fas fa-cloud-upload-alt upload-icon" style="font-size:24px; color:var(--text-secondary); display:block; margin-bottom:10px;"></i>
+                    <div style="font-size:13px; color:var(--text-secondary);" data-i18n="txt_upload_hint">اضغط لرفع الملف</div>
                     <input type="file" id="fileInput" style="display: none;">
                 </div>
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                 <button class="btn-action btn-outline" onclick="closeModal('leaveModal')" data-i18n="btn_cancel">إلغاء</button>
-                <button class="btn-action btn-primary" onclick="alert('تم رفع الطلب والمرفقات بنجاح!')" data-i18n="btn_submit">إرسال</button>
+                <button class="btn-action btn-primary" onclick="alert('تم الرفع!')" data-i18n="btn_submit">إرسال</button>
             </div>
         </div>
     </div>
@@ -328,10 +273,8 @@
     <div id="letterModal" class="modal-overlay" onclick="closeModalOnOutside(event, 'letterModal')">
         <div class="modal-box">
             <h2 style="margin-top:0; color:var(--text-primary); margin-bottom:20px;" data-i18n="reqLetter">طلب تعريف راتب</h2>
-            <div class="form-group">
-                <label class="form-label" data-i18n="lbl_entity">الجهة</label>
-                <input type="text" class="form-input" placeholder="...">
-            </div>
+            <div class="form-group"><label class="form-label" data-i18n="lbl_entity">الجهة</label><input type="text" class="form-input" placeholder="..."></div>
+            <div class="form-group"><label class="form-label" data-i18n="lbl_lang">اللغة</label><select class="form-input"><option data-i18n="lang_ar">عربي</option><option data-i18n="lang_en">إنجليزي</option></select></div>
             <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                 <button class="btn-action btn-outline" onclick="closeModal('letterModal')" data-i18n="btn_cancel">إلغاء</button>
                 <button class="btn-action btn-primary" onclick="alert('تم الطلب!')" data-i18n="btn_submit">إرسال</button>
