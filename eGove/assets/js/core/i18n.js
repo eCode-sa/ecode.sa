@@ -78,6 +78,7 @@ const DICTIONARY = {
 
         // --- صفحة البروفايل المحدثة ---
         profName: "المستخدم",
+        GRCO: "ايمن المغربي",
         profRole: "مدير النظام",
         reqLeave: "طلب إجازة",
         reqLetter: "تعريف راتب",
@@ -235,6 +236,7 @@ const DICTIONARY = {
 
         // --- Advanced Profile ---
         profName: "User",
+        GRCO: "Ayman Al-Maghrabi",
         profRole: "System Admin",
         reqLeave: "Leave Request",
         reqLetter: "Salary Letter",
