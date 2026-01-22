@@ -2,150 +2,200 @@
 <html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <title>الملف الشخصي | eGov</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملفي الشخصي | eGov Admin</title>
     <style>
-        /* ستايل خاص للبروفايل فقط */
+        /* تخصيصات إضافية خاصة بالبروفايل */
         .profile-header {
-            background: var(--bg-secondary); border-radius: 20px; padding: 30px;
-            display: flex; align-items: center; gap: 30px; border: 1px solid var(--border-color);
-            margin-bottom: 30px; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
+            height: 150px;
+            border-radius: 16px 16px 0 0;
+            position: relative;
         }
-        .profile-header::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
-            background: linear-gradient(90deg, var(--lavender-dark), var(--sky-blue));
+        .profile-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-bottom: 25px;
         }
-        .avatar-lg {
-            width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--lavender-light);
-            background: var(--bg-elevated); display: flex; align-items: center; justify-content: center;
-            font-size: 40px; color: var(--text-primary);
+        .avatar-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            border: 4px solid var(--bg-secondary);
+            overflow: hidden;
+            position: absolute;
+            bottom: -60px;
+            right: 30px; /* RTL */
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow-md);
         }
-        .basmaty-card {
-            background: rgba(13, 110, 253, 0.05); border: 1px solid var(--sky-blue); 
-            padding: 20px; border-radius: 16px; text-align: center; min-width: 250px; margin-right: auto;
-        }
-        .fingerprint-btn {
-            width: 70px; height: 70px; border-radius: 50%; border: none;
-            background: var(--bg-elevated); color: var(--text-secondary);
-            font-size: 30px; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px var(--border-color);
-            margin: 10px auto; display: flex; align-items: center; justify-content: center;
-        }
-        .fingerprint-btn.active {
-            color: var(--mint-green); box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px var(--mint-green);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(126, 221, 163, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(126, 221, 163, 0); } 100% { box-shadow: 0 0 0 0 rgba(126, 221, 163, 0); } }
+        [dir="ltr"] .avatar-container { right: auto; left: 30px; }
         
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .info-card { background: var(--bg-secondary); border-radius: 16px; padding: 20px; border: 1px solid var(--border-color); }
-        .finance-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--border-color); font-size: 14px; color: var(--text-secondary); }
+        .profile-body {
+            padding: 70px 30px 30px; /* مساحة للصورة */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .profile-info h1 { font-size: 24px; margin: 0 0 5px; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+        .profile-info p { margin: 0; color: var(--text-secondary); font-size: 14px; }
+        
+        .tags-container { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .tag-badge {
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex; align-items: center; gap: 5px;
+            border: 1px solid var(--border-color);
+        }
+        .tag-badge i { color: var(--lavender-light); }
+
+        .action-buttons { display: flex; gap: 10px; }
+        .btn-profile {
+            padding: 10px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px;
+        }
+        .btn-primary { background: var(--lavender-dark); color: #fff; }
+        .btn-secondary { background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border-color); }
+        
+        /* البطاقات الداخلية */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .info-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; }
+        .card-head { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .card-head h3 { font-size: 16px; margin: 0; display: flex; align-items: center; gap: 8px; }
+        
+        /* تأثير ضبابية الراتب */
+        .salary-blur { filter: blur(6px); transition: 0.3s; cursor: pointer; }
+        .salary-blur:hover { filter: blur(0); }
+        
+        /* سجل الحضور */
+        .attendance-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; text-align: center; }
+        .day-card { background: var(--bg-elevated); padding: 10px; border-radius: 10px; border: 1px solid var(--border-color); }
+        .day-name { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 5px; }
+        .time-in { color: var(--mint-green); font-size: 12px; font-weight: bold; display: block; }
+        .time-out { color: var(--text-secondary); font-size: 12px; display: block; }
     </style>
 </head>
 <body>
 
-    <div class="profile-content">
-        <div class="profile-header">
-            <div class="avatar-lg"><i class="fas fa-user"></i></div>
-            <div>
-                <h1 style="margin:0 0 5px; font-size: 24px; color: var(--text-primary);">مسؤول النظام</h1>
-                <p style="margin:0; color: var(--text-secondary);">الرقم الوظيفي: 1001 | GRC Admin</p>
+    <div class="dashboard-content">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <img src="../partners-slider/favicon.png" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
+                </div>
             </div>
-
-            <div class="basmaty-card">
-                <h4 style="margin:0 0 10px; color: var(--sky-blue);">نظام بصمتي</h4>
-                <button class="fingerprint-btn" id="fingerprintBtn" onclick="toggleAttendance()">
-                    <i class="fas fa-fingerprint"></i>
-                </button>
-                <div id="workTimer" style="font-family: monospace; font-weight: bold; color: var(--text-primary); margin-top: 10px;">00:00:00</div>
-                <span id="attendanceStatus" style="font-size: 11px; color: var(--text-muted);">غير مسجل</span>
+            <div class="profile-body">
+                <div class="profile-info">
+                    <h1>
+                        <span data-i18n="profName">المستخدم</span> 
+                        <i class="fas fa-check-circle" style="color: var(--sky-blue); font-size: 18px;" title="Verified"></i>
+                    </h1>
+                    <p data-i18n="profRole">مدير النظام (Admin)</p>
+                    
+                    <div class="tags-container">
+                        <span class="tag-badge"><i class="fas fa-id-badge"></i> ID: 10245</span>
+                        <span class="tag-badge"><i class="fas fa-envelope"></i> admin@ecode.sa</span>
+                        <span class="tag-badge"><i class="fas fa-building"></i> الإدارة العامة</span>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-profile btn-primary"><i class="fas fa-plane-departure"></i> <span data-i18n="reqLeave">طلب إجازة</span></button>
+                    <button class="btn-profile btn-secondary"><i class="fas fa-file-contract"></i> <span data-i18n="reqLetter">تعريف راتب</span></button>
+                </div>
             </div>
         </div>
 
-        <div class="grid-3">
+        <div class="info-grid">
             <div class="info-card">
-                <h3 style="margin-bottom: 15px; color: var(--text-primary);">💰 الرواتب والبدلات</h3>
-                <div class="finance-row">
-                    <span>الراتب الأساسي</span>
-                    <span style="color: var(--mint-green);">10,000 SAR</span>
+                <div class="card-head">
+                    <h3><i class="fas fa-umbrella-beach" style="color: var(--soft-orange);"></i> <span data-i18n="leaveBal">رصيد الإجازات</span></h3>
                 </div>
-                <div class="finance-row">
-                    <span>بدل سكن</span>
-                    <span style="color: var(--mint-green);">2,750 SAR</span>
-                </div>
-                <div class="finance-row">
-                    <span>خصم تأمينات</span>
-                    <span style="color: var(--coral-pink);">-1,275 SAR</span>
-                </div>
-                <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-weight: bold;">
-                    <span style="color: var(--lavender-light);">الصافي</span>
-                    <span style="color: var(--lavender-light);">11,475 SAR</span>
-                </div>
-            </div>
-
-            <div class="info-card">
-                <h3 style="margin-bottom: 15px; color: var(--text-primary);">🏖️ رصيد الإجازات</h3>
-                <div style="text-align: center; padding: 20px;">
-                    <h1 style="font-size: 40px; margin: 0; color: var(--sky-blue);">24</h1>
-                    <span style="color: var(--text-muted);">يوم متاح</span>
-                </div>
-                <button style="width: 100%; padding: 10px; background: var(--bg-elevated); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 8px; cursor: pointer;">
-                    <i class="fas fa-plane"></i> تقديم طلب إجازة
-                </button>
-            </div>
-
-            <div class="info-card">
-                <h3 style="margin-bottom: 15px; color: var(--text-primary);">📦 العهد المستلمة</h3>
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding: 10px; background: var(--bg-elevated); border-radius: 8px;">
-                    <i class="fas fa-laptop" style="color: var(--text-muted);"></i>
-                    <div style="flex: 1;">
-                        <div style="color: var(--text-primary); font-size: 13px; font-weight: bold;">MacBook air</div>
-                        <div style="color: var(--text-muted); font-size: 11px;">S/N: 28381</div>
+                <div style="display: flex; gap: 15px;">
+                    <div style="flex: 1; background: rgba(126, 221, 163, 0.1); border: 1px solid var(--mint-green); border-radius: 12px; padding: 15px; text-align: center;">
+                        <span style="display: block; font-size: 12px; color: var(--mint-green); font-weight: bold;" data-i18n="annual">سنوية</span>
+                        <span style="display: block; font-size: 28px; font-weight: bold; color: var(--text-primary);">26</span>
+                        <span style="font-size: 10px; color: var(--text-secondary);">يوم</span>
                     </div>
-                    <span style="font-size: 10px; background: var(--mint-green); color: black; padding: 2px 6px; border-radius: 4px;">نشط</span>
+                    <div style="flex: 1; background: rgba(91, 192, 248, 0.1); border: 1px solid var(--sky-blue); border-radius: 12px; padding: 15px; text-align: center;">
+                        <span style="display: block; font-size: 12px; color: var(--sky-blue); font-weight: bold;" data-i18n="emergency">اضطرارية</span>
+                        <span style="display: block; font-size: 28px; font-weight: bold; color: var(--text-primary);">3</span>
+                        <span style="font-size: 10px; color: var(--text-secondary);">أيام</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card" style="background: linear-gradient(145deg, #1e293b, #0f172a); border: 1px solid #334155;">
+                <div class="card-head" style="border-color: #334155;">
+                    <h3 style="color: #fff;"><i class="fas fa-lock" style="color: var(--coral-pink);"></i> <span data-i18n="financialData">البيانات المالية</span></h3>
+                    <span style="font-size: 10px; background: rgba(255,255,255,0.1); color: #fff; padding: 2px 8px; border-radius: 4px;">سري للغاية</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: #fff;">
+                    <div>
+                        <span style="font-size: 11px; color: #94a3b8;">الراتب الأساسي</span>
+                        <div class="salary-blur" style="font-size: 16px; font-weight: bold; font-family: monospace;">6,274 SAR</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; color: #94a3b8;">بدل سكن</span>
+                        <div class="salary-blur" style="font-size: 16px; font-weight: bold; font-family: monospace;">1,569 SAR</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; color: #94a3b8;">بدل نقل</span>
+                        <div class="salary-blur" style="font-size: 16px; font-weight: bold; font-family: monospace;">627 SAR</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; color: #94a3b8; color: var(--mint-green);">صافي الراتب</span>
+                        <div class="salary-blur" style="font-size: 20px; font-weight: bold; color: var(--mint-green); font-family: monospace;">11,470 SAR</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 10px; font-size: 10px; color: #64748b;">
+                    <i class="fas fa-eye"></i> ضع المؤشر للكشف
+                </div>
+            </div>
+
+            <div class="info-card" style="grid-column: 1 / -1;">
+                <div class="card-head">
+                    <h3><i class="fas fa-clock" style="color: var(--lavender-light);"></i> <span data-i18n="attendance">سجل الحضور الأسبوعي</span></h3>
+                    <span style="font-size: 12px; color: var(--mint-green); font-weight: bold;">نسبة الانضباط: 98%</span>
+                </div>
+                <div class="attendance-grid">
+                    <div class="day-card">
+                        <span class="day-name">الأحد</span>
+                        <span class="time-in">07:55</span>
+                        <span class="time-out">16:05</span>
+                    </div>
+                    <div class="day-card">
+                        <span class="day-name">الاثنين</span>
+                        <span class="time-in">08:00</span>
+                        <span class="time-out">16:00</span>
+                    </div>
+                    <div class="day-card" style="border-color: rgba(255, 107, 107, 0.3);">
+                        <span class="day-name">الثلاثاء</span>
+                        <span class="time-in" style="color: var(--coral-pink);">08:15</span>
+                        <span class="time-out">16:10</span>
+                    </div>
+                    <div class="day-card">
+                        <span class="day-name">الأربعاء</span>
+                        <span class="time-in">07:50</span>
+                        <span class="time-out">16:00</span>
+                    </div>
+                    <div class="day-card">
+                        <span class="day-name">الخميس</span>
+                        <span class="time-in">07:58</span>
+                        <span class="time-out">15:55</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="../assets/js/core/config.js"></script>
-    <script src="../assets/js/core/i18n.js"></script>
-    <script src="../assets/js/core/auth.js"></script>
-    <script src="../assets/js/components/bot.js"></script>
-    <script src="../assets/js/layout.js"></script>
-
-    <script>
-        // منطق البصمة البسيط
-        let timerInterval;
-        let isCheckedIn = false;
-        let seconds = 0;
-
-        function toggleAttendance() {
-            const btn = document.getElementById('fingerprintBtn');
-            const status = document.getElementById('attendanceStatus');
-            
-            if (!isCheckedIn) {
-                btn.classList.add('active');
-                status.innerText = "تم الحضور: " + new Date().toLocaleTimeString('ar-SA');
-                status.style.color = "var(--mint-green)";
-                isCheckedIn = true;
-                timerInterval = setInterval(() => {
-                    seconds++;
-                    const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-                    const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-                    const s = (seconds % 60).toString().padStart(2, '0');
-                    document.getElementById('workTimer').innerText = `${h}:${m}:${s}`;
-                }, 1000);
-            } else {
-                btn.classList.remove('active');
-                status.innerText = "تم الانصراف";
-                status.style.color = "var(--text-muted)";
-                isCheckedIn = false;
-                clearInterval(timerInterval);
-            }
-        }
-    </script>
+    <script src="../assets/js/system.js"></script>
 </body>
 </html>
