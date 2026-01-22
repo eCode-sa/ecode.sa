@@ -21,6 +21,25 @@ const DICTIONARY = {
         role_share: "مساهم",
         role_admin: "مدير النظام",
 
+        // --- قسم الصلاحيات (Roles) ---
+        btn_add_new_role: "إضافة وظيفة جديدة",
+        lbl_financial_auth: "الصلاحيات المالية",
+        lbl_auto_approve: "الموافقة التلقائية (Auto-Approval)",
+        lbl_approve_limit: "تفعيل الاعتماد المباشر للطلبات الأقل من:",
+        lbl_currency: "ريال",
+        lbl_approve_note: "* إذا كان الطلب أعلى من هذا الحد، يتم رفعه تلقائياً إلى مجلس الإدارة.",
+        lbl_admin_auth: "الإدارة والمستخدمين",
+        perm_add_user: "إضافة مستخدمين جدد",
+        perm_delete_user: "حذف حسابات",
+        perm_edit_perms: "تعديل الصلاحيات",
+        btn_save_changes: "حفظ التغييرات",
+
+        // --- مودال إضافة وظيفة ---
+        modal_add_role_title: "تعريف وظيفة وقسم جديد",
+        lbl_role_name: "مسمى الوظيفة (Role)",
+        lbl_dept_name: "القسم التابع له (Department)",
+        btn_create_role: "إنشاء الوظيفة",
+
         // --- الأقسام والإدارات ---
         dept_top_mgmt: "الإدارة العليا",
         dept_board: "مجلس الإدارة",
@@ -304,6 +323,25 @@ const DICTIONARY = {
         role_audit: "Internal Audit",
         role_share: "Shareholder",
         role_admin: "System Admin",
+
+        // --- Roles Section ---
+        btn_add_new_role: "Add New Role",
+        lbl_financial_auth: "Financial Authorities",
+        lbl_auto_approve: "Auto-Approval Logic",
+        lbl_approve_limit: "Auto-approve requests below:",
+        lbl_currency: "SAR",
+        lbl_approve_note: "* Requests above this limit require Board approval.",
+        lbl_admin_auth: "Administration & Users",
+        perm_add_user: "Add New Users",
+        perm_delete_user: "Delete Accounts",
+        perm_edit_perms: "Edit Permissions",
+        btn_save_changes: "Save Changes",
+
+        // --- Add Role Modal ---
+        modal_add_role_title: "Define New Role & Dept",
+        lbl_role_name: "Role Title",
+        lbl_dept_name: "Department Name",
+        btn_create_role: "Create Role",
 
         // --- Departments ---
         dept_top_mgmt: "Top Management",
