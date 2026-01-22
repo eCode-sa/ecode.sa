@@ -32,6 +32,8 @@ const DICTIONARY = {
         dept_audit: "المراجعة والتدقيق",
         dept_secretariat: "أمانة المجلس",
         dept_shareholders: "المساهمين",
+        tab_users: "إدارة المستخدمين",
+        tab_roles: "هيكل الصلاحيات",
 
         // --- القوائم الجانبية ---
         menu_dashboard: "لوحة القيادة",
@@ -314,6 +316,8 @@ const DICTIONARY = {
         dept_audit: "Audit & Review",
         dept_secretariat: "Secretariat",
         dept_shareholders: "Shareholders",
+        tab_users: "User Management",
+        tab_roles: "Permissions Structure",
 
         // --- Sidebar Menus ---
         menu_dashboard: "Dashboard",
