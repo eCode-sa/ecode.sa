@@ -278,10 +278,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 1. ضبط الاتجاه واللغة فوراً
             const initialLang = localStorage.getItem('lang') || 'ar';
             document.documentElement.lang = initialLang;
             document.documentElement.dir = initialLang === 'ar' ? 'rtl' : 'ltr';
             
+            // ضبط الهوامش حسب اللغة
             const mainContent = document.querySelector('.main-content-wrapper');
             if (mainContent) {
                 if (initialLang === 'ar') {
@@ -293,39 +295,40 @@
                 }
             }
             
+            // 2. الانتظار حتى يتم تحميل ملفات النظام (Layout, AppConfig)
             const checkSystem = setInterval(() => {
                 if (typeof Layout !== 'undefined' && typeof AppConfig !== 'undefined') {
                     clearInterval(checkSystem);
                     
-                    if (!AppConfig.getCurrentUser()) {
-                        console.log('⚠️ No user found. Auto-logging as default user...');
-                        const defaultUser = DataService?.getUserById('USR_004') || { 
-                            id: 'USR_004', 
-                            name: 'مدير النظام',
-                            displayName: 'مدير النظام',
-                            roles: ['admin', 'board_secretary', 'audit_secretary', 'investor_relations', 'grc_officer']
-                        };
-                        AppConfig.setCurrentUser(defaultUser);
+                    // التحقق: هل المستخدم مسجل دخول؟
+                    const user = AppConfig.getCurrentUser();
+                    if (!user) {
+                        // إذا لم يكن مسجلاً، أعد توجيهه لصفحة الدخول
+                        console.warn('⚠️ No active session. Redirecting to login...');
+                        window.location.href = '../index.html'; 
+                        return;
                     }
 
+                    // تهيئة التخطيط (القائمة الجانبية والعلوية)
                     Layout.init();
                     
+                    // تشغيل وظائف لوحة القيادة
                     setTimeout(() => {
-                        initPage();
-                        hideLoading();
+                        initPage(); // دالة تشغيل الرسوم البيانية والجداول
+                        hideLoading(); // إخفاء شاشة التحميل
                     }, 300);
                 }
             }, 50);
             
+            // 3. الاستماع لتغيير اللغة
             window.addEventListener('languageChanged', (e) => {
-                console.log('🌐 Language changed event received:', e.detail.lang);
                 updateContent();
                 
+                // إعادة رسم المخطط عند تغيير اللغة
                 const chartCanvas = document.getElementById('ownershipChart');
                 if (chartCanvas) {
                     const oldChart = Chart.getChart(chartCanvas);
                     if (oldChart) oldChart.destroy();
-                    
                     initCharts();
                 }
                 
@@ -379,107 +382,6 @@
                 }
             } catch (error) {
                 console.warn('⚠️ Could not load live data:', error);
-            }
-        }
-
-        const pageContent = {
-            ar: {
-                pageTitle: "eCode | لوحة القيادة",
-                alertTitle: 'إجراء مطلوب: اعتماد "الدليل الداخلي"',
-                alertDesc: 'مسودة بانتظار الاعتماد النهائي من المجلس. الرافع:',
-                uploaderName: 'مدير النظام',
-                reviewBtn: 'مراجعة واعتماد',
-                kpiCapital: 'رأس المال المصدر',
-                currency: 'ر.س',
-                fullyPaid: 'مدفوع بالكامل',
-                kpiShareholders: 'المساهمين',
-                member: 'عضو',
-                shareholdersList: 'مساهم 1، مساهم 2...',
-                kpiGov: 'قرارات بالتمرير',
-                pending: 'قيد التوقيع',
-                waitingFor: 'بانتظار: الرئيس التنفيذي',
-                kpiComp: 'نسبة الامتثال',
-                chartTitle: 'هيكل الملكية',
-                commTitle: 'اللجان والمجلس',
-                auditComm: 'لجنة المراجعة',
-                newCycle: 'دورة جديدة',
-                commMember1: 'عضو 1 (رئيس)',
-                commMember2: 'عضو 2 (عضو)',
-                commMember3: 'عضو 3 (عضو)',
-                lastMeeting: 'آخر اجتماع: 22/12/2025',
-                minutes: 'المحضر',
-                boardSec: 'أمين السر',
-                secName: 'سكرتير المجلس',
-                opsTitle: 'المهام التشغيلية',
-                task1: 'اعتماد سياسة المكافآت',
-                dueDate: 'تاريخ الاستحقاق',
-                gov: 'حوكمة',
-                taskPayroll: 'مراجعة تقرير الرواتب (HR)',
-                fromLabel: 'من',
-                senderName: 'مدير الموارد',
-                ops: 'تشغيل',
-                task3: 'تحديث بيانات السجل التجاري',
-                ministry: 'وزارة التجارة',
-                legal: 'قانونية',
-                viewAll: 'عرض كل المهام (12)',
-                auditTitle: 'سجل النظام المباشر',
-                chartHeirs: 'مساهمين رئيسيين',
-                chartHesham: 'الرئيس التنفيذي',
-                chartBG: 'شريك استراتيجي',
-                chartOthers: 'آخرون',
-                logBackup: 'تم إكمال النسخ الاحتياطي بنجاح',
-                logPolicy: 'قام الرئيس التنفيذي باستعراض سياسة المكافآت',
-                logUpload: 'قام مدير النظام برفع مسودة الدليل الداخلي',
-                logFirewall: 'تم حظر محاولة دخول مشبوهة'
-            },
-            en: {
-                pageTitle: "eCode | Dashboard",
-                alertTitle: 'Action Required: Approve "Internal Manual"',
-                alertDesc: 'Draft awaiting final Board approval. Uploader:',
-                uploaderName: 'System Admin',
-                reviewBtn: 'Review & Approve',
-                kpiCapital: 'Issued Capital',
-                currency: 'SAR',
-                fullyPaid: 'Fully Paid',
-                kpiShareholders: 'Shareholders',
-                member: 'Members',
-                shareholdersList: 'Shareholder 1, Shareholder 2...',
-                kpiGov: 'Circulated Resolutions',
-                pending: 'Pending Signature',
-                waitingFor: 'Waiting: CEO',
-                kpiComp: 'Compliance Rate',
-                chartTitle: 'Ownership Structure',
-                commTitle: 'Committees & Board',
-                auditComm: 'Audit Committee',
-                newCycle: 'New Cycle',
-                commMember1: 'Member 1 (Chairman)',
-                commMember2: 'Member 2 (Member)',
-                commMember3: 'Member 3 (Member)',
-                lastMeeting: 'Last Meeting: 22/12/2025',
-                minutes: 'Minutes',
-                boardSec: 'Board Secretary',
-                secName: 'Board Secretary',
-                opsTitle: 'Operational Tasks',
-                task1: 'Approve Bonus Policy',
-                dueDate: 'Due Date',
-                gov: 'Gov',
-                taskPayroll: 'Review Payroll Report (HR)',
-                fromLabel: 'From',
-                senderName: 'HR Manager',
-                ops: 'Ops',
-                task3: 'Update Commercial Registry',
-                ministry: 'Ministry of Commerce',
-                legal: 'Legal',
-                viewAll: 'View All Tasks (12)',
-                auditTitle: 'Live System Audit',
-                chartHeirs: 'Major Shareholders',
-                chartHesham: 'CEO',
-                chartBG: 'Strategic Partner',
-                chartOthers: 'Others',
-                logBackup: 'Backup completed successfully',
-                logPolicy: 'CEO viewed Bonus Policy',
-                logUpload: 'Admin uploaded Internal Manual draft',
-                logFirewall: 'Suspicious login attempt blocked'
             }
         };
 
