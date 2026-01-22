@@ -79,7 +79,7 @@ const Layout = {
         this.role = localStorage.getItem('userRole') || 'guest';
         this.userName = localStorage.getItem('userName') || 'مستخدم';
         
-        if (!localStorage.getItem('authToken') && !window.location.href.includes('login.html')) {
+        if (!localStorage.getItem('authToken') && !window.location.href.includes('index.html')) {
             window.location.href = this.rootPath + 'index.html';
             return;
         }
@@ -151,7 +151,7 @@ const Layout = {
             </nav>
 
             <div class="sidebar-footer" style="margin-top: auto;">
-                <a href="#" onclick="Layout.logout()" class="menu-item logout-btn" style="color: var(--coral-pink);">
+                <a href="../eGov" onclick="Layout.logout()" class="menu-item logout-btn" style="color: var(--coral-pink);">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>خروج</span>
                 </a>
@@ -264,7 +264,7 @@ const Layout = {
 
     logout: function() {
         localStorage.clear();
-        window.location.href = this.rootPath + 'index.html';
+        window.location.href = this.rootPath + '../eGov';
     }
 };
 
