@@ -139,7 +139,7 @@ const Layout = {
 
         const sidebarHTML = `
             <div class="sidebar-header">
-                <img src="${this.rootPath}partners-slider/favicon.png" alt="Logo" class="logo-img">
+                <img src="${this.rootPath}../favicon.png" alt="Logo" class="logo-img">
                 <div class="brand-text"><h3>eGov</h3><span style="font-size:11px;color:var(--lavender-light)">${this.getRoleName(this.role)}</span></div>
             </div>
             <nav class="sidebar-nav"><div class="menu-category">القائمة</div>${menuHTML}</nav>
@@ -172,7 +172,7 @@ const Layout = {
                 </div>
                 <div class="user-profile">
                     <div class="user-info"><span class="name">${this.userName}</span><span class="role" style="font-size:10px;color:var(--text-secondary)">${this.getRoleName(this.role)}</span></div>
-                    <div class="user-avatar"><img src="${this.rootPath}partners-slider/favicon.png" alt="User"></div>
+                    <div class="user-avatar"><img src="${this.rootPath}../favicon.png" alt="User"></div>
                 </div>
             </div>
         `;
