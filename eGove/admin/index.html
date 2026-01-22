@@ -6,17 +6,14 @@
     <title>لوحة القيادة | eGov Admin</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Simple animation for cards */
-        .stat-card, .section-card {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
+        /* تأثيرات ظهور احترافية */
+        .stat-card, .section-card { opacity: 0; animation: fadeInUp 0.6s ease-out forwards; }
         .stat-card:nth-child(1) { animation-delay: 0.1s; }
         .stat-card:nth-child(2) { animation-delay: 0.2s; }
         .stat-card:nth-child(3) { animation-delay: 0.3s; }
         .stat-card:nth-child(4) { animation-delay: 0.4s; }
         .section-card { animation-delay: 0.5s; }
-
+        
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -76,9 +73,14 @@
 
             <div class="section-card" style="background: var(--bg-secondary); border-radius: 16px; padding: 25px; border: 1px solid var(--border-color); text-align: center;">
                 <h4 style="color: var(--text-primary); margin-bottom: 20px;" data-i18n="compliance_status">حالة الامتثال</h4>
-                <div style="position: relative; height: 150px; width: 100%; display:flex; justify-content:center;">
+                
+                <div style="position: relative; height: 160px; width: 100%; display: flex; justify-content: center;">
                     <canvas id="complianceChart"></canvas>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%); text-align: center;">
+                        <span style="font-size: 24px; font-weight: bold; color: var(--text-primary);">A+</span>
+                    </div>
                 </div>
+                
                 <p style="margin-top: 15px; font-size: 13px; color: var(--text-secondary);" data-i18n="gov_rating">تصنيف الحوكمة: ممتاز</p>
             </div>
         </div>
@@ -89,20 +91,24 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('complianceChart').getContext('2d');
+            // ألوان متوافقة مع الثيم الداكن
+            const colorPrimary = '#7EDDA3'; // أخضر نعناعي
+            const colorBackground = '#2D3748'; // لون الخلفية الداكن
+
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
                     labels: ['مكتمل', 'متبقي'],
                     datasets: [{
                         data: [98.5, 1.5],
-                        backgroundColor: ['#7EDDA3', '#2D3748'],
+                        backgroundColor: [colorPrimary, colorBackground],
                         borderWidth: 0,
                         hoverOffset: 4
                     }]
                 },
                 options: {
                     responsive: true,
-                    cutout: '75%',
+                    cutout: '75%', // سماكة الدائرة
                     plugins: {
                         legend: { display: false },
                         tooltip: { enabled: false }
