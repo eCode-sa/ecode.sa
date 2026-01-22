@@ -538,3 +538,182 @@ details[open] .accordion-icon { transform: rotate(180deg); }
 [dir="ltr"] .service-features li::before, [dir="ltr"] .legal-section ul li::before { right: auto; left: 0; }
 [dir="ltr"] .service-features li, [dir="ltr"] .legal-section ul li { padding-right: 0; padding-left: 24px; }
 [dir="ltr"] .coming-soon-badge { margin-right: 0; margin-left: 10px; }
+
+}
+/* =========================================
+   Unified Layout System (Sidebar & Topbar)
+   ========================================= */
+
+/* App Container */
+.app-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-secondary);
+    border-left: 1px solid var(--border-color); /* RTL Default */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+[dir="ltr"] .sidebar { border-left: none; border-right: 1px solid var(--border-color); }
+
+.sidebar.collapsed {
+    width: 0;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.logo-img { width: 35px; height: 35px; }
+.brand-text h3 { margin: 0; font-size: 18px; color: var(--text-primary); }
+.brand-text span { font-size: 11px; color: var(--lavender-light); }
+
+.sidebar-nav { flex: 1; overflow-y: auto; }
+
+.menu-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 15px 0 5px;
+    padding: 0 10px;
+    font-weight: 600;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    transition: 0.2s;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.menu-item:hover, .menu-item.active {
+    background-color: var(--bg-elevated);
+    color: var(--lavender-light);
+}
+
+.menu-item i { width: 20px; text-align: center; }
+.logout-btn:hover { background-color: rgba(255, 107, 107, 0.1) !important; color: #ff6b6b !important; }
+
+/* --- Main Content Area --- */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+/* --- Topbar --- */
+.topbar {
+    height: 70px;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 15px; }
+.toggle-btn { background: none; border: none; color: var(--text-primary); font-size: 18px; cursor: pointer; }
+.page-title { font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 0; }
+
+.topbar-right { display: flex; align-items: center; gap: 15px; }
+
+.icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+}
+.icon-btn:hover { background-color: var(--bg-primary); color: var(--lavender-light); }
+
+.badge-dot {
+    position: absolute; top: 10px; right: 10px;
+    width: 8px; height: 8px; background-color: #ff6b6b;
+    border-radius: 50%; border: 1px solid var(--bg-secondary);
+}
+
+/* Notification Dropdown */
+.notification-wrapper { position: relative; }
+.dropdown-menu {
+    position: absolute; top: 50px; left: 0; width: 300px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: none; z-index: 1000;
+    overflow: hidden;
+}
+[dir="ltr"] .dropdown-menu { left: auto; right: 0; }
+.dropdown-menu.show { display: block; animation: fadeIn 0.2s; }
+
+.dropdown-header { padding: 15px; font-weight: bold; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
+.notif-item {
+    padding: 12px 15px; display: flex; gap: 12px; align-items: start;
+    border-bottom: 1px solid var(--border-color); cursor: pointer;
+}
+.notif-item:hover { background: var(--bg-elevated); }
+.notif-item p { margin: 0; font-size: 13px; color: var(--text-primary); font-weight: 500; }
+.notif-item span { font-size: 11px; color: var(--text-muted); }
+
+/* User Profile */
+.user-profile {
+    display: flex; align-items: center; gap: 12px;
+    padding-right: 15px; border-right: 1px solid var(--border-color);
+}
+[dir="ltr"] .user-profile { padding-right: 0; padding-left: 15px; border-right: none; border-left: 1px solid var(--border-color); }
+
+.user-info { text-align: left; line-height: 1.2; display: none; }
+@media (min-width: 768px) { .user-info { display: block; } }
+
+.user-info .name { display: block; font-size: 14px; font-weight: bold; color: var(--text-primary); }
+.user-info .role { display: block; font-size: 11px; color: var(--lavender-light); }
+
+.user-avatar img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--lavender-light); }
+
+/* Chat Bot (Re-styled) */
+.chat-widget-btn {
+    position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px;
+    background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
+    border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center;
+    font-size: 24px; cursor: pointer; box-shadow: 0 5px 20px rgba(139, 127, 255, 0.4); z-index: 999;
+}
+[dir="ltr"] .chat-widget-btn { left: auto; right: 30px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar { position: absolute; height: 100%; width: 260px; transform: translateX(100%); } /* Hide in RTL */
+    [dir="ltr"] .sidebar { transform: translateX(-100%); }
+    
+    .sidebar.collapsed { width: 260px; transform: translateX(0); } /* Show when toggled */
+    .topbar { padding: 0 15px; }
+}
