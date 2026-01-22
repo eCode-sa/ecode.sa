@@ -211,6 +211,56 @@ const DICTIONARY = {
         lbl_role: "الدور الوظيفي",
         lbl_dept: "القسم",
         btn_save: "حفظ",
+
+        // --- صفحة إدارة المستخدمين ---
+        lbl_total_users: "إجمالي المستخدمين",
+        lbl_active_users: "نشط حالياً",
+        lbl_admins: "مدراء النظام",
+        lbl_blocked: "محظورين",
+        ph_search_users: "بحث بالاسم، الدور، أو البريد...",
+        btn_add_user: "مستخدم جديد",
+        
+        // أعمدة الجدول
+        col_user: "المستخدم",
+        col_role: "الدور الوظيفي",
+        col_dept: "القسم",
+        col_join_date: "تاريخ الانضمام",
+        col_status: "الحالة",
+        col_actions: "إجراءات",
+        
+        // حالات المستخدم
+        status_active: "نشط",
+        status_inactive: "خامل",
+        
+        // نافذة إضافة مستخدم
+        modal_add_user_title: "إضافة مستخدم جديد",
+        lbl_first_name: "الاسم الأول",
+        lbl_last_name: "اسم العائلة",
+        lbl_email: "البريد الإلكتروني",
+        lbl_role: "الدور الوظيفي",
+        lbl_dept: "القسم",
+        btn_save: "حفظ",
+        btn_cancel: "إلغاء",
+
+        // --- أسماء المستخدمين ---
+        name_moataz: "معتز سعود",
+        name_ali: "علي ابراهيم",
+        name_ayman: "أيمن المغربي",
+        name_abdulaziz: "عبدالعزيز سلطان",
+        name_ibrahim: "ابراهيم اياد",
+        name_ahmed: "احمد عبد القادر",
+        name_amjad: "امجاد علي",
+        name_inas: "ايناس الطيب",
+        name_amal: "امل خالد",
+        name_maymouna: "ميمونه فاروق",
+        name_osama: "اسامه الجنيدي",
+
+        // --- الأوصاف الوظيفية ---
+        desc_moataz: "نائب رئيس المجلس (15%)",
+        desc_ali: "مساهم (10%)",
+        desc_ayman: "مسؤول الحوكمة - مساهم (50%)",
+        desc_share_10: "حصة (10%)",
+        desc_share_15: "حصة (15%)",
         
 
         // --- عام ---
@@ -429,6 +479,56 @@ const DICTIONARY = {
         lbl_role: "Role",
         lbl_dept: "Department",
         btn_save: "Save",
+
+        // --- Users Management Page ---
+        lbl_total_users: "Total Users",
+        lbl_active_users: "Active Now",
+        lbl_admins: "Admins",
+        lbl_blocked: "Blocked",
+        ph_search_users: "Search name, role, or email...",
+        btn_add_user: "New User",
+        
+        // Table Columns
+        col_user: "User",
+        col_role: "Role",
+        col_dept: "Department",
+        col_join_date: "Join Date",
+        col_status: "Status",
+        col_actions: "Actions",
+        
+        // User Status
+        status_active: "Active",
+        status_inactive: "Inactive",
+        
+        // Add User Modal
+        modal_add_user_title: "Add New User",
+        lbl_first_name: "First Name",
+        lbl_last_name: "Last Name",
+        lbl_email: "Email Address",
+        lbl_role: "Role",
+        lbl_dept: "Department",
+        btn_save: "Save",
+        btn_cancel: "Cancel",
+
+        // --- User Names ---
+        name_moataz: "Moataz Saud",
+        name_ali: "Ali Ibrahim",
+        name_ayman: "Ayman Al-Maghrabi",
+        name_abdulaziz: "Abdulaziz Sultan",
+        name_ibrahim: "Ibrahim Iyad",
+        name_ahmed: "Ahmed Abdulqader",
+        name_amjad: "Amjad Ali",
+        name_inas: "Inas Al-Tayeb",
+        name_amal: "Amal Khalid",
+        name_maymouna: "Maymouna Farouk",
+        name_osama: "Osama Al-Junaidi",
+
+        // --- Role Descriptions ---
+        desc_moataz: "Vice Chairman (15%)",
+        desc_ali: "Shareholder (10%)",
+        desc_ayman: "GRC Officer - Shareholder (50%)",
+        desc_share_10: "Share (10%)",
+        desc_share_15: "Share (15%)",
 
         // --- General ---
         welcome: "Welcome",
