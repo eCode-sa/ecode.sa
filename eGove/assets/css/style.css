@@ -245,19 +245,15 @@ p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
 
 .user-avatar img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--lavender-light); }
 
-/* =========================================
-   Fixed Chat Widget Styles (تصحيح البوت - عام للكل)
-   ========================================= */
-
-/* الزر العائم */
+/* Chat Widget Styles - Fixed & Floating */
 .chat-widget-btn {
-    position: fixed !important;
+    position: fixed;
     bottom: 30px;
-    left: 30px; /* للعربي */
+    left: 30px; /* في العربية */
     width: 60px;
     height: 60px;
+    background: linear-gradient(135deg, #8B7FFF, #5BC0F8);
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
     color: #fff;
     display: flex;
     align-items: center;
@@ -268,110 +264,52 @@ p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     transition: transform 0.3s;
 }
-
 .chat-widget-btn:hover { transform: scale(1.1); }
 
-/* نافذة الدردشة */
 .chat-window {
-    position: fixed !important;
-    bottom: 100px; /* يظهر فوق الزر */
+    position: fixed;
+    bottom: 100px;
     left: 30px;
-    width: 350px !important;
-    height: 500px !important;
+    width: 320px;
+    height: 450px;
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    display: none; /* مخفي افتراضياً */
+    display: none; /* مخفي افتراضياً، يظهر بـ Flex عبر JS */
     flex-direction: column;
     z-index: 10000;
     overflow: hidden;
 }
 
-/* دعم الإنجليزية (عكس الاتجاه) */
 [dir="ltr"] .chat-widget-btn { left: auto; right: 30px; }
 [dir="ltr"] .chat-window { left: auto; right: 30px; }
 
-/* تنسيق داخلي للنافذة */
 .chat-header {
     padding: 15px;
     background: var(--bg-elevated);
     border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
 }
-.chat-header h4 { margin: 0; font-size: 16px; color: var(--text-primary); }
+.chat-header h4 { margin: 0; color: var(--text-primary); font-size: 14px; }
 
 .chat-body {
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-    background: var(--bg-primary);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex: 1; padding: 15px; overflow-y: auto; background: var(--bg-primary);
+    display: flex; flex-direction: column; gap: 10px;
 }
 
 .chat-footer {
-    padding: 10px;
-    background: var(--bg-elevated);
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    gap: 10px;
+    padding: 10px; background: var(--bg-elevated); border-top: 1px solid var(--border-color);
+    display: flex; gap: 10px;
 }
 
 .chat-input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    outline: none;
+    flex: 1; padding: 8px 12px; border-radius: 20px; border: 1px solid var(--border-color);
+    background: var(--bg-primary); color: var(--text-primary); outline: none;
 }
 
-/* فقاعات الرسائل */
 .chat-msg {
-    padding: 10px 15px;
-    border-radius: 12px;
-    font-size: 13px;
-    max-width: 80%;
-    line-height: 1.4;
+    padding: 8px 12px; border-radius: 12px; font-size: 13px; max-width: 80%; line-height: 1.4;
 }
 .msg-bot { background: var(--bg-elevated); color: var(--text-primary); align-self: flex-start; border-bottom-right-radius: 2px; }
-.msg-user { background: var(--lavender-dark); color: #fff; align-self: flex-end; border-bottom-left-radius: 2px; }
-
-
-/* =========================================
-   Responsive Styles (للجوال والأجهزة اللوحية)
-   ========================================= */
-@media (max-width: 768px) {
-    /* إخفاء القائمة الجانبية افتراضياً في الجوال */
-    .sidebar { 
-        position: fixed; 
-        height: 100vh; 
-        width: 260px; 
-        transform: translateX(100%); /* إخفاء لليمين (RTL) */
-        top: 0;
-        right: 0;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    } 
-    
-    [dir="ltr"] .sidebar { 
-        transform: translateX(-100%); /* إخفاء لليسار (LTR) */
-        left: 0;
-        right: auto;
-    }
-    
-    /* إظهار القائمة عند التفعيل */
-    .sidebar.collapsed { 
-        transform: translateX(0); 
-    } 
-    
-    /* تعديل الشريط العلوي */
-    .topbar { padding: 0 15px; }
-    
-    /* تعديل المحتوى الرئيسي */
-    .main-content { margin-right: 0 !important; margin-left: 0 !important; }
-}
+.msg-user { background: #8B7FFF; color: #fff; align-self: flex-end; border-bottom-left-radius: 2px; }
