@@ -96,7 +96,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs text-slate-400 font-bold uppercase" data-i18n="kpiCapital">رأس المال</p>
-                            <h3 id="capitalValue" class="text-2xl font-bold mt-1 font-en text-white">6,000,000 <span class="text-xs font-sans text-slate-500">ر.س</span></h3>
+                            <h3 id="capitalValue" class="text-2xl font-bold mt-1 font-en text-white">100,000 <span class="text-xs font-sans text-slate-500">ر.س</span></h3>
                         </div>
                         <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center"><i class="fa-solid fa-coins"></i></div>
                     </div>
@@ -109,7 +109,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs text-slate-400 font-bold uppercase" data-i18n="kpiShareholders">المساهمين</p>
-                            <h3 id="shareholderCount" class="text-2xl font-bold mt-1 font-en text-white">11 <span class="text-xs font-sans text-slate-500">عضو</span></h3>
+                            <h3 id="shareholderCount" class="text-2xl font-bold mt-1 font-en text-white">5 <span class="text-xs font-sans text-slate-500">عضو</span></h3>
                         </div>
                         <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
                     </div>
@@ -170,6 +170,7 @@
                             <div class="space-y-2 mt-3">
                                 <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 rounded-full bg-primary"></span> عضو 1 (رئيس)</div>
                                 <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 rounded-full bg-secondary"></span> عضو 2 (عضو)</div>
+                                <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 rounded-full bg-secondary"></span> عضو 3 (عضو)</div>
                             </div>
                         </div>
                     </div>
@@ -203,10 +204,7 @@
         </main>
     </div>
 
-    <script src="../assets/js/core/config.js"></script>
-    <script src="../assets/js/core/i18n.js"></script>
-    <script src="../assets/js/data/company_data.js"></script>
-    <script src="../assets/js/components/layout.js"></script>
+    <script src="../assets/js/system.js"></script>
     
     <script>
         // --- 3. المنطق التشغيلي (مدمج لتفادي أخطاء الملفات المفقودة) ---
@@ -308,10 +306,10 @@
             const legend = document.getElementById('chartLegend');
             if(legend) {
                 legend.innerHTML = `
-                    <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-secondary">●</span> ${t.heirs}</span> <span class="text-white">35%</span></div>
-                    <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-primary">●</span> ${t.ceo}</span> <span class="text-white">10%</span></div>
+                    <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-secondary">●</span> ${t.heirs}</span> <span class="text-white">50%</span></div>
+                    <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-primary">●</span> ${t.ceo}</span> <span class="text-white">15%</span></div>
                     <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-success">●</span> ${t.partner}</span> <span class="text-white">15%</span></div>
-                    <div class="flex justify-between text-xs text-slate-400"><span><span class="text-slate-400">●</span> ${t.others}</span> <span class="text-white">40%</span></div>
+                    <div class="flex justify-between text-xs text-slate-400"><span><span class="text-slate-400">●</span> ${t.others}</span> <span class="text-white">20%</span></div>
                 `;
             }
         }
