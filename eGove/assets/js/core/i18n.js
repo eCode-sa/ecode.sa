@@ -21,6 +21,18 @@ const DICTIONARY = {
         role_share: "مساهم",
         role_admin: "مدير النظام",
 
+        // --- الأقسام والإدارات ---
+        dept_top_mgmt: "الإدارة العليا",
+        dept_board: "مجلس الإدارة",
+        dept_it: "تقنية المعلومات",
+        dept_tech_dev: "التقنية والتطوير",
+        dept_finance: "الإدارة المالية",
+        dept_support: "الخدمات المساندة",
+        dept_sales: "المبيعات",
+        dept_audit: "المراجعة والتدقيق",
+        dept_secretariat: "أمانة المجلس",
+        dept_shareholders: "المساهمين",
+
         // --- القوائم الجانبية ---
         menu_dashboard: "لوحة القيادة",
         menu_users: "إدارة المستخدمين",
@@ -290,6 +302,18 @@ const DICTIONARY = {
         role_audit: "Internal Audit",
         role_share: "Shareholder",
         role_admin: "System Admin",
+
+        // --- Departments ---
+        dept_top_mgmt: "Top Management",
+        dept_board: "Board of Directors",
+        dept_it: "IT Department",
+        dept_tech_dev: "Tech & Development",
+        dept_finance: "Finance Dept",
+        dept_support: "Support Services",
+        dept_sales: "Sales Dept",
+        dept_audit: "Audit & Review",
+        dept_secretariat: "Secretariat",
+        dept_shareholders: "Shareholders",
 
         // --- Sidebar Menus ---
         menu_dashboard: "Dashboard",
