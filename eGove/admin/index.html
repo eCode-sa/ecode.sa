@@ -1,284 +1,121 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="dark">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eCode | لوحة القيادة</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>لوحة القيادة | eGov Admin</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#38bdf8', secondary: '#818cf8', success: '#34d399', warning: '#fbbf24', danger: '#f87171',
-                        dark: '#0f172a', surface: '#1e293b', border: '#334155'
-                    },
-                    fontFamily: { sans: ['Tajawal', 'sans-serif'], en: ['Inter', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-
     <style>
-        /* إجبار التخطيط (Layout Force) */
-        body { display: flex; height: 100vh; overflow: hidden; margin: 0; background-color: #0f172a; }
+        /* تأثيرات ظهور احترافية */
+        .stat-card, .section-card { opacity: 0; animation: fadeInUp 0.6s ease-out forwards; }
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+        .section-card { animation-delay: 0.5s; }
         
-        /* حاوية النظام */
-        #app, .app-container { display: flex !important; width: 100% !important; height: 100% !important; flex-direction: row !important; }
-        
-        /* القائمة الجانبية */
-        aside, #appSidebar, .sidebar { width: 280px !important; height: 100vh !important; flex-shrink: 0 !important; overflow-y: auto !important; z-index: 50; border-left: 1px solid #334155; }
-        
-        /* المحتوى */
-        main, #main-content, .main-content { flex: 1 !important; display: flex !important; flex-direction: column !important; height: 100vh !important; overflow: hidden !important; }
-        #workspace, .dashboard-container { flex: 1 !important; overflow-y: auto !important; padding: 24px !important; }
-
-        /* ثيم الألوان (Dark/Light Force) */
-        html.dark body { background-color: #0f172a !important; color: #f8fafc !important; }
-        html:not(.dark) body { background-color: #f3f4f6 !important; color: #1e293b !important; }
-        html:not(.dark) aside, html:not(.dark) header { background-color: #ffffff !important; border-color: #e5e7eb !important; }
-        html:not(.dark) .card { background-color: #ffffff !important; border: 1px solid #e5e7eb !important; }
-        
-        /* سكرول بار */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background-color: #94a3b8; border-radius: 10px; }
-        html.dark ::-webkit-scrollbar-thumb { background-color: #475569; }
-
-        .hidden { display: none !important; }
-        .live-dot { width: 8px; height: 8px; background-color: #34d399; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body class="bg-dark text-slate-100 font-sans">
+<body>
 
-    <div id="loadingOverlay">
-        <div class="w-16 h-16 border-4 border-surface border-t-primary rounded-full animate-spin"></div>
+    <div class="dashboard-content">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-shield-alt stat-icon"></i>
+                <div class="stat-value">98.5%</div>
+                <div class="stat-label" data-i18n="compliance_index">مؤشر الامتثال العام</div>
+                <div class="stat-trend"><i class="fas fa-arrow-up"></i> <span dir="ltr">+2.4%</span></div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-users stat-icon"></i>
+                <div class="stat-value">124</div>
+                <div class="stat-label" data-i18n="active_users">مستخدم نشط</div>
+                <div class="stat-trend"><i class="fas fa-check"></i> <span data-i18n="all_working">الكل يعمل</span></div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-exclamation-circle stat-icon"></i>
+                <div class="stat-value" style="color: var(--soft-orange);">3</div>
+                <div class="stat-label" data-i18n="critical_alerts">تنبيهات حرجة</div>
+                <div class="stat-trend down" data-i18n="review_needed">يرجى المراجعة</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-server stat-icon"></i>
+                <div class="stat-value" style="color: var(--mint-green);">Stable</div>
+                <div class="stat-label" data-i18n="system_status">حالة الأنظمة</div>
+                <div class="stat-trend">100%</div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 25px; margin-top: 25px;">
+            <div class="section-card" style="background: var(--bg-secondary); border-radius: 16px; padding: 25px; border: 1px solid var(--border-color);">
+                <div class="card-header" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                    <span class="card-title" style="font-weight: bold; color: var(--text-primary);">
+                        <i class="fas fa-history me-2" style="color: var(--sky-blue);"></i> <span data-i18n="recent_activities">آخر النشاطات</span>
+                    </span>
+                </div>
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 15px 0; color: var(--text-primary);" data-i18n="role_ceo">الرئيس التنفيذي</td>
+                        <td style="color: var(--text-secondary);" data-i18n="task_budget_approval">اعتماد الميزانية</td>
+                        <td style="color: var(--mint-green);" data-i18n="status_completed">مكتمل</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 15px 0; color: var(--text-primary);" data-i18n="role_hr">مدير HR</td>
+                        <td style="color: var(--text-secondary);" data-i18n="task_policy_update">تحديث سياسة الإجازات</td>
+                        <td style="color: var(--soft-orange);" data-i18n="status_pending">قيد المراجعة</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section-card" style="background: var(--bg-secondary); border-radius: 16px; padding: 25px; border: 1px solid var(--border-color); text-align: center;">
+                <h4 style="color: var(--text-primary); margin-bottom: 20px;" data-i18n="compliance_status">حالة الامتثال</h4>
+                
+                <div style="position: relative; height: 160px; width: 100%; display: flex; justify-content: center;">
+                    <canvas id="complianceChart"></canvas>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%); text-align: center;">
+                        <span style="font-size: 24px; font-weight: bold; color: var(--text-primary);">A+</span>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 15px; font-size: 13px; color: var(--text-secondary);" data-i18n="gov_rating">تصنيف الحوكمة: ممتاز</p>
+            </div>
+        </div>
     </div>
 
-    <div id="sidebar-container"></div>
-    <div id="header-container"></div>
-
-    <main id="dashboard-content" class="p-6 space-y-6 hidden"> <div class="bg-surface rounded-2xl p-1 border-r-4 border-secondary shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="p-4 flex items-center gap-4">
-                <div class="w-12 h-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-bell animate-bounce"></i></div>
-                <div>
-                    <h3 class="font-bold text-lg text-white" data-i18n="alertTitle">إجراء مطلوب: اعتماد "الدليل الداخلي"</h3>
-                    <p class="text-sm text-slate-400"><span data-i18n="alertDesc">مسودة بانتظار الاعتماد النهائي. الرافع:</span> <span class="font-bold text-primary" data-i18n="uploaderName">مدير النظام</span></p>
-                </div>
-            </div>
-            <div class="p-4">
-                <button class="px-6 py-2.5 bg-secondary text-white rounded-xl text-sm font-bold hover:scale-105 transition-transform">مراجعة</button>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-surface p-5 rounded-2xl border border-border hover:border-primary transition-all hover:-translate-y-1">
-                <div class="flex justify-between items-start">
-                    <div><p class="text-xs text-slate-400 font-bold uppercase">رأس المال</p><h3 class="text-2xl font-bold mt-1 font-en text-white">100,000 <span class="text-xs font-sans text-slate-500">ر.س</span></h3></div>
-                    <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center"><i class="fa-solid fa-coins"></i></div>
-                </div>
-                <div class="mt-4 flex items-center gap-2 text-xs text-success font-bold bg-success/10 w-fit px-2 py-1 rounded"><i class="fa-solid fa-check"></i> مدفوع بالكامل</div>
-            </div>
-
-            <div class="bg-surface p-5 rounded-2xl border border-border hover:border-secondary transition-all hover:-translate-y-1">
-                <div class="flex justify-between items-start">
-                    <div><p class="text-xs text-slate-400 font-bold uppercase">المساهمين</p><h3 class="text-2xl font-bold mt-1 font-en text-white">5 <span class="text-xs font-sans text-slate-500">أعضاء</span></h3></div>
-                    <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
-                </div>
-                <div class="mt-4 text-xs text-slate-400 truncate w-full">أيمن، معتز، ميمونه...</div>
-            </div>
-
-            <div class="bg-surface p-5 rounded-2xl border border-border hover:border-danger transition-all hover:-translate-y-1">
-                <div class="flex justify-between items-start">
-                    <div><p class="text-xs text-slate-400 font-bold uppercase">قرارات بالتمرير</p><h3 class="text-2xl font-bold mt-1 font-en text-danger">2</h3></div>
-                    <div class="w-10 h-10 rounded-xl bg-danger/10 text-danger flex items-center justify-center"><i class="fa-solid fa-signature"></i></div>
-                </div>
-                <div class="mt-4 flex items-center gap-1 text-xs text-slate-400"><span class="w-2 h-2 rounded-full bg-danger animate-pulse"></span> بانتظار: الرئيس التنفيذي</div>
-            </div>
-
-            <div class="bg-surface p-5 rounded-2xl border border-border hover:border-success transition-all hover:-translate-y-1">
-                <div class="flex justify-between items-start">
-                    <div><p class="text-xs text-slate-400 font-bold uppercase">نسبة الامتثال</p><h3 class="text-2xl font-bold mt-1 font-en text-success" id="complianceText">92%</h3></div>
-                    <div class="w-10 h-10 rounded-xl bg-success/10 text-success flex items-center justify-center"><i class="fa-solid fa-shield-halved"></i></div>
-                </div>
-                <div class="w-full bg-dark h-1.5 rounded-full mt-5 overflow-hidden"><div id="complianceBar" class="bg-success h-full w-[92%] transition-all duration-1000"></div></div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="bg-surface p-6 rounded-2xl border border-border">
-                    <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-chart-pie text-primary"></i> هيكل الملكية</h3>
-                    <div class="h-48 relative flex justify-center"><canvas id="ownershipChart"></canvas></div>
-                    <div class="mt-6 space-y-3" id="chartLegend"></div>
-                </div>
-
-            <div class="lg:col-span-2 bg-surface p-6 rounded-2xl border border-border">
-                    <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-list-check text-success"></i> المهام التشغيلية</h3>
-                    <div class="space-y-3 max-h-48 overflow-y-auto pr-2" style="scrollbar-width: thin;">
-                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                            <div class="flex-1"><p class="text-xs font-bold text-white">اعتماد سياسة المكافآت</p><p class="text-[10px] text-slate-400 mt-1">تاريخ الاستحقاق: 01/02/2026</p></div>
-                        </div>
-                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                            <div class="flex-1"><p class="text-xs font-bold text-white">مراجعة تقرير الرواتب</p><p class="text-[10px] text-slate-400">من: الموارد البشرية</p></div>
-                        </div>
-                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                            <div class="flex-1"><p class="text-xs font-bold text-white">تحديث بيانات السجل التجاري</p><p class="text-[10px] text-slate-400">وزارة التجارة</p></div>
-                        </div>
-                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                            <div class="flex-1"><p class="text-xs font-bold text-white">تجديد الاشتراك في هيئة الزكاة</p><p class="text-[10px] text-slate-400">المالية</p></div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="bg-surface p-6 rounded-2xl border border-border">
-                <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-users-gear text-secondary"></i> لجنة المراجعة</h3>
-                <div class="p-4 bg-dark/50 rounded-xl border border-border">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="bg-success/10 text-success text-[10px] px-2 py-0.5 rounded-full font-bold">دورة جديدة</span>
-                        <span class="text-slate-500 text-[10px]">اجتماع: 22/12/2025</span>
-                    </div>
-                    <div class="space-y-2 text-xs text-slate-300">
-                        <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">1</div> عضو 1 (رئيس)</div>
-                        <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">2</div> عضو 2 (عضو)</div>
-                        <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-warning/20 flex items-center justify-center text-warning">3</div> عضو 3 (عضو)</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-dark rounded-2xl p-5 border border-border shadow-lg">
-                <div class="flex justify-between items-center mb-3 pb-2 border-b border-border">
-                    <span class="text-slate-300 font-bold flex gap-2 items-center"><i class="fa-solid fa-terminal text-primary"></i> سجل النظام المباشر</span>
-                    <span class="flex items-center gap-2 text-success text-xs font-bold"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="h-32 overflow-y-auto font-mono text-xs space-y-2 pr-1" id="audit-log-container" style="scrollbar-width: thin;"></div>
-            </div>
-        </div>
-
-    </main>
-
     <script src="../assets/js/system.js"></script>
-
+    
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. تطبيق الثيم فوراً
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-            } else {
-                document.documentElement.classList.add('dark');
-            }
-
-            // 2. الحقن السحري + تشغيل الشارت (الترتيب مهم هنا)
-            let attempts = 0;
-            const injector = setInterval(() => {
-                attempts++;
-                const workspace = document.getElementById('workspace') || document.querySelector('.main-content') || document.getElementById('app');
-                
-                // نحاول لمدة ثانية، إذا لم نجد workspace، نضع المحتوى في أي مكان
-                if (workspace || attempts > 10) {
-                    clearInterval(injector);
-                    
-                    if (typeof Layout !== 'undefined') Layout.init();
-
-                    const myContent = document.getElementById('my-dashboard-content');
-                    if (workspace && myContent) {
-                        if(workspace.id !== 'app') workspace.innerHTML = ''; 
-                        workspace.appendChild(myContent);
-                    } else {
-                        document.body.appendChild(myContent);
-                    }
-                    
-                    // ✅ إظهار المحتوى الآن فقط
-                    myContent.classList.remove('hidden');
-                    
-                    // ✅ رسم الشارت (الآن فقط سيعمل لأن العنصر أصبح ظاهراً)
-                    initCharts();
-                    startLiveSimulation();
-                    
-                    // إخفاء اللودينج
-                    document.getElementById('loadingOverlay').style.display = 'none';
-                }
-            }, 100);
-        });
-
-        // بيانات الشارت (معتمدة)
-        const pageData = {
-            ar: { heirs: "أيمن المغربي", ceo: "معتز", partner: "ميمونه", others: "آخرون" },
-            en: { heirs: "Ayman", ceo: "Mutaz", partner: "Maimouna", others: "Others" }
-        };
-
-        function initCharts() {
-            const ctx = document.getElementById('ownershipChart');
-            if (!ctx) return;
-            const oldChart = Chart.getChart(ctx);
-            if(oldChart) oldChart.destroy();
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('complianceChart').getContext('2d');
+            // ألوان متوافقة مع الثيم الداكن
+            const colorPrimary = '#7EDDA3'; // أخضر نعناعي
+            const colorBackground = '#2D3748'; // لون الخلفية الداكن
 
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['أيمن', 'معتز', 'ميمونه', 'آخرون'],
+                    labels: ['مكتمل', 'متبقي'],
                     datasets: [{
-                        data: [50, 15, 15, 20],
-                        backgroundColor: ['#818cf8', '#38bdf8', '#34d399', '#94a3b8'],
-                        borderWidth: 0
+                        data: [98.5, 1.5],
+                        backgroundColor: [colorPrimary, colorBackground],
+                        borderWidth: 0,
+                        hoverOffset: 4
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '75%' }
+                options: {
+                    responsive: true,
+                    cutout: '75%', // سماكة الدائرة
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
             });
-
-            document.getElementById('chartLegend').innerHTML = `
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-secondary">●</span> أيمن المغربي</span> <span class="text-white">50%</span></div>
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-primary">●</span> معتز</span> <span class="text-white">15%</span></div>
-                <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-success">●</span> ميمونه</span> <span class="text-white">15%</span></div>
-                <div class="flex justify-between text-xs text-slate-400"><span><span class="text-slate-400">●</span> آخرون</span> <span class="text-white">20%</span></div>
-            `;
-        }
-
-        function startLiveSimulation() {
-            // تحريك النسبة
-            setInterval(() => {
-                const r = Math.floor(Math.random() * (95 - 90 + 1) + 90);
-                document.getElementById('complianceText').innerText = r + '%';
-                document.getElementById('complianceBar').style.width = r + '%';
-            }, 3000);
-
-            // سجلات
-            const container = document.getElementById('audit-log-container');
-            const msgs = [
-                { t: 'SYS', m: 'تم إكمال النسخ الاحتياطي بنجاح', c: 'text-success' },
-                { t: 'WARN', m: 'محاولة تسجيل دخول (معتز)', c: 'text-warning' },
-                { t: 'INFO', m: 'رفع مستند (مدير النظام)', c: 'text-primary' },
-                { t: 'INFO', m: 'مزامنة البيانات...', c: 'text-slate-400' },
-                { t: 'CRIT', m: 'جدار الحماية: حظر IP مشبوه', c: 'text-danger' }
-            ];
-
-            function addLog() {
-                const time = new Date().toLocaleTimeString('en-US', {hour12:false});
-                const item = msgs[Math.floor(Math.random() * msgs.length)];
-                const div = document.createElement('div');
-                div.className = "flex gap-3 hover:bg-surface p-2 rounded border-b border-border/50 animate-pulse";
-                div.innerHTML = `<span class="text-slate-500 w-12 font-mono">[${time}]</span><span class="${item.c} font-bold w-10">${item.t}</span><span class="text-slate-300 truncate">${item.m}</span>`;
-                container.prepend(div);
-                if(container.children.length > 8) container.lastElementChild.remove();
-            }
-            setInterval(addLog, 2000);
-            for(let i=0; i<3; i++) addLog();
-        }
+        });
     </script>
 </body>
 </html>
