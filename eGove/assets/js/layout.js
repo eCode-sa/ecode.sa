@@ -1,132 +1,119 @@
-const Layout = {
-    rootPath: '../../', // مسار العودة للجذر
+/**
+ * eGov Layout Engine v3.1 (Stable & Corrected)
+ */
 
-    // === تعريف القوائم حسب الأدوار ===
+const Layout = {
+    rootPath: '../../', 
+
     menus: {
         'admin': [
             { icon: 'fa-home', text: 'لوحة القيادة', link: 'index.html' },
             { icon: 'fa-users-cog', text: 'إدارة المستخدمين', link: 'users.html' },
             { icon: 'fa-shield-alt', text: 'سجلات التدقيق', link: 'audit.html' },
             { icon: 'fa-cogs', text: 'إعدادات النظام', link: 'settings.html' },
-            { icon: 'fa-briefcase', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-briefcase', text: 'الملف الشخصي', link: 'profile.html' }
         ],
         'board': [
             { icon: 'fa-gavel', text: 'ملخص المجلس', link: 'index.html' },
             { icon: 'fa-calendar-check', text: 'الاجتماعات', link: 'meetings.html' },
-            { icon: 'fa-file-signature', text: 'القرارات والتصويت', link: 'decisions.html' },
-            { icon: 'fa-briefcase', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-file-signature', text: 'القرارات', link: 'decisions.html' },
+            { icon: 'fa-briefcase', text: 'الملف الشخصي', link: 'profile.html' }
         ],
         'ceo': [
             { icon: 'fa-chart-line', text: 'نظرة عامة', link: 'index.html' },
-            { icon: 'fa-sitemap', text: 'الأداء الاستراتيجي', link: 'strategy.html' },
+            { icon: 'fa-sitemap', text: 'الاستراتيجية', link: 'strategy.html' },
             { icon: 'fa-file-invoice-dollar', text: 'التقارير المالية', link: 'finance.html' },
             { icon: 'fa-envelope-open-text', text: 'التعاميم', link: 'circulars.html' },
-            { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-user-circle', text: 'الملف الشخصي', link: 'profile.html' }
         ],
         'hr': [
             { icon: 'fa-users', text: 'الموظفين', link: 'index.html' },
-            { icon: 'fa-money-check-alt', text: 'مسير الرواتب', link: 'payroll.html' },
-            { icon: 'fa-clock', text: 'الحضور والانصراف', link: 'attendance.html' },
+            { icon: 'fa-money-check-alt', text: 'الرواتب', link: 'payroll.html' },
+            { icon: 'fa-clock', text: 'الحضور', link: 'attendance.html' },
             { icon: 'fa-user-plus', text: 'الطلبات والتوظيف', link: 'recruitment.html' },
-            { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-user-circle', text: 'الملف الشخصي', link: 'profile.html' }
         ],
-        'ceo': [ 
+        'cfo': [ // تم التصحيح: كان مكرر باسم ceo
             { icon: 'fa-coins', text: 'المركز المالي', link: 'index.html' },
-            { icon: 'fa-file-invoice', text: 'الفواتير والمدفوعات', link: 'invoices.html' },
+            { icon: 'fa-file-invoice', text: 'الفواتير', link: 'invoices.html' },
             { icon: 'fa-calculator', text: 'الميزانية', link: 'budget.html' },
-            { icon: 'fa-receipt', text: 'الضريبة والزكاة', link: 'tax.html' },
-            { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-receipt', text: 'الزكاة والضريبة', link: 'tax.html' },
+            { icon: 'fa-user-circle', text: 'الملف الشخصي', link: 'profile.html' }
         ],
-        'cto': [ 
+        'cto': [
             { icon: 'fa-server', text: 'حالة الأنظمة', link: 'index.html' },
-            { icon: 'fa-headset', text: 'تذاكر الدعم', link: 'tickets.html' },
+            { icon: 'fa-headset', text: 'الدعم الفني', link: 'tickets.html' },
             { icon: 'fa-laptop', text: 'الأصول التقنية', link: 'assets.html' },
             { icon: 'fa-lock', text: 'الأمن السيبراني', link: 'security.html' },
-            { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-user-circle', text: 'الملف الشخصي', link: 'profile.html' }
         ],
         'sales': [
             { icon: 'fa-chart-pie', text: 'المبيعات', link: 'index.html' },
             { icon: 'fa-handshake', text: 'العملاء (CRM)', link: 'clients.html' },
             { icon: 'fa-bullseye', text: 'الأهداف', link: 'targets.html' },
             { icon: 'fa-file-contract', text: 'العقود', link: 'contracts.html' },
-            { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-user-circle', text: 'الملف الشخصي', link: 'profile.html' }
         ],
         'audit': [
             { icon: 'fa-search', text: 'خطة التدقيق', link: 'index.html' },
             { icon: 'fa-exclamation-triangle', text: 'المخاطر', link: 'risks.html' },
             { icon: 'fa-clipboard-check', text: 'الامتثال', link: 'compliance.html' },
-            { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-user-circle', text: 'الملف الشخصي', link: 'profile.html' }
         ],
         'secretary': [
             { icon: 'fa-pen-fancy', text: 'إدارة الجلسات', link: 'index.html' },
             { icon: 'fa-book', text: 'سجل المحاضر', link: 'minutes.html' },
-            { icon: 'fa-tasks', text: 'متابعة التوصيات', link: 'tasks.html' },
-            { icon: 'fa-user-circle', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-tasks', text: 'التوصيات', link: 'tasks.html' },
+            { icon: 'fa-user-circle', text: 'الملف الشخصي', link: 'profile.html' }
         ],
         'shareholder': [
             { icon: 'fa-wallet', text: 'محفظتي', link: 'index.html' },
-            { icon: 'fa-hand-holding-usd', text: 'توزيعات الأرباح', link: 'dividends.html' },
-            { icon: 'fa-file-pdf', text: 'التقارير السنوية', link: 'reports.html' },
+            { icon: 'fa-hand-holding-usd', text: 'الأرباح', link: 'dividends.html' },
+            { icon: 'fa-file-pdf', text: 'التقارير', link: 'reports.html' },
             { icon: 'fa-vote-yea', text: 'التصويت', link: 'voting.html' },
-            { icon: 'fa-briefcase', text: 'ملفي الشخصي', link: 'profile.html' }
+            { icon: 'fa-user-circle', text: 'الملف الشخصي', link: 'profile.html' }
         ]
     },
 
-    // === دالة التشغيل الرئيسية ===
     init: function() {
-        // 1. التحقق من المستخدم
         this.role = localStorage.getItem('userRole') || 'guest';
         this.userName = localStorage.getItem('userName') || 'مستخدم';
         
-        // التحقق من تسجيل الدخول (إلا إذا كنا في صفحة الدخول)
         if (!localStorage.getItem('authToken') && !window.location.href.includes('login.html')) {
             window.location.href = this.rootPath + 'index.html';
             return;
         }
 
-        // 2. بناء الهيكل (هذه هي الخطوة المفقودة سابقاً)
         this.buildStructure();
-        
-        // 3. تعبئة المحتوى
         this.injectSidebar();
         this.injectTopbar();
         this.injectBot();
-        
-        // 4. استعادة الإعدادات
         this.restoreSettings();
     },
 
-    // === بناء الهيكل الأساسي للصفحة (DOM Manipulation) ===
     buildStructure: function() {
-        // حفظ محتوى الصفحة الأصلي (مثل الجداول والإحصائيات)
         const originalContent = document.body.innerHTML;
-        document.body.innerHTML = ''; // تنظيف الجسم
+        document.body.innerHTML = ''; 
 
-        // إنشاء الحاوية الرئيسية (Flex Container)
         const appContainer = document.createElement('div');
         appContainer.className = 'app-container';
 
-        // إنشاء القائمة الجانبية
         const sidebar = document.createElement('aside');
         sidebar.id = 'appSidebar';
         sidebar.className = 'sidebar';
 
-        // إنشاء منطقة المحتوى الرئيسية
         const mainContent = document.createElement('div');
         mainContent.className = 'main-content';
 
-        // إنشاء الشريط العلوي
         const topbar = document.createElement('header');
         topbar.id = 'appTopbar';
         topbar.className = 'topbar';
 
-        // إنشاء حاوية للصفحة الداخلية وإعادة المحتوى الأصلي لها
         const pageContent = document.createElement('main');
-        pageContent.className = 'dashboard-container'; // تتوافق مع CSS
+        pageContent.className = 'dashboard-container'; 
         pageContent.id = 'workspace';
         pageContent.innerHTML = originalContent;
 
-        // تجميع العناصر
         mainContent.appendChild(topbar);
         mainContent.appendChild(pageContent);
         
@@ -136,10 +123,8 @@ const Layout = {
         document.body.appendChild(appContainer);
     },
 
-    // === حقن محتوى القائمة الجانبية ===
     injectSidebar: function() {
-        // جلب القائمة المناسبة للدور، أو الافتراضية
-        const menuItems = this.menus[this.role] || this.menus['default'];
+        const menuItems = this.menus[this.role] || this.menus['admin']; // Fallback آمن
         
         let menuHTML = menuItems.map(item => {
             const isActive = window.location.href.includes(item.link) ? 'active' : '';
@@ -156,7 +141,7 @@ const Layout = {
                 <img src="${this.rootPath}partners-slider/favicon.png" alt="Logo" class="logo-img">
                 <div class="brand-text">
                     <h3>eGov</h3>
-                    <span style="font-size: 12px; color: var(--lavender-light);">${this.getRoleName(this.role)}</span>
+                    <span style="font-size: 11px; color: var(--lavender-light);">${this.getRoleName(this.role)}</span>
                 </div>
             </div>
             
@@ -176,7 +161,6 @@ const Layout = {
         document.getElementById('appSidebar').innerHTML = sidebarHTML;
     },
 
-    // === حقن محتوى الشريط العلوي ===
     injectTopbar: function() {
         const topbarHTML = `
             <div class="topbar-left">
@@ -228,7 +212,6 @@ const Layout = {
         document.getElementById('appTopbar').innerHTML = topbarHTML;
     },
 
-    // === حقن البوت (اختياري) ===
     injectBot: function() {
         if (!document.getElementById('chatWindow')) {
             const botHTML = `
@@ -253,11 +236,10 @@ const Layout = {
         }
     },
 
-    // === دوال مساعدة ===
     getRoleName: function(role) {
         const names = {
             'board': 'رئيس المجلس', 'ceo': 'الرئيس التنفيذي', 'hr': 'الموارد البشرية',
-            'cfo': 'المدير المالي', 'cto': 'المدير التقني', 'sales': 'المبيعات',
+            'cfo': 'المدير المالي', 'cto': 'المدير التقني', 'sales': 'مدير المبيعات',
             'audit': 'التدقيق', 'secretary': 'أمين السر', 'shareholder': 'مساهم',
             'admin': 'مدير النظام'
         };
@@ -265,7 +247,6 @@ const Layout = {
     },
 
     restoreSettings: function() {
-        // استعادة الثيم
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         const icon = document.getElementById('themeIcon');
@@ -287,5 +268,12 @@ const Layout = {
     }
 };
 
-// تشغيل النظام عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => Layout.init());
+
+// إغلاق القوائم عند النقر خارجها
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.notification-wrapper')) {
+        const dropdown = document.getElementById('notifDropdown');
+        if(dropdown) dropdown.classList.remove('show');
+    }
+});
