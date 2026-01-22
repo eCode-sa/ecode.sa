@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="dark"> <head>
+<html lang="ar" dir="rtl" class="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eCode | لوحة القيادة</title>
@@ -26,77 +27,34 @@
     </script>
 
     <style>
-        /* === 1. إجبار الهيكل (Layout Enforcer) === */
-        /* هذا الكود يضمن أن القائمة والمحتوى بجانب بعضهما في كل الأحوال */
+        /* إجبار التخطيط (Layout Force) */
+        body { display: flex; height: 100vh; overflow: hidden; margin: 0; background-color: #0f172a; }
         
-        body {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            margin: 0;
-        }
-
-        /* حاوية النظام بالكامل */
-        #app, .app-container {
-            display: flex !important;
-            width: 100% !important;
-            height: 100% !important;
-            flex-direction: row !important;
-        }
-
+        /* حاوية النظام */
+        #app, .app-container { display: flex !important; width: 100% !important; height: 100% !important; flex-direction: row !important; }
+        
         /* القائمة الجانبية */
-        aside, #appSidebar, .sidebar {
-            width: 280px !important;
-            height: 100vh !important;
-            flex-shrink: 0 !important;
-            overflow-y: auto !important;
-            z-index: 50;
-            border-left: 1px solid;
-        }
-
-        /* المحتوى الرئيسي */
-        main, #main-content, .main-content {
-            flex: 1 !important;
-            display: flex !important;
-            flex-direction: column !important;
-            height: 100vh !important;
-            overflow: hidden !important;
-            position: relative;
-        }
-
-        /* منطقة العمل القابلة للسكرول */
-        #workspace, .dashboard-container {
-            flex: 1 !important;
-            overflow-y: auto !important;
-            padding: 24px !important;
-        }
-
-        /* === 2. تخصيص الألوان حسب الثيم (Theme Force) === */
+        aside, #appSidebar, .sidebar { width: 280px !important; height: 100vh !important; flex-shrink: 0 !important; overflow-y: auto !important; z-index: 50; border-left: 1px solid #334155; }
         
-        /* الوضع الداكن (Dark) */
-        html.dark body, html.dark #app { background-color: #0f172a !important; color: #f8fafc !important; }
-        html.dark aside { background-color: #1e293b !important; border-color: #334155 !important; }
-        html.dark header { background-color: #1e293b !important; border-color: #334155 !important; }
-        html.dark .card { background-color: #1e293b !important; border: 1px solid #334155 !important; }
+        /* المحتوى */
+        main, #main-content, .main-content { flex: 1 !important; display: flex !important; flex-direction: column !important; height: 100vh !important; overflow: hidden !important; }
+        #workspace, .dashboard-container { flex: 1 !important; overflow-y: auto !important; padding: 24px !important; }
 
-        /* الوضع الفاتح (Light) */
-        html:not(.dark) body, html:not(.dark) #app { background-color: #f3f4f6 !important; color: #1e293b !important; }
-        html:not(.dark) aside { background-color: #ffffff !important; border-color: #e5e7eb !important; }
-        html:not(.dark) header { background-color: #ffffff !important; border-color: #e5e7eb !important; }
-        html:not(.dark) .card { background-color: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; }
-
-        /* === 3. سكرول بار === */
+        /* ثيم الألوان (Dark/Light Force) */
+        html.dark body { background-color: #0f172a !important; color: #f8fafc !important; }
+        html:not(.dark) body { background-color: #f3f4f6 !important; color: #1e293b !important; }
+        html:not(.dark) aside, html:not(.dark) header { background-color: #ffffff !important; border-color: #e5e7eb !important; }
+        html:not(.dark) .card { background-color: #ffffff !important; border: 1px solid #e5e7eb !important; }
+        
+        /* سكرول بار */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background-color: #94a3b8; border-radius: 10px; }
         html.dark ::-webkit-scrollbar-thumb { background-color: #475569; }
 
-        /* أنيميشن */
+        .hidden { display: none !important; }
         .live-dot { width: 8px; height: 8px; background-color: #34d399; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-        
-        .loading-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background-color: inherit; transition: opacity 0.5s; }
-        .hidden { opacity: 0; pointer-events: none; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } }
     </style>
 </head>
 <body class="bg-dark text-slate-100 font-sans">
@@ -163,20 +121,24 @@
                 </div>
 
             <div class="lg:col-span-2 bg-surface p-6 rounded-2xl border border-border">
-                <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-list-check text-success"></i> المهام التشغيلية</h3>
-                <div class="space-y-3 max-h-48 overflow-y-auto pr-2" style="scrollbar-width: thin;">
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                        <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                        <div class="flex-1"><p class="text-xs font-bold text-white">اعتماد سياسة المكافآت</p><p class="text-[10px] text-slate-400 mt-1">تاريخ الاستحقاق: 01/02/2026</p></div>
-                    </div>
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                        <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                        <div class="flex-1"><p class="text-xs font-bold text-white">مراجعة تقرير الرواتب</p><p class="text-[10px] text-slate-400">من: الموارد البشرية</p></div>
-                    </div>
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
-                        <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
-                        <div class="flex-1"><p class="text-xs font-bold text-white">تحديث السجل التجاري</p><p class="text-[10px] text-slate-400">وزارة التجارة</p></div>
-                    </div>
+                    <h3 class="font-bold text-white mb-6 flex items-center gap-2"><i class="fa-solid fa-list-check text-success"></i> المهام التشغيلية</h3>
+                    <div class="space-y-3 max-h-48 overflow-y-auto pr-2" style="scrollbar-width: thin;">
+                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
+                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
+                            <div class="flex-1"><p class="text-xs font-bold text-white">اعتماد سياسة المكافآت</p><p class="text-[10px] text-slate-400 mt-1">تاريخ الاستحقاق: 01/02/2026</p></div>
+                        </div>
+                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
+                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
+                            <div class="flex-1"><p class="text-xs font-bold text-white">مراجعة تقرير الرواتب</p><p class="text-[10px] text-slate-400">من: الموارد البشرية</p></div>
+                        </div>
+                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
+                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
+                            <div class="flex-1"><p class="text-xs font-bold text-white">تحديث بيانات السجل التجاري</p><p class="text-[10px] text-slate-400">وزارة التجارة</p></div>
+                        </div>
+                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
+                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
+                            <div class="flex-1"><p class="text-xs font-bold text-white">تجديد الاشتراك في هيئة الزكاة</p><p class="text-[10px] text-slate-400">المالية</p></div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -212,40 +174,44 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. تشغيل البيانات والشارت فوراً
-            initCharts();
-            startLiveSimulation();
+            
+            // 1. تطبيق الثيم فوراً
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+            }
 
-            // 2. التحقق من تحميل system.js
+            // 2. الحقن السحري + تشغيل الشارت (الترتيب مهم هنا)
             let attempts = 0;
-            const checkSystem = setInterval(() => {
+            const injector = setInterval(() => {
                 attempts++;
-                // نتحقق من وجود Layout أو إذا تأخرنا كثيراً نفك التعليق
-                if (typeof Layout !== 'undefined' || attempts > 20) {
-                    clearInterval(checkSystem);
+                const workspace = document.getElementById('workspace') || document.querySelector('.main-content') || document.getElementById('app');
+                
+                // نحاول لمدة ثانية، إذا لم نجد workspace، نضع المحتوى في أي مكان
+                if (workspace || attempts > 10) {
+                    clearInterval(injector);
                     
-                    if (typeof Layout !== 'undefined') {
-                        // إذا الملف موجود، اطلب منه تهيئة القائمة
-                        Layout.init(); 
-                        
-                        // نقل المحتوى لداخل الـ workspace الذي ينشئه system.js
-                        const workspace = document.getElementById('workspace');
-                        const myContent = document.getElementById('dashboard-content');
-                        if (workspace && myContent) {
-                            workspace.innerHTML = ''; // تنظيف
-                            workspace.appendChild(myContent); // نقل محتوياتنا
-                            myContent.classList.remove('hidden'); // إظهار
-                        } else {
-                            // إذا لم يجد workspace، أظهر المحتوى مكانه
-                            myContent.classList.remove('hidden');
-                        }
-                    } else {
-                        // إذا الملف مو موجود، أظهر المحتوى وخلاص
-                        document.getElementById('dashboard-content').classList.remove('hidden');
-                    }
+                    if (typeof Layout !== 'undefined') Layout.init();
 
+                    const myContent = document.getElementById('my-dashboard-content');
+                    if (workspace && myContent) {
+                        if(workspace.id !== 'app') workspace.innerHTML = ''; 
+                        workspace.appendChild(myContent);
+                    } else {
+                        document.body.appendChild(myContent);
+                    }
+                    
+                    // ✅ إظهار المحتوى الآن فقط
+                    myContent.classList.remove('hidden');
+                    
+                    // ✅ رسم الشارت (الآن فقط سيعمل لأن العنصر أصبح ظاهراً)
+                    initCharts();
+                    startLiveSimulation();
+                    
                     // إخفاء اللودينج
-                    document.getElementById('loadingOverlay').classList.add('hidden');
+                    document.getElementById('loadingOverlay').style.display = 'none';
                 }
             }, 100);
         });
