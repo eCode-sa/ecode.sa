@@ -21,6 +21,29 @@ const DICTIONARY = {
         role_share: "مساهم",
         role_admin: "مدير النظام",
 
+        // --- سجلات التدقيق ---
+        kpiScore: "نسبة الامتثال",
+        kpiFindings: "ملاحظات مفتوحة",
+        kpiAlerts: "تنبيهات أمنية",
+        kpiLast: "آخر تدقيق داخلي",
+        planTitle: "خطة التدقيق 2026",
+        q1: "الربع الأول: المالية",
+        q2: "الربع الثاني: الموارد البشرية",
+        q3: "الربع الثالث: التشغيل",
+        capaTitle: "الملاحظات (CAPA)",
+        riskHigh: "عالية الخطورة",
+        riskMed: "متوسطة",
+        find1Title: "نقص توقيعات أوامر الشراء",
+        find1Desc: "رصد 3 أوامر شراء بدون توقيع المدير المالي.",
+        find2Title: "تحديث بيانات الموظفين",
+        find2Desc: "بعض الملفات تفتقر لصور الهوية.",
+        respProc: "المسؤول: المشتريات",
+        btnResolve: "معالجة",
+        
+        modTitle: "معالجة ملاحظة",
+        modAction: "الإجراء التصحيحي",
+        btnCloseFind: "إغلاق الملاحظة",
+
         // --- قسم الصلاحيات (Roles) ---
         btn_add_new_role: "إضافة وظيفة جديدة",
         lbl_financial_auth: "الصلاحيات المالية",
@@ -138,6 +161,7 @@ const DICTIONARY = {
         perm_approve: "اعتماد الطلبات",
         perm_reports: "تصدير التقارير",
         perm_users: "إدارة المستخدمين",
+        authorities: "صلاحيات",
 
         // النوافذ المنبثقة
         lbl_leave_type: "نوع الإجازة",
@@ -324,6 +348,29 @@ const DICTIONARY = {
         role_share: "Shareholder",
         role_admin: "System Admin",
 
+        // --- Audit Logs ---
+        kpiScore: "Compliance Score",
+        kpiFindings: "Open Findings",
+        kpiAlerts: "Security Alerts",
+        kpiLast: "Last Audit",
+        planTitle: "Audit Plan 2026",
+        q1: "Q1: Finance",
+        q2: "Q2: HR Dept",
+        q3: "Q3: Operations",
+        capaTitle: "Findings (CAPA)",
+        riskHigh: "High Risk",
+        riskMed: "Medium",
+        find1Title: "Missing PO Signatures",
+        find1Desc: "3 POs found without CFO signature.",
+        find2Title: "Employee Data Update",
+        find2Desc: "Files missing ID photos.",
+        respProc: "Owner: Procurement",
+        btnResolve: "Resolve",
+        
+        modTitle: "Resolve Finding",
+        modAction: "Corrective Action",
+        btnCloseFind: "Close Finding",
+
         // --- Roles Section ---
         btn_add_new_role: "Add New Role",
         lbl_financial_auth: "Financial Authorities",
@@ -336,6 +383,7 @@ const DICTIONARY = {
         perm_delete_user: "Delete Accounts",
         perm_edit_perms: "Edit Permissions",
         btn_save_changes: "Save Changes",
+        authorities: "Authorities",
 
         // --- Add Role Modal ---
         modal_add_role_title: "Define New Role & Dept",
