@@ -39,7 +39,9 @@ const DICTIONARY = {
         find2Desc: "بعض الملفات تفتقر لصور الهوية.",
         respProc: "المسؤول: المشتريات",
         btnResolve: "معالجة",
-        
+        stat_done: "مكتمل",
+        stat_progress: "جاري",
+        stat_scheduled: "مجدول",
         modTitle: "معالجة ملاحظة",
         modAction: "الإجراء التصحيحي",
         btnCloseFind: "إغلاق الملاحظة",
@@ -366,7 +368,9 @@ const DICTIONARY = {
         find2Desc: "Files missing ID photos.",
         respProc: "Owner: Procurement",
         btnResolve: "Resolve",
-        
+        stat_done: "Completed",
+        stat_progress: "In Progress",
+        stat_scheduled: "Scheduled",
         modTitle: "Resolve Finding",
         modAction: "Corrective Action",
         btnCloseFind: "Close Finding",
