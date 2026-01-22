@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
@@ -18,10 +17,15 @@
             theme: {
                 extend: {
                     colors: {
-                        brandRed: '#FB4747',
-                        brandBlue: '#4267B2',
-                        brandDark: '#1E293B',
-                        brandGray: '#F8FAFC'
+                        // ألوان eCode
+                        primary: '#38bdf8',   // Sky Blue
+                        secondary: '#818cf8', // Lavender
+                        success: '#34d399',   // Mint Green
+                        warning: '#fbbf24',   // Amber
+                        danger: '#f87171',    // Coral Pink
+                        dark: '#0f172a',      // Main Background
+                        surface: '#1e293b',   // Card Background
+                        border: '#334155'     // Border Color
                     },
                     fontFamily: {
                         sans: ['Tajawal', 'Inter', 'sans-serif'],
@@ -33,32 +37,30 @@
     </script>
 
     <style>
-        /* تخصيص شريط التمرير */
+        /* شريط التمرير */
         .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
-        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
-        .dark .custom-scroll::-webkit-scrollbar-thumb { background: #475569; }
-        .dark .custom-scroll::-webkit-scrollbar-thumb:hover { background: #64748B; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #64748B; }
 
-        /* شاشة التحميل */
+        /* الانتقالات */
+        * { transition-property: background-color, border-color, color, fill, stroke; transition-duration: 200ms; }
+        
         .loading-overlay { transition: opacity 0.3s ease, visibility 0.3s ease; }
         .loading-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
-        /* حركات ناعمة */
-        * { transition-property: background-color, border-color, color, fill, stroke, margin, padding; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
-        .main-content-wrapper { transition: margin-left 300ms ease, margin-right 300ms ease; }
-        #main-sidebar { transition: left 300ms ease, right 300ms ease, transform 300ms ease; }
+        
+        /* ضبط الهوامش */
+        .main-content-wrapper { transition: margin 300ms ease; }
     </style>
 </head>
-<body class="bg-brandGray dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans">
+<body class="bg-dark text-slate-100 font-sans">
 
-    <div id="loadingOverlay" class="loading-overlay fixed inset-0 bg-white dark:bg-slate-900 z-[9999] flex flex-col items-center justify-center">
+    <div id="loadingOverlay" class="loading-overlay fixed inset-0 bg-dark z-[9999] flex flex-col items-center justify-center">
         <div class="relative">
-            <div class="w-16 h-16 border-4 border-brandRed/20 border-t-brandRed rounded-full animate-spin"></div>
-            <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-b-brandBlue rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 0.8s;"></div>
+            <div class="w-16 h-16 border-4 border-surface border-t-primary rounded-full animate-spin"></div>
+            <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-b-secondary rounded-full animate-spin" style="animation-direction: reverse; animation-duration: 1s;"></div>
         </div>
-        <p class="mt-6 text-sm font-bold text-slate-600 dark:text-slate-400 animate-pulse">جاري تحميل لوحة القيادة...</p>
+        <p class="mt-6 text-sm font-bold text-slate-400 animate-pulse">جاري تحميل النظام...</p>
     </div>
 
     <div id="sidebar-container"></div>
@@ -68,21 +70,21 @@
 
         <main class="p-6 space-y-6">
             
-            <div class="bg-white dark:bg-slate-800 rounded-2xl p-1 border-r-4 border-orange-500 shadow-lg hover:shadow-xl transition-shadow flex flex-col md:flex-row items-center justify-between gap-4 overflow-hidden">
+            <div class="bg-surface rounded-2xl p-1 border-r-4 border-secondary shadow-lg flex flex-col md:flex-row items-center justify-between gap-4 overflow-hidden">
                 <div class="p-4 flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl shrink-0 animate-pulse">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div class="w-12 h-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-xl shrink-0 animate-pulse">
+                        <i class="fa-solid fa-bell"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-lg dark:text-white" data-i18n="alertTitle">إجراء مطلوب: اعتماد "الدليل الداخلي"</h3>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">
-                            <span data-i18n="alertDesc">مسودة بانتظار الاعتماد النهائي من المجلس. الرافع:</span>
-                            <span class="font-bold text-slate-700 dark:text-slate-300" data-i18n="uploaderName">مدير النظام</span>
+                        <h3 class="font-bold text-lg text-white" data-i18n="alertTitle">إجراء مطلوب: اعتماد "الدليل الداخلي"</h3>
+                        <p class="text-sm text-slate-400">
+                            <span data-i18n="alertDesc">مسودة بانتظار الاعتماد النهائي. الرافع:</span>
+                            <span class="font-bold text-primary" data-i18n="uploaderName">مدير النظام</span>
                         </p>
                     </div>
                 </div>
                 <div class="p-4">
-                    <button class="px-6 py-2.5 bg-gradient-to-r from-brandRed to-red-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-red-500/30 hover:shadow-red-500/50 hover:scale-105 transition-all flex items-center gap-2">
+                    <button class="px-6 py-2.5 bg-secondary hover:bg-opacity-90 text-white rounded-xl text-sm font-bold shadow-lg shadow-secondary/20 transition-all flex items-center gap-2">
                         <i class="fa-solid fa-file-signature"></i>
                         <span data-i18n="reviewBtn">مراجعة واعتماد</span>
                     </button>
@@ -90,78 +92,64 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:scale-[1.02] transition-all">
+                <div class="bg-surface p-5 rounded-2xl border border-border hover:border-primary transition-colors">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiCapital">رأس المال المصدر</p>
-                            <h3 id="capitalValue" class="text-2xl font-bold mt-1 font-en">100,000 <span class="text-xs font-sans text-slate-400" data-i18n="currency">ر.س</span></h3>
+                            <p class="text-xs text-slate-400 font-bold uppercase" data-i18n="kpiCapital">رأس المال</p>
+                            <h3 id="capitalValue" class="text-2xl font-bold mt-1 font-en text-white">6,000,000 <span class="text-xs font-sans text-slate-500">ر.س</span></h3>
                         </div>
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                            <i class="fa-solid fa-coins"></i>
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center"><i class="fa-solid fa-coins"></i></div>
                     </div>
-                    <div class="mt-4 flex items-center gap-2 text-xs text-green-500 font-bold bg-green-50 dark:bg-green-900/20 w-fit px-2 py-1 rounded">
+                    <div class="mt-4 flex items-center gap-2 text-xs text-success font-bold bg-success/10 w-fit px-2 py-1 rounded">
                         <i class="fa-solid fa-check"></i> <span data-i18n="fullyPaid">مدفوع بالكامل</span>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:scale-[1.02] transition-all">
+                <div class="bg-surface p-5 rounded-2xl border border-border hover:border-secondary transition-colors">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiShareholders">المساهمين</p>
-                            <h3 id="shareholderCount" class="text-2xl font-bold mt-1 font-en">11 <span class="text-xs font-sans text-slate-400" data-i18n="member">عضو</span></h3>
+                            <p class="text-xs text-slate-400 font-bold uppercase" data-i18n="kpiShareholders">المساهمين</p>
+                            <h3 id="shareholderCount" class="text-2xl font-bold mt-1 font-en text-white">11 <span class="text-xs font-sans text-slate-500">عضو</span></h3>
                         </div>
-                        <div class="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
                     </div>
-                    <div class="mt-4 text-xs text-slate-400 truncate w-full" id="shareholdersList" data-i18n="shareholdersList">
-                        مساهم 1، مساهم 2...
-                    </div>
+                    <div class="mt-4 text-xs text-slate-400 truncate w-full" id="shareholdersList">مساهم 1، مساهم 2...</div>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:scale-[1.02] transition-all">
+                <div class="bg-surface p-5 rounded-2xl border border-border hover:border-danger transition-colors">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiGov">قرارات بالتمرير</p>
-                            <h3 class="text-2xl font-bold mt-1 font-en text-brandRed">2 <span class="text-xs font-sans text-slate-400" data-i18n="pending">قيد التوقيع</span></h3>
+                            <p class="text-xs text-slate-400 font-bold uppercase" data-i18n="kpiGov">قرارات بالتمرير</p>
+                            <h3 class="text-2xl font-bold mt-1 font-en text-danger">2 <span class="text-xs font-sans text-slate-500">قيد التوقيع</span></h3>
                         </div>
-                        <div class="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-900/30 text-brandRed flex items-center justify-center">
-                            <i class="fa-solid fa-signature"></i>
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-danger/10 text-danger flex items-center justify-center"><i class="fa-solid fa-signature"></i></div>
                     </div>
-                    <div class="mt-4 flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
-                        <span class="w-2 h-2 rounded-full bg-brandRed animate-pulse"></span>
+                    <div class="mt-4 flex items-center gap-1 text-xs text-slate-400">
+                        <span class="w-2 h-2 rounded-full bg-danger animate-pulse"></span>
                         <span data-i18n="waitingFor">بانتظار: الرئيس التنفيذي</span>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:scale-[1.02] transition-all">
+                <div class="bg-surface p-5 rounded-2xl border border-border hover:border-success transition-colors">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiComp">نسبة الامتثال</p>
-                            <h3 class="text-2xl font-bold mt-1 font-en text-green-600">92%</h3>
+                            <p class="text-xs text-slate-400 font-bold uppercase" data-i18n="kpiComp">نسبة الامتثال</p>
+                            <h3 class="text-2xl font-bold mt-1 font-en text-success">92%</h3>
                         </div>
-                        <div class="w-10 h-10 rounded-xl bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-success/10 text-success flex items-center justify-center"><i class="fa-solid fa-shield-halved"></i></div>
                     </div>
-                    <div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-5 overflow-hidden">
-                        <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-full w-[92%] transition-all duration-1000"></div>
+                    <div class="w-full bg-dark h-1.5 rounded-full mt-5 overflow-hidden">
+                        <div class="bg-success h-full w-[92%]"></div>
                     </div>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                <div class="bg-surface p-6 rounded-2xl border border-border">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-bold text-slate-700 dark:text-white flex items-center gap-2">
-                            <i class="fa-solid fa-chart-pie text-brandBlue"></i>
-                            <span data-i18n="chartTitle">هيكل الملكية</span>
+                        <h3 class="font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-primary"></i> <span data-i18n="chartTitle">هيكل الملكية</span>
                         </h3>
-                        <button class="text-xs text-slate-400 hover:text-brandBlue transition">
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </button>
                     </div>
                     <div class="h-48 relative flex justify-center">
                         <canvas id="ownershipChart"></canvas>
@@ -169,98 +157,46 @@
                     <div class="mt-6 space-y-3" id="chartLegend"></div>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow">
-                    <h3 class="font-bold text-slate-700 dark:text-white mb-6 flex items-center gap-2">
-                        <i class="fa-solid fa-users-gear text-purple-500"></i>
-                        <span data-i18n="commTitle">اللجان والمجلس</span>
+                <div class="bg-surface p-6 rounded-2xl border border-border">
+                    <h3 class="font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-users-gear text-secondary"></i> <span data-i18n="commTitle">اللجان والمجلس</span>
                     </h3>
-                    
                     <div class="space-y-4">
-                        <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-100 dark:border-slate-700 hover:border-purple-300 dark:hover:border-purple-700 transition-colors">
+                        <div class="p-4 bg-dark/50 rounded-xl border border-border hover:border-secondary transition-colors">
                             <div class="flex justify-between items-center mb-2">
-                                <h4 class="font-bold text-sm text-slate-800 dark:text-white" data-i18n="auditComm">لجنة المراجعة</h4>
-                                <span class="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-[10px] px-2 py-0.5 rounded-full font-bold" data-i18n="newCycle">دورة جديدة</span>
+                                <h4 class="font-bold text-sm text-white" data-i18n="auditComm">لجنة المراجعة</h4>
+                                <span class="bg-success/10 text-success text-[10px] px-2 py-0.5 rounded-full font-bold">دورة جديدة</span>
                             </div>
                             <div class="space-y-2 mt-3">
-                                <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                                    <img src="https://ui-avatars.com/api/?name=M&background=4267B2&color=fff" class="w-5 h-5 rounded-full">
-                                    <span data-i18n="commMember1">عضو 1 (رئيس)</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                                    <img src="https://ui-avatars.com/api/?name=A&background=FB4747&color=fff" class="w-5 h-5 rounded-full">
-                                    <span data-i18n="commMember2">عضو 2 (عضو)</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                                    <img src="https://ui-avatars.com/api/?name=A&background=10B981&color=fff" class="w-5 h-5 rounded-full">
-                                    <span data-i18n="commMember3">عضو 3 (عضو)</span>
-                                </div>
-                            </div>
-                            <div class="mt-3 pt-3 border-t border-slate-200 dark:border-slate-600 flex justify-between text-[10px]">
-                                <span class="text-slate-400" data-i18n="lastMeeting">آخر اجتماع: 22/12/2025</span>
-                                <a href="#" class="text-brandBlue hover:underline" data-i18n="minutes">المحضر</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition cursor-pointer">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xs">
-                                    <i class="fa-solid fa-user-tie"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-bold dark:text-white" data-i18n="boardSec">أمين السر</p>
-                                    <p class="text-[10px] text-slate-400" data-i18n="secName">سكرتير المجلس</p>
-                                </div>
+                                <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 rounded-full bg-primary"></span> عضو 1 (رئيس)</div>
+                                <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 rounded-full bg-secondary"></span> عضو 2 (عضو)</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow flex flex-col">
-                    <h3 class="font-bold text-slate-700 dark:text-white mb-6 flex items-center gap-2">
-                        <i class="fa-solid fa-list-check text-green-500"></i>
-                        <span data-i18n="opsTitle">المهام التشغيلية</span>
+                <div class="bg-surface p-6 rounded-2xl border border-border">
+                    <h3 class="font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-success"></i> <span data-i18n="opsTitle">المهام التشغيلية</span>
                     </h3>
-                    
                     <div class="flex-1 space-y-3 overflow-y-auto max-h-64 pr-2 custom-scroll">
-                        <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 border border-slate-100 dark:border-slate-700/50 hover:border-brandRed/30 transition-colors">
-                            <div class="mt-1"><input type="checkbox" class="accent-brandRed w-4 h-4 cursor-pointer"></div>
+                        <div class="flex gap-3 items-start p-3 rounded-xl bg-dark/50 border border-border hover:border-primary transition-colors">
+                            <div class="mt-1"><input type="checkbox" class="accent-primary w-4 h-4 cursor-pointer"></div>
                             <div class="flex-1">
-                                <p class="text-xs font-bold text-slate-800 dark:text-white" data-i18n="task1">اعتماد سياسة المكافآت</p>
-                                <p class="text-[10px] text-slate-400 mt-1"><span data-i18n="dueDate">تاريخ الاستحقاق</span>: 01/02/2026</p>
-                                <span class="inline-block mt-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 text-[9px] px-1.5 py-0.5 rounded font-bold" data-i18n="gov">حوكمة</span>
-                            </div>
-                        </div>
-                        <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 border border-slate-100 dark:border-slate-700/50 hover:border-brandBlue/30 transition-colors">
-                            <div class="mt-1"><input type="checkbox" class="accent-brandRed w-4 h-4 cursor-pointer"></div>
-                            <div class="flex-1">
-                                <p class="text-xs font-bold text-slate-800 dark:text-white" data-i18n="taskPayroll">مراجعة تقرير الرواتب (HR)</p>
-                                <p class="text-[10px] text-slate-400 mt-1"><span data-i18n="fromLabel">من</span>: <span data-i18n="senderName">مدير الموارد</span></p>
-                                <span class="inline-block mt-1 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 text-[9px] px-1.5 py-0.5 rounded font-bold" data-i18n="ops">تشغيل</span>
-                            </div>
-                        </div>
-                        <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 border border-slate-100 dark:border-slate-700/50 hover:border-purple-300 transition-colors">
-                            <div class="mt-1"><input type="checkbox" class="accent-brandRed w-4 h-4 cursor-pointer"></div>
-                            <div class="flex-1">
-                                <p class="text-xs font-bold text-slate-800 dark:text-white" data-i18n="task3">تحديث بيانات السجل التجاري</p>
-                                <p class="text-[10px] text-slate-400 mt-1" data-i18n="ministry">وزارة التجارة</p>
-                                <span class="inline-block mt-1 bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 text-[9px] px-1.5 py-0.5 rounded font-bold" data-i18n="legal">قانونية</span>
+                                <p class="text-xs font-bold text-white" data-i18n="task1">اعتماد سياسة المكافآت</p>
+                                <p class="text-[10px] text-slate-400 mt-1">تاريخ الاستحقاق: 01/02/2026</p>
                             </div>
                         </div>
                     </div>
-                    <a href="tasks.html" class="mt-4 text-center text-xs text-brandBlue hover:text-brandRed hover:underline transition-colors font-medium" data-i18n="viewAll">عرض كل المهام (12)</a>
                 </div>
             </div>
 
-            <div class="bg-slate-900 dark:bg-slate-950 rounded-2xl p-5 shadow-xl border border-slate-800 dark:border-slate-700">
-                <div class="flex justify-between items-center mb-3 border-b border-slate-700 dark:border-slate-600 pb-3">
+            <div class="bg-dark rounded-2xl p-5 border border-border">
+                <div class="flex justify-between items-center mb-3 border-b border-border pb-3">
                     <span class="flex items-center gap-2 font-bold text-white">
-                        <i class="fa-solid fa-terminal text-brandRed"></i>
-                        <span data-i18n="auditTitle">سجل النظام المباشر</span>
+                        <i class="fa-solid fa-terminal text-primary"></i> <span data-i18n="auditTitle">سجل النظام المباشر</span>
                     </span>
-                    <span class="flex items-center gap-2 text-green-400">
-                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                        Live
-                    </span>
+                    <span class="flex items-center gap-2 text-success text-xs font-bold"><span class="w-2 h-2 rounded-full bg-success animate-pulse"></span> Live</span>
                 </div>
                 <div class="space-y-2 h-32 overflow-y-auto custom-scroll font-mono text-xs" id="audit-log-container"></div>
             </div>
@@ -271,298 +207,130 @@
     <script src="../assets/js/core/i18n.js"></script>
     <script src="../assets/js/data/company_data.js"></script>
     <script src="../assets/js/components/layout.js"></script>
-    <script src="../assets/js/system.js"></script>
-
+    
     <script>
+        // --- 3. المنطق التشغيلي (مدمج لتفادي أخطاء الملفات المفقودة) ---
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. إعدادات اللغة والاتجاه
+            // إعداد اللغة
             const initialLang = localStorage.getItem('lang') || 'ar';
             document.documentElement.lang = initialLang;
             document.documentElement.dir = initialLang === 'ar' ? 'rtl' : 'ltr';
             
-            // ضبط الهوامش للقائمة الجانبية
             const mainContent = document.querySelector('.main-content-wrapper');
             if (mainContent) {
-                if (initialLang === 'ar') {
-                    mainContent.classList.remove('md:ml-72');
-                    mainContent.classList.add('md:mr-72');
-                } else {
-                    mainContent.classList.remove('md:mr-72');
-                    mainContent.classList.add('md:ml-72');
-                }
+                mainContent.classList.toggle('md:mr-72', initialLang === 'ar');
+                mainContent.classList.toggle('md:ml-72', initialLang !== 'ar');
             }
-            
-            // 2. التحقق الآمن (Safety Loading)
+
+            // محاولة التحميل الآمن
             let attempts = 0;
             const checkSystem = setInterval(() => {
                 attempts++;
-                
-                // نتأكد هل تحملت الملفات؟
                 const isLoaded = (typeof Layout !== 'undefined' && typeof AppConfig !== 'undefined');
                 
-                // إذا تحملت، أو مر وقت طويل (3 ثواني) افتح الصفحة
                 if (isLoaded || attempts > 60) {
                     clearInterval(checkSystem);
-                    
                     if (isLoaded) {
-                        // التحقق من الدخول فقط إذا النظام شغال
                         if (!AppConfig.getCurrentUser()) {
-                            // إذا مو مسجل دخول، رجعه للخلف (للمجلد الرئيسي)
                             window.location.href = '../index.html'; 
                             return;
                         }
                         Layout.init();
-                    } else {
-                        console.error('⚠️ تحذير: ملفات النظام لم تتحمل. تأكد من وجود مجلد assets بجانب مجلد admin.');
                     }
-
-                    setTimeout(() => {
-                        initPage();
-                        hideLoading();
-                    }, 100);
+                    // تشغيل الصفحة
+                    initPage();
+                    hideLoading();
                 }
             }, 50);
-            
-            // 3. مستمع تغيير اللغة
-            window.addEventListener('languageChanged', (e) => {
+
+            // مستمع اللغة
+            window.addEventListener('languageChanged', () => {
                 updateContent();
-                const chartCanvas = document.getElementById('ownershipChart');
-                if (chartCanvas) {
-                    const oldChart = Chart.getChart(chartCanvas);
-                    if (oldChart) oldChart.destroy();
-                    initCharts();
-                }
+                initCharts();
                 renderLogs();
             });
         });
 
         function hideLoading() {
             const overlay = document.getElementById('loadingOverlay');
-            if (overlay) {
-                overlay.classList.add('hidden');
-            }
+            if (overlay) overlay.classList.add('hidden');
         }
 
-        // --- محتوى الصفحة والترجمة ---
-        const pageContent = {
-            ar: {
-                pageTitle: "eCode | لوحة القيادة",
-                alertTitle: 'إجراء مطلوب: اعتماد "الدليل الداخلي"',
-                alertDesc: 'مسودة بانتظار الاعتماد النهائي من المجلس. الرافع:',
-                uploaderName: 'مدير النظام',
-                reviewBtn: 'مراجعة واعتماد',
-                kpiCapital: 'رأس المال المصدر',
-                currency: 'ر.س',
-                fullyPaid: 'مدفوع بالكامل',
-                kpiShareholders: 'المساهمين',
-                member: 'عضو',
-                shareholdersList: 'مساهم 1، مساهم 2...',
-                kpiGov: 'قرارات بالتمرير',
-                pending: 'قيد التوقيع',
-                waitingFor: 'بانتظار: الرئيس التنفيذي',
-                kpiComp: 'نسبة الامتثال',
-                chartTitle: 'هيكل الملكية',
-                commTitle: 'اللجان والمجلس',
-                auditComm: 'لجنة المراجعة',
-                newCycle: 'دورة جديدة',
-                commMember1: 'عضو 1 (رئيس)',
-                commMember2: 'عضو 2 (عضو)',
-                commMember3: 'عضو 3 (عضو)',
-                lastMeeting: 'آخر اجتماع: 22/12/2025',
-                minutes: 'المحضر',
-                boardSec: 'أمين السر',
-                secName: 'سكرتير المجلس',
-                opsTitle: 'المهام التشغيلية',
-                task1: 'اعتماد سياسة المكافآت',
-                dueDate: 'تاريخ الاستحقاق',
-                gov: 'حوكمة',
-                taskPayroll: 'مراجعة تقرير الرواتب (HR)',
-                fromLabel: 'من',
-                senderName: 'مدير الموارد',
-                ops: 'تشغيل',
-                task3: 'تحديث بيانات السجل التجاري',
-                ministry: 'وزارة التجارة',
-                legal: 'قانونية',
-                viewAll: 'عرض كل المهام (12)',
-                auditTitle: 'سجل النظام المباشر',
-                chartHeirs: 'مساهمين رئيسيين',
-                chartHesham: 'الرئيس التنفيذي',
-                chartBG: 'شريك استراتيجي',
-                chartOthers: 'آخرون',
-                logBackup: 'تم إكمال النسخ الاحتياطي بنجاح',
-                logPolicy: 'قام الرئيس التنفيذي باستعراض سياسة المكافآت',
-                logUpload: 'قام مدير النظام برفع مسودة الدليل الداخلي',
-                logFirewall: 'تم حظر محاولة دخول مشبوهة'
-            },
-            en: {
-                pageTitle: "eCode | Dashboard",
-                alertTitle: 'Action Required: Approve "Internal Manual"',
-                alertDesc: 'Draft awaiting final Board approval. Uploader:',
-                uploaderName: 'System Admin',
-                reviewBtn: 'Review & Approve',
-                kpiCapital: 'Issued Capital',
-                currency: 'SAR',
-                fullyPaid: 'Fully Paid',
-                kpiShareholders: 'Shareholders',
-                member: 'Members',
-                shareholdersList: 'Shareholder 1, Shareholder 2...',
-                kpiGov: 'Circulated Resolutions',
-                pending: 'Pending Signature',
-                waitingFor: 'Waiting: CEO',
-                kpiComp: 'Compliance Rate',
-                chartTitle: 'Ownership Structure',
-                commTitle: 'Committees & Board',
-                auditComm: 'Audit Committee',
-                newCycle: 'New Cycle',
-                commMember1: 'Member 1 (Chairman)',
-                commMember2: 'Member 2 (Member)',
-                commMember3: 'Member 3 (Member)',
-                lastMeeting: 'Last Meeting: 22/12/2025',
-                minutes: 'Minutes',
-                boardSec: 'Board Secretary',
-                secName: 'Board Secretary',
-                opsTitle: 'Operational Tasks',
-                task1: 'Approve Bonus Policy',
-                dueDate: 'Due Date',
-                gov: 'Gov',
-                taskPayroll: 'Review Payroll Report (HR)',
-                fromLabel: 'From',
-                senderName: 'HR Manager',
-                ops: 'Ops',
-                task3: 'Update Commercial Registry',
-                ministry: 'Ministry of Commerce',
-                legal: 'Legal',
-                viewAll: 'View All Tasks (12)',
-                auditTitle: 'Live System Audit',
-                chartHeirs: 'Major Shareholders',
-                chartHesham: 'CEO',
-                chartBG: 'Strategic Partner',
-                chartOthers: 'Others',
-                logBackup: 'Backup completed successfully',
-                logPolicy: 'CEO viewed Bonus Policy',
-                logUpload: 'Admin uploaded Internal Manual draft',
-                logFirewall: 'Suspicious login attempt blocked'
-            }
+        // محتوى الصفحة (بيانات تجريبية + ترجمة)
+        const pageData = {
+            ar: { chartTitle: "هيكل الملكية", heirs: "ايمن المغربي", ceo: "معتز", partner: "ميمونه", others: "آخرون" },
+            en: { chartTitle: "Ownership", heirs: "Ayman Al-Maghrabi", ceo: "Mutaz", partner: "Maimouna", others: "Others" }
         };
 
         function initPage() {
             updateContent();
-            // Try-catch عشان لو ما تحمل DataService ما يوقف الصفحة
-            try { updateLiveData(); } catch(e) { console.log('Live data skipped'); }
-            try { initCharts(); } catch(e) { console.log('Charts skipped'); }
-            try { renderLogs(); } catch(e) { console.log('Logs skipped'); }
-            console.log('✅ Dashboard Force Loaded');
+            initCharts();
+            renderLogs();
+            // تحديث الأرقام الوهمية (يمكن ربطها بـ DataService لاحقاً)
+            console.log('Dashboard Loaded with eCode Identity');
         }
-        
-        window.updateContent = updateContent;
-
-        function updateLiveData() {
-            if (typeof DataService === 'undefined') return;
-            try {
-                const stats = DataService.getShareholdersStats();
-                const company = DataService.getCompanyProfile();
-                const lang = localStorage.getItem('lang') || 'ar';
-                
-                const capitalEl = document.getElementById('capitalValue');
-                if (capitalEl && company?.capital) {
-                    const currencyText = lang === 'ar' ? 'ر.س' : 'SAR';
-                    capitalEl.innerHTML = `${company.capital.amount.toLocaleString()} <span class="text-xs font-sans text-slate-400">${currencyText}</span>`;
-                }
-                const shCountEl = document.getElementById('shareholderCount');
-                if (shCountEl && stats) {
-                    const memberText = lang === 'ar' ? 'عضو' : 'Members';
-                    shCountEl.innerHTML = `${stats.totalCount} <span class="text-xs font-sans text-slate-400">${memberText}</span>`;
-                }
-                const shListEl = document.getElementById('shareholdersList');
-                if (shListEl) {
-                    const topSh = DataService.getMajorShareholders(3)
-                        .map(s => lang === 'en' ? s.name.en : s.name.ar)
-                        .join(lang === 'ar' ? '، ' : ', ');
-                    shListEl.innerText = topSh + '...';
-                }
-            } catch (error) {
-                console.warn('Live Data Error (Minor):', error);
-            }
-        };
 
         function updateContent() {
             const lang = localStorage.getItem('lang') || 'ar';
-            const t = pageContent[lang];
-            
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-            if (t) {
-                document.title = t.pageTitle;
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (t[key]) el.innerText = t[key];
-                });
-            }
+            // تحديث النصوص الثابتة (i18n) سيتم عبر i18n.js تلقائياً
         }
 
         function initCharts() {
             const ctx = document.getElementById('ownershipChart');
             if (!ctx) return;
+            
+            // تدمير الشارت القديم إذا وجد
+            const oldChart = Chart.getChart(ctx);
+            if(oldChart) oldChart.destroy();
 
             const lang = localStorage.getItem('lang') || 'ar';
-            const t = pageContent[lang];
+            const t = pageData[lang];
 
-            const data = {
-                labels: [t.chartHeirs, t.chartHesham, t.chartBG, t.chartOthers],
-                datasets: [{
-                    data: [35, 10, 15, 40],
-                    backgroundColor: ['#FB4747', '#4267B2', '#10B981', '#CBD5E1'],
-                    borderWidth: 0,
-                    hoverOffset: 10
-                }]
-            };
-
-            const legendContainer = document.getElementById('chartLegend');
-            if (legendContainer) {
-                legendContainer.innerHTML = `
-                    <div class="flex justify-between items-center text-xs hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition">
-                        <span class="flex items-center gap-2 text-slate-600 dark:text-slate-300"><span class="w-2 h-2 rounded-full bg-brandRed"></span> ${t.chartHeirs}</span><span class="font-bold font-en">35%</span>
-                    </div>
-                    <div class="flex justify-between items-center text-xs hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition">
-                        <span class="flex items-center gap-2 text-slate-600 dark:text-slate-300"><span class="w-2 h-2 rounded-full bg-blue-500"></span> ${t.chartHesham}</span><span class="font-bold font-en">10%</span>
-                    </div>
-                    <div class="flex justify-between items-center text-xs hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition">
-                        <span class="flex items-center gap-2 text-slate-600 dark:text-slate-300"><span class="w-2 h-2 rounded-full bg-green-500"></span> ${t.chartBG}</span><span class="font-bold font-en">15%</span>
-                    </div>
-                    <div class="flex justify-between items-center text-xs hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition">
-                        <span class="flex items-center gap-2 text-slate-600 dark:text-slate-300"><span class="w-2 h-2 rounded-full bg-slate-300"></span> ${t.chartOthers}</span><span class="font-bold font-en">40%</span>
-                    </div>
-                `;
-            }
-
-            new Chart(ctx.getContext('2d'), {
-                type: 'doughnut', data: data,
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [t.heirs, t.ceo, t.partner, t.others],
+                    datasets: [{
+                        data: [50, 15, 15, 20],
+                        backgroundColor: ['#818cf8', '#38bdf8', '#34d399', '#94a3b8'], // ألوان eCode
+                        borderWidth: 0
+                    }]
+                },
                 options: {
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1E293B', padding: 12, titleFont: { family: 'Inter', size: 13 }, bodyFont: { family: 'Inter', size: 12 } } },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
                     cutout: '75%'
                 }
             });
+            
+            // رسم الليجند (المفتاح) يدوياً
+            const legend = document.getElementById('chartLegend');
+            if(legend) {
+                legend.innerHTML = `
+                    <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-secondary">●</span> ${t.heirs}</span> <span class="text-white">35%</span></div>
+                    <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-primary">●</span> ${t.ceo}</span> <span class="text-white">10%</span></div>
+                    <div class="flex justify-between text-xs text-slate-400 mb-2"><span><span class="text-success">●</span> ${t.partner}</span> <span class="text-white">15%</span></div>
+                    <div class="flex justify-between text-xs text-slate-400"><span><span class="text-slate-400">●</span> ${t.others}</span> <span class="text-white">40%</span></div>
+                `;
+            }
         }
 
         function renderLogs() {
-            const lang = localStorage.getItem('lang') || 'ar';
-            const t = pageContent[lang];
-            const logs = [
-                { t: "10:45:22", type: "INFO", u: "System", msg: t.logBackup, c: "text-green-400" },
-                { t: "10:42:15", type: "WARN", u: "CEO", msg: t.logPolicy, c: "text-yellow-400" },
-                { t: "10:30:01", type: "INFO", u: "Admin", msg: t.logUpload, c: "text-blue-400" },
-                { t: "09:15:00", type: "CRIT", u: "Firewall", msg: t.logFirewall, c: "text-red-400" }
-            ];
             const container = document.getElementById('audit-log-container');
-            if (!container) return;
-            container.innerHTML = logs.map(log => `
-                <div class="flex gap-3 hover:bg-slate-800/50 p-1.5 rounded transition cursor-default">
-                    <span class="text-slate-500 w-16 shrink-0 font-mono">[${log.t}]</span>
-                    <span class="${log.c} font-bold w-10 shrink-0">${log.type}</span>
-                    <span class="text-white w-16 shrink-0 font-bold">${log.u}</span>
-                    <span class="text-slate-400 truncate">${log.msg}</span>
+            if(!container) return;
+            
+            const logs = [
+                { time: "10:45", type: "SYS", msg: "Backup Completed", color: "text-success" },
+                { time: "10:42", type: "WARN", msg: "Login Attempt (CEO)", color: "text-warning" },
+                { time: "10:30", type: "INFO", msg: "Doc Upload (Admin)", color: "text-primary" }
+            ];
+            
+            container.innerHTML = logs.map(l => `
+                <div class="flex gap-3 hover:bg-surface p-2 rounded cursor-default border-b border-border/50">
+                    <span class="text-slate-500 w-12 font-mono text-[10px]">${l.time}</span>
+                    <span class="${l.color} font-bold w-10 text-[10px]">${l.type}</span>
+                    <span class="text-slate-400 truncate">${l.msg}</span>
                 </div>
             `).join('');
         }
