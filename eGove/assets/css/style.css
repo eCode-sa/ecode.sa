@@ -493,6 +493,13 @@ p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
     border: none;
 }
 
+/* ألوان الحالات الإضافية */
+.status-rejected { background: rgba(255, 107, 107, 0.15); color: var(--coral-pink); } /* أحمر فاتح */
+.status-new { background: rgba(91, 192, 248, 0.15); color: var(--sky-blue); } /* أزرق فاتح */
+.status-hold { background: rgba(157, 165, 180, 0.15); color: var(--text-secondary); } /* رمادي */
+
+}
+
 .section-card tr td:first-child { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
 .section-card tr td:last-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
 
