@@ -1,9 +1,10 @@
-/**
- * eGov Layout Engine v3.1 (Stable & Corrected)
- */
-
 const Layout = {
-    rootPath: '../', 
+    // كود ذكي: يحدد المسار بناءً على مكان الملف الحالي
+    rootPath: (function() {
+        const path = window.location.pathname;
+        const isSubFolder = path.includes('/admin/') || path.includes('/board/') || path.includes('/ceo/') || path.includes('/hr/') || path.includes('/cfo/') || path.includes('/cto/') || path.includes('/sales/') || path.includes('/audit/') || path.includes('/secretary/') || path.includes('/shareholder/');
+        return isSubFolder ? '../' : '';
+    })(),
 
     menus: {
         'admin': [
