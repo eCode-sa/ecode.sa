@@ -1,9 +1,9 @@
 const Layout = {
     // كود ذكي: يحدد المسار بناءً على مكان الملف الحالي
     rootPath: (function() {
-        const path = window.location.pathname;
-        const isSubFolder = path.includes('/admin/') || path.includes('/board/') || path.includes('/ceo/') || path.includes('/hr/') || path.includes('/cfo/') || path.includes('/cto/') || path.includes('/sales/') || path.includes('/audit/') || path.includes('/secretary/') || path.includes('/shareholder/');
-        return isSubFolder ? '../' : '';
+        const subFolders = ['admin', 'board', 'ceo', 'cfo', 'cto', 'hr', 'sales', 'audit', 'secretary', 'shareholder'];
+        const isSubPage = subFolders.some(folder => window.location.pathname.includes('/' + folder + '/'));
+        return isSubPage ? '../' : '';
     })(),
 
     menus: {
