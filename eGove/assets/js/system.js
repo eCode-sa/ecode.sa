@@ -5038,6 +5038,7 @@ id: "noticesـof boardـmeetings",
 - Notices shall be sent via email to the addresses registered with the Secretary, with the option of sending a hard copy upon request. The Secretary must obtain confirmation of receipt from the members.
 - The Board Secretary shall maintain a register of all notices and correspondence sent to the Board, including evidence of those notices/correspondence for which receipt has been confirmed.
     `.trim()
+  }
   },
 
   {
@@ -5082,6 +5083,7 @@ In coordination with the Chair of the Board or the Nominations and Remuneration 
 
 The Secretary shall ensure that all necessary information is provided to Board members at least ten (10) business days prior to the meeting date.
     `.trim()
+  }
   },
 
   {
@@ -5098,6 +5100,7 @@ id: "participation",
       en:`
 The Chair of the Board, or the Vice-Chair in his absence, shall preside over Board meetings.
     `.trim()
+  }
   },
 
   {
@@ -5118,6 +5121,7 @@ id: "quorum",
 - A Board member may delegate another Board member to attend meetings on his behalf by submitting a written proxy to the delegated member. The proxy must be submitted to the Board Secretary no later than the start of the meeting.
 - No person who is not a Board member may attend a meeting on behalf of any Board member.
     `.trim()
+  }
   },
 
   {
@@ -5136,6 +5140,7 @@ id: "voting",
 - Board resolutions shall be passed by an affirmative vote of the majority of members present at the meeting, with each member having one vote.
 - In the event of a tie, the Chair shall have a casting vote to break the tie.
     `.trim()
+  }
   },
 
   {
@@ -5158,6 +5163,7 @@ id: "meetingـagenda",
 - At the start of the meeting, the Board shall approve the agenda. If any member objects to the agenda, the details of that objection must be recorded in the minutes.
 - Presentations and reports may be delivered during the meeting by the Chief Executive Officer, the Board member responsible for the subject, or an external expert. Following the presentation and responses to questions, the Board may choose to discuss the matter in the absence of the executive management if it deems that appropriate.
     `.trim()
+  }
   },
 
   {
@@ -5204,6 +5210,7 @@ id: "minutes_of_meetings",
 - Copies of the minutes shall be made available to shareholders, upon request, at the Company’s registered office during official working hours for review purposes only.
 - Board minutes shall be kept at the Company’s registered office and shall be drafted in Arabic, with the option to provide translations into other languages upon request.
     `.trim()
+  }
   },
 
   {
@@ -5220,6 +5227,7 @@ id: "remuneration_and_compensation_policy",
       en:`
 Remuneration and compensation for Board members shall be paid in accordance with the remuneration policy approved by the Company and in a manner that does not conflict with applicable laws and regulations.
     `.trim()
+  }
   },
 
   {
@@ -5258,6 +5266,7 @@ In exercising their rights and performing their duties, Board members – includ
 - Evaluation: Undergoing periodic evaluations of their performance as Board members.
 - Resignation: Submitting their resignation if they are no longer able to perform their duties effectively.
     `.trim()
+  }
   },
 
   {
@@ -5406,6 +5415,7 @@ Fifth: In relation to internal policies and control:
 - Preparing mandatory regulatory reports required by competent authorities.
 - Notifying regulators of any material changes in the composition of the Board or senior management, in accordance with applicable laws.
     `.trim()
+  }
   },
 
   {
@@ -5442,6 +5452,7 @@ id: "audit_committee",
   • Ensure that the Audit Committee keeps abreast of developments in accounting standards.
   • Ensure that the Audit Committee carries out its oversight and supervisory role without undertaking executive tasks or making operational management decisions.
     `.trim()
+  }
   },
 
   {
@@ -5458,6 +5469,7 @@ id: "risk_management",
       en:`
 The Company applies a Risk Management Policy approved by the Board of Directors, which sets out the risk management framework within the Company and enables the Board to oversee senior management’s handling of operational, investment, legal, reputational, and other risks facing the Company.
     `.trim()
+  }
   },
 
   {
@@ -5482,6 +5494,7 @@ The Board of Directors is responsible for approving the Company’s investment p
 - Credit risk.
 - Liquidity risk.
     `.trim()
+  }
   },
 
   {
@@ -5498,6 +5511,7 @@ id: "board_responsibility_for_financial_statements",
       en:`
 The Board of Directors is responsible for preparing the Company’s annual report and financial statements in accordance with the regulatory requirements of the relevant authorities in the Kingdom of Saudi Arabia and the applicable accounting standards.
     `.trim()
+  }
   },
 
   {
@@ -5516,6 +5530,7 @@ id: "board_responsibility_for_internal_audit",
 - Through the Audit Committee, the Board must ensure that the internal audit function is capable of providing objective and independent advice to senior management and to the Board itself.
 - Such advisory work shall cover the Company’s management of risks affecting its business, the adequacy of the design and operation of risk management controls, and the level of compliance with policies, procedures, and professional codes of conduct.
     `.trim()
+  }
   },
 
   {
@@ -5532,6 +5547,7 @@ id: "internal_control_framework",
       en:`
 The Company must implement an effective internal control system to ensure compliance with laws, regulations, and internal policies and procedures, and to ensure the integrity of its financial and operational processes and data.
     `.trim()
+  }
   },
 
   {
@@ -5568,6 +5584,7 @@ Ethical Conduct:
 - The Company shall develop and, when necessary, update principles related to its professional ethics policy for Board members and all employees in order to promote a culture of ethical behavior.
 - Board members and all employees must adhere to the highest standards of ethical conduct in their dealings within the Company and with external parties.
     `.trim()
+  }
   },
 
   {
@@ -5600,6 +5617,7 @@ Community Service and Social Responsibility Policies:
 - The Company aims to build community capacity and support sustainable livelihoods through sponsoring initiatives, events, and charitable activities.
 - The Company respects cultural differences and seeks to create employment opportunities that harness employees’ skills and contribute to community development.
     `.trim()
+  }
   },
 
   {
@@ -5626,6 +5644,7 @@ id: "performance_measurement_and_accountability",
   • Addressing areas of weakness in the Board and its committees.
   • Proposing the appointment of new members where necessary.
     `.trim()
+  }
   },
 
   {
@@ -5650,7 +5669,9 @@ Definition of the Monitoring Mechanism:
 - The Board delegates certain oversight responsibilities in key areas to its committees, which report back to the Board with analyses and recommendations.
 - In addition, the Board delegates responsibility for implementing and achieving plans and objectives to executive management while establishing and applying governance, oversight, and monitoring tools to fulfill its responsibilities.
     `.trim()
+  }
   },
+
   {
 id: "compliance_with_regulatory_requirements",
     category: "board",
@@ -5671,7 +5692,9 @@ As part of its duties with respect to compliance with regulatory requirements, t
 - Being informed of any regulatory warnings or sanctions – if any – and discussing their causes and the corrective measures to be taken.
 - Reviewing the results of any inspections or reviews conducted by regulatory authorities, considering their observations, and taking corrective actions when necessary.
     `.trim()
+  }
   },
+
   {
 id: "fraud_prevention",
     category: "board",
@@ -5684,7 +5707,9 @@ id: "fraud_prevention",
 - Through the Audit Committee, the Board of Directors shall assess management’s disclosures regarding fraud risks and ensure that necessary anti-fraud measures are implemented in support of a “zero tolerance” culture for fraud.
 - The Board must ensure that senior management, particularly the Chief Executive Officer, takes appropriate steps to prevent and detect fraud so as to better protect investors, employees, and other stakeholders.
         `.trim()
+  }
   },
+
   {
     id: "board_relations_with_management_and_independent_advisors",
     category: "board",
@@ -5707,7 +5732,9 @@ id: "fraud_prevention",
 - Where the Board deems it necessary to seek advice from internal or external advisors, it or any of its committees may engage appropriate advisors, and the Company shall bear the associated costs.
 - In appointing auditors or advisors, sound commercial practices must be followed, including obtaining competitive proposals and considering competence, experience, and independence.
         `.trim()
+  }
   },
+
   {
     id: "reporting_and_confidentiality",
     category: "board",
@@ -5744,7 +5771,9 @@ id: "fraud_prevention",
 - All Board deliberations, Company records, resources, and non-public information are considered confidential and must be protected against unauthorized access.
 - All Board members and Company employees must sign confidentiality undertakings and remain bound by them throughout and after the term of their relationship with the Company.
         `.trim()
+  }
   },
+
   {
     id: "conflicts_of_Interest",
     category: "board",
@@ -5763,7 +5792,9 @@ id: "fraud_prevention",
 - If any situation arises that may lead to a conflict of interest, the Board member must inform the Chair within five (5) business days of becoming aware of it.
 - The Board shall review the conflict-of-interest situation, assess its impact on the member’s independence and ability to perform his duties, and take appropriate action in accordance with the Company’s policies and applicable regulations.
         `.trim()
+  }
   },
+
   {
     id: "board_annual_report",
     category: "board",
@@ -5778,7 +5809,9 @@ id: "fraud_prevention",
       en:`
 The Board’s annual report must present its activities during the last financial year and must be prepared in accordance with the applicable laws in the Kingdom of Saudi Arabia and the instructions of the competent regulatory authority, while adhering to disclosure and transparency standards.
         `.trim()
+  }
   },
+
   {
     id: "board_secretary",
     category: "board",
@@ -5828,8 +5861,10 @@ Conditions for the Board Secretary:
   • Holding a university degree in law, finance, accounting, business administration, or an equivalent field.
   • Having at least three years of relevant practical experience.
         `.trim()
+  }
   },
-    {
+
+  {
   id: "board_duties_responsibilities",
   category: "board",
   title: {
@@ -6000,7 +6035,9 @@ Education & Continuous Training:
 - Facilitating participation in relevant professional development programs.
 - Ensuring Board members update their competencies regularly based on annual evaluations.
      `.trim()
+  }
   },
+
   {
   id: "board_committees_powers",
   category: "board",
