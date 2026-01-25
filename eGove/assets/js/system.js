@@ -7239,7 +7239,7 @@ const egovDigitalGovernance = [
       ]
     }
   }
-};
+];
 
    // --- 7. آليات الرقابة والمتابع ---
 const egovMonitoringMechanisms = [
@@ -7392,7 +7392,7 @@ const egovMonitoringMechanisms = [
       ]
     }
   }
-};
+];
 
    // --- 9. الجمعيات ---
 const egovAssembliesPolicies = {
