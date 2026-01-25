@@ -1,12 +1,13 @@
 /* ==========================================================================
-   eGov System Core (Merged)
-   يجمع هذا الملف بين:
-   1. البنية التحتية (تحميل CSS/JS والمسارات) - كان سابقاً main.js
-   2. المنطق الذكي (البيانات، الإحصائيات، الرسوم) - كان سابقاً system.js
+   eGov System Core (Unified)
+   يجمع هذا الملف:
+   1. البنية التحتية (Loaders & Paths)
+   2. منطق لوحة القيادة والبيانات (Dashboard & Data)
+   3. تفاعلات الواجهة والذكاء الاصطناعي (UI & AI)
    ========================================================================== */
 
 // ==========================================
-// 1. استيراد البيانات (ES Modules Import)
+// 1. استيراد البيانات (Imports)
 // ==========================================
 import COMPANY_DATA from './data/company_data.js';
 import HR_POLICIES from './data/hr-policies.js';
@@ -15,7 +16,7 @@ import FINANCIAL_GOVERNANCE from './data/financial-governance.js';
 import { governanceTexts } from './data/board_governance.js';
 
 // ==========================================
-// 2. إعدادات النظام والمسارات (Infrastructure)
+// 2. إعدادات النظام والمسارات (System Config)
 // ==========================================
 const path = window.location.pathname;
 const subFolders = ['admin', 'board', 'ceo', 'cfo', 'cto', 'hr', 'sales', 'audit', 'secretary', 'shareholder'];
@@ -24,7 +25,6 @@ const base = isSubPage ? '../' : '';
 const jsRoot = base + 'assets/js/';
 const cssRoot = base + 'assets/css/';
 
-// قائمة الملفات الأساسية التي سيتم تحميلها في كل الصفحات
 const appScripts = [
     'core/config.js',
     'core/i18n.js',
@@ -44,60 +44,56 @@ function loadCSS(filename) {
 }
 
 function loadScripts(scripts) {
-    // شرط التوقف: إذا انتهت القائمة، شغل لوحة القيادة
     if (scripts.length === 0) {
-        initDashboard(); 
+        initDashboard(); // تشغيل الداشبورد بعد تحميل الملفات
         return;
     }
-
     const filename = scripts[0];
     const script = document.createElement('script');
     script.src = filename.startsWith('http') ? filename : jsRoot + filename;
-    
-    // التحميل المتسلسل (Recursive Loading) لضمان الترتيب
     script.onload = () => loadScripts(scripts.slice(1));
     document.body.appendChild(script);
 }
 
 // ==========================================
-// 4. المنطق الذكي للوحة القيادة (Dashboard Logic)
+// 4. منطق لوحة القيادة (Dashboard Logic)
 // ==========================================
 export function initDashboard() {
-    console.log("System & Dashboard Initialized with Real Data...");
+    // تفعيل الأنيميشن العام للصفحة
+    initScrollAnimations();
 
-    // أ. التحقق من وجود عناصر الصفحة (عشان ما يعطي خطأ في الصفحات الفرعية اللي ما فيها شارت)
+    // التحقق من وجود عناصر الداشبورد لتجنب الأخطاء في الصفحات الأخرى
     if (!document.getElementById('companyNameDisplay')) return;
 
-    // ب. تحديث التاريخ
+    console.log("Initializing Dashboard Real Data...");
+
+    // التاريخ
     const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const dateEl = document.getElementById('currentDate');
     if(dateEl) dateEl.textContent = new Date().toLocaleDateString('ar-SA', dateOptions);
 
-    // ج. تحديث اسم الشركة من ملف البيانات
+    // اسم الشركة
     const compNameEl = document.getElementById('companyNameDisplay');
     if(compNameEl) compNameEl.textContent = COMPANY_DATA.basic.nameAr;
     
-    // د. تحديث اسم المستخدم (اختياري من LocalStorage)
+    // اسم المستخدم
     const adminNameEl = document.getElementById('adminName');
     if(adminNameEl && localStorage.getItem('userName')) {
         adminNameEl.textContent = localStorage.getItem('userName');
     }
 
-    // هـ. تشغيل الحسابات والرسوم
     calculateStats();
     renderDepartmentsTable();
     renderCharts();
 }
 
 // ------------------------------------------
-// دوال مساعدة للحسابات (Helpers)
+// دوال مساعدة للإحصائيات (Stats Helpers)
 // ------------------------------------------
 function calculateStats() {
-    // 1. عدد الأقسام
     const deptCount = COMPANY_DATA.departments.length;
     animateValue("deptCount", 0, deptCount, 1000);
 
-    // 2. عدد السياسات (تجميع من كل الملفات)
     let totalPolicies = 0;
     if(HR_POLICIES.sections) HR_POLICIES.sections.forEach(sec => totalPolicies += sec.policies.length);
     if(FINANCIAL_GOVERNANCE.sections) FINANCIAL_GOVERNANCE.sections.forEach(sec => totalPolicies += sec.policies.length);
@@ -105,7 +101,6 @@ function calculateStats() {
     
     animateValue("policiesCount", 0, totalPolicies, 1500);
 
-    // 3. عدد النماذج
     const formsCount = egovFormsTemplates.forms.length;
     animateValue("formsCount", 0, formsCount, 1200);
 }
@@ -114,8 +109,7 @@ function renderDepartmentsTable() {
     const tableBody = document.getElementById('departmentsTableBody');
     if(!tableBody) return;
 
-    tableBody.innerHTML = ''; // تنظيف الجدول
-    // عرض أول 5 أقسام فقط في الصفحة الرئيسية
+    tableBody.innerHTML = ''; 
     COMPANY_DATA.departments.slice(0, 5).forEach((dept) => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -134,7 +128,6 @@ function renderCharts() {
     const ctx = document.getElementById('assetsChart');
     if(!ctx) return;
 
-    // تجميع البيانات للشارت
     const hrCount = HR_POLICIES.sections ? HR_POLICIES.sections.length * 5 : 10;
     const formsCount = egovFormsTemplates.forms.length;
     const govCount = governanceTexts.length;
@@ -177,13 +170,141 @@ function animateValue(id, start, end, duration) {
 }
 
 // ==========================================
-// 5. التنفيذ (Execution)
+// 5. وظائف الذكاء الاصطناعي والتفاعل (AI & Interactions)
+// ==========================================
+
+// جعل الدوال متاحة للنطاق العام (Global Scope) لكي تعمل مع أزرار HTML onclick
+window.analyzeProjectWithAI = async function() {
+    const input = document.getElementById('ai-project-desc').value;
+    const resultBox = document.getElementById('ai-result');
+    const resultContent = document.getElementById('ai-result-content');
+    const btn = document.getElementById('ai-btn');
+    
+    if (!input || input.trim() === "") {
+        alert("الرجاء إدخال تفاصيل الاستشارة أو المشروع أولاً.");
+        return;
+    }
+
+    // حالة التحميل
+    const originalBtnText = btn.innerHTML;
+    btn.innerHTML = '<span>جاري التحليل...</span> <i class="fas fa-spinner fa-spin"></i>';
+    btn.disabled = true;
+    if(resultBox) resultBox.style.display = 'none';
+
+    // ⚠️ ضع مفتاح API الخاص بك هنا
+    const apiKey = "YOUR_GEMINI_API_KEY_HERE"; 
+
+    const prompt = `
+    بصفتك مستشار حوكمة ومخاطر وامتثال (GRC Consultant) معتمد في المملكة العربية السعودية:
+    قم بتحليل المدخلات التالية: "${input}"
+    
+    المطلوب:
+    1. حدد المخاطر التشغيلية أو القانونية المحتملة باختصار.
+    2. اقترح 3 خطوات عملية لتحقيق الامتثال (Compliance) وفقاً للأنظمة السعودية.
+    3. كيف يمكن لنظام eGov التقني المساعدة في أتمتة هذا الإجراء؟
+    
+    الرجاء الرد بنقاط مختصرة وواضحة باللغة العربية.
+    `;
+
+    try {
+        // محاكاة (Demo Mode) في حال عدم وجود المفتاح
+        if (apiKey === "YOUR_GEMINI_API_KEY_HERE" || apiKey === "") {
+            setTimeout(() => {
+                if(resultContent) {
+                    resultContent.innerHTML = `
+                    <strong>⚠️ ملاحظة: هذا تحليل تجريبي (Demo Analysis):</strong><br><br>
+                     بناءً على وصفك، يوصى بالآتي:<br>
+                    • <strong>الحوكمة:</strong> توثيق محاضر الاجتماعات إلكترونياً لضمان الحجية القانونية.<br>
+                    • <strong>الامتثال:</strong> التأكد من توافق الإجراءات مع نظام حماية البيانات الشخصية.<br>
+                    • <strong>دور eGov:</strong> يمكن للنظام أتمتة هذه العملية بالكامل عبر وحدة "Board Mgmt".
+                    `;
+                }
+                if(resultBox) resultBox.style.display = 'block';
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+            }, 2000);
+            return; 
+        }
+
+        // الاتصال الحقيقي بـ Gemini API
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+        });
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const data = await response.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (text && resultContent) {
+            resultContent.innerHTML = text.replace(/\n/g, '<br>').replace(/\*/g, '');
+            if(resultBox) resultBox.style.display = 'block';
+        }
+
+    } catch (error) {
+        console.error("AI Error:", error);
+        alert("عذراً، الخدمة غير متاحة حالياً. يرجى التحقق من المفتاح أو الاتصال بالدعم.");
+    } finally {
+        if(apiKey !== "YOUR_GEMINI_API_KEY_HERE" && apiKey !== "") {
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+        }
+    }
+};
+
+window.handleFormSubmit = function(event) {
+    event.preventDefault();
+    const btn = event.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    
+    btn.innerHTML = 'جاري الإرسال... <i class="fas fa-spinner fa-spin"></i>';
+    btn.disabled = true;
+
+    // محاكاة الإرسال
+    setTimeout(() => {
+        btn.innerHTML = 'تم الاستلام بنجاح <i class="fas fa-check"></i>';
+        btn.style.background = '#10b981'; // Mint Green
+        btn.style.color = '#fff';
+        event.target.reset();
+        
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            btn.style.background = '';
+            btn.style.color = '';
+        }, 3000);
+    }, 1500);
+};
+
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section, .stat-card, .section-card').forEach(section => {
+        section.style.opacity = '0'; // إعداد أولي
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(section);
+    });
+}
+
+// ==========================================
+// 6. التنفيذ الرئيسي (Execution)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. تحميل الستايل
+    // تحميل الستايل
     loadCSS('style.css'); 
     loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
 
-    // 2. تحميل السكربتات الأساسية (وعند الانتهاء سيتم استدعاء initDashboard تلقائياً)
+    // تحميل السكربتات الأساسية (Layout, Auth, etc)
+    // عند الانتهاء سيتم استدعاء initDashboard() تلقائياً
     loadScripts(appScripts);
 });
