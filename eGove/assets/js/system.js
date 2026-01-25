@@ -5003,6 +5003,7 @@ id: "frequencyـofـboardـmeetings",
       en:`
 The Board of Directors shall meet as many times as it deems necessary to enable its members to properly discharge their duties and responsibilities in light of business needs. As a minimum, the Board shall convene on a quarterly basis, at such locations and dates as it determines.
     `.trim()
+}
   },
 
   {
