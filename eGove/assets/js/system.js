@@ -3310,7 +3310,8 @@ HR Approval: _____________________________
       `.trim()
     }
   }
-];
+  ]
+};
 
 // --- 4. الحوكمة المالية (مقتطف للتشغيل - من financial-governance.js) ---
 const FINANCIAL_GOVERNANCE = {
