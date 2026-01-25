@@ -6792,8 +6792,8 @@ The holder of the Governance, Risk & Compliance (GRC) Manager position should me
   }
 
   }
-};
-   // --- 6. الحوكمة الرقمية ---
+];
+// --- 6. الحوكمة الرقمية ---
 const egovDigitalGovernance = [
   { ar: {
     section_id: "digital_governance",
