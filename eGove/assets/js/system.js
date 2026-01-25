@@ -6790,8 +6790,9 @@ The holder of the Governance, Risk & Compliance (GRC) Manager position should me
   - Commitment to ongoing learning through courses, workshops, and staying updated on global best practices in governance, risk, and compliance.
     `.trim()
   }
-},
 
+  ]
+};
    // --- 6. الحوكمة الرقمية ---
 const egovDigitalGovernance = [
   { ar: {
