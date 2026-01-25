@@ -6793,8 +6793,8 @@ The holder of the Governance, Risk & Compliance (GRC) Manager position should me
 },
 
    // --- 6. الحوكمة الرقمية ---
-const egovDigitalGovernance = {
-  ar: {
+const egovDigitalGovernance = [
+  { ar: {
     section_id: "digital_governance",
     title: "الحوكمة الرقمية",
     intro: "هي مجموعة المبادئ والإجراءات والعمليات التي تضمن إدارة الأصول الرقمية للمؤسسة بشكل فعال وآمن ومسؤول، وتشمل أمن المعلومات، حماية البيانات الشخصية، التجارة الإلكترونية، والذكاء الاصطناعي وغيرها من المجالات الرقمية المرتبطة بالعمل.",
@@ -7241,8 +7241,8 @@ const egovDigitalGovernance = {
 };
 
    // --- 7. آليات الرقابة والمتابع ---
-const egovMonitoringMechanisms = {
-   ar: {
+const egovMonitoringMechanisms = [
+  { ar: {
     section_id: "monitoring_mechanisms",
     title: "آليات الرقابة والمتابعة",
     intro:
