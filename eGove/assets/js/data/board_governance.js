@@ -1,4 +1,4 @@
-const governanceTexts = [
+window.governanceTexts = [
   {
    id: "governance_structure",
     category: "governance",
