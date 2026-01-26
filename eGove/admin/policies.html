@@ -21,6 +21,7 @@
         .policy-item { padding: 15px; border-radius: 10px; cursor: pointer; border-bottom: 1px solid var(--border-color); transition: 0.2s; margin-bottom: 5px; }
         .policy-item:hover { background: var(--bg-elevated); }
         .policy-item.active { background: rgba(139, 127, 255, 0.1); border-right: 3px solid var(--lavender-dark); }
+        [dir="ltr"] .policy-item.active { border-right: none; border-left: 3px solid var(--lavender-dark); }
         .policy-item h4 { margin: 0 0 5px; font-size: 13px; color: var(--text-primary); line-height: 1.4; }
         .policy-item span { font-size: 10px; color: var(--text-muted); display: block; }
 
@@ -29,10 +30,15 @@
         .viewer-toolbar { padding: 15px 25px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
         .viewer-content { flex: 1; padding: 40px; overflow-y: auto; line-height: 1.8; font-size: 15px; color: var(--text-primary); white-space: pre-wrap; }
         
-        /* تنسيق المحتوى */
-        .content-header { color: var(--lavender-light); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
-        .list-point { margin-bottom: 10px; padding-right: 20px; position: relative; }
-        .list-point::before { content: '•'; position: absolute; right: 0; color: var(--sky-blue); }
+        /* تنسيق المحتوى الداخلي */
+        .viewer-content h3 { color: var(--lavender-light); margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
+        .viewer-content h4 { color: var(--sky-blue); margin-top: 20px; margin-bottom: 10px; }
+        .viewer-content ul { padding-right: 20px; list-style-type: disc; color: var(--text-secondary); }
+        [dir="ltr"] .viewer-content ul { padding-right: 0; padding-left: 20px; }
+        .viewer-content li { margin-bottom: 8px; }
+        
+        .article-box { background: var(--bg-primary); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        .article-title { color: var(--sky-blue); margin: 0 0 10px; font-size: 16px; font-weight: bold; }
 
         /* الطباعة */
         @media print {
@@ -40,6 +46,7 @@
             .policy-viewer, .viewer-content, .viewer-content * { visibility: visible; }
             .policy-viewer { position: absolute; left: 0; top: 0; width: 100%; height: auto; background: #fff !important; color: #000 !important; border: none; }
             .viewer-toolbar { display: none; }
+            .article-box { border: 1px solid #ddd; background: #fff; color: #000; page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -55,19 +62,19 @@
             <main class="dashboard-content fade-in" id="workspace">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <div>
-                        <h2 style="margin: 0; color: var(--text-primary);">المكتبة الرقمية للسياسات</h2>
-                        <p style="margin: 5px 0 0; color: var(--text-secondary); font-size: 13px;">المرجع الموحد للوائح التنظيمية والإدارية.</p>
+                        <h2 style="margin: 0; color: var(--text-primary);" data-i18n="policies_title">المكتبة الرقمية للسياسات</h2>
+                        <p style="margin: 5px 0 0; color: var(--text-secondary); font-size: 13px;" data-i18n="policies_desc">المرجع الموحد للوائح التنظيمية والإدارية.</p>
                     </div>
                 </div>
 
                 <div class="policy-layout">
                     <div class="policy-sidebar">
                         <div class="filters-area">
-                            <div class="filter-chip active" onclick="filterList('All')">الكل</div>
-                            <div class="filter-chip" onclick="filterList('HR')">الموارد البشرية</div>
-                            <div class="filter-chip" onclick="filterList('Finance')">المالية</div>
-                            <div class="filter-chip" onclick="filterList('Governance')">الحوكمة</div>
-                            <div class="filter-chip" onclick="filterList('IT')">التقنية</div>
+                            <div class="filter-chip active" onclick="filterList('All')" data-i18n="cat_all">الكل</div>
+                            <div class="filter-chip" onclick="filterList('HR')" data-i18n="cat_hr">الموارد البشرية</div>
+                            <div class="filter-chip" onclick="filterList('Finance')" data-i18n="cat_finance">المالية</div>
+                            <div class="filter-chip" onclick="filterList('Governance')" data-i18n="cat_gov">الحوكمة</div>
+                            <div class="filter-chip" onclick="filterList('IT')" data-i18n="cat_it">التقنية</div>
                         </div>
                         <div class="policy-list" id="policyListContainer"></div>
                     </div>
@@ -75,19 +82,19 @@
                     <div class="policy-viewer">
                         <div class="viewer-toolbar">
                             <div>
-                                <h3 style="margin:0; font-size:18px;" id="viewTitle">اختر لائحة للعرض</h3>
+                                <h3 style="margin:0; font-size:18px;" id="viewTitle">...</h3>
                                 <span style="font-size:12px; color:var(--text-secondary);" id="viewMeta">--</span>
                             </div>
                             <div style="display:flex; gap:10px;">
                                 <button onclick="window.print()" style="background:var(--bg-elevated); color:var(--text-primary); border:1px solid var(--border-color); padding:8px 15px; border-radius:8px; cursor:pointer;">
-                                    <i class="fas fa-print"></i> طباعة
+                                    <i class="fas fa-print"></i> <span data-i18n="btn_print">طباعة</span>
                                 </button>
                             </div>
                         </div>
                         <div class="viewer-content" id="viewContent">
                             <div style="text-align:center; margin-top:50px; color:var(--text-muted);">
                                 <i class="fas fa-book-open" style="font-size:50px; margin-bottom:20px; opacity:0.3;"></i>
-                                <p>الرجاء اختيار لائحة من القائمة الجانبية.</p>
+                                <p data-i18n="select_policy_hint">الرجاء اختيار لائحة من القائمة الجانبية.</p>
                             </div>
                         </div>
                     </div>
@@ -104,24 +111,65 @@
     <script src="../assets/js/data/hr-policies.js"></script>
     <script src="../assets/js/data/financial-governance.js"></script>
     <script src="../assets/js/data/digital_governance.js"></script>
-    <script src="../assets/js/data/governance.js"></script> <script src="../assets/js/data/assemblies_policies.js"></script>
+    <script src="../assets/js/data/governance.js"></script>
+    <script src="../assets/js/data/assemblies_policies.js"></script>
     <script src="../assets/js/data/monitoring_mechanisms.js"></script>
 
     <script src="../assets/js/system.js"></script>
 
     <script>
-        // --- مجمع البيانات الذكي (Data Aggregator) ---
+        // --- 1. قاموس الترجمة ---
+        const pageTranslations = {
+            ar: {
+                policies_title: "المكتبة الرقمية للسياسات", policies_desc: "المرجع الموحد للوائح التنظيمية والإدارية.",
+                cat_all: "الكل", cat_hr: "الموارد البشرية", cat_finance: "المالية", cat_it: "التقنية", cat_gov: "الحوكمة",
+                btn_print: "طباعة", lbl_version: "الإصدار", lbl_date: "تاريخ التحديث", select_policy_hint: "الرجاء اختيار لائحة من القائمة الجانبية."
+            },
+            en: {
+                policies_title: "Policies Digital Library", policies_desc: "Unified reference for regulations.",
+                cat_all: "All", cat_hr: "HR", cat_finance: "Finance", cat_it: "IT", cat_gov: "Governance",
+                btn_print: "Print", lbl_version: "Version", lbl_date: "Last Updated", select_policy_hint: "Please select a policy from the sidebar."
+            }
+        };
+
+        // --- 2. التحميل الأولي ---
         let allPolicies = [];
+        let currentFilter = 'All';
 
         document.addEventListener('DOMContentLoaded', () => {
+            // دمج الترجمة
+            if(window.SYSTEM_TRANSLATIONS) {
+                Object.assign(window.SYSTEM_TRANSLATIONS.ar, pageTranslations.ar);
+                Object.assign(window.SYSTEM_TRANSLATIONS.en, pageTranslations.en);
+                const lang = localStorage.getItem('eGov_Lang') || 'ar';
+                if(window.updateLanguage) window.updateLanguage(lang);
+            }
+
+            // تحميل البيانات وعرضها
             loadAndProcessData();
             renderPolicyList('All');
+
+            // ✅ استماع لتغيير اللغة لتحديث المحتوى فوراً
+            window.addEventListener('languageChanged', () => {
+                const lang = localStorage.getItem('eGov_Lang') || 'ar';
+                loadAndProcessData(); // إعادة معالجة النصوص حسب اللغة الجديدة
+                renderPolicyList(currentFilter); // إعادة رسم القائمة
+                
+                // تحديث المحتوى المعروض حالياً إذا كان هناك شيء مفتوح
+                const activeItem = document.querySelector('.policy-item.active');
+                if(activeItem) {
+                    // نعيد تحميل نفس العنصر (نحتاج معرفته، لكن للتبسيط سنكتفي بتحديث القائمة)
+                    document.getElementById('viewContent').innerHTML = `<div style="text-align:center; margin-top:50px; color:var(--text-muted);"><p>${lang === 'ar' ? 'الرجاء اختيار اللائحة مجدداً لعرض الترجمة' : 'Please re-select the policy to view translation'}</p></div>`;
+                }
+            });
         });
 
+        // --- 3. معالج البيانات الذكي (Smart Data Processor) ---
         function loadAndProcessData() {
             const lang = localStorage.getItem('eGov_Lang') || 'ar';
+            allPolicies = []; // تصفير المصفوفة
 
-            // 1. معالجة سياسات الموارد البشرية (HR)
+            // 1. الموارد البشرية (HR)
             if (window.HR_POLICIES && window.HR_POLICIES.sections) {
                 window.HR_POLICIES.sections.forEach(section => {
                     section.policies.forEach(policy => {
@@ -135,7 +183,7 @@
                 });
             }
 
-            // 2. معالجة الحوكمة المالية (Finance)
+            // 2. المالية (Finance)
             if (window.FINANCIAL_GOVERNANCE && window.FINANCIAL_GOVERNANCE.sections) {
                 window.FINANCIAL_GOVERNANCE.sections.forEach(section => {
                     section.policies.forEach(policy => {
@@ -149,7 +197,7 @@
                 });
             }
 
-            // 3. معالجة الجمعيات العمومية (Governance)
+            // 3. الجمعيات العمومية (Governance)
             if (window.egovassembliespolicies) {
                 window.egovassembliespolicies.forEach(item => {
                     allPolicies.push({
@@ -161,7 +209,7 @@
                 });
             }
 
-            // 4. معالجة الحوكمة العامة (Governance)
+            // 4. الحوكمة العامة (Governance)
             if (window.governanceTexts) {
                 window.governanceTexts.forEach(item => {
                     allPolicies.push({
@@ -173,55 +221,88 @@
                 });
             }
 
-            // 5. معالجة الحوكمة الرقمية (IT) - هيكل خاص
+            // 5. ✅ الحوكمة الرقمية (IT) - تم الإصلاح لعرض كامل المحتوى
             if (window.egovDigitalGovernance) {
-                const dg = window.egovDigitalGovernance[lang]; // ar or en
+                const dg = window.egovDigitalGovernance[lang]; 
                 if (dg) {
-                    let htmlContent = `<p>${dg.intro}</p><h3>${dg.importance_title}</h3><ul>`;
-                    dg.importance_items.forEach(point => {
-                        htmlContent += `<li>${point}</li>`;
-                    });
-                    htmlContent += `</ul>`;
+                    // تجميع كل الأقسام في نص واحد HTML
+                    let html = `<p><strong>${dg.intro}</strong></p>`;
+                    
+                    // الأهمية
+                    html += `<h3>${dg.importance_title}</h3><ul>`;
+                    dg.importance_items.forEach(item => html += `<li>${item}</li>`);
+                    html += `</ul>`;
+
+                    // الأدوار (Roles)
+                    if (dg.roles) {
+                        html += `<h3>${dg.roles.ciso_title}</h3><p>${dg.roles.ciso_intro}</p><ul>`;
+                        dg.roles.ciso_responsibilities.forEach(r => html += `<li>${r}</li>`);
+                        html += `</ul>`;
+                        
+                        html += `<h3>${dg.roles.management_title}</h3><ul>`;
+                        dg.roles.management_responsibilities.forEach(r => html += `<li>${r}</li>`);
+                        html += `</ul>`;
+                    }
+
+                    // جمع البيانات (Data Collection)
+                    if (dg.employee_data) {
+                        html += `<h3>${dg.employee_data.title}</h3><p>${dg.employee_data.intro}</p>`;
+                        dg.employee_data.categories.forEach(cat => {
+                            html += `<h4>${cat.label}</h4><ul>`;
+                            cat.reasons.forEach(r => html += `<li>${r}</li>`);
+                            html += `</ul>`;
+                        });
+                    }
+
+                    // العقوبات (Sanctions)
+                    if (dg.security_sanctions) {
+                        html += `<h3>${dg.security_sanctions.title}</h3><p>${dg.security_sanctions.intro}</p><ul>`;
+                        dg.security_sanctions.sanctions.forEach(s => html += `<li>${s}</li>`);
+                        html += `</ul>`;
+                    }
 
                     allPolicies.push({
-                        id: 'digital_gov_main',
+                        id: 'digital_gov_full',
                         cat: 'IT',
                         title: dg.title,
-                        content: htmlContent
+                        content: html
                     });
                 }
             }
 
-            // 6. معالجة آليات المراقبة (Governance) - هيكل معقد
+            // 6. آليات المراقبة (Governance)
             if (window.egovMonitoringMechanisms) {
                 const mm = window.egovMonitoringMechanisms[lang];
                 if (mm) {
-                    // تحويل الكائن المعقد إلى نص HTML مقروء
-                    let htmlContent = `<p>${mm.intro}</p>`;
+                    let html = `<p>${mm.intro}</p>`;
                     
                     // Internal Audit
-                    htmlContent += `<h3>${mm.internal_audit.title}</h3><p>${mm.internal_audit.role}</p>`;
-                    htmlContent += `<ul>${mm.internal_audit.objectives.map(o => `<li>${o}</li>`).join('')}</ul>`;
-                    
+                    html += `<h3>${mm.internal_audit.title}</h3><p>${mm.internal_audit.role}</p><ul>`;
+                    mm.internal_audit.types.forEach(t => html += `<li>${t}</li>`);
+                    html += `</ul>`;
+
                     // External Audit
-                    htmlContent += `<h3>${mm.external_audit.title}</h3><p>${mm.external_audit.role}</p>`;
-                    
+                    html += `<h3>${mm.external_audit.title}</h3><p>${mm.external_audit.role}</p>`;
+
                     // Whistleblowing
-                    htmlContent += `<h3>${mm.whistleblowing.title}</h3><p>${mm.whistleblowing.channels}</p>`;
+                    html += `<h3>${mm.whistleblowing.title}</h3><p>${mm.whistleblowing.channels}</p>`;
 
                     allPolicies.push({
-                        id: 'monitoring_mechanisms',
+                        id: 'monitoring_full',
                         cat: 'Governance',
                         title: mm.title,
-                        content: htmlContent
+                        content: html
                     });
                 }
             }
         }
 
-        // --- دوال العرض ---
+        // --- 4. العرض والفلترة ---
         function renderPolicyList(filter) {
+            currentFilter = filter;
             const container = document.getElementById('policyListContainer');
+            const lang = localStorage.getItem('eGov_Lang') || 'ar';
+            
             container.innerHTML = '';
 
             const filtered = allPolicies.filter(p => filter === 'All' || p.cat === filter);
@@ -238,7 +319,7 @@
                 div.innerHTML = `
                     <h4>${p.title}</h4>
                     <div style="display:flex; justify-content:space-between;">
-                        <span>${p.cat}</span>
+                        <span style="color:var(--sky-blue)">${p.cat}</span>
                     </div>
                 `;
                 container.appendChild(div);
@@ -256,7 +337,8 @@
             element.classList.add('active');
 
             document.getElementById('viewTitle').innerText = policy.title;
-            document.getElementById('viewMeta').innerText = `التصنيف: ${policy.cat}`;
+            const lang = localStorage.getItem('eGov_Lang') || 'ar';
+            document.getElementById('viewMeta').innerText = lang === 'ar' ? `التصنيف: ${policy.cat}` : `Category: ${policy.cat}`;
             document.getElementById('viewContent').innerHTML = policy.content;
         }
     </script>
