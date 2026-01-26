@@ -9,7 +9,7 @@ const Layout = {
         const isSub = subFolders.some(f => path.includes('/' + f + '/'));
         return isSub ? '../' : '';
     })(),
-
+   
     // بيانات القائمة (اختصرتها هنا لعدم التكرار، لكن الكود سيعمل مع القوائم الكاملة لديك)
     menus: {
         'admin': [
@@ -17,6 +17,7 @@ const Layout = {
             { icon: 'fa-users-cog', key: 'menu_users', link: 'users.html' },
             { icon: 'fa-shield-alt', key: 'menu_audit_logs', link: 'audit.html' },
             { icon: 'fa-cogs', key: 'menu_settings', link: 'settings.html' },
+           { icon: 'fa-form', key: 'menu_forms', link: 'forms.html' },
             { icon: 'fa-briefcase', key: 'menu_profile', link: 'profile.html' }
         ],
         'board': [
