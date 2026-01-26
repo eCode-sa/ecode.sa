@@ -8087,12 +8087,19 @@ window.initDashboard = function() {
 
     console.log("Initializing Dashboard with LOCAL Data...");
 
+   const currentLang = document.documentElement.lang || 'ar';
+
     // أ. تحديث التاريخ
     const dateEl = document.getElementById('currentDate');
-    if(dateEl) dateEl.textContent = new Date().toLocaleDateString('ar-SA');
-
+    if (dateEl) {
+        const locale = currentLang === 'ar' ? 'ar-SA' : 'en-US';
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateEl.textContent = new Date().toLocaleDateString(locale, dateOptions);
+    } 
     // ب. تحديث اسم الشركة
-    compNameEl.textContent = COMPANY_DATA.basic.nameAr;
+    const compNameEl = document.getElementById('companyNameDisplay');
+    if(compNameEl) {compNameEl.textContent = currentLang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
+    }
     
     // ج. تحديث اسم المستخدم
     const adminNameEl = document.getElementById('adminName');
@@ -8105,6 +8112,38 @@ window.initDashboard = function() {
     
     // هـ. تفعيل الأنيميشن
     initScrollAnimations();
+};
+   function updateLanguage(lang) {
+    // 1. تحديث إعدادات الصفحة
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+    // 2. تحديث النصوص المترجمة (data-i18n)
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (SYSTEM_TRANSLATIONS[lang] && SYSTEM_TRANSLATIONS[lang][key]) {
+            el.textContent = SYSTEM_TRANSLATIONS[lang][key];
+        }
+    });
+
+    // 3. تحديث اسم الشركة ديناميكياً ✅
+    const compNameEl = document.getElementById('companyNameDisplay');
+    if(compNameEl && typeof COMPANY_DATA !== 'undefined') {
+        compNameEl.textContent = lang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
+    }
+
+    // 4. تحديث التاريخ ديناميكياً (اختياري لكن مفضل) ✅
+    const dateEl = document.getElementById('currentDate');
+    if(dateEl) {
+        const locale = lang === 'ar' ? 'ar-SA' : 'en-US';
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateEl.textContent = new Date().toLocaleDateString(locale, dateOptions);
+    }
+
+    // تحديث الجدول والشارت (إذا لزم الأمر)
+    updateTableLanguage(lang);
+    localStorage.setItem('eGov_Lang', lang);
 };
 
 function calculateStats() {
