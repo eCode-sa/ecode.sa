@@ -1,4 +1,4 @@
-const DICTIONARY = {
+window.SYSTEM_TRANSLATIONS = { 
     ar: {
         // --- الهوية وتسجيل الدخول ---
         brand: "eCode",
