@@ -2,7 +2,7 @@
  * هذا الملف يحدد الأقسام والأدوار الوظيفية داخل نظام eGov
  */
 
-const COMPANY_DATA = {
+window.COMPANY_DATA = {
     basic: {
         name: "Electronic Code Co.",
         nameAr: "شركة إلكترونيك كود",
