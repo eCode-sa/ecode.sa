@@ -2,25 +2,40 @@
 // 1. مُحمل النظام والبيانات (System Loader)
 // ==========================================
 (function() {
-    const path = window.location.pathname;
-    const subFolders = ['admin', 'board', 'ceo', 'cfo', 'cto', 'hr', 'sales', 'audit', 'secretary', 'shareholder'];
-    const isSubPage = subFolders.some(f => path.includes('/' + f + '/'));
-    const base = isSubPage ? '../' : ''; 
+    // تحديد المسار الجذري بذكاء
+    // نبحث عن ملف style.css الموجود في الصفحة لنعرف أين مجلد assets
+    let assetsPath = '';
+    const styleLink = document.querySelector('link[href*="assets/css/style.css"]');
     
-    // مسارات الأصول
-    const jsRoot = base + 'assets/js/';
-    const cssRoot = base + 'assets/css/';
+    if (styleLink) {
+        // نأخذ الرابط من ملف الستايل ونحذف منه 'css/style.css' لنحصل على مسار assets
+        const href = styleLink.getAttribute('href');
+        assetsPath = href.replace('css/style.css', ''); // الناتج سيكون مثلاً '../assets/'
+    } else {
+        // طريقة احتياطية في حال لم نجد ملف الستايل
+        const path = window.location.pathname;
+        const subFolders = ['admin', 'board', 'ceo', 'cfo', 'cto', 'hr', 'sales', 'audit', 'secretary', 'shareholder'];
+        const isSubPage = subFolders.some(f => path.includes('/' + f + '/'));
+        assetsPath = isSubPage ? '../assets/' : 'assets/';
+    }
 
+    const jsRoot = assetsPath + 'js/';
+    const cssRoot = assetsPath + 'css/';
+
+    console.log("📂 Assets Path Detected:", assetsPath); // للتأكد من المسار في الكونسول
+
+    // دالة تحميل CSS
     window.loadCSS = function(filename) {
+        if (document.querySelector(`link[href*="${filename}"]`)) return; // عدم التكرار
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = filename.startsWith('http') ? filename : cssRoot + filename;
         document.head.appendChild(link);
     };
 
+    // دالة تحميل JS
     function loadScript(relativePath, callback) {
         const script = document.createElement('script');
-        // نستخدم jsRoot كمسار أساسي
         script.src = relativePath.startsWith('http') ? relativePath : jsRoot + relativePath;
         
         script.onload = () => {
@@ -28,21 +43,17 @@
             if (callback) callback();
         };
         script.onerror = () => {
-            console.error(`❌ Failed to load: ${relativePath}`);
-            if (callback) callback(); 
+            console.error(`❌ ERROR 404: Failed to load file: ${script.src}`);
+            if (callback) callback(); // نكمل عشان ما يوقف النظام كامل
         };
         document.body.appendChild(script);
     }
 
-    loadCSS('style.css');
     loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
 
-    // === قائمة الملفات (الترتيب مهم جداً) ===
+    // === قائمة الملفات ===
     const scriptsToLoad = [
-        // 1. ملفات الكور (الأساسية)
-        'core/i18n.js',              // ✅ هنا يتم تحميل ملف الترجمة الخاص بك
-
-        // 2. ملفات البيانات (Data)
+        'core/i18n.js',              
         'data/company_data.js',
         'data/hr-policies.js',
         'data/financial-governance.js',
@@ -53,10 +64,9 @@
         'data/forms_templates.js'
     ];
 
-    // دالة التحميل المتسلسل
     function loadChain(index) {
         if (index >= scriptsToLoad.length) {
-            console.log("🚀 System Ready. Initializing Dashboard...");
+            console.log("🚀 Loading sequence complete. Starting Dashboard...");
             if (typeof window.initDashboard === 'function') {
                 window.initDashboard();
             }
@@ -74,14 +84,44 @@
 // ==========================================
 // 2. منطق لوحة القيادة (Dashboard Logic)
 // ==========================================
+
+// متغير لعد المحاولات (عشان نوقف اللوب)
+let dashboardRetryCount = 0;
+const MAX_RETRIES = 20; // أقصى حد للمحاولة (10 ثواني)
+
 window.initDashboard = function() {
-    // ننتظر تحميل ملفي البيانات والترجمة
-    if (typeof COMPANY_DATA === 'undefined' || typeof SYSTEM_TRANSLATIONS === 'undefined') {
-        console.warn("⚠️ جاري انتظار تحميل البيانات والترجمة...");
-        setTimeout(window.initDashboard, 500); 
+    // التحقق من تحميل البيانات
+    const isDataMissing = typeof COMPANY_DATA === 'undefined';
+    const isTranslationMissing = typeof SYSTEM_TRANSLATIONS === 'undefined';
+
+    if (isDataMissing || isTranslationMissing) {
+        dashboardRetryCount++;
+        
+        if (dashboardRetryCount > MAX_RETRIES) {
+            console.error("🚨 CRITICAL ERROR: Could not load data files after multiple attempts.");
+            console.error("- COMPANY_DATA missing?", isDataMissing);
+            console.error("- SYSTEM_TRANSLATIONS missing?", isTranslationMissing);
+            
+            // إظهار رسالة خطأ للمستخدم في الصفحة
+            const dashboardContent = document.querySelector('.dashboard-content');
+            if (dashboardContent) {
+                dashboardContent.innerHTML = `
+                    <div style="text-align:center; padding:50px; color: red;">
+                        <h3>خطأ في تحميل النظام</h3>
+                        <p>فشل تحميل ملفات البيانات. تأكد من أن الملفات موجودة في المسار الصحيح: <code>assets/js/data/</code></p>
+                        <p>راجع الـ Console للمزيد من التفاصيل (F12).</p>
+                    </div>
+                `;
+            }
+            return; // 🛑 إيقاف المحاولة نهائياً
+        }
+
+        console.warn(`⏳ Waiting for data... (Attempt ${dashboardRetryCount}/${MAX_RETRIES})`);
+        setTimeout(window.initDashboard, 500); // إعادة المحاولة
         return;
     }
 
+    // إذا وصلنا هنا، يعني البيانات تحملت بنجاح 🎉
     const compNameEl = document.getElementById('companyNameDisplay');
     if (!compNameEl) return;
 
@@ -105,14 +145,15 @@ window.updateLanguage = function(lang) {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-    // استخدام SYSTEM_TRANSLATIONS القادم من ملف core/i18n.js
-    const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (SYSTEM_TRANSLATIONS[lang] && SYSTEM_TRANSLATIONS[lang][key]) {
-            el.textContent = SYSTEM_TRANSLATIONS[lang][key];
-        }
-    });
+    if (typeof SYSTEM_TRANSLATIONS !== 'undefined') {
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (SYSTEM_TRANSLATIONS[lang] && SYSTEM_TRANSLATIONS[lang][key]) {
+                el.textContent = SYSTEM_TRANSLATIONS[lang][key];
+            }
+        });
+    }
 
     const compNameEl = document.getElementById('companyNameDisplay');
     if(compNameEl && typeof COMPANY_DATA !== 'undefined') {
@@ -158,7 +199,6 @@ function renderDepartmentsTable() {
     if(!tableBody || typeof COMPANY_DATA === 'undefined') return;
 
     const lang = document.documentElement.lang || 'ar';
-    // التأكد من وجود القاموس قبل استخدامه
     const t = (typeof SYSTEM_TRANSLATIONS !== 'undefined') ? (SYSTEM_TRANSLATIONS[lang] || SYSTEM_TRANSLATIONS['ar']) : {};
 
     tableBody.innerHTML = ''; 
@@ -193,9 +233,6 @@ function renderCharts() {
     const formsCount = (typeof egovFormsTemplates !== 'undefined') ? egovFormsTemplates.forms.length : 0;
     
     const lang = document.documentElement.lang || 'ar';
-    // استخدام النصوص من ملف الترجمة إذا توفرت، أو استخدام نصوص افتراضية
-    const t = (typeof SYSTEM_TRANSLATIONS !== 'undefined' && SYSTEM_TRANSLATIONS[lang]) ? SYSTEM_TRANSLATIONS[lang] : {};
-    
     const labels = lang === 'ar' 
         ? ['سياسات HR', 'نماذج إلكترونية', 'حوكمة المجلس', 'حوكمة مالية']
         : ['HR Policies', 'E-Forms', 'Board Gov', 'Financial Gov'];
