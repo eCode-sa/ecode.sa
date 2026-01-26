@@ -1,6 +1,4 @@
-// egov-hr-policies.js (Monitoring & Oversight section - Arabic & English)
-
-export const egovMonitoringMechanisms = {
+const egovMonitoringMechanisms = {
   ar: {
     section_id: "monitoring_mechanisms",
     title: "آليات الرقابة والمتابعة",
