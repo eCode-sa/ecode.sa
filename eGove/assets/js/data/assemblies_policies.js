@@ -1,4 +1,5 @@
-window.egovassembliespolicies = {
+window.egovassembliespolicies = [
+   {
     id: "assemblies_intro",
     category: "assemblies",
     title: {
@@ -610,4 +611,4 @@ If a resolution of the General Assembly would result in an amendment to the righ
       `.trim()
     }
   }
-};
+];
