@@ -17,16 +17,16 @@ const COMPANY_DATA = {
         founded: "2025"
     },
     departments: [
-        { id: 1, name: "Board of Directors", head: "Chairman", role: "board", desc: "مجلس الإدارة" },
-        { id: 2, name: "Executive Management", head: "CEO", role: "ceo", desc: "الإدارة التنفيذية" },
-        { id: 3, name: "Internal Audit", head: "Audit Committee", role: "audit", desc: "لجنة المراجعة والتدقيق" },
-        { id: 4, name: "Finance", head: "CFO", role: "finance", desc: "الإدارة المالية" },
-        { id: 5, name: "Human Resources", head: "CAO", role: "hr", desc: "الموارد البشرية والشؤون الإدارية" },
-        { id: 6, name: "Information Technology", head: "CTO", role: "it", desc: "تقنية المعلومات" },
-        { id: 7, name: "Sales", head: "Sales Manager", role: "sales", desc: "المبيعات" },
-        { id: 8, name: "Shareholders", head: "Shareholder", role: "shareholder", desc: "المساهمين والجمعية العمومية" },
-        { id: 9, name: "Secretary", head: "Board Secretary", role: "secretary", desc: "أمانة سر المجلس" },
-        { id: 10, name: "Governance Admin", head: "GRC Officer", role: "admin", desc: "مسؤول الحوكمة والمخاطر" }
+        { id: 1, name: "dept_board", head: "chairman", role: "role_chairman", desc: "dept_board" },
+        { id: 2, name: "dept_executive", head: "ceo", role: "role_ceo", desc: "dept_executive" },
+        { id: 3, name: "dept_audit", head: "audit", role: "role_audit", desc: "dept_audit" },
+        { id: 4, name: "dept_finance", head: "cfo", role: "role_cfo", desc: "dept_finance" },
+        { id: 5, name: "dept_hr", head: "cao", role: "role_hr", desc: "dept_hr" },
+        { id: 6, name: "dept_it", head: "cto", role: "role_cto", desc: "dept_it" },
+        { id: 7, name: "dept_sales", head: "Sales", role: "role_sales", desc: "dept_sales" },
+        { id: 8, name: "dept_share", head: "Shareholder", role: "role_share", desc: "dept_share" },
+        { id: 9, name: "dept_secretary", head: "Secretary", role: "role_sec", desc: "dept_secretary" },
+        { id: 10, name: "dept_gov", head: "admin", role: "role_grc", desc: "dept_gov" }
     ]
 };
 
@@ -8172,13 +8172,22 @@ function renderDepartmentsTable() {
 
     tableBody.innerHTML = ''; 
     COMPANY_DATA.departments.slice(0, 5).forEach((dept) => {
+        const deptName = t[dept.name] || dept.name; 
+        const roleName = t[dept.role] || dept.role;
+        const statusText = t['active'] || 'Active';
         const row = document.createElement('tr');
         row.innerHTML = `
             <td style="padding: 10px; background: rgba(255,255,255,0.03); border-radius: 0 8px 8px 0;">${dept.id}</td>
-            <td style="padding: 10px; background: rgba(255,255,255,0.03); font-weight:bold;">${dept.desc}</td>
-            <td style="padding: 10px; background: rgba(255,255,255,0.03); color: var(--sky-blue);">${dept.head}</td>
+            <td style="padding: 10px; background: rgba(255,255,255,0.03); font-weight:bold;">
+                ${deptName}
+            </td>
+            <td style="padding: 10px; background: rgba(255,255,255,0.03); color: var(--sky-blue);">
+                ${roleName}
+            </td>
             <td style="padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px 0 0 8px;">
-                <span class="badge bg-success" style="padding: 5px 10px; border-radius: 12px; font-size: 0.8em;">نشط</span>
+                <span class="badge bg-success" style="padding: 5px 10px; border-radius: 12px; font-size: 0.8em;">
+                    ${statusText}
+                </span>
             </td>
         `;
         tableBody.appendChild(row);
