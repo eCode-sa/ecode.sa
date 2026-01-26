@@ -3,7 +3,7 @@
  * عربي + English
  * Company: Electronic Code Company (eCode)
  * ============================================ */
-
+console.log("🔥 FINANCIAL GOVERNANCE FILE IS EXECUTING!");
 window.FINANCIAL_GOVERNANCE = {
     sections: [
         { id: "FIN-SECTION-01",
