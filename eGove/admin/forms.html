@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبة النماذج | eGov System</title>
+    <title>النماذج والمخاطبات | eGov System</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
-        /* --- تنسيقات الفلتر والشبكة --- */
+        /* --- 1. تنسيقات الفلتر والشبكة --- */
         .filter-bar { display: flex; gap: 10px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 5px; }
         .filter-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 10px 20px; border-radius: 12px; cursor: pointer; white-space: nowrap; transition: 0.3s; font-weight: bold; font-size: 13px; }
         .filter-btn:hover, .filter-btn.active { background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark); }
 
-        .forms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .forms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
         
         .form-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
         .form-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); box-shadow: var(--shadow-md); }
@@ -40,26 +40,72 @@
         .search-input { width: 100%; padding: 15px 45px 15px 15px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); outline: none; }
         .search-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: var(--text-secondary); }
 
-        /* --- نافذة عرض النموذج (The Form Viewer) --- */
-        .viewer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 3000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .viewer-box { background: #fff; width: 800px; max-width: 95%; height: 90vh; border-radius: 10px; display: flex; flex-direction: column; overflow: hidden; color: #000; }
+        /* --- 2. محرر النماذج (الورق الرسمي A4) --- */
+        .viewer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 3000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         
-        .viewer-header { padding: 15px 20px; background: #f3f4f6; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; color: #1f2937; }
-        .viewer-body { flex: 1; padding: 40px; overflow-y: auto; background: #fff; font-family: 'Times New Roman', serif; line-height: 1.8; font-size: 16px; white-space: pre-wrap; }
+        /* صندوق العرض */
+        .viewer-box { 
+            background: #e5e7eb; width: 1000px; max-width: 98%; height: 95vh; border-radius: 10px; 
+            display: flex; flex-direction: column; overflow: hidden; 
+        }
         
-        /* تنسيق الحقول الديناميكية داخل النموذج */
-        .dynamic-input { border: none; border-bottom: 1px dashed #000; background: #f9f9f9; padding: 2px 5px; font-family: inherit; font-size: inherit; color: #000; min-width: 150px; outline: none; transition: 0.2s; }
-        .dynamic-input:focus { background: #eef2ff; border-bottom: 1px solid var(--primary-color); }
+        /* شريط الأدوات العلوي */
+        .viewer-toolbar { 
+            padding: 10px 20px; background: #1f2937; display: flex; justify-content: space-between; align-items: center; color: #fff; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* حاوية الورقة (Scrollable) */
+        .viewer-content-area {
+            flex: 1; overflow-y: auto; padding: 40px; display: flex; justify-content: center; background: #525659;
+        }
+
+        /* ورقة A4 الرسمية */
+        .a4-paper {
+            width: 210mm; min-height: 297mm; background: #fff; padding: 20mm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3); color: #000; position: relative;
+            display: flex; flex-direction: column;
+        }
+
+        /* الهوية البصرية (الترويسة والتذييل) */
+        .paper-header {
+            display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #8B7FFF; padding-bottom: 20px; margin-bottom: 30px;
+        }
+        .header-logo img { height: 60px; }
+        .header-info { text-align: left; font-size: 12px; line-height: 1.5; color: #555; }
         
-        /* تنسيق الطباعة */
+        .paper-footer {
+            margin-top: auto; border-top: 1px solid #ddd; padding-top: 15px; text-align: center; font-size: 10px; color: #777;
+        }
+
+        .paper-body {
+            font-family: 'Times New Roman', serif; font-size: 16px; line-height: 1.8; white-space: pre-wrap; flex: 1;
+        }
+
+        /* الحقول الديناميكية */
+        .dynamic-input {
+            border: none; border-bottom: 1px dotted #000; background: rgba(238, 242, 255, 0.5);
+            padding: 0 5px; font-family: inherit; font-size: inherit; color: #000; min-width: 150px; outline: none; transition: 0.2s;
+            font-weight: bold; color: #1f2937;
+        }
+        .dynamic-input:focus { background: #e0e7ff; border-bottom: 1px solid var(--primary-color); }
+
+        /* --- 3. النوافذ المنبثقة الإضافية --- */
+        .modal-overlay-sm { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 4000; display: none; align-items: center; justify-content: center; }
+        .modal-box-sm { background: var(--bg-secondary); padding: 25px; border-radius: 15px; width: 400px; border: 1px solid var(--border-color); animation: fadeIn 0.2s; }
+        
+        /* --- 4. تنسيقات الطباعة --- */
         @media print {
             body * { visibility: hidden; }
-            .viewer-overlay, .viewer-box, .viewer-body, .viewer-body * { visibility: visible; }
-            .viewer-overlay { position: absolute; left: 0; top: 0; background: #fff; }
-            .viewer-box { width: 100%; height: auto; box-shadow: none; border: none; }
-            .viewer-header { display: none; } /* إخفاء أزرار التحكم عند الطباعة */
-            .viewer-body { padding: 0; overflow: visible; }
-            .dynamic-input { border-bottom: none; background: transparent; } /* إخفاء حدود الحقول عند الطباعة لتبدو كأنها مطبوعة */
+            .viewer-overlay, .viewer-content-area, .a4-paper, .a4-paper * { visibility: visible; }
+            .viewer-overlay { position: absolute; left: 0; top: 0; background: #fff; z-index: 9999; }
+            .viewer-box { width: 100%; height: auto; border: none; background: #fff; }
+            .viewer-toolbar { display: none; }
+            .viewer-content-area { padding: 0; margin: 0; background: #fff; overflow: visible; }
+            .a4-paper { box-shadow: none; margin: 0; width: 100%; page-break-after: always; }
+            .dynamic-input { background: transparent; border-bottom: none; } /* إخفاء خلفية الحقول عند الطباعة */
+            
+            @page { size: A4; margin: 0; }
         }
     </style>
 </head>
@@ -67,21 +113,96 @@
 
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="Layout.toggleSidebar()"></div>
 
+    <div id="uploadModal" class="modal-overlay-sm">
+        <div class="modal-box-sm">
+            <h3 style="margin-top:0; color:var(--text-primary)">رفع نموذج جديد</h3>
+            <div style="margin-bottom:15px;">
+                <label style="display:block; margin-bottom:5px; font-size:12px; color:var(--text-secondary)">اسم النموذج</label>
+                <input type="text" class="search-input" placeholder="مثال: تعميم إداري">
+            </div>
+            <div style="margin-bottom:15px;">
+                <label style="display:block; margin-bottom:5px; font-size:12px; color:var(--text-secondary)">القسم</label>
+                <select class="search-input">
+                    <option>الموارد البشرية</option>
+                    <option>المالية</option>
+                    <option>القانونية</option>
+                </select>
+            </div>
+            <div style="border: 2px dashed var(--border-color); padding: 20px; text-align:center; border-radius:10px; cursor:pointer; margin-bottom:20px;">
+                <i class="fas fa-cloud-upload-alt" style="font-size:24px; color:var(--text-secondary)"></i>
+                <div style="font-size:12px; margin-top:5px;">اختر ملف القالب (Word/PDF)</div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button onclick="document.getElementById('uploadModal').style.display='none'" class="btn-action">إلغاء</button>
+                <button onclick="alert('تمت الإضافة بنجاح!'); document.getElementById('uploadModal').style.display='none'" class="btn-action btn-fill">حفظ النموذج</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="sendModal" class="modal-overlay-sm">
+        <div class="modal-box-sm">
+            <h3 style="margin-top:0; color:var(--text-primary)">إرسال للتوقيع</h3>
+            <p style="font-size:12px; color:var(--text-secondary)">سيتم إرسال هذا النموذج للموظف المختار لإكماله وتوقيعه إلكترونياً.</p>
+            <div style="margin-bottom:20px;">
+                <label style="display:block; margin-bottom:5px; font-size:12px; color:var(--text-secondary)">اختر الموظف</label>
+                <select class="search-input" id="employeeSelect">
+                    <option>معتز سعود (CEO)</option>
+                    <option>علي ابراهيم (Chairman)</option>
+                    <option>أيمن المغربي (Admin)</option>
+                    <option>ابراهيم اياد (CFO)</option>
+                    <option>احمد عبدالقادر (HR)</option>
+                </select>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button onclick="document.getElementById('sendModal').style.display='none'" class="btn-action">إلغاء</button>
+                <button onclick="confirmSend()" class="btn-action btn-fill">إرسال الآن</button>
+            </div>
+        </div>
+    </div>
+
     <div id="formViewer" class="viewer-overlay">
         <div class="viewer-box">
-            <div class="viewer-header">
-                <h3 style="margin:0; font-family: 'Tajawal', sans-serif;" id="viewerTitle">عنوان النموذج</h3>
+            <div class="viewer-toolbar">
+                <div style="display:flex; gap:15px; align-items:center;">
+                    <h3 style="margin:0; font-family: 'Tajawal', sans-serif;" id="viewerTitle">عنوان النموذج</h3>
+                    <span style="font-size:12px; background:rgba(255,255,255,0.2); padding:2px 8px; border-radius:4px;">مسودة</span>
+                </div>
                 <div style="display: flex; gap: 10px;">
-                    <button onclick="printForm()" style="background: #1f2937; color: #fff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: 'Tajawal', sans-serif;">
-                        <i class="fas fa-print"></i> طباعة / PDF
+                    <button onclick="openSendModal()" style="background: #10b981; color: #fff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: 'Tajawal', sans-serif;">
+                        <i class="fas fa-paper-plane"></i> إرسال للتوقيع
                     </button>
-                    <button onclick="closeViewer()" style="background: #e5e7eb; color: #374151; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: 'Tajawal', sans-serif;">
+                    <button onclick="printForm()" style="background: #3b82f6; color: #fff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: 'Tajawal', sans-serif;">
+                        <i class="fas fa-print"></i> طباعة
+                    </button>
+                    <button onclick="closeViewer()" style="background: #ef4444; color: #fff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: 'Tajawal', sans-serif;">
                         <i class="fas fa-times"></i> إغلاق
                     </button>
                 </div>
             </div>
-            <div class="viewer-body" id="viewerContent">
+
+            <div class="viewer-content-area">
+                <div class="a4-paper">
+                    <div class="paper-header">
+                        <div class="header-logo">
+                            <img src="../favicon.png" alt="Logo">
+                        </div>
+                        <div class="header-info">
+                            <strong>شركة إلكترونيك كود</strong><br>
+                            Electronic Code Co.<br>
+                            الرياض، المملكة العربية السعودية<br>
+                            س.ت: 7050139125
+                        </div>
+                    </div>
+
+                    <div class="paper-body" id="viewerContent">
+                        </div>
+
+                    <div class="paper-footer">
+                        Electronic Code Co. | Unified: 7001234567 | Email: info@ecode.sa | www.ecode.sa<br>
+                        This document is electronically generated and official.
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
 
@@ -94,9 +215,12 @@
                 
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <div>
-                        <h2 style="margin: 0; color: var(--text-primary);" data-i18n="forms_title">مكتبة النماذج الرقمية</h2>
-                        <p style="margin: 5px 0 0; color: var(--text-secondary); font-size: 13px;" data-i18n="forms_desc">تحميل وتعبئة النماذج الرسمية المعتمدة.</p>
+                        <h2 style="margin: 0; color: var(--text-primary);" data-i18n="forms_title">المراسلات والنماذج</h2>
+                        <p style="margin: 5px 0 0; color: var(--text-secondary); font-size: 13px;" data-i18n="forms_desc">إدارة النماذج الرسمية والمخاطبات الإدارية.</p>
                     </div>
+                    <button class="btn-action btn-fill" onclick="document.getElementById('uploadModal').style.display='flex'" style="max-width: 150px;">
+                        <i class="fas fa-plus"></i> <span data-i18n="btn_upload">إضافة نموذج</span>
+                    </button>
                 </div>
 
                 <div class="search-container">
@@ -108,7 +232,7 @@
                     <button class="filter-btn active" onclick="filterCategory(this, 'All')" data-i18n="cat_all">الكل</button>
                     <button class="filter-btn" onclick="filterCategory(this, 'hr')" data-i18n="cat_hr">الموارد البشرية</button>
                     <button class="filter-btn" onclick="filterCategory(this, 'finance')" data-i18n="cat_finance">المالية</button>
-                    <button class="filter-btn" onclick="filterCategory(this, 'governance')" data-i18n="cat_legal">الحوكمة والقانونية</button>
+                    <button class="filter-btn" onclick="filterCategory(this, 'governance')" data-i18n="cat_legal">الحوكمة</button>
                     <button class="filter-btn" onclick="filterCategory(this, 'it')" data-i18n="cat_it">التقنية</button>
                 </div>
 
@@ -128,19 +252,19 @@
     <script src="../assets/js/system.js"></script>
 
     <script>
-        // --- 1. الترجمات ---
+        // دمج الترجمات
         const pageTranslations = {
             ar: {
-                forms_title: "مكتبة النماذج الرقمية", forms_desc: "تعبئة وطباعة النماذج الرسمية.",
-                ph_search_forms: "ابحث عن اسم النموذج...",
+                forms_title: "المراسلات والنماذج", forms_desc: "إدارة النماذج الرسمية والمخاطبات الإدارية.",
+                btn_upload: "إضافة نموذج", ph_search_forms: "ابحث عن اسم النموذج...",
                 cat_all: "الكل", cat_hr: "الموارد البشرية", cat_finance: "المالية", cat_legal: "الحوكمة", cat_it: "التقنية",
-                btn_fill: "تعبئة النموذج", btn_print: "طباعة فارغ"
+                btn_view: "فتح النموذج", btn_download: "PDF"
             },
             en: {
-                forms_title: "Forms Library", forms_desc: "Fill and print official forms.",
-                ph_search_forms: "Search forms...",
+                forms_title: "Forms & Correspondence", forms_desc: "Manage official forms and administrative letters.",
+                btn_upload: "Add Form", ph_search_forms: "Search forms...",
                 cat_all: "All", cat_hr: "HR", cat_finance: "Finance", cat_legal: "Governance", cat_it: "IT",
-                btn_fill: "Fill Form", btn_print: "Print Blank"
+                btn_view: "Open Form", btn_download: "PDF"
             }
         };
 
@@ -154,19 +278,17 @@
             loadFormsData();
         });
 
-        // --- 2. منطق العرض ---
+        // --- 1. منطق العرض ---
         let currentFilter = 'All';
         let allFormsList = [];
 
         function loadFormsData() {
-            // التعامل مع اسم المتغير سواء كان حروف صغيرة أو كبيرة
             const data = window.egovformstemplates || window.egovFormsTemplates;
-            
             if (data && data.forms) {
                 allFormsList = data.forms;
                 renderForms();
             } else {
-                document.getElementById('formsGrid').innerHTML = '<p style="color:red; text-align:center; grid-column:1/-1;">خطأ: لم يتم العثور على ملف البيانات (forms_templates.js)</p>';
+                document.getElementById('formsGrid').innerHTML = '<p style="color:red; text-align:center;">خطأ في تحميل البيانات</p>';
             }
         }
 
@@ -185,40 +307,30 @@
             grid.innerHTML = '';
 
             const filtered = allFormsList.filter(item => {
-                // تصفية حسب القسم
                 let itemCat = item.category.toLowerCase();
-                // توحيد المسميات للفلتر
                 if (itemCat === 'board' || itemCat === 'admin' || itemCat === 'procurement') {
                     if (currentFilter === 'governance' && (itemCat === 'board' || itemCat === 'admin')) return true;
                     if (currentFilter === 'finance' && itemCat === 'procurement') return true;
                 }
-                
                 const matchesCat = currentFilter === 'All' || itemCat === currentFilter.toLowerCase();
-                
-                // تصفية حسب البحث
                 const title = lang === 'ar' ? item.name.ar : item.name.en;
                 const matchesSearch = title.toLowerCase().includes(search);
-                
                 return matchesCat && matchesSearch;
             });
 
             if(filtered.length === 0) {
-                grid.innerHTML = '<p style="text-align:center; color:#666; grid-column:1/-1;">لا توجد نماذج</p>';
+                grid.innerHTML = '<p style="text-align:center; color:#666; grid-column:1/-1;">لا توجد نتائج</p>';
                 return;
             }
 
             filtered.forEach(item => {
                 const title = lang === 'ar' ? item.name.ar : item.name.en;
-                const catDisplay = item.category.toUpperCase();
-                
-                // تحديد الأيقونة واللون
                 let iconClass = 'fa-file-alt';
                 let colorClass = 'cat-IT';
                 
                 if (item.category === 'hr') { iconClass = 'fa-users'; colorClass = 'cat-HR'; }
                 else if (item.category === 'finance') { iconClass = 'fa-coins'; colorClass = 'cat-Finance'; }
-                else if (item.category === 'governance') { iconClass = 'fa-balance-scale'; colorClass = 'cat-Legal'; }
-                else if (item.category === 'board') { iconClass = 'fa-gavel'; colorClass = 'cat-Legal'; }
+                else if (item.category === 'governance' || item.category === 'board') { iconClass = 'fa-gavel'; colorClass = 'cat-Legal'; }
 
                 const card = document.createElement('div');
                 card.className = `form-card ${colorClass}`;
@@ -226,15 +338,12 @@
                     <div class="form-icon"><i class="fas ${iconClass}"></i></div>
                     <div class="form-title" title="${title}">${title}</div>
                     <div class="form-meta">
-                        <span><i class="far fa-folder"></i> ${catDisplay}</span>
-                        <span>Official</span>
+                        <span><i class="far fa-folder"></i> ${item.category.toUpperCase()}</span>
+                        <span>Ver 1.0</span>
                     </div>
                     <div class="form-actions">
-                        <button class="btn-action" onclick="alert('سيتم تنزيل النسخة الفارغة')">
-                            <i class="fas fa-print"></i>
-                        </button>
                         <button class="btn-action btn-fill" onclick="openFormViewer('${item.id}')">
-                            <i class="fas fa-pen"></i> <span data-i18n="btn_fill">${lang === 'ar' ? 'تعبئة' : 'Fill'}</span>
+                            <i class="fas fa-pen-fancy"></i> <span data-i18n="btn_view">${lang === 'ar' ? 'استخدام' : 'Use'}</span>
                         </button>
                     </div>
                 `;
@@ -242,7 +351,7 @@
             });
         }
 
-        // --- 3. المنطق السحري (تحويل النص إلى حقول) ---
+        // --- 2. منطق المحرر (Editor Logic) ---
         function openFormViewer(formId) {
             const data = window.egovformstemplates || window.egovFormsTemplates;
             const form = data.forms.find(f => f.id === formId);
@@ -252,17 +361,11 @@
             const title = lang === 'ar' ? form.name.ar : form.name.en;
             let content = lang === 'ar' ? form.templates.ar : form.templates.en;
 
-            // السحر هنا: استبدال المتغيرات {{variable}} بحقول إدخال
-            // Regex يبحث عن أي شيء بين قوسين معقوفين مزدوجين
+            // تحويل المتغيرات إلى حقول إدخال
             content = content.replace(/{{(.*?)}}/g, (match, p1) => {
-                // p1 هو اسم المتغير (مثل employee_name)
-                // نحاول إيجاد الاسم العربي له من الحقول
                 let placeholder = p1;
                 const fieldDef = form.fields.find(f => f.name === p1);
-                if (fieldDef) {
-                    placeholder = lang === 'ar' ? fieldDef.label.ar : fieldDef.label.en;
-                }
-                // إرجاع حقل إدخال HTML
+                if (fieldDef) placeholder = lang === 'ar' ? fieldDef.label.ar : fieldDef.label.en;
                 return `<input type="text" class="dynamic-input" placeholder="${placeholder}" />`;
             });
 
@@ -277,6 +380,18 @@
 
         function printForm() {
             window.print();
+        }
+
+        // --- 3. منطق الإرسال ---
+        function openSendModal() {
+            document.getElementById('sendModal').style.display = 'flex';
+        }
+
+        function confirmSend() {
+            const emp = document.getElementById('employeeSelect').value;
+            alert(`تم إرسال النموذج بنجاح إلى: ${emp}\nسيصلك إشعار عند التوقيع.`);
+            document.getElementById('sendModal').style.display = 'none';
+            closeViewer();
         }
     </script>
 
