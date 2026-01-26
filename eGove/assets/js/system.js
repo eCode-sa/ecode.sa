@@ -195,6 +195,49 @@ function initScrollAnimations() {
         });
     }
 }
+// 6. دوال مساعدة
+function animateValue(id, start, end, duration) {
+    const obj = document.getElementById(id);
+    if(!obj) return;
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) window.requestAnimationFrame(step);
+    };
+    window.requestAnimationFrame(step);
+}
+
+function initScrollAnimations() {
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.stat-card, .section-card').forEach(s => {
+            s.style.opacity = '0';
+            s.style.transform = 'translateY(20px)';
+            s.style.transition = 'all 0.6s ease-out';
+            observer.observe(s);
+        });
+    }
+}
+// 7. دالة زر تبديل اللغة (يتم استدعاؤها من HTML)
+window.toggleLanguage = function() {
+    const currentLang = localStorage.getItem('eGov_Lang') || 'ar';
+    const newLang = currentLang === 'ar' ? 'en' : 'ar';
+    
+    // استدعاء دالة التحديث الموجودة مسبقاً
+    updateLanguage(newLang);
+}
+
+// التشغيل التلقائي عند جاهزية الصفحة (لأن HTML قام بتحميل البيانات مسبقاً)
+document.addEventListener('DOMContentLoaded', window.initDashboard);
 
 // التشغيل التلقائي عند جاهزية الصفحة (لأن HTML قام بتحميل البيانات مسبقاً)
 document.addEventListener('DOMContentLoaded', window.initDashboard);
