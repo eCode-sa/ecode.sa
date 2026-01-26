@@ -1,7 +1,7 @@
 /* * بيانات الشركة وهيكل الصلاحيات (Static Data Layer)
  * هذا الملف يحدد الأقسام والأدوار الوظيفية داخل نظام eGov
  */
-
+console.log("🔥 COMPANY DATA FILE IS EXECUTING!");
 window.COMPANY_DATA = {
     basic: {
         name: "Electronic Code Co.",
