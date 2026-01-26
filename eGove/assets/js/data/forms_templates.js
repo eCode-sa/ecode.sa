@@ -1,4 +1,4 @@
-const egovformstemplates = {
+window.egovformstemplates = {
     forms: [
         { id: "code_of_conduct",
       category: "governance",
