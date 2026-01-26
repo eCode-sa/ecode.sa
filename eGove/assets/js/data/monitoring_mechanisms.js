@@ -1,4 +1,4 @@
-const egovMonitoringMechanisms = {
+window.egovMonitoringMechanisms = {
   ar: {
     section_id: "monitoring_mechanisms",
     title: "آليات الرقابة والمتابعة",
