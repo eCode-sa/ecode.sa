@@ -1,4 +1,4 @@
-const egovAssembliesPolicies = [
+const egovassembliespolicies = [
    {
     id: "assemblies_intro",
     category: "assemblies",
@@ -611,4 +611,4 @@ If a resolution of the General Assembly would result in an amendment to the righ
       `.trim()
     }
   }
-  },
+];
