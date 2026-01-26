@@ -5,24 +5,8 @@
  * ============================================ */
 
 const FINANCIAL_GOVERNANCE = {
-
-  metadata: {
-    system: "eGov",
-    module: "FINANCIAL_GOVERNANCE",
-    version: "1.0.0",
-    book: {
-      ar: "الباب الرابع: الحوكمة المالية",
-      en: "Chapter Four: Financial Governance"
-    }
-  },
-
-  sections: [
-
-    /* ============================================
-     * FIN-SECTION-01 – مقدمة وأهمية الحوكمة المالية
-     * ============================================ */
-    {
-      id: "FIN-SECTION-01",
+    sections: [
+        { id: "FIN-SECTION-01",
       title: {
         ar: "مقدمة وأهمية الحوكمة المالية",
         en: "Introduction & Importance of Financial Governance"
@@ -899,5 +883,3 @@ Required skills:
 
   ]
 };
-
-export default FINANCIAL_GOVERNANCE;
