@@ -8112,17 +8112,17 @@ window.initDashboard = function() {
         });
     }
 
-    // أ. تحديث التاريخ
-    const dateEl = document.getElementById('currentDate');
-    if (dateEl) {
-        const locale = currentLang === 'ar' ? 'ar-SA' : 'en-US';
+const dateEl = document.getElementById('currentDate');
+    if(dateEl) {
+        const locale = lang === 'ar' ? 'ar-SA' : 'en-US';
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         dateEl.textContent = new Date().toLocaleDateString(locale, dateOptions);
     } 
 
-    // ب. تحديث اسم الشركة (الحل لمشكلتك)
-    // الآن currentLang تحمل القيمة الصحيحة (en) لذلك سيختار name بدلاً من nameAr
-    compNameEl.textContent = currentLang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
+   const compNameEl = document.getElementById('companyNameDisplay');
+    if(compNameEl && typeof COMPANY_DATA !== 'undefined') {
+        compNameEl.textContent = lang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
+    }
     
     // ج. تحديث اسم المستخدم
     const adminNameEl = document.getElementById('adminName');
