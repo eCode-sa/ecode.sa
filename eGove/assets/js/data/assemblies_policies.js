@@ -1,3 +1,4 @@
+console.log("🔥 assembliespolicies FILE IS EXECUTING!");
 window.egovassembliespolicies = [
    {
     id: "assemblies_intro",
