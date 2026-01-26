@@ -21,19 +21,18 @@
         .policy-item { padding: 15px; border-radius: 10px; cursor: pointer; border-bottom: 1px solid var(--border-color); transition: 0.2s; margin-bottom: 5px; }
         .policy-item:hover { background: var(--bg-elevated); }
         .policy-item.active { background: rgba(139, 127, 255, 0.1); border-right: 3px solid var(--lavender-dark); }
-        .policy-item h4 { margin: 0 0 5px; font-size: 14px; color: var(--text-primary); }
-        .policy-item span { font-size: 11px; color: var(--text-muted); display: block; }
+        .policy-item h4 { margin: 0 0 5px; font-size: 13px; color: var(--text-primary); line-height: 1.4; }
+        .policy-item span { font-size: 10px; color: var(--text-muted); display: block; }
 
         /* منطقة القراءة */
         .policy-viewer { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; }
         .viewer-toolbar { padding: 15px 25px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
-        .viewer-content { flex: 1; padding: 40px; overflow-y: auto; line-height: 1.8; font-size: 15px; color: var(--text-primary); }
+        .viewer-content { flex: 1; padding: 40px; overflow-y: auto; line-height: 1.8; font-size: 15px; color: var(--text-primary); white-space: pre-wrap; }
         
-        /* تنسيق المحتوى الداخلي (المواد والبنود) */
-        .policy-header { margin: 30px 0 20px; border-bottom: 2px solid var(--lavender-light); padding-bottom: 10px; }
-        .policy-header h3 { color: var(--lavender-light); margin: 0; }
-        .article-box { background: var(--bg-primary); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
-        .article-title { color: var(--sky-blue); margin: 0 0 10px; font-size: 16px; font-weight: bold; }
+        /* تنسيق المحتوى */
+        .content-header { color: var(--lavender-light); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .list-point { margin-bottom: 10px; padding-right: 20px; position: relative; }
+        .list-point::before { content: '•'; position: absolute; right: 0; color: var(--sky-blue); }
 
         /* الطباعة */
         @media print {
@@ -41,7 +40,6 @@
             .policy-viewer, .viewer-content, .viewer-content * { visibility: visible; }
             .policy-viewer { position: absolute; left: 0; top: 0; width: 100%; height: auto; background: #fff !important; color: #000 !important; border: none; }
             .viewer-toolbar { display: none; }
-            .article-box { border: 1px solid #ddd; background: #fff; color: #000; page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -106,93 +104,119 @@
     <script src="../assets/js/data/hr-policies.js"></script>
     <script src="../assets/js/data/financial-governance.js"></script>
     <script src="../assets/js/data/digital_governance.js"></script>
-    <script src="../assets/js/data/board_governance.js"></script>
-    <script src="../assets/js/data/assemblies_policies.js"></script>
+    <script src="../assets/js/data/governance.js"></script> <script src="../assets/js/data/assemblies_policies.js"></script>
     <script src="../assets/js/data/monitoring_mechanisms.js"></script>
 
     <script src="../assets/js/system.js"></script>
 
     <script>
-        // --- مجمع البيانات (The Aggregator) ---
-        // يقوم هذا الكود بجمع البيانات من ملفاتك المختلفة في مصفوفة واحدة موحدة
-        
+        // --- مجمع البيانات الذكي (Data Aggregator) ---
         let allPolicies = [];
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. دمج البيانات من الملفات المختلفة (بافتراض أن كل ملف يضيف متغير global)
-            // ملاحظة: تأكد من أسماء المتغيرات داخل ملفاتك، هنا افترضنا أسماء منطقية
-            
-            const rawData = [
-                // HR
-                { src: window.hrPolicies, cat: 'HR', label: 'الموارد البشرية' },
-                // Finance
-                { src: window.financialGovernance, cat: 'Finance', label: 'المالية' },
-                // IT
-                { src: window.digitalGovernance, cat: 'IT', label: 'التقنية' },
-                // Governance & Board
-                { src: window.boardGovernance, cat: 'Governance', label: 'مجلس الإدارة' },
-                { src: window.assembliesPolicies, cat: 'Governance', label: 'الجمعيات العمومية' },
-                { src: window.monitoringMechanisms, cat: 'Governance', label: 'الرقابة' }
-            ];
-
-            // 2. توحيد الهيكل (Mapping)
-            rawData.forEach(source => {
-                if(source.src && Array.isArray(source.src)) { // إذا كان مصفوفة مباشرة
-                    source.src.forEach(item => {
-                        allPolicies.push(formatPolicyItem(item, source.cat));
-                    });
-                } else if (source.src && typeof source.src === 'object') { // إذا كان كائن يحتوي مصفوفة
-                    // نحاول البحث عن المصفوفة داخل الكائن (مثلاً: source.src.policies)
-                    const keys = Object.keys(source.src);
-                    keys.forEach(key => {
-                        if(Array.isArray(source.src[key])) {
-                            source.src[key].forEach(item => {
-                                allPolicies.push(formatPolicyItem(item, source.cat));
-                            });
-                        }
-                    });
-                }
-            });
-
-            // إذا لم يتم العثور على بيانات (احتياطي للعرض فقط)
-            if(allPolicies.length === 0) {
-                console.warn("⚠️ لم يتم العثور على بيانات في المتغيرات. تأكد من أسماء المتغيرات داخل ملفات JS.");
-                // بيانات وهمية للتجربة فقط حتى تضبط المتغيرات
-                allPolicies = [
-                    { id: 1, title: "لائحة الموارد البشرية (مثال)", cat: 'HR', date: '2025-01-01', ver: '1.0', content: '<p>محتوى تجريبي...</p>' }
-                ];
-            }
-
+            loadAndProcessData();
             renderPolicyList('All');
         });
 
-        // دالة لتنسيق العنصر ليتناسب مع العرض
-        function formatPolicyItem(item, category) {
-            // نحاول استخراج العنوان والمحتوى بذكاء حسب هيكل ملفاتك
-            const title = item.title || item.name || item.header || "بدون عنوان";
-            const content = item.content || item.body || item.articles || item.details || "<p>لا يوجد محتوى نصي</p>";
-            const version = item.version || item.ver || "1.0";
-            const date = item.date || item.last_updated || "2025-01-01";
+        function loadAndProcessData() {
+            const lang = localStorage.getItem('eGov_Lang') || 'ar';
 
-            // إذا كان المحتوى مصفوفة (مواد)، نقوم بتحويلها لنص HTML
-            let htmlContent = content;
-            if(Array.isArray(content)) {
-                htmlContent = content.map(art => `
-                    <div class="article-box">
-                        <h4 class="article-title">${art.title || art.article || ''}</h4>
-                        <p>${art.text || art.content || ''}</p>
-                    </div>
-                `).join('');
+            // 1. معالجة سياسات الموارد البشرية (HR)
+            if (window.HR_POLICIES && window.HR_POLICIES.sections) {
+                window.HR_POLICIES.sections.forEach(section => {
+                    section.policies.forEach(policy => {
+                        allPolicies.push({
+                            id: policy.code,
+                            cat: 'HR',
+                            title: lang === 'ar' ? policy.title.ar : policy.title.en,
+                            content: lang === 'ar' ? policy.content.ar : policy.content.en
+                        });
+                    });
+                });
             }
 
-            return {
-                id: Math.random().toString(36).substr(2, 9), // ID مؤقت
-                title: title,
-                cat: category,
-                ver: version,
-                date: date,
-                content: htmlContent
-            };
+            // 2. معالجة الحوكمة المالية (Finance)
+            if (window.FINANCIAL_GOVERNANCE && window.FINANCIAL_GOVERNANCE.sections) {
+                window.FINANCIAL_GOVERNANCE.sections.forEach(section => {
+                    section.policies.forEach(policy => {
+                        allPolicies.push({
+                            id: policy.code,
+                            cat: 'Finance',
+                            title: lang === 'ar' ? policy.title.ar : policy.title.en,
+                            content: lang === 'ar' ? policy.content.ar : policy.content.en
+                        });
+                    });
+                });
+            }
+
+            // 3. معالجة الجمعيات العمومية (Governance)
+            if (window.egovassembliespolicies) {
+                window.egovassembliespolicies.forEach(item => {
+                    allPolicies.push({
+                        id: item.id,
+                        cat: 'Governance',
+                        title: lang === 'ar' ? item.title.ar : item.title.en,
+                        content: lang === 'ar' ? item.content.ar : item.content.en
+                    });
+                });
+            }
+
+            // 4. معالجة الحوكمة العامة (Governance)
+            if (window.governanceTexts) {
+                window.governanceTexts.forEach(item => {
+                    allPolicies.push({
+                        id: item.id,
+                        cat: 'Governance',
+                        title: lang === 'ar' ? item.title.ar : item.title.en,
+                        content: lang === 'ar' ? item.content.ar : item.content.en
+                    });
+                });
+            }
+
+            // 5. معالجة الحوكمة الرقمية (IT) - هيكل خاص
+            if (window.egovDigitalGovernance) {
+                const dg = window.egovDigitalGovernance[lang]; // ar or en
+                if (dg) {
+                    let htmlContent = `<p>${dg.intro}</p><h3>${dg.importance_title}</h3><ul>`;
+                    dg.importance_items.forEach(point => {
+                        htmlContent += `<li>${point}</li>`;
+                    });
+                    htmlContent += `</ul>`;
+
+                    allPolicies.push({
+                        id: 'digital_gov_main',
+                        cat: 'IT',
+                        title: dg.title,
+                        content: htmlContent
+                    });
+                }
+            }
+
+            // 6. معالجة آليات المراقبة (Governance) - هيكل معقد
+            if (window.egovMonitoringMechanisms) {
+                const mm = window.egovMonitoringMechanisms[lang];
+                if (mm) {
+                    // تحويل الكائن المعقد إلى نص HTML مقروء
+                    let htmlContent = `<p>${mm.intro}</p>`;
+                    
+                    // Internal Audit
+                    htmlContent += `<h3>${mm.internal_audit.title}</h3><p>${mm.internal_audit.role}</p>`;
+                    htmlContent += `<ul>${mm.internal_audit.objectives.map(o => `<li>${o}</li>`).join('')}</ul>`;
+                    
+                    // External Audit
+                    htmlContent += `<h3>${mm.external_audit.title}</h3><p>${mm.external_audit.role}</p>`;
+                    
+                    // Whistleblowing
+                    htmlContent += `<h3>${mm.whistleblowing.title}</h3><p>${mm.whistleblowing.channels}</p>`;
+
+                    allPolicies.push({
+                        id: 'monitoring_mechanisms',
+                        cat: 'Governance',
+                        title: mm.title,
+                        content: htmlContent
+                    });
+                }
+            }
         }
 
         // --- دوال العرض ---
@@ -203,7 +227,7 @@
             const filtered = allPolicies.filter(p => filter === 'All' || p.cat === filter);
 
             if(filtered.length === 0) {
-                container.innerHTML = '<p style="text-align:center; padding:20px; color:#666;">لا توجد لوائح</p>';
+                container.innerHTML = '<p style="text-align:center; padding:20px; color:#666;">لا توجد بيانات</p>';
                 return;
             }
 
@@ -215,7 +239,6 @@
                     <h4>${p.title}</h4>
                     <div style="display:flex; justify-content:space-between;">
                         <span>${p.cat}</span>
-                        <span>Ver ${p.ver}</span>
                     </div>
                 `;
                 container.appendChild(div);
@@ -233,7 +256,7 @@
             element.classList.add('active');
 
             document.getElementById('viewTitle').innerText = policy.title;
-            document.getElementById('viewMeta').innerText = `الإصدار: ${policy.ver} | تاريخ التحديث: ${policy.date}`;
+            document.getElementById('viewMeta').innerText = `التصنيف: ${policy.cat}`;
             document.getElementById('viewContent').innerHTML = policy.content;
         }
     </script>
