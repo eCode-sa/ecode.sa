@@ -1,3 +1,4 @@
+console.log("🔥 formstemplates FILE IS EXECUTING!");
 window.egovformstemplates = {
     forms: [
         { id: "code_of_conduct",
