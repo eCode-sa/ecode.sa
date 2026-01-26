@@ -1,5 +1,5 @@
 /* ==========================================================================
-   eCode Official Design System - v3.2 (Final Fixes: Sidebar & Login Inputs)
+   eCode Official Design System - v3.3 (Fixed Notifications & Layout)
    File: assets/css/style.css
    ========================================================================== */
 
@@ -38,7 +38,7 @@
   /* --- القيم الثابتة --- */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 20px rgba(139, 127, 255, 0.15);
   --transition-base: 250ms ease;
 }
@@ -79,7 +79,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition-base); }
 ul { list-style: none; }
 
 /* =========================================
-   1. Unified Layout System (Dashboard Fixes)
+   1. Unified Layout System
    ========================================= */
 
 .app-container {
@@ -119,12 +119,11 @@ html[dir="ltr"] .sidebar {
 html[dir="ltr"] .menu-item:hover, html[dir="ltr"] .menu-item.active { transform: translateX(5px); }
 .menu-item i { width: 20px; text-align: center; }
 
-/* ✅ Main Content (إصلاح مشكلة التداخل) */
+/* Main Content */
 .main-content {
     flex: 1;
     display: flex; flex-direction: column;
     transition: all 0.3s ease;
-    /* إجبار المحتوى على ترك مسافة للقائمة المثبتة */
     margin-right: 260px !important; 
     margin-left: 0 !important;
     width: auto !important;
@@ -155,7 +154,10 @@ html[dir="ltr"] .user-profile { padding-right: 0; padding-left: 15px; border-rig
 .user-info .role { display: block; font-size: 11px; color: var(--lavender-light); }
 .user-avatar i { color: var(--text-secondary); }
 
-/* Dashboard Components */
+/* =========================================
+   2. Dashboard Components
+   ========================================= */
+
 .dashboard-content { padding: 30px; }
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px; }
 .stat-card { background: var(--bg-secondary); border-radius: 16px; padding: 25px; border: 1px solid var(--border-color); position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; }
@@ -179,13 +181,12 @@ html[dir="ltr"] .table tr td:last-child { border-radius: 0 10px 10px 0; }
 .table tr:hover td { background: var(--bg-primary); transform: scale(1.01); transition: 0.2s; }
 
 /* =========================================
-   2. Auth & Login Pages (تم إصلاح المحاذاة)
+   3. Auth & Login Pages
    ========================================= */
 
 .auth-container {
     display: flex; justify-content: center; align-items: center; min-height: 100vh;
     background: var(--bg-primary); padding: 20px;
-    /* نقش خفيف للخلفية */
     background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
     background-size: 20px 20px;
 }
@@ -198,39 +199,26 @@ html[dir="ltr"] .table tr td:last-child { border-radius: 0 10px 10px 0; }
 }
 .auth-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--lavender-dark), var(--sky-blue)); }
 
-/* Logo & Title */
 .brand-logo { height: 70px; margin-bottom: 20px; }
 .system-title { font-size: 28px; font-weight: 800; color: var(--text-primary); margin-bottom: 5px; }
 .system-desc { color: var(--text-secondary); font-size: 15px; margin-bottom: 30px; }
 
-/* ✅ إصلاح الحقول والأيقونات */
-.form-group {
-    position: relative; /* ضروري لتثبيت الأيقونة */
-    margin-bottom: 20px;
-}
-
+.form-group { position: relative; margin-bottom: 20px; }
 .form-group i {
     position: absolute; top: 50%; transform: translateY(-50%);
     color: var(--text-muted); font-size: 18px; pointer-events: none; transition: 0.3s; z-index: 2;
-    /* مكان الأيقونة في العربي */
     right: 20px; left: auto; 
 }
-html[dir="ltr"] .form-group i { 
-    /* مكان الأيقونة في الإنجليزي */
-    left: 20px; right: auto; 
-}
+html[dir="ltr"] .form-group i { left: 20px; right: auto; }
 
 .form-control {
     width: 100%; height: 55px;
     background: var(--bg-elevated); border: 1px solid var(--border-color);
     border-radius: 12px; color: var(--text-primary);
     font-family: 'Tajawal', sans-serif; font-size: 15px; transition: 0.3s;
-    /* مسافات داخلية لمنع النص من تغطية الأيقونة */
     padding-right: 55px; padding-left: 15px; 
 }
-html[dir="ltr"] .form-control {
-    padding-left: 55px; padding-right: 15px;
-}
+html[dir="ltr"] .form-control { padding-left: 55px; padding-right: 15px; }
 
 .form-control:focus { outline: none; border-color: var(--lavender-light); background: var(--bg-primary); box-shadow: 0 0 0 4px rgba(139, 127, 255, 0.15); }
 .form-control:focus + i { color: var(--lavender-light); }
@@ -244,7 +232,6 @@ html[dir="ltr"] .form-control {
 }
 .btn-login:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); filter: brightness(1.1); }
 
-/* Personas Grid */
 .personas-container { margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--border-color); }
 .personas-title { font-size: 13px; color: var(--lavender-light); font-weight: 600; margin-bottom: 20px; display: block; }
 .roles-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
@@ -254,31 +241,99 @@ html[dir="ltr"] .form-control {
 .role-btn i { font-size: 20px; transition: 0.3s; }
 .role-btn span { font-size: 10px; color: var(--text-secondary); font-weight: 600; }
 .role-btn:hover span { color: var(--text-primary); }
-/* Role Icons Colors */
 .role-btn[onclick*="board"] i { color: #f1c40f; } .role-btn[onclick*="ceo"] i { color: #3498db; }
 .role-btn[onclick*="cfo"] i { color: #2ecc71; } .role-btn[onclick*="admin"] i { color: #e74c3c; }
 .role-btn[onclick*="hr"] i { color: #e91e63; }
 
 .legal-footer { margin-top: 30px; font-size: 12px; color: var(--text-muted); display: flex; justify-content: center; gap: 20px; }
 
-/* Page Controls (Login Page Buttons) */
+/* Page Controls */
 .page-controls { position: absolute; top: 25px; left: 25px; display: flex; gap: 15px; z-index: 100; }
 html[dir="ltr"] .page-controls { left: auto; right: 25px; }
 .control-btn { width: 45px; height: 45px; border-radius: 50%; background: var(--bg-elevated); border: 1px solid var(--border-color); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; font-size: 18px; }
 .control-btn:hover { background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark); transform: rotate(15deg); box-shadow: var(--shadow-glow); }
 
 /* =========================================
-   3. Responsive Media Queries (Final)
+   4. Utility Components (Overlay, Notifications, Chat)
+   ========================================= */
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); z-index: 999;
+    display: none; opacity: 0; transition: opacity 0.3s;
+}
+.sidebar-overlay.active { display: block; opacity: 1; }
+
+/* ✅ Notifications Dropdown (Fix: Z-index & Background) */
+.notification-wrapper { position: relative; margin-inline-end: 10px; }
+.badge-dot { position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; border: 1px solid var(--bg-secondary); }
+
+.dropdown-menu {
+    position: absolute; 
+    top: 60px; /* نزلناها شوي عشان تبعد عن الهيدر */
+    left: 0; /* محاذاة لليسار في العربي */
+    width: 300px;
+    background: var(--bg-elevated); /* خلفية افتح لتبرز */
+    border: 1px solid var(--border-color);
+    border-radius: 12px; 
+    box-shadow: var(--shadow-lg);
+    display: none; 
+    z-index: 2000; /* رفع الطبقة فوق الهيدر */
+    overflow: hidden;
+    flex-direction: column;
+}
+html[dir="ltr"] .dropdown-menu { left: auto; right: 0; }
+.dropdown-menu.show { display: flex; animation: slideDown 0.2s ease-out; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.dropdown-header { padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: bold; background: rgba(255,255,255,0.02); color: var(--text-primary); }
+.notif-item { padding: 15px; display: flex; align-items: start; gap: 12px; border-bottom: 1px solid var(--border-color); cursor: pointer; transition: 0.2s; }
+.notif-item:hover { background: var(--bg-primary); }
+.notif-item i { margin-top: 3px; }
+.notif-item div p { margin: 0; font-size: 13px; color: var(--text-primary); font-weight: 500; }
+.notif-item div span { font-size: 11px; color: var(--text-muted); display: block; margin-top: 4px; }
+
+/* Chat Widget */
+.chat-widget-btn {
+    position: fixed; bottom: 30px; left: 30px;
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, #8B7FFF, #5BC0F8);
+    border-radius: 50%; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; cursor: pointer; z-index: 9999;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3); transition: transform 0.3s;
+}
+html[dir="ltr"] .chat-widget-btn { left: auto; right: 30px; }
+.chat-widget-btn:hover { transform: scale(1.1); }
+
+.chat-window {
+    position: fixed; bottom: 100px; left: 30px;
+    width: 320px; height: 450px;
+    background: var(--bg-secondary); border: 1px solid var(--border-color);
+    border-radius: 16px; box-shadow: var(--shadow-lg);
+    display: none; flex-direction: column; z-index: 9999;
+}
+html[dir="ltr"] .chat-window { left: auto; right: 30px; }
+
+.chat-header { padding: 15px; background: var(--bg-elevated); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; border-radius: 16px 16px 0 0; }
+.chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.chat-footer { padding: 10px; border-top: 1px solid var(--border-color); display: flex; gap: 10px; }
+.chat-input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); outline: none; }
+.chat-msg { padding: 8px 12px; border-radius: 12px; font-size: 13px; max-width: 80%; }
+.msg-bot { background: var(--bg-elevated); align-self: flex-start; }
+.msg-user { background: var(--lavender-dark); color: white; align-self: flex-end; }
+
+/* =========================================
+   5. Responsive Media Queries
    ========================================= */
 
 @media (max-width: 992px) {
-    /* Mobile Sidebar & Content */
     .toggle-btn { display: block; }
     .sidebar { transform: translateX(100%); box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
     html[dir="ltr"] .sidebar { transform: translateX(-100%); }
     .sidebar.active { transform: translateX(0) !important; }
     
-    /* Reset Content Margins on Mobile */
     .main-content, html[dir="ltr"] .main-content { 
         margin-right: 0 !important; 
         margin-left: 0 !important; 
