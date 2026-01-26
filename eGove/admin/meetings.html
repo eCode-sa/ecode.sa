@@ -4,70 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة الاجتماعات | eGov System</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+
     <style>
-        .meeting-status { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; }
-        .status-draft { background: rgba(255, 184, 108, 0.15); color: var(--warning-color); }
-        .status-confirmed { background: rgba(126, 221, 163, 0.15); color: var(--success-color); }
-        .status-cancelled { background: rgba(255, 107, 107, 0.15); color: var(--danger-color); }
-        .status-completed { background: rgba(91, 192, 248, 0.15); color: var(--secondary-color); }
+        /* --- 1. شريط التحكم العلوي --- */
+        .controls-bar {
+            display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 25px;
+            background: var(--bg-secondary); padding: 15px; border-radius: 16px; border: 1px solid var(--border-color);
+        }
+        .search-box { position: relative; flex: 1; max-width: 400px; }
+        .search-box input {
+            width: 100%; padding: 10px 40px 10px 15px; border-radius: 10px; border: 1px solid var(--border-color);
+            background: var(--bg-primary); color: var(--text-primary); outline: none;
+        }
+        .search-box i { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: var(--text-secondary); }
+        [dir="ltr"] .search-box input { padding: 10px 15px 10px 40px; }
+        [dir="ltr"] .search-box i { right: auto; left: 15px; }
+
+        .filters { display: flex; gap: 10px; }
+        .filter-btn {
+            background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-secondary);
+            padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover { background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark); }
+
+        /* --- 2. بطاقات الاجتماعات (محسنة) --- */
+        .meetings-list { display: flex; flex-direction: column; gap: 15px; }
         
-        .meeting-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-bottom: 1px solid var(--border-color); transition: 0.2s; }
-        .meeting-card:hover { background: var(--bg-elevated); }
-        .meeting-date { text-align: center; min-width: 60px; padding: 10px; background: var(--bg-primary); border-radius: 12px; border: 1px solid var(--border-color); }
-        .date-day { font-size: 18px; font-weight: bold; color: var(--text-primary); display: block; }
-        .date-month { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; }
+        .meeting-card {
+            background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px;
+            display: flex; align-items: center; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s;
+            position: relative; overflow: hidden;
+        }
+        .meeting-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--secondary-color); }
         
-        .meeting-info { flex: 1; margin: 0 20px; }
-        .meeting-title { font-size: 15px; font-weight: bold; color: var(--text-primary); margin-bottom: 5px; }
-        .meeting-meta { font-size: 12px; color: var(--text-secondary); display: flex; gap: 15px; }
-        .meeting-meta i { color: var(--lavender-light); }
+        /* شريط ملون جانبي للحالة */
+        .meeting-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; }
+        [dir="ltr"] .meeting-card::before { right: auto; left: 0; }
+        .status-upcoming::before { background: var(--secondary-color); }
+        .status-completed::before { background: var(--success-color); }
+        .status-draft::before { background: var(--warning-color); }
+        .status-cancelled::before { background: var(--danger-color); }
+
+        .meeting-date-box {
+            background: var(--bg-elevated); padding: 10px 15px; border-radius: 12px; text-align: center; min-width: 70px;
+            border: 1px solid var(--border-color); margin-left: 20px;
+        }
+        [dir="ltr"] .meeting-date-box { margin-left: 0; margin-right: 20px; }
+        .md-day { font-size: 20px; font-weight: 800; color: var(--text-primary); display: block; line-height: 1; }
+        .md-month { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; margin-top: 5px; display: block; }
+
+        .meeting-info { flex: 1; }
+        .meeting-type { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--lavender-light); font-weight: bold; margin-bottom: 5px; display: block; }
+        .meeting-title { font-size: 16px; font-weight: bold; color: var(--text-primary); margin-bottom: 8px; }
+        
+        .meeting-meta { display: flex; gap: 20px; font-size: 12px; color: var(--text-secondary); }
+        .meeting-meta span { display: flex; align-items: center; gap: 6px; }
+        .meeting-meta i { color: var(--text-muted); }
+
+        .meeting-actions { display: flex; gap: 10px; }
+        .action-btn {
+            width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--border-color);
+            background: var(--bg-primary); color: var(--text-secondary); display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.2s;
+        }
+        .action-btn:hover { background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark); }
+
+        /* --- 3. النوافذ المنبثقة (Modals) --- */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-box { background: var(--bg-secondary); width: 600px; max-width: 95%; padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; margin-bottom: 8px; font-size: 12px; color: var(--text-secondary); }
+        .form-input { width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); outline: none; }
+        .form-input:focus { border-color: var(--lavender-dark); }
+        textarea.form-input { height: 100px; resize: none; }
+
+        .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .btn-submit { background: var(--primary-color); color: #fff; border: none; padding: 10px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        .btn-cancel { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); padding: 10px 25px; border-radius: 10px; cursor: pointer; }
+
+        /* حالة الاجتماع (Badge) */
+        .status-badge { padding: 4px 10px; border-radius: 15px; font-size: 10px; font-weight: bold; }
+        .bs-upcoming { background: rgba(91, 192, 248, 0.1); color: var(--secondary-color); }
+        .bs-completed { background: rgba(126, 221, 163, 0.1); color: var(--success-color); }
+        .bs-draft { background: rgba(255, 184, 108, 0.1); color: var(--warning-color); }
     </style>
 </head>
 <body>
-    <div class="sidebar-overlay" onclick="Layout.toggleSidebar()"></div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="Layout.toggleSidebar()"></div>
+
+    <div id="newMeetingModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 style="margin-top: 0; margin-bottom: 20px; color: var(--text-primary);" data-i18n="modal_new_title">جدولة اجتماع جديد</h3>
+            
+            <div class="form-group">
+                <label class="form-label" data-i18n="lbl_title">عنوان الاجتماع</label>
+                <input type="text" id="m_title" class="form-input" placeholder="...">
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_type">النوع</label>
+                    <select id="m_type" class="form-input">
+                        <option value="board" data-i18n="type_board">مجلس الإدارة</option>
+                        <option value="assembly" data-i18n="type_assembly">جمعية عمومية</option>
+                        <option value="committee" data-i18n="type_committee">لجنة</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_location">الموقع</label>
+                    <input type="text" id="m_location" class="form-input" value="المقر الرئيسي - قاعة الاجتماعات">
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_date">التاريخ</label>
+                    <input type="date" id="m_date" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_time">الوقت</label>
+                    <input type="time" id="m_time" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" data-i18n="lbl_agenda">جدول الأعمال (الأجندة)</label>
+                <textarea id="m_agenda" class="form-input" placeholder="- مناقشة القوائم المالية..."></textarea>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal('newMeetingModal')" data-i18n="btn_cancel">إلغاء</button>
+                <button class="btn-submit" onclick="saveMeeting()" data-i18n="btn_save">حفظ وجدولة</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="modal-overlay">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:start;">
+                <div>
+                    <span id="d_type" style="font-size:11px; color:var(--lavender-light); font-weight:bold; text-transform:uppercase;">BOARD</span>
+                    <h2 id="d_title" style="margin:5px 0 15px; color:var(--text-primary);">عنوان الاجتماع</h2>
+                </div>
+                <span id="d_status" class="status-badge bs-upcoming">مجديول</span>
+            </div>
+
+            <div style="background:var(--bg-primary); padding:15px; border-radius:12px; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; font-size:13px;">
+                <div style="color:var(--text-secondary);"><i class="far fa-calendar"></i> <span id="d_date">--</span></div>
+                <div style="color:var(--text-secondary);"><i class="far fa-clock"></i> <span id="d_time">--</span></div>
+                <div style="color:var(--text-secondary); grid-column:1/-1;"><i class="fas fa-map-marker-alt"></i> <span id="d_location">--</span></div>
+            </div>
+
+            <h4 style="margin:0 0 10px; color:var(--text-primary);" data-i18n="lbl_agenda">جدول الأعمال</h4>
+            <div id="d_agenda" style="background:var(--bg-elevated); padding:15px; border-radius:12px; color:var(--text-secondary); font-size:13px; line-height:1.6; margin-bottom:20px;">
+                --
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal('detailsModal')" data-i18n="btn_close">إغلاق</button>
+                <button class="btn-submit" onclick="alert('جاري تحميل المحضر...')" id="btn_minutes" style="display:none;" data-i18n="btn_download_minutes">
+                    <i class="fas fa-file-download"></i> تحميل المحضر
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="app-container">
         <aside id="appSidebar" class="sidebar"></aside>
+        
         <div class="main-content">
             <header id="appTopbar" class="topbar"></header>
+
             <main class="dashboard-content fade-in" id="workspace">
                 
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 style="margin: 0; color: var(--text-primary);" data-i18n="meetings_title">إدارة الاجتماعات والمحاضر</h2>
-                    <button class="btn-primary" onclick="alert('فتح نموذج إنشاء اجتماع جديد...')" style="padding: 10px 20px; border-radius: 10px; border: none; background: var(--primary-color); color: #fff; cursor: pointer;">
-                        <i class="fas fa-plus"></i> <span data-i18n="btn_new_meeting">اجتماع جديد</span>
+                <div class="controls-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="..." data-i18n="ph_search" onkeyup="renderMeetings()">
+                    </div>
+                    
+                    <div class="filters">
+                        <button class="filter-btn active" onclick="filterMeetings('all')" data-i18n="filter_all">الكل</button>
+                        <button class="filter-btn" onclick="filterMeetings('board')" data-i18n="filter_board">مجلس الإدارة</button>
+                        <button class="filter-btn" onclick="filterMeetings('assembly')" data-i18n="filter_assembly">الجمعية العمومية</button>
+                    </div>
+
+                    <button class="btn-submit" onclick="openModal('newMeetingModal')">
+                        <i class="fas fa-plus"></i> <span data-i18n="btn_new">اجتماع جديد</span>
                     </button>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">4</div>
-                        <div class="stat-label" data-i18n="stat_upcoming">اجتماعات قادمة</div>
-                        <i class="fas fa-calendar-alt stat-icon" style="color: var(--secondary-color);"></i>
+                <div class="meetings-list" id="meetingsContainer">
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-value">12</div>
-                        <div class="stat-label" data-i18n="stat_completed">تم عقدها (2025)</div>
-                        <i class="fas fa-check-circle stat-icon" style="color: var(--success-color);"></i>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">98%</div>
-                        <div class="stat-label" data-i18n="stat_attendance">نسبة الحضور</div>
-                        <i class="fas fa-users stat-icon" style="color: var(--lavender-light);"></i>
-                    </div>
-                </div>
-
-                <div class="section-card" style="padding: 0; overflow: hidden;">
-                    <div style="padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; gap: 15px;">
-                        <button class="filter-btn active" data-i18n="filter_all">الكل</button>
-                        <button class="filter-btn" data-i18n="filter_board">مجلس الإدارة</button>
-                        <button class="filter-btn" data-i18n="filter_assembly">الجمعية العمومية</button>
-                    </div>
-                    
-                    <div id="meetingsList">
-                        </div>
-                </div>
 
             </main>
         </div>
@@ -75,68 +210,192 @@
 
     <script src="../assets/js/core/i18n.js"></script>
     <script src="../assets/js/layout.js"></script>
-    <script src="../assets/js/data/assemblies_policies.js"></script> <script src="../assets/js/system.js"></script>
+    <script src="../assets/js/components/bot.js"></script>
+    <script src="../assets/js/system.js"></script>
 
     <script>
+        // --- 1. الترجمات ---
         const pageTranslations = {
-            ar: { meetings_title: "إدارة الاجتماعات", btn_new_meeting: "اجتماع جديد", stat_upcoming: "اجتماعات قادمة", stat_completed: "تم عقدها", stat_attendance: "نسبة الحضور", type_board: "مجلس الإدارة", type_assembly: "الجمعية العمومية", status_draft: "مسودة", status_confirmed: "مجدول", status_completed: "منعقد", status_cancelled: "ملغي", btn_minutes: "المحضر", btn_view: "التفاصيل" },
-            en: { meetings_title: "Meetings Management", btn_new_meeting: "New Meeting", stat_upcoming: "Upcoming", stat_completed: "Completed", stat_attendance: "Attendance Rate", type_board: "Board of Directors", type_assembly: "General Assembly", status_draft: "Draft", status_confirmed: "Scheduled", status_completed: "Completed", status_cancelled: "Cancelled", btn_minutes: "Minutes", btn_view: "Details" }
+            ar: {
+                modal_new_title: "جدولة اجتماع جديد", lbl_title: "عنوان الاجتماع", lbl_type: "نوع الاجتماع",
+                type_board: "مجلس الإدارة", type_assembly: "جمعية عمومية", type_committee: "لجنة منبثقة",
+                lbl_location: "مقر الاجتماع", lbl_date: "التاريخ", lbl_time: "الوقت", lbl_agenda: "جدول الأعمال (الأجندة)",
+                btn_cancel: "إلغاء", btn_save: "حفظ وجدولة", btn_close: "إغلاق", btn_download_minutes: "تحميل المحضر",
+                ph_search: "بحث عن اجتماع...", filter_all: "الكل", filter_board: "مجلس الإدارة", filter_assembly: "الجمعية العمومية",
+                btn_new: "اجتماع جديد", status_upcoming: "قادم", status_completed: "منعقد", status_draft: "مسودة", status_cancelled: "ملغي"
+            },
+            en: {
+                modal_new_title: "Schedule New Meeting", lbl_title: "Meeting Title", lbl_type: "Meeting Type",
+                type_board: "Board of Directors", type_assembly: "General Assembly", type_committee: "Committee",
+                lbl_location: "Location", lbl_date: "Date", lbl_time: "Time", lbl_agenda: "Agenda",
+                btn_cancel: "Cancel", btn_save: "Save & Schedule", btn_close: "Close", btn_download_minutes: "Download Minutes",
+                ph_search: "Search meetings...", filter_all: "All", filter_board: "Board", filter_assembly: "Assembly",
+                btn_new: "New Meeting", status_upcoming: "Upcoming", status_completed: "Completed", status_draft: "Draft", status_cancelled: "Cancelled"
+            }
         };
 
-        // بيانات وهمية للاجتماعات (للعرض)
-        const mockMeetings = [
-            { id: 1, title: "اجتماع مجلس الإدارة رقم (1/2026)", date: "2026-01-15", time: "10:00 AM", type: "board", status: "confirmed", loc: "المقر الرئيسي" },
-            { id: 2, title: "اجتماع الجمعية العامة العادية", date: "2026-03-01", time: "04:00 PM", type: "assembly", status: "draft", loc: "عن بعد (Virtual)" },
-            { id: 3, title: "اجتماع لجنة المراجعة الربع سنوي", date: "2025-12-20", time: "01:00 PM", type: "board", status: "completed", loc: "المقر الرئيسي" },
-            { id: 4, title: "اجتماع طارئ لمناقشة الميزانية", date: "2025-11-10", time: "09:00 AM", type: "board", status: "completed", loc: "عن بعد" }
+        // --- 2. البيانات (وهمية تحاكي القاعدة) ---
+        let meetingsData = [
+            { id: 1, title: "اجتماع مجلس الإدارة رقم (1/2026)", type: "board", date: "2026-01-20", time: "10:00", location: "المقر الرئيسي - قاعة الاجتماعات", status: "upcoming", agenda: "1. مراجعة القوائم المالية.\n2. مناقشة الموازنة التقديرية.\n3. تعيين مدقق خارجي." },
+            { id: 2, title: "اجتماع لجنة المراجعة", type: "committee", date: "2025-12-15", time: "13:00", location: "عن بعد (Microsoft Teams)", status: "completed", agenda: "مراجعة تقرير الربع الرابع." },
+            { id: 3, title: "الجمعية العامة العادية", type: "assembly", date: "2026-03-01", time: "16:00", location: "فندق هيلتون - قاعة المؤتمرات", status: "draft", agenda: "التصويت على توزيع الأرباح." }
         ];
 
+        let currentFilter = 'all';
+
         document.addEventListener('DOMContentLoaded', () => {
+            // دمج الترجمة
             if(window.SYSTEM_TRANSLATIONS) {
                 Object.assign(window.SYSTEM_TRANSLATIONS.ar, pageTranslations.ar);
                 Object.assign(window.SYSTEM_TRANSLATIONS.en, pageTranslations.en);
                 const lang = localStorage.getItem('eGov_Lang') || 'ar';
                 if(window.updateLanguage) window.updateLanguage(lang);
             }
+            
             renderMeetings();
+
+            // الاستماع لتغيير اللغة
+            window.addEventListener('languageChanged', renderMeetings);
         });
 
+        // --- 3. وظائف العرض والفلترة ---
         function renderMeetings() {
-            const container = document.getElementById('meetingsList');
+            const container = document.getElementById('meetingsContainer');
+            const search = document.getElementById('searchInput').value.toLowerCase();
             const lang = localStorage.getItem('eGov_Lang') || 'ar';
+            
             container.innerHTML = '';
 
-            mockMeetings.forEach(m => {
+            const filtered = meetingsData.filter(m => {
+                const matchFilter = currentFilter === 'all' || m.type === currentFilter;
+                const matchSearch = m.title.toLowerCase().includes(search);
+                return matchFilter && matchSearch;
+            });
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:30px; color:var(--text-muted)">${lang==='ar'?'لا توجد اجتماعات':'No meetings found'}</div>`;
+                return;
+            }
+
+            filtered.forEach(m => {
                 const dateObj = new Date(m.date);
                 const day = dateObj.getDate();
                 const month = dateObj.toLocaleString(lang === 'ar' ? 'ar-EG' : 'en-US', { month: 'short' });
                 
-                const typeLabel = lang === 'ar' ? (m.type === 'board' ? 'مجلس الإدارة' : 'جمعية عمومية') : (m.type === 'board' ? 'Board' : 'Assembly');
-                const statusLabel = pageTranslations[lang][`status_${m.status}`];
+                // ترجمة النوع
+                let typeLabel = m.type;
+                if(m.type === 'board') typeLabel = lang === 'ar' ? 'مجلس الإدارة' : 'Board';
+                else if(m.type === 'assembly') typeLabel = lang === 'ar' ? 'جمعية عمومية' : 'Assembly';
+                else if(m.type === 'committee') typeLabel = lang === 'ar' ? 'لجنة' : 'Committee';
 
-                let html = `
-                    <div class="meeting-card">
-                        <div class="meeting-date">
-                            <span class="date-day">${day}</span>
-                            <span class="date-month">${month}</span>
-                        </div>
-                        <div class="meeting-info">
-                            <div class="meeting-title">${m.title} <span class="meeting-status status-${m.status}">${statusLabel}</span></div>
-                            <div class="meeting-meta">
-                                <span><i class="far fa-clock"></i> ${m.time}</span>
-                                <span><i class="far fa-building"></i> ${typeLabel}</span>
-                                <span><i class="fas fa-map-marker-alt"></i> ${m.loc}</span>
+                // ترجمة الحالة وتحديد اللون
+                let statusLabel = m.status;
+                let statusClass = 'status-upcoming';
+                if(m.status === 'upcoming') { statusLabel = lang === 'ar' ? 'قادم' : 'Upcoming'; statusClass = 'status-upcoming'; }
+                else if(m.status === 'completed') { statusLabel = lang === 'ar' ? 'منعقد' : 'Completed'; statusClass = 'status-completed'; }
+                else if(m.status === 'draft') { statusLabel = lang === 'ar' ? 'مسودة' : 'Draft'; statusClass = 'status-draft'; }
+
+                const html = `
+                    <div class="meeting-card ${statusClass}">
+                        <div style="display:flex; align-items:center; flex:1;">
+                            <div class="meeting-date-box">
+                                <span class="md-day">${day}</span>
+                                <span class="md-month">${month}</span>
+                            </div>
+                            <div class="meeting-info" style="margin: 0 20px;">
+                                <span class="meeting-type">${typeLabel}</span>
+                                <div class="meeting-title">${m.title}</div>
+                                <div class="meeting-meta">
+                                    <span><i class="far fa-clock"></i> ${m.time}</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> ${m.location}</span>
+                                    <span class="status-badge ${m.status === 'upcoming' ? 'bs-upcoming' : m.status === 'completed' ? 'bs-completed' : 'bs-draft'}">${statusLabel}</span>
+                                </div>
                             </div>
                         </div>
-                        <div style="display:flex; gap:10px;">
-                            ${m.status === 'completed' ? `<button class="btn-action" style="background:var(--bg-primary); border:1px solid var(--border-color); padding:8px 15px; border-radius:8px; cursor:pointer; color:var(--text-secondary)"><i class="fas fa-file-signature"></i> ${lang==='ar'?'المحضر':'Minutes'}</button>` : ''}
-                            <button class="btn-action" style="background:var(--lavender-dark); color:#fff; border:none; padding:8px 15px; border-radius:8px; cursor:pointer;"><i class="fas fa-eye"></i></button>
+                        <div class="meeting-actions">
+                            <button class="action-btn" onclick="showDetails(${m.id})" title="${lang==='ar'?'التفاصيل':'Details'}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn" onclick="alert('${lang==='ar'?'تعديل':'Edit'}')" title="${lang==='ar'?'تعديل':'Edit'}">
+                                <i class="fas fa-edit"></i>
+                            </button>
                         </div>
                     </div>
                 `;
                 container.innerHTML += html;
             });
         }
+
+        function filterMeetings(type) {
+            currentFilter = type;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderMeetings();
+        }
+
+        // --- 4. التحكم بالنوافذ والبيانات ---
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function saveMeeting() {
+            const title = document.getElementById('m_title').value;
+            const type = document.getElementById('m_type').value;
+            const date = document.getElementById('m_date').value;
+            const time = document.getElementById('m_time').value;
+            const location = document.getElementById('m_location').value;
+            const agenda = document.getElementById('m_agenda').value;
+
+            if(!title || !date) {
+                alert('الرجاء إدخال العنوان والتاريخ');
+                return;
+            }
+
+            const newMeeting = {
+                id: meetingsData.length + 1,
+                title: title,
+                type: type,
+                date: date,
+                time: time,
+                location: location,
+                status: 'upcoming',
+                agenda: agenda
+            };
+
+            meetingsData.unshift(newMeeting); // إضافة للأعلى
+            renderMeetings();
+            closeModal('newMeetingModal');
+            
+            // تصفير النموذج
+            document.getElementById('m_title').value = '';
+            document.getElementById('m_agenda').value = '';
+        }
+
+        function showDetails(id) {
+            const m = meetingsData.find(x => x.id === id);
+            if(!m) return;
+
+            const lang = localStorage.getItem('eGov_Lang') || 'ar';
+
+            document.getElementById('d_title').innerText = m.title;
+            document.getElementById('d_type').innerText = m.type.toUpperCase();
+            document.getElementById('d_date').innerText = m.date;
+            document.getElementById('d_time').innerText = m.time;
+            document.getElementById('d_location').innerText = m.location;
+            document.getElementById('d_agenda').innerText = m.agenda || (lang==='ar'?'لا يوجد جدول أعمال':'No agenda');
+
+            // حالة الزر
+            const btnMinutes = document.getElementById('btn_minutes');
+            if(m.status === 'completed') btnMinutes.style.display = 'block';
+            else btnMinutes.style.display = 'none';
+
+            openModal('detailsModal');
+        }
     </script>
+
 </body>
 </html>
