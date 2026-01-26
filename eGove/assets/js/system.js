@@ -90,11 +90,11 @@ function calculateStats() {
 
     // ج. عدد النماذج (✅ التصحيح هنا)
     let formsCount = 0;
-    if (window.egovFormsTemplates) {
-        if (window.egovFormsTemplates.forms && Array.isArray(window.egovFormsTemplates.forms)) {
-            formsCount = window.egovFormsTemplates.forms.length;
-        } else if (Array.isArray(window.egovFormsTemplates)) {
-            formsCount = window.egovFormsTemplates.length;
+    if (window.egovformstemplates) {
+        if (window.egovformstemplates.forms && Array.isArray(window.egovformstemplates.forms)) {
+            formsCount = window.egovformstemplates.forms.length;
+        } else if (Array.isArray(window.egovformstemplates)) {
+            formsCount = window.egovformstemplates.length;
         }
     }
     animateValue("formsCount", 0, formsCount, 1200);
@@ -134,8 +134,8 @@ function renderCharts() {
     const board = window.governanceTexts?.length || 0;
     
     let forms = 0;
-    if(window.egovFormsTemplates?.forms) forms = window.egovFormsTemplates.forms.length;
-    else if(Array.isArray(window.egovFormsTemplates)) forms = window.egovFormsTemplates.length;
+    if(window.egovformstemplates?.forms) forms = window.egovformstemplates.forms.length;
+    else if(Array.isArray(window.egovformstemplates)) forms = window.egovformstemplates.length;
 
     const lang = document.documentElement.lang || 'ar';
     const labels = lang === 'ar' 
