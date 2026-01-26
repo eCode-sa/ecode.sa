@@ -158,14 +158,28 @@ const Layout = {
     injectBot: function() {
         if (!document.getElementById('chatWindow')) {
             document.body.insertAdjacentHTML('beforeend', `
-                <div class="chat-widget-btn" onclick="Layout.toggleChat()"><i class="fas fa-robot"></i></div>
+                <div class="chat-widget-btn" onclick="Layout.toggleChat()">
+                    <i class="fas fa-robot"></i>
+                </div>
+                
                 <div class="chat-window" id="chatWindow" style="display:none;">
-                    <div class="chat-header"><h4>المساعد</h4><i class="fas fa-times" onclick="Layout.toggleChat()" style="cursor:pointer;"></i></div>
-                    <div class="chat-body" id="chatMessages"><div class="chat-msg msg-bot">مرحباً 👋</div></div>
-                    <div class="chat-footer">
-                        <input type="text" class="chat-input" id="userInput" placeholder="..." onkeypress="if(event.key==='Enter') Layout.sendMessage()">
-                        <button class="btn-primary" onclick="Layout.sendMessage()" style="padding:5px;width:40px;height:40px;border-radius:50%"><i class="fas fa-paper-plane"></i></button>
+                    
+                    <div class="chat-header">
+                        <h4>المساعد الذكي</h4>
+                        <i class="fas fa-times" onclick="Layout.toggleChat()" style="cursor:pointer;"></i>
                     </div>
+                    
+                    <div class="chat-body" id="chatMessages">
+                        <div class="chat-msg msg-bot">مرحباً ${this.userName} 👋 كيف أساعدك؟</div>
+                    </div>
+                    
+                    <div class="chat-footer">
+                        <input type="text" class="chat-input" id="userInput" placeholder="اكتب هنا..." onkeypress="if(event.key==='Enter') Layout.sendMessage()">
+                        <button class="btn-primary" onclick="Layout.sendMessage()" style="padding:5px;width:40px;height:40px;border-radius:50%">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+
                 </div>
             `);
         }
