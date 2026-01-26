@@ -141,6 +141,27 @@
         </div>
     </div>
 
+<script src="../assets/js/core/i18n.js"></script>
+    <script src="../assets/js/data/company_data.js"></script>
+    <script src="../assets/js/data/hr-policies.js"></script>
+    <script src="../assets/js/data/financial-governance.js"></script>
+    <script src="../assets/js/data/board_governance.js"></script>
+    <script src="../assets/js/data/assemblies_policies.js"></script>
+    <script src="../assets/js/data/digital_governance.js"></script>
+    <script src="../assets/js/data/monitoring_mechanisms.js"></script>
+    <script src="../assets/js/data/forms_templates.js"></script>
+
     <script src="../assets/js/system.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Checking data before init...");
+            console.log("Company Data:", window.COMPANY_DATA); // هذا سيخبرك بالحقيقة
+            
+            if (typeof initDashboard === 'function') {
+                initDashboard();
+            }
+        });
+    </script>
 </body>
 </html>
