@@ -1,3 +1,4 @@
+console.log("🔥 DigitalGovernance FILE IS EXECUTING!");
 window.egovDigitalGovernance = { 
    ar: {
     section_id: "digital_governance",
