@@ -165,16 +165,20 @@ const Layout = {
                 <div class="chat-window" id="chatWindow" style="display:none;">
                     
                     <div class="chat-header">
-                        <h4>المساعد الذكي</h4>
+                        <h4 data-i18n="bot_title">المساعد الذكي</h4>
                         <i class="fas fa-times" onclick="Layout.toggleChat()" style="cursor:pointer;"></i>
                     </div>
                     
                     <div class="chat-body" id="chatMessages">
-                        <div class="chat-msg msg-bot">مرحباً ${this.userName} 👋 كيف أساعدك؟</div>
+                        <div class="chat-msg msg-bot">
+                            <span data-i18n="bot_welcome">مرحباً بك</span> ${this.userName} 👋
+                            <br>
+                            <span data-i18n="bot_intro" style="font-size:12px; opacity:0.8;">كيف يمكنني مساعدتك؟</span>
+                        </div>
                     </div>
                     
                     <div class="chat-footer">
-                        <input type="text" class="chat-input" id="userInput" placeholder="اكتب هنا..." onkeypress="if(event.key==='Enter') Layout.sendMessage()">
+                        <input type="text" class="chat-input" id="userInput" data-i18n="bot_placeholder" placeholder="اكتب رسالتك هنا..." onkeypress="if(event.key==='Enter') Layout.sendMessage()">
                         <button class="btn-primary" onclick="Layout.sendMessage()" style="padding:5px;width:40px;height:40px;border-radius:50%">
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -182,9 +186,13 @@ const Layout = {
 
                 </div>
             `);
+
+            // تحديث فوري للغة بعد الحقن (لضمان ظهور الإنجليزي إذا كان مفعل)
+            const currentLang = localStorage.getItem('eGov_Lang') || 'ar';
+            if (window.updateLanguage) window.updateLanguage(currentLang);
         }
     },
-
+   
     // --- الوظائف التفاعلية ---
 
     toggleSidebar: function() { 
