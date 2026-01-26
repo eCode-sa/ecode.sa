@@ -1,13 +1,6 @@
-// egov-forms-templates.js
-// eGov – Forms Templates for Electronic Code Company
-
-export const egovFormsTemplates = {
-  forms: [
-    /* =========================
-       1) ميثاق الشرف - Code of Conduct
-       ========================= */
-    {
-      id: "code_of_conduct",
+const egovFormsTemplates = {
+    forms: [
+        { id: "code_of_conduct",
       category: "governance",
       name: {
         ar: "ميثاق الشرف",
@@ -2206,6 +2199,5 @@ HR Approval: _____________________________
       `.trim()
     }
   }
-];
-
-export default egovHrTemplates;
+  ]
+};
