@@ -168,7 +168,7 @@ html[dir="ltr"] .menu-item:hover, html[dir="ltr"] .menu-item.active { transform:
     transition: all 0.3s ease;
     margin-right: 260px; /* RTL Margin */
     margin-left: 0;
-    width: 100%;
+    width: calc(100% - 260px);
 }
 
 /* تعديل الهامش عند التحويل للإنجليزية */
@@ -176,6 +176,14 @@ html[dir="ltr"] .main-content {
     margin-right: 0;
     margin-left: 260px; /* LTR Margin */
 }
+@media (max-width: 992px) {
+    /* في الجوال: المحتوى يأخذ الشاشة كاملة ولا يترك مسافة للقائمة */
+    .main-content, 
+    html[dir="ltr"] .main-content { 
+        margin-right: 0 !important; 
+        margin-left: 0 !important; 
+        width: 100% !important;
+    }
 
 /* --- Topbar --- */
 .topbar {
