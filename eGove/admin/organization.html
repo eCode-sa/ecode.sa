@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهيكل التنظيمي | eGov System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* شجرة التنظيم */
+        .org-tree { display: flex; justify-content: center; padding: 40px 0; overflow-x: auto; }
+        .org-tree ul { padding-top: 20px; position: relative; transition: all 0.5s; display: flex; justify-content: center; }
+        .org-tree li { float: left; text-align: center; list-style-type: none; position: relative; padding: 20px 5px 0 5px; transition: all 0.5s; }
+        
+        /* الخطوط الرابطة */
+        .org-tree li::before, .org-tree li::after {
+            content: ''; position: absolute; top: 0; right: 50%; border-top: 2px solid var(--border-color);
+            width: 50%; height: 20px; z-index: -1;
+        }
+        .org-tree li::after { right: auto; left: 50%; border-left: 2px solid var(--border-color); }
+        .org-tree li:only-child::after, .org-tree li:only-child::before { display: none; }
+        .org-tree li:only-child { padding-top: 0; }
+        .org-tree li:first-child::before, .org-tree li:last-child::after { border: 0 none; }
+        .org-tree li:last-child::before { border-right: 2px solid var(--border-color); border-radius: 0 5px 0 0; }
+        .org-tree li:first-child::after { border-radius: 5px 0 0 0; }
+        .org-tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; border-left: 2px solid var(--border-color); width: 0; height: 20px; }
+
+        /* بطاقة الموظف في الشجرة */
+        .node-card {
+            background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px;
+            display: inline-block; width: 180px; transition: 0.3s; position: relative; z-index: 2;
+            box-shadow: var(--shadow-sm); cursor: pointer;
+        }
+        .node-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); box-shadow: var(--shadow-md); }
+        .node-role { font-size: 10px; color: var(--secondary-color); text-transform: uppercase; font-weight: bold; margin-bottom: 5px; }
+        .node-name { font-size: 13px; font-weight: bold; color: var(--text-primary); margin-bottom: 5px; }
+        .node-head { font-size: 11px; color: var(--text-secondary); }
+        .node-icon { 
+            width: 40px; height: 40px; background: var(--bg-elevated); border-radius: 50%; margin: 0 auto 10px; 
+            display: flex; align-items: center; justify-content: center; color: var(--text-primary); border: 2px solid var(--border-color);
+        }
+        
+        /* ألوان خاصة */
+        .node-board .node-icon { border-color: var(--warning-color); color: var(--warning-color); }
+        .node-ceo .node-icon { border-color: var(--primary-color); color: var(--primary-color); }
+        .node-dept .node-icon { border-color: var(--success-color); color: var(--success-color); }
+    </style>
+</head>
+<body>
+    <div class="sidebar-overlay" onclick="Layout.toggleSidebar()"></div>
+    <div class="app-container">
+        <aside id="appSidebar" class="sidebar"></aside>
+        <div class="main-content">
+            <header id="appTopbar" class="topbar"></header>
+            <main class="dashboard-content fade-in" id="workspace">
+                
+                <h2 style="color: var(--text-primary); margin-bottom: 20px;" data-i18n="org_title">الهيكل التنظيمي</h2>
+                
+                <div class="section-card" style="min-height: 600px; overflow: auto; display: flex; justify-content: center;">
+                    <div class="org-tree" id="orgTreeContainer">
+                        </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../assets/js/core/i18n.js"></script>
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/data/company_data.js"></script> <script src="../assets/js/system.js"></script>
+
+    <script>
+        const pageTranslations = {
+            ar: { org_title: "الهيكل التنظيمي والموظفين" },
+            en: { org_title: "Organizational Structure" }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if(window.SYSTEM_TRANSLATIONS) {
+                Object.assign(window.SYSTEM_TRANSLATIONS.ar, pageTranslations.ar);
+                Object.assign(window.SYSTEM_TRANSLATIONS.en, pageTranslations.en);
+                const lang = localStorage.getItem('eGov_Lang') || 'ar';
+                if(window.updateLanguage) window.updateLanguage(lang);
+            }
+            buildOrgChart();
+        });
+
+        function buildOrgChart() {
+            const container = document.getElementById('orgTreeContainer');
+            // التأكد من وجود البيانات
+            if(!window.COMPANY_DATA || !window.COMPANY_DATA.departments) {
+                container.innerHTML = '<p>لا توجد بيانات للهيكل التنظيمي</p>';
+                return;
+            }
+
+            const depts = window.COMPANY_DATA.departments;
+            const lang = localStorage.getItem('eGov_Lang') || 'ar';
+
+            // 1. العثور على المجلس (Board)
+            const board = depts.find(d => d.role === 'board');
+            // 2. العثور على الرئيس التنفيذي (CEO)
+            const ceo = depts.find(d => d.role === 'ceo');
+            // 3. العثور على التدقيق (Audit) - يتبع المجلس
+            const audit = depts.find(d => d.role === 'audit');
+            // 4. البقية (المدراء التنفيذيين)
+            const managers = depts.filter(d => d.role !== 'board' && d.role !== 'ceo' && d.role !== 'audit' && d.role !== 'shareholder' && d.role !== 'secretary');
+
+            // بناء HTML الشجرة
+            let html = `
+                <ul>
+                    <li>
+                        ${createCard(board, 'node-board', 'fa-gavel')}
+                        <ul>
+                            ${audit ? `<li>${createCard(audit, 'node-board', 'fa-search')}</li>` : ''}
+                            <li>
+                                ${createCard(ceo, 'node-ceo', 'fa-user-tie')}
+                                <ul>
+                                    ${managers.map(mgr => `<li>${createCard(mgr, 'node-dept', 'fa-sitemap')}</li>`).join('')}
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            `;
+            container.innerHTML = html;
+        }
+
+        function createCard(dept, cssClass, icon) {
+            if(!dept) return '';
+            const lang = localStorage.getItem('eGov_Lang') || 'ar';
+            // نستخدم الاسم العربي إذا كانت اللغة عربية، والاسم الإنجليزي (الموجود في id/name الأصلي) إذا كانت إنجليزية
+            // ملاحظة: ملف company_data.js لديك يحتوي على desc بالعربي و name بالإنجليزي
+            const displayName = lang === 'ar' ? dept.desc : dept.name;
+            const displayHead = dept.head; 
+
+            return `
+                <div class="node-card ${cssClass}">
+                    <div class="node-icon"><i class="fas ${icon}"></i></div>
+                    <div class="node-role">${dept.role.toUpperCase()}</div>
+                    <div class="node-name">${displayName}</div>
+                    <div class="node-head">${displayHead}</div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
