@@ -6,28 +6,10 @@
  * ============================================ */
 
 const HR_POLICIES = {
-
-  metadata: {
-    system: "eGov",
-    module: "HR_POLICIES",
-    version: "1.0.0",
-    company: {
-      ar: "شركة إلكترونيك كود",
-      en: "Electronic Code Company (eCode)"
-    },
-    preparedBy: {
-      ar: "إدارة الحوكمة والمخاطر والالتزام",
-      en: "Governance, Risk & Compliance Department"
-    }
-  },
-
-  sections: [
-
-    /* ============================================
-     * القسم 1 – إدارة الموارد البشرية والتوظيف
-     * ============================================ */
-    {
-      id: "HR-SECTION-01",
+    metadata: { system: "eGov", module: "HR_POLICIES" },
+    sections: [
+        {
+            id: "HR-SECTION-01",
       title: {
         ar: "إدارة الموارد البشرية والتوظيف",
         en: "Human Resources Management & Employment"
@@ -1098,5 +1080,3 @@ A person is liable for damages if:
 
   ]
 };
-
-export default HR_POLICIES;
