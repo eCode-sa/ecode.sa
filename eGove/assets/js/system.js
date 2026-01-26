@@ -7392,7 +7392,7 @@ const egovMonitoringMechanisms = {
       ]
     }
   }
-];
+};
 
    // --- 9. الجمعيات ---
 const egovAssembliesPolicies = {
