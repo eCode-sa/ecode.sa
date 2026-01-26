@@ -8080,58 +8080,34 @@ If a resolution of the General Assembly would result in an amendment to the righ
 // 3. منطق لوحة القيادة (Dashboard Logic)
 // ==========================================
 window.initDashboard = function() {
+    // 1. التعريف الأول (والصحيح) للمتغير
     const compNameEl = document.getElementById('companyNameDisplay');
+    
+    // التحقق من وجود العنصر، إذا لم يوجد نوقف الدالة
     if (!compNameEl) return;
 
-    console.log("Initializing Dashboard...");
+    console.log("Initializing Dashboard with LOCAL Data...");
 
-    // --- 1. التصحيح الجذري: تحديد اللغة "الحقيقية" ---
-    // نفحص الذاكرة (localStorage) أولاً، إذا لم نجد شيئاً نأخذ لغة المتصفح، وإلا فالعربية
-    const savedLang = localStorage.getItem('eGov_Lang') || 'ar';
-    
-    // --- 2. فرض اللغة على الصفحة فوراً ---
-    // هذا السطر يجبر الصفحة أن تتحول للغة المحفوظة قبل عرض البيانات
-    document.documentElement.lang = savedLang;
-    document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+    const currentLang = document.documentElement.lang || 'ar';
 
-    // نعتمد اللغة المحفوظة كـ "اللغة الحالية"
-    const currentLang = savedLang;
-
-    // --- 3. تحديث النصوص الثابتة (data-i18n) فوراً ---
-    // ضروري عشان تتغير كلمات مثل "مرحباً" و "الأقسام" عند التحميل
-    if (typeof updatePageTranslations === 'function') {
-        updatePageTranslations(currentLang);
-    } else {
-        // احتياط لو الدالة غير موجودة، نكتبها هنا بسرعة
-        const elements = document.querySelectorAll('[data-i18n]');
-        elements.forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (typeof SYSTEM_TRANSLATIONS !== 'undefined' && SYSTEM_TRANSLATIONS[currentLang]) {
-                el.textContent = SYSTEM_TRANSLATIONS[currentLang][key];
-            }
-        });
-    }
-
-const dateEl = document.getElementById('currentDate');
-    if(dateEl) {
-        const locale = lang === 'ar' ? 'ar-SA' : 'en-US';
+    // أ. تحديث التاريخ
+    const dateEl = document.getElementById('currentDate');
+    if (dateEl) {
+        const locale = currentLang === 'ar' ? 'ar-SA' : 'en-US';
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         dateEl.textContent = new Date().toLocaleDateString(locale, dateOptions);
     } 
 
-   const compNameEl = document.getElementById('companyNameDisplay');
-    if(compNameEl && typeof COMPANY_DATA !== 'undefined') {
-        compNameEl.textContent = lang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
-    }
+    // ب. تحديث اسم الشركة
+    // (تم حذف سطر إعادة التعريف const compNameEl = ... لأنه معرف في الأعلى)
+    // نستخدم المتغير مباشرة:
+    compNameEl.textContent = currentLang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
     
     // ج. تحديث اسم المستخدم
     const adminNameEl = document.getElementById('adminName');
-    if (adminNameEl) {
-        const defaultRole = currentLang === 'ar' ? 'مسؤول النظام' : 'System Admin';
-        adminNameEl.textContent = localStorage.getItem('userName') || defaultRole;
-    }
+    if(adminNameEl) adminNameEl.textContent = localStorage.getItem('userName') || 'مسؤول النظام';
 
-    // د. تشغيل الحسابات والرسم (سيأخذون اللغة الصحيحة الآن)
+    // د. تشغيل الحسابات
     calculateStats();
     renderDepartmentsTable();
     renderCharts();
