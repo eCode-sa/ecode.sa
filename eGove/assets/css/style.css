@@ -530,4 +530,5 @@ p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
 }
 .dropdown-menu.show { display: block; animation: slideDown 0.2s ease-out; }
 .dropdown-header { padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: bold; }
-.notif-item { padding: 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
+.notif-item { padding: 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary);
+}
