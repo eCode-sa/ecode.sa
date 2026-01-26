@@ -1,20 +1,20 @@
-// ==========================================
-// ملف منطق النظام (System Logic Only)
-// لا يحتوي على أكواد تحميل، لأنه يعتمد على HTML
-// ==========================================
+/* ==========================================
+   ملف منطق النظام (System Logic - system.js)
+   يعتمد على البيانات المحملة من HTML
+   ========================================== */
 
 // 1. منطق لوحة القيادة (Dashboard Logic)
 window.initDashboard = function() {
     console.log("🚀 System JS Started.");
 
-    // فحص أمان أخير: هل البيانات موجودة؟
+    // فحص أمان: هل البيانات موجودة؟
     if (typeof window.COMPANY_DATA === 'undefined') {
         console.error("❌ Critical Error: COMPANY_DATA is missing. Check script tags in HTML.");
         return;
     }
 
     const compNameEl = document.getElementById('companyNameDisplay');
-    // إذا لم نجد العنصر، نحن لسنا في لوحة القيادة، نخرج بهدوء
+    // إذا لم نجد العنصر، نحن لسنا في لوحة القيادة (Dashboard)، نخرج.
     if (!compNameEl) return;
 
     console.log("✅ Dashboard Initializing with Data...");
@@ -33,16 +33,15 @@ window.initDashboard = function() {
     initScrollAnimations();
 };
 
-// 2. دالة تحديث اللغة
+// 2. دالة تحديث اللغة (Core Function)
 window.updateLanguage = function(lang) {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-    // استخدام الترجمات من المتغير العام (الذي تم تحميله من i18n.js)
-    // افترضنا أن ملف i18n.js يعرف متغيراً اسمه window.SYSTEM_TRANSLATIONS أو window.DICTIONARY
-    // تأكد من اسم المتغير في ملف i18n.js (حسب رسالة الخطأ عندك اسمه DICTIONARY)
+    // استخدام الترجمات من i18n.js
     const translations = window.SYSTEM_TRANSLATIONS || window.DICTIONARY || {}; 
 
+    // تحديث النصوص الثابتة (data-i18n)
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -64,22 +63,24 @@ window.updateLanguage = function(lang) {
         dateEl.textContent = new Date().toLocaleDateString(locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     }
 
-    // إعادة الحساب والرسم
+    // إعادة تشغيل الحسابات والرسم البياني
     calculateStats();
     renderDepartmentsTable();
     renderCharts();
     
+    // حفظ اللغة المختارة
     localStorage.setItem('eGov_Lang', lang);
 };
 
-// 3. الإحصائيات
+// 3. الإحصائيات (Stats)
 function calculateStats() {
     if (!window.COMPANY_DATA) return;
 
+    // عداد الأقسام
     animateValue("deptCount", 0, window.COMPANY_DATA.departments.length, 1000);
 
+    // عداد السياسات (مجموع من كل الملفات)
     let totalPolicies = 0;
-    // التحقق من وجود المتغيرات قبل الجمع
     if (window.HR_POLICIES && window.HR_POLICIES.sections) {
         window.HR_POLICIES.sections.forEach(sec => totalPolicies += sec.policies.length);
     }
@@ -92,12 +93,13 @@ function calculateStats() {
     
     animateValue("policiesCount", 0, totalPolicies, 1500);
 
+    // عداد النماذج
     if (window.egovFormsTemplates) {
         animateValue("formsCount", 0, window.egovFormsTemplates.forms.length, 1200);
     }
 }
 
-// 4. جدول الإدارات
+// 4. جدول الإدارات (Departments Table)
 function renderDepartmentsTable() {
     const tableBody = document.getElementById('departmentsTableBody');
     if(!tableBody || !window.COMPANY_DATA) return;
@@ -125,7 +127,7 @@ function renderDepartmentsTable() {
     });
 }
 
-// 5. الشارت
+// 5. الرسم البياني (Charts)
 function renderCharts() {
     const ctx = document.getElementById('assetsChart');
     if(!ctx || typeof Chart === 'undefined') return;
@@ -163,7 +165,7 @@ function renderCharts() {
     });
 }
 
-// 6. دوال مساعدة
+// 6. دوال مساعدة (Helpers)
 function animateValue(id, start, end, duration) {
     const obj = document.getElementById(id);
     if(!obj) return;
@@ -187,6 +189,7 @@ function initScrollAnimations() {
                 }
             });
         }, { threshold: 0.1 });
+
         document.querySelectorAll('.stat-card, .section-card').forEach(s => {
             s.style.opacity = '0';
             s.style.transform = 'translateY(20px)';
@@ -194,39 +197,8 @@ function initScrollAnimations() {
             observer.observe(s);
         });
     }
-}
-// 6. دوال مساعدة
-function animateValue(id, start, end, duration) {
-    const obj = document.getElementById(id);
-    if(!obj) return;
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = Math.floor(progress * (end - start) + start);
-        if (progress < 1) window.requestAnimationFrame(step);
-    };
-    window.requestAnimationFrame(step);
 }
 
-function initScrollAnimations() {
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.stat-card, .section-card').forEach(s => {
-            s.style.opacity = '0';
-            s.style.transform = 'translateY(20px)';
-            s.style.transition = 'all 0.6s ease-out';
-            observer.observe(s);
-        });
-    }
-}
 // 7. دالة زر تبديل اللغة (يتم استدعاؤها من HTML)
 window.toggleLanguage = function() {
     const currentLang = localStorage.getItem('eGov_Lang') || 'ar';
@@ -236,5 +208,5 @@ window.toggleLanguage = function() {
     updateLanguage(newLang);
 };
 
-// التشغيل التلقائي عند جاهزية الصفحة (لأن HTML قام بتحميل البيانات مسبقاً)
+// التشغيل التلقائي عند جاهزية الصفحة
 document.addEventListener('DOMContentLoaded', window.initDashboard);
