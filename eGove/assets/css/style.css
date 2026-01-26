@@ -1,57 +1,73 @@
 /* ==========================================================================
-   eCode Official Design System - v3.0 (Fixed & Complete)
+   eCode Official Design System - v3.0 (Modern Palette)
    File: assets/css/style.css
    ========================================================================== */
 
+/* استيراد الخطوط */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap');
+
 :root {
-  /* الألوان الأساسية (الوضع الداكن - الافتراضي) */
+  /* --- الألوان الدلالية (Semantic Colors) --- */
+  --primary-color: #8B7FFF;       /* Lavender Dark */
+  --secondary-color: #5BC0F8;     /* Sky Blue */
+  
+  --success-color: #7EDDA3;       /* Mint Green */
+  --warning-color: #FFB86C;       /* Soft Orange */
+  --danger-color: #FF79C6;        /* Coral Pink */
+  --info-color:    #5BC0F8;       /* Blue */
+
+  /* --- ألوان الخلفيات (الوضع الداكن - الافتراضي) --- */
+  --bg-primary: #0F1419;          /* Deep Dark Blue/Black */
+  --bg-secondary: #1A1F2E;        /* Surface Dark */
+  --bg-elevated: #242B3D;         /* Card Hover / Dropdown */
+  
+  /* --- ألوان النصوص والحدود --- */
+  --text-primary: #E6EDF3;
+  --text-secondary: #9DA5B4;
+  --text-muted: #6B7280;
+  
+  --border-color: #2D3748;
+  --border-hover: #4A5568;
+  
+  /* --- متغيرات اللوحة الخاصة (تستخدم في الشارت والبطاقات) --- */
   --lavender-light: #A99BFF;
   --lavender-dark: #8B7FFF;
   --sky-blue: #5BC0F8;
   --mint-green: #7EDDA3;
   --soft-orange: #FFB86C;
   --coral-pink: #FF79C6;
-  
-  --bg-primary: #0F1419;
-  --bg-secondary: #1A1F2E;
-  --bg-elevated: #242B3D;
-  --text-primary: #E6EDF3;
-  --text-secondary: #9DA5B4;
-  --text-muted: #6B7280;
-  --border-color: #2D3748;
-  --border-hover: #4A5568;
-  
+
+  /* --- القيم الثابتة --- */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(139, 127, 255, 0.3);
-  
   --transition-base: 250ms ease;
 }
 
-/* === إعدادات الوضع المضيء === */
+/* === إعدادات الوضع المضيء (Light Mode Overrides) === */
 [data-theme="light"] {
-  --bg-primary: #F3F4F6;
-  --bg-secondary: #FFFFFF;
+  /* تعديل الألوان لتناسب الخلفية الفاتحة */
+  --primary-color: #8B7FFF;       /* نبقيها غامقة قليلاً للقراءة */
+  
+  --bg-primary: #F3F4F6;          /* Light Gray Background */
+  --bg-secondary: #FFFFFF;        /* Pure White Surface */
   --bg-elevated: #FFFFFF;
-  --text-primary: #1F2937;
+  
+  --text-primary: #1F2937;        /* Dark Gray Text */
   --text-secondary: #4B5563;
   --text-muted: #9CA3AF;
+  
   --border-color: #E5E7EB;
   --border-hover: #D1D5DB;
   
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-  --shadow-glow: 0 0 15px rgba(139, 127, 255, 0.2);
 }
 
-/* === Reset & Base Styles === */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
+/* === تطبيق الخطوط === */
 body {
-  font-family: "Tajawal", "Inter", system-ui, sans-serif;
+  font-family: 'Tajawal', 'Inter', system-ui, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.7;
