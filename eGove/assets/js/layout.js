@@ -9,7 +9,6 @@ const Layout = {
         const isSub = subFolders.some(f => path.includes('/' + f + '/'));
         return isSub ? '../' : '';
     })(),
-   policies.html
     // بيانات القائمة (اختصرتها هنا لعدم التكرار، لكن الكود سيعمل مع القوائم الكاملة لديك)
     menus: {
         'admin': [
