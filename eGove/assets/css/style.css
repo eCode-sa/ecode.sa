@@ -88,6 +88,33 @@ ul { list-style: none; }
     position: relative;
     width: 100%;
 }
+/* 1. تعديل جسم الورقة */
+        .paper-body {
+            /* غيرنا الخط هنا إلى تجوال */
+            font-family: 'Tajawal', sans-serif !important; 
+            font-size: 15px; /* يفضل تصغيره قليلاً لأن تجوال عريض */
+            line-height: 1.9;
+            white-space: pre-wrap;
+            flex: 1;
+        }
+
+        /* 2. تعديل الحقول التي تكتب فيها (الفراغات) */
+        .dynamic-input {
+            border: none; 
+            border-bottom: 1px dotted #000; 
+            background: rgba(238, 242, 255, 0.5);
+            padding: 0 5px; 
+            
+            /* وهنا أيضاً نغير الخط ليكون متناسقاً مع النص */
+            font-family: 'Tajawal', sans-serif !important; 
+            
+            font-size: inherit; 
+            color: #1f2937; 
+            min-width: 150px; 
+            outline: none; 
+            transition: 0.2s;
+            font-weight: bold; 
+        }
 
 /* Sidebar */
 .sidebar {
