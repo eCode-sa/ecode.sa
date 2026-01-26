@@ -67,8 +67,8 @@ function calculateStats() {
 
     // حساب النماذج
     let forms = 0;
-    if(window.egovFormsTemplates?.forms) forms = window.egovFormsTemplates.forms.length;
-    else if(Array.isArray(window.egovFormsTemplates)) forms = window.egovFormsTemplates.length;
+    if(window.egovformstemplates?.forms) forms = window.egovformstemplates.forms.length;
+    else if(Array.isArray(window.egovformstemplates)) forms = window.egovformstemplates.length;
     animateValue("formsCount", 0, forms, 1200);
 }
 
@@ -95,7 +95,7 @@ function renderCharts() {
     const fin = (window.FINANCIAL_GOVERNANCE?.sections || []).reduce((a, b) => a + b.policies.length, 0);
     const board = window.governanceTexts?.length || 0;
     let forms = 0;
-    if(window.egovFormsTemplates?.forms) forms = window.egovFormsTemplates.forms.length;
+    if(window.egovformstemplates?.forms) forms = window.egovformstemplates.forms.length;
 
     const lang = document.documentElement.lang || 'ar';
     const labels = lang === 'ar' ? ['سياسات', 'نماذج', 'حوكمة', 'مالية'] : ['HR', 'Forms', 'Board', 'Finance'];
