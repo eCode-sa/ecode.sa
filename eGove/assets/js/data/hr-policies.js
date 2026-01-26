@@ -5,7 +5,7 @@
  * Version: 1.0.0
  * ============================================ */
 
-const HR_POLICIES = {
+window.HR_POLICIES = {
     metadata: { system: "eGov", module: "HR_POLICIES" },
     sections: [
         {
