@@ -1,8 +1,5 @@
-export const egovAssembliesPolicies = [
-  /* =========================
-     الجمعيات - مقدمة
-     ========================= */
-  {
+const egovAssembliesPolicies = [
+   {
     id: "assemblies_intro",
     category: "assemblies",
     title: {
@@ -18,10 +15,7 @@ The governance of shareholders’ assemblies provides the framework that ensures
       `.trim()
     }
   },
-
-  /* =========================
-     دعوة الجمعيات
-     ========================= */
+   
   {
     id: "assemblies_call",
     category: "assemblies",
@@ -55,9 +49,6 @@ The Board may invite shareholders to attend the general or special assembly usin
     }
   },
 
-  /* =========================
-     الجمعية التأسيسية
-     ========================= */
   {
     id: "founding_assembly",
     category: "assemblies",
@@ -619,4 +610,5 @@ The rules related to the issuance of shares in the company, specifically the nom
 If a resolution of the General Assembly would result in an amendment to the rights of a specific class of shareholders, such resolution shall not be effective unless it is approved by those shareholders who are entitled to vote from that class, convened in a separate meeting held in accordance with the rules applicable to the Extraordinary General Assembly regarding convening and decision-making.
       `.trim()
     }
+  }
   },
