@@ -1,4 +1,4 @@
-const egovDigitalGovernance = { 
+window.egovDigitalGovernance = { 
    ar: {
     section_id: "digital_governance",
     title: "الحوكمة الرقمية",
