@@ -199,13 +199,19 @@ function initScrollAnimations() {
     }
 }
 
-// 7. دالة زر تبديل اللغة (يتم استدعاؤها من HTML)
+// 7. دالة زر تبديل اللغة
 window.toggleLanguage = function() {
+    console.log("🖱️ تم الضغط على زر اللغة!"); // <-- هذا السطر سيظهر في الكونسول عند الضغط
+
     const currentLang = localStorage.getItem('eGov_Lang') || 'ar';
     const newLang = currentLang === 'ar' ? 'en' : 'ar';
     
-    // استدعاء دالة التحديث الموجودة مسبقاً
+    // استدعاء دالة التحديث
     updateLanguage(newLang);
+    
+    // تحديث نص الزر فوراً (اختياري، لأن updateLanguage تقوم بذلك غالباً)
+    const langBtnText = document.getElementById('langText');
+    if(langBtnText) langBtnText.textContent = newLang === 'ar' ? 'EN' : 'عربي';
 };
 
 // التشغيل التلقائي عند جاهزية الصفحة
