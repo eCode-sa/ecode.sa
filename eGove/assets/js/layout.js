@@ -1,9 +1,8 @@
 /* ==========================================
-   ملف تخطيط الواجهة (Layout.js) - النسخة المصححة
+   ملف تخطيط الواجهة (Layout.js) - النسخة النهائية
    ========================================== */
 
 const Layout = {
-    // تحديد المسار ديناميكياً
     rootPath: (function() {
         const path = window.location.pathname;
         const subFolders = ['admin', 'board', 'ceo', 'cfo', 'cto', 'hr', 'sales', 'audit', 'secretary', 'shareholder'];
@@ -80,198 +79,133 @@ const Layout = {
             { icon: 'fa-vote-yea', key: 'menu_voting', link: 'voting.html' },
             { icon: 'fa-user-circle', key: 'menu_profile', link: 'profile.html' }
         ]
-   },
+  },
 
-    userName: localStorage.getItem('userName') || 'مستخدم',
+    userName: localStorage.getItem('userName') || 'مسؤول النظام',
     role: localStorage.getItem('userRole') || 'admin',
 
     init: function() {
-        console.log("🎨 Layout Initializing...");
-
-        // حماية الصفحات
-        if (!localStorage.getItem('authToken') && !window.location.href.includes('index.html')) {
-            // window.location.href = this.rootPath + 'index.html'; // فعل هذا السطر عند تفعيل نظام الدخول
-        }
-
+        console.log("🎨 Layout Init...");
         this.injectSidebar();
         this.injectTopbar();
-        this.injectBot(); // حقن كود البوت
+        this.injectBot();
         this.restoreSettings();
     },
 
-    // 1. حقن القائمة الجانبية
+    // 1. القائمة الجانبية
     injectSidebar: function() {
         const sidebar = document.getElementById('appSidebar');
         if (!sidebar) return;
 
-        // استخدام القائمة الخاصة بالأدمن افتراضياً إذا لم توجد صلاحية
         const menuItems = this.menus[this.role] || this.menus['admin'];
-        
         let menuHTML = menuItems.map(item => {
             const isActive = window.location.href.includes(item.link) ? 'active' : '';
-            return `
-                <a href="${item.link}" class="menu-item ${isActive}">
-                    <i class="fas ${item.icon}"></i>
-                    <span data-i18n="${item.key}">...</span> 
-                </a>
-            `;
+            return `<a href="${item.link}" class="menu-item ${isActive}"><i class="fas ${item.icon}"></i><span data-i18n="${item.key}">...</span></a>`;
         }).join('');
 
-        const sidebarHTML = `
+        sidebar.innerHTML = `
             <div class="sidebar-header">
-                <div class="brand-text">
-                    <h3>eGov</h3>
-                    <span style="font-size: 11px; color: var(--lavender-light);" data-i18n="role_${this.role}">${this.role}</span>
-                </div>
+                <div class="brand-text"><h3>eGov</h3><span style="font-size: 11px; color: var(--lavender-light);">${this.role}</span></div>
             </div>
-            <nav class="sidebar-nav">
-                <div class="menu-category" data-i18n="menu_home">القائمة</div>
-                ${menuHTML}
-            </nav>
+            <nav class="sidebar-nav"><div class="menu-category" data-i18n="menu_home">القائمة</div>${menuHTML}</nav>
             <div class="sidebar-footer">
-                <a href="#" onclick="Layout.logout()" class="menu-item logout-btn" style="color: var(--coral-pink);">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span data-i18n="logout">خروج</span>
-                </a>
+                <a href="#" onclick="Layout.logout()" class="menu-item logout-btn" style="color: var(--coral-pink);"><i class="fas fa-sign-out-alt"></i><span data-i18n="logout">خروج</span></a>
             </div>
         `;
-        sidebar.innerHTML = sidebarHTML;
     },
 
-    // 2. حقن الشريط العلوي (تم تصحيح زر اللغة هنا)
+    // 2. الشريط العلوي
     injectTopbar: function() {
         const topbar = document.getElementById('appTopbar');
         if (!topbar) return;
-
         const currentLang = localStorage.getItem('eGov_Lang') === 'en' ? 'EN' : 'عربي';
 
-        const topbarHTML = `
+        topbar.innerHTML = `
             <div class="topbar-left">
                 <button class="toggle-btn" onclick="Layout.toggleSidebar()"><i class="fas fa-bars"></i></button>
                 <h2 class="page-title">${document.title}</h2>
             </div>
             <div class="topbar-right">
                 
-                <button class="icon-btn" onclick="Layout.toggleLanguage()" title="Language">
-                    <span id="langText" style="font-weight: bold; font-size: 12px;">${currentLang}</span>
+                <div class="notification-wrapper">
+                    <button class="icon-btn" onclick="Layout.toggleNotifs()">
+                        <i class="fas fa-bell"></i><span class="badge-dot"></span>
+                    </button>
+                    <div class="dropdown-menu" id="notifDropdown">
+                        <div class="dropdown-header">التنبيهات</div>
+                        <div class="dropdown-body">
+                            <div class="notif-item"><i class="fas fa-check-circle text-success"></i><div><p style="margin:0">النظام يعمل</p><span style="font-size:10px">الآن</span></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="icon-btn" onclick="Layout.toggleLanguage()">
+                    <span id="langText" style="font-weight:bold;font-size:12px;">${currentLang}</span>
                 </button>
 
-                <button class="icon-btn" onclick="Layout.toggleTheme()" title="Theme">
-                    <i class="fas fa-moon" id="themeIcon"></i>
-                </button>
+                <button class="icon-btn" onclick="Layout.toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
                 
                 <div class="user-profile">
-                    <div class="user-info">
-                        <span class="name" id="adminName">${this.userName}</span>
-                        <span class="role" style="font-size: 10px; color: var(--text-secondary);">${this.getRoleName(this.role)}</span>
-                    </div>
-                    <div class="user-avatar">
-                        <i class="fas fa-user-circle fa-2x"></i>
-                    </div>
+                    <div class="user-info"><span class="name" id="adminName">${this.userName}</span></div>
+                    <div class="user-avatar"><i class="fas fa-user-circle fa-2x"></i></div>
                 </div>
             </div>
         `;
-        topbar.innerHTML = topbarHTML;
-        
         this.restoreSettings();
     },
 
-    // 3. حقن كود البوت (تم تصحيح الأزرار لتستدعي Layout)
+    // 3. البوت
     injectBot: function() {
         if (!document.getElementById('chatWindow')) {
-            const botHTML = `
-                <div class="chat-widget-btn" onclick="Layout.toggleChat()">
-                    <i class="fas fa-robot"></i>
-                </div>
+            document.body.insertAdjacentHTML('beforeend', `
+                <div class="chat-widget-btn" onclick="Layout.toggleChat()"><i class="fas fa-robot"></i></div>
                 <div class="chat-window" id="chatWindow" style="display:none;">
-                    <div class="chat-header">
-                        <h4>المساعد الذكي</h4>
-                        <i class="fas fa-times" onclick="Layout.toggleChat()" style="cursor:pointer;"></i>
-                    </div>
-                    <div class="chat-body" id="chatMessages"> <div class="chat-msg msg-bot">مرحباً ${this.userName} 👋 كيف أساعدك؟</div>
-                    </div>
+                    <div class="chat-header"><h4>المساعد</h4><i class="fas fa-times" onclick="Layout.toggleChat()" style="cursor:pointer;"></i></div>
+                    <div class="chat-body" id="chatMessages"><div class="chat-msg msg-bot">مرحباً 👋</div></div>
                     <div class="chat-footer">
                         <input type="text" class="chat-input" id="userInput" placeholder="..." onkeypress="if(event.key==='Enter') Layout.sendMessage()">
-                        <button class="btn-primary" onclick="Layout.sendMessage()" style="padding:5px;width:40px;height:40px;border-radius:50%">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
+                        <button class="btn-primary" onclick="Layout.sendMessage()" style="padding:5px;width:40px;height:40px;border-radius:50%"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', botHTML);
+            `);
         }
     },
 
-    // --- دوال الربط (Proxy Functions) ---
-    // هذه الدوال هي "الوسيط" بين واجهة HTML وبين ملفات system.js و bot.js
+    // --- الوظائف التفاعلية ---
 
-    // ✅ ربط زر اللغة بدالة النظام الجديدة
-    toggleLanguage: function() {
-        if (typeof window.toggleLanguage === 'function') {
-            window.toggleLanguage();
-        } else {
-            console.error("❌ دالة window.toggleLanguage غير موجودة في system.js");
-        }
+    toggleSidebar: function() { 
+        document.getElementById('appSidebar')?.classList.toggle('active');
+        document.getElementById('sidebarOverlay')?.classList.toggle('active');
     },
 
-    // ✅ ربط زر البوت بملف bot.js
-    toggleChat: function() {
-        if (typeof window.toggleChat === 'function') {
-            window.toggleChat();
-        } else {
-            console.warn("⚠️ bot.js لم يتم تحميله، جارٍ الفتح يدوياً");
-            const win = document.getElementById('chatWindow');
-            if(win) win.style.display = (win.style.display === 'none') ? 'flex' : 'none';
-        }
+    toggleNotifs: function() {
+        document.getElementById('notifDropdown')?.classList.toggle('show');
     },
 
-    // ✅ ربط زر الإرسال
-    sendMessage: function() {
-        if (typeof window.sendMessage === 'function') {
-            window.sendMessage();
-        }
-    },
-
-    // --- باقي الوظائف ---
+    // استدعاء الدوال من system.js و bot.js
+    toggleLanguage: function() { if(window.toggleLanguage) window.toggleLanguage(); },
+    toggleChat: function() { if(window.toggleChat) window.toggleChat(); else { const w=document.getElementById('chatWindow'); if(w) w.style.display = w.style.display==='none'?'flex':'none'; } },
+    sendMessage: function() { if(window.sendMessage) window.sendMessage(); },
 
     toggleTheme: function() {
         const html = document.documentElement;
-        const current = html.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
+        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         html.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
         const icon = document.getElementById('themeIcon');
         if(icon) icon.className = next === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
     },
 
-    toggleSidebar: function() { 
-        const sb = document.getElementById('appSidebar');
-        if(sb) sb.classList.toggle('active'); // غيرتها لـ active لتناسب CSS الموبايل
-    },
+    logout: function() { if(confirm('خروج؟')) { localStorage.clear(); window.location.href = this.rootPath + 'index.html'; } },
     
-    logout: function() { 
-        if(confirm('هل تريد تسجيل الخروج؟')) {
-            localStorage.clear(); 
-            window.location.href = this.rootPath + 'index.html'; 
-        }
-    },
-
-    getRoleName: function(role) {
-        const names = { 'board': 'رئيس المجلس', 'ceo': 'الرئيس التنفيذي', 'hr': 'الموارد البشرية', 'cfo': 'المدير المالي', 'admin': 'مدير النظام' };
-        return names[role] || role;
-    },
+    getRoleName: function(role) { const n={'admin':'مدير'}; return n[role]||role; },
 
     restoreSettings: function() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        const saved = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', saved);
         const icon = document.getElementById('themeIcon');
-        if(icon) icon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        if(icon) icon.className = saved === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
     }
 };
 
-// === تشغيل النظام ===
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => Layout.init());
-} else {
-    Layout.init();
-}
+if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', () => Layout.init()); } else { Layout.init(); }
