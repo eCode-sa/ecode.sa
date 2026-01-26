@@ -212,6 +212,13 @@ window.SYSTEM_TRANSLATIONS = {
         housing: "بدل سكن",
         transport: "بدل نقل",
         netSalary: "صافي الراتب",
+
+        // ✅ نصوص البوت (عربي)
+        bot_title: "المساعد الذكي",
+        bot_welcome: "مرحباً بك",
+        bot_intro: "كيف يمكنني مساعدتك اليوم؟",
+        bot_placeholder: "اكتب رسالتك هنا...",
+        bot_send: "إرسال",
         
         // معلومات الهوية
         lbl_id: "الرقم الوظيفي:",
@@ -609,6 +616,13 @@ window.SYSTEM_TRANSLATIONS = {
         housing: "Housing",
         transport: "Transport",
         netSalary: "Net Salary",
+
+        // ✅ Bot Texts (English)
+        bot_title: "AI Assistant",
+        bot_welcome: "Welcome",
+        bot_intro: "How can I help you today?",
+        bot_placeholder: "Type your message...",
+        bot_send: "Send",
 
         // Identity Info
         lbl_id: "Employee ID:",
