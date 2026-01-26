@@ -18,6 +18,9 @@ const Layout = {
             { icon: 'fa-cogs', key: 'menu_settings', link: 'settings.html' },
             { icon: 'fa-signature', key: 'menu_forms', link: 'forms.html' },
             { icon: 'fa-sitemap', key: 'menu_policies', link: 'policies.html' },
+            { icon: 'fa-calendar-check', key: 'menu_meetings', link: 'meetings.html' },
+            { icon: 'fa-user-plus', key: 'menu_organization', link: 'organization.html' },
+            { icon: 'fa-file-invoice-dollar', key: 'menu_shareholders', link: 'shareholders.html' },
             { icon: 'fa-briefcase', key: 'menu_profile', link: 'profile.html' }
         ],
         'board': [
