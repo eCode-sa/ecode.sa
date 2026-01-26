@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سجل المساهمين | eGov System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* شريط التوزيع (Pie Chart Simulation using CSS) */
+        .ownership-bar {
+            height: 20px; width: 100%; display: flex; border-radius: 10px; overflow: hidden; margin: 20px 0;
+        }
+        .own-segment { height: 100%; transition: 0.3s; position: relative; }
+        .own-segment:hover::after {
+            content: attr(data-tooltip); position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);
+            background: #000; color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 11px; white-space: nowrap;
+        }
+        
+        .dividend-status { padding: 4px 10px; border-radius: 15px; font-size: 11px; }
+        .paid { color: var(--success-color); background: rgba(126, 221, 163, 0.1); }
+        .pending { color: var(--warning-color); background: rgba(255, 184, 108, 0.1); }
+    </style>
+</head>
+<body>
+    <div class="sidebar-overlay" onclick="Layout.toggleSidebar()"></div>
+    <div class="app-container">
+        <aside id="appSidebar" class="sidebar"></aside>
+        <div class="main-content">
+            <header id="appTopbar" class="topbar"></header>
+            <main class="dashboard-content fade-in" id="workspace">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0; color: var(--text-primary);" data-i18n="sh_title">سجل المساهمين</h2>
+                    <button class="btn-primary" onclick="alert('جاري حساب التوزيعات...')" style="padding: 10px 20px; border-radius: 10px; border: none; background: var(--success-color); color: #000; cursor: pointer; font-weight: bold;">
+                        <i class="fas fa-coins"></i> <span data-i18n="btn_dividends">توزيع الأرباح</span>
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">1,000,000</div>
+                        <div class="stat-label" data-i18n="total_shares">إجمالي الأسهم</div>
+                        <i class="fas fa-chart-pie stat-icon"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">10.5 SAR</div>
+                        <div class="stat-label" data-i18n="share_price">قيمة السهم الدفترية</div>
+                        <i class="fas fa-tag stat-icon" style="color: var(--secondary-color);"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label" data-i18n="total_holders">عدد المساهمين</div>
+                        <i class="fas fa-users stat-icon" style="color: var(--lavender-light);"></i>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3 style="font-size: 14px; margin-bottom: 10px; color: var(--text-secondary);" data-i18n="ownership_dist">توزيع الملكية</h3>
+                    <div class="ownership-bar">
+                        <div class="own-segment" style="width: 40%; background: var(--primary-color);" data-tooltip="المؤسسين (40%)"></div>
+                        <div class="own-segment" style="width: 25%; background: var(--secondary-color);" data-tooltip="شركة استثمارية (25%)"></div>
+                        <div class="own-segment" style="width: 15%; background: var(--success-color);" data-tooltip="أفراد (15%)"></div>
+                        <div class="own-segment" style="width: 20%; background: var(--bg-elevated);" data-tooltip="أسهم خزينة (20%)"></div>
+                    </div>
+                </div>
+
+                <div class="section-card" style="padding: 0; overflow: hidden; margin-top: 20px;">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="col_name">المساهم</th>
+                                    <th data-i18n="col_type">النوع</th>
+                                    <th data-i18n="col_shares">عدد الأسهم</th>
+                                    <th data-i18n="col_percent">النسبة</th>
+                                    <th data-i18n="col_dividends">الأرباح المستحقة</th>
+                                    <th data-i18n="col_status">الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>عبدالعزيز سلطان</strong><br><span style="font-size:10px; color:var(--text-secondary)">ID: 1010XXXXXX</span></td>
+                                    <td>مؤسس</td>
+                                    <td>400,000</td>
+                                    <td>40%</td>
+                                    <td>200,000 SAR</td>
+                                    <td><span class="dividend-status paid">تم التحويل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>شركة الاستثمار الأولى</strong><br><span style="font-size:10px; color:var(--text-secondary)">CR: 7050XXXXXX</span></td>
+                                    <td>شريك استراتيجي</td>
+                                    <td>250,000</td>
+                                    <td>25%</td>
+                                    <td>125,000 SAR</td>
+                                    <td><span class="dividend-status paid">تم التحويل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>أيمن المغربي</strong></td>
+                                    <td>فرد</td>
+                                    <td>100,000</td>
+                                    <td>10%</td>
+                                    <td>50,000 SAR</td>
+                                    <td><span class="dividend-status pending">معلق</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>علي ابراهيم</strong></td>
+                                    <td>فرد</td>
+                                    <td>50,000</td>
+                                    <td>5%</td>
+                                    <td>25,000 SAR</td>
+                                    <td><span class="dividend-status paid">تم التحويل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>أسهم خزينة</strong></td>
+                                    <td>الشركة</td>
+                                    <td>200,000</td>
+                                    <td>20%</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../assets/js/core/i18n.js"></script>
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/system.js"></script>
+    <script>
+        const pageTranslations = {
+            ar: { sh_title: "سجل المساهمين", btn_dividends: "توزيع الأرباح", total_shares: "إجمالي الأسهم", share_price: "قيمة السهم", total_holders: "عدد المساهمين", ownership_dist: "توزيع الملكية", col_name: "المساهم", col_type: "النوع", col_shares: "عدد الأسهم", col_percent: "النسبة", col_dividends: "الأرباح", col_status: "الحالة" },
+            en: { sh_title: "Shareholders Registry", btn_dividends: "Distribute Dividends", total_shares: "Total Shares", share_price: "Share Price", total_holders: "Total Shareholders", ownership_dist: "Ownership Distribution", col_name: "Shareholder", col_type: "Type", col_shares: "Shares", col_percent: "Percentage", col_dividends: "Dividends", col_status: "Status" }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if(window.SYSTEM_TRANSLATIONS) {
+                Object.assign(window.SYSTEM_TRANSLATIONS.ar, pageTranslations.ar);
+                Object.assign(window.SYSTEM_TRANSLATIONS.en, pageTranslations.en);
+                const lang = localStorage.getItem('eGov_Lang') || 'ar';
+                if(window.updateLanguage) window.updateLanguage(lang);
+            }
+        });
+    </script>
+</body>
+</html>
