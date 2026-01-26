@@ -8079,15 +8079,16 @@ If a resolution of the General Assembly would result in an amendment to the righ
 // ==========================================
 // 3. منطق لوحة القيادة (Dashboard Logic)
 // ==========================================
-// نجعل الدالة عامة (Global) لتعمل من أي مكان
 window.initDashboard = function() {
-    // التحقق من وجود عناصر الداشبورد لتجنب الأخطاء في الصفحات الأخرى
+    // 1. التعريف الأول (والصحيح) للمتغير
     const compNameEl = document.getElementById('companyNameDisplay');
+    
+    // التحقق من وجود العنصر، إذا لم يوجد نوقف الدالة
     if (!compNameEl) return;
 
     console.log("Initializing Dashboard with LOCAL Data...");
 
-   const currentLang = document.documentElement.lang || 'ar';
+    const currentLang = document.documentElement.lang || 'ar';
 
     // أ. تحديث التاريخ
     const dateEl = document.getElementById('currentDate');
@@ -8096,10 +8097,11 @@ window.initDashboard = function() {
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         dateEl.textContent = new Date().toLocaleDateString(locale, dateOptions);
     } 
+
     // ب. تحديث اسم الشركة
-    const compNameEl = document.getElementById('companyNameDisplay');
-    if(compNameEl) {compNameEl.textContent = currentLang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
-    }
+    // (تم حذف سطر إعادة التعريف const compNameEl = ... لأنه معرف في الأعلى)
+    // نستخدم المتغير مباشرة:
+    compNameEl.textContent = currentLang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
     
     // ج. تحديث اسم المستخدم
     const adminNameEl = document.getElementById('adminName');
@@ -8113,7 +8115,9 @@ window.initDashboard = function() {
     // هـ. تفعيل الأنيميشن
     initScrollAnimations();
 };
-   function updateLanguage(lang) {
+
+// دالة تحديث اللغة
+window.updateLanguage = function(lang) {
     // 1. تحديث إعدادات الصفحة
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -8122,18 +8126,18 @@ window.initDashboard = function() {
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (SYSTEM_TRANSLATIONS[lang] && SYSTEM_TRANSLATIONS[lang][key]) {
+        if (typeof SYSTEM_TRANSLATIONS !== 'undefined' && SYSTEM_TRANSLATIONS[lang] && SYSTEM_TRANSLATIONS[lang][key]) {
             el.textContent = SYSTEM_TRANSLATIONS[lang][key];
         }
     });
 
-    // 3. تحديث اسم الشركة ديناميكياً ✅
+    // 3. تحديث اسم الشركة ديناميكياً
     const compNameEl = document.getElementById('companyNameDisplay');
     if(compNameEl && typeof COMPANY_DATA !== 'undefined') {
         compNameEl.textContent = lang === 'ar' ? COMPANY_DATA.basic.nameAr : COMPANY_DATA.basic.name;
     }
 
-    // 4. تحديث التاريخ ديناميكياً (اختياري لكن مفضل) ✅
+    // 4. تحديث التاريخ ديناميكياً
     const dateEl = document.getElementById('currentDate');
     if(dateEl) {
         const locale = lang === 'ar' ? 'ar-SA' : 'en-US';
@@ -8141,8 +8145,8 @@ window.initDashboard = function() {
         dateEl.textContent = new Date().toLocaleDateString(locale, dateOptions);
     }
 
-    // تحديث الجدول والشارت (إذا لزم الأمر)
-    updateTableLanguage(lang);
+    // تحديث الجدول والشارت
+    if (typeof updateTableLanguage === 'function') updateTableLanguage(lang);
     localStorage.setItem('eGov_Lang', lang);
 };
 
