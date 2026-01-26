@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المكتبة الرقمية للسياسات | eGov System</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        /* تخطيط الصفحة */
+        .policy-layout { display: grid; grid-template-columns: 320px 1fr; gap: 20px; height: calc(100vh - 140px); }
+        
+        /* القائمة الجانبية */
+        .policy-sidebar { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; }
+        .filters-area { padding: 15px; border-bottom: 1px solid var(--border-color); display: flex; gap: 5px; overflow-x: auto; }
+        .filter-chip { background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 5px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+        .filter-chip.active, .filter-chip:hover { background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark); }
+        .policy-list { flex: 1; overflow-y: auto; padding: 10px; }
+        .policy-item { padding: 15px; border-radius: 10px; cursor: pointer; border-bottom: 1px solid var(--border-color); transition: 0.2s; margin-bottom: 5px; }
+        .policy-item:hover { background: var(--bg-elevated); }
+        .policy-item.active { background: rgba(139, 127, 255, 0.1); border-right: 3px solid var(--lavender-dark); }
+        .policy-item h4 { margin: 0 0 5px; font-size: 14px; color: var(--text-primary); }
+        .policy-item span { font-size: 11px; color: var(--text-muted); display: block; }
+
+        /* منطقة القراءة */
+        .policy-viewer { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; }
+        .viewer-toolbar { padding: 15px 25px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
+        .viewer-content { flex: 1; padding: 40px; overflow-y: auto; line-height: 1.8; font-size: 15px; color: var(--text-primary); }
+        
+        /* تنسيق المحتوى الداخلي (المواد والبنود) */
+        .policy-header { margin: 30px 0 20px; border-bottom: 2px solid var(--lavender-light); padding-bottom: 10px; }
+        .policy-header h3 { color: var(--lavender-light); margin: 0; }
+        .article-box { background: var(--bg-primary); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        .article-title { color: var(--sky-blue); margin: 0 0 10px; font-size: 16px; font-weight: bold; }
+
+        /* الطباعة */
+        @media print {
+            body * { visibility: hidden; }
+            .policy-viewer, .viewer-content, .viewer-content * { visibility: visible; }
+            .policy-viewer { position: absolute; left: 0; top: 0; width: 100%; height: auto; background: #fff !important; color: #000 !important; border: none; }
+            .viewer-toolbar { display: none; }
+            .article-box { border: 1px solid #ddd; background: #fff; color: #000; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="Layout.toggleSidebar()"></div>
+
+    <div class="app-container">
+        <aside id="appSidebar" class="sidebar"></aside>
+        <div class="main-content">
+            <header id="appTopbar" class="topbar"></header>
+
+            <main class="dashboard-content fade-in" id="workspace">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <h2 style="margin: 0; color: var(--text-primary);">المكتبة الرقمية للسياسات</h2>
+                        <p style="margin: 5px 0 0; color: var(--text-secondary); font-size: 13px;">المرجع الموحد للوائح التنظيمية والإدارية.</p>
+                    </div>
+                </div>
+
+                <div class="policy-layout">
+                    <div class="policy-sidebar">
+                        <div class="filters-area">
+                            <div class="filter-chip active" onclick="filterList('All')">الكل</div>
+                            <div class="filter-chip" onclick="filterList('HR')">الموارد البشرية</div>
+                            <div class="filter-chip" onclick="filterList('Finance')">المالية</div>
+                            <div class="filter-chip" onclick="filterList('Governance')">الحوكمة</div>
+                            <div class="filter-chip" onclick="filterList('IT')">التقنية</div>
+                        </div>
+                        <div class="policy-list" id="policyListContainer"></div>
+                    </div>
+
+                    <div class="policy-viewer">
+                        <div class="viewer-toolbar">
+                            <div>
+                                <h3 style="margin:0; font-size:18px;" id="viewTitle">اختر لائحة للعرض</h3>
+                                <span style="font-size:12px; color:var(--text-secondary);" id="viewMeta">--</span>
+                            </div>
+                            <div style="display:flex; gap:10px;">
+                                <button onclick="window.print()" style="background:var(--bg-elevated); color:var(--text-primary); border:1px solid var(--border-color); padding:8px 15px; border-radius:8px; cursor:pointer;">
+                                    <i class="fas fa-print"></i> طباعة
+                                </button>
+                            </div>
+                        </div>
+                        <div class="viewer-content" id="viewContent">
+                            <div style="text-align:center; margin-top:50px; color:var(--text-muted);">
+                                <i class="fas fa-book-open" style="font-size:50px; margin-bottom:20px; opacity:0.3;"></i>
+                                <p>الرجاء اختيار لائحة من القائمة الجانبية.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../assets/js/core/i18n.js"></script>
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/components/bot.js"></script>
+
+    <script src="../assets/js/data/company_data.js"></script>
+    <script src="../assets/js/data/hr-policies.js"></script>
+    <script src="../assets/js/data/financial-governance.js"></script>
+    <script src="../assets/js/data/digital_governance.js"></script>
+    <script src="../assets/js/data/board_governance.js"></script>
+    <script src="../assets/js/data/assemblies_policies.js"></script>
+    <script src="../assets/js/data/monitoring_mechanisms.js"></script>
+
+    <script src="../assets/js/system.js"></script>
+
+    <script>
+        // --- مجمع البيانات (The Aggregator) ---
+        // يقوم هذا الكود بجمع البيانات من ملفاتك المختلفة في مصفوفة واحدة موحدة
+        
+        let allPolicies = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. دمج البيانات من الملفات المختلفة (بافتراض أن كل ملف يضيف متغير global)
+            // ملاحظة: تأكد من أسماء المتغيرات داخل ملفاتك، هنا افترضنا أسماء منطقية
+            
+            const rawData = [
+                // HR
+                { src: window.hrPolicies, cat: 'HR', label: 'الموارد البشرية' },
+                // Finance
+                { src: window.financialGovernance, cat: 'Finance', label: 'المالية' },
+                // IT
+                { src: window.digitalGovernance, cat: 'IT', label: 'التقنية' },
+                // Governance & Board
+                { src: window.boardGovernance, cat: 'Governance', label: 'مجلس الإدارة' },
+                { src: window.assembliesPolicies, cat: 'Governance', label: 'الجمعيات العمومية' },
+                { src: window.monitoringMechanisms, cat: 'Governance', label: 'الرقابة' }
+            ];
+
+            // 2. توحيد الهيكل (Mapping)
+            rawData.forEach(source => {
+                if(source.src && Array.isArray(source.src)) { // إذا كان مصفوفة مباشرة
+                    source.src.forEach(item => {
+                        allPolicies.push(formatPolicyItem(item, source.cat));
+                    });
+                } else if (source.src && typeof source.src === 'object') { // إذا كان كائن يحتوي مصفوفة
+                    // نحاول البحث عن المصفوفة داخل الكائن (مثلاً: source.src.policies)
+                    const keys = Object.keys(source.src);
+                    keys.forEach(key => {
+                        if(Array.isArray(source.src[key])) {
+                            source.src[key].forEach(item => {
+                                allPolicies.push(formatPolicyItem(item, source.cat));
+                            });
+                        }
+                    });
+                }
+            });
+
+            // إذا لم يتم العثور على بيانات (احتياطي للعرض فقط)
+            if(allPolicies.length === 0) {
+                console.warn("⚠️ لم يتم العثور على بيانات في المتغيرات. تأكد من أسماء المتغيرات داخل ملفات JS.");
+                // بيانات وهمية للتجربة فقط حتى تضبط المتغيرات
+                allPolicies = [
+                    { id: 1, title: "لائحة الموارد البشرية (مثال)", cat: 'HR', date: '2025-01-01', ver: '1.0', content: '<p>محتوى تجريبي...</p>' }
+                ];
+            }
+
+            renderPolicyList('All');
+        });
+
+        // دالة لتنسيق العنصر ليتناسب مع العرض
+        function formatPolicyItem(item, category) {
+            // نحاول استخراج العنوان والمحتوى بذكاء حسب هيكل ملفاتك
+            const title = item.title || item.name || item.header || "بدون عنوان";
+            const content = item.content || item.body || item.articles || item.details || "<p>لا يوجد محتوى نصي</p>";
+            const version = item.version || item.ver || "1.0";
+            const date = item.date || item.last_updated || "2025-01-01";
+
+            // إذا كان المحتوى مصفوفة (مواد)، نقوم بتحويلها لنص HTML
+            let htmlContent = content;
+            if(Array.isArray(content)) {
+                htmlContent = content.map(art => `
+                    <div class="article-box">
+                        <h4 class="article-title">${art.title || art.article || ''}</h4>
+                        <p>${art.text || art.content || ''}</p>
+                    </div>
+                `).join('');
+            }
+
+            return {
+                id: Math.random().toString(36).substr(2, 9), // ID مؤقت
+                title: title,
+                cat: category,
+                ver: version,
+                date: date,
+                content: htmlContent
+            };
+        }
+
+        // --- دوال العرض ---
+        function renderPolicyList(filter) {
+            const container = document.getElementById('policyListContainer');
+            container.innerHTML = '';
+
+            const filtered = allPolicies.filter(p => filter === 'All' || p.cat === filter);
+
+            if(filtered.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding:20px; color:#666;">لا توجد لوائح</p>';
+                return;
+            }
+
+            filtered.forEach(p => {
+                const div = document.createElement('div');
+                div.className = 'policy-item';
+                div.onclick = () => loadPolicy(p, div);
+                div.innerHTML = `
+                    <h4>${p.title}</h4>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span>${p.cat}</span>
+                        <span>Ver ${p.ver}</span>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function filterList(cat) {
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            renderPolicyList(cat);
+        }
+
+        function loadPolicy(policy, element) {
+            document.querySelectorAll('.policy-item').forEach(i => i.classList.remove('active'));
+            element.classList.add('active');
+
+            document.getElementById('viewTitle').innerText = policy.title;
+            document.getElementById('viewMeta').innerText = `الإصدار: ${policy.ver} | تاريخ التحديث: ${policy.date}`;
+            document.getElementById('viewContent').innerHTML = policy.content;
+        }
+    </script>
+
+</body>
+</html>
