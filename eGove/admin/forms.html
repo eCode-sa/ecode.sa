@@ -9,65 +9,34 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
-        /* --- تنسيقات خاصة بمكتبة النماذج --- */
-        
-        /* الفلاتر العلوية */
-        .filter-bar { 
-            display: flex; gap: 10px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 5px; 
-        }
-        .filter-btn { 
-            background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary); 
-            padding: 10px 20px; border-radius: 12px; cursor: pointer; white-space: nowrap; transition: 0.3s; font-weight: bold; font-size: 13px;
-        }
-        .filter-btn:hover, .filter-btn.active { 
-            background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark); 
-        }
+        /* تنسيقات خاصة */
+        .filter-bar { display: flex; gap: 10px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 5px; }
+        .filter-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 10px 20px; border-radius: 12px; cursor: pointer; white-space: nowrap; transition: 0.3s; font-weight: bold; font-size: 13px; }
+        .filter-btn:hover, .filter-btn.active { background: var(--lavender-dark); color: #fff; border-color: var(--lavender-dark); }
 
-        /* شبكة النماذج */
-        .forms-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; 
-        }
-
-        .form-card { 
-            background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; 
-            padding: 20px; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column;
-        }
-        .form-card:hover { 
-            transform: translateY(-5px); border-color: var(--secondary-color); box-shadow: var(--shadow-md); 
-        }
+        .forms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
         
-        /* شريط ملون علوي حسب القسم */
-        .form-card::before { 
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--border-color); 
-        }
+        .form-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .form-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); box-shadow: var(--shadow-md); }
+        
+        /* ألوان الشريط العلوي حسب القسم */
+        .form-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--border-color); }
         .type-HR::before { background: var(--lavender-light); }
         .type-Finance::before { background: var(--mint-green); }
         .type-Legal::before { background: var(--soft-orange); }
         .type-IT::before { background: var(--sky-blue); }
 
-        .form-icon { 
-            width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; 
-            font-size: 24px; margin-bottom: 15px; background: var(--bg-elevated); color: var(--text-primary);
-        }
-        
-        .form-title { font-size: 16px; font-weight: bold; color: var(--text-primary); margin-bottom: 5px; }
+        .form-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 15px; background: var(--bg-elevated); color: var(--text-primary); }
+        .form-title { font-size: 15px; font-weight: bold; color: var(--text-primary); margin-bottom: 5px; height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
         .form-meta { font-size: 11px; color: var(--text-secondary); margin-bottom: 20px; display: flex; justify-content: space-between; }
         
         .form-actions { margin-top: auto; display: flex; gap: 10px; }
-        .btn-download { 
-            flex: 1; background: var(--bg-elevated); border: 1px solid var(--border-color); color: var(--text-primary); 
-            padding: 8px; border-radius: 8px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; 
-        }
+        .btn-download { flex: 1; background: var(--bg-elevated); border: 1px solid var(--border-color); color: var(--text-primary); padding: 8px; border-radius: 8px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
         .btn-download:hover { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
         
-        /* البحث */
         .search-container { position: relative; margin-bottom: 25px; }
-        .search-input { 
-            width: 100%; padding: 15px 45px 15px 15px; border-radius: 12px; border: 1px solid var(--border-color); 
-            background: var(--bg-secondary); color: var(--text-primary); outline: none; 
-        }
+        .search-input { width: 100%; padding: 15px 45px 15px 15px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); outline: none; }
         .search-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: var(--text-secondary); }
-
     </style>
 </head>
 <body>
@@ -76,7 +45,6 @@
 
     <div class="app-container">
         <aside id="appSidebar" class="sidebar"></aside>
-
         <div class="main-content">
             <header id="appTopbar" class="topbar"></header>
 
@@ -87,7 +55,7 @@
                         <h2 style="margin: 0; color: var(--text-primary);" data-i18n="forms_title">مكتبة النماذج الرقمية</h2>
                         <p style="margin: 5px 0 0; color: var(--text-secondary); font-size: 13px;" data-i18n="forms_desc">تحميل واستخدام النماذج الرسمية المعتمدة.</p>
                     </div>
-                    <button class="btn-primary" onclick="alert('خاصية رفع نموذج جديد متاحة للمدراء فقط')" style="padding: 10px 20px; border-radius: 10px; border: none; background: var(--primary-color); color: #fff; cursor: pointer;">
+                    <button class="btn-primary" onclick="alert('للمدراء فقط')" style="padding: 10px 20px; border-radius: 10px; border: none; background: var(--primary-color); color: #fff; cursor: pointer;">
                         <i class="fas fa-cloud-upload-alt"></i> <span data-i18n="btn_upload">رفع نموذج</span>
                     </button>
                 </div>
@@ -98,11 +66,11 @@
                 </div>
 
                 <div class="filter-bar" id="categoryFilters">
-                    <button class="filter-btn active" onclick="filterCategory('All')" data-i18n="cat_all">الكل</button>
-                    <button class="filter-btn" onclick="filterCategory('HR')" data-i18n="cat_hr">الموارد البشرية</button>
-                    <button class="filter-btn" onclick="filterCategory('Finance')" data-i18n="cat_finance">المالية</button>
-                    <button class="filter-btn" onclick="filterCategory('Legal')" data-i18n="cat_legal">القانونية والحوكمة</button>
-                    <button class="filter-btn" onclick="filterCategory('IT')" data-i18n="cat_it">التقنية</button>
+                    <button class="filter-btn active" onclick="filterCategory(this, 'All')" data-i18n="cat_all">الكل</button>
+                    <button class="filter-btn" onclick="filterCategory(this, 'HR')" data-i18n="cat_hr">الموارد البشرية</button>
+                    <button class="filter-btn" onclick="filterCategory(this, 'Finance')" data-i18n="cat_finance">المالية</button>
+                    <button class="filter-btn" onclick="filterCategory(this, 'Legal')" data-i18n="cat_legal">القانونية والحوكمة</button>
+                    <button class="filter-btn" onclick="filterCategory(this, 'IT')" data-i18n="cat_it">التقنية</button>
                 </div>
 
                 <div class="forms-grid" id="formsGrid">
@@ -115,29 +83,28 @@
     <script src="../assets/js/core/i18n.js"></script>
     <script src="../assets/js/layout.js"></script>
     <script src="../assets/js/components/bot.js"></script>
+    
     <script src="../assets/js/data/forms_templates.js"></script> 
+    
     <script src="../assets/js/system.js"></script>
 
     <script>
-        // --- 1. الترجمات الخاصة بالصفحة ---
+        // دمج الترجمات
         const pageTranslations = {
             ar: {
                 forms_title: "مكتبة النماذج الرقمية", forms_desc: "تحميل واستخدام النماذج الرسمية المعتمدة.",
-                btn_upload: "رفع نموذج", ph_search_forms: "ابحث عن اسم النموذج، القسم...",
+                btn_upload: "رفع نموذج", ph_search_forms: "ابحث عن اسم النموذج...",
                 cat_all: "الكل", cat_hr: "الموارد البشرية", cat_finance: "المالية", cat_legal: "القانونية", cat_it: "التقنية",
-                btn_preview: "معاينة", btn_download: "تحميل",
-                ver: "الإصدار", size: "الحجم"
+                btn_preview: "معاينة", btn_download: "تحميل", ver: "الإصدار"
             },
             en: {
-                forms_title: "Forms & Templates Library", forms_desc: "Download and use approved official forms.",
-                btn_upload: "Upload Form", ph_search_forms: "Search for form name, department...",
+                forms_title: "Forms Library", forms_desc: "Download and use approved official forms.",
+                btn_upload: "Upload Form", ph_search_forms: "Search forms...",
                 cat_all: "All", cat_hr: "HR", cat_finance: "Finance", cat_legal: "Legal", cat_it: "IT",
-                btn_preview: "Preview", btn_download: "Download",
-                ver: "Ver", size: "Size"
+                btn_preview: "Preview", btn_download: "Download", ver: "Ver"
             }
         };
 
-        // دمج الترجمة
         document.addEventListener('DOMContentLoaded', () => {
             if(window.SYSTEM_TRANSLATIONS) {
                 Object.assign(window.SYSTEM_TRANSLATIONS.ar, pageTranslations.ar);
@@ -145,48 +112,55 @@
                 const lang = localStorage.getItem('eGov_Lang') || 'ar';
                 if(window.updateLanguage) window.updateLanguage(lang);
             }
-            
-            // تحميل البيانات
             loadFormsData();
         });
 
-        // --- 2. منطق البيانات ---
+        // المتغيرات
         let currentFilter = 'All';
-        
-        // بيانات افتراضية في حال عدم وجود الملف الخارجي
-        const fallbackData = [
-            { id: 1, title: "نموذج طلب إجازة", type: "HR", size: "150KB", ver: "2.1", icon: "fa-umbrella-beach" },
-            { id: 2, title: "مسير الرواتب الشهري", type: "Finance", size: "2.5MB", ver: "1.0", icon: "fa-file-invoice-dollar" },
-            { id: 3, title: "إفصاح تعارض المصالح", type: "Legal", size: "500KB", ver: "3.0", icon: "fa-handshake" },
-            { id: 4, title: "طلب صلاحيات دخول", type: "IT", size: "120KB", ver: "1.5", icon: "fa-laptop-code" },
-            { id: 5, title: "نموذج تقييم الأداء", type: "HR", size: "300KB", ver: "2.0", icon: "fa-chart-bar" },
-            { id: 6, title: "طلب عهدة مالية", type: "Finance", size: "100KB", ver: "1.1", icon: "fa-coins" },
-            { id: 7, title: "محضر اجتماع مجلس الإدارة", type: "Legal", size: "1.2MB", ver: "4.0", icon: "fa-gavel" },
-            { id: 8, title: "إخلاء طرف موظف", type: "HR", size: "200KB", ver: "1.2", icon: "fa-user-times" }
-        ];
+        let formsList = [];
 
+        // --- دالة لتحويل بياناتك المعقدة إلى شكل بسيط للعرض ---
         function loadFormsData() {
-            // محاولة استخدام البيانات من الملف الخارجي، أو استخدام البيانات الاحتياطية
-            window.allForms = (window.egovformstemplates && window.egovformstemplates.forms) 
-                              ? window.egovformstemplates.forms 
-                              : fallbackData;
-            
-            // إضافة بيانات وهمية (الحجم والإصدار) إذا كانت مفقودة من المصدر
-            window.allForms.forEach(f => {
-                if(!f.size) f.size = Math.floor(Math.random() * 500 + 100) + " KB";
-                if(!f.ver) f.ver = "1.0";
-            });
+            // التحقق من متغيرك: window.egovformstemplates
+            if (window.egovformstemplates && window.egovformstemplates.forms) {
+                
+                // تحويل البيانات لتناسب العرض
+                formsList = window.egovformstemplates.forms.map(form => {
+                    
+                    // تحديد القسم (Mapping)
+                    let displayType = 'IT'; 
+                    const cat = form.category.toLowerCase();
+                    if (cat === 'hr') displayType = 'HR';
+                    else if (cat === 'finance' || cat === 'procurement') displayType = 'Finance';
+                    else if (cat === 'governance' || cat === 'board' || cat === 'admin' || cat === 'legal') displayType = 'Legal';
+                    
+                    // تحديد الأيقونة تلقائياً إذا لم توجد
+                    let icon = 'fa-file-alt';
+                    if (cat === 'hr') icon = 'fa-users';
+                    if (cat === 'finance') icon = 'fa-coins';
+                    if (cat === 'governance') icon = 'fa-balance-scale';
+                    if (cat === 'board') icon = 'fa-gavel';
 
+                    return {
+                        titleAr: form.name.ar,
+                        titleEn: form.name.en,
+                        type: displayType,
+                        icon: icon,
+                        ver: '1.0'
+                    };
+                });
+
+            } else {
+                formsList = [];
+                console.error("لم يتم العثور على بيانات النماذج (window.egovformstemplates)");
+            }
             renderForms();
         }
 
-        function filterCategory(cat) {
+        function filterCategory(btn, cat) {
             currentFilter = cat;
-            
-            // تحديث الأزرار
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active'); // ملاحظة: event قد يحتاج تمرير، لكن هنا يعمل بسبب onclick
-            
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
             renderForms();
         }
 
@@ -197,41 +171,47 @@
             
             grid.innerHTML = '';
 
-            const filtered = window.allForms.filter(item => {
-                const matchesCat = currentFilter === 'All' || item.type === currentFilter || 
-                                  (currentFilter === 'Legal' && item.type === 'Governance'); // دمج Legal و Governance
-                const matchesSearch = item.title.toLowerCase().includes(search);
+            const filtered = formsList.filter(item => {
+                const itemTitle = lang === 'ar' ? item.titleAr : item.titleEn;
+                const matchesCat = currentFilter === 'All' || item.type === currentFilter;
+                const matchesSearch = itemTitle.toLowerCase().includes(search);
                 return matchesCat && matchesSearch;
             });
 
+            if(filtered.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; color:#666; grid-column:1/-1;">لا توجد نماذج</p>';
+                return;
+            }
+
             filtered.forEach(item => {
-                // تحديد الأيقونة واللون حسب النوع
+                const title = lang === 'ar' ? item.titleAr : item.titleEn;
+                
+                // تحديد كلاس اللون
                 let typeClass = `type-${item.type}`;
-                if(item.type === 'Governance') typeClass = 'type-Legal';
 
                 const card = document.createElement('div');
                 card.className = `form-card ${typeClass}`;
                 card.innerHTML = `
-                    <div class="form-icon">
-                        <i class="fas ${item.icon || 'fa-file-alt'}"></i>
-                    </div>
-                    <div class="form-title">${item.title}</div>
+                    <div class="form-icon"><i class="fas ${item.icon}"></i></div>
+                    <div class="form-title" title="${title}">${title}</div>
                     <div class="form-meta">
                         <span><i class="far fa-folder"></i> ${item.type}</span>
                         <span>${lang === 'ar' ? 'الإصدار' : 'Ver'} ${item.ver}</span>
-                        <span>${item.size}</span>
                     </div>
                     <div class="form-actions">
-                        <button class="btn-download" onclick="window.open('${item.link || '#'}', '_blank')">
-                            <i class="far fa-eye"></i> <span data-i18n="btn_preview">${lang === 'ar' ? 'معاينة' : 'Preview'}</span>
+                        <button class="btn-download" onclick="alert('سيتم فتح النموذج للتعبئة قريباً')">
+                            <i class="far fa-edit"></i> <span data-i18n="btn_preview">${lang === 'ar' ? 'تعبئة' : 'Fill'}</span>
                         </button>
-                        <button class="btn-download" onclick="alert('جاري التحميل...')" style="background:var(--bg-primary); border-color:var(--secondary-color); color:var(--secondary-color)">
+                        <button class="btn-download" onclick="alert('جاري التحميل بصيغة PDF...')" style="background:var(--bg-primary); border-color:var(--secondary-color); color:var(--secondary-color)">
                             <i class="fas fa-download"></i> <span data-i18n="btn_download">${lang === 'ar' ? 'تحميل' : 'Download'}</span>
                         </button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
+            
+            // إعادة تطبيق الترجمة إذا لزم الأمر
+            if(window.updateLanguage) window.updateLanguage(lang);
         }
     </script>
 
