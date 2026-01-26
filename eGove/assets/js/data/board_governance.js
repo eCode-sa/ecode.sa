@@ -1,3 +1,4 @@
+console.log("🔥 governance FILE IS EXECUTING!");
 window.governanceTexts = [
   {
    id: "governance_structure",
