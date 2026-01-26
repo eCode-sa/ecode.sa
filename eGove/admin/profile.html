@@ -3,108 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملفي الشخصي | eGov Admin</title>
+    <title>الملف الشخصي | eGov System</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
     <style>
-        /* --- تخصيصات البروفايل --- */
-        /* ملاحظة: تأكد أن dashboard-content في style.css لديها overflow-y: auto */
+        /* =========================================
+           تنسيقات خاصة بصفحة البروفايل
+           ========================================= */
         
-        /* بطاقة الهوية */
-        .profile-card {
-            background: var(--bg-secondary); border-radius: 20px; border: 1px solid var(--border-color);
-            margin-bottom: 25px; overflow: visible; position: relative;
-        }
-        .profile-header-bg {
-            background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
-            height: 160px; width: 100%; border-radius: 20px 20px 0 0;
-        }
-        .profile-body {
-            padding: 20px 30px 30px; display: flex; align-items: flex-end; gap: 25px; flex-wrap: wrap;
-        }
-        .avatar-box {
-            width: 140px; height: 140px; border-radius: 24px; border: 5px solid var(--bg-secondary);
-            background: var(--bg-secondary); overflow: hidden; margin-top: -70px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative;
-        }
+        /* بطاقة الهوية العلوية */
+        .profile-card { background: var(--bg-secondary); border-radius: 20px; border: 1px solid var(--border-color); margin-bottom: 25px; overflow: visible; position: relative; }
+        .profile-header-bg { background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue)); height: 160px; width: 100%; border-radius: 20px 20px 0 0; }
+        .profile-body { padding: 20px 30px 30px; display: flex; align-items: flex-end; gap: 25px; flex-wrap: wrap; }
+        
+        .avatar-box { width: 140px; height: 140px; border-radius: 24px; border: 5px solid var(--bg-secondary); background: var(--bg-secondary); overflow: hidden; margin-top: -70px; box-shadow: var(--shadow-lg); position: relative; }
         .avatar-box img { width: 100%; height: 100%; object-fit: contain; padding: 10px; background: #fff; }
         
         .profile-info { flex: 1; min-width: 250px; }
-        .profile-info h1 { 
-            font-size: 26px; margin: 0 0 8px; color: var(--text-primary); 
-            display: flex; align-items: center; gap: 10px; 
-        }
+        .profile-info h1 { font-size: 26px; margin: 0 0 8px; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
         .verified-badge { color: var(--sky-blue); font-size: 20px; }
         
         .meta-tags { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .meta-tag {
-            background: var(--bg-elevated); border: 1px solid var(--border-color);
-            color: var(--text-secondary); padding: 6px 14px; border-radius: 30px;
-            font-size: 12px; display: flex; align-items: center; gap: 6px;
-        }
+        .meta-tag { background: var(--bg-elevated); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 6px 14px; border-radius: 30px; font-size: 12px; display: flex; align-items: center; gap: 6px; }
 
         .profile-actions { display: flex; gap: 12px; margin-bottom: 10px; }
-        .btn-action {
-            padding: 12px 24px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer;
-            display: flex; align-items: center; gap: 8px; font-size: 13px; transition: all 0.3s;
-        }
-        .btn-action:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .btn-action { padding: 12px 24px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px; transition: all 0.3s; }
+        .btn-action:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
         .btn-primary { background: var(--lavender-dark); color: #fff; }
         .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); }
 
-        /* الشبكات والبطاقات */
+        /* الشبكة الثنائية */
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px; margin-bottom: 25px; }
         
-        .info-card {
-            background: var(--bg-secondary); border: 1px solid var(--border-color); 
-            border-radius: 20px; padding: 25px; height: 100%; display: flex; flex-direction: column;
-        }
-        .card-header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); 
-        }
+        /* البطاقات المعلوماتية */
+        .info-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 20px; padding: 25px; height: 100%; display: flex; flex-direction: column; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
         .card-title { font-size: 16px; font-weight: bold; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
 
-        /* المالية */
+        /* البطاقة المالية */
         .finance-card { background: linear-gradient(145deg, #1e293b, #0f172a); border: 1px solid #334155; color: #fff; }
         .salary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .salary-val.blur { filter: blur(8px); cursor: pointer; user-select: none; }
         .net-salary { color: var(--mint-green); font-size: 22px; font-weight: bold; font-family: monospace; }
 
-        /* الأداء والمهارات (تمت إعادتها) */
+        /* المهارات */
         .skill-item { margin-bottom: 15px; }
         .skill-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; color: var(--text-secondary); }
         .progress-bar { height: 8px; background: var(--bg-elevated); border-radius: 10px; overflow: hidden; }
         .progress-fill { height: 100%; background: var(--lavender-dark); border-radius: 10px; }
 
-        /* الجداول */
-        .table-container { overflow-x: auto; }
-        .requests-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .requests-table th { text-align: right; padding: 15px; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); }
-        [dir="ltr"] .requests-table th { text-align: left; }
-        .requests-table td { padding: 15px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
+        /* حالة الطلبات */
         .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
-        .status-approved { background: rgba(126, 221, 163, 0.15); color: var(--mint-green); }
-        .status-pending { background: rgba(255, 184, 108, 0.15); color: var(--soft-orange); }
+        .status-approved { background: rgba(126, 221, 163, 0.15); color: var(--success-color); }
+        .status-pending { background: rgba(255, 184, 108, 0.15); color: var(--warning-color); }
+        .status-rejected { background: rgba(255, 107, 107, 0.15); color: var(--danger-color); }
+        .status-new { background: rgba(91, 192, 248, 0.15); color: var(--secondary-color); }
+        .status-hold { background: var(--bg-elevated); color: var(--text-muted); }
 
         /* الحضور */
         .attendance-strip { display: flex; gap: 10px; flex-wrap: wrap; }
         .day-box { flex: 1; min-width: 80px; background: var(--bg-elevated); border-radius: 12px; padding: 10px; text-align: center; border: 1px solid var(--border-color); }
         .day-name { font-size: 11px; color: var(--text-secondary); display: block; margin-bottom: 5px; }
         .time-range { font-size: 12px; color: var(--text-primary); font-weight: bold; direction: ltr; }
-        .status-late { color: var(--coral-pink); font-size: 10px; }
-        .status-ontime { color: var(--mint-green); font-size: 10px; }
+        .status-late { color: var(--danger-color); font-size: 10px; }
+        .status-ontime { color: var(--success-color); font-size: 10px; }
 
         /* الصلاحيات */
-        .perm-tag { background: rgba(91, 192, 248, 0.1); color: var(--sky-blue); padding: 5px 12px; border-radius: 6px; font-size: 12px; display:inline-block; margin: 0 5px 5px 0;}
+        .perm-tag { background: rgba(91, 192, 248, 0.1); color: var(--secondary-color); padding: 5px 12px; border-radius: 6px; font-size: 12px; display:inline-block; margin: 0 5px 5px 0;}
 
-        /* النوافذ المنبثقة */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .modal-box { background: var(--bg-secondary); width: 500px; border-radius: 20px; padding: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        /* المودال */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-box { background: var(--bg-secondary); width: 500px; border-radius: 20px; padding: 30px; box-shadow: var(--shadow-lg); animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
         .form-group { margin-bottom: 20px; }
         .form-label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary); }
         .form-input { width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); outline: none; }
-        
         .upload-area { border: 2px dashed var(--border-color); border-radius: 12px; padding: 30px; text-align: center; cursor: pointer; transition: 0.3s; background: var(--bg-primary); margin-top: 10px; }
         .upload-area:hover { border-color: var(--lavender-dark); background: var(--bg-elevated); }
 
@@ -118,157 +94,11 @@
 </head>
 <body>
 
-    <div class="dashboard-content">
-        
-        <div class="profile-card">
-            <div class="profile-header-bg"></div>
-            <div class="profile-body">
-                <div class="avatar-box">
-                    <img src="../../favicon.png" alt="Avatar">
-                </div>
-                <div class="profile-info">
-                    <h1>
-                        <span data-i18n="GRCO">ايمن المغربي</span>
-                        <i class="fas fa-certificate verified-badge" title="Verified"></i>
-                    </h1>
-                    <p style="color: var(--lavender-light); margin:0;" data-i18n="profRole">مدير النظام</p>
-                    <div class="meta-tags">
-                        <div class="meta-tag"><i class="fas fa-fingerprint"></i> <span data-i18n="lbl_id">الرقم الوظيفي:</span> 10245</div>
-                        <div class="meta-tag"><i class="fas fa-envelope"></i> admin@ecode.sa</div>
-                        <div class="meta-tag"><i class="fas fa-sitemap"></i> <span data-i18n="lbl_dept">الإدارة:</span> <span data-i18n="val_dept">التقنية</span></div>
-                    </div>
-                </div>
-                <div class="profile-actions">
-                    <button class="btn-action btn-primary" onclick="openModal('leaveModal')"><i class="fas fa-plus-circle"></i> <span data-i18n="reqLeave">طلب إجازة</span></button>
-                    <button class="btn-action btn-outline" onclick="openModal('letterModal')"><i class="fas fa-file-alt"></i> <span data-i18n="reqLetter">تعريف راتب</span></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid-2">
-            <div class="info-card finance-card">
-                <div class="card-header" style="border-color: #334155;">
-                    <div class="card-title"><i class="fas fa-wallet" style="color: var(--coral-pink);"></i> <span data-i18n="financialData">البيانات المالية</span></div>
-                    <button onclick="toggleSalary()" style="background: rgba(255,255,255,0.1); border:none; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer;"><i class="fas fa-eye" id="salaryIcon"></i></button>
-                </div>
-                <div class="salary-grid">
-                    <div><span style="color:#94a3b8; font-size:12px; display:block" data-i18n="basicSalary">الأساسي</span><div class="salary-val blur">9,500 SAR</div></div>
-                    <div><span style="color:#94a3b8; font-size:12px; display:block" data-i18n="housing">سكن</span><div class="salary-val blur">2,375 SAR</div></div>
-                    <div><span style="color:#94a3b8; font-size:12px; display:block" data-i18n="transport">نقل</span><div class="salary-val blur">950 SAR</div></div>
-                    <div><span style="color:var(--mint-green); font-size:12px; display:block; font-weight:bold" data-i18n="netSalary">الصافي</span><div class="salary-val blur net-salary">12,825 SAR</div></div>
-                </div>
-            </div>
-
-            <div class="info-card">
-                <div class="card-header">
-                    <div class="card-title"><i class="fas fa-chart-line" style="color: var(--sky-blue);"></i> <span data-i18n="lbl_performance">الأداء السنوي</span></div>
-                    <span style="font-size:14px; color:var(--mint-green); font-weight:bold;">4.8/5.0</span>
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <div class="skill-item">
-                        <div class="skill-label"><span data-i18n="skill_leadership">القيادة</span> <span>90%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label"><span data-i18n="skill_tech">الكفاءة التقنية</span> <span>95%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 95%; background: var(--mint-green);"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label"><span data-i18n="skill_comm">التواصل</span> <span>85%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: var(--soft-orange);"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-card" style="margin-bottom: 25px;">
-            <div class="card-header">
-                <div class="card-title"><i class="fas fa-list-alt" style="color: var(--lavender-light);"></i> <span data-i18n="lbl_requests_log">سجل الطلبات</span></div>
-                <span style="font-size:12px; color:var(--text-secondary);">Total: 2</span>
-            </div>
-            <div class="table-container">
-                <table class="requests-table">
-                    <thead>
-                        <tr>
-                            <th data-i18n="col_req_no">رقم الطلب</th>
-                            <th data-i18n="col_type">النوع</th>
-                            <th data-i18n="col_date">التاريخ</th>
-                            <th data-i18n="col_status">الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#REQ-1052</td>
-                            <td data-i18n="val_sick_leave">إجازة مرضية</td>
-                            <td>2026-03-01</td>
-                            <td><span class="status-badge status-rejected" data-i18n="status_rejected">مرفوض</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>#REQ-1068</td>
-                            <td data-i18n="val_petty_cash">طلب عهدة مالية</td>
-                            <td>2026-03-05</td>
-                            <td><span class="status-badge status-new" data-i18n="status_new">جديد</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>#REQ-1071</td>
-                            <td data-i18n="val_training_req">دورة تدريبية خارجية</td>
-                            <td>2026-03-10</td>
-                            <td><span class="status-badge status-pending" data-i18n="status_pending">تحت الإجراء</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>#REQ-1085</td>
-                            <td data-i18n="val_equipment_req">طلب أجهزة لابتوب</td>
-                            <td>2026-03-12</td>
-                            <td><span class="status-badge status-approved" data-i18n="status_approved">معتمد</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>#REQ-1090</td>
-                            <td data-i18n="val_clearance">إخلاء طرف</td>
-                            <td>2026-03-15</td>
-                            <td><span class="status-badge status-hold" data-i18n="status_hold">معلق</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="grid-2">
-            <div class="info-card">
-                <div class="card-header">
-                    <div class="card-title"><i class="fas fa-clock" style="color: var(--mint-green);"></i> <span data-i18n="attendance">سجل الحضور</span></div>
-                    <span style="font-size:12px; color:var(--mint-green); font-weight:bold;">98% <span data-i18n="lbl_discipline">انضباط</span></span>
-                </div>
-                <div class="attendance-strip">
-                    <div class="day-box"><span class="day-name" data-i18n="day_sun">الأحد</span><span class="time-range">07:55 - 16:05</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
-                    <div class="day-box"><span class="day-name" data-i18n="day_mon">الاثنين</span><span class="time-range">08:00 - 16:00</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
-                    <div class="day-box"><span class="day-name" data-i18n="day_tue">الثلاثاء</span><span class="time-range">08:15 - 16:10</span><span class="status-late" data-i18n="status_late">تأخير</span></div>
-                    <div class="day-box"><span class="day-name" data-i18n="day_wed">الأربعاء</span><span class="time-range">07:50 - 16:00</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
-                    <div class="day-box"><span class="day-name" data-i18n="day_thu">الخميس</span><span class="time-range">07:58 - 15:55</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
-                </div>
-            </div>
-
-            <div class="info-card">
-                <div class="card-header">
-                    <div class="card-title"><i class="fas fa-shield-alt" style="color: var(--lavender-light);"></i> <span data-i18n="lbl_permissions">صلاحيات النظام</span></div>
-                </div>
-                <div>
-                    <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_full_access">دخول كامل</span></span>
-                    <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_approve">اعتماد الطلبات</span></span>
-                    <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_reports">استخراج التقارير</span></span>
-                    <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_users">إدارة المستخدمين</span></span>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="Layout.toggleSidebar()"></div>
 
     <div id="leaveModal" class="modal-overlay" onclick="closeModalOnOutside(event, 'leaveModal')">
         <div class="modal-box">
-            <h2 style="margin-top:0; color:var(--text-primary); margin-bottom:20px;" data-i18n="reqLeave">طلب إجازة جديدة</h2>
+            <h2 style="margin-top:0; color:var(--text-primary); margin-bottom:20px;" data-i18n="reqLeaveTitle">طلب إجازة جديدة</h2>
             <div class="form-group">
                 <label class="form-label" data-i18n="lbl_leave_type">نوع الإجازة</label>
                 <select class="form-input"><option data-i18n="opt_annual">سنوية</option><option data-i18n="opt_sick">مرضية</option></select>
@@ -294,8 +124,8 @@
 
     <div id="letterModal" class="modal-overlay" onclick="closeModalOnOutside(event, 'letterModal')">
         <div class="modal-box">
-            <h2 style="margin-top:0; color:var(--text-primary); margin-bottom:20px;" data-i18n="reqLetter">طلب تعريف راتب</h2>
-            <div class="form-group"><label class="form-label" data-i18n="lbl_entity">الجهة</label><input type="text" class="form-input" placeholder="..."></div>
+            <h2 style="margin-top:0; color:var(--text-primary); margin-bottom:20px;" data-i18n="reqLetterTitle">طلب تعريف راتب</h2>
+            <div class="form-group"><label class="form-label" data-i18n="lbl_entity">الجهة الموجه إليها</label><input type="text" class="form-input" placeholder="..."></div>
             <div class="form-group"><label class="form-label" data-i18n="lbl_lang">اللغة</label><select class="form-input"><option data-i18n="lang_ar">عربي</option><option data-i18n="lang_en">إنجليزي</option></select></div>
             <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;">
                 <button class="btn-action btn-outline" onclick="closeModal('letterModal')" data-i18n="btn_cancel">إلغاء</button>
@@ -304,8 +134,210 @@
         </div>
     </div>
 
+    <div class="app-container">
+        <aside id="appSidebar" class="sidebar"></aside>
+
+        <div class="main-content">
+            <header id="appTopbar" class="topbar"></header>
+
+            <main class="dashboard-content fade-in" id="workspace">
+                
+                <div class="profile-card">
+                    <div class="profile-header-bg"></div>
+                    <div class="profile-body">
+                        <div class="avatar-box">
+                            <img src="../favicon.png" alt="Avatar">
+                        </div>
+                        <div class="profile-info">
+                            <h1>
+                                <span data-i18n="user_name">ايمن المغربي</span>
+                                <i class="fas fa-certificate verified-badge" title="Verified"></i>
+                            </h1>
+                            <p style="color: var(--lavender-light); margin:0;" data-i18n="role_admin">مدير النظام</p>
+                            <div class="meta-tags">
+                                <div class="meta-tag"><i class="fas fa-fingerprint"></i> <span data-i18n="lbl_id">الرقم الوظيفي:</span> 10245</div>
+                                <div class="meta-tag"><i class="fas fa-envelope"></i> admin@ecode.sa</div>
+                                <div class="meta-tag"><i class="fas fa-sitemap"></i> <span data-i18n="lbl_dept">الإدارة:</span> <span data-i18n="dept_it">التقنية</span></div>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn-action btn-primary" onclick="openModal('leaveModal')"><i class="fas fa-plus-circle"></i> <span data-i18n="reqLeave">طلب إجازة</span></button>
+                            <button class="btn-action btn-outline" onclick="openModal('letterModal')"><i class="fas fa-file-alt"></i> <span data-i18n="reqLetter">تعريف راتب</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card finance-card">
+                        <div class="card-header" style="border-color: #334155;">
+                            <div class="card-title"><i class="fas fa-wallet" style="color: var(--coral-pink);"></i> <span data-i18n="financialData">البيانات المالية</span></div>
+                            <button onclick="toggleSalary()" style="background: rgba(255,255,255,0.1); border:none; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer;"><i class="fas fa-eye" id="salaryIcon"></i></button>
+                        </div>
+                        <div class="salary-grid">
+                            <div><span style="color:#94a3b8; font-size:12px; display:block" data-i18n="basicSalary">الأساسي</span><div class="salary-val blur">9,500 SAR</div></div>
+                            <div><span style="color:#94a3b8; font-size:12px; display:block" data-i18n="housing">سكن</span><div class="salary-val blur">2,375 SAR</div></div>
+                            <div><span style="color:#94a3b8; font-size:12px; display:block" data-i18n="transport">نقل</span><div class="salary-val blur">950 SAR</div></div>
+                            <div><span style="color:var(--mint-green); font-size:12px; display:block; font-weight:bold" data-i18n="netSalary">الصافي</span><div class="salary-val blur net-salary">12,825 SAR</div></div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-title"><i class="fas fa-chart-line" style="color: var(--sky-blue);"></i> <span data-i18n="lbl_performance">الأداء السنوي</span></div>
+                            <span style="font-size:14px; color:var(--mint-green); font-weight:bold;">4.8/5.0</span>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div class="skill-item">
+                                <div class="skill-label"><span data-i18n="skill_leadership">القيادة</span> <span>90%</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label"><span data-i18n="skill_tech">الكفاءة التقنية</span> <span>95%</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 95%; background: var(--mint-green);"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-label"><span data-i18n="skill_comm">التواصل</span> <span>85%</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 85%; background: var(--soft-orange);"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" style="margin-bottom: 25px;">
+                    <div class="card-header">
+                        <div class="card-title"><i class="fas fa-list-alt" style="color: var(--lavender-light);"></i> <span data-i18n="lbl_requests_log">سجل الطلبات</span></div>
+                        <span style="font-size:12px; color:var(--text-secondary);">Total: 5</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table requests-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="col_req_no">رقم الطلب</th>
+                                    <th data-i18n="col_type">النوع</th>
+                                    <th data-i18n="col_date">التاريخ</th>
+                                    <th data-i18n="col_status">الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#REQ-1052</td>
+                                    <td data-i18n="val_sick_leave">إجازة مرضية</td>
+                                    <td>2026-03-01</td>
+                                    <td><span class="status-badge status-rejected" data-i18n="status_rejected">مرفوض</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#REQ-1068</td>
+                                    <td data-i18n="val_petty_cash">طلب عهدة مالية</td>
+                                    <td>2026-03-05</td>
+                                    <td><span class="status-badge status-new" data-i18n="status_new">جديد</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#REQ-1071</td>
+                                    <td data-i18n="val_training_req">دورة تدريبية خارجية</td>
+                                    <td>2026-03-10</td>
+                                    <td><span class="status-badge status-pending" data-i18n="status_pending">تحت الإجراء</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#REQ-1085</td>
+                                    <td data-i18n="val_equipment_req">طلب أجهزة لابتوب</td>
+                                    <td>2026-03-12</td>
+                                    <td><span class="status-badge status-approved" data-i18n="status_approved">معتمد</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#REQ-1090</td>
+                                    <td data-i18n="val_clearance">إخلاء طرف</td>
+                                    <td>2026-03-15</td>
+                                    <td><span class="status-badge status-hold" data-i18n="status_hold">معلق</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-title"><i class="fas fa-clock" style="color: var(--mint-green);"></i> <span data-i18n="attendance">سجل الحضور</span></div>
+                            <span style="font-size:12px; color:var(--mint-green); font-weight:bold;">98% <span data-i18n="lbl_discipline">انضباط</span></span>
+                        </div>
+                        <div class="attendance-strip">
+                            <div class="day-box"><span class="day-name" data-i18n="day_sun">الأحد</span><span class="time-range">07:55 - 16:05</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
+                            <div class="day-box"><span class="day-name" data-i18n="day_mon">الاثنين</span><span class="time-range">08:00 - 16:00</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
+                            <div class="day-box"><span class="day-name" data-i18n="day_tue">الثلاثاء</span><span class="time-range">08:15 - 16:10</span><span class="status-late" data-i18n="status_late">تأخير</span></div>
+                            <div class="day-box"><span class="day-name" data-i18n="day_wed">الأربعاء</span><span class="time-range">07:50 - 16:00</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
+                            <div class="day-box"><span class="day-name" data-i18n="day_thu">الخميس</span><span class="time-range">07:58 - 15:55</span><span class="status-ontime" data-i18n="status_ontime">مبكر</span></div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-header">
+                            <div class="card-title"><i class="fas fa-shield-alt" style="color: var(--lavender-light);"></i> <span data-i18n="lbl_permissions">صلاحيات النظام</span></div>
+                        </div>
+                        <div>
+                            <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_full_access">دخول كامل</span></span>
+                            <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_approve">اعتماد الطلبات</span></span>
+                            <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_reports">استخراج التقارير</span></span>
+                            <span class="perm-tag"><i class="fas fa-check"></i> <span data-i18n="perm_users">إدارة المستخدمين</span></span>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../assets/js/core/i18n.js"></script>
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/components/bot.js"></script>
     <script src="../assets/js/system.js"></script>
+
     <script>
+        // --- الترجمات الخاصة بالصفحة ---
+        const pageTranslations = {
+            ar: {
+                user_name: "ايمن المغربي", role_admin: "مدير النظام", lbl_id: "الرقم الوظيفي", lbl_dept: "الإدارة", dept_it: "التقنية",
+                reqLeave: "طلب إجازة", reqLetter: "تعريف راتب", reqLeaveTitle: "طلب إجازة جديدة", reqLetterTitle: "طلب تعريف راتب",
+                financialData: "البيانات المالية", basicSalary: "الأساسي", housing: "سكن", transport: "نقل", netSalary: "الصافي",
+                lbl_performance: "الأداء السنوي", skill_leadership: "القيادة", skill_tech: "الكفاءة التقنية", skill_comm: "التواصل",
+                lbl_requests_log: "سجل الطلبات", col_req_no: "رقم الطلب", col_type: "النوع", col_date: "التاريخ", col_status: "الحالة",
+                val_sick_leave: "إجازة مرضية", val_petty_cash: "طلب عهدة مالية", val_training_req: "دورة تدريبية", val_equipment_req: "طلب أجهزة", val_clearance: "إخلاء طرف",
+                status_rejected: "مرفوض", status_new: "جديد", status_pending: "تحت الإجراء", status_approved: "معتمد", status_hold: "معلق",
+                attendance: "سجل الحضور", lbl_discipline: "انضباط",
+                day_sun: "الأحد", day_mon: "الاثنين", day_tue: "الثلاثاء", day_wed: "الأربعاء", day_thu: "الخميس",
+                status_ontime: "مبكر", status_late: "تأخير",
+                lbl_permissions: "صلاحيات النظام", perm_full_access: "دخول كامل", perm_approve: "اعتماد الطلبات", perm_reports: "استخراج التقارير", perm_users: "إدارة المستخدمين",
+                lbl_leave_type: "نوع الإجازة", opt_annual: "سنوية", opt_sick: "مرضية", lbl_from: "من تاريخ", lbl_to: "إلى تاريخ", lbl_attachment: "المرفقات", txt_upload_hint: "اضغط لرفع الملف",
+                lbl_entity: "الجهة الموجه إليها", lbl_lang: "اللغة", lang_ar: "عربي", lang_en: "إنجليزي",
+                btn_cancel: "إلغاء", btn_submit: "إرسال"
+            },
+            en: {
+                user_name: "Ayman Al-Maghrabi", role_admin: "System Admin", lbl_id: "Employee ID", lbl_dept: "Dept", dept_it: "IT Dept",
+                reqLeave: "Leave Request", reqLetter: "Salary Letter", reqLeaveTitle: "New Leave Request", reqLetterTitle: "Salary Letter Request",
+                financialData: "Financial Data", basicSalary: "Basic", housing: "Housing", transport: "Transport", netSalary: "Net Salary",
+                lbl_performance: "Annual Performance", skill_leadership: "Leadership", skill_tech: "Tech Skills", skill_comm: "Communication",
+                lbl_requests_log: "Requests Log", col_req_no: "Req No", col_type: "Type", col_date: "Date", col_status: "Status",
+                val_sick_leave: "Sick Leave", val_petty_cash: "Petty Cash", val_training_req: "Training Course", val_equipment_req: "Equipment Req", val_clearance: "Clearance",
+                status_rejected: "Rejected", status_new: "New", status_pending: "Pending", status_approved: "Approved", status_hold: "On Hold",
+                attendance: "Attendance Log", lbl_discipline: "Discipline",
+                day_sun: "Sun", day_mon: "Mon", day_tue: "Tue", day_wed: "Wed", day_thu: "Thu",
+                status_ontime: "On Time", status_late: "Late",
+                lbl_permissions: "System Permissions", perm_full_access: "Full Access", perm_approve: "Approvals", perm_reports: "Reports", perm_users: "User Mgmt",
+                lbl_leave_type: "Leave Type", opt_annual: "Annual", opt_sick: "Sick", lbl_from: "From", lbl_to: "To", lbl_attachment: "Attachments", txt_upload_hint: "Click to upload",
+                lbl_entity: "Directed To", lbl_lang: "Language", lang_ar: "Arabic", lang_en: "English",
+                btn_cancel: "Cancel", btn_submit: "Submit"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if(window.SYSTEM_TRANSLATIONS) {
+                Object.assign(window.SYSTEM_TRANSLATIONS.ar, pageTranslations.ar);
+                Object.assign(window.SYSTEM_TRANSLATIONS.en, pageTranslations.en);
+                const lang = localStorage.getItem('eGov_Lang') || 'ar';
+                if(window.updateLanguage) window.updateLanguage(lang);
+            }
+        });
+
+        // --- وظائف الصفحة ---
         function toggleSalary() {
             const vals = document.querySelectorAll('.salary-val');
             const icon = document.getElementById('salaryIcon');
@@ -317,5 +349,6 @@
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
         function closeModalOnOutside(e, id) { if(e.target.id === id) closeModal(id); }
     </script>
+
 </body>
 </html>
