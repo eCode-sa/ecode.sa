@@ -1,4 +1,4 @@
-const egovassembliespolicies = [
+window.egovassembliespolicies = [
    {
     id: "assemblies_intro",
     category: "assemblies",
