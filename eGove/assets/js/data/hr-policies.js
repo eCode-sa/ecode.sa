@@ -4,7 +4,7 @@
  * إعداد: Ayman Al-Maghrabi – GRC
  * Version: 1.0.0
  * ============================================ */
-
+console.log("🔥 HR POLICIES FILE IS EXECUTING!");
 window.HR_POLICIES = {
     metadata: { system: "eGov", module: "HR_POLICIES" },
     sections: [
