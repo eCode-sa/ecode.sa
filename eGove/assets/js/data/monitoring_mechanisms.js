@@ -1,3 +1,4 @@
+console.log("🔥 MonitoringMechanisms FILE IS EXECUTING!");
 window.egovMonitoringMechanisms = {
   ar: {
     section_id: "monitoring_mechanisms",
