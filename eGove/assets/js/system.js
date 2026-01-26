@@ -234,10 +234,7 @@ window.toggleLanguage = function() {
     
     // استدعاء دالة التحديث الموجودة مسبقاً
     updateLanguage(newLang);
-}
-
-// التشغيل التلقائي عند جاهزية الصفحة (لأن HTML قام بتحميل البيانات مسبقاً)
-document.addEventListener('DOMContentLoaded', window.initDashboard);
+};
 
 // التشغيل التلقائي عند جاهزية الصفحة (لأن HTML قام بتحميل البيانات مسبقاً)
 document.addEventListener('DOMContentLoaded', window.initDashboard);
