@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الاجتماعات | eGov System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .meeting-status { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .status-draft { background: rgba(255, 184, 108, 0.15); color: var(--warning-color); }
+        .status-confirmed { background: rgba(126, 221, 163, 0.15); color: var(--success-color); }
+        .status-cancelled { background: rgba(255, 107, 107, 0.15); color: var(--danger-color); }
+        .status-completed { background: rgba(91, 192, 248, 0.15); color: var(--secondary-color); }
+        
+        .meeting-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-bottom: 1px solid var(--border-color); transition: 0.2s; }
+        .meeting-card:hover { background: var(--bg-elevated); }
+        .meeting-date { text-align: center; min-width: 60px; padding: 10px; background: var(--bg-primary); border-radius: 12px; border: 1px solid var(--border-color); }
+        .date-day { font-size: 18px; font-weight: bold; color: var(--text-primary); display: block; }
+        .date-month { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; }
+        
+        .meeting-info { flex: 1; margin: 0 20px; }
+        .meeting-title { font-size: 15px; font-weight: bold; color: var(--text-primary); margin-bottom: 5px; }
+        .meeting-meta { font-size: 12px; color: var(--text-secondary); display: flex; gap: 15px; }
+        .meeting-meta i { color: var(--lavender-light); }
+    </style>
+</head>
+<body>
+    <div class="sidebar-overlay" onclick="Layout.toggleSidebar()"></div>
+    <div class="app-container">
+        <aside id="appSidebar" class="sidebar"></aside>
+        <div class="main-content">
+            <header id="appTopbar" class="topbar"></header>
+            <main class="dashboard-content fade-in" id="workspace">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0; color: var(--text-primary);" data-i18n="meetings_title">إدارة الاجتماعات والمحاضر</h2>
+                    <button class="btn-primary" onclick="alert('فتح نموذج إنشاء اجتماع جديد...')" style="padding: 10px 20px; border-radius: 10px; border: none; background: var(--primary-color); color: #fff; cursor: pointer;">
+                        <i class="fas fa-plus"></i> <span data-i18n="btn_new_meeting">اجتماع جديد</span>
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label" data-i18n="stat_upcoming">اجتماعات قادمة</div>
+                        <i class="fas fa-calendar-alt stat-icon" style="color: var(--secondary-color);"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label" data-i18n="stat_completed">تم عقدها (2025)</div>
+                        <i class="fas fa-check-circle stat-icon" style="color: var(--success-color);"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label" data-i18n="stat_attendance">نسبة الحضور</div>
+                        <i class="fas fa-users stat-icon" style="color: var(--lavender-light);"></i>
+                    </div>
+                </div>
+
+                <div class="section-card" style="padding: 0; overflow: hidden;">
+                    <div style="padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; gap: 15px;">
+                        <button class="filter-btn active" data-i18n="filter_all">الكل</button>
+                        <button class="filter-btn" data-i18n="filter_board">مجلس الإدارة</button>
+                        <button class="filter-btn" data-i18n="filter_assembly">الجمعية العمومية</button>
+                    </div>
+                    
+                    <div id="meetingsList">
+                        </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../assets/js/core/i18n.js"></script>
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/data/assemblies_policies.js"></script> <script src="../assets/js/system.js"></script>
+
+    <script>
+        const pageTranslations = {
+            ar: { meetings_title: "إدارة الاجتماعات", btn_new_meeting: "اجتماع جديد", stat_upcoming: "اجتماعات قادمة", stat_completed: "تم عقدها", stat_attendance: "نسبة الحضور", type_board: "مجلس الإدارة", type_assembly: "الجمعية العمومية", status_draft: "مسودة", status_confirmed: "مجدول", status_completed: "منعقد", status_cancelled: "ملغي", btn_minutes: "المحضر", btn_view: "التفاصيل" },
+            en: { meetings_title: "Meetings Management", btn_new_meeting: "New Meeting", stat_upcoming: "Upcoming", stat_completed: "Completed", stat_attendance: "Attendance Rate", type_board: "Board of Directors", type_assembly: "General Assembly", status_draft: "Draft", status_confirmed: "Scheduled", status_completed: "Completed", status_cancelled: "Cancelled", btn_minutes: "Minutes", btn_view: "Details" }
+        };
+
+        // بيانات وهمية للاجتماعات (للعرض)
+        const mockMeetings = [
+            { id: 1, title: "اجتماع مجلس الإدارة رقم (1/2026)", date: "2026-01-15", time: "10:00 AM", type: "board", status: "confirmed", loc: "المقر الرئيسي" },
+            { id: 2, title: "اجتماع الجمعية العامة العادية", date: "2026-03-01", time: "04:00 PM", type: "assembly", status: "draft", loc: "عن بعد (Virtual)" },
+            { id: 3, title: "اجتماع لجنة المراجعة الربع سنوي", date: "2025-12-20", time: "01:00 PM", type: "board", status: "completed", loc: "المقر الرئيسي" },
+            { id: 4, title: "اجتماع طارئ لمناقشة الميزانية", date: "2025-11-10", time: "09:00 AM", type: "board", status: "completed", loc: "عن بعد" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if(window.SYSTEM_TRANSLATIONS) {
+                Object.assign(window.SYSTEM_TRANSLATIONS.ar, pageTranslations.ar);
+                Object.assign(window.SYSTEM_TRANSLATIONS.en, pageTranslations.en);
+                const lang = localStorage.getItem('eGov_Lang') || 'ar';
+                if(window.updateLanguage) window.updateLanguage(lang);
+            }
+            renderMeetings();
+        });
+
+        function renderMeetings() {
+            const container = document.getElementById('meetingsList');
+            const lang = localStorage.getItem('eGov_Lang') || 'ar';
+            container.innerHTML = '';
+
+            mockMeetings.forEach(m => {
+                const dateObj = new Date(m.date);
+                const day = dateObj.getDate();
+                const month = dateObj.toLocaleString(lang === 'ar' ? 'ar-EG' : 'en-US', { month: 'short' });
+                
+                const typeLabel = lang === 'ar' ? (m.type === 'board' ? 'مجلس الإدارة' : 'جمعية عمومية') : (m.type === 'board' ? 'Board' : 'Assembly');
+                const statusLabel = pageTranslations[lang][`status_${m.status}`];
+
+                let html = `
+                    <div class="meeting-card">
+                        <div class="meeting-date">
+                            <span class="date-day">${day}</span>
+                            <span class="date-month">${month}</span>
+                        </div>
+                        <div class="meeting-info">
+                            <div class="meeting-title">${m.title} <span class="meeting-status status-${m.status}">${statusLabel}</span></div>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-clock"></i> ${m.time}</span>
+                                <span><i class="far fa-building"></i> ${typeLabel}</span>
+                                <span><i class="fas fa-map-marker-alt"></i> ${m.loc}</span>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            ${m.status === 'completed' ? `<button class="btn-action" style="background:var(--bg-primary); border:1px solid var(--border-color); padding:8px 15px; border-radius:8px; cursor:pointer; color:var(--text-secondary)"><i class="fas fa-file-signature"></i> ${lang==='ar'?'المحضر':'Minutes'}</button>` : ''}
+                            <button class="btn-action" style="background:var(--lavender-dark); color:#fff; border:none; padding:8px 15px; border-radius:8px; cursor:pointer;"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+    </script>
+</body>
+</html>
