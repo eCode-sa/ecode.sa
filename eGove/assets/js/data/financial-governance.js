@@ -4,7 +4,7 @@
  * Company: Electronic Code Company (eCode)
  * ============================================ */
 
-const FINANCIAL_GOVERNANCE = {
+window.FINANCIAL_GOVERNANCE = {
     sections: [
         { id: "FIN-SECTION-01",
       title: {
