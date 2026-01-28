@@ -6,7 +6,7 @@
   --mint-green: #7EDDA3;
   --soft-orange: #FFB86C;
   --coral-pink: #FF79C6;
-  
+   
   --bg-primary: #0F1419;
   --bg-secondary: #1A1F2E;
   --bg-elevated: #242B3D;
@@ -15,7 +15,7 @@
   --text-muted: #6B7280;
   --border-color: #2D3748;
   --border-hover: #4A5568;
-  
+   
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -24,16 +24,16 @@
   --space-8: 32px;
   --space-12: 48px;
   --space-16: 64px;
-  
+   
   --radius-base: 16px;
   --radius-lg: 24px;
   --radius-full: 999px;
-  
+   
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 20px rgba(139, 127, 255, 0.3);
-  
+   
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
 }
@@ -48,7 +48,7 @@
   --text-muted: #9CA3AF;
   --border-color: #E5E7EB;
   --border-hover: #D1D5DB;
-  
+   
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
@@ -528,7 +528,25 @@ details[open] .accordion-icon { transform: rotate(180deg); }
 }
 
 /* ========== LTR Specific Overrides ========== */
+/* إضافة دعم للقوائم والروابط في الوضع الإنجليزي */
 [dir="ltr"] .whatsapp-float { left: auto; right: 30px; }
-[dir="ltr"] .service-features li::before, [dir="ltr"] .legal-section ul li::before { right: auto; left: 0; }
-[dir="ltr"] .service-features li, [dir="ltr"] .legal-section ul li { padding-right: 0; padding-left: 24px; }
+
+/* إصلاح اتجاه النقاط في القوائم */
+[dir="ltr"] .service-features li::before, 
+[dir="ltr"] .legal-section ul li::before,
+[dir="ltr"] .feature-card ul li::before { 
+    right: auto; left: 0; 
+}
+
+[dir="ltr"] .service-features li, 
+[dir="ltr"] .legal-section ul li,
+[dir="ltr"] .feature-card ul li { 
+    padding-right: 0; padding-left: 24px; 
+}
+
+/* إصلاح اتجاه خط الرابط (Underline) في النافبار */
+[dir="ltr"] .nav a::after {
+    right: auto; left: 0;
+}
+
 [dir="ltr"] .coming-soon-badge { margin-right: 0; margin-left: 10px; }
