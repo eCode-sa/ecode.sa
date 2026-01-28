@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eGov - الرقابة المالية | نظرة عامة</title>
+    <title>eGov - CFO Dashboard</title>
     
     <link rel="stylesheet" href="../assets/css/style.css">
     
@@ -21,16 +21,15 @@
         }
         .kpi-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
         .kpi-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            content: ''; position: absolute; top: 0; [dir="rtl"] & { right: 0; left: auto; } [dir="ltr"] & { left: 0; right: auto; } width: 4px; height: 100%;
         }
-        .kpi-safe::before { background-color: #27ae60; }   /* آمن */
-        .kpi-warning::before { background-color: #f39c12; } /* تحذير */
-        .kpi-danger::before { background-color: #e74c3c; }  /* خطر */
+        .kpi-safe::before { background-color: #27ae60; }   
+        .kpi-warning::before { background-color: #f39c12; } 
+        .kpi-danger::before { background-color: #e74c3c; }  
 
         .metric-value { font-size: 2.2rem; font-weight: 700; color: #2c3e50; margin: 10px 0; }
         .metric-label { color: #7f8c8d; font-size: 0.95rem; }
         
-        /* شارة الامتثال الذكية */
         .compliance-badge {
             background: #e8f5e9; color: #27ae60;
             padding: 6px 12px; border-radius: 50px;
@@ -50,14 +49,14 @@
             
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h1 class="h3 fw-bold">غرفة الرقابة المالية</h1>
-                    <p class="text-muted mb-0">مراقبة السيولة والالتزامات وفقاً لمعايير الحوكمة المعتمدة.</p>
+                    <h1 class="h3 fw-bold" data-i18n="fin_dashboard_title">غرفة الرقابة المالية</h1>
+                    <p class="text-muted mb-0" data-i18n="fin_dashboard_desc">مراقبة السيولة والالتزامات...</p>
                 </div>
                 <div class="text-end">
                     <span class="compliance-badge mb-1">
-                        <i class="fas fa-check-circle"></i> السياسات نشطة (v2.4)
+                        <i class="fas fa-check-circle"></i> <span data-i18n="fin_status_active">السياسات نشطة</span>
                     </span>
-                    <div class="small text-muted" id="last-sync-time">آخر تحديث: الآن</div>
+                    <div class="small text-muted" id="last-sync-time">Last Sync: Just Now</div>
                 </div>
             </div>
 
@@ -65,12 +64,12 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="kpi-card kpi-safe">
                         <div class="d-flex justify-content-between">
-                            <span class="metric-label">السيولة النقدية (Cash)</span>
+                            <span class="metric-label" data-i18n="fin_label_cash">السيولة النقدية</span>
                             <i class="fas fa-wallet text-muted"></i>
                         </div>
                         <div class="metric-value" id="cash-balance">--</div>
                         <div class="small text-success">
-                            <i class="fas fa-arrow-up"></i> 12% مقارنة بالموازنة
+                            <i class="fas fa-arrow-up"></i> 12%
                         </div>
                     </div>
                 </div>
@@ -78,33 +77,33 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="kpi-card kpi-warning">
                         <div class="d-flex justify-content-between">
-                            <span class="metric-label">مستحقات الموردين (AP)</span>
+                            <span class="metric-label" data-i18n="fin_label_ap">مستحقات الموردين</span>
                             <i class="fas fa-file-invoice-dollar text-muted"></i>
                         </div>
                         <div class="metric-value" id="ap-balance">--</div>
-                        <div class="small text-muted">تستحق خلال 30 يوم</div>
+                        <div class="small text-muted" data-i18n="fin_msg_due_30">تستحق خلال 30 يوم</div>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
                     <div class="kpi-card kpi-safe">
                         <div class="d-flex justify-content-between">
-                            <span class="metric-label">التحصيلات المتوقعة (AR)</span>
+                            <span class="metric-label" data-i18n="fin_label_ar">التحصيلات المتوقعة</span>
                             <i class="fas fa-hand-holding-usd text-muted"></i>
                         </div>
                         <div class="metric-value" id="ar-balance">--</div>
-                        <div class="small text-success">نسبة التحصيل 92%</div>
+                        <div class="small text-success" data-i18n="fin_msg_collection_rate">نسبة التحصيل ممتازة</div>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
                     <div class="kpi-card kpi-danger">
                         <div class="d-flex justify-content-between">
-                            <span class="metric-label">مؤشر المخاطر المالية</span>
+                            <span class="metric-label" data-i18n="fin_label_risk">مؤشر المخاطر</span>
                             <i class="fas fa-shield-alt text-muted"></i>
                         </div>
-                        <div class="metric-value" style="color: #e74c3c;">منخفض</div>
-                        <div class="small text-muted">لا توجد مخالفات حرجة</div>
+                        <div class="metric-value" style="color: #e74c3c;" data-i18n="fin_risk_low">منخفض</div>
+                        <div class="small text-muted" data-i18n="fin_risk_safe">لا توجد مخالفات</div>
                     </div>
                 </div>
             </div>
@@ -113,10 +112,10 @@
                 <div class="col-lg-8">
                     <div class="card border-0 shadow-sm h-100">
                         <div class="card-header bg-white py-3">
-                            <h5 class="card-title mb-0">التدفقات النقدية (Cash Flow)</h5>
+                            <h5 class="card-title mb-0" data-i18n="fin_card_cashflow">التدفقات النقدية</h5>
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-center bg-light">
-                            <p class="text-muted">سيتم تفعيل الرسم البياني بعد ربط Chart.js</p>
+                            <p class="text-muted">Chart.js Loading...</p>
                         </div>
                     </div>
                 </div>
@@ -124,16 +123,16 @@
                 <div class="col-lg-4">
                     <div class="card border-0 shadow-sm h-100">
                         <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0">طلبات الاعتماد المعلقة</h5>
+                            <h5 class="card-title mb-0" data-i18n="fin_card_pending">الاعتمادات المعلقة</h5>
                             <span class="badge bg-danger rounded-pill">3</span>
                         </div>
                         <div class="list-group list-group-flush">
                             <a href="approvals.html" class="list-group-item list-group-item-action py-3">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1">سداد فاتورة مورد #402</h6>
-                                    <small class="text-muted">منذ ساعتين</small>
+                                    <h6 class="mb-1">Inv #402 - Tech Corp</h6>
+                                    <small class="text-muted">2h ago</small>
                                 </div>
-                                <p class="mb-1 small">المبلغ: 45,000 ر.س (يتطلب اعتماد CFO)</p>
+                                <p class="mb-1 small">45,000 SAR (Waiting CFO)</p>
                             </a>
                         </div>
                     </div>
@@ -144,6 +143,7 @@
     </main>
 
     <script src="../assets/js/core/i18n.js"></script>
+    
     <script src="../assets/js/data/company_data.js"></script>
     <script src="../assets/js/data/hr-policies.js"></script>
     <script src="../assets/js/data/financial-governance.js"></script>
@@ -159,16 +159,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // محاكاة تعيين الدور لضمان ظهور القائمة الصحيحة (لغرض العرض فقط)
+            // محاكاة الدور لضمان تحميل القائمة الصحيحة
             localStorage.setItem('userRole', 'cfo'); 
 
             // محاكاة جلب البيانات
-            document.getElementById('cash-balance').innerText = "1,250,000 ر.س";
-            document.getElementById('ap-balance').innerText = "145,000 ر.س";
-            document.getElementById('ar-balance').innerText = "320,000 ر.س";
+            document.getElementById('cash-balance').innerText = "1,250,000 SAR";
+            document.getElementById('ap-balance').innerText = "145,000 SAR";
+            document.getElementById('ar-balance').innerText = "320,000 SAR";
             
-            console.log("Finance Dashboard Loaded.");
-            console.log("Security Check: Policies loaded in Read-Only mode from js/data/.");
+            console.log("CFO Dashboard Loaded Successfully.");
         });
     </script>
 </body>
