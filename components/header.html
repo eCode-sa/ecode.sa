@@ -4,27 +4,25 @@
       <img src="https://ecode.sa/favicon.png" alt="eCode Logo">
     </div>
     <div class="logo-text">
-      <div class="brand-name">eCode</div>
-      <div class="brand-tagline">تصنع الأثر</div>
+      <div class="brand-name" data-i18n="brand_name">eCode</div>
+      <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
     </div>
   </a>
 
   <nav class="nav">
-    <a href="https://ecode.sa/ar/">الرئيسية</a>
-    <a href="https://ecode.sa/services/">خدماتنا</a>
-    <a href="https://ecode.sa/plans/">باقاتنا</a>
-    <a href="https://ecode.sa/portfolio/">أعمالنا</a>
+    <a href="https://ecode.sa/" data-i18n="nav_home">الرئيسية</a>
+    <a href="https://ecode.sa/services/" data-i18n="nav_services">خدماتنا</a>
+    <a href="https://ecode.sa/plans/" data-i18n="nav_plans">باقاتنا</a>
+    <a href="https://ecode.sa/portfolio/" data-i18n="nav_portfolio">أعمالنا</a>
     
-    <!-- Theme Toggle -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر">
         <i class="fas fa-sun"></i>
     </button>
 
-    <!-- Language Button -->
-    <a href="https://ecode.sa/en/" class="lang-switcher" aria-label="English">
-      <span style="font-size: 20px; line-height: 1;">🇬🇧</span>
-    </a>
+    <button onclick="toggleLanguage()" class="lang-switcher" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+      <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+    </button>
     
-    <a href="https://ecode.sa/contact/" class="btn-primary">تواصل معنا</a>
+    <a href="https://ecode.sa/contact/" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
   </nav>
 </div>
