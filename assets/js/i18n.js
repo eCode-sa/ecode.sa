@@ -122,7 +122,34 @@ window.SYSTEM_TRANSLATIONS = {
         footer_mobile_label: "جوال:",
         footer_email_label: "البريد:",
         footer_copyright: "© 2025 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
-        whatsapp_tooltip: "تواصل معنا عبر واتساب"
+        whatsapp_tooltip: "تواصل معنا عبر واتساب",
+
+        // --- Terms Page ---
+        terms_page_title: "الشروط والأحكام | eCode",
+        terms_hero_title: "الشروط والأحكام",
+        terms_hero_desc: "يرجى قراءة هذه الشروط بعناية قبل استخدام خدماتنا",
+        terms_sec1_title: "1. مقدمة",
+        terms_sec1_content: "تحكم هذه الشروط والأحكام استخدامك لخدمات وموقع eCode. من خلال الوصول إلى موقعنا أو استخدام خدماتنا، فإنك توافق على الالتزام بهذه الشروط.",
+        terms_sec2_title: "2. الخدمات",
+        terms_sec2_content: "تقدم eCode خدمات التسويق الرقمي، إنشاء المحتوى، والحلول التقنية. سيتم الاتفاق على نطاق العمل المحدد، التسليمات، والجداول الزمنية في اتفاقية خدمة منفصلة أو عرض سعر لكل مشروع.",
+        terms_sec3_title: "3. الدفع والاسترداد",
+        terms_sec3_li1: "يجب دفع عربون غير قابل للاسترداد لبدء العمل في أي مشروع.",
+        terms_sec3_li2: "سيتم توضيح جداول الدفع في اتفاقية الخدمة.",
+        terms_sec3_li3: "جميع الرسوم غير قابلة للاسترداد بمجرد بدء العمل، ما لم ينص على خلاف ذلك في هذه الشروط أو يقتضيه القانون.",
+        terms_sec4_title: "4. الملكية الفكرية",
+        terms_sec4_content: "عند سداد كامل الدفعات، سيمتلك العميل الحقوق الكاملة للمخرجات النهائية. تحتفظ eCode بالحق في استخدام الأعمال في معرض أعمالها ولأغراض التسويق ما لم يتم توقيع اتفاقية عدم إفصاح (NDA).",
+        terms_sec5_title: "5. مسؤوليات العميل",
+        terms_sec5_content: "يوافق العميل على تقديم جميع المعلومات والمواد والموافقات اللازمة في الوقت المناسب. قد يؤدي تأخر العميل إلى تعديل الجدول الزمني للمشروع ومواعيد التسليم.",
+        terms_sec6_title: "6. حدود المسؤولية",
+        terms_sec6_content: "لن تكون eCode مسؤولة عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن أو فيما يتعلق باستخدام خدماتنا. لا تتجاوز مسؤوليتنا الإجمالية المبلغ المدفوع من قبل العميل مقابل الخدمة المحددة.",
+        terms_sec7_title: "7. الإنهاء",
+        terms_sec7_content: "يجوز لأي من الطرفين إنهاء اتفاقية الخدمة بإشعار كتابي إذا أخل الطرف الآخر بأي شرط جوهري. في حالة الإنهاء من قبل العميل، يحق لـ eCode الحصول على مستحقاتها عن جميع الأعمال المنجزة حتى تاريخ الإنهاء.",
+        terms_sec8_title: "8. القانون الواجب التطبيق",
+        terms_sec8_content: "تخضع هذه الشروط وتفسر وفقًا لقوانين المملكة العربية السعودية.",
+        terms_sec9_title: "9. اتصل بنا",
+        terms_sec9_desc: "إذا كانت لديك أي أسئلة حول هذه الشروط والأحكام، يرجى الاتصال بنا:",
+        terms_lbl_email: "البريد الإلكتروني:",
+        terms_lbl_phone: "الهاتف:"
     },
 
     en: {
@@ -248,7 +275,34 @@ window.SYSTEM_TRANSLATIONS = {
         footer_mobile_label: "Mobile:",
         footer_email_label: "Email:",
         footer_copyright: "© 2025 eCode Co. All Rights Reserved.",
-        whatsapp_tooltip: "Chat with us on WhatsApp"
+        whatsapp_tooltip: "Chat with us on WhatsApp",
+
+        // --- Terms Page ---
+        terms_page_title: "Terms & Conditions | eCode",
+        terms_hero_title: "Terms & Conditions",
+        terms_hero_desc: "Please read these terms carefully before using our services",
+        terms_sec1_title: "1. Introduction",
+        terms_sec1_content: "These Terms and Conditions govern your use of eCode's website and services. By accessing our website or using our services, you agree to be bound by these terms.",
+        terms_sec2_title: "2. Services",
+        terms_sec2_content: "eCode provides digital marketing, content creation, and technical solutions. The specific scope of work, deliverables, and timelines will be agreed upon in a separate service agreement or quotation for each project.",
+        terms_sec3_title: "3. Payment & Refunds",
+        terms_sec3_li1: "A non-refundable deposit is required to commence work on any project.",
+        terms_sec3_li2: "Payment schedules will be outlined in the service agreement.",
+        terms_sec3_li3: "All fees are non-refundable once work has commenced, unless otherwise stated in these terms or required by law.",
+        terms_sec4_title: "4. Intellectual Property",
+        terms_sec4_content: "Upon full payment, the client will own full rights to the final deliverables. eCode reserves the right to use the work in its portfolio and for marketing purposes unless a Non-Disclosure Agreement (NDA) is signed.",
+        terms_sec5_title: "5. Client Responsibilities",
+        terms_sec5_content: "The client agrees to provide all necessary information, materials, and approvals in a timely manner. Client delays may result in adjustments to the project timeline and delivery dates.",
+        terms_sec6_title: "6. Limitation of Liability",
+        terms_sec6_content: "eCode shall not be liable for any indirect, incidental, or consequential damages arising out of or in connection with the use of our services. Our total liability shall not exceed the amount paid by the client for the specific service.",
+        terms_sec7_title: "7. Termination",
+        terms_sec7_content: "Either party may terminate the service agreement with written notice if the other party breaches any material term. In the event of termination by the client, eCode is entitled to payment for all work completed up to the date of termination.",
+        terms_sec8_title: "8. Governing Law",
+        terms_sec8_content: "These terms shall be governed by and construed in accordance with the laws of the Kingdom of Saudi Arabia.",
+        terms_sec9_title: "9. Contact Us",
+        terms_sec9_desc: "If you have any questions about these Terms and Conditions, please contact us:",
+        terms_lbl_email: "Email:",
+        terms_lbl_phone: "Phone:"
     }
 };
 
