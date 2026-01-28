@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // يمكنك استخدام رابط كامل أو نسبي. للأمان في التجربة المحلية نفضل النسبي:
     // تأكد أن ملفات header.html و footer.html موجودة داخل مجلد components
-    const baseURL = "components/"; 
+    const baseURL = "/components/"; 
     // أو استخدم الرابط الخاص بك إذا كانت الملفات مرفوعة: "https://ecode.sa/components/"
 
     // 1. جلب الهيدر الموحد (header.html)
