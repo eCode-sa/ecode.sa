@@ -3,228 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>أعمالنا | eCode</title>
+  <title data-i18n="port_page_title">أعمالنا | eCode</title>
   <meta name="description" content="استعرض معرض أعمال eCode من مشاريع التسويق الرقمي، تصميم الهويات البصرية، إنتاج المحتوى، والحلول التقنية المنفذة لعملائنا">
-  
-  <!-- SEO Tags -->
+   
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://ecode.sa/portfolio/">
-  
-  <!-- Open Graph -->
+   
   <meta property="og:title" content="أعمالنا | eCode">
   <meta property="og:description" content="استعرض معرض أعمال eCode من مشاريع التسويق الرقمي، تصميم الهويات البصرية، إنتاج المحتوى، والحلول التقنية المنفذة لعملائنا">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/portfolio/">
   <meta property="og:type" content="website">
-  
+   
   <link rel="icon" type="image/png" href="/favicon.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
-  <!-- استدعاء ملف الستايل الرئيسي -->
+   
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
-  <!-- الهيدر (يتم تحميله تلقائياً) -->
   <header id="main-header" class="main-header"></header>
 
   <main>
     <section class="page-hero">
-        <h1>معرض أعمالنا</h1>
-        <p>نماذج من مشاريعنا الناجحة التي ساهمت في نمو أعمال عملائنا</p>
+        <h1 data-i18n="port_hero_title">معرض أعمالنا</h1>
+        <p data-i18n="port_hero_desc">نماذج من مشاريعنا الناجحة التي ساهمت في نمو أعمال عملائنا</p>
     </section>
 
     <section class="portfolio-section">
-        <!-- Filter Tabs -->
         <div class="filter-tabs">
-            <button class="filter-btn active" data-filter="all">الكل</button>
-            <button class="filter-btn" data-filter="Restaurants">مطاعم</button>
-            <button class="filter-btn" data-filter="medical">طبي</button>
-            <button class="filter-btn" data-filter="photography">تصوير</button>
-            <button class="filter-btn" data-filter="commercial">تجاري</button>
-            <button class="filter-btn" data-filter="campaigns">حملات إعلانية</button>
+            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">الكل</button>
+            <button class="filter-btn" data-filter="Restaurants" data-i18n="filter_rest">مطاعم</button>
+            <button class="filter-btn" data-filter="medical" data-i18n="filter_med">طبي</button>
+            <button class="filter-btn" data-filter="photography" data-i18n="filter_photo">تصوير</button>
+            <button class="filter-btn" data-filter="commercial" data-i18n="filter_comm">تجاري</button>
+            <button class="filter-btn" data-filter="campaigns" data-i18n="filter_camp">حملات إعلانية</button>
         </div>
 
-        <!-- Portfolio Grid -->
         <div class="portfolio-grid">
-            
+             
             <div class="portfolio-item" data-category="Restaurants">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/portfolio/OnFire.png" alt="مطعم">
+                    <img src="https://ecode.sa/portfolio/OnFire.png" alt="OnFire">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">مطاعم</span>
-                    <h3>مطعم اون فاير</h3>
-                    <p>انشاء موقع  للمطعم لاستعراض العروض ومنيو المطعم ومعلومات عامه</p>
+                    <span class="portfolio-category" data-i18n="filter_rest">مطاعم</span>
+                    <h3 data-i18n="proj_onfire_title">مطعم اون فاير</h3>
+                    <p data-i18n="proj_onfire_desc">انشاء موقع للمطعم لاستعراض العروض ومنيو المطعم ومعلومات عامه</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">منيو الطعام</span>
-                        <span class="portfolio-tag">وسائل التواصل</span>
-                        <span class="portfolio-tag">تصوير منتجات</span>
+                        <span class="portfolio-tag" data-i18n="tag_menu">منيو الطعام</span>
+                        <span class="portfolio-tag" data-i18n="tag_social">وسائل التواصل</span>
+                        <span class="portfolio-tag" data-i18n="tag_prod_photo">تصوير منتجات</span>
                     </div>
                 </div>
             </div>
 
             <div class="portfolio-item" data-category="Restaurants">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/portfolio/AliPasha.png" alt="مطعم">
+                    <img src="https://ecode.sa/portfolio/AliPasha.png" alt="AliPasha">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">مطاعم</span>
-                    <h3>مطعم فلافل علي باشا</h3>
-                    <p>انشاء موقع الكتروني للمطعم وتصوير الاطعمه</p>
+                    <span class="portfolio-category" data-i18n="filter_rest">مطاعم</span>
+                    <h3 data-i18n="proj_alipasha_title">مطعم فلافل علي باشا</h3>
+                    <p data-i18n="proj_alipasha_desc">انشاء موقع الكتروني للمطعم وتصوير الاطعمه</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">منيو الطاعم</span>
-                        <span class="portfolio-tag">تصوير</span>
-                        <span class="portfolio-tag">حملات تسويقية</span>
+                        <span class="portfolio-tag" data-i18n="tag_menu">منيو الطعام</span>
+                        <span class="portfolio-tag" data-i18n="tag_photo">تصوير</span>
+                        <span class="portfolio-tag" data-i18n="tag_camp">حملات تسويقية</span>
                     </div>
                 </div>
             </div>
 
             <div class="portfolio-item" data-category="photography">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/portfolio/Andromeda.png" alt="جلسة تصوير ">
+                    <img src="https://ecode.sa/portfolio/Andromeda.png" alt="Andromeda">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">تصوير</span>
-                    <h3>جلسة تصوير مقر</h3>
-                    <p>تصوير احترافي لمقر الشركة والموظفين مع تعديل احترافي</p>
+                    <span class="portfolio-category" data-i18n="filter_photo">تصوير</span>
+                    <h3 data-i18n="proj_andro_title">جلسة تصوير مقر</h3>
+                    <p data-i18n="proj_andro_desc">تصوير احترافي لمقر الشركة والموظفين مع تعديل احترافي</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">تصوير</span>
-                        <span class="portfolio-tag">مونتاج</span>
-                        <span class="portfolio-tag">تعديل</span>
+                        <span class="portfolio-tag" data-i18n="tag_photo">تصوير</span>
+                        <span class="portfolio-tag" data-i18n="tag_montage">مونتاج</span>
+                        <span class="portfolio-tag" data-i18n="tag_edit">تعديل</span>
                     </div>
                 </div>
             </div>
 
             <div class="portfolio-item" data-category="medical">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/portfolio/AndroHealth.png" alt="واجهة نظام طبي">
+                    <img src="https://ecode.sa/portfolio/AndroHealth.png" alt="AndroHealth">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">واجهة نظام طبي</span>
-                    <h3>واجهة نظام طبي</h3>
-                    <p>تصميم وتطوير تجربة المستخدم لنظام ادارة منشآت طبية</p>
+                    <span class="portfolio-category" data-i18n="cat_med_ui">واجهة نظام طبي</span>
+                    <h3 data-i18n="proj_androhealth_title">واجهة نظام طبي</h3>
+                    <p data-i18n="proj_androhealth_desc">تصميم وتطوير تجربة المستخدم لنظام ادارة منشآت طبية</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">تصميم</span>
-                        <span class="portfolio-tag">تجربة مستخدم</span>
-                        <span class="portfolio-tag">اختبار</span>
+                        <span class="portfolio-tag" data-i18n="tag_design">تصميم</span>
+                        <span class="portfolio-tag" data-i18n="tag_ux">تجربة مستخدم</span>
+                        <span class="portfolio-tag" data-i18n="tag_testing">اختبار</span>
                     </div>
                 </div>
             </div>
 
             <div class="portfolio-item" data-category="campaigns">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/portfolio/DutiesBook.png" alt="حملة إطلاق منتج جديد">
+                    <img src="https://ecode.sa/portfolio/DutiesBook.png" alt="DutiesBook">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">حملة إعلانية</span>
-                    <h3>حملة إطلاق منتج جديد</h3>
-                    <p>حملة اطلاق منتج تقني جديد</p>
+                    <span class="portfolio-category" data-i18n="filter_camp">حملات إعلانية</span>
+                    <h3 data-i18n="proj_duties_title">حملة إطلاق منتج جديد</h3>
+                    <p data-i18n="proj_duties_desc">حملة اطلاق منتج تقني جديد</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">فيسبوك</span>
-                        <span class="portfolio-tag">إنستقرام</span>
-                        <span class="portfolio-tag">سناب شات</span>
+                        <span class="portfolio-tag" data-i18n="tag_fb">فيسبوك</span>
+                        <span class="portfolio-tag" data-i18n="tag_insta">إنستقرام</span>
+                        <span class="portfolio-tag" data-i18n="tag_snap">سناب شات</span>
                     </div>
                 </div>
             </div>
 
             <div class="portfolio-item" data-category="commercial">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/portfolio/Guidelines.png" alt="هوية بصرية">
+                    <img src="https://ecode.sa/portfolio/Guidelines.png" alt="Guidelines">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">هوية</span>
-                    <h3>هوية بصرية</h3>
-                    <p>هوية بصرية كاملة متكاملة</p>
+                    <span class="portfolio-category" data-i18n="cat_identity">هوية</span>
+                    <h3 data-i18n="proj_guide_title">هوية بصرية</h3>
+                    <p data-i18n="proj_guide_desc">هوية بصرية كاملة متكاملة</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">شعار</span>
-                        <span class="portfolio-tag">قوالب</span>
-                        <span class="portfolio-tag">الوان</span>
+                        <span class="portfolio-tag" data-i18n="tag_logo">شعار</span>
+                        <span class="portfolio-tag" data-i18n="tag_templates">قوالب</span>
+                        <span class="portfolio-tag" data-i18n="tag_colors">الوان</span>
                     </div>
                 </div>
             </div>
 
             <div class="portfolio-item" data-category="photography">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/portfolio/bq.png" alt="منصة عقارية">
+                    <img src="https://ecode.sa/portfolio/bq.png" alt="BQ">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">فيديو</span>
-                    <h3>فيديو ترويجي لمنصة عقارية</h3>
-                    <p>إنتاج فيديو ترويجي احترافي بجودة 4K مع مونتاج إبداعي وموسيقى مميزة</p>
+                    <span class="portfolio-category" data-i18n="cat_video">فيديو</span>
+                    <h3 data-i18n="proj_bq_title">فيديو ترويجي لمنصة عقارية</h3>
+                    <p data-i18n="proj_bq_desc">إنتاج فيديو ترويجي احترافي بجودة 4K مع مونتاج إبداعي وموسيقى مميزة</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">تصوير</span>
-                        <span class="portfolio-tag">مونتاج</span>
-                        <span class="portfolio-tag">4K</span>
+                        <span class="portfolio-tag" data-i18n="tag_photo">تصوير</span>
+                        <span class="portfolio-tag" data-i18n="tag_montage">مونتاج</span>
+                        <span class="portfolio-tag" data-i18n="tag_4k">4K</span>
                     </div>
                 </div>
             </div>
 
             <div class="portfolio-item" data-category="medical">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/cyancare-ad.png" alt="طب اتصالي">
+                    <img src="https://ecode.sa/cyancare-ad.png" alt="CyanCare">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">تجربة مستخدم</span>
-                    <h3>منصة طب اتصالي</h3>
-                    <p>منصة طب اتصالي وزيارات منزلية تم اختبار تجربة المستخدم وانشاء التصاميم الدعائية والبصرية</p>
+                    <span class="portfolio-category" data-i18n="tag_ux">تجربة مستخدم</span>
+                    <h3 data-i18n="proj_cyan_title">منصة طب اتصالي</h3>
+                    <p data-i18n="proj_cyan_desc">منصة طب اتصالي وزيارات منزلية تم اختبار تجربة المستخدم وانشاء التصاميم الدعائية والبصرية</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">اختبار</span>
-                        <span class="portfolio-tag">تصميم</span>
-                        <span class="portfolio-tag">مواد اعلانية</span>
+                        <span class="portfolio-tag" data-i18n="tag_testing">اختبار</span>
+                        <span class="portfolio-tag" data-i18n="tag_design">تصميم</span>
+                        <span class="portfolio-tag" data-i18n="tag_ads_material">مواد اعلانية</span>
                     </div>
                 </div>
             </div>
 
             <div class="portfolio-item" data-category="commercial">
                 <div class="portfolio-image">
-                    <img src="https://ecode.sa/portfolio/Campaign.png" alt="حملة يوم التأسيس">
+                    <img src="https://ecode.sa/portfolio/Campaign.png" alt="Campaign">
                 </div>
                 <div class="portfolio-content">
-                    <span class="portfolio-category">حملة موسمية</span>
-                    <h3>حملة يوم التأسيس</h3>
-                    <p>حملة تسويقية موسمية متكاملة مع محتوى يومي خاص وعروض ترويجية حصرية</p>
+                    <span class="portfolio-category" data-i18n="cat_seasonal">حملة موسمية</span>
+                    <h3 data-i18n="proj_found_title">حملة يوم التأسيس</h3>
+                    <p data-i18n="proj_found_desc">حملة تسويقية موسمية متكاملة مع محتوى يومي خاص وعروض ترويجية حصرية</p>
                     <div class="portfolio-tags">
-                        <span class="portfolio-tag">موسمي</span>
-                        <span class="portfolio-tag">عروض</span>
-                        <span class="portfolio-tag">محتوى</span>
+                        <span class="portfolio-tag" data-i18n="tag_seasonal">موسمي</span>
+                        <span class="portfolio-tag" data-i18n="tag_offers">عروض</span>
+                        <span class="portfolio-tag" data-i18n="tag_content">محتوى</span>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- Stats Section (Specific to Portfolio) -->
         <div class="stats-section">
             <div class="stats-grid">
                 <div class="stat-item">
                     <span class="stat-number">+20</span>
-                    <span class="stat-label">مشروع ناجح</span>
+                    <span class="stat-label" data-i18n="stat_success_proj">مشروع ناجح</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">+5</span>
-                    <span class="stat-label">قطاعات مختلفة</span>
+                    <span class="stat-label" data-i18n="stat_sectors">قطاعات مختلفة</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">100%</span>
-                    <span class="stat-label">التزام بالوقت</span>
+                    <span class="stat-label" data-i18n="stat_time_commit">التزام بالوقت</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">4.9/5</span>
-                    <span class="stat-label">تقييم العملاء</span>
+                    <span class="stat-label" data-i18n="stat_client_rate">تقييم العملاء</span>
                 </div>
             </div>
         </div>
     </section>
   </main>
 
-  <!-- الفوتر (يتم تحميله تلقائياً) -->
   <footer id="main-footer" class="footer"></footer>
 
-  <!-- استدعاء ملفات الجافاسكريبت المشتركة -->
+  <script src="../assets/js/i18n.js"></script>
+  
   <script src="../assets/js/layout.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
