@@ -19,7 +19,7 @@ const Auth = {
         },
         
         // --- الإدارات التنفيذية ---
-        'finance': { 
+        'cfo': { 
             email: 'cfo@ecode.sa', pass: '123456', role: 'cfo', label: 'المدير المالي',
             path: 'cfo/index.html'
         },
@@ -27,7 +27,7 @@ const Auth = {
             email: 'hr@ecode.sa', pass: '123456', role: 'hr', label: 'الموارد البشرية',
             path: 'hr/index.html'
         },
-        'it': { 
+        'cto': { 
             email: 'cto@ecode.sa', pass: '123456', role: 'cto', label: 'تقنية المعلومات',
             path: 'cto/index.html'
         },
