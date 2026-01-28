@@ -44,11 +44,37 @@ const Layout = {
             { icon: 'fa-user-circle', key: 'menu_profile', link: 'profile.html' }
         ],
         'cfo': [
-            { icon: 'fa-coins', key: 'menu_finance_center', link: 'index.html' },
-            { icon: 'fa-file-invoice', key: 'menu_invoices', link: 'invoices.html' },
-            { icon: 'fa-calculator', key: 'menu_budget', link: 'budget.html' },
-            { icon: 'fa-receipt', key: 'menu_zakat', link: 'tax.html' },
-            { icon: 'fa-user-circle', key: 'menu_profile', link: 'profile.html' }
+            // --- 1. الرقابة والتحكم (Control & Oversight) ---
+           { icon: 'fa-chart-pie', key: 'menu_fin_overview', link: 'index.html' },       // نظرة عامة
+           { icon: 'fa-file-signature', key: 'menu_fin_approvals', link: 'approvals.html' }, // الاعتمادات
+           { icon: 'fa-comments-dollar', key: 'menu_fin_chat', link: 'internal_chat.html' }, // المحادثات المدققة
+
+           // --- 2. الأستاذ العام (General Ledger) ---
+          { icon: 'fa-book', key: 'menu_gl_journal', link: 'gl_journal.html' },          // قيود اليومية
+          { icon: 'fa-sitemap', key: 'menu_gl_coa', link: 'gl_coa.html' },               // دليل الحسابات
+          { icon: 'fa-project-diagram', key: 'menu_gl_cost', link: 'gl_cost_centers.html' }, // مراكز التكلفة
+
+          // --- 3. الحسابات الدائنة (Payables) ---
+         { icon: 'fa-file-invoice-dollar', key: 'menu_ap_bills', link: 'ap_bills.html' },   // الفواتير الواردة
+         { icon: 'fa-money-check-alt', key: 'menu_ap_payments', link: 'ap_payments.html' }, // أوامر الصرف
+         { icon: 'fa-truck-loading', key: 'menu_ap_vendors', link: 'ap_vendors.html' },     // الموردين
+
+          // --- 4. الحسابات المدينة (Receivables) ---
+         { icon: 'fa-file-invoice', key: 'menu_ar_invoices', link: 'ar_invoices.html' },    // فواتير المبيعات
+         { icon: 'fa-cash-register', key: 'menu_ar_receipts', link: 'ar_receipts.html' },   // سندات القبض
+
+         // --- 5. الأصول والمخزون (Assets & Inventory) ---
+         { icon: 'fa-boxes', key: 'menu_inv_dashboard', link: 'inv_dashboard.html' },       // لوحة المخزون
+         { icon: 'fa-building', key: 'menu_inv_assets', link: 'inv_assets.html' },          // سجل الأصول
+
+         // --- 6. التقارير والالتزام (Reporting & Compliance) ---
+         { icon: 'fa-balance-scale', key: 'menu_rep_statements', link: 'rep_statements.html' }, // القوائم المالية
+         { icon: 'fa-chart-line', key: 'menu_rep_budget', link: 'rep_budget.html' },            // الموازنة
+         { icon: 'fa-hand-holding-usd', key: 'menu_rep_tax', link: 'rep_tax.html' },            // الإقرارات الضريبية
+
+         // --- 7. الإعدادات (Settings) ---
+         { icon: 'fa-cogs', key: 'menu_fin_settings', link: 'fin_settings.html' },          // الإعدادات المالية
+         { icon: 'fa-user-circle', key: 'menu_profile', link: 'profile.html' }              // الملف الشخصي
         ],
         'cto': [
             { icon: 'fa-server', key: 'menu_systems', link: 'index.html' },
