@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>لا يوجد اتصال | eCode</title>
-  
-  <!-- Favicons -->
+  <title data-i18n="offline_page_title">لا يوجد اتصال | eCode</title>
+   
   <link rel="shortcut icon" href="../favicon.ico" />
   <link rel="icon" type="image/png" href="../favicon.png" />
-  
+   
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Linking to main CSS -->
+   
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -19,24 +17,35 @@
   <main class="offline-wrapper">
     <div class="offline-card">
       <span class="offline-icon">📡</span>
-      <h1 class="offline-title">لا يوجد اتصال بالإنترنت</h1>
-      <p class="offline-text">تحقق من اتصالك بالإنترنت وحاول مرة أخرى للوصول إلى eCode</p>
-      
-      <!-- زر إعادة المحاولة (يقوم بتحديث الصفحة) -->
-      <button onclick="window.location.reload()" class="btn-primary" style="margin-left: 10px;">
+      <h1 class="offline-title" data-i18n="offline_title">لا يوجد اتصال بالإنترنت</h1>
+      <p class="offline-text" data-i18n="offline_text">تحقق من اتصالك بالإنترنت وحاول مرة أخرى للوصول إلى eCode</p>
+       
+      <button onclick="window.location.reload()" class="btn-primary" style="margin-left: 10px;" data-i18n="btn_retry">
         إعادة المحاولة
       </button>
-      
-      <a href="https://ecode.sa/ar/" class="btn-secondary">
+       
+      <a href="https://ecode.sa/ar/" class="btn-secondary" data-i18n="btn_home_offline">
         الرئيسية
       </a>
     </div>
   </main>
 
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/main.js"></script>
+
   <script>
-    // Simple Theme Loader for Offline Page
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    // إعدادات الثيم واللغة لهذه الصفحة البسيطة
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. الثيم
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // 2. تطبيق الترجمة (لأن هذه الصفحة لا تستخدم layout.js)
+        if (typeof applyLanguage === 'function') {
+            const savedLang = localStorage.getItem('userLanguage') || 'ar';
+            applyLanguage(savedLang);
+        }
+    });
   </script>
 
 </body>
