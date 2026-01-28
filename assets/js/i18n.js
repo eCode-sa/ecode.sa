@@ -18,6 +18,13 @@ window.SYSTEM_TRANSLATIONS = {
         p404_label_search: "أو ابحث عما تريد:",
         p404_ph_search: "ابحث في الموقع...",
 
+        // --- Offline Page ---
+        offline_page_title: "لا يوجد اتصال | eCode",
+        offline_title: "لا يوجد اتصال بالإنترنت",
+        offline_text: "تحقق من اتصالك بالإنترنت وحاول مرة أخرى للوصول إلى eCode",
+        btn_retry: "إعادة المحاولة",
+        btn_home_offline: "الرئيسية",
+
         // --- Hero Section ---
         hero_title: "نطوّر. نبتكر. ننمّي أعمالك.",
         hero_desc: "نقدم حلول تقنية وتسويقية حديثة ترفع جودة الأعمال، وتدعم نمو الشركات عبر الابتكار، السرعة، والدقة.",
@@ -733,6 +740,13 @@ window.SYSTEM_TRANSLATIONS = {
         p404_btn_back: "Go Back",
         p404_label_search: "Or search for what you need:",
         p404_ph_search: "Search the site...",
+
+        // --- Offline Page ---
+        offline_page_title: "No Connection | eCode",
+        offline_title: "No Internet Connection",
+        offline_text: "Check your internet connection and try again to access eCode",
+        btn_retry: "Retry",
+        btn_home_offline: "Home",
 
         // --- Hero Section ---
         hero_title: "Develop. Innovate. Grow Your Business.",
