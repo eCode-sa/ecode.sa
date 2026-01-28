@@ -263,6 +263,82 @@ window.SYSTEM_TRANSLATIONS = {
         cta_btn_start: "ابدأ مشروعك الآن",
         cta_btn_plans: "شاهد الباقات",
 
+        // --- Portfolio Page ---
+        port_page_title: "أعمالنا | eCode",
+        port_hero_title: "معرض أعمالنا",
+        port_hero_desc: "نماذج من مشاريعنا الناجحة التي ساهمت في نمو أعمال عملائنا",
+        
+        // Filters
+        filter_all: "الكل",
+        filter_rest: "مطاعم",
+        filter_med: "طبي",
+        filter_photo: "تصوير",
+        filter_comm: "تجاري",
+        filter_camp: "حملات إعلانية",
+
+        // Projects
+        proj_onfire_title: "مطعم اون فاير",
+        proj_onfire_desc: "انشاء موقع للمطعم لاستعراض العروض ومنيو المطعم ومعلومات عامه",
+        
+        proj_alipasha_title: "مطعم فلافل علي باشا",
+        proj_alipasha_desc: "انشاء موقع الكتروني للمطعم وتصوير الاطعمه",
+        
+        proj_andro_title: "جلسة تصوير مقر",
+        proj_andro_desc: "تصوير احترافي لمقر الشركة والموظفين مع تعديل احترافي",
+        
+        proj_androhealth_title: "واجهة نظام طبي",
+        proj_androhealth_desc: "تصميم وتطوير تجربة المستخدم لنظام ادارة منشآت طبية",
+        
+        proj_duties_title: "حملة إطلاق منتج جديد",
+        proj_duties_desc: "حملة اطلاق منتج تقني جديد",
+        
+        proj_guide_title: "هوية بصرية",
+        proj_guide_desc: "هوية بصرية كاملة متكاملة",
+        
+        proj_bq_title: "فيديو ترويجي لمنصة عقارية",
+        proj_bq_desc: "إنتاج فيديو ترويجي احترافي بجودة 4K مع مونتاج إبداعي وموسيقى مميزة",
+        
+        proj_cyan_title: "منصة طب اتصالي",
+        proj_cyan_desc: "منصة طب اتصالي وزيارات منزلية تم اختبار تجربة المستخدم وانشاء التصاميم الدعائية والبصرية",
+        
+        proj_found_title: "حملة يوم التأسيس",
+        proj_found_desc: "حملة تسويقية موسمية متكاملة مع محتوى يومي خاص وعروض ترويجية حصرية",
+
+        // Categories & Tags
+        cat_med_ui: "واجهة نظام طبي",
+        cat_identity: "هوية",
+        cat_video: "فيديو",
+        cat_ux: "تجربة مستخدم",
+        cat_seasonal: "حملة موسمية",
+        
+        tag_menu: "منيو الطعام",
+        tag_social: "وسائل التواصل",
+        tag_prod_photo: "تصوير منتجات",
+        tag_photo: "تصوير",
+        tag_camp: "حملات تسويقية",
+        tag_montage: "مونتاج",
+        tag_edit: "تعديل",
+        tag_design: "تصميم",
+        tag_ux: "تجربة مستخدم",
+        tag_testing: "اختبار",
+        tag_fb: "فيسبوك",
+        tag_insta: "إنستقرام",
+        tag_snap: "سناب شات",
+        tag_logo: "شعار",
+        tag_templates: "قوالب",
+        tag_colors: "الوان",
+        tag_4k: "4K",
+        tag_ads_material: "مواد اعلانية",
+        tag_seasonal: "موسمي",
+        tag_offers: "عروض",
+        tag_content: "محتوى",
+
+        // Stats
+        stat_success_proj: "مشروع ناجح",
+        stat_sectors: "قطاعات مختلفة",
+        stat_time_commit: "التزام بالوقت",
+        stat_client_rate: "تقييم العملاء",
+
         // --- Privacy Policy Page ---
         priv_page_title: "سياسة الخصوصية | eCode",
         priv_hero_title: "سياسة الخصوصية",
@@ -592,6 +668,82 @@ window.SYSTEM_TRANSLATIONS = {
         cta_desc: "Contact us now for a free consultation and discuss how we can turn your idea into reality.",
         cta_btn_start: "Start Project Now",
         cta_btn_plans: "View Plans",
+
+        // --- Portfolio Page ---
+        port_page_title: "Portfolio | eCode",
+        port_hero_title: "Our Portfolio",
+        port_hero_desc: "Examples of our successful projects that contributed to our clients' growth",
+        
+        // Filters
+        filter_all: "All",
+        filter_rest: "Restaurants",
+        filter_med: "Medical",
+        filter_photo: "Photography",
+        filter_comm: "Commercial",
+        filter_camp: "Ad Campaigns",
+
+        // Projects
+        proj_onfire_title: "On Fire Restaurant",
+        proj_onfire_desc: "Website creation for the restaurant to display offers, menu, and general info",
+        
+        proj_alipasha_title: "Ali Pasha Falafel",
+        proj_alipasha_desc: "Website creation for the restaurant and food photography",
+        
+        proj_andro_title: "HQ Photography Session",
+        proj_andro_desc: "Professional photography for company HQ and staff with professional editing",
+        
+        proj_androhealth_title: "Medical System UI",
+        proj_androhealth_desc: "UI/UX design and development for a medical facility management system",
+        
+        proj_duties_title: "New Product Launch Campaign",
+        proj_duties_desc: "Launch campaign for a new tech product",
+        
+        proj_guide_title: "Visual Identity",
+        proj_guide_desc: "Complete comprehensive visual identity",
+        
+        proj_bq_title: "Real Estate Platform Promo Video",
+        proj_bq_desc: "Professional 4K promo video production with creative editing and music",
+        
+        proj_cyan_title: "Telemedicine Platform",
+        proj_cyan_desc: "Telemedicine and home visit platform, UX testing, and creation of promotional visual designs",
+        
+        proj_found_title: "Foundation Day Campaign",
+        proj_found_desc: "Integrated seasonal marketing campaign with special daily content and exclusive offers",
+
+        // Categories & Tags
+        cat_med_ui: "Medical System UI",
+        cat_identity: "Identity",
+        cat_video: "Video",
+        cat_ux: "User Experience",
+        cat_seasonal: "Seasonal Campaign",
+        
+        tag_menu: "Food Menu",
+        tag_social: "Social Media",
+        tag_prod_photo: "Product Photography",
+        tag_photo: "Photography",
+        tag_camp: "Marketing Campaigns",
+        tag_montage: "Montage",
+        tag_edit: "Editing",
+        tag_design: "Design",
+        tag_ux: "User Experience",
+        tag_testing: "Testing",
+        tag_fb: "Facebook",
+        tag_insta: "Instagram",
+        tag_snap: "Snapchat",
+        tag_logo: "Logo",
+        tag_templates: "Templates",
+        tag_colors: "Colors",
+        tag_4k: "4K",
+        tag_ads_material: "Ad Materials",
+        tag_seasonal: "Seasonal",
+        tag_offers: "Offers",
+        tag_content: "Content",
+
+        // Stats
+        stat_success_proj: "Successful Projects",
+        stat_sectors: "Different Sectors",
+        stat_time_commit: "On-Time Delivery",
+        stat_client_rate: "Client Rating",
 
         // --- Privacy Policy Page ---
         priv_page_title: "Privacy Policy | eCode",
