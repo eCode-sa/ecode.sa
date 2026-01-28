@@ -41,10 +41,10 @@
 </head>
 <body class="cfo-layout">
 
-    <div id="sidebar-container"></div>
+    <aside id="appSidebar" class="sidebar"></aside>
 
     <main class="main-content">
-        <header id="header-container"></header>
+        <header id="appTopbar" class="topbar"></header>
 
         <div class="content-wrapper">
             
@@ -135,7 +135,7 @@
                                 </div>
                                 <p class="mb-1 small">المبلغ: 45,000 ر.س (يتطلب اعتماد CFO)</p>
                             </a>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,19 +155,18 @@
 
     <script src="../assets/js/layout.js"></script>
     <script src="../assets/js/components/bot.js"></script>
-
     <script src="../assets/js/system.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // محاكاة جلب البيانات للعرض (Mockup Data)
-            // في النسخة النهائية، ستأتي هذه القيم من الـ Backend الذي يقرأ من FinancialGovernance
-            
+            // محاكاة تعيين الدور لضمان ظهور القائمة الصحيحة (لغرض العرض فقط)
+            localStorage.setItem('userRole', 'cfo'); 
+
+            // محاكاة جلب البيانات
             document.getElementById('cash-balance').innerText = "1,250,000 ر.س";
             document.getElementById('ap-balance').innerText = "145,000 ر.س";
             document.getElementById('ar-balance').innerText = "320,000 ر.س";
             
-            // توثيق العملية في الكونسول للمبرمجين
             console.log("Finance Dashboard Loaded.");
             console.log("Security Check: Policies loaded in Read-Only mode from js/data/.");
         });
