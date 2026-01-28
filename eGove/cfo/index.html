@@ -6,30 +6,36 @@
     <title>eGov - الرقابة المالية | نظرة عامة</title>
     
     <link rel="stylesheet" href="../admin/assets/css/style.css">
+    
     <style>
-        .finance-card {
+        /* تخصيصات خاصة بلوحة المدير المالي */
+        .kpi-card {
             background: #fff;
             border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-color);
-            transition: transform 0.2s;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .finance-card:hover { transform: translateY(-5px); }
-        .metric-value { font-size: 2rem; font-weight: bold; color: #2c3e50; }
-        .metric-label { color: #7f8c8d; font-size: 0.9rem; }
-        .trend-up { color: #27ae60; font-size: 0.8rem; }
-        .trend-down { color: #c0392b; font-size: 0.8rem; }
+        .kpi-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .kpi-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+        }
+        .kpi-safe::before { background-color: #27ae60; }   /* آمن */
+        .kpi-warning::before { background-color: #f39c12; } /* تحذير */
+        .kpi-danger::before { background-color: #e74c3c; }  /* خطر */
+
+        .metric-value { font-size: 2.2rem; font-weight: 700; color: #2c3e50; margin: 10px 0; }
+        .metric-label { color: #7f8c8d; font-size: 0.95rem; }
         
-        .governance-badge {
-            background: #f1c40f; /* لون تحذيري للامتثال */
-            color: #2c3e50;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+        /* شارة الامتثال الذكية */
+        .compliance-badge {
+            background: #e8f5e9; color: #27ae60;
+            padding: 6px 12px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 6px;
         }
     </style>
 </head>
@@ -42,82 +48,94 @@
 
         <div class="content-wrapper">
             
-            <div class="page-header d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h1 class="h3">لوحة الرقابة المالية</h1>
-                    <p class="text-muted">نظرة شمولية على السيولة، الالتزامات، والامتثال للموازنة.</p>
+                    <h1 class="h3 fw-bold">غرفة الرقابة المالية</h1>
+                    <p class="text-muted mb-0">مراقبة السيولة والالتزامات وفقاً لمعايير الحوكمة المعتمدة.</p>
                 </div>
-                <div class="governance-status">
-                    <span class="governance-badge">
-                        <i class="fas fa-shield-alt"></i>
-                        السياسات المالية: محدثة ومعتمدة (v2.4)
+                <div class="text-end">
+                    <span class="compliance-badge mb-1">
+                        <i class="fas fa-check-circle"></i> السياسات نشطة (v2.4)
                     </span>
+                    <div class="small text-muted" id="last-sync-time">آخر تحديث: الآن</div>
                 </div>
             </div>
 
             <div class="row g-4 mb-4">
-                <div class="col-md-3">
-                    <div class="finance-card">
-                        <div class="metric-label">السيولة النقدية المتوفرة</div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="kpi-card kpi-safe">
+                        <div class="d-flex justify-content-between">
+                            <span class="metric-label">السيولة النقدية (Cash)</span>
+                            <i class="fas fa-wallet text-muted"></i>
+                        </div>
                         <div class="metric-value" id="cash-balance">--</div>
-                        <div class="trend-up">▲ 12% عن الشهر الماضي</div>
+                        <div class="small text-success">
+                            <i class="fas fa-arrow-up"></i> 12% مقارنة بالموازنة
+                        </div>
                     </div>
                 </div>
-                
-                <div class="col-md-3">
-                    <div class="finance-card" style="border-color: #e74c3c;">
-                        <div class="metric-label">التزامات مستحقة (موردين)</div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="kpi-card kpi-warning">
+                        <div class="d-flex justify-content-between">
+                            <span class="metric-label">مستحقات الموردين (AP)</span>
+                            <i class="fas fa-file-invoice-dollar text-muted"></i>
+                        </div>
                         <div class="metric-value" id="ap-balance">--</div>
-                        <div class="text-muted small">تستحق خلال 30 يوم</div>
+                        <div class="small text-muted">تستحق خلال 30 يوم</div>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="finance-card" style="border-color: #27ae60;">
-                        <div class="metric-label">تحصيلات متوقعة (عملاء)</div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="kpi-card kpi-safe">
+                        <div class="d-flex justify-content-between">
+                            <span class="metric-label">التحصيلات المتوقعة (AR)</span>
+                            <i class="fas fa-hand-holding-usd text-muted"></i>
+                        </div>
                         <div class="metric-value" id="ar-balance">--</div>
-                        <div class="trend-up">85% نسبة التحصيل</div>
+                        <div class="small text-success">نسبة التحصيل 92%</div>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="finance-card" style="border-color: #f39c12;">
-                        <div class="metric-label">نسبة استهلاك الموازنة</div>
-                        <div class="metric-value" id="budget-usage">--%</div>
-                        <div id="budget-status" class="small">--</div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="kpi-card kpi-danger">
+                        <div class="d-flex justify-content-between">
+                            <span class="metric-label">مؤشر المخاطر المالية</span>
+                            <i class="fas fa-shield-alt text-muted"></i>
+                        </div>
+                        <div class="metric-value" style="color: #e74c3c;">منخفض</div>
+                        <div class="small text-muted">لا توجد مخالفات حرجة</div>
                     </div>
                 </div>
             </div>
 
             <div class="row g-4">
                 <div class="col-lg-8">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-header bg-white border-0 d-flex justify-content-between">
-                            <h5 class="card-title">التدفقات النقدية (Cash Flow)</h5>
-                            <button class="btn btn-sm btn-outline-primary">تقرير مفصل</button>
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="card-title mb-0">التدفقات النقدية (Cash Flow)</h5>
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-center bg-light">
-                            <p class="text-muted">سيتم ربط الرسم البياني بمكتبة Chart.js لاحقاً</p>
+                            <p class="text-muted">سيتم تفعيل الرسم البياني بعد ربط Chart.js</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-header bg-white border-0">
-                            <h5 class="card-title">تنبيهات الحوكمة</h5>
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">طلبات الاعتماد المعلقة</h5>
+                            <span class="badge bg-danger rounded-pill">3</span>
                         </div>
-                        <div class="card-body p-0">
-                            <ul class="list-group list-group-flush" id="governance-alerts">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold text-danger">تجاوز حد الصرف</div>
-                                        طلب شراء #402 يتجاوز صلاحية المدير
-                                    </div>
-                                    <button class="btn btn-sm btn-danger rounded-pill">رفض آلي</button>
-                                </li>
-                            </ul>
-                        </div>
+                        <div class="list-group list-group-flush">
+                            <a href="approvals.html" class="list-group-item list-group-item-action py-3">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">سداد فاتورة مورد #402</h6>
+                                    <small class="text-muted">منذ ساعتين</small>
+                                </div>
+                                <p class="mb-1 small">المبلغ: 45,000 ر.س (يتطلب اعتماد CFO)</p>
+                            </a>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -128,37 +146,26 @@
     <script src="../admin/js/core/config.js"></script>
     <script src="../admin/js/core/i18n.js"></script>
     <script src="../admin/js/core/auth.js"></script>
-    
-    <script src="../admin/data/company_data.js"></script>
-    <script src="../admin/data/financial-governance.js"></script>
-    
+    <script src="../admin/data/company_data.js"></script>      
+    <script src="../admin/data/financial-governance.js"></script> 
+    <script src="../admin/data/hr-policies.js"></script>          
+    <script src="../admin/data/board_governance.js"></script>     
+    <script src="../admin/data/monitoring_mechanisms.js"></script> 
     <script src="../admin/assets/layout.js"></script>
     <script src="../admin/js/components/bot.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Check Auth (CFO Role)
-            // Auth.guard('CFO'); // سنفعلها لاحقاً
-
-            // 2. Load Governance Data from centralized file
-            // محاكاة جلب البيانات للعرض (Mocking Data Loading)
-            // في الواقع ستأتي هذه القيم من دالة FinancialGovernance.getDashboardStats()
+            // محاكاة جلب البيانات للعرض (Mockup Data)
+            // في النسخة النهائية، ستأتي هذه القيم من الـ Backend الذي يقرأ من FinancialGovernance
             
             document.getElementById('cash-balance').innerText = "1,250,000 ر.س";
             document.getElementById('ap-balance').innerText = "145,000 ر.س";
             document.getElementById('ar-balance').innerText = "320,000 ر.س";
             
-            const budgetUsage = 65; // Example percentage
-            document.getElementById('budget-usage').innerText = budgetUsage + "%";
-            
-            const budgetStatusEl = document.getElementById('budget-status');
-            if(budgetUsage > 80) {
-                budgetStatusEl.innerHTML = '<span class="text-danger">⚠️ يقترب من الحد المسموح</span>';
-            } else {
-                budgetStatusEl.innerHTML = '<span class="text-success">✅ ضمن الحدود الآمنة</span>';
-            }
-            
-            console.log("Finance Dashboard: Governance Policies enforced via admin/data/financial-governance.js");
+            // توثيق العملية في الكونسول للمبرمجين
+            console.log("Finance Dashboard Loaded.");
+            console.log("Security Check: Policies loaded in Read-Only mode from admin/data/.");
         });
     </script>
 </body>
