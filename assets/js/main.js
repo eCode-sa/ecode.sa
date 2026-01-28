@@ -1,18 +1,75 @@
-// --- Gemini API Integration ---
+// --- Language & Translation Logic (New Added Features) ---
+
+// تطبيق اللغة المختارة على الصفحة
+function applyLanguage(lang) {
+    // 1. حفظ اللغة في المتصفح
+    localStorage.setItem('userLanguage', lang);
+    
+    // 2. تحديث اتجاه الصفحة واللغة
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+
+    // 3. تحديث النصوص (innerText/innerHTML)
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (window.SYSTEM_TRANSLATIONS && window.SYSTEM_TRANSLATIONS[lang] && window.SYSTEM_TRANSLATIONS[lang][key]) {
+            el.innerHTML = window.SYSTEM_TRANSLATIONS[lang][key];
+        }
+    });
+
+    // 4. تحديث الـ Placeholders (حقول الإدخال)
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (window.SYSTEM_TRANSLATIONS && window.SYSTEM_TRANSLATIONS[lang] && window.SYSTEM_TRANSLATIONS[lang][key]) {
+            el.placeholder = window.SYSTEM_TRANSLATIONS[lang][key];
+        }
+    });
+
+    // 5. تحديث الـ Tooltips (مثل زر الواتساب)
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        if (window.SYSTEM_TRANSLATIONS && window.SYSTEM_TRANSLATIONS[lang] && window.SYSTEM_TRANSLATIONS[lang][key]) {
+            el.title = window.SYSTEM_TRANSLATIONS[lang][key];
+        }
+    });
+
+    // 6. تحديث أيقونة اللغة في الهيدر
+    const langIcon = document.getElementById('lang-icon');
+    if (langIcon) {
+        langIcon.innerText = (lang === 'ar') ? '🇬🇧' : '🇸🇦'; 
+    }
+}
+
+// دالة التبديل (تستخدم عند الضغط على الزر)
+function toggleLanguage() {
+    const currentLang = localStorage.getItem('userLanguage') || 'ar';
+    const newLang = (currentLang === 'ar') ? 'en' : 'ar';
+    applyLanguage(newLang);
+}
+
+// --- Gemini API Integration (Updated with Language Awareness) ---
 async function analyzeProjectWithAI() {
   const input = document.getElementById('ai-project-desc').value;
   const resultBox = document.getElementById('ai-result');
   const resultContent = document.getElementById('ai-result-content');
   const btn = document.getElementById('ai-btn');
   
+  // تحديد اللغة الحالية
+  const currentLang = localStorage.getItem('userLanguage') || 'ar';
+  
+  // رسائل التنبيه والتحميل حسب اللغة
+  const msgErrorInput = currentLang === 'ar' ? "الرجاء إدخال وصف للمشروع أولاً" : "Please enter a project description first";
+  const msgProcessing = currentLang === 'ar' ? '<span>جاري التحليل...</span> <i class="fas fa-spinner fa-spin"></i>' : '<span>Processing...</span> <i class="fas fa-spinner fa-spin"></i>';
+  const msgErrorConnect = currentLang === 'ar' ? "عذراً، حدث خطأ أثناء الاتصال بالمستشار الذكي" : "Error connecting to AI consultant";
+
   if (!input || input.trim() === "") {
-    alert("الرجاء إدخال وصف للمشروع أولاً / Please enter a project description first");
+    alert(msgErrorInput);
     return;
   }
 
   // UI Loading State
   const originalBtnText = btn.innerHTML;
-  btn.innerHTML = '<span>Processing...</span> <i class="fas fa-spinner fa-spin"></i>';
+  btn.innerHTML = msgProcessing;
   btn.disabled = true;
   resultBox.style.display = 'none';
 
@@ -20,7 +77,8 @@ async function analyzeProjectWithAI() {
   const prompt = `As a professional digital marketing expert, analyze the following project and suggest 3 strategic, innovative, and actionable marketing tips. 
   Project Description: "${input}"
   
-  Please provide the answer as concise and clear bullet points. If the input is Arabic, reply in Arabic. If English, reply in English.`;
+  Please provide the answer as concise and clear bullet points. 
+  IMPORTANT: Reply in ${currentLang === 'ar' ? 'Arabic' : 'English'}.`;
 
   try {
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
@@ -54,7 +112,7 @@ async function analyzeProjectWithAI() {
 
   } catch (error) {
     console.error("AI Error:", error);
-    alert("عذراً، حدث خطأ أثناء الاتصال بالمستشار الذكي / Error connecting to AI consultant");
+    alert(msgErrorConnect);
   } finally {
     // Reset Button
     btn.innerHTML = originalBtnText;
@@ -62,14 +120,20 @@ async function analyzeProjectWithAI() {
   }
 }
 
-// --- Simple Contact Form Handling (Home Page) ---
+// --- Simple Contact Form Handling (Home Page) (Updated for Lang) ---
 async function handleFormSubmit(event) {
   event.preventDefault();
   
   const btn = event.target.querySelector('button[type="submit"]');
   const originalText = btn.innerText;
   
-  btn.innerText = 'جاري الإرسال... ⏳';
+  // تحديد اللغة الحالية لتغيير النصوص
+  const currentLang = localStorage.getItem('userLanguage') || 'ar';
+  
+  const txtSending = currentLang === 'ar' ? 'جاري الإرسال... ⏳' : 'Sending... ⏳';
+  const txtSuccess = currentLang === 'ar' ? 'تم الإرسال بنجاح ✅' : 'Sent Successfully ✅';
+
+  btn.innerText = txtSending;
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
@@ -79,14 +143,16 @@ async function handleFormSubmit(event) {
       phone: document.getElementById('phone').value,
       service: document.getElementById('service').value,
       message: document.getElementById('message').value || 'لا يوجد تفاصيل إضافية',
-      date: new Date().toLocaleDateString('ar-SA'),
-      formType: 'Simple Home Request'
+      date: new Date().toLocaleDateString(currentLang === 'ar' ? 'ar-SA' : 'en-US'),
+      formType: 'Simple Home Request',
+      language: currentLang
   };
 
-  await sendData(formData, btn, originalText, 'تم الإرسال بنجاح ✅');
+  await sendData(formData, btn, originalText, txtSuccess);
 }
 
 // --- Detailed Contact Form Handling (Contact Page - Arabic) ---
+// (No changes made here as per request)
 async function handleDetailedFormSubmit(event) {
   event.preventDefault(); 
   
@@ -113,6 +179,7 @@ async function handleDetailedFormSubmit(event) {
 }
 
 // --- English Contact Form Handling ---
+// (No changes made here as per request)
 async function handleFormSubmitEN(event) {
   event.preventDefault(); 
   
@@ -187,8 +254,14 @@ async function sendData(data, btn, originalText, successText) {
   }
 }
 
-// --- Portfolio Filtering Logic ---
+// --- Portfolio Filtering Logic & Initialization ---
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Initialize Language (New Added Feature)
+    const savedLang = localStorage.getItem('userLanguage') || 'ar';
+    applyLanguage(savedLang);
+
+    // 2. Portfolio Logic (Existing)
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
