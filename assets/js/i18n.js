@@ -9,6 +9,15 @@ window.SYSTEM_TRANSLATIONS = {
         nav_portfolio: "أعمالنا",
         nav_contact: "تواصل معنا",
 
+        // --- 404 Page ---
+        page_title_404: "الصفحة غير موجودة | eCode",
+        p404_title: "عذراً، الصفحة غير موجودة",
+        p404_text: "يبدو أن الرابط الذي حاولت الوصول إليه غير صحيح أو أن الصفحة قد تم حذفها.<br>يمكنك العودة للصفحة الرئيسية أو التواصل معنا للمساعدة.",
+        p404_btn_home: "الرئيسية",
+        p404_btn_back: "رجوع",
+        p404_label_search: "أو ابحث عما تريد:",
+        p404_ph_search: "ابحث في الموقع...",
+
         // --- Hero Section ---
         hero_title: "نطوّر. نبتكر. ننمّي أعمالك.",
         hero_desc: "نقدم حلول تقنية وتسويقية حديثة ترفع جودة الأعمال، وتدعم نمو الشركات عبر الابتكار، السرعة، والدقة.",
@@ -715,6 +724,15 @@ window.SYSTEM_TRANSLATIONS = {
         nav_plans: "Plans",
         nav_portfolio: "Portfolio",
         nav_contact: "Contact Us",
+
+        // --- 404 Page ---
+        page_title_404: "Page Not Found | eCode",
+        p404_title: "Sorry, Page Not Found",
+        p404_text: "The link you followed may be broken, or the page may have been removed.<br>You can go back to the homepage or contact us for help.",
+        p404_btn_home: "Home",
+        p404_btn_back: "Go Back",
+        p404_label_search: "Or search for what you need:",
+        p404_ph_search: "Search the site...",
 
         // --- Hero Section ---
         hero_title: "Develop. Innovate. Grow Your Business.",
