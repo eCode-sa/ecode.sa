@@ -3,51 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تواصل معنا | eCode</title>
+  <title data-i18n="contact_page_title">تواصل معنا | eCode</title>
   <meta name="description" content="تواصل مع فريق eCode للحصول على استشارة مجانية. نقدم حلول التسويق الرقمي والإنتاج الإبداعي في السعودية">
-  
-  <!-- SEO Tags -->
+   
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://ecode.sa/contact/">
-  
-  <!-- Open Graph -->
+   
   <meta property="og:title" content="تواصل معنا | eCode">
   <meta property="og:description" content="تواصل مع فريق eCode للحصول على استشارة مجانية. نقدم حلول التسويق الرقمي والإنتاج الإبداعي في السعودية">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/contact/">
   <meta property="og:type" content="website">
-  
+   
   <link rel="icon" type="image/png" href="/favicon.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
-  <!-- استدعاء ملف الستايل الرئيسي -->
+   
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
-  <!-- الهيدر (يتم تحميله تلقائياً) -->
   <header id="main-header" class="main-header"></header>
 
   <main>
     <section class="page-hero">
-        <h1>تواصل معنا</h1>
-        <p>نحن هنا للإجابة على استفساراتك ومساعدتك في تحقيق أهدافك</p>
+        <h1 data-i18n="contact_hero_title">تواصل معنا</h1>
+        <p data-i18n="contact_hero_desc">نحن هنا للإجابة على استفساراتك ومساعدتك في تحقيق أهدافك</p>
     </section>
 
     <section class="contact-section">
         <div class="contact-grid">
             <div class="contact-info">
-                <h2>معلومات التواصل</h2>
+                <h2 data-i18n="contact_info_title">معلومات التواصل</h2>
                 
                 <div class="contact-item">
                     <div class="contact-icon">
                         <i class="fas fa-phone"></i>
                     </div>
                     <div class="contact-details">
-                        <h3>الهاتف / واتساب</h3>
+                        <h3 data-i18n="contact_lbl_phone_wa">الهاتف / واتساب</h3>
                         <p><a href="tel:0503666316">0503666316</a></p>
                     </div>
                 </div>
@@ -57,7 +53,7 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="contact-details">
-                        <h3>البريد الإلكتروني</h3>
+                        <h3 data-i18n="contact_lbl_email_title">البريد الإلكتروني</h3>
                         <p><a href="mailto:info@ecode.sa">info@ecode.sa</a></p>
                     </div>
                 </div>
@@ -67,12 +63,12 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="contact-details">
-                        <h3>الموقع</h3>
-                        <p>الرياض، المملكة العربية السعودية</p>
+                        <h3 data-i18n="contact_lbl_location_title">الموقع</h3>
+                        <p data-i18n="contact_location_val">الرياض، المملكة العربية السعودية</p>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-primary); font-size: 20px;">تابعنا على</h3>
+                <h3 style="margin-top: 40px; margin-bottom: 16px; color: var(--text-primary); font-size: 20px;" data-i18n="contact_follow_us">تابعنا على</h3>
                 <div class="social-links">
                     <a class="social-btn" href="https://wa.me/966503666316" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     <a class="social-btn" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -86,66 +82,66 @@
             </div>
 
             <div class="contact-form-wrapper">
-                <h2>أرسل لنا رسالة</h2>
+                <h2 data-i18n="contact_form_title">أرسل لنا رسالة</h2>
                 <form id="contactForm2" onsubmit="handleDetailedFormSubmit(event)">
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label>الاسم الكامل *</label>
-                            <input type="text" name="name" id="name2" required placeholder="أدخل اسمك الكامل">
+                            <label data-i18n="lbl_fullname">الاسم الكامل *</label>
+                            <input type="text" name="name" id="name2" required placeholder="أدخل اسمك الكامل" data-i18n-placeholder="ph_fullname">
                         </div>
                         <div class="form-group">
-                            <label>رقم الجوال *</label>
-                            <input type="tel" name="phone" id="phone2" required placeholder="05X XXX XXXX">
+                            <label data-i18n="lbl_mobile">رقم الجوال *</label>
+                            <input type="tel" name="phone" id="phone2" required placeholder="05X XXX XXXX" data-i18n-placeholder="ph_mobile">
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>البريد الإلكتروني *</label>
-                        <input type="email" name="email" id="email2" required placeholder="example@email.com">
+                        <label data-i18n="lbl_email_addr">البريد الإلكتروني *</label>
+                        <input type="email" name="email" id="email2" required placeholder="example@email.com" data-i18n-placeholder="ph_email_addr">
                     </div>
                     
                     <div class="form-group">
-                        <label>نوع الخدمة المطلوبة *</label>
+                        <label data-i18n="lbl_service_req">نوع الخدمة المطلوبة *</label>
                         <select name="service" id="service2" required>
-                            <option value="">اختر الخدمة</option>
-                            <option>هوية بصرية متكاملة</option>
-                            <option>إدارة حسابات التواصل</option>
-                            <option>تصميم وإنتاج محتوى</option>
-                            <option>تصوير فوتوغرافي</option>
-                            <option>إنتاج فيديو</option>
-                            <option>تصميم موقع إلكتروني</option>
-                            <option>متجر إلكتروني</option>
-                            <option>حملات إعلانية</option>
-                            <option>استشارات تسويقية</option>
-                            <option>خدمة أخرى</option>
+                            <option value="" data-i18n="opt_choose_service">اختر الخدمة</option>
+                            <option data-i18n="opt_srv_identity">هوية بصرية متكاملة</option>
+                            <option data-i18n="opt_srv_social">إدارة حسابات التواصل</option>
+                            <option data-i18n="opt_srv_content">تصميم وإنتاج محتوى</option>
+                            <option data-i18n="opt_srv_photo">تصوير فوتوغرافي</option>
+                            <option data-i18n="opt_srv_video">إنتاج فيديو</option>
+                            <option data-i18n="opt_srv_web">تصميم موقع إلكتروني</option>
+                            <option data-i18n="opt_srv_store">متجر إلكتروني</option>
+                            <option data-i18n="opt_srv_ads">حملات إعلانية</option>
+                            <option data-i18n="opt_srv_consult">استشارات تسويقية</option>
+                            <option data-i18n="opt_srv_other">خدمة أخرى</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label>اسم الشركة أو المشروع</label>
-                        <input type="text" name="company" id="company2" placeholder="اختياري">
+                        <label data-i18n="lbl_company">اسم الشركة أو المشروع</label>
+                        <input type="text" name="company" id="company2" placeholder="اختياري" data-i18n-placeholder="ph_company">
                     </div>
                     
                     <div class="form-group">
-                        <label>تفاصيل المشروع *</label>
-                        <textarea name="message" id="message2" required placeholder="اكتب نبذة عن مشروعك واحتياجاتك... كلما كانت التفاصيل أوضح، كان العرض أدق"></textarea>
+                        <label data-i18n="lbl_project_details">تفاصيل المشروع *</label>
+                        <textarea name="message" id="message2" required placeholder="اكتب نبذة عن مشروعك واحتياجاتك... كلما كانت التفاصيل أوضح، كان العرض أدق" data-i18n-placeholder="ph_project_details_long"></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label>الميزانية المتوقعة</label>
+                        <label data-i18n="lbl_budget">الميزانية المتوقعة</label>
                         <select name="budget" id="budget2">
-                            <option value="">اختر الميزانية (اختياري)</option>
-                            <option>أقل من 5,000 ريال</option>
-                            <option>5,000 - 10,000 ريال</option>
-                            <option>10,000 - 20,000 ريال</option>
-                            <option>20,000 - 50,000 ريال</option>
-                            <option>أكثر من 50,000 ريال</option>
+                            <option value="" data-i18n="opt_choose_budget">اختر الميزانية (اختياري)</option>
+                            <option data-i18n="opt_bud_under5">أقل من 5,000 ريال</option>
+                            <option data-i18n="opt_bud_5_10">5,000 - 10,000 ريال</option>
+                            <option data-i18n="opt_bud_10_20">10,000 - 20,000 ريال</option>
+                            <option data-i18n="opt_bud_20_50">20,000 - 50,000 ريال</option>
+                            <option data-i18n="opt_bud_over50">أكثر من 50,000 ريال</option>
                         </select>
                     </div>
                     
                     <button type="submit" class="btn-submit">
-                        <span>إرسال الطلب</span>
+                        <span data-i18n="btn_send_request">إرسال الطلب</span>
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </form>
@@ -153,33 +149,33 @@
         </div>
 
         <div class="working-hours">
-            <h2>ساعات العمل</h2>
+            <h2 data-i18n="hours_title">ساعات العمل</h2>
             <div class="hours-grid">
                 <div class="hours-item">
-                    <span class="hours-day">الأحد - الخميس</span>
-                    <span class="hours-time">9:00 ص - 6:00 م</span>
+                    <span class="hours-day" data-i18n="hours_sun_thu">الأحد - الخميس</span>
+                    <span class="hours-time" data-i18n="hours_9_6">9:00 ص - 6:00 م</span>
                 </div>
                 <div class="hours-item">
-                    <span class="hours-day">الجمعة</span>
-                    <span class="hours-time">مغلق</span>
+                    <span class="hours-day" data-i18n="hours_fri">الجمعة</span>
+                    <span class="hours-time" data-i18n="hours_closed">مغلق</span>
                 </div>
                 <div class="hours-item">
-                    <span class="hours-day">السبت</span>
-                    <span class="hours-time">10:00 ص - 4:00 م</span>
+                    <span class="hours-day" data-i18n="hours_sat">السبت</span>
+                    <span class="hours-time" data-i18n="hours_10_4">10:00 ص - 4:00 م</span>
                 </div>
                 <div class="hours-item">
-                    <span class="hours-day">الدعم الفني</span>
-                    <span class="hours-time">على مدار الساعة</span>
+                    <span class="hours-day" data-i18n="hours_support">الدعم الفني</span>
+                    <span class="hours-time" data-i18n="hours_24_7">على مدار الساعة</span>
                 </div>
             </div>
         </div>
     </section>
   </main>
 
-  <!-- الفوتر (يتم تحميله تلقائياً) -->
   <footer id="main-footer" class="footer"></footer>
 
-  <!-- استدعاء ملفات الجافاسكريبت المشتركة -->
+  <script src="../assets/js/i18n.js"></script>
+  
   <script src="../assets/js/layout.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
