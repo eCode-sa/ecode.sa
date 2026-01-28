@@ -124,6 +124,145 @@ window.SYSTEM_TRANSLATIONS = {
         footer_copyright: "© 2025 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
         whatsapp_tooltip: "تواصل معنا عبر واتساب",
 
+        // --- Services Page ---
+        services_page_title: "خدماتنا | eCode",
+        services_hero_title: "خدماتنا الشاملة",
+        services_hero_desc: "حلول متكاملة تغطي جميع احتياجاتك الرقمية، من الفكرة إلى التنفيذ والنمو",
+        services_sec_title: "ماذا نقدم لك؟",
+        services_sec_subtitle: "قائمة خدماتنا المتنوعة لتلبية كافة احتياجات مشروعك",
+        
+        lbl_available: "متاح",
+        lbl_soon: "قريبا",
+        link_order_service: "اطلب الخدمة ←",
+        link_soon: "قريباً",
+
+        // S1
+        sp_srv1_title: "إدارة حسابات التواصل الاجتماعي",
+        sp_srv1_desc: "إدارة شاملة لحضور العميل على منصات التواصل (Instagram, TikTok, X, Snapchat, LinkedIn, Facebook).",
+        sp_srv1_f1: "إعداد خطط محتوى شهرية",
+        sp_srv1_f2: "كتابة المحتوى التسويقي والإعلاني",
+        sp_srv1_f3: "تصميم منشورات احترافية",
+        sp_srv1_f4: "إعداد ونشر الستوري و Reels",
+        sp_srv1_f5: "إدارة التعليقات والرسائل",
+        sp_srv1_f6: "تقارير أداء دورية",
+
+        // S2
+        sp_srv2_title: "تصميم الهوية البصرية",
+        sp_srv2_desc: "بناء هوية متكاملة تعبر عن شخصية المشروع، وتشمل تصميم الشعار وتطبيقات الهوية المختلفة.",
+        sp_srv2_f1: "تصميم شعار رئيسي + أيقونة",
+        sp_srv2_f2: "اختيار الألوان والخطوط",
+        sp_srv2_f3: "إعداد نماذج تطبيقات للهوية",
+        sp_srv2_f4: "إعداد دليل الهوية (Brand Book)",
+
+        // S3
+        sp_srv3_title: "إنتاج فيديو موشن جرافيك",
+        sp_srv3_desc: "فيديوهات موشن جرافيك تعريفية وتسويقية، تشمل كتابة السكربت، التصميم، والتحريك الاحترافي.",
+        sp_srv3_f1: "كتابة السكربت وتقسيم المشاهد",
+        sp_srv3_f2: "تصميم العناصر الرسومية",
+        sp_srv3_f3: "تحريك العناصر والانتقالات",
+        sp_srv3_f4: "إضافة مؤثرات صوتية وتعليق صوتي",
+
+        // S4
+        sp_srv4_title: "تصوير المنتجات",
+        sp_srv4_desc: "تصوير احترافي لمنتجات المتاجر الإلكترونية والعلامات التجارية لإبراز جودتها وزيادة جاذبيتها.",
+        sp_srv4_f1: "تصوير بخلفيات بيضاء أو مخصصة",
+        sp_srv4_f2: "زوايا متعددة لكل منتج",
+        sp_srv4_f3: "تحسين الإضاءة والألوان",
+        sp_srv4_f4: "لقطات Lifestyle للمنتج",
+
+        // S5
+        sp_srv5_title: "تصوير المواقع والأشخاص",
+        sp_srv5_desc: "جلسات تصوير ميدانية في موقع العميل، تشمل تصوير فريق العمل والمكاتب والمتاجر.",
+        sp_srv5_f1: "تصوير الأشخاص (بروفايل - فريق العمل)",
+        sp_srv5_f2: "تصوير المكاتب والعيادات والمتاجر",
+        sp_srv5_f3: "تجهيز الإضاءة والمعدات",
+        sp_srv5_f4: "تعديل ومعالجة الصور",
+
+        // S6
+        sp_srv6_title: "تصوير الفيديو التعريفي",
+        sp_srv6_desc: "فيديو تصوير حقيقي للتعريف بالمكان أو الخدمة، يعرض تفاصيل عملك بشكل احترافي وجذاب.",
+        sp_srv6_f1: "تصوير لقطات عامة وتفاصيل (B-roll)",
+        sp_srv6_f2: "إمكانية تصوير الموظفين أو العملاء",
+        sp_srv6_f3: "كتابة نص وإضافة نصوص على الشاشة",
+        sp_srv6_f4: "مونتاج احترافي مع موسيقى",
+
+        // S7
+        sp_srv7_title: "إدارة الحملات الإعلانية",
+        sp_srv7_desc: "إدارة الحملات الإعلانية على المنصات الرقمية (Meta, TikTok, Snapchat, Google) لتحقيق أهدافك التسويقية.",
+        sp_srv7_f1: "إعداد وتخطيط الحملات",
+        sp_srv7_f2: "تصميم الإعلانات وكتابة النصوص",
+        sp_srv7_f3: "ضبط الاستهداف والجمهور",
+        sp_srv7_f4: "المتابعة والتحسين المستمر",
+
+        // S8
+        sp_srv8_title: "تصميم وتطوير المواقع",
+        sp_srv8_desc: "تصميم وبرمجة مواقع تعريفية للشركات والمشاريع، متوافقة مع الهوية ومتجاوبة مع جميع الأجهزة.",
+        sp_srv8_f1: "تصميم صفحات رئيسية وداخلية",
+        sp_srv8_f2: "تصميم متجاوب (Responsive)",
+        sp_srv8_f3: "إعداد نماذج التواصل",
+        sp_srv8_f4: "تحسين تجربة المستخدم (UX)",
+
+        // S9
+        sp_srv9_title: "موشن جرافيك كامل",
+        sp_srv9_desc: "فيديو أنيميشن كامل (Explainer Video) لشرح خدمة أو منتج بأسلوب قصصي ومؤثرات بصرية متقدمة.",
+        sp_srv9_f1: "إعداد سكربت و Storyboard",
+        sp_srv9_f2: "تصميم Style خاص وتصميم شخصيات",
+        sp_srv9_f3: "تحريك متقدم (Character Animation)",
+        sp_srv9_f4: "تعليق صوتي احترافي",
+
+        // S10
+        sp_srv10_title: "تحليل الحسابات الرقمية",
+        sp_srv10_desc: "تحليل أداء الحسابات على السوشيال والمنصات الإعلانية لتقديم رؤى وتوصيات لتحسين النتائج.",
+        sp_srv10_f1: "تحليل أداء المنشورات والحملات",
+        sp_srv10_f2: "تحليل الجمهور المستهدف",
+        sp_srv10_f3: "مقارنة مع المنافسين",
+        sp_srv10_f4: "إعداد تقرير شامل مع التوصيات",
+
+        // S11
+        sp_srv11_title: "تحسين تجربة المستخدم",
+        sp_srv11_desc: "تقييم تجربة المستخدم على المواقع والمتاجر الرقمية لتحسين سهولة الاستخدام وزيادة معدلات التحويل.",
+        sp_srv11_f1: "مراجعة مسار المستخدم",
+        sp_srv11_f2: "تحليل تجربة الجوال",
+        sp_srv11_f3: "تقييم سهولة الوصول للمعلومات",
+        sp_srv11_f4: "تقرير بنقاط القوة والضعف",
+
+        // S12
+        sp_srv12_title: "السياسات القانونية",
+        sp_srv12_desc: "صياغة سياسات قانونية للمواقع والمتاجر، تشمل سياسة الخصوصية والكوكيز والشروط والأحكام.",
+        sp_srv12_f1: "إعداد سياسة خصوصية متوافقة (PDPL)",
+        sp_srv12_f2: "إعداد سياسة الكوكيز",
+        sp_srv12_f3: "تخصيص البنود حسب النشاط",
+        sp_srv12_f4: "تسليم نصوص جاهزة للنشر",
+
+        // S13
+        sp_srv13_title: "تغطية الفعاليات",
+        sp_srv13_desc: "تغطية إعلامية للفعاليات حضورياً بالصور والفيديو لتوثيق الحدث واستخدامه في التسويق.",
+        sp_srv13_f1: "تغطية فوتوغرافية للحدث",
+        sp_srv13_f2: "تصوير فيديو مع Highlight",
+        sp_srv13_f3: "تعديل وتسليم المواد",
+
+        // S14
+        sp_srv14_title: "إنشاء المتاجر (سلة)",
+        sp_srv14_desc: "تأسيس متجر إلكتروني كامل عبر منصة سلة، يشمل ضبط الإعدادات وتصميم الواجهة وإضافة المنتجات.",
+        sp_srv14_f1: "إنشاء الحساب وضبط الإعدادات",
+        sp_srv14_f2: "تصميم واجهة المتجر",
+        sp_srv14_f3: "إضافة المنتجات وربط الدفع والشحن",
+        sp_srv14_f4: "إعداد صفحات السياسات",
+
+        // S15
+        sp_srv15_title: "تطبيقات الجوال",
+        sp_srv15_desc: "خدمة تطوير تطبيقات جوال بسيطة أو متوسطة التعقيد، تشمل التصميم والبرمجة والرفع على المتاجر.",
+        sp_srv15_f1: "تصميم واجهات UI/UX",
+        sp_srv15_f2: "بناء شاشات التطبيق الأساسية",
+        sp_srv15_f3: "ربط بقاعدة بيانات (عند الحاجة)",
+        sp_srv15_f4: "الرفع على متاجر التطبيقات",
+
+        // CTA
+        cta_title: "هل لديك مشروع في ذهنك؟",
+        cta_desc: "تواصل معنا الآن للحصول على استشارة مجانية ومناقشة كيف يمكننا تحويل فكرتك إلى واقع.",
+        cta_btn_start: "ابدأ مشروعك الآن",
+        cta_btn_plans: "شاهد الباقات",
+
         // --- Privacy Policy Page ---
         priv_page_title: "سياسة الخصوصية | eCode",
         priv_hero_title: "سياسة الخصوصية",
@@ -314,6 +453,145 @@ window.SYSTEM_TRANSLATIONS = {
         footer_email_label: "Email:",
         footer_copyright: "© 2025 eCode Co. All Rights Reserved.",
         whatsapp_tooltip: "Chat with us on WhatsApp",
+
+        // --- Services Page ---
+        services_page_title: "Our Services | eCode",
+        services_hero_title: "Comprehensive Services",
+        services_hero_desc: "Integrated solutions covering all your digital needs, from concept to execution and growth.",
+        services_sec_title: "What Do We Offer?",
+        services_sec_subtitle: "Our diverse list of services to meet all your project needs",
+        
+        lbl_available: "Available",
+        lbl_soon: "Coming Soon",
+        link_order_service: "Order Service ←",
+        link_soon: "Coming Soon",
+
+        // S1
+        sp_srv1_title: "Social Media Management",
+        sp_srv1_desc: "Comprehensive management of client presence on platforms (Instagram, TikTok, X, Snapchat, LinkedIn, Facebook).",
+        sp_srv1_f1: "Monthly content plan creation",
+        sp_srv1_f2: "Marketing and ad copywriting",
+        sp_srv1_f3: "Professional post design",
+        sp_srv1_f4: "Story and Reels creation & publishing",
+        sp_srv1_f5: "Comments and messages management",
+        sp_srv1_f6: "Periodic performance reports",
+
+        // S2
+        sp_srv2_title: "Visual Identity Design",
+        sp_srv2_desc: "Building a complete identity expressing the project's personality, including logo design and applications.",
+        sp_srv2_f1: "Main Logo + Icon design",
+        sp_srv2_f2: "Color palette and font selection",
+        sp_srv2_f3: "Identity application mockups",
+        sp_srv2_f4: "Brand Book creation",
+
+        // S3
+        sp_srv3_title: "Motion Graphics Video",
+        sp_srv3_desc: "Introductory and marketing motion graphics videos, including scriptwriting, design, and animation.",
+        sp_srv3_f1: "Scriptwriting and scene breakdown",
+        sp_srv3_f2: "Graphic element design",
+        sp_srv3_f3: "Element animation and transitions",
+        sp_srv3_f4: "Sound effects and voiceover",
+
+        // S4
+        sp_srv4_title: "Product Photography",
+        sp_srv4_desc: "Professional photography for e-commerce products and brands to highlight quality and appeal.",
+        sp_srv4_f1: "White background or styled shoots",
+        sp_srv4_f2: "Multiple angles for each product",
+        sp_srv4_f3: "Lighting and color enhancement",
+        sp_srv4_f4: "Lifestyle shots for the product",
+
+        // S5
+        sp_srv5_title: "Location & Portrait Photography",
+        sp_srv5_desc: "On-site photography sessions covering team members, offices, and stores.",
+        sp_srv5_f1: "Portrait photography (Profile/Team)",
+        sp_srv5_f2: "Office, clinic, and store photography",
+        sp_srv5_f3: "Lighting and equipment setup",
+        sp_srv5_f4: "Photo editing and retouching",
+
+        // S6
+        sp_srv6_title: "Introductory Video Production",
+        sp_srv6_desc: "Real-footage video to introduce a place or service, showcasing your work details professionally.",
+        sp_srv6_f1: "General shots and B-roll details",
+        sp_srv6_f2: "Employee or customer filming options",
+        sp_srv6_f3: "Scripting and on-screen text",
+        sp_srv6_f4: "Professional editing with music",
+
+        // S7
+        sp_srv7_title: "Ad Campaign Management",
+        sp_srv7_desc: "Managing ad campaigns on digital platforms (Meta, TikTok, Snapchat, Google) to achieve marketing goals.",
+        sp_srv7_f1: "Campaign planning and setup",
+        sp_srv7_f2: "Ad design and copywriting",
+        sp_srv7_f3: "Targeting and audience adjustment",
+        sp_srv7_f4: "Monitoring and continuous optimization",
+
+        // S8
+        sp_srv8_title: "Website Design & Development",
+        sp_srv8_desc: "Designing and programming corporate websites, consistent with identity and responsive to all devices.",
+        sp_srv8_f1: "Home and inner page design",
+        sp_srv8_f2: "Responsive design",
+        sp_srv8_f3: "Contact form setup",
+        sp_srv8_f4: "User Experience (UX) optimization",
+
+        // S9
+        sp_srv9_title: "Full Motion Graphics",
+        sp_srv9_desc: "Full animation video (Explainer Video) to explain a service or product with storytelling and advanced effects.",
+        sp_srv9_f1: "Script and Storyboard creation",
+        sp_srv9_f2: "Style and character design",
+        sp_srv9_f3: "Advanced Character Animation",
+        sp_srv9_f4: "Professional voiceover",
+
+        // S10
+        sp_srv10_title: "Digital Account Analysis",
+        sp_srv10_desc: "Analyzing social media and ad platform performance to provide insights and improvement recommendations.",
+        sp_srv10_f1: "Post and campaign performance analysis",
+        sp_srv10_f2: "Target audience analysis",
+        sp_srv10_f3: "Competitor comparison",
+        sp_srv10_f4: "Comprehensive report with recommendations",
+
+        // S11
+        sp_srv11_title: "UX Improvement",
+        sp_srv11_desc: "Evaluating user experience on websites and digital stores to improve usability and conversion rates.",
+        sp_srv11_f1: "User journey review",
+        sp_srv11_f2: "Mobile experience analysis",
+        sp_srv11_f3: "Information accessibility evaluation",
+        sp_srv11_f4: "Strengths and weaknesses report",
+
+        // S12
+        sp_srv12_title: "Legal Policies",
+        sp_srv12_desc: "Drafting legal policies for websites and stores, including Privacy Policy, Cookies, and Terms & Conditions.",
+        sp_srv12_f1: "PDPL compliant privacy policy",
+        sp_srv12_f2: "Cookie policy preparation",
+        sp_srv12_f3: "Customizing clauses per activity",
+        sp_srv12_f4: "Ready-to-publish text delivery",
+
+        // S13
+        sp_srv13_title: "Event Coverage",
+        sp_srv13_desc: "Media coverage for events (photo/video) to document the event and use for marketing.",
+        sp_srv13_f1: "Event photography coverage",
+        sp_srv13_f2: "Video coverage with Highlight",
+        sp_srv13_f3: "Editing and material delivery",
+
+        // S14
+        sp_srv14_title: "Salla Store Creation",
+        sp_srv14_desc: "Establishing a complete e-store via Salla platform, including settings, interface design, and product addition.",
+        sp_srv14_f1: "Account creation and settings",
+        sp_srv14_f2: "Store interface design",
+        sp_srv14_f3: "Product addition and payment/shipping linking",
+        sp_srv14_f4: "Policy pages setup",
+
+        // S15
+        sp_srv15_title: "Mobile Apps",
+        sp_srv15_desc: "Development of simple or medium-complexity mobile apps, including design, programming, and store uploading.",
+        sp_srv15_f1: "UI/UX design",
+        sp_srv15_f2: "Core app screen building",
+        sp_srv15_f3: "Database connection (if needed)",
+        sp_srv15_f4: "Uploading to app stores",
+
+        // CTA
+        cta_title: "Have a project in mind?",
+        cta_desc: "Contact us now for a free consultation and discuss how we can turn your idea into reality.",
+        cta_btn_start: "Start Project Now",
+        cta_btn_plans: "View Plans",
 
         // --- Privacy Policy Page ---
         priv_page_title: "Privacy Policy | eCode",
