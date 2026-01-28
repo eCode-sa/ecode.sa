@@ -11,78 +11,155 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
-        /* ================= Core Layout (نفس الأدمن) ================= */
-        body { margin: 0; overflow-x: hidden; background-color: #f3f4f6; font-family: 'Tajawal', sans-serif; }
+        /* ============================================================
+           1. تعريف متغيرات الألوان (Theme Variables)
+           هنا يكمن سر التحويل بين الفاتح والداكن
+           ============================================================ */
+        :root {
+            /* الوضع الفاتح (الافتراضي) */
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --hover-bg: #f9fafb;
+            --chart-bg: #f9fafb;
+            --icon-bg-safe: #ecfdf5;
+            --icon-bg-warn: #fffbeb;
+            --icon-bg-info: #eff6ff;
+            --icon-bg-danger: #fef2f2;
+        }
+
+        /* الوضع الداكن (Dark Mode Overrides) */
+        [data-theme="dark"] {
+            --bg-body: #111827;       /* خلفية الصفحة سوداء غامقة */
+            --bg-card: #1f2937;       /* البطاقات رمادي غامق */
+            --text-primary: #f9fafb;  /* النص أبيض */
+            --text-secondary: #9ca3af; /* النص الثانوي رمادي فاتح */
+            --border-color: #374151;  /* الحدود رمادية */
+            --hover-bg: #374151;      /* لون التحويم */
+            --chart-bg: #111827;      /* خلفية الرسوم البيانية */
+            --icon-bg-safe: rgba(16, 185, 129, 0.2);
+            --icon-bg-warn: rgba(245, 158, 11, 0.2);
+            --icon-bg-info: rgba(59, 130, 246, 0.2);
+            --icon-bg-danger: rgba(239, 68, 68, 0.2);
+        }
+
+        /* ============================================================
+           2. تنسيق الهيكل (Layout) باستخدام المتغيرات
+           ============================================================ */
+        body { 
+            margin: 0; 
+            overflow-x: hidden; 
+            background-color: var(--bg-body); /* استخدام المتغير */
+            color: var(--text-primary);
+            font-family: 'Tajawal', sans-serif; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
         .app-container { display: flex; min-height: 100vh; }
         
-        /* Sidebar */
-        .sidebar { width: 260px; background: #fff; border-left: 1px solid #e5e7eb; display: flex; flex-direction: column; position: fixed; height: 100%; z-index: 1000; transition: all 0.3s; }
+        /* Sidebar & Topbar */
+        .sidebar { 
+            width: 260px; 
+            background: var(--bg-card); 
+            border-left: 1px solid var(--border-color); 
+            display: flex; flex-direction: column; position: fixed; height: 100%; z-index: 1000; 
+            transition: all 0.3s; 
+        }
         .sidebar.active { transform: translateX(0) !important; }
         
-        /* Main Content Wrapper */
         .main-content { flex: 1; margin-right: 260px; display: flex; flex-direction: column; transition: all 0.3s; }
         
-        /* Topbar */
-        .topbar { height: 70px; background: #fff; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; position: sticky; top: 0; z-index: 900; }
+        .topbar { 
+            height: 70px; 
+            background: var(--bg-card); 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; align-items: center; justify-content: space-between; padding: 0 30px; position: sticky; top: 0; z-index: 900; 
+        }
         
-        /* Dashboard Area */
         .dashboard-content { padding: 30px; }
 
-        /* Responsive */
         @media (max-width: 992px) {
             .sidebar { transform: translateX(100%); }
             .main-content { margin-right: 0; }
         }
 
-        /* ================= Finance Specific Cards (تخصيص المالية) ================= */
+        /* ============================================================
+           3. تنسيق البطاقات (Cards)
+           ============================================================ */
         .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px;
         }
 
         .stat-card {
-            background: #fff;
+            background: var(--bg-card);
             padding: 25px;
             border-radius: 16px;
-            border: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            border: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: flex-start;
             transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
         .stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         
-        /* خطوط ملونة لتمييز البطاقات */
+        /* Colored Borders */
         .stat-card.safe { border-right: 4px solid #10b981; }
         .stat-card.warn { border-right: 4px solid #f59e0b; }
         .stat-card.danger { border-right: 4px solid #ef4444; }
         .stat-card.info { border-right: 4px solid #3b82f6; }
 
-        .stat-value { font-size: 28px; font-weight: 800; color: #1f2937; margin-bottom: 5px; }
-        .stat-label { font-size: 14px; color: #6b7280; font-weight: 500; }
-        .stat-icon { font-size: 24px; opacity: 0.2; }
+        .stat-value { font-size: 28px; font-weight: 800; color: var(--text-primary); margin-bottom: 5px; }
+        .stat-label { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
+        .stat-icon { font-size: 24px; opacity: 0.5; }
 
+        /* Trend Indicators */
         .trend-indicator {
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 20px;
-            margin-top: 10px;
-            display: inline-block;
-            font-weight: bold;
+            font-size: 12px; padding: 4px 8px; border-radius: 20px; margin-top: 10px; display: inline-block; font-weight: bold;
         }
-        .trend-up { background: #d1fae5; color: #059669; }
-        .trend-down { background: #fee2e2; color: #b91c1c; }
+        .trend-up { background: var(--icon-bg-safe); color: #059669; }
+        [data-theme="dark"] .trend-up { color: #34d399; }
+        
+        .trend-down { background: var(--icon-bg-danger); color: #b91c1c; }
+        [data-theme="dark"] .trend-down { color: #f87171; }
+        
+        .trend-warn { background: var(--icon-bg-warn); color: #b45309; }
+        [data-theme="dark"] .trend-warn { color: #fbbf24; }
 
+        /* Section Cards */
         .section-card {
-            background: #fff;
+            background: var(--bg-card);
             border-radius: 16px;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--border-color);
             padding: 25px;
             height: 100%;
+        }
+        
+        h2, h4, h6 { color: var(--text-primary) !important; }
+        p, small, span.text-muted { color: var(--text-secondary) !important; }
+
+        /* القائمة داخل البطاقات */
+        .list-item-custom {
+            padding-bottom: 15px; border-bottom: 1px solid var(--border-color); margin-bottom: 15px;
+        }
+        .list-item-custom:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        /* أزرار العمليات */
+        .btn-action {
+            width: 100%; margin-top: 10px; padding: 8px; 
+            border: 1px solid var(--border-color); 
+            background: var(--bg-body); 
+            color: var(--text-primary);
+            border-radius: 6px; font-size: 12px; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-action:hover { background: var(--border-color); }
+
+        /* منطقة الرسم البياني الفارغة */
+        .chart-placeholder {
+            height: 300px; display: flex; align-items: center; justify-content: center;
+            background: var(--chart-bg); 
+            border-radius: 12px; border: 2px dashed var(--border-color);
         }
     </style>
 </head>
@@ -91,25 +168,19 @@
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="Layout.toggleSidebar()"></div>
 
     <div class="app-container">
-        
         <aside id="appSidebar" class="sidebar"></aside>
 
         <div class="main-content">
-            
             <header id="appTopbar" class="topbar"></header>
 
             <main class="dashboard-content fade-in" id="workspace">
                 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
-                        <h2 style="color: #1f2937; margin: 0; font-weight: 800;">
-                            غرفة الرقابة المالية
-                        </h2>
-                        <p style="color: #6b7280; margin-top: 5px;">
-                            نظرة شمولية على السيولة والالتزامات وفق معايير الحوكمة
-                        </p>
+                        <h2 style="font-weight: 800;">غرفة الرقابة المالية</h2>
+                        <p>نظرة شمولية على السيولة والالتزامات وفق معايير الحوكمة</p>
                     </div>
-                    <div style="background: #ecfdf5; border: 1px solid #a7f3d0; color: #047857; padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+                    <div style="background: var(--icon-bg-safe); border: 1px solid #10b981; color: #10b981; padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: bold; display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-check-circle"></i> السياسات نشطة (v2.4)
                     </div>
                 </div>
@@ -128,7 +199,7 @@
                         <div>
                             <div class="stat-value" id="ap-balance">--</div>
                             <div class="stat-label" data-i18n="fin_label_ap">مستحقات الموردين</div>
-                            <span class="trend-indicator" style="background: #fffbeb; color: #b45309;">تستحق خلال 30 يوم</span>
+                            <span class="trend-indicator trend-warn">تستحق خلال 30 يوم</span>
                         </div>
                         <i class="fas fa-file-invoice-dollar stat-icon" style="color: #f59e0b;"></i>
                     </div>
@@ -146,7 +217,7 @@
                         <div>
                             <div class="stat-value" style="color: #ef4444;">منخفض</div>
                             <div class="stat-label" data-i18n="fin_label_risk">مؤشر المخاطر</div>
-                            <span class="trend-indicator" style="background: #fef2f2; color: #ef4444;">لا توجد مخالفات</span>
+                            <span class="trend-indicator trend-down">لا توجد مخالفات</span>
                         </div>
                         <i class="fas fa-shield-alt stat-icon" style="color: #ef4444;"></i>
                     </div>
@@ -156,11 +227,11 @@
                     
                     <div class="col-lg-8" style="flex: 0 0 66.666%; max-width: 66.666%; padding: 0 12px; box-sizing: border-box;">
                         <div class="section-card">
-                            <h4 style="margin-bottom: 20px; font-weight: bold; color: #1f2937;">
+                            <h4 style="margin-bottom: 20px; font-weight: bold;">
                                 <i class="fas fa-chart-line me-2"></i> التدفقات النقدية (2025)
                             </h4>
-                            <div style="height: 300px; display: flex; align-items: center; justify-content: center; background: #f9fafb; border-radius: 12px; border: 2px dashed #e5e7eb;">
-                                <p style="color: #9ca3af;">سيتم تفعيل الرسم البياني (Chart.js) هنا</p>
+                            <div class="chart-placeholder">
+                                <p style="color: var(--text-secondary);">سيتم تفعيل الرسم البياني (Chart.js) هنا</p>
                             </div>
                         </div>
                     </div>
@@ -168,29 +239,29 @@
                     <div class="col-lg-4" style="flex: 0 0 33.333%; max-width: 33.333%; padding: 0 12px; box-sizing: border-box;">
                         <div class="section-card">
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <h4 style="margin: 0; font-weight: bold; color: #1f2937;">الاعتمادات المعلقة</h4>
-                                <span style="background: #fee2e2; color: #b91c1c; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">3 طلبات</span>
+                                <h4 style="margin: 0; font-weight: bold;">الاعتمادات المعلقة</h4>
+                                <span style="background: var(--icon-bg-danger); color: #ef4444; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">3 طلبات</span>
                             </div>
                             
-                            <div style="display: flex; flex-direction: column; gap: 15px;">
-                                <div style="padding-bottom: 15px; border-bottom: 1px solid #f3f4f6;">
+                            <div style="display: flex; flex-direction: column;">
+                                <div class="list-item-custom">
                                     <div class="d-flex justify-content-between">
-                                        <span style="font-weight: bold; color: #374151;">شركة التقنية المتقدمة</span>
-                                        <span style="font-size: 12px; color: #9ca3af;">2 س</span>
+                                        <span style="font-weight: bold; color: var(--text-primary);">شركة التقنية المتقدمة</span>
+                                        <span style="font-size: 12px; color: var(--text-secondary);">2 س</span>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mt-1">
-                                        <span style="font-size: 13px; color: #6b7280;">فاتورة خوادم</span>
+                                        <span style="font-size: 13px; color: var(--text-secondary);">فاتورة خوادم</span>
                                         <span style="font-weight: bold; color: #ef4444;">45,000 ر.س</span>
                                     </div>
-                                    <button onclick="location.href='approvals.html'" style="width: 100%; margin-top: 10px; padding: 6px; border: 1px solid #e5e7eb; background: #fff; border-radius: 6px; font-size: 12px; cursor: pointer;">مراجعة</button>
+                                    <button class="btn-action" onclick="location.href='approvals.html'">مراجعة واعتماد</button>
                                 </div>
-                                <div>
+                                <div class="list-item-custom">
                                     <div class="d-flex justify-content-between">
-                                        <span style="font-weight: bold; color: #374151;">مؤسسة التوريد</span>
-                                        <span style="font-size: 12px; color: #9ca3af;">أمس</span>
+                                        <span style="font-weight: bold; color: var(--text-primary);">مؤسسة التوريد</span>
+                                        <span style="font-size: 12px; color: var(--text-secondary);">أمس</span>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mt-1">
-                                        <span style="font-size: 13px; color: #6b7280;">أثاث مكتبي</span>
+                                        <span style="font-size: 13px; color: var(--text-secondary);">أثاث مكتبي</span>
                                         <span style="font-weight: bold; color: #ef4444;">12,500 ر.س</span>
                                     </div>
                                 </div>
@@ -205,7 +276,6 @@
     </div>
 
     <script src="../assets/js/core/i18n.js"></script>
-    
     <script src="../assets/js/data/company_data.js"></script>
     <script src="../assets/js/data/hr-policies.js"></script>
     <script src="../assets/js/data/financial-governance.js"></script>
@@ -217,22 +287,20 @@
 
     <script src="../assets/js/layout.js"></script>
     <script src="../assets/js/components/bot.js"></script>
-
     <script src="../assets/js/system.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Force Role for Sidebar Display
             localStorage.setItem('userRole', 'cfo'); 
-
-            // Simulate Data Fetching
+            
+            // Mock Data
             setTimeout(() => {
                 document.getElementById('cash-balance').innerText = "1,250,000 ر.س";
                 document.getElementById('ap-balance').innerText = "145,000 ر.س";
                 document.getElementById('ar-balance').innerText = "320,000 ر.س";
             }, 200);
 
-            console.log("✅ CFO Dashboard: Layout fully synchronized with Admin standard.");
+            console.log("✅ CFO Dashboard: Dark Mode Fully Supported Now.");
         });
     </script>
 
