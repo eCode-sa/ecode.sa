@@ -1,38 +1,51 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // تأكد من صحة هذا الرابط لموقعك
-    const baseURL = "https://ecode.sa/components/"; 
-    
-    // 1. اكتشاف لغة الصفحة الحالية من وسم html
-    // إذا كانت en نستخدم اللاحقة -en، غير ذلك نتركها فارغة للعربي
-    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
-    const fileSuffix = currentLang === 'en' ? '-en' : '';
+    // يمكنك استخدام رابط كامل أو نسبي. للأمان في التجربة المحلية نفضل النسبي:
+    // تأكد أن ملفات header.html و footer.html موجودة داخل مجلد components
+    const baseURL = "components/"; 
+    // أو استخدم الرابط الخاص بك إذا كانت الملفات مرفوعة: "https://ecode.sa/components/"
 
-    // 2. جلب الهيدر المناسب (header.html أو header-en.html)
-    fetch(baseURL + 'header' + fileSuffix + '.html')
+    // 1. جلب الهيدر الموحد (header.html)
+    fetch(baseURL + 'header.html')
         .then(response => {
             if (!response.ok) throw new Error("Header file not found");
             return response.text();
         })
         .then(data => {
             document.getElementById('main-header').innerHTML = data;
+            
+            // تهيئة الثيم (Dark/Light)
             initializeTheme();
+            
+            // تلوين الرابط النشط
             highlightActivePage();
+
+            // هام جداً: تطبيق اللغة المختارة فور تحميل الهيدر
+            const savedLang = localStorage.getItem('userLanguage') || 'ar';
+            if (typeof applyLanguage === 'function') {
+                applyLanguage(savedLang);
+            }
         })
         .catch(err => console.error('Error loading header:', err));
 
-    // 3. جلب الفوتر المناسب (footer.html أو footer-en.html)
-    fetch(baseURL + 'footer' + fileSuffix + '.html')
+    // 2. جلب الفوتر الموحد (footer.html)
+    fetch(baseURL + 'footer.html')
         .then(response => {
             if (!response.ok) throw new Error("Footer file not found");
             return response.text();
         })
         .then(data => {
             document.getElementById('main-footer').innerHTML = data;
+
+            // هام جداً: تطبيق اللغة المختارة فور تحميل الفوتر
+            const savedLang = localStorage.getItem('userLanguage') || 'ar';
+            if (typeof applyLanguage === 'function') {
+                applyLanguage(savedLang);
+            }
         })
         .catch(err => console.error('Error loading footer:', err));
 });
 
-// --- دوال الثيم وتلوين الروابط ---
+// --- دوال الثيم وتلوين الروابط (كما هي لم تتغير) ---
 function initializeTheme() {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -51,6 +64,7 @@ function highlightActivePage() {
     const navLinks = document.querySelectorAll('.nav a');
     
     navLinks.forEach(link => {
+        // مقارنة الرابط الحالي بروابط القائمة
         if (link.href === currentPath) {
             link.style.color = 'var(--lavender-light)';
         }
