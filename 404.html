@@ -3,58 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الصفحة غير موجودة | eCode</title>
+  <title data-i18n="page_title_404">الصفحة غير موجودة | eCode</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="الصفحة غير موجودة - eCode">
-  
-  <!-- Favicons (Back 1 level) -->
+   
   <link rel="shortcut icon" href="../favicon.ico" />
   <link rel="icon" type="image/png" href="../favicon.png" />
-  
+   
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
-  <!-- Linking to main CSS (Back 1 level) -->
+   
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
-  <!-- Arabic Header -->
   <header id="main-header" class="main-header"></header>
 
   <main class="error-wrapper">
     <div class="error-card">
       <div class="error-code">404</div>
-      <div class="error-title">عذراً، الصفحة غير موجودة</div>
-      <p class="error-text">
+      <div class="error-title" data-i18n="p404_title">عذراً، الصفحة غير موجودة</div>
+      <p class="error-text" data-i18n="p404_text">
         يبدو أن الرابط الذي حاولت الوصول إليه غير صحيح أو أن الصفحة قد تم حذفها.<br>
         يمكنك العودة للصفحة الرئيسية أو التواصل معنا للمساعدة.
       </p>
 
       <div class="error-actions">
-        <a href="https://ecode.sa/ar/" class="btn-primary">
+        <a href="https://ecode.sa/" class="btn-primary">
           <i class="fa-solid fa-house"></i>
-          الرئيسية
+          <span data-i18n="p404_btn_home">الرئيسية</span>
         </a>
         <a href="javascript:history.back()" class="btn-outline">
           <i class="fa-solid fa-arrow-right"></i>
-          رجوع
+          <span data-i18n="p404_btn_back">رجوع</span>
         </a>
         <a href="https://ecode.sa/contact/" class="btn-outline">
           <i class="fa-solid fa-envelope"></i>
-          تواصل معنا
+          <span data-i18n="nav_contact">تواصل معنا</span>
         </a>
       </div>
 
       <div class="search-box">
-        <label class="search-label">أو ابحث عما تريد:</label>
-        <form class="search-input-wrapper" action="https://ecode.sa/ar/" method="GET">
+        <label class="search-label" data-i18n="p404_label_search">أو ابحث عما تريد:</label>
+        <form class="search-input-wrapper" action="https://ecode.sa/" method="GET">
           <input 
             type="text" 
             name="s" 
             class="search-input" 
             placeholder="ابحث في الموقع..."
-            aria-label="بحث في الموقع"
+            data-i18n-placeholder="p404_ph_search"
+            aria-label="Search"
           >
           <button type="submit" class="search-btn">
             <i class="fa-solid fa-search"></i>
@@ -64,10 +62,10 @@
     </div>
   </main>
 
-  <!-- Arabic Footer -->
   <footer id="main-footer" class="footer"></footer>
 
-  <!-- Common JS Scripts (Back 1 level) -->
+  <script src="../assets/js/i18n.js"></script>
+  
   <script src="../assets/js/layout.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
