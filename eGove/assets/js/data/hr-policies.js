@@ -1,9 +1,3 @@
-/* ============================================
- * eGov HR Policies – Electronic Code Company
- * عربي + English
- * إعداد: Ayman Al-Maghrabi – GRC
- * Version: 1.0.0
- * ============================================ */
 console.log("🔥 HR POLICIES FILE IS EXECUTING!");
 window.HR_POLICIES = {
     metadata: { system: "eGov", module: "HR_POLICIES" },
@@ -233,7 +227,7 @@ or reimburse training costs in full or in part based on the remaining commitment
           title: { ar: "مقدمة الرواتب والأجور", en: "Introduction to Compensation" },
           content: {
             ar: `
-تعمل شركة إلكترونيك كود على توفير بيئة عمل تساعد على تحقيق مستوى متميز من الأداء 
+تعمل شركة (اسم الشركة) على توفير بيئة عمل تساعد على تحقيق مستوى متميز من الأداء 
 من خلال تطبيق نظام عادل للرواتب والأجور والحوافز، يهدف إلى:
 - تحقيق العدالة والشفافية بين الموظفين.
 - ربط الأجر بأهمية الوظيفة ومحتواها.
@@ -241,7 +235,7 @@ or reimburse training costs in full or in part based on the remaining commitment
 - دعم التطوير المستمر للأداء الفردي والجماعي.
             `,
             en: `
-Electronic Code Company strives to provide a work environment that supports high performance  
+(Company Name) strives to provide a work environment that supports high performance  
 through a fair and transparent compensation system aimed at:
 - Ensuring internal equity and transparency among employees.
 - Linking pay to job importance and content.
@@ -256,7 +250,7 @@ through a fair and transparent compensation system aimed at:
           title: { ar: "تعريفات أساسية", en: "Key Definitions" },
           content: {
             ar: `
-- الشركة: شركة إلكترونيك كود.
+- الشركة: شركة (اسم الشركة).
 - المجلس: مجلس إدارة الشركة.
 - المدير التنفيذي: المدير التنفيذي للشركة.
 - إدارة الموارد البشرية: الجهة المسؤولة عن تطبيق هذه اللائحة.
@@ -266,7 +260,7 @@ through a fair and transparent compensation system aimed at:
 - الأجر: كل ما يُدفع للموظف مقابل عمله بموجب عقد العمل أيا كان نوعه.
             `,
             en: `
-- Company: Electronic Code Company.
+- Company:  (Company Name).
 - Board: The Company’s Board of Directors.
 - CEO: The Company’s Chief Executive Officer.
 - HR Department: The department responsible for applying this policy.
