@@ -1,8 +1,3 @@
-/* ============================================
- * eGov Financial Governance – الباب الرابع
- * عربي + English
- * Company: Electronic Code Company (eCode)
- * ============================================ */
 console.log("🔥 FINANCIAL GOVERNANCE FILE IS EXECUTING!");
 window.FINANCIAL_GOVERNANCE = {
     sections: [
