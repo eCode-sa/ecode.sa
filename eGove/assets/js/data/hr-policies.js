@@ -1,6 +1,6 @@
 console.log("🔥 HR POLICIES FILE IS EXECUTING!");
 window.HR_POLICIES = {
-    metadata: { system: "eGov", module: "HR_POLICIES" },
+    metadata: { system: "AndroGov", module: "HR_POLICIES" },
     sections: [
         {
             id: "HR-SECTION-01",
