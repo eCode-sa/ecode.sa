@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Settings | AndroGov</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: { colors: { brandRed: '#FB4747', brandDark: '#0F172A' }, fontFamily: { sans: ['Tajawal', 'Inter', 'sans-serif'], en: ['Inter', 'sans-serif'] } }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 opacity-0">
+
+    <div id="sidebar-container"></div>
+    <div class="main-content-wrapper md:mr-72 transition-all duration-300 flex flex-col min-h-screen">
+        <div id="header-container"></div>
+
+        <main class="p-6 space-y-6">
+            
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white">إعدادات وسياسات المالية</h1>
+                    <p class="text-sm text-slate-500 mt-1">أي تعديل هنا يتطلب موافقة إدارة الحوكمة (Governance Approval)</p>
+                </div>
+                <button onclick="requestChange()" class="px-6 py-2 bg-brandRed text-white rounded-lg text-sm font-bold shadow-lg hover:bg-red-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> <span>رفع طلب تعديل سياسات</span>
+                </button>
+            </div>
+
+            <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 rounded-lg shadow-sm flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-yellow-500 mt-1"></i>
+                <div>
+                    <h4 class="text-sm font-bold text-yellow-800">وضع القراءة فقط (Read-Only Mode)</h4>
+                    <p class="text-xs text-yellow-700 mt-1">الإعدادات الحالية معتمدة بموجب القرار رقم (GOV-2025-99). لا يمكنك التعديل المباشر، بل يمكنك رفع "مقترح تعديل" للمراجعة.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 opacity-75 grayscale-[20%] pointer-events-none select-none" id="settingsForm">
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 p-6 relative">
+                    <div class="absolute top-2 left-2"><i class="fa-solid fa-lock text-slate-300"></i></div>
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-slate-500">
+                        <i class="fa-solid fa-calendar-days"></i> الفترات المالية
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                            <div><p class="font-bold text-sm">2026</p></div>
+                            <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded">مفتوحة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 p-6 relative">
+                    <div class="absolute top-2 left-2"><i class="fa-solid fa-lock text-slate-300"></i></div>
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-slate-500">
+                        <i class="fa-solid fa-stamp"></i> صلاحيات الاعتماد (DoA)
+                    </h3>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1">الحد الأقصى (CFO)</label>
+                        <input type="text" value="100,000 SAR" readonly class="w-full bg-slate-100 border border-slate-200 rounded-lg px-4 py-2 text-sm font-bold text-slate-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+                <div class="p-4 border-b border-slate-100 dark:border-slate-700">
+                    <h3 class="font-bold text-slate-800 dark:text-white">سجل طلبات التعديل (Change Requests)</h3>
+                </div>
+                <table class="w-full text-sm text-right">
+                    <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-500 text-xs font-bold">
+                        <tr>
+                            <th class="p-4">رقم الطلب</th>
+                            <th class="p-4">نوع التعديل</th>
+                            <th class="p-4">القيمة المطلوبة</th>
+                            <th class="p-4">تاريخ الطلب</th>
+                            <th class="p-4 text-center">حالة الحوكمة</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 dark:divide-slate-700 text-slate-700 dark:text-slate-300">
+                        <tr>
+                            <td class="p-4 font-mono text-xs">CR-26-001</td>
+                            <td class="p-4">رفع سقف صلاحية الشراء المباشر</td>
+                            <td class="p-4 font-bold">من 5,000 إلى 10,000</td>
+                            <td class="p-4">2026-02-15</td>
+                            <td class="p-4 text-center"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-[10px] font-bold">قيد المراجعة</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-mono text-xs">CR-25-099</td>
+                            <td class="p-4">إغلاق السنة المالية 2025</td>
+                            <td class="p-4 font-bold">إغلاق نهائي</td>
+                            <td class="p-4">2026-01-10</td>
+                            <td class="p-4 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold">تم الاعتماد</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-mono text-xs">CR-25-050</td>
+                            <td class="p-4">تغيير نسبة الاستهلاك للأجهزة</td>
+                            <td class="p-4 font-bold">من 25% إلى 33%</td>
+                            <td class="p-4">2025-11-20</td>
+                            <td class="p-4 text-center"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-[10px] font-bold">مرفوض</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="data/company_policy.js"></script>
+    <script src="js/core/i18n.js"></script>
+    <script src="js/components/layout.js"></script>
+    <script src="js/components/bot.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
+        const ctoUser = {
+            id: 'USR_002',
+            name: 'محمد البخيتي ',
+            displayName: 'المدير المالي',
+            role: 'CFO', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
+            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
+        };
+        
+        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
+        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
+        localStorage.setItem('activeRole', 'cto');
+
+        // 3. التأكد من وجود الوضع الليلي المفضل
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'light');
+        }
+
+        // 4. تشغيل المحرك
+        if (typeof Layout !== 'undefined') {
+            Layout.init();
+            
+            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
+            document.body.style.opacity = '1';
+            console.log("🚀 CFO Layout Engine v10.5 Started Successfully");
+        } else {
+            console.error("❌ Layout.js file not found! Check your script paths.");
+        }
+    });
+</script>
+
+    
+    <script>
+        window.requestChange = function() {
+            // هنا يظهر مودال لطلب التعديل (سبب التعديل، القيمة الجديدة)
+            const reason = prompt("يرجى ذكر مبررات التعديل لإدارة الحوكمة:");
+            if(reason) {
+                alert("تم إرسال الطلب (CR-26-002) إلى إدارة الحوكمة للمراجعة.\nسيصلك إشعار عند اتخاذ القرار.");
+            }
+        };
+    </script>
+</body>
+</html>

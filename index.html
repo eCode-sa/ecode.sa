@@ -1,295 +1,509 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="page_title">eCode | إلكترونيك كود - تصنع الأثر</title>
-  <meta name="description" content="شركة سعودية تقدم حلول التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية">
-
-  <link rel="manifest" href="/manifest.json">
-
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="eCode">
-  <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FB4747">
+    <title>Andromeda | بوابتك للمستقبل الرقمي</title>
     
-  <meta name="theme-color" content="#8B7FFF">
-  <meta name="mobile-web-app-capable" content="yes">
-
-  <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow">
-  <link rel="canonical" href="https://ecode.sa/ar/">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-  <meta property="og:title" content="eCode | إلكترونيك كود - تصنع الأثر">
-  <meta property="og:description" content="شركة سعودية تقدم حلول التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية">
-  <meta property="og:image" content="https://ecode.sa/favicon.png">
-  <meta property="og:url" content="https://ecode.sa/ar/">
-  <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
     
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-   
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#FB4747',
+                        brandDark: '#1E293B',
+                        brandGray: '#F1F5F9',
+                        brandPurple: '#7C3AED',
+                        brandGreen: '#059669',
+                        brandCyan: '#0891B2',
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-  <header id="main-header" class="main-header"></header>
-
-  <main>
-    <section id="hero" class="hero">
-        <div class="hero-inner">
-        <div class="hero-content">
-            <h1 data-i18n="hero_title">نطوّر. نبتكر. ننمّي أعمالك.</h1>
-            <p data-i18n="hero_desc">نقدم حلول تقنية وتسويقية حديثة ترفع جودة الأعمال، وتدعم نمو الشركات عبر الابتكار، السرعة، والدقة.</p>
-            
-            <div class="hero-actions">
-            <a href="#contact" class="btn-primary" data-i18n="btn_start">ابدأ الآن</a>
-            <a href="#services" class="btn-secondary" data-i18n="btn_services">استعراض الخدمات</a>
-            </div>
-
-            <div class="hero-tagline">
-            <strong data-i18n="brand_name">eCode</strong> <span data-i18n="hero_tagline">تصنع الأثر — تقنية واضحة. أداء ثابت. تجربة محترفة.</span>
-            </div>
-        </div>
-
-        <div class="hero-visual">
-            <h3 data-i18n="hero_visual_title">حلول متكاملة في منصة واحدة</h3>
-            <p data-i18n="hero_visual_desc">تسويق رقمي، محتوى، تصوير، وتصميم مواقع — ننفّذ كل ما تحتاجه علامتك.</p>
-
-            <div class="hero-stats">
-            <div class="hero-stat">
-                <strong data-i18n="stat_1_title">مرونة كاملة</strong>
-                <span data-i18n="stat_1_desc">نموذج عمل يعتمد على شبكة متعاونين</span>
-            </div>
-            <div class="hero-stat">
-                <strong data-i18n="stat_2_title">تنفيذ منظم</strong>
-                <span data-i18n="stat_2_desc">مراحل واضحة حتى التسليم</span>
-            </div>
-            <div class="hero-stat">
-                <strong data-i18n="stat_3_title">هوية متناسقة</strong>
-                <span data-i18n="stat_3_desc">أسلوب موحد عبر كل المنصات</span>
-            </div>
-            <div class="hero-stat">
-                <strong data-i18n="stat_4_title">دعم مستمر</strong>
-                <span data-i18n="stat_4_desc">تواصل مباشر خلال المشروع</span>
-            </div>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <div class="stats-bar">
-        <div class="stats-grid">
-        <div class="stat-item">
-            <span class="stat-number">+20</span>
-            <span class="stat-label" data-i18n="stat_bar_projects">مشروع منجز</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">+15</span>
-            <span class="stat-label" data-i18n="stat_bar_clients">عميل راضي</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">98%</span>
-            <span class="stat-label" data-i18n="stat_bar_satisfaction">نسبة الرضا</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">24/7</span>
-            <span class="stat-label" data-i18n="stat_bar_support">دعم مستمر</span>
-        </div>
-        </div>
-    </div>
-
-    <section id="services">
-        <div class="section-inner">
-        <h2 class="section-title" data-i18n="services_title">ماذا نقدم؟</h2>
-        <p class="section-subtitle" data-i18n="services_subtitle">حلول تقنية وتسويقية شاملة لنمو مستدام</p>
-
-        <div class="features-grid">
-            <div class="feature-card">
-            <h3 data-i18n="srv_1_title">التسويق الرقمي وإدارة الحسابات</h3>
-            <ul>
-                <li data-i18n="srv_1_li1">إدارة يومية لحسابات التواصل الاجتماعي</li>
-                <li data-i18n="srv_1_li2">إعداد وتنفيذ الحملات الإعلانية المدفوعة</li>
-                <li data-i18n="srv_1_li3">تقارير أداء دورية واقتراحات تحسين</li>
-            </ul>
-            <a href="https://ecode.sa/plans/" class="feature-link" data-i18n="srv_1_link">عرض الباقات المناسبة ←</a>
-            </div>
-
-            <div class="feature-card">
-            <h3 data-i18n="srv_2_title">المحتوى والإنتاج الإبداعي</h3>
-            <ul>
-                <li data-i18n="srv_2_li1">تصميم بوستات، بنرات، وهويات بصرية</li>
-                <li data-i18n="srv_2_li2">تصوير منتجات، فعاليات، ومحتوى سوشال</li>
-                <li data-i18n="srv_2_li3">مونتاج فيديوهات قصيرة وطويلة</li>
-            </ul>
-            <a href="https://ecode.sa/portfolio/" class="feature-link" data-i18n="srv_2_link">شاهد نماذج من الأعمال ←</a>
-            </div>
-
-            <div class="feature-card">
-            <h3 data-i18n="srv_3_title">الحلول التقنية والتمكين الرقمي</h3>
-            <ul>
-                <li data-i18n="srv_3_li1">تصميم مواقع تعريفية ومتاجر إلكترونية</li>
-                <li data-i18n="srv_3_li2">ربط بوابات الدفع والنماذج التفاعلية</li>
-                <li data-i18n="srv_3_li3">تهيئة أساسية لمحركات البحث SEO</li>
-            </ul>
-            <a href="https://ecode.sa/contact/" class="feature-link" data-i18n="srv_3_link">اطلب استشارة أولية ←</a>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="section-inner">
-        <h2 class="section-title" data-i18n="why_title">لماذا eCode؟</h2>
-        <p class="section-subtitle" data-i18n="why_subtitle">نموذج عمل مرن، تنفيذ احترافي، وتواصل واضح</p>
-
-        <div class="why-grid">
-            <div class="why-item">
-            <h3 data-i18n="why_1_title">شبكة متعاونين متخصصين</h3>
-            <p data-i18n="why_1_desc">نعمل مع مصممين، مصورين، وكتّاب محتوى مختارين لكل نوع مشروع.</p>
-            </div>
-            <div class="why-item">
-            <h3 data-i18n="why_2_title">اتفاق واضح قبل التنفيذ</h3>
-            <p data-i18n="why_2_desc">نحدد نطاق العمل، عدد التعديلات، والمدة المتوقعة قبل أن نبدأ.</p>
-            </div>
-            <div class="why-item">
-            <h3 data-i18n="why_3_title">حماية قانونية للطرفين</h3>
-            <p data-i18n="why_3_desc">الشروط والأحكام وسياسة الخصوصية تحمي حقوقك وحقوقنا.</p>
-            </div>
-            <div class="why-item">
-            <h3 data-i18n="why_4_title">مخرجات جاهزة للاستخدام</h3>
-            <p data-i18n="why_4_desc">نسلّم ملفات نهائية محسّنة للنشر على المنصات أو الطباعة.</p>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <section class="partners-section">
-        <div class="section-inner">
-        <h2 class="section-title" data-i18n="partners_title">عملاؤنا وشركاء النجاح</h2>
-        <p class="section-subtitle" data-i18n="partners_subtitle">نفخر بخدمة مجموعة متنوعة من العملاء في مختلف القطاعات</p>
-
-        <div class="partners-slider" dir="ltr">
-            <div class="partners-track">
-            <div class="partner-item"><a href="https://ait.sa/" target="_blank"><img src="partners-slider/Andromeda.png" alt="Andromeda"></a></div>
-            <div class="partner-item"><a href="https://maps.app.goo.gl/54AxMCTtU74SNqy87/" target="_blank"><img src="partners-slider/GoldenـScissorـTimeـforـBarbering.png" alt="Barbering"></a></div>
-            <div class="partner-item"><a href="https://ecode.sa/AliPasha/" target="_blank"><img src="https://ecode.sa/AliPasha/alipasha.png" alt="Ali Pasha"></a></div>
-            <div class="partner-item"><a href="https://ecode.sa/onfire/" target="_blank"><img src="https://ecode.sa/onfire/OnFire-logo.png" alt="On Fire"></a></div>
-            <div class="partner-item"><a href="https://microtec.com.sa/" target="_blank"><img src="partners-slider/microtec.webp" alt="Client"></a></div>
-            <div class="partner-item"><a href="https://ecode.sa/" target="_blank"><img src="partners-slider/eCode.png" alt="Client"></a></div>
-            <div class="partner-item"><a href="https://ait.sa/" target="_blank"><img src="partners-slider/Andromeda.png" alt="Andromeda"></a></div>
-            <div class="partner-item"><a href="https://maps.app.goo.gl/54AxMCTtU74SNqy87/" target="_blank"><img src="partners-slider/GoldenـScissorـTimeـforـBarbering.png" alt="Barbering"></a></div>
-            <div class="partner-item"><a href="https://ecode.sa/AliPasha/" target="_blank"><img src="https://ecode.sa/AliPasha/alipasha.png" alt="Ali Pasha"></a></div>
-            <div class="partner-item"><a href="https://ecode.sa/onfire/" target="_blank"><img src="https://ecode.sa/onfire/OnFire-logo.png" alt="On Fire"></a></div>
-            <div class="partner-item"><a href="https://microtec.com.sa/" target="_blank"><img src="partners-slider/microtec.webp" alt="Client"></a></div>
-            <div class="partner-item"><a href="https://ecode.sa/" target="_blank"><img src="partners-slider/eCode.png" alt="Client"></a></div>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <section class="ai-section" id="ai-tool">
-        <div class="section-inner">
-        <h2 class="section-title" data-i18n="ai_title">مستشار التسويق الذكي ✨</h2>
-        <p class="section-subtitle" data-i18n="ai_subtitle">احصل على خطة تسويقية مبدئية لمشروعك خلال ثوانٍ باستخدام الذكاء الاصطناعي</p>
+    <style>
+        body { scroll-behavior: smooth; }
+        /* شريط التمرير */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
+        .dark ::-webkit-scrollbar-thumb { background-color: #475569; }
         
-        <div class="ai-card">
-            <textarea id="ai-project-desc" class="ai-textarea" placeholder="أدخل وصفًا موجزًا لمشروعك (مثال: متجر إلكتروني لبيع العطور الفاخرة يستهدف الشباب في السعودية)" data-i18n-placeholder="ai_placeholder"></textarea>
-            <button onclick="analyzeProjectWithAI()" id="ai-btn" class="ai-btn">
-            <span data-i18n="ai_btn">حلل مشروعي</span>
-            <i class="fas fa-magic"></i>
-            </button>
-            
-            <div id="ai-result" class="ai-result">
-            <h3><i class="fas fa-lightbulb"></i> <span data-i18n="ai_result_title">مقترحات الذكاء الاصطناعي:</span></h3>
-            <div id="ai-result-content" class="ai-result-content"></div>
+        /* تأثيرات الزجاج */
+        .glass-effect { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .dark .glass-effect { background: rgba(30, 41, 59, 0.95); }
+        
+        /* نمط الخلفية باللون الأحمر */
+        .hero-pattern { background-image: radial-gradient(#FB4747 1px, transparent 1px); background-size: 24px 24px; opacity: 0.1; }
+        
+        .product-card:hover { transform: translateY(-5px); }
+        
+        /* تحسينات الخطوط للغة الإنجليزية */
+        html[lang="en"] body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-white font-sans transition-colors duration-300">
+
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-slate-200 dark:border-slate-700 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <img src="https://ait.sa/wp-content/uploads/2024/03/cropped-Square-Logo.png" class="w-10 h-10 rounded-lg bg-white p-0.5 shadow-sm" alt="Andromeda Logo">
+                    <div>
+                        <h1 class="font-bold text-xl tracking-tight text-slate-900 dark:text-white" data-i18n="company_name">اندروميدا</h1>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider" data-i18n="it_solutions">لحلول تقنية المعلومات</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brandRed transition" data-i18n="nav_about">عن الشركة</a>
+                    <a href="#products" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brandRed transition" data-i18n="nav_products">منتجاتنا</a>
+                    <a href="#features" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brandRed transition" data-i18n="nav_features">المزايا</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleLanguage()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition font-bold text-xs" id="langLabel">
+                        EN
+                    </button>
+                    <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition text-slate-600 dark:text-yellow-400">
+                        <i id="themeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+                    <a href="login.html" class="px-5 py-2 bg-brandRed text-white text-sm font-bold rounded-full hover:bg-red-700 transition shadow-lg shadow-red-500/30 flex items-center gap-2">
+                        <i class="fa-solid fa-lock text-xs"></i>
+                        <span data-i18n="nav_login">دخول الموظفين</span>
+                    </a>
+                </div>
             </div>
         </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white dark:bg-slate-900">
+        <div class="hero-pattern absolute inset-0 z-0"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brandRed/5 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-red-50 dark:bg-slate-800 text-brandRed text-xs font-bold mb-6 border border-red-100 dark:border-slate-700 shadow-sm animate-pulse" data-i18n="hero_tag">
+                شركة مساهمة سعودية مقفلة 🇸🇦
+            </span>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight">
+                <span data-i18n="hero_title_1">نبتكر الحلول الرقمية</span> <br> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandRed to-orange-500" data-i18n="hero_title_2">لمستقبل أكثر ذكاءً</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed" data-i18n="hero_desc">
+                منذ 2014، تقود أندروميدا التحول الرقمي في المملكة عبر حلول مبتكرة في الرعاية الصحية، المزادات العقارية، والاتصالات الموحدة، مع التزام تام بالأمان والامتثال المحلي.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="px-8 py-4 bg-brandRed text-white rounded-xl font-bold hover:bg-red-700 transition shadow-xl hover:shadow-brandRed/30 hover:-translate-y-1 transform duration-200" data-i18n="hero_cta_1">
+                    اكتشف حلولنا
+                </a>
+                <a href="#about" class="px-8 py-4 bg-white dark:bg-slate-800 text-slate-700 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition hover:-translate-y-1 transform duration-200" data-i18n="hero_cta_2">
+                    تعرف علينا أكثر
+                </a>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-slate-100 dark:border-slate-800">
+                <p class="text-xs text-slate-400 mb-6 font-bold uppercase tracking-widest" data-i18n="partners_title">شركاء النجاح</p>
+                <div class="flex justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-400 dark:text-slate-500">
+                    <i class="fa-solid fa-hospital text-3xl"></i>
+                    <i class="fa-solid fa-building-columns text-3xl"></i>
+                    <i class="fa-solid fa-gavel text-3xl"></i>
+                    <i class="fa-solid fa-globe text-3xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-24 bg-slate-50 dark:bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="products_title">منظومة حلولنا المتكاملة</h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto" data-i18n="products_desc">نقدم مجموعة من الأنظمة الرقمية المترابطة التي تغطي احتياجات القطاعات الحيوية بأعلى معايير الجودة.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="product-card bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-300 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 rtl:right-0 rtl:left-auto ltr:right-0 ltr:left-auto w-24 h-24 bg-brandRed/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-red-50 dark:bg-red-900/20 rounded-2xl flex items-center justify-center text-brandRed text-3xl mb-6 relative z-10">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">AndroHealth</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed min-h-[80px]" data-i18n="prod_androhealth_desc">
+                        نظام إدارة المستشفيات (HIS) الشامل. يدعم الربط مع "نفيس"، الفوترة، السجلات الطبية، وبوابة المريض الموحدة.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-brandRed font-bold text-sm hover:gap-2 transition-all">
+                        <span data-i18n="read_more">المزيد</span> <i class="fa-solid fa-arrow-left mr-2 rtl:mr-2 ltr:ml-2 rtl:rotate-0 ltr:rotate-180 transform transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="product-card bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-300 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 rtl:right-0 rtl:left-auto ltr:right-0 ltr:left-auto w-24 h-24 bg-brandPurple/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-purple-50 dark:bg-purple-900/20 rounded-2xl flex items-center justify-center text-brandPurple text-3xl mb-6 relative z-10">
+                        <i class="fa-solid fa-gavel"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">BQ Auctions</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed min-h-[80px]" data-i18n="prod_bq_desc">
+                        منصة المزادات العقارية الذكية (العرض الأفضل). توثيق وإدارة الأصول العقارية بشفافية تامة وموثوقية عالية.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-brandPurple font-bold text-sm hover:gap-2 transition-all">
+                        <span data-i18n="read_more">المزيد</span> <i class="fa-solid fa-arrow-left mr-2 rtl:mr-2 ltr:ml-2 rtl:rotate-0 ltr:rotate-180 transform transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="product-card bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-300 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 rtl:right-0 rtl:left-auto ltr:right-0 ltr:left-auto w-24 h-24 bg-brandCyan/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-cyan-50 dark:bg-cyan-900/20 rounded-2xl flex items-center justify-center text-brandCyan text-3xl mb-6 relative z-10">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">CyanCare</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed min-h-[80px]" data-i18n="prod_cyan_desc">
+                        خدمات الطب الاتصالي المتطورة. استشارات عن بعد، وصفات إلكترونية، وربط مباشر وآمن مع الأطباء.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-brandCyan font-bold text-sm hover:gap-2 transition-all">
+                        <span data-i18n="read_more">المزيد</span> <i class="fa-solid fa-arrow-left mr-2 rtl:mr-2 ltr:ml-2 rtl:rotate-0 ltr:rotate-180 transform transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="product-card bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-300 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 rtl:right-0 rtl:left-auto ltr:right-0 ltr:left-auto w-24 h-24 bg-brandGreen/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-150"></div>
+                    <div class="w-16 h-16 bg-green-50 dark:bg-green-900/20 rounded-2xl flex items-center justify-center text-brandGreen text-3xl mb-6 relative z-10">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">DutiesBook</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed min-h-[80px]" data-i18n="prod_duties_desc">
+                        منصة الاتصالات الموحدة للأعمال. إدارة محادثات WhatsApp و Instagram للشركات في واجهة واحدة.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-brandGreen font-bold text-sm hover:gap-2 transition-all">
+                        <span data-i18n="read_more">المزيد</span> <i class="fa-solid fa-arrow-left mr-2 rtl:mr-2 ltr:ml-2 rtl:rotate-0 ltr:rotate-180 transform transition-transform"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section>
-        <div class="section-inner">
-        <h2 class="section-title" data-i18n="faq_title">الأسئلة المتكررة</h2>
-        <p class="section-subtitle" data-i18n="faq_subtitle">إجابات سريعة على أكثر الأسئلة شيوعًا</p>
+    <section id="features" class="py-24 relative overflow-hidden bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <div class="inline-block px-4 py-1 mb-4 rounded-full bg-red-50 dark:bg-slate-800 text-brandRed text-xs font-bold uppercase tracking-wider" data-i18n="why_us_tag">
+                        لماذا أندروميدا؟
+                    </div>
+                    <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+                        <span data-i18n="why_us_title">شريكك التقني الموثوق</span> <br> <span class="text-slate-400" data-i18n="why_us_subtitle">لنمو مستدام وآمن</span>
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed text-lg" data-i18n="about_desc">
+                        نحن شركة أندروميدا لتقنية المعلومات، شركة مساهمة سعودية مقفلة مقرها الرياض. منذ 2014، نلتزم بتقديم حلول برمجية مبتكرة تدعم رؤية المملكة 2030، مع التركيز على توطين التقنية وأمن البيانات.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full bg-red-50 dark:bg-slate-800 flex items-center justify-center text-brandRed shrink-0">
+                                <i class="fa-solid fa-shield-halved text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-lg" data-i18n="feat_security">أمان وامتثال تام</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="feat_security_desc">استضافة محلية للبيانات وامتثال كامل لمتطلبات الأمن السيبراني والصحة.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full bg-red-50 dark:bg-slate-800 flex items-center justify-center text-brandRed shrink-0">
+                                <i class="fa-solid fa-plug text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-lg" data-i18n="feat_integration">تكامل حكومي شامل</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="feat_integration_desc">ربط مباشر مع منصات "نفيس"، "سداد"، و"أبشر" لضمان سلاسة العمليات.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full bg-red-50 dark:bg-slate-800 flex items-center justify-center text-brandRed shrink-0">
+                                <i class="fa-solid fa-headset text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-lg" data-i18n="feat_support">دعم فني متخصص</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="feat_support_desc">فريق دعم فني محلي جاهز لخدمتكم على مدار الساعة لضمان استمرارية الأعمال.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="faq-grid">
-            <div class="faq-item">
-            <div class="faq-q" data-i18n="faq_1_q">كيف تتم طريقة الدفع؟</div>
-            <div class="faq-a" data-i18n="faq_1_a">يتم دفع عربون غير قابل للاسترداد عند اعتماد العرض، ثم استكمال الدفعات حسب المراحل أو قبل التسليم النهائي حسب ما يتم الاتفاق عليه.</div>
-            </div>
-            <div class="faq-item">
-            <div class="faq-q" data-i18n="faq_2_q">كم مدة تنفيذ المشروع؟</div>
-            <div class="faq-a" data-i18n="faq_2_a">تختلف حسب نوع الخدمة وحجم المحتوى، ويتم ذكر مدة تقديرية في العرض. أي تأخير في الردود أو تزويد المواد من جهة العميل يؤثر على المدة.</div>
-            </div>
-            <div class="faq-item">
-            <div class="faq-q" data-i18n="faq_3_q">هل أستطيع استرجاع العربون بعد البدء؟</div>
-            <div class="faq-a" data-i18n="faq_3_a">العربون يحجز وقت وجهد الفريق، ولذلك فهو غير قابل للاسترداد بعد بدء العمل، كما هو موضح في الشروط والأحكام.</div>
-            </div>
-            <div class="faq-item">
-            <div class="faq-q" data-i18n="faq_4_q">هل أستلم الملفات المفتوحة (Editable)؟</div>
-            <div class="faq-a" data-i18n="faq_4_a">يتم تسليم الملفات النهائية الجاهزة للنشر، ويمكن تسليم الملفات المفتوحة برسوم إضافية يتم الاتفاق عليها مسبقًا.</div>
+                <div class="lg:w-1/2 grid grid-cols-2 gap-6">
+                    <div class="bg-slate-50 dark:bg-slate-800 p-8 rounded-3xl text-center border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                        <h3 class="text-5xl font-extrabold text-brandRed mb-2">+10</h3>
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400" data-i18n="stat_years">سنوات من الخبرة</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 p-8 rounded-3xl text-center border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow mt-8">
+                        <h3 class="text-5xl font-extrabold text-brandPurple mb-2">+50</h3>
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400" data-i18n="stat_projects">مشروع ناجح</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 p-8 rounded-3xl text-center border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow">
+                        <h3 class="text-5xl font-extrabold text-brandGreen mb-2">100%</h3>
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400" data-i18n="stat_compliance">امتثال للأنظمة</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 p-8 rounded-3xl text-center border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow mt-8">
+                        <h3 class="text-5xl font-extrabold text-brandCyan mb-2">24/7</h3>
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400" data-i18n="stat_support">دعم متواصل</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <section class="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12 bg-slate-50 dark:bg-slate-800 rounded-3xl p-10 border border-slate-100 dark:border-slate-700 shadow-sm">
+                <div class="md:w-2/3">
+                    <span class="inline-block py-1 px-3 mb-4 rounded-full bg-brandRed/10 text-brandRed text-xs font-bold uppercase tracking-wider">نظام التشغيل الداخلي</span>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">AndroGov</h2>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-lg mb-6" data-i18n="androgov_desc">
+                        نظام إدارة العمليات الموحد لشركة أندروميدا. يربط جميع الإدارات والموظفين في منصة واحدة آمنة، مدعومة بالذكاء الاصطناعي (Gemini) لتحليل البيانات وتسهيل اتخاذ القرارات.
+                    </p>
+                    <ul class="flex flex-wrap gap-6 text-sm text-slate-500 dark:text-slate-400 font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandRed"></i> <span data-i18n="feat_sso">دخول موحد (SSO)</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandRed"></i> <span data-i18n="feat_ai">مساعد ذكي</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandRed"></i> <span data-i18n="feat_analytics">تحليلات فورية</span></li>
+                    </ul>
+                </div>
+                <div class="md:w-1/3 text-center">
+                    <div class="w-24 h-24 bg-white dark:bg-slate-700 rounded-full flex items-center justify-center shadow-lg mx-auto mb-6">
+                        <img src="https://ait.sa/wp-content/uploads/2024/03/cropped-Square-Logo.png" class="w-12 h-12" alt="Logo">
+                    </div>
+                    <a href="login.html" class="inline-block px-8 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold hover:opacity-90 transition shadow-lg" data-i18n="androgov_btn">
+                        الدخول للنظام
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="contact">
-        <div class="section-inner">
-        <h2 class="section-title" data-i18n="contact_title">جاهز للبدء؟</h2>
-        <p class="section-subtitle" data-i18n="contact_subtitle">عبّي النموذج وراح نتواصل معك خلال 24 ساعة</p>
-        <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
-            
-            <div class="form-group">
-            <label data-i18n="lbl_name">الاسم الكامل *</label>
-            <input type="text" name="name" id="name" required placeholder="أدخل اسمك الكامل" data-i18n-placeholder="ph_name">
+    <section class="py-20 bg-brandDark relative overflow-hidden text-center">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-i18n="cta_title">جاهز لنقل أعمالك للمستوى التالي؟</h2>
+            <p class="text-slate-300 mb-8 text-lg" data-i18n="cta_desc">انضم إلى قائمة عملائنا المميزين واستفد من حلولنا التقنية المتكاملة.</p>
+            <div class="flex justify-center gap-4">
+                <a href="#footer" class="px-8 py-4 bg-brandRed text-white rounded-xl font-bold hover:bg-red-600 transition shadow-lg hover:shadow-red-500/50" data-i18n="cta_button">تواصل معنا</a>
             </div>
-            
-            <div class="form-group">
-            <label data-i18n="lbl_email">البريد الإلكتروني *</label>
-            <input type="email" name="email" id="email" required placeholder="example@email.com" data-i18n-placeholder="ph_email">
-            </div>
-            
-            <div class="form-group">
-            <label data-i18n="lbl_phone">رقم الجوال *</label>
-            <input type="tel" name="phone" id="phone" required placeholder="05X XXX XXXX" data-i18n-placeholder="ph_phone">
-            </div>
-            
-            <div class="form-group">
-            <label data-i18n="lbl_service">نوع الخدمة المطلوبة *</label>
-            <select name="service" id="service" required>
-                <option value="" data-i18n="opt_service">اختر الخدمة</option>
-                <option data-i18n="opt_social">إدارة حسابات التواصل</option>
-                <option data-i18n="opt_branding">تصميم هوية بصرية</option>
-                <option data-i18n="opt_content">إنتاج محتوى</option>
-                <option data-i18n="opt_web">تصميم موقع إلكتروني</option>
-                <option data-i18n="opt_ads">حملات إعلانية</option>
-                <option data-i18n="opt_other">أخرى</option>
-            </select>
-            </div>
-            
-            <div class="form-group">
-            <label data-i18n="lbl_details">تفاصيل المشروع</label>
-            <textarea name="message" id="message" placeholder="اكتب نبذة عن مشروعك واحتياجاتك..." data-i18n-placeholder="ph_details"></textarea>
-            </div>
-
-            <button type="submit" class="btn-primary" style="width: 100%; font-size: 18px; padding: 16px;" data-i18n="btn_submit_offer">
-            احصل على عرض
-            </button>
-        </form>
         </div>
     </section>
-  </main>
 
-  <footer id="main-footer" class="footer"></footer>
+    <footer id="footer" class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <img src="https://ait.sa/wp-content/uploads/2024/03/cropped-Square-Logo.png" class="w-12 h-12 rounded-lg bg-white p-0.5 mb-4" alt="Logo">
+                    <p class="text-sm leading-relaxed max-w-md" data-i18n="footer_desc">
+                        شركة اندروميدا لتقنية المعلومات. شركة مساهمة سعودية مقفلة متخصصة في تطوير الحلول الرقمية، البنية التحتية، والأنظمة الأمنية.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="quick_links">روابط سريعة</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-brandRed transition" data-i18n="nav_about">عن الشركة</a></li>
+                        <li><a href="#products" class="hover:text-brandRed transition" data-i18n="nav_products">المنتجات</a></li>
+                        <li><a href="login.html" class="hover:text-brandRed transition" data-i18n="nav_login">بوابة الموظفين</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="contact_us">تواصل معنا</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brandRed"></i> <span data-i18n="address">الرياض، حي الازدهار</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brandRed"></i> info@androomeda.com</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-brandRed"></i> 920000000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-xs">
+                <p data-i18n="copyright">&copy; 2026 شركة اندروميدا لتقنية المعلومات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
 
-  <script src="assets/js/i18n.js"></script>
-  
-  <script src="assets/js/layout.js"></script>
-   
-  <script src="assets/js/main.js"></script>
+    <script>
+        const translations = {
+            ar: {
+                company_name: "اندروميدا",
+                it_solutions: "لحلول تقنية المعلومات",
+                nav_about: "عن الشركة",
+                nav_products: "منتجاتنا",
+                nav_features: "المزايا",
+                nav_login: "دخول الموظفين",
+                hero_tag: "شركة مساهمة سعودية مقفلة 🇸🇦",
+                hero_title_1: "نبتكر الحلول الرقمية",
+                hero_title_2: "لمستقبل أكثر ذكاءً",
+                hero_desc: "منذ 2014، تقود أندروميدا التحول الرقمي في المملكة عبر حلول مبتكرة في الرعاية الصحية، المزادات العقارية، والاتصالات الموحدة، مع التزام تام بالأمان والامتثال المحلي.",
+                hero_cta_1: "اكتشف حلولنا",
+                hero_cta_2: "تعرف علينا أكثر",
+                partners_title: "شركاء النجاح",
+                products_title: "منظومة حلولنا المتكاملة",
+                products_desc: "نقدم مجموعة من الأنظمة الرقمية المترابطة التي تغطي احتياجات القطاعات الحيوية بأعلى معايير الجودة.",
+                prod_androhealth_desc: "نظام إدارة المستشفيات (HIS) الشامل. يدعم الربط مع 'نفيس'، الفوترة، السجلات الطبية، وبوابة المريض الموحدة.",
+                prod_bq_desc: "منصة المزادات العقارية الذكية (العرض الأفضل). توثيق وإدارة الأصول العقارية بشفافية تامة وموثوقية عالية.",
+                prod_cyan_desc: "خدمات الطب الاتصالي المتطورة. استشارات عن بعد، وصفات إلكترونية، وربط مباشر وآمن مع الأطباء.",
+                prod_duties_desc: "منصة الاتصالات الموحدة للأعمال. إدارة محادثات WhatsApp و Instagram للشركات في واجهة واحدة.",
+                read_more: "المزيد",
+                why_us_tag: "لماذا أندروميدا؟",
+                why_us_title: "شريكك التقني الموثوق",
+                why_us_subtitle: "لنمو مستدام وآمن",
+                about_desc: "نحن شركة أندروميدا لتقنية المعلومات، شركة مساهمة سعودية مقفلة مقرها الرياض. منذ 2014، نلتزم بتقديم حلول برمجية مبتكرة تدعم رؤية المملكة 2030، مع التركيز على توطين التقنية وأمن البيانات.",
+                feat_security: "أمان وامتثال تام",
+                feat_security_desc: "استضافة محلية للبيانات وامتثال كامل لمتطلبات الأمن السيبراني والصحة.",
+                feat_integration: "تكامل حكومي شامل",
+                feat_integration_desc: "ربط مباشر مع منصات 'نفيس'، 'سداد'، و'أبشر' لضمان سلاسة العمليات.",
+                feat_support: "دعم فني متخصص",
+                feat_support_desc: "فريق دعم فني محلي جاهز لخدمتكم على مدار الساعة لضمان استمرارية الأعمال.",
+                stat_years: "سنوات من الخبرة",
+                stat_projects: "مشروع ناجح",
+                stat_compliance: "امتثال للأنظمة",
+                stat_support: "دعم متواصل",
+                androgov_desc: "نظام إدارة العمليات الموحد لشركة أندروميدا. يربط جميع الإدارات والموظفين في منصة واحدة آمنة، مدعومة بالذكاء الاصطناعي لتحليل البيانات وتسهيل اتخاذ القرارات.",
+                feat_sso: "دخول موحد (SSO)",
+                feat_ai: "مساعد ذكي",
+                feat_analytics: "تحليلات فورية",
+                androgov_btn: "الدخول للنظام",
+                cta_title: "جاهز لنقل أعمالك للمستوى التالي؟",
+                cta_desc: "انضم إلى قائمة عملائنا المميزين واستفد من حلولنا التقنية المتكاملة.",
+                cta_button: "تواصل معنا",
+                footer_desc: "شركة اندروميدا لتقنية المعلومات. شركة مساهمة سعودية مقفلة متخصصة في تطوير الحلول الرقمية، البنية التحتية، والأنظمة الأمنية.",
+                quick_links: "روابط سريعة",
+                contact_us: "تواصل معنا",
+                address: "الرياض، حي الازدهار",
+                copyright: "&copy; 2026 شركة اندروميدا لتقنية المعلومات. جميع الحقوق محفوظة."
+            },
+            en: {
+                company_name: "Andromeda",
+                it_solutions: "IT Solutions",
+                nav_about: "About Us",
+                nav_products: "Our Products",
+                nav_features: "Why Us",
+                nav_login: "Employee Portal",
+                hero_tag: "Saudi Closed Joint Stock Company 🇸🇦",
+                hero_title_1: "Innovating Digital Solutions",
+                hero_title_2: "For a Smarter Future",
+                hero_desc: "Since 2014, Andromeda leads digital transformation in the Kingdom through innovative solutions in Healthcare, Real Estate Auctions, and Unified Communications, with full commitment to security and local compliance.",
+                hero_cta_1: "Discover Solutions",
+                hero_cta_2: "Learn More",
+                partners_title: "Success Partners",
+                products_title: "Our Integrated Ecosystem",
+                products_desc: "We provide a suite of interconnected digital systems covering vital sectors with the highest quality standards.",
+                prod_androhealth_desc: "Comprehensive Hospital Information System (HIS). Supports 'Naphies', billing, medical records, and unified patient portal.",
+                prod_bq_desc: "Smart Real Estate Auction Platform (Best Quote). Documenting and managing real estate assets with full transparency and reliability.",
+                prod_cyan_desc: "Advanced Telemedicine Services. Remote consultations, e-prescriptions, and direct secure connection with doctors.",
+                prod_duties_desc: "Unified Business Communication Platform. Manage WhatsApp and Instagram business chats in one interface.",
+                read_more: "Read More",
+                why_us_tag: "Why Andromeda?",
+                why_us_title: "Your Trusted Tech Partner",
+                why_us_subtitle: "For Secure Growth",
+                about_desc: "Andromeda Information Technology is a Saudi Closed Joint Stock Company based in Riyadh. Since 2014, we are committed to providing innovative software solutions supporting Vision 2030, focusing on tech localization and data security.",
+                feat_security: "Full Security & Compliance",
+                feat_security_desc: "Local data hosting and full compliance with Cybersecurity and Health regulations.",
+                feat_integration: "Comprehensive Govt Integration",
+                feat_integration_desc: "Direct integration with 'Naphies', 'Sadad', and 'Absher' platforms to ensure smooth operations.",
+                feat_support: "Specialized Tech Support",
+                feat_support_desc: "Local technical support team ready to serve you 24/7 to ensure business continuity.",
+                stat_years: "Years Experience",
+                stat_projects: "Successful Projects",
+                stat_compliance: "Compliance",
+                stat_support: "Support",
+                androgov_desc: "Andromeda's Unified Operations System. Connecting all departments and employees in a single secure platform, powered by AI for data analysis and decision support.",
+                feat_sso: "Single Sign-On (SSO)",
+                feat_ai: "Smart Assistant",
+                feat_analytics: "Real-time Analytics",
+                androgov_btn: "System Login",
+                cta_title: "Ready to Take Your Business to the Next Level?",
+                cta_desc: "Join our distinguished client list and benefit from our integrated technical solutions.",
+                cta_button: "Contact Us",
+                footer_desc: "Andromeda Information Technology. A Saudi Closed Joint Stock Company specializing in developing digital solutions, infrastructure, and security systems.",
+                quick_links: "Quick Links",
+                contact_us: "Contact Us",
+                address: "Riyadh, Al-Izdihar Dist.",
+                copyright: "&copy; 2026 Andromeda Information Technology. All rights reserved."
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'ar';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('lang', currentLang);
+            applyLanguage();
+        }
+
+        function applyLanguage() {
+            const html = document.documentElement;
+            const t = translations[currentLang];
+            
+            html.setAttribute('lang', currentLang);
+            html.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            document.getElementById('langLabel').innerText = currentLang === 'ar' ? 'EN' : 'عربي';
+
+            // Swap Font
+            if(currentLang === 'ar') document.body.style.fontFamily = "'Tajawal', sans-serif";
+            else document.body.style.fontFamily = "'Inter', sans-serif";
+
+            // Update Text
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.innerText = t[key];
+            });
+
+            // Rotate Arrows for LTR
+            document.querySelectorAll('.fa-arrow-left').forEach(icon => {
+                icon.style.transform = currentLang === 'ar' ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            const icon = document.getElementById('themeIcon');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            if(isDark) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Initialization
+        (function initThemeAndLang() {
+            // Theme Init
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                const icon = document.getElementById('themeIcon');
+                if(icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+            // Language Init
+            applyLanguage();
+        })();
+    </script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker
+            .register('service-worker.js')
+            .catch(function (err) {
+              console.warn('Service worker registration failed:', err);
+            });
+        });
+      }
+    </script>
 </body>
 </html>
