@@ -3,158 +3,383 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 | eCode</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>404 | Error - eCode</title>
+  <meta name="robots" content="noindex, follow">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="icon" type="image/png" href="https://ecode.sa/favicon.png" />
 
   <style>
     :root {
-      /* الوضع المضيء (افتراضي) */
-      --bg-primary: #F8FAFC; /* Neutral Background  */
-      --bg-card: #FFFFFF;
-      --text-primary: #475569; /* Dark Grey  */
-      --text-secondary: #94A3B8; /* Medium Grey  */
-      --lavender: #8B7FFF; /* Lavender Dark [cite: 486] */
-      --lavender-light: #A99BFF; /* Lavender Light [cite: 483] */
-      --border: #E2E8F0; /* Light Grey  */
+      /* Light Mode Variables */
+      --bg-primary: #F0F2F5;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --text-primary: #1A1F2E;
+      --text-secondary: #64748B;
+      --lavender: #8B7FFF;
+      --sky-blue: #5BC0F8;
+      --grid-color: rgba(139, 127, 255, 0.07);
+      --shadow: 0 10px 40px -10px rgba(139, 127, 255, 0.2);
     }
 
     [data-theme="dark"] {
-      /* الوضع المظلم */
-      --bg-primary: #0F1419; 
-      --bg-card: #1A1F2E;
+      /* Dark Mode Variables */
+      --bg-primary: #050507;
+      --bg-card: rgba(20, 25, 38, 0.8);
       --text-primary: #E6EDF3;
-      --text-secondary: #9DA5B4;
-      --border: #2D3748;
+      --text-secondary: #94A3B8;
+      --grid-color: rgba(139, 127, 255, 0.05);
+      --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s ease, color 0.3s ease, border 0.3s ease; }
 
     body {
       font-family: "Tajawal", "Inter", sans-serif;
-      background: var(--bg-primary);
+      background-color: var(--bg-primary);
       color: var(--text-primary);
       height: 100vh;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      position: relative;
     }
 
-    /* أزرار التحكم العلوي */
-    .controls {
+    /* --- Cyber Grid Background Animation --- */
+    .bg-grid {
       position: absolute;
-      top: 20px;
-      display: flex;
-      gap: 15px;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 40px 40px;
+      transform: perspective(500px) rotateX(60deg);
+      animation: gridMove 20s linear infinite;
+      z-index: -1;
+      pointer-events: none;
     }
 
-    .control-btn {
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      color: var(--text-primary);
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
+    @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
     }
 
+    /* --- Glowing Orb --- */
+    .glow-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139, 127, 255, 0.15) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* --- Main Card --- */
     .error-card {
       background: var(--bg-card);
-      padding: 40px;
-      border-radius: 24px; /* Card border radius [cite: 511] */
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      max-width: 600px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 60px 40px;
+      border-radius: 32px;
+      border: 1px solid rgba(139, 127, 255, 0.1);
+      box-shadow: var(--shadow);
+      max-width: 550px;
       width: 90%;
+      text-align: center;
+      position: relative;
+      animation: floatCard 6s ease-in-out infinite;
     }
 
-    .error-code {
-      font-size: 100px;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--lavender), #49B3F1); /* Lavender to Sky Blue [cite: 479, 487] */
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* --- Glitch 404 Effect --- */
+    .glitch-wrapper {
+      position: relative;
       margin-bottom: 20px;
     }
 
-    .lang-section { display: none; }
-    .lang-section.active { display: block; }
+    .error-code {
+      font-size: 120px;
+      font-weight: 800;
+      line-height: 1;
+      position: relative;
+      background: linear-gradient(135deg, var(--lavender), var(--sky-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
 
-    h1 { font-size: 28px; margin-bottom: 15px; color: var(--text-primary); }
-    p { font-size: 18px; color: var(--text-secondary); margin-bottom: 30px; line-height: 1.6; }
+    .error-code::before, .error-code::after {
+      content: '404';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+      display: none; 
+    }
 
+    /* Glitch Animation trigger on hover/automatic */
+    .error-card:hover .error-code {
+      animation: glitch-skew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    }
+    .error-card:hover .error-code::before {
+      display: block;
+      color: #ff00ff;
+      z-index: -1;
+      animation: glitch-anim-1 2s infinite linear alternate-reverse;
+    }
+    .error-card:hover .error-code::after {
+      display: block;
+      color: #00ffff;
+      z-index: -2;
+      animation: glitch-anim-2 2s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 0); }
+      20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 0); }
+      40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 0); }
+      60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
+      80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 0); }
+      100% { clip-path: inset(30% 0 50% 0); transform: translate(2px, 0); }
+    }
+    @keyframes glitch-anim-2 {
+      0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, 0); }
+      20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 0); }
+      40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, 0); }
+      60% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 0); }
+      80% { clip-path: inset(50% 0 30% 0); transform: translate(2px, 0); }
+      100% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 0); }
+    }
+
+    /* --- Content Typography --- */
+    h1 {
+      font-size: 26px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* --- Buttons --- */
     .btn-home {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 14px 32px;
-      border-radius: 16px; /* Button border radius [cite: 519] */
-      background: var(--lavender);
-      color: #FFFFFF !important;
+      gap: 12px;
+      padding: 14px 36px;
+      border-radius: 99px;
+      background: linear-gradient(135deg, var(--lavender), #7063FF);
+      color: #ffffff !important;
       text-decoration: none;
       font-weight: 700;
-      box-shadow: 0 4px 14px rgba(139, 127, 255, 0.3);
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(139, 127, 255, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn-home:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-home::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(139, 127, 255, 0.6);
+    }
+
+    .btn-home:hover::before {
+      left: 100%;
+    }
+
+    /* --- Top Controls --- */
+    .controls {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+    
+    /* LTR Support for Controls */
+    html[dir="ltr"] .controls {
+      right: auto;
+      left: 24px;
+    }
+
+    .control-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(139, 127, 255, 0.2);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+
+    .control-btn:hover {
+      background: var(--lavender);
+      color: white;
+      border-color: var(--lavender);
+      transform: rotate(15deg);
+    }
+
+    /* --- Language Sections --- */
+    .lang-section { display: none; opacity: 0; animation: fadeIn 0.5s forwards; }
+    .lang-section.active { display: block; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+      .error-code { font-size: 90px; }
+      .error-card { padding: 40px 24px; width: 85%; }
+      h1 { font-size: 22px; }
+    }
   </style>
 </head>
 <body data-theme="dark">
 
+  <div class="bg-grid"></div>
+  <div class="glow-orb"></div>
+
   <div class="controls">
-    <button class="control-btn" onclick="toggleLanguage()">English</button>
-    <button class="control-btn" onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
+    <button class="control-btn" onclick="toggleLanguage()" title="Switch Language">
+      <i class="fas fa-language"></i>
+    </button>
+    <button class="control-btn" onclick="toggleTheme()" title="Toggle Theme">
+      <i id="theme-icon" class="fas fa-moon"></i>
+    </button>
   </div>
 
   <div class="error-card">
-    <div class="error-code">404</div>
+    <div class="glitch-wrapper">
+      <div class="error-code" title="404">404</div>
+    </div>
 
     <div id="ar-content" class="lang-section active">
-      <h1>يبدو أنك ضللت الطريق!</h1>
-      <p>الصفحة التي تبحث عنها غير موجودة. لكن لا تقلق، <strong>eCode</strong> دائماً تصنع الأثر وتجد طريقها.</p>
-      <a href="/ar/" class="btn-home"><i class="fas fa-arrow-right"></i> العودة للرئيسية</a>
+      <h1>عفواً.. حدث خطأ تقني!</h1>
+      <p>الصفحة التي تبحث عنها قد تكون حُذفت أو أن الرابط غير صحيح.<br>لكن لا تقلق، في <strong>eCode</strong> دائماً نجد الحلول.</p>
+      <a href="/ar/" class="btn-home">
+        العودة للرئيسية <i class="fas fa-arrow-left" style="transform: rotate(180deg);"></i>
+      </a>
     </div>
 
     <div id="en-content" class="lang-section" dir="ltr">
-      <h1>Oops! You're Lost.</h1>
-      <p>The page you are looking for doesn't exist. Don't worry, <strong>eCode</strong> always makes an impact and finds its way.</p>
-      <a href="/en/" class="btn-home">Back to Home <i class="fas fa-arrow-left"></i></a>
+      <h1>Oops! System Glitch.</h1>
+      <p>The page you are looking for might have been removed or the link is broken.<br>Don't worry, at <strong>eCode</strong> we always fix bugs.</p>
+      <a href="/en/" class="btn-home">
+        Back to Home <i class="fas fa-arrow-right"></i>
+      </a>
     </div>
   </div>
 
   <script>
-    function toggleLanguage() {
-      const ar = document.getElementById('ar-content');
-      const en = document.getElementById('en-content');
-      const btn = document.querySelector('.control-btn');
+    // تهيئة المتغيرات
+    const arContent = document.getElementById('ar-content');
+    const enContent = document.getElementById('en-content');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlTag = document.documentElement;
 
-      if (ar.classList.contains('active')) {
-        ar.classList.remove('active');
-        en.classList.add('active');
-        document.documentElement.dir = "ltr";
-        btn.innerText = "عربي";
+    // 1. وظيفة تبديل اللغة
+    function toggleLanguage() {
+      const isArabic = arContent.classList.contains('active');
+      
+      if (isArabic) {
+        // Switch to English
+        arContent.classList.remove('active');
+        enContent.classList.add('active');
+        htmlTag.setAttribute('dir', 'ltr');
+        htmlTag.setAttribute('lang', 'en');
+        localStorage.setItem('ecode_lang', 'en');
       } else {
-        en.classList.remove('active');
-        ar.classList.add('active');
-        document.documentElement.dir = "rtl";
-        btn.innerText = "English";
+        // Switch to Arabic
+        enContent.classList.remove('active');
+        arContent.classList.add('active');
+        htmlTag.setAttribute('dir', 'rtl');
+        htmlTag.setAttribute('lang', 'ar');
+        localStorage.setItem('ecode_lang', 'ar');
       }
     }
 
+    // 2. وظيفة تبديل الثيم (Dark/Light)
     function toggleTheme() {
-      const body = document.body;
-      const current = body.getAttribute('data-theme');
-      body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.body.setAttribute('data-theme', newTheme);
+      updateThemeIcon(newTheme);
+      localStorage.setItem('ecode_theme', newTheme);
     }
 
-    // التحقق من تفضيلات النظام تلقائياً
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      document.body.setAttribute('data-theme', 'light');
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      } else {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
     }
+
+    // 3. التحميل الأولي (استرجاع التفضيلات)
+    window.addEventListener('DOMContentLoaded', () => {
+      // استرجاع الثيم المفضل
+      const savedTheme = localStorage.getItem('ecode_theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme) {
+        document.body.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+      } else if (systemPrefersDark) {
+        document.body.setAttribute('data-theme', 'dark');
+        updateThemeIcon('dark');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        updateThemeIcon('light');
+      }
+
+      // استرجاع اللغة المفضلة
+      const savedLang = localStorage.getItem('ecode_lang');
+      if (savedLang === 'en') {
+        arContent.classList.remove('active');
+        enContent.classList.add('active');
+        htmlTag.setAttribute('dir', 'ltr');
+        htmlTag.setAttribute('lang', 'en');
+      }
+    });
   </script>
 </body>
 </html>
