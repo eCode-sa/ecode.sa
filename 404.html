@@ -3,114 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الصفحة غير موجودة | eCode</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <title>404 | eCode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="icon" type="image/png" href="https://ecode.sa/favicon.png" />
 
   <style>
     :root {
-      --lavender-light: #A99BFF;
-      --lavender-dark: #8B7FFF;
-      --bg-primary: #0F1419;
-      --text-primary: #E6EDF3;
-      --text-secondary: #9DA5B4;
-      --radius-full: 999px;
-      --transition-base: 250ms ease;
+      /* الوضع المضيء (افتراضي) */
+      --bg-primary: #F8FAFC; /* Neutral Background  */
+      --bg-card: #FFFFFF;
+      --text-primary: #475569; /* Dark Grey  */
+      --text-secondary: #94A3B8; /* Medium Grey  */
+      --lavender: #8B7FFF; /* Lavender Dark [cite: 486] */
+      --lavender-light: #A99BFF; /* Lavender Light [cite: 483] */
+      --border: #E2E8F0; /* Light Grey  */
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    [data-theme="dark"] {
+      /* الوضع المظلم */
+      --bg-primary: #0F1419; 
+      --bg-card: #1A1F2E;
+      --text-primary: #E6EDF3;
+      --text-secondary: #9DA5B4;
+      --border: #2D3748;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
 
     body {
-      font-family: "Tajawal", sans-serif;
+      font-family: "Tajawal", "Inter", sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      overflow: hidden;
     }
 
-    .error-container {
-      padding: 20px;
-      max-width: 500px;
-      animation: fadeInUp 0.8s ease-out;
+    /* أزرار التحكم العلوي */
+    .controls {
+      position: absolute;
+      top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .control-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .error-card {
+      background: var(--bg-card);
+      padding: 40px;
+      border-radius: 24px; /* Card border radius [cite: 511] */
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 90%;
     }
 
     .error-code {
-      font-size: 120px;
+      font-size: 100px;
       font-weight: 700;
-      line-height: 1;
-      background: linear-gradient(135deg, var(--lavender-light), #5BC0F8);
+      background: linear-gradient(135deg, var(--lavender), #49B3F1); /* Lavender to Sky Blue [cite: 479, 487] */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
 
-    p {
-      color: var(--text-secondary);
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
+    h1 { font-size: 28px; margin-bottom: 15px; color: var(--text-primary); }
+    p { font-size: 18px; color: var(--text-secondary); margin-bottom: 30px; line-height: 1.6; }
 
     .btn-home {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 14px 32px;
-      border-radius: var(--radius-full);
-      background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
-      color: #fff;
+      border-radius: 16px; /* Button border radius [cite: 519] */
+      background: var(--lavender);
+      color: #FFFFFF !important;
       text-decoration: none;
       font-weight: 700;
-      transition: var(--transition-base);
-      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.3);
+      box-shadow: 0 4px 14px rgba(139, 127, 255, 0.3);
     }
 
-    .btn-home:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.5);
-    }
-
-    .bg-glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(139, 127, 255, 0.1) 0%, transparent 70%);
-      z-index: -1;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .btn-home:hover { transform: translateY(-2px); filter: brightness(1.1); }
   </style>
 </head>
-<body>
+<body data-theme="dark">
 
-  <div class="bg-glow"></div>
-
-  <div class="error-container">
-    <div class="error-code">404</div>
-    <h1>يبدو أنك ضللت الطريق!</h1>
-    <p>الصفحة التي تبحث عنها غير موجودة أو تم نقلها. لكن لا تقلق، "تصنع الأثر" دائماً تجد طريقها.</p>
-    
-    <a href="https://ecode.sa/ar/" class="btn-home">
-      <i class="fas fa-arrow-right"></i>
-      العودة للرئيسية
-    </a>
+  <div class="controls">
+    <button class="control-btn" onclick="toggleLanguage()">English</button>
+    <button class="control-btn" onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
   </div>
 
+  <div class="error-card">
+    <div class="error-code">404</div>
+
+    <div id="ar-content" class="lang-section active">
+      <h1>يبدو أنك ضللت الطريق!</h1>
+      <p>الصفحة التي تبحث عنها غير موجودة. لكن لا تقلق، <strong>eCode</strong> دائماً تصنع الأثر وتجد طريقها.</p>
+      <a href="/ar/" class="btn-home"><i class="fas fa-arrow-right"></i> العودة للرئيسية</a>
+    </div>
+
+    <div id="en-content" class="lang-section" dir="ltr">
+      <h1>Oops! You're Lost.</h1>
+      <p>The page you are looking for doesn't exist. Don't worry, <strong>eCode</strong> always makes an impact and finds its way.</p>
+      <a href="/en/" class="btn-home">Back to Home <i class="fas fa-arrow-left"></i></a>
+    </div>
+  </div>
+
+  <script>
+    function toggleLanguage() {
+      const ar = document.getElementById('ar-content');
+      const en = document.getElementById('en-content');
+      const btn = document.querySelector('.control-btn');
+
+      if (ar.classList.contains('active')) {
+        ar.classList.remove('active');
+        en.classList.add('active');
+        document.documentElement.dir = "ltr";
+        btn.innerText = "عربي";
+      } else {
+        en.classList.remove('active');
+        ar.classList.add('active');
+        document.documentElement.dir = "rtl";
+        btn.innerText = "English";
+      }
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    }
+
+    // التحقق من تفضيلات النظام تلقائياً
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.body.setAttribute('data-theme', 'light');
+    }
+  </script>
 </body>
 </html>
