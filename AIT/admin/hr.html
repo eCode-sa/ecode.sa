@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FB4747">
+    <title data-i18n="pageTitle">الموارد البشرية | AndroGov</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#FB4747',
+                        brandBlue: '#4267B2',
+                        brandDark: '#1E293B',
+                        brandGray: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Inter', 'sans-serif'],
+                        en: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .num-font { font-family: 'Inter', sans-serif; direction: ltr; display: inline-block; }
+        
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px);
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .dark .loading-overlay { background: rgba(15, 23, 42, 0.95); }
+        .loading-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .spinner {
+            width: 48px; height: 48px; border: 5px solid rgba(66, 103, 178, 0.1);
+            border-top-color: #4267B2; border-radius: 50%; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-brandGray dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300">
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p class="text-sm font-bold text-slate-600 dark:text-slate-300">جاري تحميل بيانات الموظفين...</p>
+        <button onclick="document.getElementById('loadingOverlay').classList.add('hidden')" class="mt-4 text-xs text-blue-500 underline">تخطي الانتظار</button>
+    </div>
+
+    <div id="sidebar-container" class="no-print"></div>
+    
+    <div class="main-content-wrapper ltr:md:ml-72 rtl:md:mr-72 transition-all duration-300 flex flex-col min-h-screen">
+        <div id="header-container" class="no-print"></div>
+
+        <main class="p-6 space-y-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 no-print">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiTotal">إجمالي الموظفين</p>
+                        <h3 class="text-2xl font-bold mt-1 font-en dark:text-white" id="stat-total-emp">--</h3>
+                    </div>
+                    <div class="w-10 h-10 bg-blue-50 dark:bg-blue-900/30 text-brandBlue rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-users"></i></div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiAttend">حضور اليوم</p>
+                        <h3 class="text-2xl font-bold mt-1 font-en text-green-600" id="stat-attend">--</h3>
+                    </div>
+                    <div class="w-10 h-10 bg-green-50 dark:bg-green-900/30 text-green-600 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-fingerprint"></i></div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiLeave">في إجازة</p>
+                        <h3 class="text-2xl font-bold mt-1 font-en text-orange-500">2</h3>
+                    </div>
+                    <div class="w-10 h-10 bg-orange-50 dark:bg-orange-900/30 text-orange-500 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-plane-departure"></i></div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase" data-i18n="kpiViolations">مخالفات هذا الشهر</p>
+                        <h3 class="text-2xl font-bold mt-1 font-en text-red-500">2</h3>
+                    </div>
+                    <div class="w-10 h-10 bg-red-50 dark:bg-red-900/30 text-red-500 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700 min-h-[600px] flex flex-col">
+                
+                <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="flex bg-slate-100 dark:bg-slate-700 p-1 rounded-xl w-full md:w-auto overflow-x-auto">
+                        <button onclick="switchTab('employees')" id="btn-employees" class="px-5 py-2 text-xs font-bold rounded-lg bg-white text-brandBlue shadow-sm transition-all tab-btn whitespace-nowrap" data-i18n="tabDir">دليل الموظفين</button>
+                        <button onclick="switchTab('permissions')" id="btn-permissions" class="px-5 py-2 text-xs font-bold rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 transition-all tab-btn whitespace-nowrap" data-i18n="tabPerm">الحسابات والصلاحيات</button>
+                        <button onclick="switchTab('attendance')" id="btn-attendance" class="px-5 py-2 text-xs font-bold rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 transition-all tab-btn whitespace-nowrap" data-i18n="tabAtt">الحضور والغياب</button>
+                        <button onclick="switchTab('violations')" id="btn-violations" class="px-5 py-2 text-xs font-bold rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 transition-all tab-btn whitespace-nowrap" data-i18n="tabVio">الجزاءات</button>
+                    </div>
+                    <button onclick="openAddUserModal()" class="px-4 py-2 bg-brandBlue text-white rounded-xl text-xs font-bold hover:bg-blue-700 transition flex items-center gap-2 shadow-lg whitespace-nowrap">
+                        <i class="fa-solid fa-user-plus"></i> <span data-i18n="btnAdd">إضافة موظف جديد</span>
+                    </button>
+                </div>
+
+                <div id="tab-employees" class="tab-content block p-6">
+                    <div class="flex justify-between mb-4">
+                        <div class="relative w-64">
+                            <input type="text" id="empSearch" onkeyup="renderEmployees()" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 dark:border-slate-600 dark:bg-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brandBlue outline-none dark:text-white" data-i18n-placeholder="plhSearch">
+                            <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 rtl:left-3 ltr:right-3"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-right rtl:text-right ltr:text-left">
+                            <thead class="bg-slate-50 dark:bg-slate-700 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">
+                                <tr>
+                                    <th class="p-4 rounded-r-lg" data-i18n="colEmp">الموظف</th>
+                                    <th class="p-4" data-i18n="colRole">القسم / الدور</th>
+                                    <th class="p-4" data-i18n="colDate">تاريخ الانضمام</th>
+                                    <th class="p-4" data-i18n="colSal">الراتب الأساسي</th>
+                                    <th class="p-4 text-center rounded-l-lg" data-i18n="colStat">الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700" id="employeesTable">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="tab-permissions" class="tab-content hidden p-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-1 border-l rtl:border-l ltr:border-r border-slate-200 dark:border-slate-700 pl-4 rtl:pl-4 ltr:pl-0 ltr:pr-4">
+                            <h4 class="font-bold text-sm mb-3 dark:text-white" data-i18n="permSelect">اختر موظفاً لتعديل صلاحياته</h4>
+                            <div class="space-y-2 max-h-[500px] overflow-y-auto custom-scroll" id="permUserList">
+                                </div>
+                        </div>
+
+                        <div class="lg:col-span-2">
+                            <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-900/50 mb-6 flex items-start gap-3">
+                                <i class="fa-solid fa-shield-halved text-blue-600 dark:text-blue-400 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-sm"><span data-i18n="permManage">إدارة حساب:</span> <span id="selectedUserPerm" class="text-black dark:text-white">...</span></h4>
+                                    <p class="text-xs text-blue-600 dark:text-blue-400" data-i18n="permDesc">تفعيل الصلاحيات يتيح للموظف الوصول للوحدات المحددة.</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-3 border dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center"><i class="fa-solid fa-gavel"></i></div>
+                                        <div>
+                                            <p class="font-bold text-sm dark:text-white" data-i18n="modGov">بوابة الحوكمة والمجلس</p>
+                                            <p class="text-[10px] text-slate-500" data-i18n="modGovSub">الوصول للمحاضر، الجمعيات، والقرارات</p>
+                                        </div>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer" checked><div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] rtl:after:right-[2px] rtl:after:left-auto after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brandBlue"></div></label>
+                                </div>
+                                <div class="flex justify-between items-center p-3 border dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-green-100 text-green-600 flex items-center justify-center"><i class="fa-solid fa-money-bill-wave"></i></div>
+                                        <div>
+                                            <p class="font-bold text-sm dark:text-white" data-i18n="modFin">النظام المالي</p>
+                                            <p class="text-[10px] text-slate-500" data-i18n="modFinSub">الرواتب، الميزانية، المصروفات</p>
+                                        </div>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer"><div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] rtl:after:right-[2px] rtl:after:left-auto after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brandBlue"></div></label>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex justify-end">
+                                <button onclick="alert('تم تحديث الصلاحيات بنجاح')" class="px-6 py-2 bg-slate-800 text-white rounded-lg text-xs font-bold hover:bg-black transition" data-i18n="btnSavePerm">حفظ التغييرات</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-attendance" class="tab-content hidden p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border dark:border-slate-700 rounded-2xl p-4">
+                            <h4 class="font-bold text-sm mb-4 dark:text-white flex justify-between">
+                                <span data-i18n="attToday">سجل اليوم</span>
+                                <span class="text-xs text-slate-400 font-en" id="att-date"></span>
+                            </h4>
+                            <div class="space-y-3 max-h-[400px] overflow-y-auto custom-scroll" id="dailyAttendanceList">
+                                </div>
+                        </div>
+                        <div class="border dark:border-slate-700 rounded-2xl p-4">
+                            <h4 class="font-bold text-sm mb-4 dark:text-white" data-i18n="attPending">طلبات الإجازة المعلقة</h4>
+                            <div class="space-y-3">
+                                <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg flex justify-between items-center">
+                                    <div>
+                                        <p class="text-xs font-bold dark:text-white">رند الحوراني</p>
+                                        <p class="text-[10px] text-slate-500" data-i18n="leaveReqType">إجازة سنوية (5 أيام)</p>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button class="text-green-600 hover:bg-green-50 p-1 rounded transition"><i class="fa-solid fa-check"></i></button>
+                                        <button class="text-red-600 hover:bg-red-50 p-1 rounded transition"><i class="fa-solid fa-xmark"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-violations" class="tab-content hidden p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-bold text-sm dark:text-white" data-i18n="vioTitle">سجل الجزاءات والمخالفات</h4>
+                        <button onclick="alert('نموذج تسجيل مخالفة')" class="text-xs text-red-600 border border-red-200 px-3 py-1 rounded hover:bg-red-50 transition" data-i18n="btnAddVio">+ تسجيل مخالفة</button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-right rtl:text-right ltr:text-left">
+                            <thead class="bg-red-50 dark:bg-red-900/10 text-red-900 dark:text-red-200 text-xs">
+                                <tr>
+                                    <th class="p-3" data-i18n="colVioName">الموظف</th>
+                                    <th class="p-3" data-i18n="colVioType">نوع المخالفة</th>
+                                    <th class="p-3" data-i18n="colVioPen">الجزاء</th>
+                                    <th class="p-3" data-i18n="colVioDate">التاريخ</th>
+                                    <th class="p-3" data-i18n="colVioStat">الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                                <tr>
+                                    <td class="p-3 font-bold dark:text-white">الحسين الحميدي</td>
+                                    <td class="p-3 text-xs text-slate-500" data-i18n="vio1Type">غياب بدون عذر</td>
+                                    <td class="p-3 text-xs text-red-500" data-i18n="vio1Pen">خصم يوم</td>
+                                    <td class="p-3 font-en text-xs text-slate-500">02 Jan 2026</td>
+                                    <td class="p-3"><span class="bg-slate-200 dark:bg-slate-600 px-2 py-0.5 rounded text-[10px]" data-i18n="vioArch">مؤرشف</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold dark:text-white">هادي احمد</td>
+                                    <td class="p-3 text-xs text-slate-500" data-i18n="vio2Type">تأخير متكرر</td>
+                                    <td class="p-3 text-xs text-orange-500" data-i18n="vio2Pen">إنذار كتابي أول</td>
+                                    <td class="p-3 font-en text-xs text-slate-500">05 Jan 2026</td>
+                                    <td class="p-3"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-[10px]" data-i18n="vioSigned">تم التوقيع</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <div id="addUserModal" class="fixed inset-0 bg-black/60 hidden z-50 flex items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-2xl shadow-xl p-6">
+            <div class="flex justify-between items-center mb-4 border-b pb-2 dark:border-slate-700">
+                <h3 class="font-bold text-lg dark:text-white" data-i18n="modAddTitle">إضافة موظف / حساب جديد</h3>
+                <button onclick="document.getElementById('addUserModal').classList.add('hidden')"><i class="fa-solid fa-xmark text-slate-400"></i></button>
+            </div>
+            
+            <form class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="modFName">الاسم الأول</label>
+                        <input type="text" class="w-full border dark:border-slate-600 rounded p-2 text-sm bg-slate-50 dark:bg-slate-700 dark:text-white outline-none focus:border-brandBlue">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="modLName">اسم العائلة</label>
+                        <input type="text" class="w-full border dark:border-slate-600 rounded p-2 text-sm bg-slate-50 dark:bg-slate-700 dark:text-white outline-none focus:border-brandBlue">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="modEmail">البريد الإلكتروني</label>
+                    <input type="email" class="w-full border dark:border-slate-600 rounded p-2 text-sm bg-slate-50 dark:bg-slate-700 dark:text-white outline-none focus:border-brandBlue">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="modDept">القسم</label>
+                        <select class="w-full border dark:border-slate-600 rounded p-2 text-sm bg-slate-50 dark:bg-slate-700 dark:text-white outline-none">
+                            <option data-i18n="dHR">الموارد البشرية</option>
+                            <option data-i18n="dFin">المالية</option>
+                            <option data-i18n="dIT">تقنية المعلومات</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="modJob">المسمى الوظيفي</label>
+                        <input type="text" class="w-full border dark:border-slate-600 rounded p-2 text-sm bg-slate-50 dark:bg-slate-700 dark:text-white outline-none focus:border-brandBlue">
+                    </div>
+                </div>
+            </form>
+
+            <div class="mt-6 flex justify-end gap-3">
+                <button onclick="document.getElementById('addUserModal').classList.add('hidden')" class="px-4 py-2 border rounded-lg text-xs font-bold hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700" data-i18n="cancel">إلغاء</button>
+                <button onclick="alert('تم إنشاء الحساب'); document.getElementById('addUserModal').classList.add('hidden')" class="px-6 py-2 bg-brandBlue text-white rounded-lg text-xs font-bold hover:bg-blue-700" data-i18n="btnSave">حفظ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data/company_policy.js"></script>
+    <script src="js/core/config.js"></script>
+    <script src="js/core/i18n.js"></script>
+    <script src="js/helpers/policy-helpers.js"></script>
+    <script src="js/services/data-service.js"></script>
+    <script src="js/components/role-switcher.js"></script>
+    <script src="js/components/layout.js"></script>
+    <script src="js/components/bot.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Failsafe: Remove overlay after 2 seconds
+            setTimeout(() => {
+                const overlay = document.getElementById('loadingOverlay');
+                if(overlay) overlay.classList.add('hidden');
+            }, 2000);
+
+            const checkSystem = setInterval(() => {
+                if (typeof Layout !== 'undefined' && typeof AppConfig !== 'undefined' && typeof DataService !== 'undefined') {
+                    clearInterval(checkSystem);
+                    
+                    if (!AppConfig.getCurrentUser()) {
+                        const defaultUser = DataService.getUserById('USR_004') || DataService.getUsers()[0];
+                        if (defaultUser) AppConfig.setCurrentUser(defaultUser);
+                    }
+
+                    Layout.init();
+                    initPage();
+                }
+            }, 50);
+        });
+
+        // --- Logic ---
+        function initPage() {
+            updatePageLanguage();
+        }
+
+        function updatePageLanguage() {
+            const lang = AppConfig.getLang() || 'ar';
+            const dict = t[lang];
+            
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // Static Text
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(dict[key]) el.innerText = dict[key];
+            });
+            // Placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if(dict[key]) el.placeholder = dict[key];
+            });
+
+            // Date
+            document.getElementById('att-date').innerText = new Date().toLocaleDateString(lang === 'ar' ? 'en-US' : 'en-US'); // Keeping date numbers in EN
+
+            renderData(lang);
+        }
+
+        function renderData(lang) {
+            // Fetch users from centralized data service
+            const allUsers = DataService.getUsers();
+            
+            // FILTER: Only show Employees & Executives. Exclude pure Board/Shareholders.
+            // Logic: Include if role is 'employee', 'manager', 'director', 'specialist', 'team_lead', 'support', 'coordinator'
+            // OR isExecutive is true.
+            // Exclude: chairman, board_member, shareholder (unless isExecutive=true)
+            
+            const employeeRoles = ['employee', 'manager', 'director', 'specialist', 'team_lead', 'support', 'coordinator', 'grc_officer', 'ncso', 'cao', 'cfo', 'ceo'];
+            
+            const users = allUsers.filter(u => {
+                const isEmpRole = employeeRoles.includes(u.role);
+                const isExec = u.isExecutive === true;
+                return isEmpRole || isExec;
+            });
+            
+            // 1. Stats
+            document.getElementById('stat-total-emp').innerText = users.length;
+            document.getElementById('stat-attend').innerText = `${Math.floor(users.length * 0.9)} / ${users.length}`;
+
+            // 2. Directory Table
+            const tbody = document.getElementById('employeesTable');
+            const search = document.getElementById('empSearch').value.toLowerCase();
+            const dict = t[lang];
+
+            const filtered = users.filter(u => 
+                (lang==='ar' ? u.name.ar : u.name.en).toLowerCase().includes(search)
+            );
+
+            tbody.innerHTML = filtered.map(u => {
+                const name = lang === 'ar' ? u.name.ar : u.name.en;
+                // Translate Role using dictionary or fallback
+                let roleText = u.role; 
+                // Simple mapping for display (could be improved with a full role dictionary)
+                if(u.role === 'ceo') roleText = 'CEO';
+                else if(u.role === 'cfo') roleText = 'CFO';
+                else if(u.role === 'cao') roleText = 'CAO';
+                else roleText = u.title ? (lang==='ar' ? u.title.ar : u.title.en) : u.role;
+
+                const dept = u.dept;
+                // Mock salary logic for display only (Hidden for privacy in real app usually)
+                const salary = u.isExecutive ? '***' : (Math.floor(Math.random() * 5000) + 5000); 
+                
+                const avatar = u.avatar && u.avatar.startsWith('..') ? u.avatar : `https://ui-avatars.com/api/?name=${name}&background=random`;
+
+                return `
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition border-b border-slate-100 dark:border-slate-700">
+                    <td class="p-4">
+                        <div class="flex items-center gap-3">
+                            <img src="${avatar}" class="w-8 h-8 rounded-full object-cover bg-slate-200">
+                            <div>
+                                <p class="font-bold text-slate-800 dark:text-white text-xs text-left rtl:text-right ltr:text-left">${name}</p>
+                                <p class="text-[9px] text-slate-400 font-en text-left rtl:text-right ltr:text-left">${u.id}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-4 text-xs text-left rtl:text-right ltr:text-left text-slate-600 dark:text-slate-300">
+                        <p class="font-bold">${roleText}</p>
+                        <p class="text-slate-400">${dept}</p>
+                    </td>
+                    <td class="p-4 font-en text-xs text-slate-500 text-left rtl:text-right ltr:text-left">2024-01-01</td>
+                    <td class="p-4 font-en text-xs font-bold text-slate-700 dark:text-slate-300 text-left rtl:text-right ltr:text-left">${salary.toLocaleString()}</td>
+                    <td class="p-4 text-center">
+                        <span class="px-2 py-1 rounded text-[10px] font-bold bg-green-100 text-green-700">${dict.statActive}</span>
+                    </td>
+                </tr>`;
+            }).join('');
+
+            // 3. Perm List
+            const permList = document.getElementById('permUserList');
+            permList.innerHTML = users.map(u => {
+                const name = lang === 'ar' ? u.name.ar : u.name.en;
+                const avatar = u.avatar && u.avatar.startsWith('..') ? u.avatar : `https://ui-avatars.com/api/?name=${name}&background=random`;
+                return `
+                <div onclick="selectUserForPerm('${name}')" class="p-2 hover:bg-blue-50 dark:hover:bg-slate-700 rounded cursor-pointer flex items-center gap-2 border-b border-slate-50 dark:border-slate-700 transition">
+                    <img src="${avatar}" class="w-6 h-6 rounded-full object-cover">
+                    <div>
+                        <p class="text-xs font-bold dark:text-slate-200">${name}</p>
+                        <p class="text-[9px] text-slate-400">${u.role}</p>
+                    </div>
+                </div>`;
+            }).join('');
+
+            // 4. Daily Attendance
+            const attList = document.getElementById('dailyAttendanceList');
+            attList.innerHTML = users.map(u => {
+                const name = lang === 'ar' ? u.name.ar : u.name.en;
+                const time = Math.floor(Math.random() * 60);
+                const statusColor = time < 15 ? 'bg-green-500' : 'bg-orange-500';
+                return `
+                <div class="flex items-center justify-between p-2 hover:bg-slate-50 dark:hover:bg-slate-700 rounded transition">
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full ${statusColor}"></div>
+                        <span class="text-xs font-bold dark:text-slate-200">${name}</span>
+                    </div>
+                    <span class="text-[10px] font-en text-slate-500">08:${time.toString().padStart(2, '0')} AM</span>
+                </div>`;
+            }).join('');
+        }
+
+        // --- UI Logic ---
+        function switchTab(target) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-white', 'text-brandBlue', 'shadow-sm');
+                el.classList.add('text-slate-500');
+            });
+            document.getElementById(`tab-${target}`).classList.remove('hidden');
+            document.getElementById(`btn-${target}`).classList.add('bg-white', 'text-brandBlue', 'shadow-sm');
+        }
+
+        function filterEmployees() {
+            const lang = AppConfig.getLang() || 'ar';
+            renderData(lang);
+        }
+
+        function selectUserForPerm(name) {
+            document.getElementById('selectedUserPerm').innerText = name;
+        }
+
+        function openAddUserModal() { document.getElementById('addUserModal').classList.remove('hidden'); }
+
+        // --- Translations ---
+        const t = {
+            ar: {
+                pageTitle: "الموارد البشرية | AndroGov",
+                kpiTotal: "إجمالي الموظفين",
+                kpiAttend: "حضور اليوم",
+                kpiLeave: "في إجازة",
+                kpiViolations: "مخالفات هذا الشهر",
+                tabDir: "دليل الموظفين",
+                tabPerm: "الحسابات والصلاحيات",
+                tabAtt: "الحضور والغياب",
+                tabVio: "الجزاءات",
+                btnAdd: "إضافة موظف جديد",
+                plhSearch: "بحث بالاسم...",
+                colEmp: "الموظف",
+                colRole: "القسم / الدور",
+                colDate: "تاريخ الانضمام",
+                colSal: "الراتب",
+                colRate: "التقييم",
+                colStat: "الحالة",
+                statActive: "نشط",
+                statLeave: "إجازة",
+                permSelect: "اختر موظفاً لتعديل صلاحياته",
+                permManage: "إدارة حساب:",
+                permDesc: "تفعيل الصلاحيات يتيح الوصول للوحدات.",
+                modGov: "بوابة الحوكمة",
+                modGovSub: "الوصول للمحاضر والقرارات",
+                modFin: "النظام المالي",
+                modFinSub: "الرواتب والمصروفات",
+                btnSavePerm: "حفظ التغييرات",
+                attToday: "سجل اليوم",
+                attPending: "طلبات معلقة",
+                leaveReqType: "إجازة سنوية",
+                vioTitle: "سجل الجزاءات",
+                btnAddVio: "+ تسجيل مخالفة",
+                colVioName: "الموظف",
+                colVioType: "نوع المخالفة",
+                colVioPen: "الجزاء",
+                colVioDate: "التاريخ",
+                colVioStat: "الحالة",
+                vio1Type: "غياب بدون عذر",
+                vio1Pen: "خصم يوم",
+                vioArch: "مؤرشف",
+                vio2Type: "تأخير",
+                vio2Pen: "إنذار",
+                vioSigned: "تم التوقيع",
+                modAddTitle: "إضافة موظف جديد",
+                modFName: "الاسم الأول",
+                modLName: "اسم العائلة",
+                modEmail: "البريد الإلكتروني",
+                modDept: "القسم",
+                modJob: "المسمى الوظيفي",
+                modPerms: "الصلاحيات الافتراضية",
+                modPortal: "بوابة الموظف",
+                modMail: "البريد الإلكتروني",
+                cancel: "إلغاء",
+                btnSave: "حفظ",
+                dHR: "الموارد البشرية",
+                dFin: "المالية",
+                dIT: "تقنية المعلومات",
+                dSales: "المبيعات"
+            },
+            en: {
+                pageTitle: "Human Resources | AndroGov",
+                kpiTotal: "Total Employees",
+                kpiAttend: "Attendance",
+                kpiLeave: "On Leave",
+                kpiViolations: "Violations",
+                tabDir: "Directory",
+                tabPerm: "Permissions",
+                tabAtt: "Attendance",
+                tabVio: "Penalties",
+                btnAdd: "Add Employee",
+                plhSearch: "Search name...",
+                colEmp: "Employee",
+                colRole: "Dept / Role",
+                colDate: "Join Date",
+                colSal: "Salary",
+                colRate: "Rating",
+                colStat: "Status",
+                statActive: "Active",
+                statLeave: "Leave",
+                permSelect: "Select Employee",
+                permManage: "Managing:",
+                permDesc: "Enable modules access.",
+                modGov: "Governance Portal",
+                modGovSub: "Access Minutes",
+                modFin: "Finance System",
+                modFinSub: "Payroll & Expenses",
+                btnSavePerm: "Save Changes",
+                attToday: "Today's Log",
+                attPending: "Pending Requests",
+                leaveReqType: "Annual Leave",
+                vioTitle: "Violations Log",
+                btnAddVio: "+ Log Violation",
+                colVioName: "Employee",
+                colVioType: "Violation",
+                colVioPen: "Penalty",
+                colVioDate: "Date",
+                colVioStat: "Status",
+                vio1Type: "Unexcused Absence",
+                vio1Pen: "Deduction",
+                vioArch: "Archived",
+                vio2Type: "Lateness",
+                vio2Pen: "Warning",
+                vioSigned: "Signed",
+                modAddTitle: "Add New Employee",
+                modFName: "First Name",
+                modLName: "Last Name",
+                modEmail: "Email",
+                modDept: "Department",
+                modJob: "Job Title",
+                modPerms: "Default Permissions",
+                modPortal: "Employee Portal",
+                modMail: "Email",
+                cancel: "Cancel",
+                btnSave: "Save",
+                dHR: "HR",
+                dFin: "Finance",
+                dIT: "IT",
+                dSales: "Sales"
+            }
+        };
+    </script>
+</body>
+</html>
