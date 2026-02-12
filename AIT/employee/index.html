@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الموظف | AndroGov</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { 
+                extend: { 
+                    colors: { brandRed: '#FB4747', brandDark: '#1E293B' }, 
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'] } 
+                } 
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans opacity-0 transition-opacity duration-500">
+
+    <div id="sidebar-container"></div>
+
+    <div class="main-content-wrapper lg:mr-72 transition-all duration-300">
+        <div id="header-container"></div>
+
+        <main class="p-8 space-y-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:border-brandRed/30 transition">
+                    <div class="absolute -left-6 -top-6 w-24 h-24 bg-red-50 dark:bg-red-900/10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">رصيد الإجازات</p>
+                                <h3 class="text-3xl font-extrabold text-slate-800 dark:text-white mt-1">21 <span class="text-sm text-slate-400 font-medium">يوم</span></h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-900/20 text-brandRed flex items-center justify-center"><i class="fa-solid fa-umbrella-beach"></i></div>
+                        </div>
+                        <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brandRed h-full" style="width: 70%"></div>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-2 text-left">تم استهلاك 9 أيام</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:border-green-200 transition">
+                    <div class="absolute -left-6 -top-6 w-24 h-24 bg-green-50 dark:bg-green-900/10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">الراتب القادم</p>
+                                <h3 class="text-3xl font-extrabold text-slate-800 dark:text-white mt-1">27 <span class="text-sm text-slate-400 font-medium">يناير</span></h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-green-50 dark:bg-green-900/20 text-green-600 flex items-center justify-center"><i class="fa-solid fa-calendar-check"></i></div>
+                        </div>
+                        <p class="text-xs text-green-600 font-bold bg-green-50 dark:bg-green-900/30 inline-block px-2 py-1 rounded-lg">متبقي 14 يوم</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:border-orange-200 transition">
+                    <div class="absolute -left-6 -top-6 w-24 h-24 bg-orange-50 dark:bg-orange-900/10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">طلبات معلقة</p>
+                                <h3 class="text-3xl font-extrabold text-slate-800 dark:text-white mt-1">2 <span class="text-sm text-slate-400 font-medium">طلب</span></h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-orange-500 flex items-center justify-center"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        </div>
+                        <a href="requests.html" class="text-xs text-orange-500 font-bold hover:underline">متابعة الطلبات <i class="fa-solid fa-arrow-left mr-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-500"></i> إجراءات سريعة</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-brandRed hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+                        <div class="w-12 h-12 rounded-full bg-slate-50 dark:bg-slate-800 group-hover:bg-red-50 text-slate-500 group-hover:text-brandRed mx-auto flex items-center justify-center text-xl transition-colors mb-3">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">طلب إجازة</span>
+                    </button>
+                    
+                    <button class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-blue-200 hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+                        <div class="w-12 h-12 rounded-full bg-slate-50 dark:bg-slate-800 group-hover:bg-blue-50 text-slate-500 group-hover:text-blue-500 mx-auto flex items-center justify-center text-xl transition-colors mb-3">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">تعريف راتب</span>
+                    </button>
+
+                    <button class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-purple-200 hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+                        <div class="w-12 h-12 rounded-full bg-slate-50 dark:bg-slate-800 group-hover:bg-purple-50 text-slate-500 group-hover:text-purple-500 mx-auto flex items-center justify-center text-xl transition-colors mb-3">
+                            <i class="fa-solid fa-laptop-medical"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">دعم فني</span>
+                    </button>
+
+                    <button class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-green-200 hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+                        <div class="w-12 h-12 rounded-full bg-slate-50 dark:bg-slate-800 group-hover:bg-green-50 text-slate-500 group-hover:text-green-500 mx-auto flex items-center justify-center text-xl transition-colors mb-3">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">رفع مطالبة</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-50 dark:border-slate-800 flex justify-between items-center">
+                    <h3 class="font-bold text-lg text-slate-800 dark:text-white">آخر النشاطات</h3>
+                    <button class="text-xs text-brandRed font-bold hover:underline">عرض الكل</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-right rtl:text-right text-slate-500 dark:text-slate-400">
+                        <thead class="text-xs text-slate-400 uppercase bg-slate-50 dark:bg-slate-800/50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">نوع الطلب</th>
+                                <th scope="col" class="px-6 py-3">تاريخ التقديم</th>
+                                <th scope="col" class="px-6 py-3">المعين له</th>
+                                <th scope="col" class="px-6 py-3">الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-50 dark:divide-slate-800">
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
+                                <td class="px-6 py-4 font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-purple-500"></div> إجازة سنوية
+                                </td>
+                                <td class="px-6 py-4">2026-01-10</td>
+                                <td class="px-6 py-4">منصور اليامي (HR)</td>
+                                <td class="px-6 py-4"><span class="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 px-2 py-1 rounded-lg text-xs font-bold">قيد المراجعة</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
+                                <td class="px-6 py-4 font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500"></div> تعريف راتب
+                                </td>
+                                <td class="px-6 py-4">2026-01-05</td>
+                                <td class="px-6 py-4">النظام (آلي)</td>
+                                <td class="px-6 py-4"><span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-2 py-1 rounded-lg text-xs font-bold">مكتمل</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="data/company_policy.js"></script>
+    <script src="js/core/i18n.js"></script>
+    <script src="js/components/layout.js"></script>
+    <script src="js/components/bot.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
+        const ctoUser = {
+            id: 'USR_008',
+            name: 'الحسين الحميدي',
+            displayName: 'الحسين الحميدي',
+            role: 'Technical Support', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
+            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
+        };
+        
+        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
+        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
+        localStorage.setItem('activeRole', 'employee');
+
+        // 3. التأكد من وجود الوضع الليلي المفضل
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'light');
+        }
+
+        // 4. تشغيل المحرك
+        if (typeof Layout !== 'undefined') {
+            Layout.init();
+            
+            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
+            document.body.style.opacity = '1';
+            console.log("🚀 employee Layout Engine v10.5 Started Successfully");
+        } else {
+            console.error("❌ Layout.js file not found! Check your script paths.");
+        }
+    });
+</script>
+</body>
+</html>

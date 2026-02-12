@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>السياسات واللوائح | AndroGov</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brandRed: '#FB4747' }, fontFamily: { sans: ['Tajawal'] } } } }</script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 opacity-0 transition-opacity duration-500">
+    <div id="sidebar-container"></div>
+    <div class="main-content-wrapper lg:mr-72 min-h-screen transition-all">
+        <div id="header-container"></div>
+        <main class="p-8">
+            <h1 class="text-2xl font-bold dark:text-white mb-8">مكتبة اللوائح والسياسات</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 hover:shadow-md transition group">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold dark:text-white mb-2">دليل الموظف 2026</h3>
+                    <p class="text-xs text-slate-500 mb-4">يحتوي على كافة الحقوق والواجبات والقيم المؤسسية.</p>
+                    <button class="w-full py-2 bg-slate-50 dark:bg-slate-800 rounded-lg text-xs font-bold group-hover:bg-brandRed group-hover:text-white transition">تحميل الملف</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="data/company_policy.js"></script>
+    <script src="js/core/i18n.js"></script>
+    <script src="js/components/layout.js"></script>
+    <script src="js/components/bot.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
+        const ctoUser = {
+            id: 'USR_008',
+            name: 'الحسين الحميدي',
+            displayName: 'الحسين الحميدي',
+            role: 'Technical Support', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
+            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
+        };
+        
+        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
+        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
+        localStorage.setItem('activeRole', 'employee');
+
+        // 3. التأكد من وجود الوضع الليلي المفضل
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'light');
+        }
+
+        // 4. تشغيل المحرك
+        if (typeof Layout !== 'undefined') {
+            Layout.init();
+            
+            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
+            document.body.style.opacity = '1';
+            console.log("🚀 employee Layout Engine v10.5 Started Successfully");
+        } else {
+            console.error("❌ Layout.js file not found! Check your script paths.");
+        }
+    });
+</script>
+</body>
+</html>

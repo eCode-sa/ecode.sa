@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Centers | AndroGov</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { 
+                        brandRed: '#FB4747', 
+                        brandDark: '#0F172A',
+                        moneyGreen: '#10B981',
+                        moneyRed: '#EF4444'
+                    },
+                    fontFamily: { sans: ['Tajawal', 'Inter', 'sans-serif'], en: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .num-font { font-family: 'Inter', sans-serif; font-feature-settings: "tnum"; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 opacity-0">
+
+    <div id="sidebar-container"></div>
+    
+    <div class="main-content-wrapper md:mr-72 transition-all duration-300 flex flex-col min-h-screen">
+        <div id="header-container"></div>
+
+        <main class="p-6 space-y-6">
+            
+            <div class="flex flex-col md:flex-row justify-between items-end gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="pageTitle">مراكز التكلفة والربحية</h1>
+                    <p class="text-sm text-slate-500 mt-1" data-i18n="pageSub">توزيع المصروفات والإيرادات على الإدارات والمشاريع</p>
+                </div>
+                <div class="flex gap-3">
+                    <button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold shadow-sm hover:bg-slate-50 transition flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie text-slate-400"></i> <span data-i18n="btnAnalysis">تحليل القطاعات</span>
+                    </button>
+                    <button onclick="openCenterModal()" class="px-4 py-2 bg-brandRed text-white rounded-lg text-xs font-bold shadow-lg shadow-red-500/30 hover:bg-red-700 transition flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> <span data-i18n="btnAdd">مركز جديد</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                    <div class="flex justify-between items-start mb-2">
+                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="kpiTotal">إجمالي المراكز</p>
+                        <i class="fa-solid fa-sitemap text-slate-400 bg-slate-100 dark:bg-slate-700 p-2 rounded-lg"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold num-font text-slate-900 dark:text-white">12 <span class="text-xs font-normal text-slate-400" data-i18n="unitCenter">مركز</span></h3>
+                    <p class="text-[10px] text-slate-400 mt-2">8 تشغيلية | 4 ربحية</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-1 h-full bg-moneyGreen"></div>
+                    <div class="flex justify-between items-start mb-2">
+                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="kpiTop">الأعلى ربحية (YTD)</p>
+                        <i class="fa-solid fa-trophy text-moneyGreen bg-green-50 dark:bg-green-900/20 p-2 rounded-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white truncate">مشروع وزارة الصحة</h3>
+                    <p class="text-[10px] text-moneyGreen font-bold mt-1 num-font">+450,000 SAR (Net)</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-1 h-full bg-brandRed"></div>
+                    <div class="flex justify-between items-start mb-2">
+                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="kpiOver">الأعلى تجاوزاً للموازنة</p>
+                        <i class="fa-solid fa-fire text-brandRed bg-red-50 dark:bg-red-900/20 p-2 rounded-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white truncate">إدارة التسويق</h3>
+                    <p class="text-[10px] text-brandRed font-bold mt-1 num-font">105% Used</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                    <div class="flex justify-between items-start mb-2">
+                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="kpiGen">مصاريف غير موزعة</p>
+                        <i class="fa-solid fa-circle-question text-slate-400 bg-slate-100 dark:bg-slate-700 p-2 rounded-lg"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold num-font text-slate-900 dark:text-white">12,500 <span class="text-xs font-normal text-slate-400">SAR</span></h3>
+                    <p class="text-[10px] text-slate-400 mt-2" data-i18n="kpiGenSub">تحتاج توزيع (Allocation)</p>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+                <div class="p-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
+                    <div class="relative w-64">
+                        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="بحث باسم المركز أو الكود..." class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg pl-10 pr-4 py-2 text-xs focus:ring-1 focus:ring-brandRed outline-none dark:text-white" data-i18n-ph="searchPh">
+                        <i class="fa-solid fa-search absolute top-2.5 left-3 text-slate-400"></i>
+                    </div>
+                    <div class="flex gap-2 text-xs">
+                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span> <span data-i18n="legProfit">مركز ربحية</span></span>
+                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span> <span data-i18n="legCost">مركز تكلفة</span></span>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-right rtl:text-right ltr:text-left">
+                        <thead class="bg-white dark:bg-slate-800 text-slate-500 text-xs uppercase font-bold border-b border-slate-200 dark:border-slate-700">
+                            <tr>
+                                <th class="p-4" data-i18n="colCode">الكود</th>
+                                <th class="p-4 w-1/4" data-i18n="colName">اسم المركز</th>
+                                <th class="p-4" data-i18n="colType">النوع</th>
+                                <th class="p-4" data-i18n="colManager">المسؤول</th>
+                                <th class="p-4" data-i18n="colBudget">الموازنة</th>
+                                <th class="p-4" data-i18n="colActual">الفعلي</th>
+                                <th class="p-4" data-i18n="colNet">صافي الربح/الخسارة</th>
+                                <th class="p-4 text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="centersTable" class="divide-y divide-slate-100 dark:divide-slate-700 text-slate-700 dark:text-slate-300">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="centerModal" class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-2xl shadow-2xl flex flex-col">
+            <div class="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-slate-900 rounded-t-2xl">
+                <h3 class="font-bold text-lg dark:text-white" data-i18n="modTitle">إضافة مركز تكلفة جديد</h3>
+                <button onclick="closeCenterModal()" class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-1">
+                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="fldCode">الكود</label>
+                        <input type="text" placeholder="CC-..." class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg p-2 text-xs dark:text-white font-mono">
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="fldName">اسم المركز</label>
+                        <input type="text" placeholder="..." class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg p-2 text-xs dark:text-white">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="fldType">النوع</label>
+                        <select class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg p-2 text-xs dark:text-white">
+                            <option value="cost">مركز تكلفة (Cost Center)</option>
+                            <option value="profit">مركز ربحية (Profit Center)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="fldParent">يتبع لـ (Parent)</label>
+                        <select class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg p-2 text-xs dark:text-white">
+                            <option>-- رئيسي --</option>
+                            <option>إدارة العمليات</option>
+                            <option>المشاريع الحكومية</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="fldManager">مدير المركز (للموافقات)</label>
+                    <select class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg p-2 text-xs dark:text-white">
+                        <option>Mansour Al-Yami</option>
+                        <option>Ahmed Ali</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="fldBudget">الموازنة السنوية المرصودة</label>
+                    <input type="number" placeholder="0.00" class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg p-2 text-xs dark:text-white num-font">
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-slate-100 dark:border-slate-700 flex justify-end gap-3 bg-slate-50 dark:bg-slate-900 rounded-b-2xl">
+                <button onclick="closeCenterModal()" class="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-white" data-i18n="btnCancel">إلغاء</button>
+                <button onclick="alert('Cost Center Created'); closeCenterModal()" class="px-6 py-2 bg-brandRed text-white rounded-lg text-xs font-bold hover:bg-red-700 shadow-md" data-i18n="btnSave">حفظ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data/company_policy.js"></script>
+    <script src="js/core/i18n.js"></script>
+    <script src="js/components/layout.js"></script>
+    <script src="js/components/bot.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
+        const ctoUser = {
+            id: 'USR_002',
+            name: 'محمد البخيتي ',
+            displayName: 'المدير المالي',
+            role: 'CFO', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
+            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
+        };
+        
+        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
+        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
+        localStorage.setItem('activeRole', 'cto');
+
+        // 3. التأكد من وجود الوضع الليلي المفضل
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'light');
+        }
+
+        // 4. تشغيل المحرك
+        if (typeof Layout !== 'undefined') {
+            Layout.init();
+            
+            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
+            document.body.style.opacity = '1';
+            console.log("🚀 CFO Layout Engine v10.5 Started Successfully");
+        } else {
+            console.error("❌ Layout.js file not found! Check your script paths.");
+        }
+    });
+</script>
+
+
+    <script>
+        // --- Mock Data ---
+        const costCenters = [
+            { 
+                code: "CC-100", nameAr: "الإدارة العامة", nameEn: "General Management", 
+                type: "cost", manager: "Hesham Al-Suhaibani", 
+                budget: 200000, actual: 62500, revenue: 0 
+            },
+            { 
+                code: "CC-200", nameAr: "إدارة الموارد البشرية", nameEn: "HR Department", 
+                type: "cost", manager: "Mansour Al-Yami", 
+                budget: 600000, actual: 420000, revenue: 0 
+            },
+            { 
+                code: "PC-501", nameAr: "مشروع وزارة الصحة", nameEn: "MOH Project", 
+                type: "profit", manager: "Ahmed Ali", 
+                budget: 150000, actual: 80000, revenue: 530000 
+            },
+            { 
+                code: "PC-502", nameAr: "مشروع جامعة الملك سعود", nameEn: "KSU Project", 
+                type: "profit", manager: "Fahad Salem", 
+                budget: 100000, actual: 25000, revenue: 150000 
+            },
+            { 
+                code: "CC-300", nameAr: "إدارة التسويق", nameEn: "Marketing Dept", 
+                type: "cost", manager: "Sarah Khalid", 
+                budget: 100000, actual: 105000, revenue: 0 
+            }
+        ];
+
+        const translations = {
+            ar: {
+                pageTitle: "مراكز التكلفة والربحية", pageSub: "توزيع المصروفات والإيرادات على الإدارات والمشاريع",
+                btnAnalysis: "تحليل القطاعات", btnAdd: "مركز جديد",
+                kpiTotal: "إجمالي المراكز", unitCenter: "مركز",
+                kpiTop: "الأعلى ربحية (YTD)", kpiOver: "الأعلى تجاوزاً للموازنة",
+                kpiGen: "مصاريف غير موزعة", kpiGenSub: "تحتاج توزيع (Allocation)",
+                searchPh: "بحث باسم المركز أو الكود...",
+                legProfit: "مركز ربحية", legCost: "مركز تكلفة",
+                colCode: "الكود", colName: "اسم المركز", colType: "النوع", colManager: "المسؤول", 
+                colBudget: "الموازنة", colActual: "الفعلي", colNet: "صافي الربح/الخسارة",
+                modTitle: "إضافة مركز تكلفة جديد", fldCode: "الكود", fldName: "اسم المركز",
+                fldType: "النوع", fldParent: "يتبع لـ (Parent)", fldManager: "مدير المركز (للموافقات)", fldBudget: "الموازنة السنوية المرصودة",
+                btnCancel: "إلغاء", btnSave: "حفظ"
+            },
+            en: {
+                pageTitle: "Cost Centers & Profitability", pageSub: "Allocation of expenses and revenue by dept/project",
+                btnAnalysis: "Segment Analysis", btnAdd: "New Center",
+                kpiTotal: "Total Centers", unitCenter: "Centers",
+                kpiTop: "Most Profitable (YTD)", kpiOver: "Over Budget Center",
+                kpiGen: "Unallocated Expenses", kpiGenSub: "Requires Allocation",
+                searchPh: "Search Center Name or Code...",
+                legProfit: "Profit Center", legCost: "Cost Center",
+                colCode: "Code", colName: "Center Name", colType: "Type", colManager: "Manager",
+                colBudget: "Budget", colActual: "Actual Spend", colNet: "Net Profit/Loss",
+                modTitle: "Add New Cost Center", fldCode: "Code", fldName: "Center Name",
+                fldType: "Type", fldParent: "Parent Center", fldManager: "Center Manager", fldBudget: "Annual Budget",
+                btnCancel: "Cancel", btnSave: "Save"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage();
+            renderTable();
+            window.addEventListener('storage', (e) => { if (e.key === 'lang') location.reload(); });
+        });
+
+        function applyLanguage() {
+            const lang = localStorage.getItem('lang') || 'ar';
+            const dict = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.innerText = dict[key];
+            });
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (dict[key]) el.placeholder = dict[key];
+            });
+        }
+
+        function renderTable() {
+            const lang = localStorage.getItem('lang') || 'ar';
+            const tbody = document.getElementById('centersTable');
+            const search = document.getElementById('searchInput').value.toLowerCase();
+
+            tbody.innerHTML = '';
+
+            const filtered = costCenters.filter(item => {
+                const match = item.code.toLowerCase().includes(search) || 
+                              (lang==='ar'?item.nameAr:item.nameEn).toLowerCase().includes(search);
+                return match;
+            });
+
+            filtered.forEach(item => {
+                let typeBadge = '';
+                if(item.type === 'profit') typeBadge = `<span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-[10px] font-bold border border-blue-200">Profit</span>`;
+                else typeBadge = `<span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[10px] font-bold border border-slate-200">Cost</span>`;
+
+                const net = item.revenue - item.actual;
+                let netHtml = '';
+                if(item.type === 'profit') {
+                    netHtml = `<span class="font-bold text-moneyGreen num-font">+${net.toLocaleString()}</span>`;
+                } else {
+                    netHtml = `<span class="text-slate-400 text-xs">N/A</span>`;
+                }
+
+                // Budget Alert
+                const isOver = item.actual > item.budget;
+
+                const row = `
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition border-b border-slate-100 dark:border-slate-700 last:border-0 group">
+                    <td class="p-4 font-mono text-xs text-brandRed font-bold group-hover:underline cursor-pointer">${item.code}</td>
+                    <td class="p-4 font-bold text-slate-800 dark:text-white">${lang==='ar'?item.nameAr:item.nameEn}</td>
+                    <td class="p-4">${typeBadge}</td>
+                    <td class="p-4 text-xs text-slate-500"><i class="fa-regular fa-user mr-1"></i> ${item.manager}</td>
+                    <td class="p-4 num-font font-bold text-slate-600 dark:text-slate-300">${item.budget.toLocaleString()}</td>
+                    <td class="p-4 num-font font-bold ${isOver ? 'text-moneyRed' : 'text-slate-800 dark:text-white'}">${item.actual.toLocaleString()}</td>
+                    <td class="p-4">${netHtml}</td>
+                    <td class="p-4 text-center">
+                        <button class="text-slate-400 hover:text-brandRed transition"><i class="fa-solid fa-chart-line"></i></button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // --- Modal Logic ---
+        function openCenterModal() { document.getElementById('centerModal').classList.remove('hidden'); }
+        function closeCenterModal() { document.getElementById('centerModal').classList.add('hidden'); }
+        window.filterTable = renderTable;
+
+    </script>
+</body>
+</html>
