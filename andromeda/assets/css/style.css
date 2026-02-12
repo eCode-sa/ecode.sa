@@ -1,0 +1,135 @@
+/* * Andromeda Identity Stylesheet
+ * Primary Color: Red (#D62828) - Mocked based on logo
+ * Font: 'Cairo', sans-serif for Arabic
+ */
+
+:root {
+    --primary-red: #D62828;       /* درجة الأحمر الخاصة باندروميدا */
+    --secondary-dark: #1A1A1A;    /* الأسود الفاخر للنصوص */
+    --light-gray: #F8F9FA;        /* خلفية الأقسام */
+    --text-muted: #6C757D;
+    --white: #FFFFFF;
+    --font-main: 'Cairo', sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--secondary-dark);
+    direction: rtl;
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+/* --- Navbar --- */
+.navbar {
+    background-color: var(--white);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    padding: 15px 0;
+}
+
+.navbar-brand img {
+    height: 50px; /* حجم الشعار */
+}
+
+.nav-link {
+    color: var(--secondary-dark) !important;
+    font-weight: 600;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-red) !important;
+}
+
+/* زر دخول الموظفين المميز */
+.btn-login-portal {
+    background-color: var(--primary-red);
+    color: var(--white) !important;
+    border-radius: 5px;
+    padding: 8px 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-login-portal:hover {
+    background-color: #b01f1f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(214, 40, 40, 0.3);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    overflow: hidden;
+}
+
+.hero-title {
+    font-weight: 800;
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.text-red {
+    color: var(--primary-red);
+}
+
+/* --- Services Cards --- */
+.service-card {
+    border: none;
+    border-radius: 10px;
+    padding: 30px;
+    background: var(--white);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    transition: transform 0.3s, border-color 0.3s;
+    border-bottom: 3px solid transparent;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-bottom-color: var(--primary-red);
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--primary-red);
+    margin-bottom: 20px;
+}
+
+/* --- Statistics Section --- */
+.stats-section {
+    background-color: var(--primary-red);
+    color: var(--white);
+    padding: 60px 0;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--secondary-dark);
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer a {
+    color: #bbb;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer a:hover {
+    color: var(--primary-red);
+}
