@@ -550,3 +550,78 @@ details[open] .accordion-icon { transform: rotate(180deg); }
 }
 
 [dir="ltr"] .coming-soon-badge { margin-right: 0; margin-left: 10px; }
+
+/* ========================================= */
+/* إضافات صفحة الفعاليات (Liquid & Glassmorphism) */
+/* ========================================= */
+
+/* الخلفية السائلة المتحركة */
+.liquid-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--bg-primary);
+  pointer-events: none;
+}
+
+.liquid-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: floatLiquid 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blob-1 { background: var(--lavender-dark); width: 500px; height: 500px; top: -10%; left: -10%; }
+.blob-2 { background: var(--sky-blue); width: 400px; height: 400px; bottom: 10%; right: -5%; animation-delay: -5s; }
+.blob-3 { background: var(--coral-pink); width: 350px; height: 350px; top: 40%; left: 30%; animation-duration: 25s; opacity: 0.3; }
+
+@keyframes floatLiquid {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(100px, 80px) scale(1.1) rotate(180deg); }
+  100% { transform: translate(-50px, 150px) scale(0.9) rotate(360deg); }
+}
+
+/* تأثير الزجاج المصنفر (Glassmorphism) */
+.glass-panel {
+  background: rgba(36, 43, 61, 0.4); /* لون شفاف */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+[data-theme="light"] .glass-panel {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+.glass-panel:hover {
+  transform: translateY(-5px);
+  border-color: rgba(139, 127, 255, 0.4);
+  background: rgba(36, 43, 61, 0.5);
+}
+
+/* تعديل الهيرو سكشن ليتناسب مع الزجاج */
+.events-hero {
+  position: relative;
+  padding: 120px var(--space-6) 120px;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.events-hero .hero-content, .events-hero .hero-visual {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
