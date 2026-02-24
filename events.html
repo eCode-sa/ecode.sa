@@ -150,42 +150,6 @@
       border-color: var(--lavender-light);
     }
 
-    /* =========================================
-       شريط الاستفسار العلوي (الكمبيوتر فقط)
-       ========================================= */
-    .desktop-top-banner {
-      background: linear-gradient(90deg, rgba(36,43,61,0.8), rgba(26,31,46,0.9));
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 10px 24px;
-      display: flex;
-      justify-content: center;
-    }
-    .banner-inner {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .banner-text { display: flex; align-items: center; gap: 12px; }
-    .banner-title { color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 6px; }
-    .banner-subtitle { color: var(--text-secondary); font-size: 13px; }
-    .banner-btn {
-      background: #25D366;
-      color: #fff;
-      padding: 6px 16px;
-      border-radius: 99px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: 0.3s;
-    }
-    .banner-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
-
     /* الهيدر */
     .main-header {
       position: sticky;
@@ -514,7 +478,6 @@
 
     /* التجاوب مع الشاشات (Responsive) */
     @media (max-width: 968px) {
-      .desktop-top-banner { display: none; } /* إخفاء بانر الاستفسار في الجوال والتابلت */
       .hero-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
       .hero-content { text-align: center; }
       .hero-actions { justify-content: center; }
@@ -552,19 +515,6 @@
   <!-- تأثيرات الخلفية -->
   <div class="bg-glow glow-1"></div>
   <div class="bg-glow glow-2"></div>
-
-  <!-- شريط الاستفسار العلوي (يظهر للكمبيوتر فقط) -->
-  <div class="desktop-top-banner">
-    <div class="banner-inner">
-      <div class="banner-text">
-        <span class="banner-title"><i class="fa-solid fa-circle-info" style="color: var(--sky-blue);"></i> لديك استفسار سريع؟</span>
-        <span class="banner-subtitle">فريق eCode جاهز للرد وتقديم الاستشارة مجاناً</span>
-      </div>
-      <a href="https://wa.me/966503666316" target="_blank" class="banner-btn">
-        <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> تواصل معنا
-      </a>
-    </div>
-  </div>
 
   <!-- الهيدر -->
   <header class="main-header">
