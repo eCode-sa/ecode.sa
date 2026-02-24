@@ -1,178 +1,852 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="page_title">eCode | تصنع الحدث</title>
-  <meta name="description" content="حلول تقنية وإبداعية متكاملة لإدارة وتنظيم الفعاليات، المعارض، والمؤتمرات.">
-
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#8B7FFF">
-
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>إدارة الفعاليات والمؤتمرات | eCode</title>
+  <meta name="description" content="حلول تقنية وإبداعية متكاملة لإدارة وتنظيم الفعاليات، المعارض، والمؤتمرات من eCode.">
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-   
-  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <style>
+    /* المتغيرات الأساسية لهوية eCode */
+    :root {
+      --lavender-light: #A99BFF;
+      --lavender-dark: #8B7FFF;
+      --sky-blue: #5BC0F8;
+      --mint-green: #7EDDA3;
+      
+      --bg-primary: #0F1419;
+      --bg-secondary: #1A1F2E;
+      --bg-elevated: rgba(36, 43, 61, 0.6);
+      
+      --text-primary: #E6EDF3;
+      --text-secondary: #9DA5B4;
+      --text-muted: #6B7280;
+      
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-bg: rgba(26, 31, 46, 0.4);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      
+      --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: "Tajawal", system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 90px; /* مساحة للشريط السفلي في الجوال */
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* كلاس المظهر الفاتح (اضافي لتحسين عمل زر تغيير المظهر) */
+    body.light-theme {
+      --bg-primary: #F8FAFC;
+      --bg-secondary: #FFFFFF;
+      --text-primary: #0F1419;
+      --text-secondary: #475569;
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(0, 0, 0, 0.1);
+    }
+    body.light-theme .hero-content h1, body.light-theme .section-title {
+      -webkit-text-fill-color: #0F1419;
+    }
+    body.light-theme .hero-visual h3, body.light-theme .feature-card h3, body.light-theme .form-group label {
+      color: #0F1419;
+    }
+    body.light-theme .ai-textarea, body.light-theme .form-group input, body.light-theme .form-group select, body.light-theme .form-group textarea {
+      background: rgba(255, 255, 255, 0.8);
+      color: #0F1419;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    /* الخلفية المشعة (Glow Backgrounds) */
+    .bg-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139,127,255,0.15) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+      pointer-events: none;
+      filter: blur(60px);
+      animation: drift 20s infinite alternate ease-in-out;
+    }
+    .glow-1 { top: -10%; right: -10%; }
+    .glow-2 { bottom: 20%; left: -20%; background: radial-gradient(circle, rgba(91,192,248,0.1) 0%, rgba(0,0,0,0) 70%); }
+
+    @keyframes drift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-50px, 50px) scale(1.1); }
+    }
+
+    /* الحاويات الزجاجية */
+    .glass-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition-base);
+    }
+    .glass-panel:hover {
+      border-color: rgba(139, 127, 255, 0.3);
+      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 127, 255, 0.1);
+      transform: translateY(-5px);
+    }
+
+    /* الأزرار */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 99px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
+      color: #fff !important;
+      text-decoration: none;
+      transition: var(--transition-base);
+      box-shadow: 0 4px 20px rgba(139, 127, 255, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(139, 127, 255, 0.5);
+      filter: brightness(1.1);
+    }
+    
+    .btn-secondary {
+      padding: 14px 32px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: var(--transition-base);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--lavender-light);
+    }
+
+    /* الهيدر */
+    .main-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(15, 20, 25, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-name {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+    .brand-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    /* التنسيق العام للأقسام */
+    section { padding: 80px 24px; position: relative; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 16px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff, var(--lavender-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+    }
+
+    /* Hero Section */
+    .hero-inner {
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-size: 56px;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff, var(--lavender-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-content p {
+      font-size: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    
+    .hero-visual { padding: 40px; text-align: center; }
+    .hero-visual h3 { font-size: 24px; margin-bottom: 8px; color: #fff; }
+    .hero-visual > p { color: var(--text-secondary); margin-bottom: 32px; }
+    
+    .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hero-stat { padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+    .hero-stat strong { font-size: 18px; color: var(--lavender-light); margin-bottom: 4px; }
+    .hero-stat span { font-size: 14px; color: var(--text-muted); }
+
+    /* شريط الإحصائيات */
+    .stats-bar {
+      max-width: 1200px;
+      margin: -40px auto 40px;
+      padding: 40px;
+      position: relative;
+      z-index: 10;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      display: block;
+      background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    /* الخدمات */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .feature-card { padding: 40px; }
+    .feature-card h3 { font-size: 22px; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;}
+    .feature-card h3 i { color: var(--lavender-light); font-size: 28px; }
+    .feature-card ul { list-style: none; }
+    .feature-card li { margin-bottom: 16px; color: var(--text-secondary); padding-right: 24px; position: relative; }
+    .feature-card li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 0;
+      color: var(--sky-blue);
+      font-size: 14px;
+    }
+
+    /* أداة الذكاء الاصطناعي */
+    .ai-card { max-width: 800px; margin: 0 auto; padding: 40px; text-align: center; }
+    .ai-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-family: inherit;
+      font-size: 16px;
+      resize: vertical;
+      margin-bottom: 24px;
+      background: rgba(0,0,0,0.2);
+      outline: none;
+      transition: var(--transition-base);
+    }
+    .ai-textarea:focus { border-color: var(--lavender-light); box-shadow: inset 0 0 10px rgba(139,127,255,0.1); }
+    .ai-result {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(139, 127, 255, 0.1);
+      border: 1px dashed var(--lavender-light);
+      display: none;
+      text-align: right;
+      color: #fff;
+    }
+
+    /* نموذج التواصل */
+    .contact-form { max-width: 700px; margin: 0 auto; padding: 48px; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; margin-bottom: 8px; color: #fff; font-weight: 500; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 16px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 16px;
+      outline: none;
+      transition: var(--transition-base);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--sky-blue);
+      background: rgba(0,0,0,0.5);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    /* =========================================
+       شريط الجوال الزجاجي السائل (App Store Liquid Glass) 
+       ========================================= */
+    .liquid-glass-wrapper {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      width: calc(100% - 32px);
+      max-width: 400px;
+      z-index: 1000;
+      display: none; /* مخفي في الديسكتوب */
+      /* حركة الزجاج السائل العضوية (ينبض ويتحرك بمرونة) */
+      animation: appStoreLiquid 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes appStoreLiquid {
+      0%, 100% { transform: translateX(-50%) translateY(0) scale(1); border-radius: 36px; }
+      50% { transform: translateX(-50%) translateY(-6px) scale(1.02); border-radius: 42px; }
+    }
+
+    .liquid-glass-bar {
+      background: rgba(40, 44, 52, 0.5); /* زجاج داكن شفاف */
+      backdrop-filter: blur(35px) saturate(200%);
+      -webkit-backdrop-filter: blur(35px) saturate(200%);
+      border-radius: inherit;
+      padding: 10px 14px 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* حدود وإضاءات تحاكي تصميم أبل */
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 
+        0 16px 40px rgba(0, 0, 0, 0.5), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* لمعة الزجاج المتحركة */
+    .liquid-glass-bar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.2) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: skewX(-20deg);
+      animation: liquidShimmer 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes liquidShimmer {
+      0% { left: -100%; }
+      30%, 100% { left: 200%; }
+    }
+
+    .liquid-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .liquid-title {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .liquid-subtitle {
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .liquid-btn {
+      background: #25D366; /* لون واتساب */
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .liquid-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* =========================================
+       تنسيقات الهيدر والفوتر والواتساب العائم
+       ========================================= */
+    .nav { display: flex; align-items: center; gap: 24px; }
+    .nav a:not(.btn-primary) { color: var(--text-secondary); text-decoration: none; font-weight: 600; transition: var(--transition-base); }
+    .nav a:not(.btn-primary):hover { color: var(--lavender-light); }
+    .theme-toggle { background: none; border: none; color: var(--text-primary); font-size: 20px; cursor: pointer; transition: 0.3s; }
+    .theme-toggle:hover { color: var(--lavender-light); }
+
+    .footer { background: var(--bg-secondary); padding: 64px 24px 24px; border-top: 1px solid var(--border-color); margin-top: 64px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-bottom: 32px; }
+    .footer h4 { margin-bottom: 16px; font-size: 20px; color: var(--text-primary); }
+    .footer p { color: var(--text-secondary); margin-bottom: 8px; font-size: 16px; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 8px; }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; transition: 0.3s; }
+    .footer-links a:hover { color: var(--lavender-light); }
+    .social-bar { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+    .social-link { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); text-decoration: none; transition: 0.3s; border: 1px solid var(--glass-border); }
+    .social-link:hover { background: var(--lavender-dark); color: #fff; transform: translateY(-3px); }
+    .footer-bottom { text-align: center; border-top: 1px solid var(--glass-border); padding-top: 24px; color: var(--text-muted); font-size: 14px; }
+
+    /* التجاوب مع الشاشات (Responsive) */
+    @media (max-width: 968px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+      .hero-content { text-align: center; }
+      .hero-actions { justify-content: center; }
+      .stats-bar { margin: 24px; padding: 32px 24px; }
+      .stats-grid { gap: 16px; }
+      .stat-number { font-size: 36px; }
+      .nav { gap: 16px; }
+      .nav a:not(.btn-primary) { display: none; } /* إخفاء الروابط النصية في الجوال لتوفير المساحة */
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 40px; }
+      .stats-grid { grid-template-columns: 1fr; gap: 24px; }
+      .contact-form { padding: 32px 20px; }
+      body { padding-bottom: 120px; } /* مساحة أكبر للشريط في الجوال */
+      
+      /* إظهار الشريط السائل في الجوال فقط */
+      .liquid-glass-wrapper { display: block; }
+    }
+
+    /* تأثيرات ظهور العناصر (Fade in) */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
 
-  <header id="main-header" class="main-header"></header>
+  <!-- تأثيرات الخلفية -->
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <!-- الهيدر -->
+  <header class="main-header">
+    <div class="header-inner">
+      <a href="https://ecode.sa/" class="logo-container">
+        <div class="logo-icon">
+          <img src="https://ecode.sa/favicon.png" alt="eCode Logo" style="width:100%; height:100%;">
+        </div>
+        <div class="logo-text">
+          <div class="brand-name" data-i18n="brand_name">eCode</div>
+          <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="https://ecode.sa/" data-i18n="nav_home">الرئيسية</a>
+        <a href="https://ecode.sa/services/" data-i18n="nav_services">خدماتنا</a>
+        <a href="https://ecode.sa/plans/" data-i18n="nav_plans">باقاتنا</a>
+        <a href="https://ecode.sa/portfolio/" data-i18n="nav_portfolio">أعمالنا</a>
+        
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير المظهر">
+            <i class="fas fa-sun"></i>
+        </button>
+
+        <button onclick="toggleLanguage()" class="lang-switcher" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+          <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+        </button>
+        
+        <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+      </nav>
+    </div>
+  </header>
 
   <main>
-    <section id="hero" class="events-hero">
-        <div class="hero-inner glass-panel" style="padding: 60px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;">
+    <!-- القسم الرئيسي (Hero) -->
+    <section id="hero" style="padding-top: 40px;">
+      <div class="hero-inner glass-panel fade-up">
         <div class="hero-content">
-            <h1>نصنع الاثر.</h1>
-            <p>حلول تقنية وإبداعية متكاملة لإدارة وتنظيم الفعاليات، المعارض، والمؤتمرات. من التخطيط الأولي وحتى التنفيذ على أرض الواقع، نصنع تجربة سلسة لك ولضيوفك.</p>
-            
-            <div class="hero-actions">
+          <h1>نصنع الأثر في <br><span style="color: var(--sky-blue);">كل فعالية.</span></h1>
+          <p>حلول تقنية وإبداعية متكاملة لإدارة وتنظيم الفعاليات، المعارض، والمؤتمرات. من التخطيط الأولي وحتى التنفيذ على أرض الواقع، نصنع تجربة سلسة لك ولضيوفك.</p>
+          
+          <div class="hero-actions">
             <a href="#contact" class="btn-primary">ابدأ تخطيط فعاليتك</a>
             <a href="#services" class="btn-secondary">استعراض القدرات</a>
-            </div>
+          </div>
         </div>
 
-        <div class="hero-visual glass-panel" style="padding: 32px;">
-            <h3>كل ما تحتاجه لنجاح فعاليتك</h3>
-            <p>تخطيط، تجهيز، تغطية، وتنفيذ تقني في مكان واحد.</p>
-            <div class="hero-stats">
-            <div class="hero-stat glass-panel" style="padding: 16px;">
-                <strong>تنظيم دقيق</strong>
-                <span>إدارة حشود ولوجستيات</span>
+        <div class="hero-visual glass-panel">
+          <h3>كل ما تحتاجه لنجاح فعاليتك</h3>
+          <p>تخطيط، تجهيز، تغطية، وتنفيذ تقني في مكان واحد.</p>
+          <div class="hero-stats">
+            <div class="hero-stat glass-panel">
+              <i class="fa-solid fa-users-gear" style="font-size: 24px; color: var(--lavender-light); margin-bottom: 12px;"></i>
+              <strong>تنظيم دقيق</strong>
+              <span>إدارة حشود ولوجستيات</span>
             </div>
-            <div class="hero-stat glass-panel" style="padding: 16px;">
-                <strong>إنتاج فني</strong>
-                <span>أجنحة، مسارح، وإضاءة</span>
+            <div class="hero-stat glass-panel">
+              <i class="fa-solid fa-cubes" style="font-size: 24px; color: var(--sky-blue); margin-bottom: 12px;"></i>
+              <strong>إنتاج فني</strong>
+              <span>أجنحة، مسارح، وإضاءة</span>
             </div>
-            <div class="hero-stat glass-panel" style="padding: 16px;">
-                <strong>تقنية حديثة</strong>
-                <span>تسجيل وتذاكر ذكية</span>
+            <div class="hero-stat glass-panel">
+              <i class="fa-solid fa-qrcode" style="font-size: 24px; color: var(--mint-green); margin-bottom: 12px;"></i>
+              <strong>تقنية حديثة</strong>
+              <span>تسجيل وتذاكر ذكية</span>
             </div>
-            <div class="hero-stat glass-panel" style="padding: 16px;">
-                <strong>تغطية حية</strong>
-                <span>توثيق وإعلام فوري</span>
+            <div class="hero-stat glass-panel">
+              <i class="fa-solid fa-video" style="font-size: 24px; color: #FFB86C; margin-bottom: 12px;"></i>
+              <strong>تغطية حية</strong>
+              <span>توثيق وإعلام فوري</span>
             </div>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </section>
 
-    <div class="stats-bar glass-panel" style="margin: 0 24px; border-radius: 24px;">
-        <div class="stats-grid">
+    <!-- شريط الإحصائيات -->
+    <div class="stats-bar glass-panel fade-up">
+      <div class="stats-grid">
         <div class="stat-item">
-            <span class="stat-number">+50</span>
-            <span class="stat-label">فعالية ناجحة</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">+100K</span>
-            <span class="stat-label">زائر تمت إدارتهم</span>
+          <span class="stat-number">+50</span>
+          <span class="stat-label" style="color: var(--text-secondary); font-size: 18px;">فعالية ناجحة</span>
         </div>
         <div class="stat-item">
-            <span class="stat-number">100%</span>
-            <span class="stat-label">دقة في التنفيذ</span>
+          <span class="stat-number">+100K</span>
+          <span class="stat-label" style="color: var(--text-secondary); font-size: 18px;">زائر تمت إدارتهم</span>
         </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label" style="color: var(--text-secondary); font-size: 18px;">دقة في التنفيذ</span>
         </div>
+      </div>
     </div>
 
+    <!-- قسم الخدمات -->
     <section id="services">
-        <div class="section-inner">
+      <div class="section-inner fade-up">
         <h2 class="section-title">قدراتنا في صناعة الفعاليات</h2>
-        <p class="section-subtitle">حلول شاملة تغطي كافة احتياجات حدثك القادم</p>
+        <p class="section-subtitle">حلول شاملة تغطي كافة احتياجات حدثك القادم بصمة إبداعية وتنفيذ احترافي</p>
 
         <div class="features-grid">
-            <div class="feature-card glass-panel">
-            <h3>التنظيم والإدارة الذكية</h3>
+          <div class="feature-card glass-panel">
+            <h3><i class="fa-solid fa-sitemap"></i> التنظيم والإدارة الذكية</h3>
             <ul>
-                <li>تخطيط شامل للمعارض والمؤتمرات</li>
-                <li>إدارة الحشود وتوجيه الزوار</li>
-                <li>توفير طواقم عمل احترافية ومدربة</li>
+              <li>تخطيط شامل للمعارض والمؤتمرات</li>
+              <li>إدارة الحشود وتوجيه الزوار بسلاسة</li>
+              <li>توفير طواقم عمل احترافية ومدربة</li>
             </ul>
-            </div>
+          </div>
 
-            <div class="feature-card glass-panel">
-            <h3>الإنتاج الفني والتقني</h3>
+          <div class="feature-card glass-panel">
+            <h3><i class="fa-solid fa-hammer"></i> الإنتاج الفني والتقني</h3>
             <ul>
-                <li>تصميم وبناء الأجنحة (Booths)</li>
-                <li>تجهيز المسارح وشاشات العرض المتقدمة</li>
-                <li>أنظمة الإضاءة والصوت الاحترافية</li>
+              <li>تصميم وبناء الأجنحة (Booths) المبتكرة</li>
+              <li>تجهيز المسارح وشاشات العرض المتقدمة</li>
+              <li>أنظمة الإضاءة والصوت الاحترافية</li>
             </ul>
-            </div>
+          </div>
 
-            <div class="feature-card glass-panel">
-            <h3>تقنيات التسجيل والدخول</h3>
+          <div class="feature-card glass-panel">
+            <h3><i class="fa-solid fa-id-badge"></i> تقنيات التسجيل والدخول</h3>
             <ul>
-                <li>أنظمة تذاكر ذكية وإصدار بطاقات</li>
-                <li>تسجيل الحضور عبر (QR) و (RFID)</li>
-                <li>تطبيقات مخصصة لمتابعة بيانات الفعالية</li>
+              <li>أنظمة تذاكر ذكية وإصدار بطاقات فورية</li>
+              <li>تسجيل الحضور عبر مسح (QR) و (RFID)</li>
+              <li>لوحات تحكم (Dashboards) لمتابعة الإحصائيات</li>
             </ul>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </section>
 
-    <section class="ai-section" id="ai-tool" style="background: transparent; border: none;">
-        <div class="section-inner">
+    <!-- أداة الذكاء الاصطناعي -->
+    <section class="ai-section" id="ai-tool">
+      <div class="section-inner fade-up">
         <h2 class="section-title">مستشار الفعاليات الذكي ✨</h2>
-        <p class="section-subtitle">احصل على تصور مبدئي لفعاليتك وأفكار مبتكرة خلال ثوانٍ</p>
+        <p class="section-subtitle">احصل على تصور مبدئي لفعاليتك وأفكار مبتكرة خلال ثوانٍ (تجريبي)</p>
         
         <div class="ai-card glass-panel">
-            <textarea id="ai-project-desc" class="ai-textarea glass-panel" placeholder="أدخل وصفًا لفعاليتك (مثال: مؤتمر تقني لـ 500 شخص في الرياض مع معرض مصاحب)"></textarea>
-            <button onclick="analyzeProjectWithAI()" id="ai-btn" class="btn-primary" style="margin-top: 16px;">
+          <textarea id="ai-project-desc" class="ai-textarea glass-panel" placeholder="أدخل وصفًا لفعاليتك هنا... (مثال: مؤتمر تقني لـ 500 شخص في الرياض مع معرض مصاحب)"></textarea>
+          <button onclick="analyzeProjectWithAI()" id="ai-btn" class="btn-primary" style="padding: 16px 40px; font-size: 18px;">
             حلل فعاليتي <i class="fas fa-magic"></i>
-            </button>
+          </button>
+          
+          <div id="ai-result" class="ai-result">
+            <h4 style="color: var(--sky-blue); margin-bottom: 12px; font-size: 20px;"><i class="fa-solid fa-lightbulb"></i> مقترح مبدئي لفعاليتك:</h4>
+            <p id="ai-result-text" style="line-height: 1.8;"></p>
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 16px 0;">
+            <p style="font-size: 14px; color: var(--text-muted);">هذا تحليل مبدئي أولي. تواصل معنا للحصول على دراسة وتنفيذ متكامل من فريق eCode.</p>
+          </div>
         </div>
-        </div>
+      </div>
     </section>
 
+    <!-- نموذج التواصل -->
     <section id="contact">
-        <div class="section-inner">
+      <div class="section-inner fade-up">
         <h2 class="section-title">جاهزون لتحويل رؤيتك إلى واقع؟</h2>
         <p class="section-subtitle">شاركنا تفاصيل الفعالية وسنقوم بتجهيز العرض المناسب</p>
-        <form class="contact-form glass-panel" id="contactForm">
-            
-            <div class="form-group">
+        <form class="contact-form glass-panel" id="contactForm" onsubmit="event.preventDefault(); alert('تم استلام طلبك! سنتواصل معك قريباً.'); this.reset();">
+          
+          <div class="form-group">
             <label>الاسم / الجهة *</label>
             <input type="text" class="glass-panel" name="name" required placeholder="أدخل اسمك أو اسم الشركة">
-            </div>
-            
-            <div class="form-group">
+          </div>
+          
+          <div class="form-group">
             <label>رقم الجوال *</label>
             <input type="tel" class="glass-panel" name="phone" required placeholder="05X XXX XXXX">
-            </div>
-            
-            <div class="form-group">
+          </div>
+          
+          <div class="form-group">
             <label>نوع الفعالية المطلوبة *</label>
-            <select name="service" class="glass-panel" required style="background: rgba(36,43,61,0.6);">
-                <option value="">اختر نوع الفعالية</option>
-                <option>تنظيم معارض ومؤتمرات</option>
-                <option>فعالية ترفيهية / إطلاق منتج</option>
-                <option>تصميم وتنفيذ أجنحة (Booths)</option>
-                <option>حلول التسجيل والتذاكر التقنية</option>
-                <option>تغطية إعلامية وإنتاج فني</option>
+            <select name="service" class="glass-panel" required style="background: rgba(15, 20, 25, 0.9);">
+              <option value="">اختر نوع الفعالية</option>
+              <option>تنظيم معارض ومؤتمرات</option>
+              <option>فعالية ترفيهية / إطلاق منتج</option>
+              <option>تصميم وتنفيذ أجنحة (Booths)</option>
+              <option>حلول التسجيل والتذاكر التقنية</option>
+              <option>تغطية إعلامية وإنتاج فني</option>
             </select>
-            </div>
-            
-            <div class="form-group">
+          </div>
+          
+          <div class="form-group">
             <label>تفاصيل الحدث (المدينة، عدد الحضور المتوقع، التاريخ)</label>
             <textarea name="message" class="glass-panel" placeholder="اكتب نبذة عن الفعالية واحتياجاتك..."></textarea>
-            </div>
+          </div>
 
-            <button type="submit" class="btn-primary" style="width: 100%; font-size: 18px; padding: 16px;">
-            اطلب عرض سعر للفعالية
-            </button>
+          <button type="submit" class="btn-primary" style="width: 100%; font-size: 18px; padding: 16px;">
+            اطلب عرض سعر للفعالية <i class="fa-solid fa-paper-plane"></i>
+          </button>
         </form>
-        </div>
+      </div>
     </section>
   </main>
 
-  <footer id="main-footer" class="footer"></footer>
+  <!-- الفوتر الجديد -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <h4 data-i18n="footer_brand">eCode — إلكترونيك كود</h4>
+          <p data-i18n="brand_tagline">تصنع الأثر</p>
+          <p style="margin-top: 16px;" data-i18n="footer_desc">شركة سعودية تقدم حلول تقنية وإبداعية متكاملة لإدارة وتنظيم الفعاليات، المعارض، والمؤتمرات.</p>
+          
+          <div class="social-bar">
+            <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+            <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
 
-  <script src="assets/js/i18n.js"></script>
-  
-  <script src="assets/js/layout.js"></script>
-   
-  <script src="assets/js/main.js"></script>
+        <div class="footer-links">
+          <h4 data-i18n="footer_quick_links">روابط سريعة</h4>
+          <ul>
+            <li><a href="https://ecode.sa/ar/" data-i18n="nav_home">الرئيسية</a></li>
+            <li><a href="https://ecode.sa/services/" data-i18n="nav_services">خدماتنا</a></li>
+            <li><a href="https://ecode.sa/plans/" data-i18n="nav_plans">الباقات</a></li>
+            <li><a href="https://ecode.sa/portfolio/" data-i18n="nav_portfolio">أعمالنا</a></li>
+            <li><a href="https://ecode.sa/contact/" data-i18n="nav_contact">تواصل معنا</a></li>
+            <li><a href="https://ecode.sa/terms/" data-i18n="footer_terms">الشروط والأحكام</a></li>
+            <li><a href="https://ecode.sa/privacy/" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 data-i18n="footer_contact_title">تواصل معنا</h4>
+          <p data-i18n="footer_location">الرياض — المملكة العربية السعودية</p>
+          <p>
+            <span data-i18n="footer_mobile_label">جوال:</span> 
+            <a href="tel:0503666316" style="color: var(--lavender-light);">0503666316</a>
+          </p>
+          <p>
+            <span data-i18n="footer_email_label">البريد:</span> 
+            <a href="mailto:info@ecode.sa" style="color: var(--lavender-light);">info@ecode.sa</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom" data-i18n="footer_copyright">
+        © 2025 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================= -->
+  <!-- الشريط السفلي الزجاجي السائل (الجوال فقط) -->
+  <!-- ========================================= -->
+  <div class="liquid-glass-wrapper">
+    <div class="liquid-glass-bar">
+      <div class="liquid-content">
+        <span class="liquid-title">لديك استفسار سريع؟</span>
+        <span class="liquid-subtitle">فريق eCode جاهز للرد</span>
+      </div>
+      <a href="https://wa.me/966503666316" target="_blank" class="liquid-btn">
+        <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+        تواصل معنا
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // تفعيل تأثير التمرير (Scroll Fade Up)
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // محاكاة أداة الذكاء الاصطناعي (تأثير واجهة فقط)
+    function analyzeProjectWithAI() {
+      const input = document.getElementById('ai-project-desc').value;
+      const btn = document.getElementById('ai-btn');
+      const resultBox = document.getElementById('ai-result');
+      const resultText = document.getElementById('ai-result-text');
+
+      if (!input.trim()) {
+        alert("الرجاء إدخال تفاصيل الفعالية أولاً.");
+        return;
+      }
+
+      // تغيير حالة الزر
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'جاري التحليل... <i class="fa-solid fa-spinner fa-spin"></i>';
+      btn.disabled = true;
+      resultBox.style.display = 'none';
+
+      // محاكاة وقت المعالجة
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        
+        let response = `بناءً على طلبك، نوصي بتجهيز نظام تسجيل إلكتروني مسبق لضمان انسيابية الدخول، وتخصيص شاشات LED تفاعلية في منطقة الاستقبال. كما نقترح توفير طاقم تنظيمي مكون من 10 أشخاص لإدارة الحشود، واستخدام أساور (RFID) لتتبع حركة الزوار داخل الفعالية.`;
+        
+        resultText.innerText = response;
+        resultBox.style.display = 'block';
+        
+        // النزول التلقائي للنتيجة
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 2000);
+    }
+
+    // --- إصلاح دوال الهيدر (تغيير المظهر وتغيير اللغة) ---
+    
+    // دالة تغيير المظهر (Dark/Light Mode)
+    function toggleTheme() {
+      // تفعيل/تعطيل كلاس المظهر الفاتح على الجسم
+      document.body.classList.toggle('light-theme');
+      
+      const themeIcon = document.querySelector('.theme-toggle i');
+      if (document.body.classList.contains('light-theme')) {
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      } else {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      }
+    }
+
+    // دالة تغيير اللغة (استبدال مؤقت لمنع الأخطاء)
+    function toggleLanguage() {
+      alert("النسخة الإنجليزية ستكون متاحة قريباً!");
+      // عند اكتمال النسخة الانجليزية يمكن استبدال الرسالة بالتالي:
+      // window.location.href = 'events-landing-en.html';
+    }
+  </script>
 </body>
 </html>
