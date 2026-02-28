@@ -152,7 +152,6 @@ async function handleFormSubmit(event) {
 }
 
 // --- Detailed Contact Form Handling (Contact Page - Arabic) ---
-// (No changes made here as per request)
 async function handleDetailedFormSubmit(event) {
   event.preventDefault(); 
   
@@ -179,7 +178,6 @@ async function handleDetailedFormSubmit(event) {
 }
 
 // --- English Contact Form Handling ---
-// (No changes made here as per request)
 async function handleFormSubmitEN(event) {
   event.preventDefault(); 
   
@@ -254,14 +252,16 @@ async function sendData(data, btn, originalText, successText) {
   }
 }
 
-// --- Portfolio Filtering Logic & Initialization ---
+// ==========================================
+// --- DOM Content Loaded (Initialization) ---
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Initialize Language (New Added Feature)
+    // 1. Initialize Language
     const savedLang = localStorage.getItem('userLanguage') || 'ar';
     applyLanguage(savedLang);
 
-    // 2. Portfolio Logic (Existing)
+    // 2. Portfolio Logic
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- FAQ Accordion ---
+    // 3. FAQ Accordion
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         const item = q.parentElement;
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // --- Smooth Scroll Animations ---
+    // 4. Smooth Scroll Animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -315,4 +315,37 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('section').forEach(section => {
       observer.observe(section);
     });
+
+    // 5. Mobile Bottom Dock Active State Logic
+    const sections = document.querySelectorAll('section');
+    const dockItems = document.querySelectorAll('.mobile-dock .dock-item');
+
+    if(dockItems.length > 0) {
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // إذا تجاوز المستخدم ثلث السكشن، نعتبره دخله
+                if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            dockItems.forEach(item => {
+                item.classList.remove('active');
+                // تفعيل الأيقونة المطابقة للسكشن الحالي (تجاهل أيقونة الواتساب لأنها رابط خارجي)
+                if (current !== '' && item.getAttribute('href').includes(current) && !item.getAttribute('href').includes('wa.me')) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // إذا كنا في أعلى الصفحة تماماً، نفعّل زر الرئيسية
+            if (window.scrollY < 200) {
+                dockItems.forEach(item => item.classList.remove('active'));
+                dockItems[0].classList.add('active');
+            }
+        });
+    }
 });
