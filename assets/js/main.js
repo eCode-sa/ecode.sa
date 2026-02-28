@@ -316,36 +316,39 @@ document.addEventListener('DOMContentLoaded', () => {
       observer.observe(section);
     });
 
-    // 5. Mobile Bottom Dock Active State Logic
-    const sections = document.querySelectorAll('section');
+    // 5. Mobile Bottom Dock Active State Logic (Multi-Page Support)
     const dockItems = document.querySelectorAll('.mobile-dock .dock-item');
 
     if(dockItems.length > 0) {
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                // إذا تجاوز المستخدم ثلث السكشن، نعتبره دخله
-                if (scrollY >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
-            });
+        // قراءة الرابط الحالي للصفحة
+        const currentUrl = window.location.href.toLowerCase();
+        let isAnyMatched = false;
 
-            dockItems.forEach(item => {
-                item.classList.remove('active');
-                // تفعيل الأيقونة المطابقة للسكشن الحالي (تجاهل أيقونة الواتساب لأنها رابط خارجي)
-                if (current !== '' && item.getAttribute('href').includes(current) && !item.getAttribute('href').includes('wa.me')) {
-                    item.classList.add('active');
-                }
-            });
+        // إزالة التفعيل الافتراضي من جميع الأزرار
+        dockItems.forEach(item => item.classList.remove('active'));
+
+        dockItems.forEach(item => {
+            const href = item.getAttribute('href').toLowerCase();
             
-            // إذا كنا في أعلى الصفحة تماماً، نفعّل زر الرئيسية
-            if (window.scrollY < 200) {
-                dockItems.forEach(item => item.classList.remove('active'));
-                dockItems[0].classList.add('active');
+            // تجاهل زر الواتساب لأنه مجرد رابط خارجي
+            if (href.includes('wa.me')) return;
+
+            // التحقق من تواجد الكلمة المفتاحية للصفحة في الرابط الحالي
+            if (href.includes('/services') && currentUrl.includes('/services')) {
+                item.classList.add('active');
+                isAnyMatched = true;
+            } else if (href.includes('/plans') && currentUrl.includes('/plans')) {
+                item.classList.add('active');
+                isAnyMatched = true;
+            } else if (href.includes('/portfolio') && currentUrl.includes('/portfolio')) {
+                item.classList.add('active');
+                isAnyMatched = true;
             }
         });
+
+        // إذا لم يتطابق أي رابط من الروابط الفرعية، فهذا يعني أننا في الصفحة الرئيسية
+        if (!isAnyMatched) {
+            dockItems[0].classList.add('active'); // تفعيل زر الرئيسية
+        }
     }
 });
