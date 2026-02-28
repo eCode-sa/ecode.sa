@@ -68,6 +68,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-top: 120px !important; 
 }
 
 h1 { font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--text-primary); }
@@ -75,33 +76,59 @@ h2 { font-size: 32px; font-weight: 700; line-height: 1.3; color: var(--text-prim
 h3 { font-size: 24px; font-weight: 600; line-height: 1.4; color: var(--text-primary); }
 p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
 
-/* ========== Header ========== */
+/* ========== Header (Floating Glass Pill) ========== */
 .main-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--bg-primary);
-  border-bottom: 1px solid var(--border-color);
-  transition: var(--transition-base);
+  position: fixed; /* جعله يطفو فوق المحتوى */
+  top: 25px; /* إبعاده عن الحافة العلوية */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1200px;
+  z-index: 100;
+  
+  /* التأثير الزجاجي مثل الآب ستور */
+  background: rgba(26, 31, 46, 0.75); 
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px; /* شكل الكبسولة */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-@supports (backdrop-filter: blur(12px)) {
-    .main-header {
-        background: color-mix(in srgb, var(--bg-primary), transparent 10%);
-        backdrop-filter: blur(12px);
-    }
+/* الشفافية للوضع المضيء */
+[data-theme="light"] .main-header {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.main-header:hover {
+  background: rgba(26, 31, 46, 0.85);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+[data-theme="light"] .main-header:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .header-inner {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: var(--space-4) var(--space-6);
+  padding: 10px 25px; /* مساحة داخلية متناسقة مع الحواف الدائرية */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
 }
 
+/* تعديل زر التواصل داخل الهيدر ليكون أنيقاً ومتناسقاً */
+.main-header .btn-primary {
+  padding: 10px 24px;
+  font-size: 15px;
+  min-width: auto;
+}
+
+/* اللوجو */
 .logo-container {
   display: flex;
   align-items: center;
@@ -109,57 +136,46 @@ p { font-size: 18px; font-weight: 400; color: var(--text-secondary); }
   transition: var(--transition-base);
   text-decoration: none;
 }
-.logo-container:hover { transform: scale(1.02); }
+.logo-container:hover { transform: scale(1.05); }
 
-.logo-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
-.logo-icon img { width: 48px; height: 48px; object-fit: contain; }
+.logo-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+.logo-icon img { width: 44px; height: 44px; object-fit: contain; }
 
 .logo-text { display: flex; flex-direction: column; }
 .logo-text .brand-name {
-  font-size: 24px; font-weight: 700;
+  font-size: 22px; font-weight: 700; line-height: 1.2;
   background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.logo-text .brand-tagline { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.logo-text .brand-tagline { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
+/* الروابط */
 .nav { display: flex; align-items: center; gap: var(--space-6); font-size: 16px; font-weight: 500; }
-.nav a {
+.nav a:not(.btn-primary):not(.lang-switcher):not(.theme-toggle) {
   text-decoration: none; color: var(--text-secondary); position: relative;
   transition: var(--transition-fast); padding: var(--space-2) 0; font-weight: 600;
 }
-.nav a::after {
-  content: ''; position: absolute; bottom: 0; right: 0; width: 0; height: 2px;
+.nav a:not(.btn-primary):not(.lang-switcher):not(.theme-toggle)::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
   background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue));
   transition: var(--transition-base);
 }
-.nav a:hover { color: var(--lavender-light); }
-.nav a:hover::after { width: 100%; }
+.nav a:not(.btn-primary):not(.lang-switcher):not(.theme-toggle):hover { color: var(--lavender-light); }
+.nav a:not(.btn-primary):not(.lang-switcher):not(.theme-toggle):hover::after { width: 100%; }
 
+/* أزرار اللغة والثيم */
 .lang-switcher, .theme-toggle {
-  display: flex; align-items: center; justify-content: center; width: 42px; height: 42px;
-  padding: 0; border-radius: 50%; background: var(--bg-elevated); border: 1px solid var(--border-color);
-  color: var(--text-secondary); font-size: 16px; cursor: pointer; transition: var(--transition-base); text-decoration: none;
+  display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+  padding: 0; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color);
+  color: var(--text-primary); font-size: 16px; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); text-decoration: none;
+}
+[data-theme="light"] .lang-switcher, [data-theme="light"] .theme-toggle {
+    background: rgba(0,0,0,0.03);
 }
 .lang-switcher:hover, .theme-toggle:hover {
-  background: var(--bg-secondary); border-color: var(--lavender-dark); color: var(--lavender-light); box-shadow: var(--shadow-glow);
+  background: var(--bg-elevated); border-color: var(--lavender-dark); color: var(--lavender-light); 
+  transform: translateY(-2px); box-shadow: var(--shadow-glow);
 }
-
-.btn-primary {
-  display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; min-width: 140px;
-  border-radius: var(--radius-full); border: none; cursor: pointer; font-size: 16px; font-weight: 700;
-  font-family: inherit; background: linear-gradient(135deg, var(--lavender-dark), var(--lavender-light));
-  color: #fff !important; text-decoration: none; transition: var(--transition-base);
-  box-shadow: 0 4px 20px rgba(139, 127, 255, 0.4); white-space: nowrap;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139, 127, 255, 0.6); filter: brightness(1.1); }
-.btn-primary i { color: #fff !important; }
-
-.btn-secondary {
-  padding: 10px var(--space-6); border-radius: var(--radius-full); border: 2px solid var(--text-primary);
-  background: transparent; color: var(--text-primary); text-decoration: none; font-size: 16px; font-weight: 600;
-  transition: var(--transition-base); display: inline-block;
-}
-.btn-secondary:hover { background: var(--text-primary); color: var(--bg-primary); transform: translateY(-2px); }
 
 /* ========== General Sections ========== */
 section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
@@ -504,124 +520,139 @@ details[open] .accordion-icon { transform: rotate(180deg); }
 @keyframes pulse-whatsapp { 0% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(139, 127, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(139, 127, 255, 0); } }
 
 /* ========== Responsive ========== */
+/* ========== إخفاء الشريط السفلي في الكمبيوتر ========== */
+@media (min-width: 969px) {
+    .mobile-dock { display: none; }
+}
+
+/* ========== Responsive & Mobile App UI ========== */
 @media (max-width: 968px) {
-  .hero-inner { grid-template-columns: 1fr; gap: var(--space-8); }
-  .hero-content h1 { font-size: 40px; }
-  .nav { flex-wrap: wrap; font-size: 14px; gap: var(--space-4); }
-  .section-title { font-size: 32px; }
-  .features-grid, .plans-grid, .portfolio-grid, .services-grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .error-actions { flex-direction: column; width: 100%; }
-  .btn-outline, .btn-primary { width: 100%; justify-content: center; }
-  .search-input-wrapper { flex-direction: column; width: 100%; }
-  .search-btn { width: 100%; }
-}
+    /* تعديل الهيدر ليصبح مثل التطبيقات */
+    .nav a:not(.lang-switcher):not(.theme-toggle) { display: none; }
+    .main-header .btn-primary { display: none; }
+    
+    .header-inner { 
+        padding: 15px 20px;
+        /* جعل اللوجو يمين والأيقونات يسار */
+        flex-direction: row-reverse; 
+    }
+    .nav { gap: 10px; }
+    .logo-text .brand-name { font-size: 20px; }
 
-@media (max-width: 640px) {
-  .hero-content h1 { font-size: 32px; }
-  .hero-stats { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .whatsapp-float { width: 60px; height: 60px; font-size: 30px; bottom: 35px; left: 35px; }
-  body { padding-bottom: 80px; }
-  [dir="ltr"] .whatsapp-float { left: auto; right: 25px; }
-}
+    /* تحويل الهيرو إلى بطاقة زجاجية (مثل الصورة المرفقة) */
+    .hero { padding: 40px 20px 80px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 30px; }
+    
+    .hero-content {
+        background: rgba(36, 43, 61, 0.45);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 32px;
+        padding: 40px 20px;
+        text-align: center;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+    [data-theme="light"] .hero-content {
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
 
-/* ========== LTR Specific Overrides ========== */
-/* إضافة دعم للقوائم والروابط في الوضع الإنجليزي */
-[dir="ltr"] .whatsapp-float { left: auto; right: 30px; }
+    .hero-content h1 { font-size: 34px; line-height: 1.4; margin-bottom: 20px; }
+    .hero-content p { font-size: 16px; margin-bottom: 30px; }
+    
+    /* ترتيب الأزرار عمودياً وتوسيعها */
+    .hero-actions { 
+        flex-direction: column; 
+        width: 100%; 
+        gap: 15px; 
+    }
+    .hero-actions .btn-primary, .hero-actions .btn-secondary { 
+        width: 100%; 
+        padding: 16px;
+        border-radius: 20px; /* حواف ناعمة للأزرار */
+    }
 
-/* إصلاح اتجاه النقاط في القوائم */
-[dir="ltr"] .service-features li::before, 
-[dir="ltr"] .legal-section ul li::before,
-[dir="ltr"] .feature-card ul li::before { 
-    right: auto; left: 0; 
-}
+    .section-title { font-size: 28px; }
+    .features-grid, .plans-grid, .portfolio-grid, .services-grid, .contact-grid, .form-row { grid-template-columns: 1fr; }
+    
+    /* إخفاء الواتساب العائم القديم لأننا دمجناه في الشريط السفلي */
+    .whatsapp-float { display: none !important; }
+    
+    /* مساحة سفلية عشان ما يغطي الشريط على المحتوى */
+    body { padding-bottom: 100px; }
 
-[dir="ltr"] .service-features li, 
-[dir="ltr"] .legal-section ul li,
-[dir="ltr"] .feature-card ul li { 
-    padding-right: 0; padding-left: 24px; 
-}
+    /* =================================================== */
+    /* شريط التنقل السفلي - Apple App Store Style Effect   */
+    /* =================================================== */
+    .mobile-dock {
+        position: fixed;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 400px;
+        background: rgba(26, 31, 46, 0.75); /* شفافية عالية */
+        backdrop-filter: blur(30px); /* تأثير زجاجي قوي */
+        -webkit-backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 40px; /* حواف دائرية بالكامل */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px 10px;
+        z-index: 9999;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    [data-theme="light"] .mobile-dock {
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
 
-/* إصلاح اتجاه خط الرابط (Underline) في النافبار */
-[dir="ltr"] .nav a::after {
-    right: auto; left: 0;
-}
+    .dock-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 600;
+        width: 65px;
+        height: 55px;
+        border-radius: 18px;
+        /* استخدام cubic-bezier يعطي نعومة حركة مثل نظام الآيفون */
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .dock-item i {
+        font-size: 22px;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+    }
 
-[dir="ltr"] .coming-soon-badge { margin-right: 0; margin-left: 10px; }
+    /* التأثير التفاعلي عند اللمس/التمرير (الزجاجي الفاخر) */
+    .dock-item:active, .dock-item:hover {
+        background: rgba(255, 255, 255, 0.08); /* إضاءة خلفية خفيفة جداً */
+        color: var(--text-primary);
+    }
+    [data-theme="light"] .dock-item:active, [data-theme="light"] .dock-item:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
 
-/* ========================================= */
-/* إضافات صفحة الفعاليات (Liquid & Glassmorphism) */
-/* ========================================= */
+    .dock-item:active i, .dock-item:hover i {
+        transform: scale(1.15) translateY(-2px); /* تكبير ورفع الأيقونة بسلاسة */
+    }
 
-/* الخلفية السائلة المتحركة */
-.liquid-bg-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  overflow: hidden;
-  background: var(--bg-primary);
-  pointer-events: none;
-}
-
-.liquid-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
-  animation: floatLiquid 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.blob-1 { background: var(--lavender-dark); width: 500px; height: 500px; top: -10%; left: -10%; }
-.blob-2 { background: var(--sky-blue); width: 400px; height: 400px; bottom: 10%; right: -5%; animation-delay: -5s; }
-.blob-3 { background: var(--coral-pink); width: 350px; height: 350px; top: 40%; left: 30%; animation-duration: 25s; opacity: 0.3; }
-
-@keyframes floatLiquid {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  50% { transform: translate(100px, 80px) scale(1.1) rotate(180deg); }
-  100% { transform: translate(-50px, 150px) scale(0.9) rotate(360deg); }
-}
-
-/* تأثير الزجاج المصنفر (Glassmorphism) */
-.glass-panel {
-  background: rgba(36, 43, 61, 0.4); /* لون شفاف */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 1;
-  transition: transform 0.4s ease, border-color 0.4s ease;
-}
-
-[data-theme="light"] .glass-panel {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-}
-
-.glass-panel:hover {
-  transform: translateY(-5px);
-  border-color: rgba(139, 127, 255, 0.4);
-  background: rgba(36, 43, 61, 0.5);
-}
-
-/* تعديل الهيرو سكشن ليتناسب مع الزجاج */
-.events-hero {
-  position: relative;
-  padding: 120px var(--space-6) 120px;
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-}
-
-.events-hero .hero-content, .events-hero .hero-visual {
-  background: transparent;
-  border: none;
-  box-shadow: none;
+    /* حالة الزر النشط (الصفحة الحالية) */
+    .dock-item.active {
+        color: var(--sky-blue);
+    }
+    .dock-item.active i {
+        transform: translateY(-2px);
+        text-shadow: 0 0 15px rgba(91, 192, 248, 0.6); /* توهج تحت الأيقونة مثل الآب ستور */
+    }
 }
