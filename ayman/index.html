@@ -246,30 +246,55 @@
 
     <!-- Script for vCard Generation -->
     <script>
-        function downloadVCard() {
+        async function downloadVCard() {
+            // تغيير حالة الزر أثناء تجهيز الصورة
+            const btn = document.querySelector('.btn-primary');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
+            btn.style.pointerEvents = 'none';
+
+            let photoString = 'PHOTO;TYPE=JPEG;VALUE=URI:https://ecode.sa/icons/favicon/founder.jpg';
+            
+            try {
+                // جلب الصورة وتحويلها إلى Base64 لتضمينها داخل ملف جهة الاتصال
+                const response = await fetch('https://ecode.sa/icons/favicon/founder.jpg');
+                const blob = await response.blob();
+                const base64 = await new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                    reader.readAsDataURL(blob);
+                });
+                
+                if (base64) {
+                    photoString = `PHOTO;ENCODING=b;TYPE=JPEG:${base64}`;
+                }
+            } catch (error) {
+                console.warn("Could not fetch image to embed, falling back to URL.", error);
+            }
+
             // vCard format content
             const vcardContent = `BEGIN:VCARD
 VERSION:3.0
 N:Al-Maghrabi;Ayman;;;
 FN:Ayman Al-Maghrabi
-ORG:Electronic Code Company
-TITLE:Founder | General Manager
+ORG;CHARSET=utf-8:eCode;
+TITLE;CHARSET=utf-8:Founder | General Manager
 TEL;TYPE=WORK,VOICE:0503666316
 EMAIL;TYPE=PREF,INTERNET:Admin@eCode.sa
 URL:https://ecode.sa/
-ADR;TYPE=WORK:;;;Riyadh;;;Saudi Arabia
-PHOTO;TYPE=JPEG;VALUE=URI:https://ecode.sa/icons/favicon/founder.jpg
+ADR;TYPE=WORK;CHARSET=utf-8:;;;Riyadh;;;Saudi Arabia
+${photoString}
 X-SOCIALPROFILE;type=twitter:https://x.com/eCode_sa
 X-SOCIALPROFILE;type=linkedin:https://www.linkedin.com/company/ecode-sa
 X-SOCIALPROFILE;type=instagram:https://www.instagram.com/ecode_sa
 END:VCARD`;
 
             // Create a Blob with the content
-            const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
+            const vcardBlob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
             
             // Create a link element
             const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
+            link.href = URL.createObjectURL(vcardBlob);
             
             // Set the downloaded file name
             link.download = 'Ayman_Al-Maghrabi.vcf';
@@ -278,6 +303,10 @@ END:VCARD`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+
+            // إعادة الزر لحالته الطبيعية
+            btn.innerHTML = originalText;
+            btn.style.pointerEvents = 'auto';
         }
     </script>
 </body>
