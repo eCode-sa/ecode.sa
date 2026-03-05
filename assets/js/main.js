@@ -352,3 +352,84 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+document.addEventListener("DOMContentLoaded", function() {
+    const slider = document.querySelector(".partners-slider");
+    const prevBtn = document.querySelector(".prev-btn");
+    const nextBtn = document.querySelector(".next-btn");
+    const wrapper = document.querySelector(".slider-wrapper");
+    
+    let autoPlayInterval; // متغير لحفظ المؤقت
+
+    if (slider && prevBtn && nextBtn) {
+        // دالة لحساب مسافة التمرير المطلوبة
+        const getScrollAmount = () => {
+            const item = document.querySelector(".partner-item");
+            if (item) {
+                const style = window.getComputedStyle(document.querySelector(".partners-track"));
+                const gap = parseFloat(style.gap) || 0;
+                return item.offsetWidth + gap;
+            }
+            return 0;
+        };
+
+        // دالة التحرك للأمام (مع العودة للبداية إذا وصلنا للنهاية)
+        const scrollNext = () => {
+            // نتحقق مما إذا كنا قد وصلنا للنهاية
+            if (Math.ceil(slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth) {
+                // العودة للبداية بنعومة
+                slider.scrollTo({ left: 0, behavior: "smooth" });
+            } else {
+                // التقدم خطوة للأمام
+                slider.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+            }
+        };
+
+        // دالة التحرك للخلف (مع الانتقال للنهاية إذا كنا في البداية)
+        const scrollPrev = () => {
+            if (slider.scrollLeft === 0) {
+                // الذهاب لآخر السلايدر
+                slider.scrollTo({ left: slider.scrollWidth, behavior: "smooth" });
+            } else {
+                // الرجوع خطوة للخلف
+                slider.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+            }
+        };
+
+        // تشغيل الحركة التلقائية كل 3 ثواني (3000 جزء من الثانية)
+        const startAutoPlay = () => {
+            autoPlayInterval = setInterval(scrollNext, 3000);
+        };
+
+        // إيقاف الحركة التلقائية
+        const stopAutoPlay = () => {
+            clearInterval(autoPlayInterval);
+        };
+
+        // إعادة ضبط المؤقت عند النقر اليدوي (حتى لا يتحرك فجأة بعد النقر)
+        const resetAutoPlay = () => {
+            stopAutoPlay();
+            startAutoPlay();
+        };
+
+        // عند الضغط على زر "التالي"
+        nextBtn.addEventListener("click", () => {
+            scrollNext();
+            resetAutoPlay();
+        });
+
+        // عند الضغط على زر "السابق"
+        prevBtn.addEventListener("click", () => {
+            scrollPrev();
+            resetAutoPlay();
+        });
+
+        // إيقاف الحركة عند تمرير الماوس فوق السلايدر، وتشغيلها عند إبعاده
+        if (wrapper) {
+            wrapper.addEventListener("mouseenter", stopAutoPlay);
+            wrapper.addEventListener("mouseleave", startAutoPlay);
+        }
+
+        // بدء الحركة التلقائية عند تحميل الصفحة
+        startAutoPlay();
+    }
+});
