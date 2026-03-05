@@ -319,7 +319,7 @@ section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s eas
     border-bottom: 1px solid var(--border-color); 
 }
 
-/* الحاوية الجديدة للسلايدر والأزرار */
+/* حاوية السلايدر والأزرار */
 .slider-wrapper {
     position: relative;
     display: flex;
@@ -329,10 +329,10 @@ section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s eas
     margin: 20px auto;
 }
 
-/* تنسيق أزرار التنقل */
+/* أزرار التنقل (يمين ويسار) */
 .slider-btn {
-    background-color: var(--bg-secondary); /* يتناسب مع خلفية القسم */
-    color: var(--text-color, #333); 
+    background-color: var(--bg-secondary);
+    color: var(--text-primary, #333); 
     border: 1px solid var(--border-color);
     border-radius: 50%;
     width: 40px;
@@ -350,14 +350,12 @@ section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s eas
     background-color: var(--border-color);
 }
 
-/* إعدادات السلايدر (تم استبدال overflow-hidden بـ auto للتمرير) */
+/* السلايدر نفسه */
 .partners-slider { 
     width: 100%; 
     overflow-x: auto; 
-    scroll-behavior: smooth; /* حركة تمرير ناعمة */
-    scroll-snap-type: x mandatory; /* توقف التمرير عند بداية العنصر */
-    
-    /* إخفاء شريط التمرير لشكل أنظف */
+    scroll-behavior: smooth; 
+    scroll-snap-type: x mandatory; 
     -ms-overflow-style: none;  
     scrollbar-width: none;  
 }
@@ -366,7 +364,7 @@ section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s eas
     display: none; 
 }
 
-/* المسار الذي يحتوي على اللوجوهات (تم إزالة الانيميشن) */
+/* مسار اللوجوهات */
 .partners-track { 
     display: flex; 
     align-items: center; 
@@ -374,7 +372,7 @@ section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s eas
     padding: 20px 0; 
 }
 
-/* العنصر الواحد (اللوجو) */
+/* اللوجو الواحد */
 .partner-item { 
     flex: 0 0 auto; 
     height: 70px; 
@@ -382,13 +380,11 @@ section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s eas
     align-items: center; 
     justify-content: center; 
     padding: 0 10px;
-    scroll-snap-align: start; /* محاذاة العنصر عند التمرير */
-    
-    /* عرض 4 عناصر في شاشات الكمبيوتر */
-    width: calc((100% / 4) - 24px); 
+    scroll-snap-align: start; 
+    width: calc((100% / 4) - 24px); /* 4 شعارات في الكمبيوتر */
 }
 
-/* تأثيرات الصور (بقيّت كما هي من كودك الأصلي لأنها ممتازة) */
+/* تأثيرات الصور */
 .partner-item img { 
     max-height: 40px; 
     width: auto; 
@@ -404,33 +400,19 @@ section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s eas
     transform: scale(1.06); 
 }
 
-/* --- التجاوب مع الشاشات المختلفة (Responsive) --- */
-
-/* شاشات التابلت: عرض 3 عناصر */
+/* التجاوب مع الشاشات (Responsive) */
 @media (max-width: 992px) {
-    .partner-item {
-        width: calc((100% / 3) - 21px);
-    }
+    .partner-item { width: calc((100% / 3) - 21px); } /* 3 شعارات للتابلت */
 }
 
-/* شاشات الجوال: عرض عنصرين */
 @media (max-width: 768px) {
-    .partner-item {
-        width: calc((100% / 2) - 16px);
-    }
-    .partners-track {
-        gap: 20px; /* تقليل المسافة بين اللوجوهات في الجوال */
-    }
+    .partner-item { width: calc((100% / 2) - 16px); } /* شعارين للجوال */
+    .partners-track { gap: 20px; }
 }
 
-/* الجوالات الصغيرة جداً: عرض عنصر واحد */
 @media (max-width: 480px) {
-    .partner-item {
-        width: 100%;
-    }
-    .slider-wrapper {
-        gap: 8px; /* تقليل المسافة بين الأزرار والسلايدر في الشاشات الصغيرة */
-    }
+    .partner-item { width: 100%; } /* شعار واحد للجوال الصغير */
+    .slider-wrapper { gap: 8px; }
 }
 
 /* AI Tool */
