@@ -138,7 +138,7 @@ window.SYSTEM_TRANSLATIONS = {
         footer_location: "الرياض — المملكة العربية السعودية",
         footer_mobile_label: "جوال:",
         footer_email_label: "البريد:",
-        footer_copyright: "© 2025 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+        footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
         whatsapp_tooltip: "تواصل معنا عبر واتساب",
 
         // --- Services Page ---
@@ -862,7 +862,7 @@ window.SYSTEM_TRANSLATIONS = {
         footer_location: "Riyadh — Saudi Arabia",
         footer_mobile_label: "Mobile:",
         footer_email_label: "Email:",
-        footer_copyright: "© 2025 eCode Co. All Rights Reserved.",
+        footer_copyright: "© 2026 eCode Co. All Rights Reserved.",
         whatsapp_tooltip: "Chat with us on WhatsApp",
 
         // --- Services Page ---
