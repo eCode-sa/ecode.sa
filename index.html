@@ -138,9 +138,13 @@
     </section>
 
     <section class="partners-section">
-        <div class="section-inner">
-            <h2 class="section-title" data-i18n="partners_title">عملاؤنا وشركاء النجاح</h2>
-            <p class="section-subtitle" data-i18n="partners_subtitle">نفخر بخدمة مجموعة متنوعة من العملاء في مختلف القطاعات</p>
+    <div class="section-inner">
+        <h2 class="section-title" data-i18n="partners_title">عملاؤنا وشركاء النجاح</h2>
+        <p class="section-subtitle" data-i18n="partners_subtitle">نفخر بخدمة مجموعة متنوعة من العملاء في مختلف القطاعات</p>
+        
+        <div class="slider-wrapper">
+            <button class="slider-btn prev-btn" aria-label="Previous">&#10094;</button>
+            
             <div class="partners-slider" dir="ltr">
                 <div class="partners-track">
                     <div class="partner-item"><a href="https://ait.sa/" target="_blank"><img src="partners-slider/Andromeda.png" alt="Andromeda"></a></div>
@@ -151,8 +155,11 @@
                     <div class="partner-item"><a href="https://ecode.sa/" target="_blank"><img src="partners-slider/eCode.png" alt="Client"></a></div>
                 </div>
             </div>
+
+            <button class="slider-btn next-btn" aria-label="Next">&#10095;</button>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="ai-section" id="ai-tool">
         <div class="section-inner">
@@ -254,5 +261,35 @@
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/layout.js"></script>
 <script src="assets/js/main.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const slider = document.querySelector(".partners-slider");
+    const prevBtn = document.querySelector(".prev-btn");
+    const nextBtn = document.querySelector(".next-btn");
+
+    if (slider && prevBtn && nextBtn) {
+        // دالة لحساب مسافة التمرير المطلوبة
+        const getScrollAmount = () => {
+            const item = document.querySelector(".partner-item");
+            if (item) {
+                const style = window.getComputedStyle(document.querySelector(".partners-track"));
+                const gap = parseFloat(style.gap) || 0;
+                return item.offsetWidth + gap;
+            }
+            return 0;
+        };
+
+        // عند الضغط على زر "التالي"
+        nextBtn.addEventListener("click", () => {
+            slider.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+        });
+
+        // عند الضغط على زر "السابق"
+        prevBtn.addEventListener("click", () => {
+            slider.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+        });
+    }
+});
+</script>
 </body>
 </html>
