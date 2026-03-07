@@ -153,7 +153,6 @@ window.SYSTEM_TRANSLATIONS = {
         link_order_service: "اطلب الخدمة ←",
         link_soon: "قريباً",
 
-        // S1
         sp_srv1_title: "إدارة حسابات التواصل الاجتماعي",
         sp_srv1_desc: "إدارة شاملة لحضور العميل على منصات التواصل (Instagram, TikTok, X, Snapchat, LinkedIn, Facebook).",
         sp_srv1_f1: "إعداد خطط محتوى شهرية",
@@ -163,7 +162,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv1_f5: "إدارة التعليقات والرسائل",
         sp_srv1_f6: "تقارير أداء دورية",
 
-        // S2
         sp_srv2_title: "تصميم الهوية البصرية",
         sp_srv2_desc: "بناء هوية متكاملة تعبر عن شخصية المشروع، وتشمل تصميم الشعار وتطبيقات الهوية المختلفة.",
         sp_srv2_f1: "تصميم شعار رئيسي + أيقونة",
@@ -171,7 +169,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv2_f3: "إعداد نماذج تطبيقات للهوية",
         sp_srv2_f4: "إعداد دليل الهوية (Brand Book)",
 
-        // S3
         sp_srv3_title: "إنتاج فيديو موشن جرافيك",
         sp_srv3_desc: "فيديوهات موشن جرافيك تعريفية وتسويقية، تشمل كتابة السكربت، التصميم، والتحريك الاحترافي.",
         sp_srv3_f1: "كتابة السكربت وتقسيم المشاهد",
@@ -179,7 +176,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv3_f3: "تحريك العناصر والانتقالات",
         sp_srv3_f4: "إضافة مؤثرات صوتية وتعليق صوتي",
 
-        // S4
         sp_srv4_title: "تصوير المنتجات",
         sp_srv4_desc: "تصوير احترافي لمنتجات المتاجر الإلكترونية والعلامات التجارية لإبراز جودتها وزيادة جاذبيتها.",
         sp_srv4_f1: "تصوير بخلفيات بيضاء أو مخصصة",
@@ -187,7 +183,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv4_f3: "تحسين الإضاءة والألوان",
         sp_srv4_f4: "لقطات Lifestyle للمنتج",
 
-        // S5
         sp_srv5_title: "تصوير المواقع والأشخاص",
         sp_srv5_desc: "جلسات تصوير ميدانية في موقع العميل، تشمل تصوير فريق العمل والمكاتب والمتاجر.",
         sp_srv5_f1: "تصوير الأشخاص (بروفايل - فريق العمل)",
@@ -195,7 +190,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv5_f3: "تجهيز الإضاءة والمعدات",
         sp_srv5_f4: "تعديل ومعالجة الصور",
 
-        // S6
         sp_srv6_title: "تصوير الفيديو التعريفي",
         sp_srv6_desc: "فيديو تصوير حقيقي للتعريف بالمكان أو الخدمة، يعرض تفاصيل عملك بشكل احترافي وجذاب.",
         sp_srv6_f1: "تصوير لقطات عامة وتفاصيل (B-roll)",
@@ -203,7 +197,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv6_f3: "كتابة نص وإضافة نصوص على الشاشة",
         sp_srv6_f4: "مونتاج احترافي مع موسيقى",
 
-        // S7
         sp_srv7_title: "إدارة الحملات الإعلانية",
         sp_srv7_desc: "إدارة الحملات الإعلانية على المنصات الرقمية (Meta, TikTok, Snapchat, Google) لتحقيق أهدافك التسويقية.",
         sp_srv7_f1: "إعداد وتخطيط الحملات",
@@ -211,7 +204,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv7_f3: "ضبط الاستهداف والجمهور",
         sp_srv7_f4: "المتابعة والتحسين المستمر",
 
-        // S8
         sp_srv8_title: "تصميم وتطوير المواقع",
         sp_srv8_desc: "تصميم وبرمجة مواقع تعريفية للشركات والمشاريع، متوافقة مع الهوية ومتجاوبة مع جميع الأجهزة.",
         sp_srv8_f1: "تصميم صفحات رئيسية وداخلية",
@@ -219,7 +211,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv8_f3: "إعداد نماذج التواصل",
         sp_srv8_f4: "تحسين تجربة المستخدم (UX)",
 
-        // S9
         sp_srv9_title: "موشن جرافيك كامل",
         sp_srv9_desc: "فيديو أنيميشن كامل (Explainer Video) لشرح خدمة أو منتج بأسلوب قصصي ومؤثرات بصرية متقدمة.",
         sp_srv9_f1: "إعداد سكربت و Storyboard",
@@ -227,7 +218,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv9_f3: "تحريك متقدم (Character Animation)",
         sp_srv9_f4: "تعليق صوتي احترافي",
 
-        // S10
         sp_srv10_title: "تحليل الحسابات الرقمية",
         sp_srv10_desc: "تحليل أداء الحسابات على السوشيال والمنصات الإعلانية لتقديم رؤى وتوصيات لتحسين النتائج.",
         sp_srv10_f1: "تحليل أداء المنشورات والحملات",
@@ -235,7 +225,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv10_f3: "مقارنة مع المنافسين",
         sp_srv10_f4: "إعداد تقرير شامل مع التوصيات",
 
-        // S11
         sp_srv11_title: "تحسين تجربة المستخدم",
         sp_srv11_desc: "تقييم تجربة المستخدم على المواقع والمتاجر الرقمية لتحسين سهولة الاستخدام وزيادة معدلات التحويل.",
         sp_srv11_f1: "مراجعة مسار المستخدم",
@@ -243,7 +232,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv11_f3: "تقييم سهولة الوصول للمعلومات",
         sp_srv11_f4: "تقرير بنقاط القوة والضعف",
 
-        // S12
         sp_srv12_title: "السياسات القانونية",
         sp_srv12_desc: "صياغة سياسات قانونية للمواقع والمتاجر، تشمل سياسة الخصوصية والكوكيز والشروط والأحكام.",
         sp_srv12_f1: "إعداد سياسة خصوصية متوافقة (PDPL)",
@@ -251,14 +239,12 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv12_f3: "تخصيص البنود حسب النشاط",
         sp_srv12_f4: "تسليم نصوص جاهزة للنشر",
 
-        // S13
         sp_srv13_title: "تغطية الفعاليات",
         sp_srv13_desc: "تغطية إعلامية للفعاليات حضورياً بالصور والفيديو لتوثيق الحدث واستخدامه في التسويق.",
         sp_srv13_f1: "تغطية فوتوغرافية للحدث",
         sp_srv13_f2: "تصوير فيديو مع Highlight",
         sp_srv13_f3: "تعديل وتسليم المواد",
 
-        // S14
         sp_srv14_title: "إنشاء المتاجر (سلة)",
         sp_srv14_desc: "تأسيس متجر إلكتروني كامل عبر منصة سلة، يشمل ضبط الإعدادات وتصميم الواجهة وإضافة المنتجات.",
         sp_srv14_f1: "إنشاء الحساب وضبط الإعدادات",
@@ -266,7 +252,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv14_f3: "إضافة المنتجات وربط الدفع والشحن",
         sp_srv14_f4: "إعداد صفحات السياسات",
 
-        // S15
         sp_srv15_title: "تطبيقات الجوال",
         sp_srv15_desc: "خدمة تطوير تطبيقات جوال بسيطة أو متوسطة التعقيد، تشمل التصميم والبرمجة والرفع على المتاجر.",
         sp_srv15_f1: "تصميم واجهات UI/UX",
@@ -274,87 +259,68 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv15_f3: "ربط بقاعدة بيانات (عند الحاجة)",
         sp_srv15_f4: "الرفع على متاجر التطبيقات",
 
-        // CTA
         cta_title: "هل لديك مشروع في ذهنك؟",
         cta_desc: "تواصل معنا الآن للحصول على استشارة مجانية ومناقشة كيف يمكننا تحويل فكرتك إلى واقع.",
         cta_btn_start: "ابدأ مشروعك الآن",
         cta_btn_plans: "شاهد الباقات",
 
-        // --- Portfolio Page ---
+        // --- Portfolio Page (Updated for Events) ---
         port_page_title: "أعمالنا | eCode",
         port_hero_title: "معرض أعمالنا",
-        port_hero_desc: "نماذج من مشاريعنا الناجحة التي ساهمت في نمو أعمال عملائنا",
+        port_hero_desc: "تنظيم متكامل للفعاليات والمؤتمرات من A to Z، نصنع تجارب استثنائية تبقى في الذاكرة",
         
         // Filters
         filter_all: "الكل",
-        filter_rest: "مطاعم",
-        filter_med: "طبي",
-        filter_photo: "تصوير",
-        filter_comm: "تجاري",
-        filter_camp: "حملات إعلانية",
+        filter_gov: "جهات حكومية",
+        filter_corp: "مؤتمرات ومعارض",
+        filter_ent: "فعاليات ترفيهية",
 
         // Projects
-        proj_onfire_title: "مطعم اون فاير",
-        proj_onfire_desc: "انشاء موقع للمطعم لاستعراض العروض ومنيو المطعم ومعلومات عامه",
+        proj_sijil_title: "سجل (SIJIL)",
+        proj_sijil_desc: "إدارة وتنظيم متكامل لفعالية سجل، شملت التجهيزات اللوجستية وإدارة سير العمليات بامتياز.",
         
-        proj_alipasha_title: "مطعم فلافل علي باشا",
-        proj_alipasha_desc: "انشاء موقع الكتروني للمطعم وتصوير الاطعمه",
+        proj_industry_title: "وزارة الصناعة والثروة المعدنية",
+        proj_industry_desc: "تنفيذ وتجهيز مؤتمر وزارة الصناعة والثروة المعدنية وفق أعلى المعايير الرسمية والبروتوكولات.",
         
-        proj_andro_title: "جلسة تصوير مقر",
-        proj_andro_desc: "تصوير احترافي لمقر الشركة والموظفين مع تعديل احترافي",
+        proj_education_title: "وزارة التعليم",
+        proj_education_desc: "إدارة وتنسيق فعالية كبرى تابعة لوزارة التعليم، من مرحلة التخطيط وحتى التغطية الختامية.",
         
-        proj_androhealth_title: "واجهة نظام طبي",
-        proj_androhealth_desc: "تصميم وتطوير تجربة المستخدم لنظام ادارة منشآت طبية",
+        proj_happycloud_title: "غيمة الفرح (Happy Cloud)",
+        proj_happycloud_desc: "تصميم وتنفيذ تجربة ترفيهية تفاعلية للزوار، مع الاهتمام بأدق تفاصيل الديكور والأنشطة.",
         
-        proj_duties_title: "حملة إطلاق منتج جديد",
-        proj_duties_desc: "حملة اطلاق منتج تقني جديد",
+        proj_haboob_title: "هبوب (Haboob)",
+        proj_haboob_desc: "تنظيم فعالية هبوب بمفهوم إبداعي فريد، شاملة التجهيزات الصوتية والمرئية والتشغيل الكامل.",
         
-        proj_guide_title: "هوية بصرية",
-        proj_guide_desc: "هوية بصرية كاملة متكاملة",
+        proj_ezdihar_title: "ازدهار (EZDIHAR)",
+        proj_ezdihar_desc: "هندسة وتنظيم مؤتمر ازدهار لتوفير بيئة احترافية للشركات وكبار الشخصيات والزوار.",
         
-        proj_bq_title: "فيديو ترويجي لمنصة عقارية",
-        proj_bq_desc: "إنتاج فيديو ترويجي احترافي بجودة 4K مع مونتاج إبداعي وموسيقى مميزة",
+        proj_eizo_title: "إيزو (EIZO)",
+        proj_eizo_desc: "بناء وإدارة أجنحة المعرض، وتقديم حلول تسجيل الحضور والضيافة بكفاءة عالية طوال أيام الفعالية.",
         
-        proj_cyan_title: "منصة طب اتصالي",
-        proj_cyan_desc: "منصة طب اتصالي وزيارات منزلية تم اختبار تجربة المستخدم وانشاء التصاميم الدعائية والبصرية",
-        
-        proj_found_title: "حملة يوم التأسيس",
-        proj_found_desc: "حملة تسويقية موسمية متكاملة مع محتوى يومي خاص وعروض ترويجية حصرية",
+        proj_ahlam_title: "ليلة أحلام (AHLAM NIGHT)",
+        proj_ahlam_desc: "إنتاج وإدارة ليلة فنية وترفيهية ساحرة، مع التركيز على هندسة الإضاءة، المسرح، وتجربة الحضور.",
 
-        // Categories & Tags
-        cat_med_ui: "واجهة نظام طبي",
-        cat_identity: "هوية",
-        cat_video: "فيديو",
-        cat_ux: "تجربة مستخدم",
-        cat_seasonal: "حملة موسمية",
-        
-        tag_menu: "منيو الطعام",
-        tag_social: "وسائل التواصل",
-        tag_prod_photo: "تصوير منتجات",
-        tag_photo: "تصوير",
-        tag_camp: "حملات تسويقية",
-        tag_montage: "مونتاج",
-        tag_edit: "تعديل",
-        tag_design: "تصميم",
-        tag_ux: "تجربة مستخدم",
-        tag_testing: "اختبار",
-        tag_fb: "فيسبوك",
-        tag_insta: "إنستقرام",
-        tag_snap: "سناب شات",
-        tag_logo: "شعار",
-        tag_templates: "قوالب",
-        tag_colors: "الوان",
-        tag_4k: "4K",
-        tag_ads_material: "مواد اعلانية",
-        tag_seasonal: "موسمي",
-        tag_offers: "عروض",
-        tag_content: "محتوى",
+        // Tags
+        tag_full_org: "تنظيم متكامل",
+        tag_exhibitions: "تجهيز معارض",
+        tag_gov_sector: "قطاع حكومي",
+        tag_protocol: "بروتوكول",
+        tag_crowd_mgt: "إدارة حشود",
+        tag_entertainment: "ترفيه",
+        tag_interactive: "تجارب تفاعلية",
+        tag_mega_event: "فعالية كبرى",
+        tag_operation: "تشغيل",
+        tag_conference: "مؤتمر",
+        tag_vip: "VIP",
+        tag_logistics: "لوجستيات",
+        tag_art_nights: "ليالي فنية",
+        tag_stage_setup: "تجهيز مسارح",
 
         // Stats
-        stat_success_proj: "مشروع ناجح",
-        stat_sectors: "قطاعات مختلفة",
-        stat_time_commit: "التزام بالوقت",
-        stat_client_rate: "تقييم العملاء",
+        stat_events: "فعالية ناجحة",
+        stat_visitors: "زائر تمت إدارتهم",
+        stat_prof: "احترافية التنفيذ",
+        stat_ops: "إدارة عمليات الموقع",
 
         // --- Contact Page ---
         contact_page_title: "تواصل معنا | eCode",
@@ -415,12 +381,10 @@ window.SYSTEM_TRANSLATIONS = {
         plans_hero_title: "باقات وحلول eCode",
         plans_hero_desc: "اختر الباقة التي تناسب احتياجات مشروعك، صممت لتمنحك أفضل قيمة مقابل السعر",
         
-        // General Plan Labels
         lbl_sar: "ريال",
         lbl_sar_month: "ريال / شهر",
         btn_order_plan: "اطلب الباقة",
         
-        // Plan Descriptions (Reusable)
         desc_starter: "للبدايات والمشاريع الصغيرة",
         desc_popular: "الأكثر طلباً للانتشار",
         desc_comprehensive: "إدارة وتشغيل شامل",
@@ -446,7 +410,6 @@ window.SYSTEM_TRANSLATIONS = {
         desc_web_std: "موقع تعريفي كامل",
         desc_web_prem: "موقع احترافي",
 
-        // Category Titles
         cat_social_title: "إدارة حسابات التواصل الاجتماعي",
         cat_branding_title: "تصميم الهوية البصرية",
         cat_motion_title: "إنتاج فيديو موشن جرافيك",
@@ -463,7 +426,7 @@ window.SYSTEM_TRANSLATIONS = {
         cat_explainer_title: "موشن جرافيك كامل (Explainer)",
         cat_app_title: "تطبيقات الجوال",
 
-        // Features - Social
+        // Features (social, branding... etc kept from original)
         feat_social_basic_1: "1 منصة (Instagram أو TikTok أو X)",
         feat_social_basic_2: "8 منشورات ثابتة شهرياً",
         feat_social_basic_3: "4 ستوري",
@@ -486,7 +449,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_social_prem_7: "اجتماعين تنسيقيين في الشهر",
         feat_social_prem_8: "تقرير أداء تفصيلي + توصيات",
 
-        // Features - Branding
         feat_brand_basic_1: "شعار رئيسي + نسخة ثانوية",
         feat_brand_basic_2: "اختيار الألوان والخطوط",
         feat_brand_basic_3: "3 نماذج تطبيقات بسيطة",
@@ -500,7 +462,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_brand_prem_3: "10 تطبيقات جاهزة",
         feat_brand_prem_4: "تسليم ملفات مفتوحة (AI + PDF)",
 
-        // Features - Motion
         feat_motion_basic_1: "15 ثانية",
         feat_motion_basic_2: "كتابة نص قصير",
         feat_motion_basic_3: "تحريك خفيف + عناصر بسيطة",
@@ -518,7 +479,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_motion_prem_5: "تعليق صوتي احترافي",
         feat_motion_prem_6: "تسليم Full HD",
 
-        // Features - Product Photo
         feat_photo_basic_1: "10 منتجات",
         feat_photo_basic_2: "خلفية بيضاء",
         feat_photo_basic_3: "3 زوايا لكل منتج",
@@ -535,7 +495,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_photo_prem_4: "تعديل كامل + إزالة شوائب",
         feat_photo_prem_5: "إعداد وترتيب الجلسة",
 
-        // Features - Corp Photo
         feat_corp_basic_1: "10 صور عالية الجودة",
         feat_corp_basic_2: "موقع واحد",
         feat_corp_basic_3: "تعديل أساسي",
@@ -547,7 +506,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_corp_prem_3: "تغطية شاملة (موظفين/مكان)",
         feat_corp_prem_4: "تعديل شامل",
 
-        // Features - Intro Video
         feat_intro_basic_1: "30 ثانية",
         feat_intro_basic_2: "موقع واحد",
         feat_intro_basic_3: "لقطات عامة",
@@ -561,7 +519,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_intro_prem_3: "سيناريو كامل",
         feat_intro_prem_4: "نسختين (HD + Social)",
 
-        // Features - Ads
         feat_ads_basic_1: "منصة واحدة",
         feat_ads_basic_2: "حملة واحدة",
         feat_ads_basic_3: "تصميم إعلان واحد",
@@ -578,7 +535,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_ads_prem_4: "استهداف متقدم + Retargeting",
         feat_ads_prem_5: "تحسين يومي",
 
-        // Features - Web
         feat_web_basic_1: "صفحة واحدة متجاوبة",
         feat_web_basic_2: "تعريف وخدمات",
         feat_web_basic_3: "نموذج تواصل",
@@ -594,7 +550,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_web_prem_4: "ربط متقدم",
         feat_web_prem_5: "SEO متوسط",
 
-        // Features - Salla (Coming Soon)
         feat_salla_basic_1: "ضبط الإعدادات",
         feat_salla_basic_2: "20 منتج",
         feat_salla_basic_3: "ربط الدفع والشحن",
@@ -605,7 +560,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_salla_prem_2: "100 منتج",
         feat_salla_prem_3: "إعداد حملات وتنبيهات",
 
-        // Features - Analytics
         feat_ana_basic_1: "تحليل 15 منشور",
         feat_ana_basic_2: "تحليل التفاعل",
         feat_ana_basic_3: "تقرير 5 صفحات",
@@ -616,7 +570,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_ana_prem_2: "تحليل 5 منافسين",
         feat_ana_prem_3: "استراتيجية نشر كاملة",
 
-        // Features - UX
         feat_ux_basic_1: "مراجعة الصفحة الرئيسية",
         feat_ux_basic_2: "تقييم العناصر الأساسية",
         feat_ux_std_1: "مراجعة 3 صفحات",
@@ -624,14 +577,12 @@ window.SYSTEM_TRANSLATIONS = {
         feat_ux_prem_1: "مراجعة 5 صفحات",
         feat_ux_prem_2: "تحليل شامل + خطة تحسين",
 
-        // Features - Legal
         feat_legal_basic_1: "سياسة خصوصية مبسطة",
         feat_legal_std_1: "متوافقة مع النظام السعودي",
         feat_legal_std_2: "سياسة الكوكيز",
         feat_legal_prem_1: "امتثال شامل (GDPR/PDPL)",
         feat_legal_prem_2: "شروط وأحكام",
 
-        // Features - Events
         feat_event_basic_1: "تغطية 3 ساعات",
         feat_event_basic_2: "صور فقط (30-50 صورة)",
         feat_event_std_1: "تغطية 4 ساعات",
@@ -639,7 +590,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_event_prem_1: "تغطية 6 ساعات",
         feat_event_prem_2: "فريق كامل (صور + فيديو)",
 
-        // Features - Explainer
         feat_explainer_basic_1: "30 ثانية",
         feat_explainer_basic_2: "رسوم جاهزة",
         feat_explainer_std_1: "60 ثانية",
@@ -647,7 +597,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_explainer_prem_1: "90-120 ثانية",
         feat_explainer_prem_2: "أنيميشن متقدم + شخصيات",
 
-        // Features - App
         feat_app_basic_1: "3 شاشات أساسية",
         feat_app_basic_2: "أندرويد فقط",
         feat_app_basic_3: "تصميم UI بسيط",
@@ -877,7 +826,6 @@ window.SYSTEM_TRANSLATIONS = {
         link_order_service: "Order Service ←",
         link_soon: "Coming Soon",
 
-        // S1
         sp_srv1_title: "Social Media Management",
         sp_srv1_desc: "Comprehensive management of client presence on platforms (Instagram, TikTok, X, Snapchat, LinkedIn, Facebook).",
         sp_srv1_f1: "Monthly content plan creation",
@@ -887,7 +835,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv1_f5: "Comments and messages management",
         sp_srv1_f6: "Periodic performance reports",
 
-        // S2
         sp_srv2_title: "Visual Identity Design",
         sp_srv2_desc: "Building a complete identity expressing the project's personality, including logo design and applications.",
         sp_srv2_f1: "Main Logo + Icon design",
@@ -895,7 +842,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv2_f3: "Identity application mockups",
         sp_srv2_f4: "Brand Book creation",
 
-        // S3
         sp_srv3_title: "Motion Graphics Video",
         sp_srv3_desc: "Introductory and marketing motion graphics videos, including scriptwriting, design, and animation.",
         sp_srv3_f1: "Scriptwriting and scene breakdown",
@@ -903,7 +849,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv3_f3: "Element animation and transitions",
         sp_srv3_f4: "Sound effects and voiceover",
 
-        // S4
         sp_srv4_title: "Product Photography",
         sp_srv4_desc: "Professional photography for e-commerce products and brands to highlight quality and appeal.",
         sp_srv4_f1: "White background or styled shoots",
@@ -911,7 +856,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv4_f3: "Lighting and color enhancement",
         sp_srv4_f4: "Lifestyle shots for the product",
 
-        // S5
         sp_srv5_title: "Location & Portrait Photography",
         sp_srv5_desc: "On-site photography sessions covering team members, offices, and stores.",
         sp_srv5_f1: "Portrait photography (Profile/Team)",
@@ -919,7 +863,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv5_f3: "Lighting and equipment setup",
         sp_srv5_f4: "Photo editing and retouching",
 
-        // S6
         sp_srv6_title: "Introductory Video Production",
         sp_srv6_desc: "Real-footage video to introduce a place or service, showcasing your work details professionally.",
         sp_srv6_f1: "General shots and B-roll details",
@@ -927,7 +870,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv6_f3: "Scripting and on-screen text",
         sp_srv6_f4: "Professional editing with music",
 
-        // S7
         sp_srv7_title: "Ad Campaign Management",
         sp_srv7_desc: "Managing ad campaigns on digital platforms (Meta, TikTok, Snapchat, Google) to achieve marketing goals.",
         sp_srv7_f1: "Campaign planning and setup",
@@ -935,7 +877,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv7_f3: "Targeting and audience adjustment",
         sp_srv7_f4: "Monitoring and continuous optimization",
 
-        // S8
         sp_srv8_title: "Website Design & Development",
         sp_srv8_desc: "Designing and programming corporate websites, consistent with identity and responsive to all devices.",
         sp_srv8_f1: "Home and inner page design",
@@ -943,7 +884,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv8_f3: "Contact form setup",
         sp_srv8_f4: "User Experience (UX) optimization",
 
-        // S9
         sp_srv9_title: "Full Motion Graphics",
         sp_srv9_desc: "Full animation video (Explainer Video) to explain a service or product with storytelling and advanced effects.",
         sp_srv9_f1: "Script and Storyboard creation",
@@ -951,7 +891,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv9_f3: "Advanced Character Animation",
         sp_srv9_f4: "Professional voiceover",
 
-        // S10
         sp_srv10_title: "Digital Account Analysis",
         sp_srv10_desc: "Analyzing social media and ad platform performance to provide insights and improvement recommendations.",
         sp_srv10_f1: "Post and campaign performance analysis",
@@ -959,7 +898,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv10_f3: "Competitor comparison",
         sp_srv10_f4: "Comprehensive report with recommendations",
 
-        // S11
         sp_srv11_title: "UX Improvement",
         sp_srv11_desc: "Evaluating user experience on websites and digital stores to improve usability and conversion rates.",
         sp_srv11_f1: "User journey review",
@@ -967,7 +905,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv11_f3: "Information accessibility evaluation",
         sp_srv11_f4: "Strengths and weaknesses report",
 
-        // S12
         sp_srv12_title: "Legal Policies",
         sp_srv12_desc: "Drafting legal policies for websites and stores, including Privacy Policy, Cookies, and Terms & Conditions.",
         sp_srv12_f1: "PDPL compliant privacy policy",
@@ -975,14 +912,12 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv12_f3: "Customizing clauses per activity",
         sp_srv12_f4: "Ready-to-publish text delivery",
 
-        // S13
         sp_srv13_title: "Event Coverage",
         sp_srv13_desc: "Media coverage for events (photo/video) to document the event and use for marketing.",
         sp_srv13_f1: "Event photography coverage",
         sp_srv13_f2: "Video coverage with Highlight",
         sp_srv13_f3: "Editing and material delivery",
 
-        // S14
         sp_srv14_title: "Salla Store Creation",
         sp_srv14_desc: "Establishing a complete e-store via Salla platform, including settings, interface design, and product addition.",
         sp_srv14_f1: "Account creation and settings",
@@ -990,7 +925,6 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv14_f3: "Product addition and payment/shipping linking",
         sp_srv14_f4: "Policy pages setup",
 
-        // S15
         sp_srv15_title: "Mobile Apps",
         sp_srv15_desc: "Development of simple or medium-complexity mobile apps, including design, programming, and store uploading.",
         sp_srv15_f1: "UI/UX design",
@@ -998,87 +932,68 @@ window.SYSTEM_TRANSLATIONS = {
         sp_srv15_f3: "Database connection (if needed)",
         sp_srv15_f4: "Uploading to app stores",
 
-        // CTA
         cta_title: "Have a project in mind?",
         cta_desc: "Contact us now for a free consultation and discuss how we can turn your idea into reality.",
         cta_btn_start: "Start Project Now",
         cta_btn_plans: "View Plans",
 
-        // --- Portfolio Page ---
+        // --- Portfolio Page (Updated for Events) ---
         port_page_title: "Portfolio | eCode",
         port_hero_title: "Our Portfolio",
-        port_hero_desc: "Examples of our successful projects that contributed to our clients' growth",
+        port_hero_desc: "Full event and conference management from A to Z, creating exceptional memorable experiences",
         
         // Filters
         filter_all: "All",
-        filter_rest: "Restaurants",
-        filter_med: "Medical",
-        filter_photo: "Photography",
-        filter_comm: "Commercial",
-        filter_camp: "Ad Campaigns",
+        filter_gov: "Government Entities",
+        filter_corp: "Conferences & Exhibitions",
+        filter_ent: "Entertainment Events",
 
         // Projects
-        proj_onfire_title: "On Fire Restaurant",
-        proj_onfire_desc: "Website creation for the restaurant to display offers, menu, and general info",
+        proj_sijil_title: "SIJIL",
+        proj_sijil_desc: "Full management and organization for the SIJIL event, including seamless logistics and operational execution.",
         
-        proj_alipasha_title: "Ali Pasha Falafel",
-        proj_alipasha_desc: "Website creation for the restaurant and food photography",
+        proj_industry_title: "Ministry of Industry & Mineral Resources",
+        proj_industry_desc: "Execution and setup of the Ministry's conference, meeting the highest official standards and protocols.",
         
-        proj_andro_title: "HQ Photography Session",
-        proj_andro_desc: "Professional photography for company HQ and staff with professional editing",
+        proj_education_title: "Ministry of Education",
+        proj_education_desc: "Managing and coordinating a major Ministry of Education event, from initial planning to final coverage.",
         
-        proj_androhealth_title: "Medical System UI",
-        proj_androhealth_desc: "UI/UX design and development for a medical facility management system",
+        proj_happycloud_title: "Happy Cloud",
+        proj_happycloud_desc: "Designing and executing an interactive entertainment experience, with attention to every detail of decor and activities.",
         
-        proj_duties_title: "New Product Launch Campaign",
-        proj_duties_desc: "Launch campaign for a new tech product",
+        proj_haboob_title: "Haboob",
+        proj_haboob_desc: "Organizing Haboob with a unique creative concept, comprehensive A/V setup, and full site operation.",
         
-        proj_guide_title: "Visual Identity",
-        proj_guide_desc: "Complete comprehensive visual identity",
+        proj_ezdihar_title: "EZDIHAR",
+        proj_ezdihar_desc: "Engineering and organizing the EZDIHAR conference to provide a professional environment for businesses and VIPs.",
         
-        proj_bq_title: "Real Estate Platform Promo Video",
-        proj_bq_desc: "Professional 4K promo video production with creative editing and music",
+        proj_eizo_title: "EIZO",
+        proj_eizo_desc: "Building and managing exhibition booths, providing seamless registration and hospitality solutions.",
         
-        proj_cyan_title: "Telemedicine Platform",
-        proj_cyan_desc: "Telemedicine and home visit platform, UX testing, and creation of promotional visual designs",
-        
-        proj_found_title: "Foundation Day Campaign",
-        proj_found_desc: "Integrated seasonal marketing campaign with special daily content and exclusive offers",
+        proj_ahlam_title: "AHLAM NIGHT",
+        proj_ahlam_desc: "Producing and managing a magical entertainment night, focusing on lighting design, stage setup, and attendee experience.",
 
-        // Categories & Tags
-        cat_med_ui: "Medical System UI",
-        cat_identity: "Identity",
-        cat_video: "Video",
-        cat_ux: "User Experience",
-        cat_seasonal: "Seasonal Campaign",
-        
-        tag_menu: "Food Menu",
-        tag_social: "Social Media",
-        tag_prod_photo: "Product Photography",
-        tag_photo: "Photography",
-        tag_camp: "Marketing Campaigns",
-        tag_montage: "Montage",
-        tag_edit: "Editing",
-        tag_design: "Design",
-        tag_ux: "User Experience",
-        tag_testing: "Testing",
-        tag_fb: "Facebook",
-        tag_insta: "Instagram",
-        tag_snap: "Snapchat",
-        tag_logo: "Logo",
-        tag_templates: "Templates",
-        tag_colors: "Colors",
-        tag_4k: "4K",
-        tag_ads_material: "Ad Materials",
-        tag_seasonal: "Seasonal",
-        tag_offers: "Offers",
-        tag_content: "Content",
+        // Tags
+        tag_full_org: "Full Organization",
+        tag_exhibitions: "Exhibition Setup",
+        tag_gov_sector: "Gov Sector",
+        tag_protocol: "Protocol",
+        tag_crowd_mgt: "Crowd Management",
+        tag_entertainment: "Entertainment",
+        tag_interactive: "Interactive Experiences",
+        tag_mega_event: "Mega Event",
+        tag_operation: "Operation",
+        tag_conference: "Conference",
+        tag_vip: "VIP",
+        tag_logistics: "Logistics",
+        tag_art_nights: "Art Nights",
+        tag_stage_setup: "Stage Setup",
 
         // Stats
-        stat_success_proj: "Successful Projects",
-        stat_sectors: "Different Sectors",
-        stat_time_commit: "On-Time Delivery",
-        stat_client_rate: "Client Rating",
+        stat_events: "Successful Events",
+        stat_visitors: "Managed Visitors",
+        stat_prof: "Execution Professionalism",
+        stat_ops: "On-site Operation",
 
         // --- Contact Page ---
         contact_page_title: "Contact Us | eCode",
@@ -1139,12 +1054,10 @@ window.SYSTEM_TRANSLATIONS = {
         plans_hero_title: "eCode Plans & Solutions",
         plans_hero_desc: "Choose the plan that suits your project needs, designed to give you the best value.",
         
-        // General Plan Labels
         lbl_sar: "SAR",
         lbl_sar_month: "SAR / Month",
         btn_order_plan: "Order Plan",
         
-        // Plan Descriptions (Reusable)
         desc_starter: "For startups & small projects",
         desc_popular: "Most popular for growth",
         desc_comprehensive: "Complete management & operation",
@@ -1170,7 +1083,6 @@ window.SYSTEM_TRANSLATIONS = {
         desc_web_std: "Full Business Site",
         desc_web_prem: "Professional Site",
 
-        // Category Titles
         cat_social_title: "Social Media Management",
         cat_branding_title: "Visual Identity Design",
         cat_motion_title: "Motion Graphics Production",
@@ -1187,7 +1099,6 @@ window.SYSTEM_TRANSLATIONS = {
         cat_explainer_title: "Full Motion Graphics (Explainer)",
         cat_app_title: "Mobile Apps",
 
-        // Features - Social
         feat_social_basic_1: "1 Platform (Instagram, TikTok, or X)",
         feat_social_basic_2: "8 Static Posts / Month",
         feat_social_basic_3: "4 Stories",
@@ -1210,7 +1121,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_social_prem_7: "2 coordination meetings / month",
         feat_social_prem_8: "Detailed report + recommendations",
 
-        // Features - Branding
         feat_brand_basic_1: "Main Logo + Secondary Version",
         feat_brand_basic_2: "Color & Font Selection",
         feat_brand_basic_3: "3 Simple Application Mockups",
@@ -1224,7 +1134,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_brand_prem_3: "10 Ready Applications",
         feat_brand_prem_4: "Open Source Files (AI + PDF)",
 
-        // Features - Motion
         feat_motion_basic_1: "15 Seconds",
         feat_motion_basic_2: "Short Script Writing",
         feat_motion_basic_3: "Light Animation + Simple Elements",
@@ -1242,7 +1151,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_motion_prem_5: "Professional Voiceover",
         feat_motion_prem_6: "Full HD Delivery",
 
-        // Features - Product Photo
         feat_photo_basic_1: "10 Products",
         feat_photo_basic_2: "White Background",
         feat_photo_basic_3: "3 Angles per product",
@@ -1259,7 +1167,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_photo_prem_4: "Full Retouching",
         feat_photo_prem_5: "Session Setup & Styling",
 
-        // Features - Corp Photo
         feat_corp_basic_1: "10 High-Quality Photos",
         feat_corp_basic_2: "1 Location",
         feat_corp_basic_3: "Basic Editing",
@@ -1271,7 +1178,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_corp_prem_3: "Full Coverage (Staff/Venue)",
         feat_corp_prem_4: "Full Retouching",
 
-        // Features - Intro Video
         feat_intro_basic_1: "30 Seconds",
         feat_intro_basic_2: "1 Location",
         feat_intro_basic_3: "General Shots",
@@ -1285,7 +1191,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_intro_prem_3: "Full Script",
         feat_intro_prem_4: "2 Versions (HD + Social)",
 
-        // Features - Ads
         feat_ads_basic_1: "1 Platform",
         feat_ads_basic_2: "1 Campaign",
         feat_ads_basic_3: "1 Ad Design",
@@ -1302,7 +1207,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_ads_prem_4: "Advanced Targeting + Retargeting",
         feat_ads_prem_5: "Daily Optimization",
 
-        // Features - Web
         feat_web_basic_1: "One Responsive Page",
         feat_web_basic_2: "Intro & Services",
         feat_web_basic_3: "Contact Form",
@@ -1318,7 +1222,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_web_prem_4: "Advanced Integration",
         feat_web_prem_5: "Intermediate SEO",
 
-        // Features - Salla (Coming Soon)
         feat_salla_basic_1: "Settings Setup",
         feat_salla_basic_2: "20 Products",
         feat_salla_basic_3: "Payment & Shipping Integration",
@@ -1329,7 +1232,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_salla_prem_2: "100 Products",
         feat_salla_prem_3: "Campaigns & Alerts Setup",
 
-        // Features - Analytics
         feat_ana_basic_1: "Analyze 15 Posts",
         feat_ana_basic_2: "Engagement Analysis",
         feat_ana_basic_3: "5-Page Report",
@@ -1340,7 +1242,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_ana_prem_2: "5 Competitors Analysis",
         feat_ana_prem_3: "Full Posting Strategy",
 
-        // Features - UX
         feat_ux_basic_1: "Home Page Review",
         feat_ux_basic_2: "Basic Elements Evaluation",
         feat_ux_std_1: "3 Pages Review",
@@ -1348,14 +1249,12 @@ window.SYSTEM_TRANSLATIONS = {
         feat_ux_prem_1: "5 Pages Review",
         feat_ux_prem_2: "Full Analysis + Improvement Plan",
 
-        // Features - Legal
         feat_legal_basic_1: "Simplified Privacy Policy",
         feat_legal_std_1: "Saudi Law Compliant",
         feat_legal_std_2: "Cookie Policy",
         feat_legal_prem_1: "Full Compliance (GDPR/PDPL)",
         feat_legal_prem_2: "Terms & Conditions",
 
-        // Features - Events
         feat_event_basic_1: "3 Hours Coverage",
         feat_event_basic_2: "Photos Only (30-50 Photos)",
         feat_event_std_1: "4 Hours Coverage",
@@ -1363,7 +1262,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_event_prem_1: "6 Hours Coverage",
         feat_event_prem_2: "Full Team (Photo + Video)",
 
-        // Features - Explainer
         feat_explainer_basic_1: "30 Seconds",
         feat_explainer_basic_2: "Ready-made Graphics",
         feat_explainer_std_1: "60 Seconds",
@@ -1371,7 +1269,6 @@ window.SYSTEM_TRANSLATIONS = {
         feat_explainer_prem_1: "90-120 Seconds",
         feat_explainer_prem_2: "Advanced Animation + Characters",
 
-        // Features - App
         feat_app_basic_1: "3 Basic Screens",
         feat_app_basic_2: "Android Only",
         feat_app_basic_3: "Simple UI Design",
