@@ -25,6 +25,13 @@ window.SYSTEM_TRANSLATIONS = {
         btn_retry: "إعادة المحاولة",
         btn_home_offline: "الرئيسية",
 
+        // --- Hero Section ---              
+        hero_title: "نصنع الحدث. نبتكر التجربة. وننمّي أعمالك.",
+        hero_desc: "نقدم خدمات متكاملة في إدارة وتنظيم الفعاليات والمناسبات، مدعومة بحلول تسويقية وإنتاج إبداعي يضمن نجاح حدثك وظهوره بأفضل صورة.",
+        btn_start: "ابدأ الآن",
+        btn_services: "استعراض الخدمات",
+        hero_tagline: "تصنع الأثر — تنفيذ احترافي. أداء ثابت. تجربة متكاملة.",
+
         hero_desc: "إدارة وتنظيم متكامل للفعاليات، إنتاج إبداعي، دعم تسويقي، وتنفيذ بمعايير استثنائية في جميع أنحاء المملكة.",
         hero_tagline: "شريكك الموحد من الفكرة إلى الأثر الملموس.",
         hero_visual_title: "تنفيذ فعاليات ومعارض متكاملة",
@@ -749,6 +756,13 @@ window.SYSTEM_TRANSLATIONS = {
         offline_text: "Check your internet connection and try again to access eCode",
         btn_retry: "Retry",
         btn_home_offline: "Home",
+
+        // --- Hero Section ---
+        hero_title: "We Create the Event. We Innovate the Experience. We Grow Your Business.",
+        hero_desc: "We provide integrated event management and organization services, supported by marketing solutions and creative production to ensure your event's success.",
+        btn_start: "Start Now",
+        btn_services: "Explore Services",
+        hero_tagline: "Making an Impact — Professional execution. Consistent performance. Integrated experience.",
 
         hero_desc: "Integrated event management, creative production, marketing support, and premium execution across Saudi Arabia.",
         hero_tagline: "A single partner for concept, delivery, and measurable event impact.",
