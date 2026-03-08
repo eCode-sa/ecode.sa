@@ -340,28 +340,28 @@
 
     <style>
     /* ==================================================
-       🌟 الديزاين الجديد: قسم الشركاء بخلفية محايدة وبدون مربعات
+       🌟 الديزاين الجديد: قسم الشركاء بخلفية من روح الهوية
        ================================================== */
     
-    /* 1. إعطاء القسم بالكامل لون رمادي محايد (يُبرز الأبيض والأسود) */
+    /* 1. إعطاء القسم خلفية محايدة مستوحاة من ألوان الهوية (لافندر وسماوي خافت) */
     .partners-section {
-        background-color: #E2E8F0 !important; /* رمادي فاتح محايد وفخم */
+        background: linear-gradient(135deg, #E0DEF2, #DCE8F2) !important; 
         padding: 80px 0;
         border-top: none !important;
         border-bottom: none !important;
     }
 
-    /* تعديل لون النصوص في هذا القسم لتكون واضحة على الخلفية الفاتحة */
+    /* تعديل لون النصوص في هذا القسم لتكون داكنة ومتناسقة */
     .partners-section .section-title {
-        background: linear-gradient(135deg, #1E293B, #475569) !important;
+        background: linear-gradient(135deg, var(--lavender-dark), #1E293B) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
     }
     .partners-section .section-subtitle {
-        color: #64748B !important;
+        color: #475569 !important;
     }
 
-    /* 2. إزالة المربعات البيضاء من خلف الشعارات وجعلها شفافة بالكامل */
+    /* 2. حاوية الشعارات (بدون مربعات وشفافة بالكامل) */
     .partner-item, [data-theme="dark"] .partner-item {
         background-color: transparent !important;
         box-shadow: none !important;
@@ -375,7 +375,7 @@
         flex-shrink: 0;
     }
 
-    /* 3. ضبط الشعارات مع إضافة "ظل خفيف" لضمان ظهور الشعارات البيضاء بوضوح تام */
+    /* 3. ضبط الشعارات مع "ظل ناعم جداً" لضمان بروز الشعارات البيضاء بقوة */
     .partner-item img, [data-theme="dark"] .partner-item img, [data-theme="light"] .partner-item img {
         max-width: 100% !important;
         max-height: 100% !important;
@@ -383,8 +383,8 @@
         height: auto !important;
         object-fit: contain !important;
         mix-blend-mode: normal !important;
-        /* الظل السحري يبرز الشعار الأبيض والأسود على حد سواء */
-        filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.25)) !important;
+        /* ظل مخصص يبرز الشعار الأبيض والأسود بوضوح تام على الخلفية الجديدة */
+        filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.18)) !important;
         transition: transform 0.3s ease !important;
         opacity: 1 !important;
     }
@@ -393,16 +393,17 @@
         transform: scale(1.1) !important;
     }
 
-    /* 4. تعديل أزرار السلايدر لتناسب الخلفية الجديدة */
+    /* 4. تعديل أزرار السلايدر لتناسب الخلفية */
     .partners-section .slider-btn {
         background-color: #ffffff !important;
-        color: #1E293B !important;
-        border: 1px solid #CBD5E1 !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        color: var(--lavender-dark) !important;
+        border: none !important;
+        box-shadow: 0 4px 10px rgba(111, 99, 255, 0.15) !important;
     }
     .partners-section .slider-btn:hover {
-        background-color: var(--lavender-dark) !important;
+        background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue)) !important;
         color: #ffffff !important;
+        transform: scale(1.05);
     }
 </style>
 
