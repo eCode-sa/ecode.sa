@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="contact_page_title">تواصل معنا | eCode</title>
-  <meta name="description" content="تواصل مع فريق eCode للحصول على استشارة مجانية. نقدم حلول التسويق الرقمي والإنتاج الإبداعي في السعودية">
+  <meta name="description" content="تواصل مع فريق eCode لتنفيذ حدثك القادم. نقدم حلول تنظيم الفعاليات، المعارض، والمؤتمرات من الألف إلى الياء في السعودية.">
    
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://ecode.sa/contact/">
    
   <meta property="og:title" content="تواصل معنا | eCode">
-  <meta property="og:description" content="تواصل مع فريق eCode للحصول على استشارة مجانية. نقدم حلول التسويق الرقمي والإنتاج الإبداعي في السعودية">
+  <meta property="og:description" content="تواصل مع فريق eCode لتنفيذ حدثك القادم. نقدم حلول تنظيم الفعاليات، المعارض، والمؤتمرات من الألف إلى الياء في السعودية.">
   <meta property="og:image" content="https://ecode.sa/favicon.png">
   <meta property="og:url" content="https://ecode.sa/contact/">
   <meta property="og:type" content="website">
@@ -87,8 +87,8 @@
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label data-i18n="lbl_fullname">الاسم الكامل *</label>
-                            <input type="text" name="name" id="name2" required placeholder="أدخل اسمك الكامل" data-i18n-placeholder="ph_fullname">
+                            <label data-i18n="lbl_fullname">الاسم الكامل / الجهة *</label>
+                            <input type="text" name="name" id="name2" required placeholder="أدخل اسمك أو اسم الجهة" data-i18n-placeholder="ph_fullname">
                         </div>
                         <div class="form-group">
                             <label data-i18n="lbl_mobile">رقم الجوال *</label>
@@ -102,41 +102,37 @@
                     </div>
                     
                     <div class="form-group">
-                        <label data-i18n="lbl_service_req">نوع الخدمة المطلوبة *</label>
+                        <label data-i18n="lbl_service_req">نوع الفعالية / الخدمة المطلوبة *</label>
                         <select name="service" id="service2" required>
                             <option value="" data-i18n="opt_choose_service">اختر الخدمة</option>
-                            <option data-i18n="opt_srv_identity">هوية بصرية متكاملة</option>
-                            <option data-i18n="opt_srv_social">إدارة حسابات التواصل</option>
-                            <option data-i18n="opt_srv_content">تصميم وإنتاج محتوى</option>
-                            <option data-i18n="opt_srv_photo">تصوير فوتوغرافي</option>
-                            <option data-i18n="opt_srv_video">إنتاج فيديو</option>
-                            <option data-i18n="opt_srv_web">تصميم موقع إلكتروني</option>
-                            <option data-i18n="opt_srv_store">متجر إلكتروني</option>
-                            <option data-i18n="opt_srv_ads">حملات إعلانية</option>
-                            <option data-i18n="opt_srv_consult">استشارات تسويقية</option>
-                            <option data-i18n="opt_srv_other">خدمة أخرى</option>
+                            <option data-i18n="opt_events">تنظيم مؤتمرات ومعارض</option>
+                            <option data-i18n="opt_ent">فعاليات ترفيهية ومواسم</option>
+                            <option data-i18n="opt_booth">بناء أجنحة وبوثات (Booths)</option>
+                            <option data-i18n="opt_media">تغطية إعلامية وعلاقات عامة للحدث</option>
+                            <option data-i18n="opt_tech">حلول تقنية للفعاليات (تسجيل/شاشات)</option>
+                            <option data-i18n="opt_other">أخرى</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label data-i18n="lbl_company">اسم الشركة أو المشروع</label>
+                        <label data-i18n="lbl_company">اسم الفعالية أو المشروع</label>
                         <input type="text" name="company" id="company2" placeholder="اختياري" data-i18n-placeholder="ph_company">
                     </div>
                     
                     <div class="form-group">
-                        <label data-i18n="lbl_project_details">تفاصيل المشروع *</label>
-                        <textarea name="message" id="message2" required placeholder="اكتب نبذة عن مشروعك واحتياجاتك... كلما كانت التفاصيل أوضح، كان العرض أدق" data-i18n-placeholder="ph_project_details_long"></textarea>
+                        <label data-i18n="lbl_project_details">تفاصيل الفعالية *</label>
+                        <textarea name="message" id="message2" required placeholder="اكتب نبذة عن الفعالية واحتياجاتك... (المدينة، التاريخ، العدد المتوقع)" data-i18n-placeholder="ph_project_details_long"></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label data-i18n="lbl_budget">الميزانية المتوقعة</label>
                         <select name="budget" id="budget2">
                             <option value="" data-i18n="opt_choose_budget">اختر الميزانية (اختياري)</option>
-                            <option data-i18n="opt_bud_under5">أقل من 5,000 ريال</option>
-                            <option data-i18n="opt_bud_5_10">5,000 - 10,000 ريال</option>
-                            <option data-i18n="opt_bud_10_20">10,000 - 20,000 ريال</option>
-                            <option data-i18n="opt_bud_20_50">20,000 - 50,000 ريال</option>
-                            <option data-i18n="opt_bud_over50">أكثر من 50,000 ريال</option>
+                            <option data-i18n="opt_bud_under5">أقل من 50,000 ريال</option>
+                            <option data-i18n="opt_bud_5_10">50,000 - 100,000 ريال</option>
+                            <option data-i18n="opt_bud_10_20">100,000 - 500,000 ريال</option>
+                            <option data-i18n="opt_bud_20_50">500,000 - 1,000,000 ريال</option>
+                            <option data-i18n="opt_bud_over50">أكثر من 1,000,000 ريال</option>
                         </select>
                     </div>
                     
@@ -164,13 +160,14 @@
                     <span class="hours-time" data-i18n="hours_10_4">10:00 ص - 4:00 م</span>
                 </div>
                 <div class="hours-item">
-                    <span class="hours-day" data-i18n="hours_support">الدعم الفني</span>
-                    <span class="hours-time" data-i18n="hours_24_7">على مدار الساعة</span>
+                    <span class="hours-day" data-i18n="hours_support">الدعم الفني والعمليات الميدانية</span>
+                    <span class="hours-time" data-i18n="hours_24_7">على مدار الساعة (24/7)</span>
                 </div>
             </div>
         </div>
     </section>
   </main>
+
   <nav class="mobile-dock">
     <a href="https://ecode.sa/" class="dock-item active">
         <i class="fa-solid fa-house"></i>
@@ -186,14 +183,13 @@
     </a>
     <a href="https://wa.me/966503666316" target="_blank" class="dock-item">
         <i class="fa-brands fa-whatsapp"></i>
-        <span data-i18n="nav_contact"></span>
+        <span data-i18n="nav_contact">تواصل معنا</span>
     </a>
-</nav>
+  </nav>
 
   <footer id="main-footer" class="footer"></footer>
 
   <script src="../assets/js/i18n.js"></script>
-  
   <script src="../assets/js/layout.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
