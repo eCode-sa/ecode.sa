@@ -338,7 +338,75 @@
         </div>
     </section>
 
-    <section class="partners-section">
+    <style>
+    /* ==================================================
+       🌟 الديزاين الجديد: قسم الشركاء بخلفية محايدة وبدون مربعات
+       ================================================== */
+    
+    /* 1. إعطاء القسم بالكامل لون رمادي محايد (يُبرز الأبيض والأسود) */
+    .partners-section {
+        background-color: #E2E8F0 !important; /* رمادي فاتح محايد وفخم */
+        padding: 80px 0;
+        border-top: none !important;
+        border-bottom: none !important;
+    }
+
+    /* تعديل لون النصوص في هذا القسم لتكون واضحة على الخلفية الفاتحة */
+    .partners-section .section-title {
+        background: linear-gradient(135deg, #1E293B, #475569) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+    .partners-section .section-subtitle {
+        color: #64748B !important;
+    }
+
+    /* 2. إزالة المربعات البيضاء من خلف الشعارات وجعلها شفافة بالكامل */
+    .partner-item, [data-theme="dark"] .partner-item {
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px !important;
+        width: 200px !important;
+        flex-shrink: 0;
+    }
+
+    /* 3. ضبط الشعارات مع إضافة "ظل خفيف" لضمان ظهور الشعارات البيضاء بوضوح تام */
+    .partner-item img, [data-theme="dark"] .partner-item img, [data-theme="light"] .partner-item img {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        mix-blend-mode: normal !important;
+        /* الظل السحري يبرز الشعار الأبيض والأسود على حد سواء */
+        filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.25)) !important;
+        transition: transform 0.3s ease !important;
+        opacity: 1 !important;
+    }
+
+    .partner-item:hover img {
+        transform: scale(1.1) !important;
+    }
+
+    /* 4. تعديل أزرار السلايدر لتناسب الخلفية الجديدة */
+    .partners-section .slider-btn {
+        background-color: #ffffff !important;
+        color: #1E293B !important;
+        border: 1px solid #CBD5E1 !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .partners-section .slider-btn:hover {
+        background-color: var(--lavender-dark) !important;
+        color: #ffffff !important;
+    }
+</style>
+
+<section class="partners-section">
     <div class="section-inner">
         <h2 class="section-title" data-i18n="partners_title">عملاؤنا وشركاء النجاح</h2>
         <p class="section-subtitle" data-i18n="partners_subtitle">نفخر بثقة القطاع الحكومي، الخاص، وتجارب الوجهات الكبرى.</p>
@@ -395,8 +463,7 @@
             <button class="slider-btn next-btn" aria-label="Next">❯</button>
         </div>
     </div>
-    </section>
-
+</section>
     <section id="contact">
         <div class="section-inner">
             <h2 class="section-title" data-i18n="contact_title">جاهز لتنفيذ حدثك القادم؟</h2>
