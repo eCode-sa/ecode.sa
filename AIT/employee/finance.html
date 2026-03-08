@@ -1,87 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>البيانات المالية | AndroGov</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brandRed: '#FB4747' }, fontFamily: { sans: ['Tajawal'], mono: ['IBM Plex Mono'] } } } }</script>
-    <style>.num-font { font-family: 'IBM Plex Mono'; }</style>
-</head>
-<body class="bg-slate-50 dark:bg-slate-950 opacity-0 transition-opacity duration-500">
-    <div id="sidebar-container"></div>
-    <div class="main-content-wrapper lg:mr-72 min-h-screen transition-all">
-        <div id="header-container"></div>
-        <main class="p-8 space-y-6">
-            <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl">
-                <div class="relative z-10">
-                    <p class="text-slate-400 text-sm mb-2">صافي مستحقات شهر يناير 2026</p>
-                    <h2 class="text-4xl font-bold num-font">6,000.00 <span class="text-lg font-normal">SAR</span></h2>
-                    <div class="mt-6 flex gap-4">
-                        <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl text-xs backdrop-blur-md transition border border-white/10">
-                            <i class="fa-solid fa-download ml-2"></i> تحميل كشف الراتب
-                        </button>
-                    </div>
-                </div>
-                <i class="fa-solid fa-money-bill-transfer absolute -bottom-10 -left-10 text-white/5 text-[15rem]"></i>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                    <h3 class="font-bold mb-4 dark:text-white border-b pb-2">المستحقات (+)</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between"> <span class="text-slate-500">الراتب الأساسي</span> <span class="num-font font-bold dark:text-white">3,000.00</span> </div>
-                        <div class="flex justify-between"> <span class="text-slate-500">بدل السكن</span> <span class="num-font font-bold dark:text-white">1,500.00</span> </div>
-                        <div class="flex justify-between"> <span class="text-slate-500">بدل النقل</span> <span class="num-font font-bold dark:text-white">500.00</span> </div>
-                        <div class="flex justify-between text-green-600 font-bold"> <span>إضافي (دعم تقني)</span> <span class="num-font">+ 1,000.00</span> </div>
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                    <h3 class="font-bold mb-4 dark:text-white border-b pb-2 text-red-500">الاستقطاعات (-)</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between"> <span class="text-slate-500">تأمينات اجتماعية (GOSI)</span> <span class="num-font font-bold text-red-500">650.00</span> </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script src="data/company_policy.js"></script>
-    <script src="js/core/i18n.js"></script>
-    <script src="js/components/layout.js"></script>
-    <script src="js/components/bot.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
-        const ctoUser = {
-            id: 'USR_008',
-            name: 'الحسين الحميدي',
-            displayName: 'الحسين الحميدي',
-            role: 'Technical Support', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
-            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
-        };
-        
-        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
-        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
-        localStorage.setItem('activeRole', 'employee');
-
-        // 3. التأكد من وجود الوضع الليلي المفضل
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'light');
-        }
-
-        // 4. تشغيل المحرك
-        if (typeof Layout !== 'undefined') {
-            Layout.init();
-            
-            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
-            document.body.style.opacity = '1';
-            console.log("🚀 employee Layout Engine v10.5 Started Successfully");
-        } else {
-            console.error("❌ Layout.js file not found! Check your script paths.");
-        }
-    });
-</script>
-</body>
-</html>

@@ -1,398 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#FB4747">
-    <title data-i18n="pageTitle">الحضور والانصراف | AndroGov</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: { brandRed: '#FB4747', brandDark: '#0F172A', moneyGreen: '#10B981', alertOrange: '#F59E0B' },
-                    fontFamily: { sans: ['Tajawal', 'Inter', 'sans-serif'], en: ['Inter', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-    <style>.num-font { font-family: 'Inter', sans-serif; font-feature-settings: "tnum"; }</style>
-</head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 opacity-0">
-
-    <div id="sidebar-container"></div>
-    
-    <div class="main-content-wrapper transition-all duration-300 flex flex-col min-h-screen rtl:lg:mr-64 ltr:lg:ml-64">
-        
-        <div id="header-container"></div>
-
-        <main class="p-6 space-y-6">
-            
-            <div class="flex flex-col md:flex-row justify-between items-end gap-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                        <i class="fa-solid fa-fingerprint text-brandRed"></i> <span data-i18n="headerTitle">سجل الحضور والانصراف</span>
-                    </h1>
-                    <p class="text-sm text-slate-500 mt-1" data-i18n="headerDesc">متابعة الدوام اليومي، التأخيرات، والجزاءات الآلية</p>
-                </div>
-                <div class="flex gap-2">
-                    <button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold shadow-sm hover:bg-slate-50 transition flex items-center gap-2 text-slate-600 dark:text-white">
-                        <i class="fa-solid fa-file-excel"></i> <span data-i18n="btnExport">تصدير تقرير</span>
-                    </button>
-                    <button onclick="document.getElementById('uploadModal').classList.remove('hidden')" class="px-4 py-2 bg-brandRed text-white rounded-lg text-xs font-bold shadow-lg hover:bg-red-700 transition flex items-center gap-2">
-                        <i class="fa-solid fa-upload"></i> <span data-i18n="btnImport">رفع ملف البصمة</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="statPresent">حضور اليوم</p>
-                        <h3 class="text-2xl font-bold num-font mt-1 text-green-600">38</h3>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center"><i class="fa-solid fa-user-check"></i></div>
-                </div>
-                
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="statLate">تأخير</p>
-                        <h3 class="text-2xl font-bold num-font mt-1 text-orange-500">4</h3>
-                        <p class="text-[10px] text-slate-400" data-i18n="statLateSub">يستوجب الخصم</p>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center"><i class="fa-solid fa-user-clock"></i></div>
-                </div>
-
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="statAbsent">غياب</p>
-                        <h3 class="text-2xl font-bold num-font mt-1 text-red-600">2</h3>
-                        <p class="text-[10px] text-slate-400" data-i18n="statAbsentSub">بدون عذر</p>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center"><i class="fa-solid fa-user-xmark"></i></div>
-                </div>
-
-                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="statLeaves">إجازات / مهام</p>
-                        <h3 class="text-2xl font-bold num-font mt-1 text-blue-600">1</h3>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-plane"></i></div>
-                </div>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center gap-3">
-                <span class="text-sm font-bold text-slate-600 dark:text-slate-300" data-i18n="lblDate">تاريخ العرض:</span>
-                <input type="date" class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-1.5 text-sm dark:text-white" value="2026-03-22">
-                <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
-                <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" class="rounded text-brandRed focus:ring-brandRed">
-                    <span class="text-sm text-slate-600 dark:text-slate-300" data-i18n="lblShowErrors">عرض المخالفات فقط</span>
-                </label>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
-                <table class="w-full text-sm text-right rtl:text-right ltr:text-left">
-                    <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-500 text-xs font-bold uppercase">
-                        <tr>
-                            <th class="p-4" data-i18n="colEmp">الموظف</th>
-                            <th class="p-4" data-i18n="colShift">الدوام الرسمي</th>
-                            <th class="p-4" data-i18n="colCheckIn">دخول</th>
-                            <th class="p-4" data-i18n="colCheckOut">خروج</th>
-                            <th class="p-4 text-center" data-i18n="colStatus">الحالة</th>
-                            <th class="p-4 text-center" data-i18n="colPenalty">الجزاء (آلي)</th>
-                            <th class="p-4 text-center" data-i18n="colAction">الإجراء</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100 dark:divide-slate-700 dark:text-slate-300">
-                        
-                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
-                            <td class="p-4">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://ui-avatars.com/api/?name=Khaled+O&background=random" class="w-9 h-9 rounded-full">
-                                    <div>
-                                        <p class="font-bold text-slate-800 dark:text-white">خالد العتيبي</p>
-                                        <p class="text-[10px] text-slate-400">IT Support</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 font-mono text-xs text-slate-500">08:00 - 16:00</td>
-                            <td class="p-4 font-mono text-green-600 font-bold">07:55</td>
-                            <td class="p-4 font-mono">16:05</td>
-                            <td class="p-4 text-center">
-                                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="statusPresent">حضور</span>
-                            </td>
-                            <td class="p-4 text-center text-slate-300">-</td>
-                            <td class="p-4 text-center">
-                                <button class="text-slate-400 hover:text-brandRed transition"><i class="fa-solid fa-list"></i></button>
-                            </td>
-                        </tr>
-
-                        <tr class="bg-orange-50/50 dark:bg-orange-900/10 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition">
-                            <td class="p-4">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://ui-avatars.com/api/?name=Sarah+A&background=random" class="w-9 h-9 rounded-full">
-                                    <div>
-                                        <p class="font-bold text-slate-800 dark:text-white">سارة الأحمد</p>
-                                        <p class="text-[10px] text-slate-400">Marketing</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 font-mono text-xs text-slate-500">08:00 - 16:00</td>
-                            <td class="p-4 font-mono text-red-600 font-bold">08:20</td>
-                            <td class="p-4 font-mono">--:--</td>
-                            <td class="p-4 text-center">
-                                <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="statusLate">تأخير</span>
-                                <div class="text-[9px] text-orange-600 mt-1">+20 دقيقة</div>
-                            </td>
-                            <td class="p-4 text-center">
-                                <span class="text-red-600 font-bold text-xs" data-i18n="penaltyDeduct">خصم 25%</span>
-                                <div class="text-[9px] text-slate-400">(مخالفة 2)</div>
-                            </td>
-                            <td class="p-4 text-center">
-                                <button onclick="openExcuseModal('Sarah')" class="text-blue-500 hover:text-blue-700 text-xs font-bold underline" data-i18n="btnExcuse">قبول عذر</button>
-                            </td>
-                        </tr>
-
-                        <tr class="bg-red-50/50 dark:bg-red-900/10 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
-                            <td class="p-4">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://ui-avatars.com/api/?name=Mohammed+K&background=random" class="w-9 h-9 rounded-full">
-                                    <div>
-                                        <p class="font-bold text-slate-800 dark:text-white">محمد خان</p>
-                                        <p class="text-[10px] text-slate-400">Finance</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 font-mono text-xs text-slate-500">08:00 - 16:00</td>
-                            <td class="p-4 font-mono text-slate-400">--:--</td>
-                            <td class="p-4 font-mono text-slate-400">--:--</td>
-                            <td class="p-4 text-center">
-                                <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="statusAbsent">غياب</span>
-                            </td>
-                            <td class="p-4 text-center">
-                                <span class="text-red-600 font-bold text-xs" data-i18n="penaltyAbsent">خصم يومين</span>
-                            </td>
-                            <td class="p-4 text-center">
-                                <button onclick="alert('جاري إرسال إشعار للموظف')" class="text-slate-400 hover:text-brandRed transition"><i class="fa-solid fa-envelope"></i></button>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
-                            <td class="p-4">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://ui-avatars.com/api/?name=Ali+H&background=random" class="w-9 h-9 rounded-full">
-                                    <div>
-                                        <p class="font-bold text-slate-800 dark:text-white">علي حسن</p>
-                                        <p class="text-[10px] text-slate-400">Sales</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 font-mono text-xs text-slate-500">08:00 - 16:00</td>
-                            <td class="p-4 font-mono text-blue-500">--:--</td>
-                            <td class="p-4 font-mono text-blue-500">--:--</td>
-                            <td class="p-4 text-center">
-                                <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-[10px] font-bold" data-i18n="statusMission">انتداب</span>
-                            </td>
-                            <td class="p-4 text-center text-slate-300">-</td>
-                            <td class="p-4 text-center">
-                                <button class="text-slate-400 hover:text-brandRed transition"><i class="fa-solid fa-list"></i></button>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
-        </main>
-    </div>
-
-    <div id="uploadModal" class="fixed inset-0 bg-black/60 hidden z-50 flex items-center justify-center backdrop-blur-sm p-4">
-        <div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-2xl shadow-xl p-6">
-            <h3 class="font-bold text-lg mb-4 dark:text-white" data-i18n="modUploadTitle">رفع ملف البصمة</h3>
-            <div class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl p-8 text-center bg-slate-50 dark:bg-slate-900">
-                <i class="fa-solid fa-cloud-arrow-up text-4xl text-slate-400 mb-3"></i>
-                <p class="text-sm text-slate-600 dark:text-slate-300 font-bold" data-i18n="modUploadText">اسحب الملف هنا أو اضغط للاختيار</p>
-                <p class="text-[10px] text-slate-400 mt-2">Supports: .xls, .xlsx, .dat (ZKTeco)</p>
-                <input type="file" class="hidden" id="fileInput">
-                <button onclick="document.getElementById('fileInput').click()" class="mt-4 px-4 py-2 bg-white border border-slate-300 rounded text-xs font-bold hover:bg-slate-50 text-slate-600">Browse Files</button>
-            </div>
-            <div class="mt-6 flex justify-end gap-3 pt-4 border-t dark:border-slate-700">
-                <button onclick="document.getElementById('uploadModal').classList.add('hidden')" class="px-4 py-2 text-slate-500 text-xs font-bold hover:bg-slate-50 rounded-lg dark:hover:bg-slate-700" data-i18n="btnCancel">إلغاء</button>
-                <button onclick="alert('جاري معالجة البيانات...'); document.getElementById('uploadModal').classList.add('hidden')" class="px-6 py-2 bg-brandRed text-white rounded-lg text-xs font-bold hover:bg-red-700 shadow-md" data-i18n="btnProcess">معالجة البيانات</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="excuseModal" class="fixed inset-0 bg-black/60 hidden z-50 flex items-center justify-center backdrop-blur-sm p-4">
-        <div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-2xl shadow-xl p-6">
-            <h3 class="font-bold text-lg mb-4 dark:text-white"><span data-i18n="modExcuseTitle">قبول عذر تأخير:</span> <span id="excuseEmpName" class="text-brandRed"></span></h3>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblExcuseType">نوع العذر</label>
-                    <select class="w-full bg-slate-50 dark:bg-slate-700 border dark:border-slate-600 rounded-lg p-2 text-sm dark:text-white">
-                        <option>عذر طبي</option>
-                        <option>مهمة عمل خارجية</option>
-                        <option>ظرف طارئ (موافقة المدير)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-1" data-i18n="lblNotes">ملاحظات</label>
-                    <textarea class="w-full bg-slate-50 dark:bg-slate-700 border dark:border-slate-600 rounded-lg p-2 text-sm dark:text-white h-20"></textarea>
-                </div>
-            </div>
-            <div class="mt-6 flex justify-end gap-3 pt-4 border-t dark:border-slate-700">
-                <button onclick="document.getElementById('excuseModal').classList.add('hidden')" class="px-4 py-2 text-slate-500 text-xs font-bold hover:bg-slate-50 rounded-lg dark:hover:bg-slate-700" data-i18n="btnCancel">إلغاء</button>
-                <button onclick="alert('تم إلغاء الجزاء بنجاح'); document.getElementById('excuseModal').classList.add('hidden')" class="px-6 py-2 bg-green-600 text-white rounded-lg text-xs font-bold hover:bg-green-700 shadow-md" data-i18n="btnApproveExcuse">اعتماد العذر</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="data/company_policy.js"></script>
-    <script src="js/core/i18n.js"></script>
-    <script src="js/components/layout.js"></script>
-    <script src="js/components/bot.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
-        const ctoUser = {
-            id: 'USR_005',
-            name: 'منصور اليامي  ',
-            displayName: 'مدير الشؤون الادارية ',
-            role: 'CAO', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
-            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
-        };
-        
-        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
-        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
-        localStorage.setItem('activeRole', 'CAO');
-
-        // 3. التأكد من وجود الوضع الليلي المفضل
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'light');
-        }
-
-        // 4. تشغيل المحرك
-        if (typeof Layout !== 'undefined') {
-            Layout.init();
-            
-            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
-            document.body.style.opacity = '1';
-            console.log("🚀 CAO Layout Engine v10.5 Started Successfully");
-        } else {
-            console.error("❌ Layout.js file not found! Check your script paths.");
-        }
-    });
-</script>
-
-    <script>
-        // --- 1. الترجمة ---
-        const pageContent = {
-            ar: {
-                pageTitle: "الحضور والانصراف | AndroGov",
-                headerTitle: "سجل الحضور والانصراف",
-                headerDesc: "متابعة الدوام اليومي، التأخيرات، والجزاءات الآلية",
-                btnExport: "تصدير تقرير",
-                btnImport: "رفع ملف البصمة",
-                statPresent: "حضور اليوم",
-                statLate: "تأخير",
-                statLateSub: "يستوجب الخصم",
-                statAbsent: "غياب",
-                statAbsentSub: "بدون عذر",
-                statLeaves: "إجازات / مهام",
-                lblDate: "تاريخ العرض:",
-                lblShowErrors: "عرض المخالفات فقط",
-                colEmp: "الموظف",
-                colShift: "الدوام الرسمي",
-                colCheckIn: "دخول",
-                colCheckOut: "خروج",
-                colStatus: "الحالة",
-                colPenalty: "الجزاء (آلي)",
-                colAction: "الإجراء",
-                statusPresent: "حضور",
-                statusLate: "تأخير",
-                penaltyDeduct: "خصم 25%",
-                btnExcuse: "قبول عذر",
-                statusAbsent: "غياب",
-                penaltyAbsent: "خصم يومين",
-                statusMission: "انتداب",
-                modUploadTitle: "رفع ملف البصمة",
-                modUploadText: "اسحب الملف هنا أو اضغط للاختيار",
-                btnCancel: "إلغاء",
-                btnProcess: "معالجة البيانات",
-                modExcuseTitle: "قبول عذر تأخير:",
-                lblExcuseType: "نوع العذر",
-                lblNotes: "ملاحظات",
-                btnApproveExcuse: "اعتماد العذر"
-            },
-            en: {
-                pageTitle: "Attendance | AndroGov",
-                headerTitle: "Attendance & Departure",
-                headerDesc: "Monitor daily attendance, lateness, and auto-penalties",
-                btnExport: "Export Report",
-                btnImport: "Import Biometric File",
-                statPresent: "Present Today",
-                statLate: "Late",
-                statLateSub: "Penalty Applies",
-                statAbsent: "Absent",
-                statAbsentSub: "Unexcused",
-                statLeaves: "Leaves / Missions",
-                lblDate: "View Date:",
-                lblShowErrors: "Show Violations Only",
-                colEmp: "Employee",
-                colShift: "Shift",
-                colCheckIn: "In",
-                colCheckOut: "Out",
-                colStatus: "Status",
-                colPenalty: "Auto Penalty",
-                colAction: "Action",
-                statusPresent: "Present",
-                statusLate: "Late",
-                penaltyDeduct: "Deduct 25%",
-                btnExcuse: "Waive Penalty",
-                statusAbsent: "Absent",
-                penaltyAbsent: "Deduct 2 Days",
-                statusMission: "Mission",
-                modUploadTitle: "Upload Attendance File",
-                modUploadText: "Drag file here or click to select",
-                btnCancel: "Cancel",
-                btnProcess: "Process Data",
-                modExcuseTitle: "Waive Lateness:",
-                lblExcuseType: "Reason Type",
-                lblNotes: "Notes",
-                btnApproveExcuse: "Approve Excuse"
-            }
-        };
-
-        // --- 2. التشغيل ---
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePageLanguage();
-        });
-
-        function updatePageLanguage() {
-            const lang = localStorage.getItem('lang') || 'ar';
-            const dict = pageContent[lang];
-            
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if(dict[key]) el.innerText = dict[key];
-            });
-        }
-
-        // --- 3. الوظائف ---
-        function openExcuseModal(name) {
-            document.getElementById('excuseEmpName').innerText = name;
-            document.getElementById('excuseModal').classList.remove('hidden');
-        }
-    </script>
-</body>
-</html>

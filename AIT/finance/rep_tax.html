@@ -1,351 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tax & Zakat Return | AndroGov</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: { 
-                        brandRed: '#FB4747', 
-                        brandDark: '#0F172A',
-                        moneyGreen: '#10B981',
-                        moneyRed: '#EF4444',
-                        alertOrange: '#F59E0B'
-                    },
-                    fontFamily: { sans: ['Tajawal', 'Inter', 'sans-serif'], en: ['Inter', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-    <style>
-        .num-font { font-family: 'Inter', sans-serif; font-feature-settings: "tnum"; }
-    </style>
-</head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 opacity-0">
-
-    <div id="sidebar-container"></div>
-    
-    <div class="main-content-wrapper md:mr-72 transition-all duration-300 flex flex-col min-h-screen">
-        <div id="header-container"></div>
-
-        <main class="p-6 space-y-6">
-            
-            <div class="flex flex-col md:flex-row justify-between items-end gap-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="pageTitle">الإقرارات الضريبية والزكوية</h1>
-                    <div class="flex items-center gap-2 mt-1">
-                        <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-[10px] font-bold border border-blue-200" data-i18n="vatPeriod">الفترة الحالية: الربع الأول 2026</span>
-                        <p class="text-sm text-slate-500" data-i18n="pageSub">احتساب ضريبة القيمة المضافة (VAT) والزكاة الشرعية</p>
-                    </div>
-                </div>
-                <div class="flex gap-3">
-                    <button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold shadow-sm hover:bg-slate-50 transition flex items-center gap-2">
-                        <i class="fa-solid fa-calculator text-slate-400"></i> <span data-i18n="btnCalc">إعادة احتساب</span>
-                    </button>
-                    <button onclick="submitReturn()" class="px-4 py-2 bg-brandRed text-white rounded-lg text-xs font-bold shadow-lg shadow-red-500/30 hover:bg-red-700 transition flex items-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btnSubmit">تقديم الإقرار (ZATCA)</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-1 h-full bg-moneyRed"></div>
-                    <div class="flex justify-between items-start mb-2">
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="kpiVAT">صافي ضريبة القيمة المضافة</p>
-                        <i class="fa-solid fa-percent text-moneyRed bg-red-50 dark:bg-red-900/20 p-2 rounded-lg"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold num-font text-slate-900 dark:text-white">152,400 <span class="text-xs font-normal text-slate-400">SAR</span></h3>
-                    <p class="text-[10px] text-slate-400 mt-2" data-i18n="kpiVATSub">مستحقة السداد (Payable)</p>
-                </div>
-
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
-                    <div class="flex justify-between items-start mb-2">
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="kpiZakat">الزكاة التقديرية (2.5%)</p>
-                        <i class="fa-solid fa-hand-holding-heart text-moneyGreen bg-green-50 dark:bg-green-900/20 p-2 rounded-lg"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold num-font text-moneyGreen">85,000 <span class="text-xs font-normal text-slate-400">SAR</span></h3>
-                    <p class="text-[10px] text-slate-400 mt-2" data-i18n="kpiZakatSub">بناءً على الوعاء الزكوي الحالي</p>
-                </div>
-
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
-                    <div class="flex justify-between items-start mb-2">
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="kpiDue">الموعد النهائي للتقديم</p>
-                        <i class="fa-solid fa-calendar-xmark text-alertOrange bg-orange-50 dark:bg-orange-900/20 p-2 rounded-lg"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold num-font text-slate-900 dark:text-white">30 <span class="text-sm font-normal" data-i18n="apr">أبريل</span></h3>
-                    <p class="text-[10px] text-alertOrange font-bold mt-2" data-i18n="kpiDueSub">متبقي 15 يوم</p>
-                </div>
-
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
-                    <div class="flex justify-between items-start mb-2">
-                        <p class="text-xs text-slate-500 font-bold uppercase" data-i18n="kpiWHT">ضريبة الاستقطاع</p>
-                        <i class="fa-solid fa-file-invoice-dollar text-brandBlue bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold num-font text-slate-900 dark:text-white">4,500 <span class="text-xs font-normal text-slate-400">SAR</span></h3>
-                    <p class="text-[10px] text-slate-400 mt-2" data-i18n="kpiWHTSub">على الخدمات الأجنبية</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-                    <div class="p-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
-                        <h3 class="font-bold text-slate-800 dark:text-white" data-i18n="secVAT">نموذج إقرار ضريبة القيمة المضافة</h3>
-                        <span class="text-[10px] bg-yellow-100 text-yellow-700 px-2 py-1 rounded font-bold" data-i18n="stDraft">مسودة</span>
-                    </div>
-                    
-                    <div class="p-4 space-y-4">
-                        <div>
-                            <h4 class="text-xs font-bold text-brandRed mb-2 uppercase" data-i18n="secSales">المبيعات (الضريبة المستحقة)</h4>
-                            <div class="space-y-2">
-                                <div class="flex justify-between text-sm p-2 bg-slate-50 dark:bg-slate-700/30 rounded">
-                                    <span class="text-slate-600 dark:text-slate-300" data-i18n="rowSalesStd">مبيعات خاضعة للنسبة الأساسية (15%)</span>
-                                    <div class="text-right">
-                                        <div class="text-[10px] text-slate-400" data-i18n="colAmt">المبلغ: 1,200,000</div>
-                                        <div class="font-bold num-font text-slate-800 dark:text-white">180,000 SAR</div>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between text-sm p-2 bg-slate-50 dark:bg-slate-700/30 rounded">
-                                    <span class="text-slate-600 dark:text-slate-300" data-i18n="rowSalesZero">مبيعات خاضعة للنسبة الصفرية (تصدير)</span>
-                                    <div class="text-right">
-                                        <div class="text-[10px] text-slate-400" data-i18n="colAmt">المبلغ: 200,000</div>
-                                        <div class="font-bold num-font text-slate-800 dark:text-white">0.00 SAR</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-xs font-bold text-green-600 mb-2 uppercase" data-i18n="secPurch">المشتريات (الضريبة القابلة للخصم)</h4>
-                            <div class="space-y-2">
-                                <div class="flex justify-between text-sm p-2 bg-slate-50 dark:bg-slate-700/30 rounded">
-                                    <span class="text-slate-600 dark:text-slate-300" data-i18n="rowPurchStd">مشتريات خاضعة للنسبة الأساسية (15%)</span>
-                                    <div class="text-right">
-                                        <div class="text-[10px] text-slate-400" data-i18n="colAmt">المبلغ: 184,000</div>
-                                        <div class="font-bold num-font text-slate-800 dark:text-white">(27,600) SAR</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center">
-                            <span class="font-bold text-slate-800 dark:text-white text-lg" data-i18n="lblNetVAT">صافي الضريبة المستحقة</span>
-                            <span class="font-bold text-brandRed text-xl num-font">152,400 SAR</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-                    <div class="p-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
-                        <h3 class="font-bold text-slate-800 dark:text-white" data-i18n="secZakat">تقدير الزكاة الشرعية</h3>
-                        <i class="fa-solid fa-kaaba text-slate-300 text-lg"></i>
-                    </div>
-                    
-                    <div class="p-4">
-                        <table class="w-full text-sm">
-                            <thead class="text-xs text-slate-500 uppercase bg-slate-50 dark:bg-slate-700/50">
-                                <tr>
-                                    <th class="py-2 px-2 text-right rtl:text-right ltr:text-left" data-i18n="thItem">البند</th>
-                                    <th class="py-2 px-2 text-right rtl:text-left ltr:text-right" data-i18n="thVal">القيمة</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700 text-slate-700 dark:text-slate-300">
-                                <tr>
-                                    <td class="py-2 px-2" data-i18n="zRow1">رأس المال المدفوع</td>
-                                    <td class="py-2 px-2 text-right rtl:text-left ltr:text-right num-font">3,000,000</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-2" data-i18n="zRow2">الأرباح المبقاة والاحتياطيات</td>
-                                    <td class="py-2 px-2 text-right rtl:text-left ltr:text-right num-font">1,200,000</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-2" data-i18n="zRow3">صافي ربح العام (المعدل)</td>
-                                    <td class="py-2 px-2 text-right rtl:text-left ltr:text-right num-font">650,000</td>
-                                </tr>
-                                <tr class="text-red-500">
-                                    <td class="py-2 px-2" data-i18n="zRow4">يخصم: صافي الأصول الثابتة</td>
-                                    <td class="py-2 px-2 text-right rtl:text-left ltr:text-right num-font">(1,450,000)</td>
-                                </tr>
-                                <tr class="bg-green-50 dark:bg-green-900/20 font-bold text-slate-900 dark:text-white border-t border-slate-200">
-                                    <td class="py-3 px-2" data-i18n="zBase">الوعاء الزكوي</td>
-                                    <td class="py-3 px-2 text-right rtl:text-left ltr:text-right num-font">3,400,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="mt-4 p-4 bg-slate-50 dark:bg-slate-700/30 rounded-xl text-center">
-                            <p class="text-xs text-slate-500 uppercase font-bold mb-1" data-i18n="zDue">الزكاة المستحقة (2.5%)</p>
-                            <p class="text-3xl font-bold text-moneyGreen num-font">85,000 SAR</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-                <div class="p-4 border-b border-slate-100 dark:border-slate-700">
-                    <h3 class="font-bold text-slate-800 dark:text-white" data-i18n="secHist">سجل تقديم الإقرارات</h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-right rtl:text-right ltr:text-left">
-                        <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-500 text-xs uppercase font-bold">
-                            <tr>
-                                <th class="p-4" data-i18n="hType">نوع الإقرار</th>
-                                <th class="p-4" data-i18n="hPeriod">الفترة</th>
-                                <th class="p-4" data-i18n="hRef">رقم المرجع</th>
-                                <th class="p-4" data-i18n="hDate">تاريخ التقديم</th>
-                                <th class="p-4" data-i18n="hAmount">المبلغ المدفوع</th>
-                                <th class="p-4 text-center" data-i18n="hStatus">الحالة</th>
-                                <th class="p-4 text-center" data-i18n="hReceipt">الإيصال</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700 text-slate-700 dark:text-slate-300">
-                            <tr>
-                                <td class="p-4 font-bold" data-i18n="typVAT">ضريبة القيمة المضافة</td>
-                                <td class="p-4">Q4 - 2025</td>
-                                <td class="p-4 font-mono text-xs">3000551122</td>
-                                <td class="p-4 num-font">2026-01-20</td>
-                                <td class="p-4 font-bold num-font">145,200</td>
-                                <td class="p-4 text-center"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-[10px] font-bold border border-green-200" data-i18n="stFiled">تم التقديم</span></td>
-                                <td class="p-4 text-center text-slate-400 hover:text-brandRed cursor-pointer"><i class="fa-solid fa-file-invoice"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-bold" data-i18n="typZakat">الزكاة الشرعية</td>
-                                <td class="p-4">FY - 2024</td>
-                                <td class="p-4 font-mono text-xs">Z-998877</td>
-                                <td class="p-4 num-font">2025-04-15</td>
-                                <td class="p-4 font-bold num-font">78,500</td>
-                                <td class="p-4 text-center"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-[10px] font-bold border border-green-200" data-i18n="stFiled">تم التقديم</span></td>
-                                <td class="p-4 text-center text-slate-400 hover:text-brandRed cursor-pointer"><i class="fa-solid fa-file-invoice"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </main>
-    </div>
-
-    <script src="data/company_policy.js"></script>
-    <script src="js/core/i18n.js"></script>
-    <script src="js/components/layout.js"></script>
-    <script src="js/components/bot.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. إعداد بيانات المستخدم لتتوافق مع محرك v10.5
-        const ctoUser = {
-            id: 'USR_002',
-            name: 'محمد البخيتي ',
-            displayName: 'المدير المالي',
-            role: 'CFO', // هذا هو المفتاح الذي يبحث عنه المحرك لفتح القائمة
-            avatar: 'https://ui-avatars.com/api/?name=Meshail+AlHadyan&background=FB4747&color=fff'
-        };
-        
-        // 2. تخزين البيانات في الـ LocalStorage لضمان استمرارية المحرك
-        localStorage.setItem('currentUser', JSON.stringify(ctoUser));
-        localStorage.setItem('activeRole', 'cto');
-
-        // 3. التأكد من وجود الوضع الليلي المفضل
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'light');
-        }
-
-        // 4. تشغيل المحرك
-        if (typeof Layout !== 'undefined') {
-            Layout.init();
-            
-            // إظهار الصفحة بعد التحميل (لأن الـ body له opacity-0)
-            document.body.style.opacity = '1';
-            console.log("🚀 CFO Layout Engine v10.5 Started Successfully");
-        } else {
-            console.error("❌ Layout.js file not found! Check your script paths.");
-        }
-    });
-</script>
-
-    <script>
-        const translations = {
-            ar: {
-                pageTitle: "الإقرارات الضريبية والزكوية", pageSub: "احتساب ضريبة القيمة المضافة (VAT) والزكاة الشرعية",
-                vatPeriod: "الفترة الحالية: الربع الأول 2026",
-                btnCalc: "إعادة احتساب", btnSubmit: "تقديم الإقرار (ZATCA)",
-                kpiVAT: "صافي ضريبة القيمة المضافة", kpiVATSub: "مستحقة السداد (Payable)",
-                kpiZakat: "الزكاة التقديرية (2.5%)", kpiZakatSub: "بناءً على الوعاء الزكوي الحالي",
-                kpiDue: "الموعد النهائي للتقديم", apr: "أبريل", kpiDueSub: "متبقي 15 يوم",
-                kpiWHT: "ضريبة الاستقطاع", kpiWHTSub: "على الخدمات الأجنبية",
-                secVAT: "نموذج إقرار ضريبة القيمة المضافة", stDraft: "مسودة",
-                secSales: "المبيعات (الضريبة المستحقة)", rowSalesStd: "مبيعات خاضعة للنسبة الأساسية (15%)", rowSalesZero: "مبيعات خاضعة للنسبة الصفرية (تصدير)",
-                secPurch: "المشتريات (الضريبة القابلة للخصم)", rowPurchStd: "مشتريات خاضعة للنسبة الأساسية (15%)",
-                colAmt: "المبلغ:", lblNetVAT: "صافي الضريبة المستحقة",
-                secZakat: "تقدير الزكاة الشرعية", thItem: "البند", thVal: "القيمة",
-                zRow1: "رأس المال المدفوع", zRow2: "الأرباح المبقاة والاحتياطيات", zRow3: "صافي ربح العام (المعدل)",
-                zRow4: "يخصم: صافي الأصول الثابتة", zBase: "الوعاء الزكوي", zDue: "الزكاة المستحقة (2.5%)",
-                secHist: "سجل تقديم الإقرارات", hType: "نوع الإقرار", hPeriod: "الفترة", hRef: "رقم المرجع", hDate: "تاريخ التقديم", hAmount: "المبلغ المدفوع", hStatus: "الحالة", hReceipt: "الإيصال",
-                typVAT: "ضريبة القيمة المضافة", typZakat: "الزكاة الشرعية", stFiled: "تم التقديم",
-                msgSubmit: "جاري الاتصال بمنصة هيئة الزكاة والضريبة والجمارك..."
-            },
-            en: {
-                pageTitle: "Tax & Zakat Returns", pageSub: "VAT Calculation & Zakat Assessment",
-                vatPeriod: "Current Period: Q1 2026",
-                btnCalc: "Recalculate", btnSubmit: "Submit Return (ZATCA)",
-                kpiVAT: "Net VAT Payable", kpiVATSub: "Due to Authority",
-                kpiZakat: "Estimated Zakat (2.5%)", kpiZakatSub: "Based on current Zakat Base",
-                kpiDue: "Filing Deadline", apr: "April", kpiDueSub: "15 Days Remaining",
-                kpiWHT: "Withholding Tax", kpiWHTSub: "On foreign services",
-                secVAT: "VAT Return Form", stDraft: "Draft",
-                secSales: "Sales (Output Tax)", rowSalesStd: "Standard Rated Sales (15%)", rowSalesZero: "Zero Rated Sales (Export)",
-                secPurch: "Purchases (Input Tax)", rowPurchStd: "Standard Rated Purchases (15%)",
-                colAmt: "Amount:", lblNetVAT: "Net Tax Payable",
-                secZakat: "Zakat Assessment", thItem: "Item", thVal: "Value",
-                zRow1: "Paid-up Capital", zRow2: "Retained Earnings & Reserves", zRow3: "Adjusted Net Profit",
-                zRow4: "Less: Net Fixed Assets", zBase: "Zakat Base", zDue: "Zakat Due (2.5%)",
-                secHist: "Filing History", hType: "Return Type", hPeriod: "Period", hRef: "Reference No", hDate: "Filing Date", hAmount: "Paid Amount", hStatus: "Status", hReceipt: "Receipt",
-                typVAT: "VAT Return", typZakat: "Zakat Return", stFiled: "Filed",
-                msgSubmit: "Connecting to ZATCA Portal..."
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            applyLanguage();
-            window.addEventListener('storage', (e) => { if (e.key === 'lang') location.reload(); });
-        });
-
-        function applyLanguage() {
-            const lang = localStorage.getItem('lang') || 'ar';
-            const dict = translations[lang];
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (dict[key]) el.innerText = dict[key];
-            });
-        }
-
-        window.submitReturn = function() {
-            const lang = localStorage.getItem('lang') || 'ar';
-            const btn = document.querySelector('button[onclick="submitReturn()"]');
-            const originalText = btn.innerHTML;
-            
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i>`;
-            
-            alert(translations[lang].msgSubmit);
-            
-            setTimeout(() => {
-                alert("Return Submitted Successfully! Ref: 3000551133");
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }, 2000);
-        };
-
-    </script>
-</body>
-</html>
