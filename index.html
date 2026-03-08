@@ -25,6 +25,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* 🛠️ حل سحري لظهور الشعارات بالوضع الداكن */
+        [data-theme="dark"] .partner-item {
+            background-color: #ffffff; /* بطاقة بيضاء خلف الشعار */
+            border-radius: 12px; /* حواف دائرية ناعمة */
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* ظل خفيف لإبراز البطاقة */
+            transition: transform 0.3s ease;
+        }
+        
+        [data-theme="dark"] .partner-item img {
+            mix-blend-mode: normal; 
+            max-height: 80px; /* توحيد حجم الشعارات */
+            width: auto;
+        }
+
+        /* توحيد المظهر للصور ذات الخلفية البيضاء (JPEG) في الوضع الفاتح */
+        [data-theme="light"] .partner-item img {
+            mix-blend-mode: multiply; 
+        }
+    </style>
 </head>
 <body>
     <header id="main-header" class="main-header"></header>
@@ -337,7 +362,6 @@ async function handleFormSubmit(event) {
     };
 
     try {
-        // تأكد من وضع رابط الـ Webhook الخاص بك هنا
         const webhookUrl = "https://hook.eu1.make.com/m0r5843oyetl2f111beqnydz3yd3uust"; 
 
         const response = await fetch(webhookUrl, {
