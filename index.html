@@ -174,14 +174,6 @@
         <div class="slider-wrapper">
             <button class="slider-btn prev-btn" aria-label="Previous">❮</button>
             
-            <section class="partners-section">
-    <div class="section-inner">
-        <h2 class="section-title" data-i18n="partners_title">عملاؤنا وشركاء النجاح</h2>
-        <p class="section-subtitle" data-i18n="partners_subtitle">نفخر بثقة القطاع الحكومي، الخاص، وتجارب الوجهات الكبرى.</p>
-        
-        <div class="slider-wrapper">
-            <button class="slider-btn prev-btn" aria-label="Previous">❮</button>
-            
             <div class="partners-slider" dir="ltr">
                 <div class="partners-track">
                     <div class="partner-item"><img src="partners-slider/Ministry_of_Industry_&_Mineral_Resources .avif" alt="Ministry of Industry" title="وزارة الصناعة والثروة المعدنية"></div>
@@ -206,7 +198,7 @@
                     <div class="partner-item"><img src="partners-slider/Dar_Al_Arkan.png" alt="Dar Al Arkan" title="دار الأركان"></div>
                     <div class="partner-item"><img src="partners-slider/Dar_Global.webp" alt="Dar Global" title="دار جلوبال"></div>
                     <div class="partner-item"><img src="partners-slider/Quara_Holding.png" alt="Quara Holding" title="كوارا القابضة"></div>
-                    <div class="partner-item"><img src="partners-slider/ezhidar.jpg" alt="Ezdihar" title="ازدهار"></div>
+                    <div class="partner-item"><img src="partners-slider/Ezdihar.html" alt="Ezdihar" title="ازدهار"></div>
                     <div class="partner-item"><img src="partners-slider/EIZO.png" alt="EIZO" title="إيزو"></div>
                     <div class="partner-item"><img src="partners-slider/Trusted_Partners.jpeg" alt="Trusted Partners" title="تراستد بارتنرز"></div>
                     <div class="partner-item"><img src="partners-slider/Qasr_Mall.jpeg" alt="Qasr Mall" title="القصر مول"></div>
@@ -237,6 +229,7 @@
         <div class="section-inner">
             <h2 class="section-title" data-i18n="contact_title">جاهز لتنفيذ حدثك القادم؟</h2>
             <p class="section-subtitle" data-i18n="contact_subtitle">عبّي النموذج وسيتواصل معك فريق التنظيم فوراً</p>
+            
             <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label data-i18n="lbl_name">الاسم الكامل / الجهة *</label>
@@ -272,7 +265,7 @@
     </section>
 </main>
     
-    <nav class="mobile-dock">
+<nav class="mobile-dock">
     <a href="https://ecode.sa/" class="dock-item active">
         <i class="fa-solid fa-house"></i>
         <span data-i18n="nav_home">الرئيسية</span>
@@ -292,6 +285,7 @@
 </nav>
 
 <footer id="main-footer" class="footer"></footer>
+
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/layout.js"></script>
 <script src="assets/js/main.js"></script>
@@ -321,6 +315,71 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+// سكربت إرسال النموذج إلى Make.com
+async function handleFormSubmit(event) {
+    event.preventDefault(); 
+    
+    const btn = event.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+    
+    btn.innerText = 'جاري الإرسال... ⏳';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        service: document.getElementById('service').value,
+        message: document.getElementById('message').value || 'لا يوجد تفاصيل إضافية',
+        date: new Date().toLocaleDateString('ar-SA')
+    };
+
+    try {
+        // تأكد من وضع رابط الـ Webhook الخاص بك هنا
+        const webhookUrl = "https://hook.eu1.make.com/m0r5843oyetl2f111beqnydz3yd3uust"; 
+
+        const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            btn.innerText = 'تم الإرسال بنجاح ✅';
+            btn.style.backgroundColor = '#7EDDA3'; 
+            btn.style.color = '#000';
+            btn.style.border = 'none';
+            
+            document.getElementById('contactForm').reset();
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.style.backgroundColor = ''; 
+                btn.style.color = '';
+                btn.style.border = '';
+            }, 3000);
+        } else {
+            throw new Error('Server response not ok');
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        btn.innerText = 'حدث خطأ! ❌';
+        btn.style.backgroundColor = '#ff6b6b';
+        
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+            btn.style.backgroundColor = '';
+        }, 3000);
+        
+        alert("عذراً، حدث خطأ في الاتصال. يرجى المحاولة لاحقاً أو التواصل عبر الواتساب.");
+    }
+}
 </script>
 </body>
 </html>
