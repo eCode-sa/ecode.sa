@@ -340,29 +340,47 @@
 
     <style>
     /* ==================================================
-       🌟 الديزاين الجديد: قسم الشركاء بخلفية من روح الهوية
+       🌟 الديزاين الجديد: قسم الشركاء بخلفية متكيفة مع الهوية والثيم
        ================================================== */
     
-    /* 1. إعطاء القسم خلفية محايدة مستوحاة من ألوان الهوية (لافندر وسماوي خافت) */
+    /* 1. الخلفية الافتراضية (للوضع الداكن - Dark Mode) */
     .partners-section {
-        background: linear-gradient(135deg, #E0DEF2, #DCE8F2) !important; 
+        /* تدرج ليلي فخم يدمج البنفسجي الداكن مع السماوي بشكل خفيف جداً */
+        background: linear-gradient(135deg, rgba(111, 99, 255, 0.12), rgba(73, 179, 241, 0.08)), var(--bg-secondary) !important; 
         padding: 80px 0;
+        border-top: 1px solid var(--border-color) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+    }
+
+    /* الخلفية المخصصة (للوضع الفاتح - Light Mode) */
+    [data-theme="light"] .partners-section {
+        /* تدرج نهاري منعش (لافندر فاتح جداً إلى سماوي فاتح جداً) */
+        background: linear-gradient(135deg, #F3F0FF, #EBF5FF) !important; 
         border-top: none !important;
         border-bottom: none !important;
     }
 
-    /* تعديل لون النصوص في هذا القسم لتكون داكنة ومتناسقة */
+    /* 2. ألوان النصوص (تتكيف تلقائياً مع الثيم) */
     .partners-section .section-title {
+        background: linear-gradient(135deg, var(--lavender-light), var(--sky-blue)) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+    [data-theme="light"] .partners-section .section-title {
         background: linear-gradient(135deg, var(--lavender-dark), #1E293B) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
     }
+
     .partners-section .section-subtitle {
+        color: var(--text-secondary) !important;
+    }
+    [data-theme="light"] .partners-section .section-subtitle {
         color: #475569 !important;
     }
 
-    /* 2. حاوية الشعارات (بدون مربعات وشفافة بالكامل) */
-    .partner-item, [data-theme="dark"] .partner-item {
+    /* 3. حاوية الشعارات (شفافة وبدون مربعات) */
+    .partner-item {
         background-color: transparent !important;
         box-shadow: none !important;
         border-radius: 0 !important;
@@ -375,34 +393,48 @@
         flex-shrink: 0;
     }
 
-    /* 3. ضبط الشعارات مع "ظل ناعم جداً" لضمان بروز الشعارات البيضاء بقوة */
-    .partner-item img, [data-theme="dark"] .partner-item img, [data-theme="light"] .partner-item img {
+    /* 4. ضبط الشعارات وإبرازها باستخدام "الظل المتكيف" */
+    .partner-item img {
         max-width: 100% !important;
         max-height: 100% !important;
         width: auto !important;
         height: auto !important;
         object-fit: contain !important;
         mix-blend-mode: normal !important;
-        /* ظل مخصص يبرز الشعار الأبيض والأسود بوضوح تام على الخلفية الجديدة */
-        filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.18)) !important;
         transition: transform 0.3s ease !important;
         opacity: 1 !important;
+        
+        /* توهج أبيض خفيف للوضع الداكن (يُبرز الشعارات السوداء والبيضاء) */
+        filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.25)) !important; 
+    }
+
+    [data-theme="light"] .partner-item img {
+        /* ظل داكن خفيف للوضع الفاتح (يُبرز الشعارات البيضاء والملونة) */
+        filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.15)) !important;
     }
 
     .partner-item:hover img {
         transform: scale(1.1) !important;
     }
 
-    /* 4. تعديل أزرار السلايدر لتناسب الخلفية */
+    /* 5. أزرار السلايدر (تتكيف مع الثيم) */
     .partners-section .slider-btn {
-        background-color: #ffffff !important;
-        color: var(--lavender-dark) !important;
-        border: none !important;
-        box-shadow: 0 4px 10px rgba(111, 99, 255, 0.15) !important;
+        background-color: var(--bg-elevated) !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color) !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
+    [data-theme="light"] .partners-section .slider-btn {
+        background-color: #ffffff !important;
+        color: #1E293B !important;
+        border: 1px solid #CBD5E1 !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
     .partners-section .slider-btn:hover {
         background: linear-gradient(135deg, var(--lavender-dark), var(--sky-blue)) !important;
         color: #ffffff !important;
+        border-color: transparent !important;
         transform: scale(1.05);
     }
 </style>
