@@ -331,6 +331,11 @@ window.SYSTEM_TRANSLATIONS = {
         
         proj_ahlam_title: "ليلة أحلام (AHLAM NIGHT)",
         proj_ahlam_desc: "إنتاج وإدارة ليلة فنية وترفيهية ساحرة، مع التركيز على هندسة الإضاءة، المسرح، وتجربة الحضور.",
+        
+        proj_ksu_title: "جامعة الملك سعود (KSU)",
+        proj_ksu_desc: "تنظيم وتجهيز فعاليات ومرافق جامعة الملك سعود بأعلى معايير الجودة والاحترافية.",
+        proj_trusted_title: "تراستد بارتنرز (Trusted Partners)",
+        proj_trusted_desc: "إدارة وتنفيذ مشاريع ومعارض تراستد بارتنرز لتوفير تجربة مميزة للزوار والشركاء.",
 
         // Tags
         tag_full_org: "تنظيم متكامل",
@@ -1015,6 +1020,11 @@ window.SYSTEM_TRANSLATIONS = {
         
         proj_ahlam_title: "AHLAM NIGHT",
         proj_ahlam_desc: "Producing and managing a magical entertainment night, focusing on lighting design, stage setup, and attendee experience.",
+
+        proj_ksu_title: "King Saud University (KSU)",
+        proj_ksu_desc: "Organizing and equipping King Saud University events and facilities with the highest standards of quality.",
+        proj_trusted_title: "Trusted Partners",
+        proj_trusted_desc: "Managing and executing Trusted Partners projects and exhibitions to provide a premium experience.",
 
         // Tags
         tag_full_org: "Full Organization",
