@@ -614,6 +614,69 @@ details[open] .accordion-icon { transform: rotate(180deg); }
 
 .stats-section { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: var(--space-12); border: 1px solid var(--border-color); margin-top: var(--space-16); }
 
+  /* تنسيقات سلايدر الأعمال (Portfolio Slider) */
+  .portfolio-media-slider {
+      position: relative;
+      padding-bottom: 56.25%; /* نسبة العرض للارتفاع 16:9 */
+      height: 0;
+      overflow: hidden;
+      background-color: #000;
+      border-radius: 8px 8px 0 0;
+  }
+  
+  .slider-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+  }
+  
+  .slider-track .slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .slider-track .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* يملأ المساحة مع الحفاظ على الأبعاد */
+  }
+  
+  .slider-track .slide iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+  }
+
+  /* أزرار التنقل */
+  .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+  }
+  
+  .slider-arrow:hover { background: rgba(0, 0, 0, 0.8); }
+  .slider-arrow.prev-arrow { right: 10px; } /* السهم الأيمن */
+  .slider-arrow.next-arrow { left: 10px; }  /* السهم الأيسر */
+
 /* ========== Contact & Legal Pages ========== */
 .legal-content { max-width: 900px; margin: 0 auto; padding: var(--space-16) var(--space-6); }
 .legal-card { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: var(--space-12); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
