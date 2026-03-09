@@ -22,6 +22,70 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
    
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+      /* كود CSS الخاص بسلايدر الأعمال (مهم جداً لمنع تداخل الصور) */
+      .portfolio-media-slider {
+          position: relative;
+          padding-bottom: 56.25%; /* نسبة العرض للارتفاع 16:9 */
+          height: 0;
+          overflow: hidden;
+          background-color: #000;
+          border-radius: 8px 8px 0 0;
+      }
+      
+      .slider-track {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          transition: transform 0.4s ease-in-out;
+      }
+      
+      .slider-track .slide {
+          min-width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      
+      .slider-track .slide img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+      
+      .slider-track .slide iframe {
+          width: 100%;
+          height: 100%;
+          border: 0;
+      }
+    
+      .slider-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(0, 0, 0, 0.5);
+          color: #fff;
+          border: none;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          cursor: pointer;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.3s;
+      }
+      
+      .slider-arrow:hover { background: rgba(0, 0, 0, 0.8); }
+      .slider-arrow.prev-arrow { right: 10px; }
+      .slider-arrow.next-arrow { left: 10px; }
+  </style>
 </head>
 <body>
 
@@ -43,7 +107,7 @@
 
         <div class="portfolio-grid">
              
-            <div class="portfolio-item" data-category="corp">
+            <div class="portfolio-item" data-category="ent">
                 <div class="portfolio-image" style="position: relative; padding-bottom: 56.25%; height: 0;">
                     <iframe src="https://drive.google.com/file/d/1qev9qrJZPxN93JNU2vmQR83J_JZ7yIEa/preview" 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
@@ -60,7 +124,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-item" data-category="gov">
+            <div class="portfolio-item" data-category="corp">
                 <div class="portfolio-image" style="position: relative; padding-bottom: 56.25%; height: 0;">
                     <iframe src="https://drive.google.com/file/d/1GilBqXV7V_Dcgg2LBhyBOJj2SxBnX9Yb/preview" 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
@@ -77,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-item" data-category="gov">
+            <div class="portfolio-item" data-category="corp">
                 <div class="portfolio-image" style="position: relative; padding-bottom: 56.25%; height: 0;">
                     <iframe src="https://drive.google.com/file/d/1ESpN3a1QQsboG-cPp9N95RW3zPsQzw_-/preview" 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
@@ -95,33 +159,27 @@
             </div>
 
             <div class="portfolio-item" data-category="ent">
-                <div class="portfolio-image" style="position: relative; padding-bottom: 56.25%; height: 0;">
-                    <iframe src="https://drive.google.com/file/d/1AK6DXADrab7FZpuGuBYsvdcvq9yCF2xY/preview" 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                        allow="autoplay" allowfullscreen></iframe>
-                </div>
-                <div class="portfolio-item" data-category="ent">
                 <div class="portfolio-media-slider">
                     <div class="slider-track">
                         <div class="slide">
                             <iframe src="https://drive.google.com/file/d/1AK6DXADrab7FZpuGuBYsvdcvq9yCF2xY/preview" allow="autoplay" allowfullscreen></iframe>
                         </div>
-                        <div class="slide"><img src="HABOOB/HABOOB_1.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_2.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_3.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_4.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_5.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_6.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_7.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_8.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_9.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_10.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_11.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_12.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_13.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_14.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_15.jpeg" alt="Haboob"></div>
-                        <div class="slide"><img src="HABOOB/HABOOB_16.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_1.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_2.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_3.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_4.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_5.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_6.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_7.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_8.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_9.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_10.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_11.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_12.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_13.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_14.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_15.jpeg" alt="Haboob"></div>
+                        <div class="slide"><img src="https://ecode.sa/HABOOB/HABOOB_16.jpeg" alt="Haboob"></div>
                     </div>
                     <button class="slider-arrow prev-arrow"><i class="fa-solid fa-chevron-right"></i></button>
                     <button class="slider-arrow next-arrow"><i class="fa-solid fa-chevron-left"></i></button>
@@ -140,19 +198,19 @@
             <div class="portfolio-item" data-category="gov">
                 <div class="portfolio-media-slider">
                     <div class="slider-track">
-                        <div class="slide"><img src="KSU/KSU_1.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_2.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_3.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_4.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_5.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_6.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_7.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_8.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_9.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_10.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_11.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_12.jpg" alt="KSU"></div>
-                        <div class="slide"><img src="KSU/KSU_13.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_1.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_2.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_3.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_4.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_5.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_6.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_7.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_8.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_9.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_10.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_11.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_12.jpg" alt="KSU"></div>
+                        <div class="slide"><img src="https://ecode.sa/KSU/KSU_13.jpg" alt="KSU"></div>
                     </div>
                     <button class="slider-arrow prev-arrow"><i class="fa-solid fa-chevron-right"></i></button>
                     <button class="slider-arrow next-arrow"><i class="fa-solid fa-chevron-left"></i></button>
@@ -171,11 +229,11 @@
             <div class="portfolio-item" data-category="corp">
                 <div class="portfolio-media-slider">
                     <div class="slider-track">
-                        <div class="slide"><img src="TRUSTED_PARTNERS/TRUSTED_PARTNERS_1.jpeg" alt="Trusted Partners"></div>
-                        <div class="slide"><img src="TRUSTED_PARTNERS/TRUSTED_PARTNERS_2.jpeg" alt="Trusted Partners"></div>
-                        <div class="slide"><img src="TRUSTED_PARTNERS/TRUSTED_PARTNERS_3.jpeg" alt="Trusted Partners"></div>
-                        <div class="slide"><img src="TRUSTED_PARTNERS/TRUSTED_PARTNERS_4.jpeg" alt="Trusted Partners"></div>
-                        <div class="slide"><img src="TRUSTED_PARTNERS/TRUSTED_PARTNERS_5.jpeg" alt="Trusted Partners"></div>
+                        <div class="slide"><img src="https://ecode.sa/TRUSTED_PARTNERS/TRUSTED_PARTNERS_1.jpeg" alt="Trusted Partners"></div>
+                        <div class="slide"><img src="https://ecode.sa/TRUSTED_PARTNERS/TRUSTED_PARTNERS_2.jpeg" alt="Trusted Partners"></div>
+                        <div class="slide"><img src="https://ecode.sa/TRUSTED_PARTNERS/TRUSTED_PARTNERS_3.jpeg" alt="Trusted Partners"></div>
+                        <div class="slide"><img src="https://ecode.sa/TRUSTED_PARTNERS/TRUSTED_PARTNERS_4.jpeg" alt="Trusted Partners"></div>
+                        <div class="slide"><img src="https://ecode.sa/TRUSTED_PARTNERS/TRUSTED_PARTNERS_5.jpeg" alt="Trusted Partners"></div>
                     </div>
                     <button class="slider-arrow prev-arrow"><i class="fa-solid fa-chevron-right"></i></button>
                     <button class="slider-arrow next-arrow"><i class="fa-solid fa-chevron-left"></i></button>
@@ -208,7 +266,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-item" data-category="corp">
+            <div class="portfolio-item" data-category="gov">
                 <div class="portfolio-image" style="position: relative; padding-bottom: 56.25%; height: 0;">
                     <iframe src="https://drive.google.com/file/d/1j8aOF2HUtbS4Wue3d8qLEfohZxBtQvL9/preview" 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
@@ -225,7 +283,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-item" data-category="corp">
+            <div class="portfolio-item" data-category="gov">
                 <div class="portfolio-image" style="position: relative; padding-bottom: 56.25%; height: 0;">
                     <iframe src="https://drive.google.com/file/d/18Jn3ifLs6WluYdU1sxWHhSMsKN4m6g0q/preview" 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
@@ -242,7 +300,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-item" data-category="ent">
+            <div class="portfolio-item" data-category="corp">
                 <div class="portfolio-image" style="position: relative; padding-bottom: 56.25%; height: 0;">
                     <iframe src="https://drive.google.com/file/d/1rxfTqLs1hCFbkJEVDOnlaX6oQJshvgF-/preview" 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
