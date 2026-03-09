@@ -129,6 +129,7 @@ window.SYSTEM_TRANSLATIONS = {
         srv_3_li2: "أنظمة تسجيل الحضور الإلكتروني والإحصائيات",
         srv_3_li3: "تصميم وتوزيع الدعوات الإلكترونية",
         srv_3_link: "عرض الحلول المتوفرة ←",
+        link_read_more: "رؤية المزيد ←",
 
         // --- Why Us ---
         why_title: "لماذا eCode؟",
@@ -752,6 +753,8 @@ window.SYSTEM_TRANSLATIONS = {
         
         stat_bar_clients: "Clients & Partners",
         stat_bar_support: "On-site Operations",
+
+        link_read_more: "Read More ←",
 
         services_title: "What We Offer?",
         services_subtitle: "End-to-end capabilities across planning, production, guest experience, and market reach.",
