@@ -325,6 +325,32 @@ section { padding: 80px var(--space-6); opacity: 0; animation: fadeInUp 0.8s eas
 .feature-link:hover { gap: var(--space-3); color: var(--sky-blue); }
 .step-card h3 { display: flex; align-items: baseline; gap: var(--space-2); color: var(--lavender-light); }
 .step-card h3 .step-number { font-size: 28px; font-weight: 700; line-height: 1; }
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* عشان تكون كل الكروت بنفس الطول */
+}
+
+.feature-card p {
+    flex-grow: 1; /* يخلي النص ياخذ المساحة المتبقية ويدفع الرابط للأسفل */
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.read-more-link {
+    display: inline-block;
+    color: var(--sky-blue); /* أو لون الثيم الأساسي عندك */
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: auto;
+    transition: all 0.3s ease;
+}
+
+.read-more-link:hover {
+    color: var(--lavender-dark);
+    transform: translateX(-5px); /* حركة خفيفة للسهم عند التأشير */
+}
 
 /* Partners Section */
 .partners-section { 
