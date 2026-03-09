@@ -253,6 +253,48 @@ window.SYSTEM_TRANSLATIONS = {
         cta_btn_start: "اطلب عرض سعر الآن",
         cta_btn_plans: "شاهد أعمالنا",
 
+        sp_srv7_title: "تصميم الهوية البصرية",
+        sp_srv7_desc: "ابتكار هوية بصرية متكاملة تعكس قيم علامتك التجارية وتضمن تميزها.",
+        sp_srv7_f1: "شعار رئيسي ونسخة ثانوية",
+        sp_srv7_f2: "الألوان والخطوط المعتمدة (عربي/إنجليزي)",
+        sp_srv7_f3: "دليل استخدام الهوية للمنصات والمطبوعات",
+
+        sp_srv8_title: "إنتاج فيديو موشن جرافيك",
+        sp_srv8_desc: "فيديوهات إبداعية جذابة مناسبة للإعلانات أو التعريف بالخدمات والمناسبات.",
+        sp_srv8_f1: "فيديو مدته من 15 إلى 60 ثانية",
+        sp_srv8_f2: "كتابة السيناريو والتعليق الصوتي",
+        sp_srv8_f3: "تحريك احترافي مع إمكانية التعديل",
+
+        sp_srv9_title: "إعداد الخطة التسويقية",
+        sp_srv9_desc: "استراتيجيات مبنية على تحليل دقيق لضمان وصول رسالتك للفئة المستهدفة.",
+        sp_srv9_f1: "تحليل السوق والمنافسين",
+        sp_srv9_f2: "تحديد الفئة المستهدفة واقتراح القنوات",
+        sp_srv9_f3: "خطة محتوى مع مؤشرات قياس (KPIs)",
+
+        sp_srv10_title: "تصوير منتجات",
+        sp_srv10_desc: "إبراز تفاصيل منتجاتك بصور عالية الجودة مناسبة للمتاجر الإلكترونية والكتالوجات.",
+        sp_srv10_f1: "تصوير بخلفية بيضاء أو مخصصة",
+        sp_srv10_f2: "إضاءة احترافية وتعديل رقمي",
+        sp_srv10_f3: "توفير الصور بصيغ عالية الجودة",
+
+        sp_srv11_title: "تصوير فوتوغرافي للمواقع والأشخاص",
+        sp_srv11_desc: "توثيق احترافي في مقر العميل أو مواقع خارجية لتسليط الضوء على أعمالك وفرقك.",
+        sp_srv11_f1: "جلسة تصوير ميدانية أو خارجية",
+        sp_srv11_f2: "مصور محترف ومعدات إضاءة متكاملة",
+        sp_srv11_f3: "تسليم 10-20 صورة عالية الجودة ومعدلة",
+
+        sp_srv12_title: "تصوير فيديو تعريفي بسيط",
+        sp_srv12_desc: "فيديو تعريفي يوصل رسالتك بوضوح واحترافية للجمهور المستهدف.",
+        sp_srv12_f1: "فيديو مدته من 30 إلى 90 ثانية",
+        sp_srv12_f2: "تصوير، تعديل، إضافة شعار وموسيقى",
+        sp_srv12_f3: "إمكانية توفير ممثلين وسيناريو متقدم",
+
+        sp_srv13_title: "إنتاج إعلان تجاري احترافي",
+        sp_srv13_desc: "فيديو تسويقي متكامل وعالي الجودة مخصص للحملات الإعلانية المدفوعة.",
+        sp_srv13_f1: "فيديو تسويقي مدته 60 - 180 ثانية",
+        sp_srv13_f2: "سيناريو، إخراج، ممثلين، وتصوير متقدم",
+        sp_srv13_f3: "مونتاج احترافي ومؤثرات بصرية ونصوص",
+
         // --- Portfolio Page (Updated for Events) ---
         port_page_title: "أعمالنا | eCode",
         port_hero_title: "معرض أعمالنا",
@@ -770,59 +812,6 @@ window.SYSTEM_TRANSLATIONS = {
         stat_bar_satisfaction: "Satisfaction Rate",
         stat_bar_support: "24/7 Support",
 
-        // --- Services Page ---
-        services_page_title: "خدماتنا | eCode",
-        services_hero_title: "خدماتنا الشاملة",
-        services_hero_desc: "قدرات متكاملة تغطي التخطيط، الإنتاج، تجربة الضيف، والوصول الإعلامي لحدثك.",
-        services_sec_title: "ماذا نقدم لك؟",
-        services_sec_subtitle: "قائمة خدماتنا لتلبية كافة احتياجات الفعاليات والمعارض",
-        
-        lbl_available: "متاح",
-        lbl_soon: "قريبا",
-        link_order_service: "اطلب الخدمة ←",
-        link_soon: "قريباً",
-
-        sp_srv1_title: "تصميم وتخطيط الفعاليات",
-        sp_srv1_desc: "هوية إبداعية وتخطيط استراتيجي لضمان نجاح الفعالية من الفكرة إلى التنفيذ الميداني.",
-        sp_srv1_f1: "تطوير الهوية الإبداعية للحدث",
-        sp_srv1_f2: "إدارة الميزانيات والجداول الزمنية",
-        sp_srv1_f3: "تشغيل ميداني متكامل للموقع",
-
-        sp_srv2_title: "إدارة المعارض والمؤتمرات",
-        sp_srv2_desc: "تنفيذ متكامل للمعارض والمؤتمرات الكبرى، يشمل التجهيزات المكانية وإدارة المتحدثين.",
-        sp_srv2_f1: "تصميم وبناء الأجنحة والبوثات",
-        sp_srv2_f2: "تنسيق المتحدثين وجداول الجلسات",
-        sp_srv2_f3: "دعم الرعاة وتوجيه تدفق الزوار",
-
-        sp_srv3_title: "الحلول التقنية واللوجستية",
-        sp_srv3_desc: "توفير بنية تحتية تقنية متطورة وحلول لوجستية تضمن سير الفعالية بدون أخطاء.",
-        sp_srv3_f1: "هندسة الصوت، الإضاءة، وشاشات LED",
-        sp_srv3_f2: "أنظمة التسجيل وإصدار البطاقات",
-        sp_srv3_f3: "إدارة الحشود والعمليات اللوجستية",
-
-        sp_srv4_title: "خدمات الضيافة والبروتوكول",
-        sp_srv4_desc: "تقديم تجربة استثنائية لضيوف الحدث وكبار الشخصيات وفق أعلى معايير البروتوكول.",
-        sp_srv4_f1: "استقبال وإدارة كبار الشخصيات VIP",
-        sp_srv4_f2: "تصميم رحلة الضيف باحترافية",
-        sp_srv4_f3: "توفير كوادر تنظيم وضيافة مدربة",
-
-        sp_srv5_title: "التغطية الإعلامية والعلاقات العامة",
-        sp_srv5_desc: "توثيق الحدث وصناعة محتوى إعلامي احترافي يبرز نجاح الفعالية ويوسع نطاق وصولها.",
-        sp_srv5_f1: "تغطية فيديو وفوتوغرافي احترافية",
-        sp_srv5_f2: "تجهيز وإدارة المركز الإعلامي",
-        sp_srv5_f3: "صياغة وتوزيع البيانات الصحفية",
-
-        sp_srv6_title: "تسويق الفعاليات وإدارة المشاهير",
-        sp_srv6_desc: "حملات تسويقية متكاملة وجذب الجماهير من خلال التعاقد مع أبرز المؤثرين في المنطقة.",
-        sp_srv6_f1: "تخطيط حملات التسويق الرقمي للحدث",
-        sp_srv6_f2: "التعاقد مع المشاهير والمؤثرين",
-        sp_srv6_f3: "صناعة الزخم وإدارة التفاعل الجماهيري",
-
-        cta_title: "جاهز لتنفيذ حدثك القادم؟",
-        cta_desc: "تواصل معنا الآن للحصول على استشارة مجانية ومناقشة تفاصيل فعاليتك لتحويلها إلى واقع.",
-        cta_btn_start: "اطلب عرض سعر الآن",
-        cta_btn_plans: "شاهد أعمالنا",
-
         // --- Why Us ---
         why_title: "Why eCode?",
         why_subtitle: "Centralized management, reliable suppliers, and professional execution",
@@ -945,6 +934,48 @@ window.SYSTEM_TRANSLATIONS = {
         cta_desc: "Contact us now for a free consultation to discuss your event details and turn it into reality.",
         cta_btn_start: "Request a Quote Now",
         cta_btn_plans: "View Our Work",
+
+        sp_srv7_title: "Visual Identity Design",
+        sp_srv7_desc: "Creating a comprehensive visual identity that reflects your brand values and ensures distinction.",
+        sp_srv7_f1: "Primary and secondary logo versions",
+        sp_srv7_f2: "Approved colors and fonts (Ar/En)",
+        sp_srv7_f3: "Brand usage guidelines for platforms and prints",
+
+        sp_srv8_title: "Motion Graphics Video Production",
+        sp_srv8_desc: "Creative and engaging videos suitable for ads, services overview, and events.",
+        sp_srv8_f1: "Video duration: 15 to 60 seconds",
+        sp_srv8_f2: "Scriptwriting and voice-over",
+        sp_srv8_f3: "Professional animation with revisions",
+
+        sp_srv9_title: "Marketing Plan Preparation",
+        sp_srv9_desc: "Strategies based on accurate analysis to ensure your message reaches the target audience.",
+        sp_srv9_f1: "Market and competitor analysis",
+        sp_srv9_f2: "Target audience identification and channel suggestions",
+        sp_srv9_f3: "Content plan with Key Performance Indicators (KPIs)",
+
+        sp_srv10_title: "Product Photography",
+        sp_srv10_desc: "Highlighting product details with high-quality images suitable for e-stores and catalogs.",
+        sp_srv10_f1: "White or custom background photography",
+        sp_srv10_f2: "Professional lighting and digital retouching",
+        sp_srv10_f3: "Providing high-resolution images",
+
+        sp_srv11_title: "Professional Photography (Places/People)",
+        sp_srv11_desc: "Professional documentation at the client's site or outdoor locations to highlight your business and team.",
+        sp_srv11_f1: "On-site or outdoor photo sessions",
+        sp_srv11_f2: "Professional photographer and full lighting equipment",
+        sp_srv11_f3: "Delivery of 10-20 retouched high-quality photos",
+
+        sp_srv12_title: "Simple Intro Video Production",
+        sp_srv12_desc: "An introductory video that clearly and professionally delivers your message to the target audience.",
+        sp_srv12_f1: "Video duration: 30 to 90 seconds",
+        sp_srv12_f2: "Filming, editing, adding logo and music",
+        sp_srv12_f3: "Option to provide actors and an advanced script",
+
+        sp_srv13_title: "Professional Commercial Production",
+        sp_srv13_desc: "A comprehensive, high-quality promotional video dedicated to paid advertising campaigns.",
+        sp_srv13_f1: "Promotional video duration: 60 - 180 seconds",
+        sp_srv13_f2: "Script, direction, actors, and advanced filming",
+        sp_srv13_f3: "Professional editing, visual effects, and text on screen",
 
         // --- Portfolio Page (Updated for Events) ---
         port_page_title: "Portfolio | eCode",
