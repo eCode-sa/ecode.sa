@@ -134,6 +134,34 @@
             letter-spacing: 1.5px;
             font-weight: 600;
         }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            color: #cbd5e1;
+            letter-spacing: 0.5px;
+        }
+
+        /* تنسيق الأيقونات الجديد بما يتناسب مع الهوية */
+        .info-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(168, 85, 247, 0.15); /* خلفية بنفسجية شفافة */
+            color: #a855f7; /* لون الأيقونة البنفسجي */
+            flex-shrink: 0;
+        }
+
+        .info-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
     </style>
 </head>
 <body>
@@ -153,16 +181,31 @@
             </div>
             
             <div class="info-item">
-                <b>📞</b> +966 50 366 6316
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                +966 50 366 6316
             </div>
+            
             <div class="info-item">
-                <b>✉️</b> Admin@eCode.sa
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                Admin@eCode.sa
             </div>
+            
             <div class="info-item">
-                <b>🌐</b> www.eCode.sa
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                www.eCode.sa
             </div>
+            
             <div class="info-item">
-                <b>📍</b> Riyadh, Saudi Arabia
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                Riyadh, Saudi Arabia
             </div>
         </div>
         <div class="right-col">
