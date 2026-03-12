@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eCode Business Card | Ayman Al-Maghrabi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            background-color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            font-family: 'Poppins', sans-serif;
+            padding: 50px;
+        }
+
+        /* مقاس البطاقة القياسي للطباعة */
+        .card {
+            width: 700px;
+            height: 400px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            background-color: #1e1e2f;
+            color: white;
+            display: flex;
+        }
+
+        /* --- الواجهة الأمامية --- */
+        .card-front {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* التدرج اللوني المأخوذ من الشعار */
+            background: linear-gradient(135deg, #a855f7, #3b82f6);
+        }
+
+        .logo-front {
+            width: 140px;
+            margin-bottom: 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .card-front h1 {
+            margin: 0;
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .card-front h3 {
+            margin: 8px 0 0;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #f1f5f9;
+        }
+
+        /* --- الواجهة الخلفية --- */
+        .card-back {
+            flex-direction: row;
+            background-color: #0f172a; 
+        }
+
+        .left-col {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-col {
+            width: 40%;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .qr-code {
+            width: 180px;
+            background: white;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-size: 15px;
+            color: #cbd5e1;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-item b {
+            color: #3b82f6;
+            font-size: 18px;
+            width: 25px;
+        }
+
+        .small-logo {
+            width: 60px;
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            border-radius: 12px;
+        }
+
+        .name-back {
+            margin-top: 60px;
+            margin-bottom: 35px;
+        }
+
+        .name-back h2 {
+            margin: 0;
+            font-size: 26px;
+            color: #fff;
+        }
+        .name-back p {
+            margin: 5px 0 0;
+            font-size: 13px;
+            color: #a855f7;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card card-front" style="display: flex;">
+        <img src="IMG_4496.PNG" alt="eCode Logo" class="logo-front">
+        <h1>Ayman Al-Maghrabi</h1>
+        <h3>Founder | General Manager</h3>
+    </div>
+
+    <div class="card card-back" style="display: flex;">
+        <div class="left-col">
+            <img src="favicon.png" alt="eCode Logo" class="small-logo">
+            <div class="name-back">
+                <h2>Ayman Al-Maghrabi</h2>
+                <p>Founder | General Manager</p>
+            </div>
+            
+            <div class="info-item">
+                <b>📞</b> +966 50 366 6316
+            </div>
+            <div class="info-item">
+                <b>✉️</b> Admin@eCode.sa
+            </div>
+            <div class="info-item">
+                <b>🌐</b> www.eCode.sa
+            </div>
+            <div class="info-item">
+                <b>📍</b> Riyadh, Saudi Arabia
+            </div>
+        </div>
+        <div class="right-col">
+            <img src="barcode.png" alt="QR Code" class="qr-code">
+        </div>
+    </div>
+
+</body>
+</html>
