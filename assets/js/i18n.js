@@ -308,44 +308,44 @@ window.SYSTEM_TRANSLATIONS = {
         filter_ent: "فعاليات ترفيهية",
 
         // Projects
-        proj_sijil_title_ar: "سجل (SIJIL)",
-proj_sijil_desc_ar: "تنفيذ وتشغيل فعالية اليوم الوطني لشركة سجل.",
+        proj_sijil_title: "سجل (SIJIL)",
+        proj_sijil_desc: "تنفيذ وتشغيل فعالية اليوم الوطني لشركة سجل.",
+        
+        proj_industry_title: "حفل تكريم – مؤتمر التعدين الدولي",
+        proj_industry_desc: "دعم تنظيمي وتنفيذ احترافي لحفل التكريم بالتعاون مع وزارة الصناعة والثروة المعدنية.",
+        
+        proj_education_title: "تنفيذ جناح وزارة التعليم",
+        proj_education_desc: "تنفيذ وإدارة جناح وزارة التعليم بمساحة 2,000 متر مربع بإشراف متكامل على التصميم والتشغيل.",
 
-proj_industry_title_ar: "حفل تكريم – مؤتمر التعدين الدولي",
-proj_industry_desc_ar: "دعم تنظيمي وتنفيذ احترافي لحفل التكريم بالتعاون مع وزارة الصناعة والثروة المعدنية.",
+        proj_happycloud_title: "هابي كلاود (Happy Cloud)",
+        proj_happycloud_desc: "إدارة متكاملة لحفل إطلاق عطر تابوتي من التخطيط حتى استضافة كبار الشخصيات.",
+        
+        proj_haboob_title: "هبوب للأمن السيبراني – معرض بلاك هاك",
+        proj_haboob_desc: "تصميم وتنفيذ وتشغيل جناح هبوب في معرض بلاك هاك بمفهوم إبداعي مميز.",
+        
+        proj_ezdihar_title: "ازدهار (EZDIHAR)",
+        proj_ezdihar_desc: "تصميم تجربة الضيف واستقبال كبار الشخصيات مع ضيافة راقية وتغطية للحدث.",
+        
+        proj_eizo_title: "إيزو (EIZO)",
+        proj_eizo_desc: "تطوير الفكرة والهوية وتنفيذ حفل التدشين مع إدارة الضيافة وتجربة الحضور.",
+        
+        proj_ahlam_title: "ليلة أحلام (AHLAM NIGHT)",
+        proj_ahlam_desc: "إنتاج وإدارة أمسية ترفيهية مميزة بتجربة حضور متكاملة وتجهيزات احترافية.",
+        
+        proj_ksu_title: "جامعة الملك سعود (KSU)",
+        proj_ksu_desc: "تصميم وتنفيذ وتشغيل جناح جامعة الملك سعود في المنتدى السعودي للإعلام.",
 
-proj_education_title_ar: "تنفيذ جناح وزارة التعليم",
-proj_education_desc_ar: "تنفيذ وإدارة جناح وزارة التعليم بمساحة 2,000 متر مربع بإشراف متكامل على التصميم والتشغيل.",
-
-proj_happycloud_title_ar: "هابي كلاود (Happy Cloud)",
-proj_happycloud_desc_ar: "إدارة متكاملة لحفل إطلاق عطر تابوتي من التخطيط حتى استضافة كبار الشخصيات.",
-
-proj_haboob_title_ar: "هبوب للأمن السيبراني – معرض بلاك هاك",
-proj_haboob_desc_ar: "تصميم وتنفيذ وتشغيل جناح هبوب في معرض بلاك هاك بمفهوم إبداعي مميز.",
-
-proj_ezdihar_title_ar: "ازدهار (EZDIHAR)",
-proj_ezdihar_desc_ar: "تصميم تجربة الضيف واستقبال كبار الشخصيات مع ضيافة راقية وتغطية للحدث.",
-
-proj_eizo_title_ar: "إيزو (EIZO)",
-proj_eizo_desc_ar: "تطوير الفكرة والهوية وتنفيذ حفل التدشين مع إدارة الضيافة وتجربة الحضور.",
-
-proj_ahlam_title_ar: "ليلة أحلام (AHLAM NIGHT)",
-proj_ahlam_desc_ar: "إنتاج وإدارة أمسية ترفيهية مميزة بتجربة حضور متكاملة وتجهيزات احترافية.",
-
-proj_ksu_title_ar: "جامعة الملك سعود (KSU)",
-proj_ksu_desc_ar: "تصميم وتنفيذ وتشغيل جناح جامعة الملك سعود في المنتدى السعودي للإعلام.",
-
-proj_trusted_title_ar: "تراستد بارتنرز (Trusted Partners)",
-proj_trusted_desc_ar: "تصميم وتنفيذ وتشغيل جناح تراستد بارتنرز في معرض بلاك هاك.",
-
-proj_almudayfer_title_ar: "شركة أبناء محمد صالح المديفر القابضة",
-proj_almudayfer_desc_ar: "تصميم وتنفيذ جناح بمساحة 126 مترًا مربعًا في معرض سعودي بيلد.",
-
-proj_alipasha_title_ar: "مطعم فلافل علي باشا",
-proj_alipasha_desc_ar: "تصوير الأصناف وتنفيذ منيو ورقي ورقمي متكامل للمطعم.",
-
-proj_onfire_title_ar: "مطعم اون فاير",
-proj_onfire_desc_ar: "تصوير الأصناف وتنفيذ منيو ورقي ورقمي متكامل للمطعم.",
+        proj_trusted_title: "تراستد بارتنرز (Trusted Partners)",
+        proj_trusted_desc: "تصميم وتنفيذ وتشغيل جناح تراستد بارتنرز في معرض بلاك هاك.",
+        
+        proj_almudayfer_title: "شركة أبناء محمد صالح المديفر القابضة",
+        proj_almudayfer_desc: "تصميم وتنفيذ جناح بمساحة 126 مترًا مربعًا في معرض سعودي بيلد.",
+        
+        proj_alipasha_title: "مطعم فلافل علي باشا",
+        proj_alipasha_desc: "تصوير الأصناف وتنفيذ منيو ورقي ورقمي متكامل للمطعم.",
+        
+        proj_onfire_title: "مطعم اون فاير",
+        proj_onfire_desc: "تصوير الأصناف وتنفيذ منيو ورقي ورقمي متكامل للمطعم.",
 
         // Tags
         tag_full_org: "تنظيم متكامل",
