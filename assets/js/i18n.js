@@ -308,34 +308,44 @@ window.SYSTEM_TRANSLATIONS = {
         filter_ent: "فعاليات ترفيهية",
 
         // Projects
-        proj_sijil_title: "سجل (SIJIL)",
-        proj_sijil_desc: "إدارة وتنظيم متكامل لفعالية سجل، شملت التجهيزات اللوجستية وإدارة سير العمليات بامتياز.",
-        
-        proj_industry_title: "وزارة الصناعة والثروة المعدنية",
-        proj_industry_desc: "تنفيذ وتجهيز مؤتمر وزارة الصناعة والثروة المعدنية وفق أعلى المعايير الرسمية والبروتوكولات.",
-        
-        proj_education_title: "وزارة التعليم",
-        proj_education_desc: "إدارة وتنسيق فعالية كبرى تابعة لوزارة التعليم، من مرحلة التخطيط وحتى التغطية الختامية.",
-        
-        proj_happycloud_title: "غيمة الفرح (Happy Cloud)",
-        proj_happycloud_desc: "تصميم وتنفيذ تجربة ترفيهية تفاعلية للزوار، مع الاهتمام بأدق تفاصيل الديكور والأنشطة.",
-        
-        proj_haboob_title: "هبوب (Haboob)",
-        proj_haboob_desc: "تنظيم فعالية هبوب بمفهوم إبداعي فريد، شاملة التجهيزات الصوتية والمرئية والتشغيل الكامل.",
-        
-        proj_ezdihar_title: "ازدهار (EZDIHAR)",
-        proj_ezdihar_desc: "هندسة وتنظيم مؤتمر ازدهار لتوفير بيئة احترافية للشركات وكبار الشخصيات والزوار.",
-        
-        proj_eizo_title: "إيزو (EIZO)",
-        proj_eizo_desc: "بناء وإدارة أجنحة المعرض، وتقديم حلول تسجيل الحضور والضيافة بكفاءة عالية طوال أيام الفعالية.",
-        
-        proj_ahlam_title: "ليلة أحلام (AHLAM NIGHT)",
-        proj_ahlam_desc: "إنتاج وإدارة ليلة فنية وترفيهية ساحرة، مع التركيز على هندسة الإضاءة، المسرح، وتجربة الحضور.",
-        
-        proj_ksu_title: "جامعة الملك سعود (KSU)",
-        proj_ksu_desc: "تنظيم وتجهيز فعاليات ومرافق جامعة الملك سعود بأعلى معايير الجودة والاحترافية.",
-        proj_trusted_title: "تراستد بارتنرز (Trusted Partners)",
-        proj_trusted_desc: "إدارة وتنفيذ مشاريع ومعارض تراستد بارتنرز لتوفير تجربة مميزة للزوار والشركاء.",
+        proj_sijil_title_ar: "سجل (SIJIL)",
+proj_sijil_desc_ar: "تنفيذ وتشغيل فعالية اليوم الوطني لشركة سجل.",
+
+proj_industry_title_ar: "حفل تكريم – مؤتمر التعدين الدولي",
+proj_industry_desc_ar: "دعم تنظيمي وتنفيذ احترافي لحفل التكريم بالتعاون مع وزارة الصناعة والثروة المعدنية.",
+
+proj_education_title_ar: "تنفيذ جناح وزارة التعليم",
+proj_education_desc_ar: "تنفيذ وإدارة جناح وزارة التعليم بمساحة 2,000 متر مربع بإشراف متكامل على التصميم والتشغيل.",
+
+proj_happycloud_title_ar: "هابي كلاود (Happy Cloud)",
+proj_happycloud_desc_ar: "إدارة متكاملة لحفل إطلاق عطر تابوتي من التخطيط حتى استضافة كبار الشخصيات.",
+
+proj_haboob_title_ar: "هبوب للأمن السيبراني – معرض بلاك هاك",
+proj_haboob_desc_ar: "تصميم وتنفيذ وتشغيل جناح هبوب في معرض بلاك هاك بمفهوم إبداعي مميز.",
+
+proj_ezdihar_title_ar: "ازدهار (EZDIHAR)",
+proj_ezdihar_desc_ar: "تصميم تجربة الضيف واستقبال كبار الشخصيات مع ضيافة راقية وتغطية للحدث.",
+
+proj_eizo_title_ar: "إيزو (EIZO)",
+proj_eizo_desc_ar: "تطوير الفكرة والهوية وتنفيذ حفل التدشين مع إدارة الضيافة وتجربة الحضور.",
+
+proj_ahlam_title_ar: "ليلة أحلام (AHLAM NIGHT)",
+proj_ahlam_desc_ar: "إنتاج وإدارة أمسية ترفيهية مميزة بتجربة حضور متكاملة وتجهيزات احترافية.",
+
+proj_ksu_title_ar: "جامعة الملك سعود (KSU)",
+proj_ksu_desc_ar: "تصميم وتنفيذ وتشغيل جناح جامعة الملك سعود في المنتدى السعودي للإعلام.",
+
+proj_trusted_title_ar: "تراستد بارتنرز (Trusted Partners)",
+proj_trusted_desc_ar: "تصميم وتنفيذ وتشغيل جناح تراستد بارتنرز في معرض بلاك هاك.",
+
+proj_almudayfer_title_ar: "شركة أبناء محمد صالح المديفر القابضة",
+proj_almudayfer_desc_ar: "تصميم وتنفيذ جناح بمساحة 126 مترًا مربعًا في معرض سعودي بيلد.",
+
+proj_alipasha_title_ar: "مطعم فلافل علي باشا",
+proj_alipasha_desc_ar: "تصوير الأصناف وتنفيذ منيو ورقي ورقمي متكامل للمطعم.",
+
+proj_onfire_title_ar: "مطعم اون فاير",
+proj_onfire_desc_ar: "تصوير الأصناف وتنفيذ منيو ورقي ورقمي متكامل للمطعم.",
 
         // Tags
         tag_full_org: "تنظيم متكامل",
@@ -998,33 +1008,43 @@ window.SYSTEM_TRANSLATIONS = {
 
         // Projects
         proj_sijil_title: "SIJIL",
-        proj_sijil_desc: "Full management and organization for the SIJIL event, including seamless logistics and operational execution.",
-        
-        proj_industry_title: "Ministry of Industry & Mineral Resources",
-        proj_industry_desc: "Execution and setup of the Ministry's conference, meeting the highest official standards and protocols.",
-        
-        proj_education_title: "Ministry of Education",
-        proj_education_desc: "Managing and coordinating a major Ministry of Education event, from initial planning to final coverage.",
-        
-        proj_happycloud_title: "Happy Cloud",
-        proj_happycloud_desc: "Designing and executing an interactive entertainment experience, with attention to every detail of decor and activities.",
-        
-        proj_haboob_title: "Haboob",
-        proj_haboob_desc: "Organizing Haboob with a unique creative concept, comprehensive A/V setup, and full site operation.",
-        
-        proj_ezdihar_title: "EZDIHAR",
-        proj_ezdihar_desc: "Engineering and organizing the EZDIHAR conference to provide a professional environment for businesses and VIPs.",
-        
-        proj_eizo_title: "EIZO",
-        proj_eizo_desc: "Building and managing exhibition booths, providing seamless registration and hospitality solutions.",
-        
-        proj_ahlam_title: "AHLAM NIGHT",
-        proj_ahlam_desc: "Producing and managing a magical entertainment night, focusing on lighting design, stage setup, and attendee experience.",
+proj_sijil_desc: "Execution and operation of SIJIL’s Saudi National Day event.",
 
-        proj_ksu_title: "King Saud University (KSU)",
-        proj_ksu_desc: "Organizing and equipping King Saud University events and facilities with the highest standards of quality.",
-        proj_trusted_title: "Trusted Partners",
-        proj_trusted_desc: "Managing and executing Trusted Partners projects and exhibitions to provide a premium experience.",
+proj_industry_title: "Recognition Ceremony – Future Minerals Forum",
+proj_industry_desc: "Organizational support and professional execution for a recognition ceremony held in collaboration with the Ministry of Industry and Mineral Resources.",
+
+proj_education_title: "Ministry of Education Pavilion",
+proj_education_desc: "Execution and full management of a 2,000 sqm Ministry of Education pavilion, including design oversight and operations.",
+
+proj_happycloud_title: "Happy Cloud",
+proj_happycloud_desc: "End-to-end management of the Tabouti perfume launch, from planning to VIP hosting.",
+
+proj_haboob_title: "Haboob Cybersecurity – Black Hat",
+proj_haboob_desc: "Design, execution, and operation of Haboob’s booth at Black Hat with a distinctive creative concept.",
+
+proj_ezdihar_title: "EZDIHAR",
+proj_ezdihar_desc: "Guest journey design, VIP reception, refined hospitality, and event coverage.",
+
+proj_eizo_title: "EIZO",
+proj_eizo_desc: "Concept and identity development, launch event execution, and hospitality management.",
+
+proj_ahlam_title: "AHLAM NIGHT",
+proj_ahlam_desc: "Production and management of a premium entertainment evening with a complete guest experience.",
+
+proj_ksu_title: "King Saud University (KSU)",
+proj_ksu_desc: "Design, execution, and operation of King Saud University’s booth at the Saudi Media Forum.",
+
+proj_trusted_title: "Trusted Partners",
+proj_trusted_desc: "Design, execution, and operation of Trusted Partners’ booth at Black Hat.",
+
+proj_almudayfer_title: "Mohammed Saleh Almudayfer Sons Holding Co.",
+proj_almudayfer_desc: "Design and execution of a 126 sqm pavilion at Saudi Build.",
+
+proj_alipasha_title: "Falafel Ali Pasha Restaurant",
+proj_alipasha_desc: "Food photography and complete printed and digital menu production.",
+
+proj_onfire_title: "On Fire Restaurant",
+proj_onfire_desc: "Food photography and complete printed and digital menu production.",
 
         // Tags
         tag_full_org: "Full Organization",
