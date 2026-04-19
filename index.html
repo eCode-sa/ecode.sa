@@ -35,6 +35,26 @@
             }
         }
     </script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="eCode">
+<link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/">
+    <meta property="og:type" content="website">
+<meta property="og:url" content="https://ecode.sa/">
+<meta property="og:title" content="Electronic Code | إلكترونيك كود">
+<meta property="og:description" content="Integrated event management, creative production, marketing support, and premium execution across Saudi Arabia.">
+<meta property="og:image" content="https://ecode.sa/favicon.png">
+<meta property="og:site_name" content="eCode">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Electronic Code | إلكترونيك كود">
+<meta name="twitter:description" content="Integrated event management, creative production, marketing support, and premium execution across Saudi Arabia.">
+<meta name="twitter:image" content="https://ecode.sa/favicon.png">
 
     <style>
         /* Custom Styles & Overrides */
@@ -146,17 +166,6 @@
             .mobile-toggle { display: block; }
         }
         @media (min-width: 769px) { .mobile-toggle { display: none; } }
-
-        /* Marquee Slider (Partners) */
-        .marquee-wrapper {
-            display: flex; overflow: hidden; user-select: none; width: 100%;
-        }
-        .marquee-content {
-            flex-shrink: 0; display: flex; align-items: center; justify-content: space-around;
-            min-width: 100%; animation: scrollX 40s linear infinite; gap: 3rem; padding-right: 3rem;
-        }
-        html[dir="rtl"] .marquee-content { animation-direction: reverse; }
-        @keyframes scrollX { from { transform: translateX(0); } to { transform: translateX(-100%); } }
         
         .partner-item {
     width: 180px;
@@ -824,7 +833,7 @@ html[dir="ltr"] .contact-link {
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
                 
@@ -903,6 +912,7 @@ html[dir="ltr"] .contact-link {
                 © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
             </div>
         </div>
+        
     </footer>
 
     <!-- WhatsApp Float -->
@@ -964,7 +974,7 @@ html[dir="ltr"] .contact-link {
                 
                 // Projects
                 proj1_title: "جناح وزارة التعليم", proj1_desc: "تصميم، تنفيذ، وتشغيل الجناح بمساحة 2000 متر مربع بإدارة محترفة وعمليات متكاملة.",
-                proj2_title: "وزارة ابصناعة والثروة المعدنية", proj2_desc: "دعم حفل التكريم لوزارة الصناعة والثروة المعدنية والتنسيق السلس لأكثر من 500 حاضر.",
+                proj2_title: "وزارة الصناعة والثروة المعدنية", proj2_desc: "دعم حفل التكريم لوزارة الصناعة والثروة المعدنية والتنسيق السلس لأكثر من 500 حاضر.",
                 proj3_title: "استضافة كبار الشخصيات - Ezdihar", proj3_desc: "إدارة بروتوكول الاستقبال، تصميم رحلة الضيوف، والضيافة الراقية لأكثر من 50 شخصية VIP.",
                 proj4_title: "عرض روز رايز الحصري", proj4_desc: "لوجستيات آمنة وعرض فاخر للسيارات الفارهة في قصر خاص لعميل VIP بتجربة استثنائية.",
                 proj_ahlam_title: "ليلة أحلام", proj_ahlam_desc: "استقبال الفنانة وتنسيق البروفات وتوفير الفرقة الموسيقية والتجهيزات اللازمة.",
@@ -1060,7 +1070,7 @@ html[dir="ltr"] .contact-link {
             }
         };
 
-        let currentLang = 'ar';
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
         
         function initTheme() {
             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -1098,17 +1108,23 @@ html[dir="ltr"] .contact-link {
         }
 
         function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            const html = document.documentElement;
-            const langIcon = document.getElementById('lang-icon');
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    const html = document.documentElement;
+    const langIcon = document.getElementById('lang-icon');
 
-            if (currentLang === 'ar') {
-                html.setAttribute('lang', 'ar'); html.setAttribute('dir', 'rtl'); langIcon.textContent = '🇬🇧';
-            } else {
-                html.setAttribute('lang', 'en'); html.setAttribute('dir', 'ltr'); langIcon.textContent = '🇸🇦';
-            }
-            updateContent();
-        }
+    if (currentLang === 'ar') {
+        html.setAttribute('lang', 'ar');
+        html.setAttribute('dir', 'rtl');
+        langIcon.textContent = '🇬🇧';
+    } else {
+        html.setAttribute('lang', 'en');
+        html.setAttribute('dir', 'ltr');
+        langIcon.textContent = '🇸🇦';
+    }
+
+    localStorage.setItem('userLanguage', currentLang);
+    updateContent();
+}
 
         // Video Modal Logic
         function openVideoModal(url) {
@@ -1161,10 +1177,31 @@ html[dir="ltr"] .contact-link {
         });
 
         window.onload = () => {
-            initTheme();
-            updateContent();
-            initAutoSliders();
-        };
+    const html = document.documentElement;
+    const langIcon = document.getElementById('lang-icon');
+
+    if (currentLang === 'ar') {
+        html.setAttribute('lang', 'ar');
+        html.setAttribute('dir', 'rtl');
+        langIcon.textContent = '🇬🇧';
+    } else {
+        html.setAttribute('lang', 'en');
+        html.setAttribute('dir', 'ltr');
+        langIcon.textContent = '🇸🇦';
+    }
+
+    initTheme();
+    updateContent();
+    initAutoSliders();
+};
     </script>
+    <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .catch(error => console.error('Service Worker registration failed:', error));
+  });
+}
+</script>
 </body>
 </html>
