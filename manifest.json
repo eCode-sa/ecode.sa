@@ -1,13 +1,14 @@
 {
-  "name": "eCode - إلكترونيك كود",
+  "name": "eCode | Electronic Code | إلكترونيك كود",
   "short_name": "eCode",
-  "description": "شركة سعودية تقدم حلول التسويق الرقمي، إدارة المحتوى، الإنتاج الإبداعي، والحلول التقنية",
-  "id": "/?source=pwa",
-  "start_url": "/ar/?source=pwa",
+  "description": "Your strategic partner in integrated event management, exhibitions, conferences, creative production, and premium execution across Saudi Arabia.",
+  "id": "/",
+  "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0F1419",
-  "theme_color": "#8B7FFF",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#020617",
+  "theme_color": "#4F46E5",
   "orientation": "portrait",
   "lang": "ar",
   "dir": "rtl",
@@ -17,31 +18,31 @@
       "src": "/icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-96x96.png",
       "sizes": "96x96",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-192x192.png",
@@ -53,7 +54,7 @@
       "src": "/icons/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-512x512.png",
@@ -67,13 +68,15 @@
       "src": "/screenshots/screenshot1.png",
       "sizes": "540x720",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Home page preview"
     },
     {
       "src": "/screenshots/screenshot2.png",
       "sizes": "540x720",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Services page preview"
     }
   ],
   "categories": [
@@ -85,24 +88,39 @@
     {
       "name": "خدماتنا",
       "short_name": "خدمات",
-      "description": "استعراض خدماتنا",
-      "url": "/services/",
+      "description": "استعراض خدمات eCode",
+      "url": "/#services",
       "icons": [
         {
           "src": "/icons/icon-96x96.png",
-          "sizes": "96x96"
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "أعمالنا",
+      "short_name": "أعمالنا",
+      "description": "استعراض أعمال ومشاريع eCode",
+      "url": "/#portfolio",
+      "icons": [
+        {
+          "src": "/icons/icon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
         }
       ]
     },
     {
       "name": "تواصل معنا",
       "short_name": "تواصل",
-      "description": "تواصل مع فريقنا",
-      "url": "/contact/",
+      "description": "تواصل مع فريق eCode",
+      "url": "/#contact",
       "icons": [
         {
           "src": "/icons/icon-96x96.png",
-          "sizes": "96x96"
+          "sizes": "96x96",
+          "type": "image/png"
         }
       ]
     }
