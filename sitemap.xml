@@ -2,76 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ecode.sa/</loc>
-    <lastmod>2025-01-01</lastmod>
+    <lastmod>2026-04-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://ecode.sa/ar/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/services/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/plans/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/portfolio/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/contact/</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/terms/</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/privacy/</loc>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://ecode.sa/en/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/en/services/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/en/plans/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/en/portfolio/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/en/contact/</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/en/terms/</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://ecode.sa/en/privacy/</loc>
-    <priority>0.5</priority>
   </url>
 </urlset>
