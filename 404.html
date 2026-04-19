@@ -1,45 +1,53 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 | Error - eCode</title>
   <meta name="robots" content="noindex, follow">
   
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="icon" type="image/png" href="https://ecode.sa/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
 
   <style>
     :root {
-      /* Light Mode Variables */
       --bg-primary: #F0F2F5;
       --bg-card: rgba(255, 255, 255, 0.9);
       --text-primary: #1A1F2E;
       --text-secondary: #64748B;
-      --lavender: #8B7FFF;
-      --sky-blue: #5BC0F8;
-      --grid-color: rgba(139, 127, 255, 0.07);
-      --shadow: 0 10px 40px -10px rgba(139, 127, 255, 0.2);
+      --lavender: #4F46E5;
+      --sky-blue: #7C3AED;
+      --grid-color: rgba(79, 70, 229, 0.07);
+      --shadow: 0 10px 40px -10px rgba(79, 70, 229, 0.2);
+      --font-main: "Cairo", sans-serif;
+    }
+
+    html[lang="en"] {
+      --font-main: "Outfit", sans-serif;
     }
 
     [data-theme="dark"] {
-      /* Dark Mode Variables */
-      --bg-primary: #050507;
-      --bg-card: rgba(20, 25, 38, 0.8);
+      --bg-primary: #020617;
+      --bg-card: rgba(15, 23, 42, 0.82);
       --text-primary: #E6EDF3;
       --text-secondary: #94A3B8;
-      --grid-color: rgba(139, 127, 255, 0.05);
+      --grid-color: rgba(79, 70, 229, 0.05);
       --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s ease, color 0.3s ease, border 0.3s ease; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+    }
 
     body {
-      font-family: "Tajawal", "Inter", sans-serif;
+      font-family: var(--font-main);
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      height: 100vh;
+      min-height: 100vh;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -47,14 +55,13 @@
       position: relative;
     }
 
-    /* --- Cyber Grid Background Animation --- */
     .bg-grid {
       position: absolute;
       width: 200%;
       height: 200%;
       top: -50%;
       left: -50%;
-      background-image: 
+      background-image:
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
       background-size: 40px 40px;
@@ -69,12 +76,11 @@
       100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
     }
 
-    /* --- Glowing Orb --- */
     .glow-orb {
       position: absolute;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(139, 127, 255, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -82,14 +88,13 @@
       pointer-events: none;
     }
 
-    /* --- Main Card --- */
     .error-card {
       background: var(--bg-card);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       padding: 60px 40px;
       border-radius: 32px;
-      border: 1px solid rgba(139, 127, 255, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.1);
       box-shadow: var(--shadow);
       max-width: 550px;
       width: 90%;
@@ -103,7 +108,6 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* --- Glitch 404 Effect --- */
     .glitch-wrapper {
       position: relative;
       margin-bottom: 20px;
@@ -120,52 +124,6 @@
       display: inline-block;
     }
 
-    .error-code::before, .error-code::after {
-      content: '404';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.8;
-      display: none; 
-    }
-
-    /* Glitch Animation trigger on hover/automatic */
-    .error-card:hover .error-code {
-      animation: glitch-skew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-    }
-    .error-card:hover .error-code::before {
-      display: block;
-      color: #ff00ff;
-      z-index: -1;
-      animation: glitch-anim-1 2s infinite linear alternate-reverse;
-    }
-    .error-card:hover .error-code::after {
-      display: block;
-      color: #00ffff;
-      z-index: -2;
-      animation: glitch-anim-2 2s infinite linear alternate-reverse;
-    }
-
-    @keyframes glitch-anim-1 {
-      0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 0); }
-      20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 0); }
-      40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 0); }
-      60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
-      80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 0); }
-      100% { clip-path: inset(30% 0 50% 0); transform: translate(2px, 0); }
-    }
-    @keyframes glitch-anim-2 {
-      0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, 0); }
-      20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 0); }
-      40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, 0); }
-      60% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 0); }
-      80% { clip-path: inset(50% 0 30% 0); transform: translate(2px, 0); }
-      100% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 0); }
-    }
-
-    /* --- Content Typography --- */
     h1 {
       font-size: 26px;
       margin-bottom: 12px;
@@ -179,43 +137,28 @@
       line-height: 1.6;
     }
 
-    /* --- Buttons --- */
     .btn-home {
       display: inline-flex;
       align-items: center;
       gap: 12px;
       padding: 14px 36px;
-      border-radius: 99px;
+      border-radius: 999px;
       background: linear-gradient(135deg, var(--lavender), #7063FF);
       color: #ffffff !important;
       text-decoration: none;
       font-weight: 700;
       font-size: 16px;
-      box-shadow: 0 4px 15px rgba(139, 127, 255, 0.4);
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .btn-home::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
-    }
-
     .btn-home:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(139, 127, 255, 0.6);
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
     }
 
-    .btn-home:hover::before {
-      left: 100%;
-    }
-
-    /* --- Top Controls --- */
     .controls {
       position: absolute;
       top: 24px;
@@ -224,8 +167,7 @@
       gap: 12px;
       z-index: 10;
     }
-    
-    /* LTR Support for Controls */
+
     html[dir="ltr"] .controls {
       right: auto;
       left: 24px;
@@ -235,7 +177,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      border: 1px solid rgba(139, 127, 255, 0.2);
+      border: 1px solid rgba(79, 70, 229, 0.2);
       background: var(--bg-card);
       color: var(--text-primary);
       cursor: pointer;
@@ -254,15 +196,20 @@
       transform: rotate(15deg);
     }
 
-    /* --- Language Sections --- */
-    .lang-section { display: none; opacity: 0; animation: fadeIn 0.5s forwards; }
-    .lang-section.active { display: block; }
+    .lang-section {
+      display: none;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+    }
+
+    .lang-section.active {
+      display: block;
+    }
 
     @keyframes fadeIn {
       to { opacity: 1; }
     }
 
-    /* Mobile Responsiveness */
     @media (max-width: 600px) {
       .error-code { font-size: 90px; }
       .error-card { padding: 40px 24px; width: 85%; }
@@ -270,16 +217,16 @@
     }
   </style>
 </head>
-<body data-theme="dark">
+<body>
 
   <div class="bg-grid"></div>
   <div class="glow-orb"></div>
 
   <div class="controls">
-    <button class="control-btn" onclick="toggleLanguage()" title="Switch Language">
+    <button class="control-btn" onclick="toggleLanguage()" title="Switch Language" aria-label="Switch Language">
       <i class="fas fa-language"></i>
     </button>
-    <button class="control-btn" onclick="toggleTheme()" title="Toggle Theme">
+    <button class="control-btn" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle Theme">
       <i id="theme-icon" class="fas fa-moon"></i>
     </button>
   </div>
@@ -290,58 +237,53 @@
     </div>
 
     <div id="ar-content" class="lang-section active">
-      <h1>عفواً.. حدث خطأ تقني!</h1>
-      <p>الصفحة التي تبحث عنها قد تكون حُذفت أو أن الرابط غير صحيح.<br>لكن لا تقلق، في <strong>eCode</strong> دائماً نجد الحلول.</p>
-      <a href="/ar/" class="btn-home">
-        العودة للرئيسية <i class="fas fa-arrow-left" style="transform: rotate(180deg);"></i>
+      <h1>عفواً.. الصفحة غير موجودة</h1>
+      <p>الصفحة التي تبحث عنها قد تكون حُذفت أو أن الرابط غير صحيح.<br>يمكنك العودة إلى الصفحة الرئيسية ومتابعة التصفح.</p>
+      <a href="/" class="btn-home">
+        العودة للرئيسية <i class="fas fa-arrow-left"></i>
       </a>
     </div>
 
     <div id="en-content" class="lang-section" dir="ltr">
-      <h1>Oops! System Glitch.</h1>
-      <p>The page you are looking for might have been removed or the link is broken.<br>Don't worry, at <strong>eCode</strong> we always fix bugs.</p>
-      <a href="/en/" class="btn-home">
+      <h1>Oops! Page Not Found.</h1>
+      <p>The page you are looking for may have been removed or the link is incorrect.<br>You can go back to the homepage and continue browsing.</p>
+      <a href="/" class="btn-home">
         Back to Home <i class="fas fa-arrow-right"></i>
       </a>
     </div>
   </div>
 
   <script>
-    // تهيئة المتغيرات
     const arContent = document.getElementById('ar-content');
     const enContent = document.getElementById('en-content');
     const themeIcon = document.getElementById('theme-icon');
     const htmlTag = document.documentElement;
 
-    // 1. وظيفة تبديل اللغة
     function toggleLanguage() {
       const isArabic = arContent.classList.contains('active');
-      
+
       if (isArabic) {
-        // Switch to English
         arContent.classList.remove('active');
         enContent.classList.add('active');
         htmlTag.setAttribute('dir', 'ltr');
         htmlTag.setAttribute('lang', 'en');
-        localStorage.setItem('ecode_lang', 'en');
+        localStorage.setItem('userLanguage', 'en');
       } else {
-        // Switch to Arabic
         enContent.classList.remove('active');
         arContent.classList.add('active');
         htmlTag.setAttribute('dir', 'rtl');
         htmlTag.setAttribute('lang', 'ar');
-        localStorage.setItem('ecode_lang', 'ar');
+        localStorage.setItem('userLanguage', 'ar');
       }
     }
 
-    // 2. وظيفة تبديل الثيم (Dark/Light)
     function toggleTheme() {
-      const currentTheme = document.body.getAttribute('data-theme');
+      const currentTheme = htmlTag.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      document.body.setAttribute('data-theme', newTheme);
+
+      htmlTag.setAttribute('data-theme', newTheme);
       updateThemeIcon(newTheme);
-      localStorage.setItem('ecode_theme', newTheme);
+      localStorage.setItem('theme', newTheme);
     }
 
     function updateThemeIcon(theme) {
@@ -354,30 +296,33 @@
       }
     }
 
-    // 3. التحميل الأولي (استرجاع التفضيلات)
     window.addEventListener('DOMContentLoaded', () => {
-      // استرجاع الثيم المفضل
-      const savedTheme = localStorage.getItem('ecode_theme');
+      const savedTheme = localStorage.getItem('theme');
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
+
       if (savedTheme) {
-        document.body.setAttribute('data-theme', savedTheme);
+        htmlTag.setAttribute('data-theme', savedTheme);
         updateThemeIcon(savedTheme);
       } else if (systemPrefersDark) {
-        document.body.setAttribute('data-theme', 'dark');
+        htmlTag.setAttribute('data-theme', 'dark');
         updateThemeIcon('dark');
       } else {
-        document.body.setAttribute('data-theme', 'light');
+        htmlTag.setAttribute('data-theme', 'light');
         updateThemeIcon('light');
       }
 
-      // استرجاع اللغة المفضلة
-      const savedLang = localStorage.getItem('ecode_lang');
+      const savedLang = localStorage.getItem('userLanguage') || 'ar';
+
       if (savedLang === 'en') {
         arContent.classList.remove('active');
         enContent.classList.add('active');
         htmlTag.setAttribute('dir', 'ltr');
         htmlTag.setAttribute('lang', 'en');
+      } else {
+        enContent.classList.remove('active');
+        arContent.classList.add('active');
+        htmlTag.setAttribute('dir', 'rtl');
+        htmlTag.setAttribute('lang', 'ar');
       }
     });
   </script>
