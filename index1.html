@@ -159,19 +159,37 @@
         @keyframes scrollX { from { transform: translateX(0); } to { transform: translateX(-100%); } }
         
         .partner-item {
-            height: 70px; display: inline-flex; align-items: center; justify-content: center;
-        }
-        .partner-item img {
-            max-height: 100%; max-width: 150px; object-fit: contain;
-            filter: grayscale(100%) opacity(0.6); transition: all 0.3s ease;
-        }
-        html.dark .partner-item img { filter: grayscale(100%) brightness(0) invert(1) opacity(0.7); }
-        
-        .partner-item:hover img { filter: grayscale(0%) opacity(1) !important; transform: scale(1.1); }
-        html.dark .partner-item:hover img {
-            background-color: rgba(255,255,255,0.9);
-            border-radius: 8px; padding: 10px;
-        }
+    width: 180px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 14px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.dark .partner-item {
+    background: #111827;
+    border-color: #374151;
+}
+
+.partner-item img {
+    max-width: 100%;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.partner-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
     </style>
 </head>
 <body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
@@ -664,85 +682,48 @@
         </div>
     </section>
 
-    <!-- Clients & Partners Slider Section -->
-    <section class="py-16 bg-white dark:bg-dark border-t border-gray-200 dark:border-gray-800 overflow-hidden">
-        <div class="container mx-auto px-6 mb-10">
-            <h3 class="text-2xl md:text-3xl font-bold text-center" data-i18n="clients_title">شركاء النجاح والعملاء</h3>
-        </div>
-        
-        <!-- Infinite Marquee Slider -->
-        <div class="marquee-wrapper relative">
-            <!-- Left Fade -->
-            <div class="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-white dark:from-dark to-transparent z-10 pointer-events-none"></div>
-            
-            <div class="marquee-content">
-                <!-- Group 1 -->
-                <div class="partner-item"><img src="partners-slider/Ministry_of_Industry_&_Mineral_Resources .avif" alt="Ministry of Industry" title="وزارة الصناعة والثروة المعدنية"></div>
-                <div class="partner-item"><img src="partners-slider/Ministry_of_Education.png" alt="Ministry of Education" title="وزارة التعليم"></div>
-                <div class="partner-item"><img src="partners-slider/Ministry_of_Media.png" alt="Ministry of Media" title="وزارة الإعلام"></div>
-                <div class="partner-item"><img src="partners-slider/GEOSA.png" alt="GEOSA" title="الهيئة العامة للمساحة والمعلومات الجيومكانية"></div>
-                <div class="partner-item"><img src="partners-slider/Film_Commission.png" alt="Film Commission" title="هيئة الأفلام"></div>
-                <div class="partner-item"><img src="partners-slider/KSU.png" alt="King Saud University" title="جامعة الملك سعود"></div>
-                <div class="partner-item"><img src="partners-slider/Riyadh_Season.png" alt="Riyadh Season" title="موسم الرياض"></div>
-                <div class="partner-item"><img src="partners-slider/AW.jpeg" alt="Arab Women Exhibition" title="معرض المرأة العربي"></div>
-                <div class="partner-item"><img src="partners-slider/Rolls-Royce.png" alt="Rolls-Royce" title="رولز رويس"></div>
-                <div class="partner-item"><img src="partners-slider/Versace_Home.webp" alt="Versace Home" title="فيرساتشي هوم"></div>
-                <div class="partner-item"><img src="partners-slider/Dolce_&_Gabbana_Casa.png" alt="Dolce & Gabbana Casa" title="دولتشي آند غابانا كاسا"></div>
-                <div class="partner-item"><img src="partners-slider/Elie_Saab_Maison.webp" alt="Elie Saab Maison" title="إيلي صعب ميزون"></div>
-                <div class="partner-item"><img src="partners-slider/Dar_Al_Arkan.png" alt="Dar Al Arkan" title="دار الأركان"></div>
-                <div class="partner-item"><img src="partners-slider/Dar_Global.webp" alt="Dar Global" title="دار جلوبال"></div>
-                <div class="partner-item"><img src="partners-slider/Quara_Holding.png" alt="Quara Holding" title="كوارا القابضة"></div>
-                <div class="partner-item"><img src="partners-slider/ezhidar.jpg" alt="Ezdihar" title="ازدهار"></div>
-                <div class="partner-item"><img src="partners-slider/EIZO.png" alt="EIZO" title="إيزو"></div>
-                <div class="partner-item"><img src="partners-slider/Trusted_Partners.jpeg" alt="Trusted Partners" title="تراستد بارتنرز"></div>
-                <div class="partner-item"><img src="partners-slider/Qasr_Mall.jpeg" alt="Qasr Mall" title="القصر مول"></div>
-                <div class="partner-item"><img src="partners-slider/meshkati.png" alt="Meshkati" title="مشكاتي للإنارة والكهرباء"></div>
-                <div class="partner-item"><img src="partners-slider/Almudayfer.png" alt="Almudayfer" title="المديفر"></div>
-                <div class="partner-item"><img src="partners-slider/Nuchen.jpg" alt="Nuchen" title="نوشن"></div>
-                <div class="partner-item"><img src="partners-slider/Blanco.webp" alt="Blanco" title="بلانكو"></div>
-                <div class="partner-item"><img src="partners-slider/Make_Over_22.webp" alt="Make Over 22" title="ميك أوفر 22"></div>
-                <div class="partner-item"><img src="partners-slider/PLOV.webp" alt="PLOV" title="مطعم بلوف"></div>
-                <div class="partner-item"><img src="partners-slider/Gasable.png" alt="Gasable" title="غازابل"></div>
-                <div class="partner-item"><img src="partners-slider/Haboob.png" alt="Haboob" title="هبوب"></div>
-                <div class="partner-item"><img src="partners-slider/Happy_Cloud.avif" alt="Happy Cloud" title="هابي كلاود"></div>
-                <div class="partner-item"><img src="partners-slider/Smart_Code.png" alt="Smart Code" title="سمارت كود"></div>
+    <!-- Clients & Partners Grid Section -->
+<section class="py-16 bg-white dark:bg-dark border-t border-gray-200 dark:border-gray-800">
+    <div class="container mx-auto px-6">
+        <h3 class="text-2xl md:text-3xl font-bold text-center mb-10" data-i18n="clients_title">
+            شركاء النجاح والعملاء
+        </h3>
 
-                <!-- Duplicate Group 1 for seamless infinite loop -->
-                <div class="partner-item"><img src="partners-slider/Ministry_of_Industry_&_Mineral_Resources .avif" alt="Ministry of Industry" title="وزارة الصناعة والثروة المعدنية"></div>
-                <div class="partner-item"><img src="partners-slider/Ministry_of_Education.png" alt="Ministry of Education" title="وزارة التعليم"></div>
-                <div class="partner-item"><img src="partners-slider/Ministry_of_Media.png" alt="Ministry of Media" title="وزارة الإعلام"></div>
-                <div class="partner-item"><img src="partners-slider/GEOSA.png" alt="GEOSA" title="الهيئة العامة للمساحة والمعلومات الجيومكانية"></div>
-                <div class="partner-item"><img src="partners-slider/Film_Commission.png" alt="Film Commission" title="هيئة الأفلام"></div>
-                <div class="partner-item"><img src="partners-slider/KSU.png" alt="King Saud University" title="جامعة الملك سعود"></div>
-                <div class="partner-item"><img src="partners-slider/Riyadh_Season.png" alt="Riyadh Season" title="موسم الرياض"></div>
-                <div class="partner-item"><img src="partners-slider/AW.jpeg" alt="Arab Women Exhibition" title="معرض المرأة العربي"></div>
-                <div class="partner-item"><img src="partners-slider/Rolls-Royce.png" alt="Rolls-Royce" title="رولز رويس"></div>
-                <div class="partner-item"><img src="partners-slider/Versace_Home.webp" alt="Versace Home" title="فيرساتشي هوم"></div>
-                <div class="partner-item"><img src="partners-slider/Dolce_&_Gabbana_Casa.png" alt="Dolce & Gabbana Casa" title="دولتشي آند غابانا كاسا"></div>
-                <div class="partner-item"><img src="partners-slider/Elie_Saab_Maison.webp" alt="Elie Saab Maison" title="إيلي صعب ميزون"></div>
-                <div class="partner-item"><img src="partners-slider/Dar_Al_Arkan.png" alt="Dar Al Arkan" title="دار الأركان"></div>
-                <div class="partner-item"><img src="partners-slider/Dar_Global.webp" alt="Dar Global" title="دار جلوبال"></div>
-                <div class="partner-item"><img src="partners-slider/Quara_Holding.png" alt="Quara Holding" title="كوارا القابضة"></div>
-                <div class="partner-item"><img src="partners-slider/ezhidar.jpg" alt="Ezdihar" title="ازدهار"></div>
-                <div class="partner-item"><img src="partners-slider/EIZO.png" alt="EIZO" title="إيزو"></div>
-                <div class="partner-item"><img src="partners-slider/Trusted_Partners.jpeg" alt="Trusted Partners" title="تراستد بارتنرز"></div>
-                <div class="partner-item"><img src="partners-slider/Qasr_Mall.jpeg" alt="Qasr Mall" title="القصر مول"></div>
-                <div class="partner-item"><img src="partners-slider/meshkati.png" alt="Meshkati" title="مشكاتي للإنارة والكهرباء"></div>
-                <div class="partner-item"><img src="partners-slider/Almudayfer.png" alt="Almudayfer" title="المديفر"></div>
-                <div class="partner-item"><img src="partners-slider/Nuchen.jpg" alt="Nuchen" title="نوشن"></div>
-                <div class="partner-item"><img src="partners-slider/Blanco.webp" alt="Blanco" title="بلانكو"></div>
-                <div class="partner-item"><img src="partners-slider/Make_Over_22.webp" alt="Make Over 22" title="ميك أوفر 22"></div>
-                <div class="partner-item"><img src="partners-slider/PLOV.webp" alt="PLOV" title="مطعم بلوف"></div>
-                <div class="partner-item"><img src="partners-slider/Gasable.png" alt="Gasable" title="غازابل"></div>
-                <div class="partner-item"><img src="partners-slider/Haboob.png" alt="Haboob" title="هبوب"></div>
-                <div class="partner-item"><img src="partners-slider/Happy_Cloud.avif" alt="Happy Cloud" title="هابي كلاود"></div>
-                <div class="partner-item"><img src="partners-slider/Smart_Code.png" alt="Smart Code" title="سمارت كود"></div>
-            </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 justify-items-center">
             
-            <!-- Right Fade -->
-            <div class="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-white dark:from-dark to-transparent z-10 pointer-events-none"></div>
+            <div class="partner-item"><img src="partners-slider/Ministry_of_Industry_&_Mineral_Resources .avif" alt="Ministry of Industry" title="وزارة الصناعة والثروة المعدنية"></div>
+            <div class="partner-item"><img src="partners-slider/Ministry_of_Education.png" alt="Ministry of Education" title="وزارة التعليم"></div>
+            <div class="partner-item"><img src="partners-slider/Ministry_of_Media.png" alt="Ministry of Media" title="وزارة الإعلام"></div>
+            <div class="partner-item"><img src="partners-slider/GEOSA.png" alt="GEOSA" title="الهيئة العامة للمساحة والمعلومات الجيومكانية"></div>
+            <div class="partner-item"><img src="partners-slider/Film_Commission.png" alt="Film Commission" title="هيئة الأفلام"></div>
+            <div class="partner-item"><img src="partners-slider/KSU.png" alt="King Saud University" title="جامعة الملك سعود"></div>
+            <div class="partner-item"><img src="partners-slider/Riyadh_Season.png" alt="Riyadh Season" title="موسم الرياض"></div>
+            <div class="partner-item"><img src="partners-slider/AW.jpeg" alt="Arab Women Exhibition" title="معرض المرأة العربي"></div>
+            <div class="partner-item"><img src="partners-slider/Rolls-Royce.png" alt="Rolls-Royce" title="رولز رويس"></div>
+            <div class="partner-item"><img src="partners-slider/Versace_Home.webp" alt="Versace Home" title="فيرساتشي هوم"></div>
+            <div class="partner-item"><img src="partners-slider/Dolce_&_Gabbana_Casa.png" alt="Dolce & Gabbana Casa" title="دولتشي آند غابانا كاسا"></div>
+            <div class="partner-item"><img src="partners-slider/Elie_Saab_Maison.webp" alt="Elie Saab Maison" title="إيلي صعب ميزون"></div>
+            <div class="partner-item"><img src="partners-slider/Dar_Al_Arkan.png" alt="Dar Al Arkan" title="دار الأركان"></div>
+            <div class="partner-item"><img src="partners-slider/Dar_Global.webp" alt="Dar Global" title="دار جلوبال"></div>
+            <div class="partner-item"><img src="partners-slider/Quara_Holding.png" alt="Quara Holding" title="كوارا القابضة"></div>
+            <div class="partner-item"><img src="partners-slider/ezhidar.jpg" alt="Ezdihar" title="ازدهار"></div>
+            <div class="partner-item"><img src="partners-slider/EIZO.png" alt="EIZO" title="إيزو"></div>
+            <div class="partner-item"><img src="partners-slider/Trusted_Partners.jpeg" alt="Trusted Partners" title="تراستد بارتنرز"></div>
+            <div class="partner-item"><img src="partners-slider/Qasr_Mall.jpeg" alt="Qasr Mall" title="القصر مول"></div>
+            <div class="partner-item"><img src="partners-slider/meshkati.png" alt="Meshkati" title="مشكاتي للإنارة والكهرباء"></div>
+            <div class="partner-item"><img src="partners-slider/Almudayfer.png" alt="Almudayfer" title="المديفر"></div>
+            <div class="partner-item"><img src="partners-slider/Nuchen.jpg" alt="Nuchen" title="نوشن"></div>
+            <div class="partner-item"><img src="partners-slider/Blanco.webp" alt="Blanco" title="بلانكو"></div>
+            <div class="partner-item"><img src="partners-slider/Make_Over_22.webp" alt="Make Over 22" title="ميك أوفر 22"></div>
+            <div class="partner-item"><img src="partners-slider/PLOV.webp" alt="PLOV" title="مطعم بلوف"></div>
+            <div class="partner-item"><img src="partners-slider/Gasable.png" alt="Gasable" title="غازابل"></div>
+            <div class="partner-item"><img src="partners-slider/Haboob.png" alt="Haboob" title="هبوب"></div>
+            <div class="partner-item"><img src="partners-slider/Happy_Cloud.avif" alt="Happy Cloud" title="هابي كلاود"></div>
+            <div class="partner-item"><img src="partners-slider/Smart_Code.png" alt="Smart Code" title="سمارت كود"></div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Our Team -->
     <section id="team" class="py-20 bg-gray-50 dark:bg-darker">
