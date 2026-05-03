@@ -6,96 +6,775 @@
 
   <title>مؤسسة معتز الشمري للمقاولات | Mutaz Alshammari Contracting</title>
 
-  <!-- SEO -->
   <meta name="description" content="مؤسسة معتز الشمري للمقاولات تقدم خدمات المقاولات العامة، الإنشاءات، البنية التحتية، الطرق، الجسور، التشطيبات، الأعمال الكهروميكانيكية، والتطوير العقاري في المملكة العربية السعودية." />
-  <meta name="keywords" content="مؤسسة معتز الشمري, معتز الشمري للمقاولات, مقاولات عامة, إنشاءات, بنية تحتية, طرق, جسور, تشطيبات, تطوير عقاري, السعودية, Mutaz Alshammari Contracting" />
-  <meta name="author" content="Mutaz Saud KH Alshammari Establishment" />
+  <meta name="keywords" content="مؤسسة معتز الشمري, مقاولات عامة, إنشاءات, بنية تحتية, طرق, جسور, تشطيبات, تطوير عقاري, Mutaz Alshammari Contracting" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#001F41" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="مؤسسة معتز الشمري للمقاولات" />
-  <meta property="og:description" content="خدمات مقاولات عامة وإنشاءات وبنية تحتية وتشطيبات وتطوير عقاري بمعايير احترافية." />
-  <meta property="og:image" content="https://ecode.sa/mutazsk/favicon.webp" />
+  <meta property="og:description" content="خدمات مقاولات عامة وإنشاءات وبنية تحتية وتشطيبات وتطوير عقاري." />
+  <meta property="og:image" content="https://ecode.sa/mutazsk/logo-transparent.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="ar_SA" />
 
-  <!-- Favicon -->
   <link rel="icon" href="https://ecode.sa/mutazsk/favicon.webp" type="image/webp" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Tailwind Config -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              navy: '#001F41',
-              navy2: '#062B55',
-              gold: '#C19A5B',
-              goldDark: '#A8854A',
-              concrete: '#F4F5F7',
-              text: '#1F2937'
-            }
-          },
-          fontFamily: {
-            cairo: ['Cairo', 'sans-serif']
-          },
-          boxShadow: {
-            soft: '0 16px 40px rgba(0, 31, 65, 0.08)'
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
+    :root {
+      --navy: #001F41;
+      --navy-2: #062B55;
+      --gold: #C19A5B;
+      --gold-dark: #A8854A;
+      --concrete: #F4F5F7;
+      --text: #1F2937;
+      --muted: #6B7280;
+      --white: #FFFFFF;
+      --border: #E5E7EB;
+      --shadow: 0 16px 40px rgba(0, 31, 65, 0.08);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Cairo', sans-serif;
+      font-family: "Cairo", sans-serif;
+      background: var(--concrete);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     section {
       scroll-margin-top: 90px;
     }
 
-    .hero-pattern {
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: fixed;
+      inset-inline: 0;
+      top: 0;
+      z-index: 1000;
+      background: var(--navy);
+      color: white;
+      transition: 0.25s ease;
+    }
+
+    .site-header.scrolled {
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--navy);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
+    }
+
+    .brand-logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      background: white;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 5px;
+      flex: 0 0 auto;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.9);
+      transition: 0.2s;
+    }
+
+    .site-header.scrolled .nav-link {
+      color: var(--text);
+    }
+
+    .nav-link:hover {
+      color: var(--gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .lang-btn,
+    .menu-btn {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 900;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 14px;
+      padding: 12px 22px;
+      font-weight: 900;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: white;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      color: white;
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: var(--navy);
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .mobile-menu {
+      display: none;
+      background: white;
+      color: var(--text);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 14px 0 18px;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 13px 0;
+      border-bottom: 1px solid #F1F1F1;
+      font-weight: 800;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      color: white;
+      padding: 160px 0 80px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.2;
       background-image:
-        linear-gradient(45deg, rgba(255,255,255,0.045) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(255,255,255,0.045) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.045) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.045) 75%);
+        linear-gradient(45deg, rgba(255,255,255,0.06) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,0.06) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.06) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.06) 75%);
       background-size: 42px 42px;
-      background-position: 0 0, 0 21px, 21px -21px, -21px 0px;
+      background-position: 0 0, 0 21px, 21px -21px, -21px 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(193, 154, 91, 0.16);
+      filter: blur(60px);
+      inset-inline-end: -160px;
+      top: 100px;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--gold);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 66px);
+      line-height: 1.18;
+      font-weight: 900;
+      margin-bottom: 24px;
+      max-width: 760px;
+    }
+
+    .hero p {
+      color: #D1D5DB;
+      font-size: 20px;
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-logo-card {
+      background: rgba(255,255,255,0.96);
+      border-radius: 34px;
+      padding: 44px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .stats {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 50px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-value {
+      font-size: 26px;
+      font-weight: 900;
+      color: white;
+      direction: ltr;
+    }
+
+    .stat-label {
+      color: #D1D5DB;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .bg-white {
+      background: white;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      color: var(--navy);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-line {
+      width: 80px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--gold);
+      margin: 22px auto 0;
+    }
+
+    .about-grid,
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 26px;
+    }
+
+    .why-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .about-card {
+      background: var(--concrete);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: "";
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 0;
+      width: 6px;
+      background: var(--gold);
+    }
+
+    .about-card:nth-child(2)::before {
+      background: var(--navy);
+    }
+
+    .icon-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: rgba(0, 31, 65, 0.06);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      font-size: 30px;
+    }
+
+    .card h3 {
+      color: var(--navy);
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      min-height: 280px;
+    }
+
+    .sectors-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .sector-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      color: white;
+      min-height: 250px;
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      align-items: end;
+    }
+
+    .sector-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,0.08) 25%, transparent 25%);
+      background-size: 36px 36px;
+    }
+
+    .sector-icon {
+      position: absolute;
+      top: 24px;
+      inset-inline-end: 24px;
+      opacity: 0.18;
+      font-size: 70px;
+    }
+
+    .sector-content {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.96);
+      color: var(--navy);
+      border-radius: 18px;
+      padding: 18px;
+      width: 100%;
+    }
+
+    .sector-category {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .sector-title {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    .number-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: var(--gold);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .cta {
+      background: white;
+    }
+
+    .cta-box {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      color: white;
+      border-radius: 34px;
+      padding: 54px 28px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0, 31, 65, 0.18);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .cta-box p {
+      color: #D1D5DB;
+      max-width: 680px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--navy);
+    }
+
+    .btn-white:hover {
+      background: #F3F4F6;
+    }
+
+    .footer {
+      background: var(--navy);
+      color: #D1D5DB;
+      border-top: 4px solid var(--gold);
+      padding: 54px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 1fr;
+      gap: 44px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: white;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      width: 58px;
+      height: 58px;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--gold);
+      padding: 5px;
+    }
+
+    .footer p,
+    .footer li {
+      font-size: 14px;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer li {
+      margin-bottom: 12px;
+    }
+
+    .footer a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 40px;
+      padding-top: 22px;
+      font-size: 14px;
+    }
+
+    .gold-text {
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      inset-inline-start: 24px;
+      z-index: 999;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+      transition: 0.2s;
+    }
+
+    .floating-whatsapp:hover {
+      transform: scale(1.08);
+      background: #128C7E;
+    }
+
+    html[dir="ltr"] .floating-whatsapp {
+      inset-inline-start: auto;
+      inset-inline-end: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .nav-menu,
+      .desktop-contact {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-logo-card {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sectors-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .navbar {
+        height: 76px;
+      }
+
+      .brand-logo {
+        width: 50px;
+        height: 50px;
+      }
+
+      .brand-title {
+        font-size: 15px;
+      }
+
+      .brand-subtitle {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 130px 0 60px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .stats,
+      .about-grid,
+      .why-grid,
+      .services-grid,
+      .sectors-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-actions,
+      .cta-actions {
+        width: 100%;
+      }
+
+      .floating-whatsapp {
+        width: 56px;
+        height: 56px;
+        font-size: 26px;
+        bottom: 18px;
+        inset-inline-start: 18px;
+      }
+
+      html[dir="ltr"] .floating-whatsapp {
+        inset-inline-end: 18px;
+      }
     }
   </style>
 
-  <!-- React Import Map -->
-  <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@18.2.0",
-        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-        "lucide-react": "https://esm.sh/lucide-react@0.292.0"
-      }
-    }
-  </script>
-
-  <!-- Babel: مناسب للتجربة أو صفحة HTML واحدة. للإنتاج الأفضل تحويله لاحقاً إلى Vite React -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <!-- Schema.org -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -111,779 +790,405 @@
   </script>
 </head>
 
-<body class="bg-brand-concrete text-brand-text">
+<body>
 
-  <div id="root">
-    <div style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:#001F41;">
-      <div style="text-align:center;">
-        <img src="https://ecode.sa/mutazsk/favicon.webp" alt="Mutaz Alshammari Contracting Logo" style="width:140px;height:auto;margin:0 auto 18px;" />
-        <h2 style="color:#C19A5B;font-family:'Cairo',sans-serif;font-size:24px;font-weight:800;">
-          جاري تحميل الموقع...
-        </h2>
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar">
+        <a href="#home" class="brand">
+          <div class="brand-logo">
+            <img src="https://ecode.sa/mutazsk/favicon.webp" alt="شعار مؤسسة معتز الشمري للمقاولات" onerror="this.src='https://ecode.sa/mutazsk/favicon.webp'">
+          </div>
+          <div>
+            <div class="brand-title" data-ar="مؤسسة معتز الشمري" data-en="Mutaz Alshammari">مؤسسة معتز الشمري</div>
+            <div class="brand-subtitle" data-ar="للمقاولات" data-en="Contracting">للمقاولات</div>
+          </div>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+          <li><a class="nav-link" href="#about" data-ar="من نحن" data-en="About">من نحن</a></li>
+          <li><a class="nav-link" href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+          <li><a class="nav-link" href="#sectors" data-ar="مجالات العمل" data-en="Work Fields">مجالات العمل</a></li>
+          <li><a class="nav-link" href="#why" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="lang-btn" id="langBtn" type="button">EN</button>
+          <a class="btn btn-gold desktop-contact whatsapp-link" href="#" target="_blank" rel="noreferrer" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+          <button class="menu-btn" id="menuBtn" type="button">☰</button>
+        </div>
+      </nav>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+        <a href="#about" data-ar="من نحن" data-en="About">من نحن</a>
+        <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+        <a href="#sectors" data-ar="مجالات العمل" data-en="Work Fields">مجالات العمل</a>
+        <a href="#why" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a>
+        <a class="whatsapp-link" href="#" target="_blank" rel="noreferrer" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <script type="text/babel" data-type="module">
-    import React, { useState, useEffect } from 'react';
-    import { createRoot } from 'react-dom/client';
-    import {
-      Building2,
-      Wrench,
-      HardHat,
-      Cable,
-      MapPin,
-      Phone,
-      Globe,
-      Menu,
-      X,
-      CheckCircle2,
-      ChevronRight,
-      MessageCircle,
-      Home,
-      Target,
-      Users,
-      Briefcase,
-      ShieldCheck,
-      Ruler,
-      Hammer,
-      Factory,
-      Landmark,
-      ArrowUpRight
-    } from 'lucide-react';
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow" data-ar="مقاولات عامة | بنية تحتية | تطوير عقاري" data-en="General Contracting | Infrastructure | Real Estate Development">
+              مقاولات عامة | بنية تحتية | تطوير عقاري
+            </div>
 
-    const LOGO_URL = 'https://ecode.sa/mutazsk/favicon.webp';
-    const FAVICON_URL = 'https://ecode.sa/mutazsk/favicon.webp';
-    const WHATSAPP_NUMBER = '966503343313';
+            <h1 data-ar="مؤسسة معتز الشمري للمقاولات" data-en="Mutaz Alshammari Contracting">
+              مؤسسة معتز الشمري للمقاولات
+            </h1>
 
-    const content = {
-      ar: {
-        dir: 'rtl',
-        langLabel: 'EN',
-        nav: {
-          home: 'الرئيسية',
-          about: 'من نحن',
-          services: 'خدماتنا',
-          sectors: 'مجالات العمل',
-          why: 'لماذا نحن',
-          contact: 'تواصل معنا'
-        },
-        hero: {
-          eyebrow: 'مقاولات عامة | بنية تحتية | تطوير عقاري',
-          title: 'مؤسسة معتز الشمري للمقاولات',
-          subtitle: 'نقدم حلولاً متكاملة في الإنشاءات العامة، البنية التحتية، التشطيبات، الأعمال الكهروميكانيكية، والتطوير العقاري وفق معايير الجودة والسلامة والالتزام.',
-          cta: 'اطلب استشارة',
-          secondaryCta: 'استكشف الخدمات'
-        },
-        stats: [
-          { value: '98٪', label: 'رضا العملاء' },
-          { value: '100+', label: 'قاعدة العملاء' },
-          { value: 'المقاولات والتطوير العقاري', label: 'نطاق الخدمات' }
-        ],
-        about: {
-          title: 'من نحن',
-          subtitle: 'مؤسسة سعودية متخصصة في المقاولات العامة والتطوير العقاري، تعمل ضمن نطاق واسع من أنشطة الإنشاء والتشييد والبنية التحتية.',
-          visionTitle: 'رؤيتنا',
-          visionDesc: 'أن نكون ضمن الخيارات الموثوقة في قطاع المقاولات والتطوير العقاري في المملكة، من خلال تنفيذ أعمال إنشائية وبنية تحتية بجودة عالية ومنهجية واضحة.',
-          missionTitle: 'رسالتنا',
-          missionDesc: 'تقديم خدمات مقاولات متكاملة توازن بين الجودة، السلامة، الالتزام الزمني، والكفاءة التشغيلية، بما يحقق قيمة حقيقية للعملاء ويساهم في تطوير المشاريع بكفاءة.'
-        },
-        services: {
-          title: 'خدماتنا المتكاملة',
-          subtitle: 'نغطي مجموعة واسعة من أعمال المقاولات والإنشاءات والتطوير العقاري بما يتوافق مع أنشطة السجل التجاري.',
-          items: [
-            {
-              title: 'الإنشاءات العامة والمباني',
-              desc: 'تنفيذ المباني السكنية وغير السكنية والحكومية، المباني الجاهزة، أعمال الترميم، الهدم، وتجهيز المواقع.',
-              icon: Building2
-            },
-            {
-              title: 'الطرق والجسور والبنية التحتية',
-              desc: 'إنشاء وصيانة الطرق، الشوارع، الأرصفة، الجسور، الأنفاق، السكك الحديدية، ومهابط الطائرات.',
-              icon: Landmark
-            },
-            {
-              title: 'الشبكات والتمديدات',
-              desc: 'تمديد شبكات المياه، الصرف الصحي، الكهرباء، الاتصالات، النفط والغاز، الري، والأنابيب بمختلف أنواعها.',
-              icon: Cable
-            },
-            {
-              title: 'المحطات والمرافق المتخصصة',
-              desc: 'إنشاء وصيانة محطات الطاقة، المياه، الصرف الصحي، الاتصالات، المرافق البحرية، الموانئ، السدود والمشاريع المتخصصة.',
-              icon: Factory
-            },
-            {
-              title: 'الأعمال الكهروميكانيكية والسلامة',
-              desc: 'تركيب وصيانة أنظمة الكهرباء، التكييف، الإطفاء، الإنذار، المصاعد، الأبواب الأوتوماتيكية، الطاقة الشمسية، وأنظمة السلامة.',
-              icon: ShieldCheck
-            },
-            {
-              title: 'التشطيبات والديكور',
-              desc: 'أعمال الدهانات، السيراميك، الرخام، الحجر، الزجاج، الأسقف، العوازل، الديكورات، المطابخ، الأبواب والنوافذ.',
-              icon: Wrench
-            },
-            {
-              title: 'الأعمال المتخصصة والمعدات',
-              desc: 'تركيب السقالات، حمامات السباحة، أنظمة الرفوف، الوحدات مسبقة الشد، وتأجير معدات التشييد والبناء مع مشغل.',
-              icon: HardHat
-            },
-            {
-              title: 'التطوير العقاري',
-              desc: 'شراء وبيع وتقسيم الأراضي والعقارات، التطوير العقاري للمباني السكنية والتجارية، وإدارة المخازن ذاتية التخزين.',
-              icon: Home
-            }
-          ]
-        },
-        sectors: {
-          title: 'مجالات العمل',
-          subtitle: 'نخدم قطاعات متنوعة ضمن نطاق المقاولات العامة والبنية التحتية والتطوير العقاري.',
-          items: [
-            { title: 'المباني السكنية والتجارية', category: 'إنشاءات عامة', icon: Building2 },
-            { title: 'الطرق والجسور والأنفاق', category: 'بنية تحتية', icon: Landmark },
-            { title: 'الشبكات والمحطات', category: 'خدمات ومرافق', icon: Cable },
-            { title: 'التشطيبات والترميمات', category: 'أعمال تنفيذية', icon: Hammer }
-          ]
-        },
-        why: {
-          title: 'لماذا مؤسسة معتز الشمري؟',
-          subtitle: 'نحرص على تقديم تجربة مهنية واضحة من بداية المشروع حتى التسليم.',
-          items: [
-            {
-              title: 'نطاق خدمات واسع',
-              desc: 'تغطي المؤسسة أنشطة متعددة تشمل المباني، الطرق، الشبكات، المحطات، التشطيبات والتطوير العقاري.'
-            },
-            {
-              title: 'التزام بالجودة والسلامة',
-              desc: 'نعتمد على تنفيذ منظم يراعي جودة الأعمال ومتطلبات السلامة في مواقع العمل.'
-            },
-            {
-              title: 'مرونة في التنفيذ',
-              desc: 'القدرة على التعامل مع احتياجات متنوعة للمشاريع السكنية، التجارية، الحكومية، والبنية التحتية.'
-            }
-          ]
-        },
-        contact: {
-          title: 'هل لديك مشروع أو استفسار؟',
-          subtitle: 'تواصل معنا الآن لمناقشة احتياجك وتحديد نطاق العمل المناسب.',
-          button: 'تواصل عبر واتساب',
-          phone: 'اتصال مباشر'
-        },
-        footer: {
-          desc: 'مؤسسة سعودية متخصصة في المقاولات العامة، الإنشاءات، البنية التحتية، التشطيبات، والتطوير العقاري.',
-          legalName: 'مؤسسة معتز سعود خلف الشمري',
-          cr: 'الرقم الوطني الموحد: 7054234989',
-          rights: 'جميع الحقوق محفوظة © 2026'
-        }
-      },
-
-      en: {
-        dir: 'ltr',
-        langLabel: 'عربي',
-        nav: {
-          home: 'Home',
-          about: 'About',
-          services: 'Services',
-          sectors: 'Work Fields',
-          why: 'Why Us',
-          contact: 'Contact'
-        },
-        hero: {
-          eyebrow: 'General Contracting | Infrastructure | Real Estate Development',
-          title: 'Mutaz Alshammari Contracting',
-          subtitle: 'We provide integrated solutions in general construction, infrastructure, finishing works, electromechanical systems, and real estate development with a focus on quality, safety, and commitment.',
-          cta: 'Request Consultation',
-          secondaryCta: 'Explore Services'
-        },
-        stats: [
-          { value: '98%', label: 'Customer Satisfaction' },
-          { value: '100+', label: 'Client Base' },
-          { value: 'Contracting & Real Estate Development', label: 'Service Scope' }
-        ],
-        about: {
-          title: 'About Us',
-          subtitle: 'A Saudi establishment specialized in general contracting and real estate development, operating across a wide range of construction and infrastructure activities.',
-          visionTitle: 'Our Vision',
-          visionDesc: 'To become one of the trusted choices in the contracting and real estate development sector in Saudi Arabia through quality execution and a clear professional approach.',
-          missionTitle: 'Our Mission',
-          missionDesc: 'To deliver integrated contracting services that balance quality, safety, timeline commitment, and operational efficiency, creating real value for clients and supporting project development.'
-        },
-        services: {
-          title: 'Comprehensive Services',
-          subtitle: 'We cover a wide range of contracting, construction, infrastructure, and real estate development services.',
-          items: [
-            {
-              title: 'General Construction & Buildings',
-              desc: 'Residential, non-residential and government buildings, prefabricated buildings, restoration works, demolition, and site preparation.',
-              icon: Building2
-            },
-            {
-              title: 'Roads, Bridges & Infrastructure',
-              desc: 'Construction and maintenance of roads, streets, sidewalks, bridges, tunnels, railways, and aircraft landing areas.',
-              icon: Landmark
-            },
-            {
-              title: 'Networks & Extensions',
-              desc: 'Water, sewage, electricity, telecom, oil and gas, irrigation, and various pipeline extension works.',
-              icon: Cable
-            },
-            {
-              title: 'Stations & Specialized Facilities',
-              desc: 'Construction and maintenance of power stations, water stations, sewage plants, telecom facilities, ports, marine facilities, dams, and specialized projects.',
-              icon: Factory
-            },
-            {
-              title: 'Electromechanical & Safety Works',
-              desc: 'Installation and maintenance of electrical systems, HVAC, fire alarm and firefighting systems, elevators, automatic doors, solar energy, and safety systems.',
-              icon: ShieldCheck
-            },
-            {
-              title: 'Finishing & Decoration',
-              desc: 'Painting, ceramic, marble, stone, glass, ceilings, insulation, decoration works, kitchens, doors and windows.',
-              icon: Wrench
-            },
-            {
-              title: 'Specialized Works & Equipment',
-              desc: 'Scaffolding, swimming pools, storage rack systems, pre-stressed units, and construction equipment rental with operator.',
-              icon: HardHat
-            },
-            {
-              title: 'Real Estate Development',
-              desc: 'Buying, selling and subdividing lands and properties, development of residential and commercial buildings, and self-storage management.',
-              icon: Home
-            }
-          ]
-        },
-        sectors: {
-          title: 'Work Fields',
-          subtitle: 'We serve various sectors across general contracting, infrastructure, and real estate development.',
-          items: [
-            { title: 'Residential & Commercial Buildings', category: 'General Construction', icon: Building2 },
-            { title: 'Roads, Bridges & Tunnels', category: 'Infrastructure', icon: Landmark },
-            { title: 'Networks & Stations', category: 'Utilities', icon: Cable },
-            { title: 'Finishing & Restoration', category: 'Execution Works', icon: Hammer }
-          ]
-        },
-        why: {
-          title: 'Why Mutaz Alshammari Contracting?',
-          subtitle: 'We focus on providing a clear professional experience from project start to delivery.',
-          items: [
-            {
-              title: 'Wide Service Scope',
-              desc: 'The establishment covers multiple activities including buildings, roads, networks, stations, finishing works, and real estate development.'
-            },
-            {
-              title: 'Quality & Safety Commitment',
-              desc: 'We follow organized execution practices that consider work quality and site safety requirements.'
-            },
-            {
-              title: 'Execution Flexibility',
-              desc: 'Ability to handle various project needs across residential, commercial, governmental, and infrastructure fields.'
-            }
-          ]
-        },
-        contact: {
-          title: 'Have a project or inquiry?',
-          subtitle: 'Contact us now to discuss your requirements and define the suitable scope of work.',
-          button: 'Contact via WhatsApp',
-          phone: 'Call Now'
-        },
-        footer: {
-          desc: 'A Saudi establishment specialized in general contracting, construction, infrastructure, finishing works, and real estate development.',
-          legalName: 'MUTAZ SAUD KH ALSHAMMARI Establishment',
-          cr: 'National Number: 7054234989',
-          rights: 'All rights reserved © 2026'
-        }
-      }
-    };
-
-    function IconBox({ icon: Icon, className = '' }) {
-      return (
-        <div className={`w-16 h-16 rounded-2xl bg-brand-navy/5 flex items-center justify-center ${className}`}>
-          <Icon className="w-8 h-8 text-brand-gold" />
-        </div>
-      );
-    }
-
-    function SectionHeading({ title, subtitle }) {
-      return (
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-4">
-            {title}
-          </h2>
-          {subtitle && (
-            <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              {subtitle}
+            <p data-ar="نقدم حلولاً متكاملة في الإنشاءات العامة، البنية التحتية، التشطيبات، الأعمال الكهروميكانيكية، والتطوير العقاري وفق معايير الجودة والسلامة والالتزام." data-en="We provide integrated solutions in general construction, infrastructure, finishing works, electromechanical systems, and real estate development with a focus on quality, safety, and commitment.">
+              نقدم حلولاً متكاملة في الإنشاءات العامة، البنية التحتية، التشطيبات، الأعمال الكهروميكانيكية، والتطوير العقاري وفق معايير الجودة والسلامة والالتزام.
             </p>
-          )}
-          <div className="w-20 h-1 bg-brand-gold mx-auto rounded-full mt-6"></div>
+
+            <div class="hero-actions">
+              <a class="btn btn-gold whatsapp-link" href="#" target="_blank" rel="noreferrer" data-ar="اطلب استشارة" data-en="Request Consultation">اطلب استشارة</a>
+              <a class="btn btn-outline" href="#services" data-ar="استكشف الخدمات" data-en="Explore Services">استكشف الخدمات</a>
+            </div>
+          </div>
+
+          <div class="hero-logo-card">
+            <img src="https://ecode.sa/mutazsk/logo-transparent.png" alt="Mutaz Alshammari Contracting Logo" onerror="this.src='https://ecode.sa/mutazsk/favicon.webp'">
+          </div>
         </div>
-      );
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-value" data-ar="98٪" data-en="98%">98٪</div>
+            <div class="stat-label" data-ar="رضا العملاء" data-en="Customer Satisfaction">رضا العملاء</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">100+</div>
+            <div class="stat-label" data-ar="قاعدة العملاء" data-en="Client Base">قاعدة العملاء</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" data-ar="متكامل" data-en="Integrated">متكامل</div>
+            <div class="stat-label" data-ar="المقاولات والتطوير العقاري" data-en="Contracting & Real Estate Development">المقاولات والتطوير العقاري</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-white" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2 data-ar="من نحن" data-en="About Us">من نحن</h2>
+          <p data-ar="مؤسسة سعودية متخصصة في المقاولات العامة والتطوير العقاري، تعمل ضمن نطاق واسع من أنشطة الإنشاء والتشييد والبنية التحتية." data-en="A Saudi establishment specialized in general contracting and real estate development, operating across a wide range of construction and infrastructure activities.">
+            مؤسسة سعودية متخصصة في المقاولات العامة والتطوير العقاري، تعمل ضمن نطاق واسع من أنشطة الإنشاء والتشييد والبنية التحتية.
+          </p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="card about-card">
+            <div class="icon-box">◎</div>
+            <h3 data-ar="رؤيتنا" data-en="Our Vision">رؤيتنا</h3>
+            <p data-ar="أن نكون ضمن الخيارات الموثوقة في قطاع المقاولات والتطوير العقاري في المملكة، من خلال تنفيذ أعمال إنشائية وبنية تحتية بجودة عالية ومنهجية واضحة." data-en="To become one of the trusted choices in the contracting and real estate development sector in Saudi Arabia through quality execution and a clear professional approach.">
+              أن نكون ضمن الخيارات الموثوقة في قطاع المقاولات والتطوير العقاري في المملكة، من خلال تنفيذ أعمال إنشائية وبنية تحتية بجودة عالية ومنهجية واضحة.
+            </p>
+          </div>
+
+          <div class="card about-card">
+            <div class="icon-box">✓</div>
+            <h3 data-ar="رسالتنا" data-en="Our Mission">رسالتنا</h3>
+            <p data-ar="تقديم خدمات مقاولات متكاملة توازن بين الجودة، السلامة، الالتزام الزمني، والكفاءة التشغيلية، بما يحقق قيمة حقيقية للعملاء ويساهم في تطوير المشاريع بكفاءة." data-en="To deliver integrated contracting services that balance quality, safety, timeline commitment, and operational efficiency, creating real value for clients and supporting project development.">
+              تقديم خدمات مقاولات متكاملة توازن بين الجودة، السلامة، الالتزام الزمني، والكفاءة التشغيلية، بما يحقق قيمة حقيقية للعملاء ويساهم في تطوير المشاريع بكفاءة.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <h2 data-ar="خدماتنا المتكاملة" data-en="Comprehensive Services">خدماتنا المتكاملة</h2>
+          <p data-ar="نغطي مجموعة واسعة من أعمال المقاولات والإنشاءات والتطوير العقاري بما يتوافق مع أنشطة السجل التجاري." data-en="We cover a wide range of contracting, construction, infrastructure, and real estate development services.">
+            نغطي مجموعة واسعة من أعمال المقاولات والإنشاءات والتطوير العقاري بما يتوافق مع أنشطة السجل التجاري.
+          </p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="services-grid">
+          <div class="card service-card">
+            <div class="icon-box">▦</div>
+            <h3 data-ar="الإنشاءات العامة والمباني" data-en="General Construction & Buildings">الإنشاءات العامة والمباني</h3>
+            <p data-ar="تنفيذ المباني السكنية وغير السكنية والحكومية، المباني الجاهزة، أعمال الترميم، الهدم، وتجهيز المواقع." data-en="Residential, non-residential and government buildings, prefabricated buildings, restoration works, demolition, and site preparation.">تنفيذ المباني السكنية وغير السكنية والحكومية، المباني الجاهزة، أعمال الترميم، الهدم، وتجهيز المواقع.</p>
+          </div>
+
+          <div class="card service-card">
+            <div class="icon-box">⌁</div>
+            <h3 data-ar="الطرق والجسور والبنية التحتية" data-en="Roads, Bridges & Infrastructure">الطرق والجسور والبنية التحتية</h3>
+            <p data-ar="إنشاء وصيانة الطرق، الشوارع، الأرصفة، الجسور، الأنفاق، السكك الحديدية، ومهابط الطائرات." data-en="Construction and maintenance of roads, streets, sidewalks, bridges, tunnels, railways, and aircraft landing areas.">إنشاء وصيانة الطرق، الشوارع، الأرصفة، الجسور، الأنفاق، السكك الحديدية، ومهابط الطائرات.</p>
+          </div>
+
+          <div class="card service-card">
+            <div class="icon-box">⌬</div>
+            <h3 data-ar="الشبكات والتمديدات" data-en="Networks & Extensions">الشبكات والتمديدات</h3>
+            <p data-ar="تمديد شبكات المياه، الصرف الصحي، الكهرباء، الاتصالات، النفط والغاز، الري، والأنابيب بمختلف أنواعها." data-en="Water, sewage, electricity, telecom, oil and gas, irrigation, and various pipeline extension works.">تمديد شبكات المياه، الصرف الصحي، الكهرباء، الاتصالات، النفط والغاز، الري، والأنابيب بمختلف أنواعها.</p>
+          </div>
+
+          <div class="card service-card">
+            <div class="icon-box">▣</div>
+            <h3 data-ar="المحطات والمرافق المتخصصة" data-en="Stations & Specialized Facilities">المحطات والمرافق المتخصصة</h3>
+            <p data-ar="إنشاء وصيانة محطات الطاقة، المياه، الصرف الصحي، الاتصالات، المرافق البحرية، الموانئ، السدود والمشاريع المتخصصة." data-en="Construction and maintenance of power stations, water stations, sewage plants, telecom facilities, ports, marine facilities, dams, and specialized projects.">إنشاء وصيانة محطات الطاقة، المياه، الصرف الصحي، الاتصالات، المرافق البحرية، الموانئ، السدود والمشاريع المتخصصة.</p>
+          </div>
+
+          <div class="card service-card">
+            <div class="icon-box">⚙</div>
+            <h3 data-ar="الأعمال الكهروميكانيكية والسلامة" data-en="Electromechanical & Safety Works">الأعمال الكهروميكانيكية والسلامة</h3>
+            <p data-ar="تركيب وصيانة أنظمة الكهرباء، التكييف، الإطفاء، الإنذار، المصاعد، الأبواب الأوتوماتيكية، الطاقة الشمسية، وأنظمة السلامة." data-en="Installation and maintenance of electrical systems, HVAC, fire alarm and firefighting systems, elevators, automatic doors, solar energy, and safety systems.">تركيب وصيانة أنظمة الكهرباء، التكييف، الإطفاء، الإنذار، المصاعد، الأبواب الأوتوماتيكية، الطاقة الشمسية، وأنظمة السلامة.</p>
+          </div>
+
+          <div class="card service-card">
+            <div class="icon-box">◫</div>
+            <h3 data-ar="التشطيبات والديكور" data-en="Finishing & Decoration">التشطيبات والديكور</h3>
+            <p data-ar="أعمال الدهانات، السيراميك، الرخام، الحجر، الزجاج، الأسقف، العوازل، الديكورات، المطابخ، الأبواب والنوافذ." data-en="Painting, ceramic, marble, stone, glass, ceilings, insulation, decoration works, kitchens, doors and windows.">أعمال الدهانات، السيراميك، الرخام، الحجر، الزجاج، الأسقف، العوازل، الديكورات، المطابخ، الأبواب والنوافذ.</p>
+          </div>
+
+          <div class="card service-card">
+            <div class="icon-box">▲</div>
+            <h3 data-ar="الأعمال المتخصصة والمعدات" data-en="Specialized Works & Equipment">الأعمال المتخصصة والمعدات</h3>
+            <p data-ar="تركيب السقالات، حمامات السباحة، أنظمة الرفوف، الوحدات مسبقة الشد، وتأجير معدات التشييد والبناء مع مشغل." data-en="Scaffolding, swimming pools, storage rack systems, pre-stressed units, and construction equipment rental with operator.">تركيب السقالات، حمامات السباحة، أنظمة الرفوف، الوحدات مسبقة الشد، وتأجير معدات التشييد والبناء مع مشغل.</p>
+          </div>
+
+          <div class="card service-card">
+            <div class="icon-box">⌂</div>
+            <h3 data-ar="التطوير العقاري" data-en="Real Estate Development">التطوير العقاري</h3>
+            <p data-ar="شراء وبيع وتقسيم الأراضي والعقارات، التطوير العقاري للمباني السكنية والتجارية، وإدارة المخازن ذاتية التخزين." data-en="Buying, selling and subdividing lands and properties, development of residential and commercial buildings, and self-storage management.">شراء وبيع وتقسيم الأراضي والعقارات، التطوير العقاري للمباني السكنية والتجارية، وإدارة المخازن ذاتية التخزين.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-white" id="sectors">
+      <div class="container">
+        <div class="section-heading">
+          <h2 data-ar="مجالات العمل" data-en="Work Fields">مجالات العمل</h2>
+          <p data-ar="نخدم قطاعات متنوعة ضمن نطاق المقاولات العامة والبنية التحتية والتطوير العقاري." data-en="We serve various sectors across general contracting, infrastructure, and real estate development.">
+            نخدم قطاعات متنوعة ضمن نطاق المقاولات العامة والبنية التحتية والتطوير العقاري.
+          </p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="sectors-grid">
+          <div class="sector-card">
+            <div class="sector-icon">▦</div>
+            <div class="sector-content">
+              <div class="sector-category" data-ar="إنشاءات عامة" data-en="General Construction">إنشاءات عامة</div>
+              <div class="sector-title" data-ar="المباني السكنية والتجارية" data-en="Residential & Commercial Buildings">المباني السكنية والتجارية</div>
+            </div>
+          </div>
+
+          <div class="sector-card">
+            <div class="sector-icon">⌁</div>
+            <div class="sector-content">
+              <div class="sector-category" data-ar="بنية تحتية" data-en="Infrastructure">بنية تحتية</div>
+              <div class="sector-title" data-ar="الطرق والجسور والأنفاق" data-en="Roads, Bridges & Tunnels">الطرق والجسور والأنفاق</div>
+            </div>
+          </div>
+
+          <div class="sector-card">
+            <div class="sector-icon">⌬</div>
+            <div class="sector-content">
+              <div class="sector-category" data-ar="خدمات ومرافق" data-en="Utilities">خدمات ومرافق</div>
+              <div class="sector-title" data-ar="الشبكات والمحطات" data-en="Networks & Stations">الشبكات والمحطات</div>
+            </div>
+          </div>
+
+          <div class="sector-card">
+            <div class="sector-icon">◫</div>
+            <div class="sector-content">
+              <div class="sector-category" data-ar="أعمال تنفيذية" data-en="Execution Works">أعمال تنفيذية</div>
+              <div class="sector-title" data-ar="التشطيبات والترميمات" data-en="Finishing & Restoration">التشطيبات والترميمات</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-heading">
+          <h2 data-ar="لماذا مؤسسة معتز الشمري؟" data-en="Why Mutaz Alshammari Contracting?">لماذا مؤسسة معتز الشمري؟</h2>
+          <p data-ar="نحرص على تقديم تجربة مهنية واضحة من بداية المشروع حتى التسليم." data-en="We focus on providing a clear professional experience from project start to delivery.">
+            نحرص على تقديم تجربة مهنية واضحة من بداية المشروع حتى التسليم.
+          </p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="why-grid">
+          <div class="card">
+            <div class="number-box">1</div>
+            <h3 data-ar="نطاق خدمات واسع" data-en="Wide Service Scope">نطاق خدمات واسع</h3>
+            <p data-ar="تغطي المؤسسة أنشطة متعددة تشمل المباني، الطرق، الشبكات، المحطات، التشطيبات والتطوير العقاري." data-en="The establishment covers multiple activities including buildings, roads, networks, stations, finishing works, and real estate development.">
+              تغطي المؤسسة أنشطة متعددة تشمل المباني، الطرق، الشبكات، المحطات، التشطيبات والتطوير العقاري.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="number-box">2</div>
+            <h3 data-ar="التزام بالجودة والسلامة" data-en="Quality & Safety Commitment">التزام بالجودة والسلامة</h3>
+            <p data-ar="نعتمد على تنفيذ منظم يراعي جودة الأعمال ومتطلبات السلامة في مواقع العمل." data-en="We follow organized execution practices that consider work quality and site safety requirements.">
+              نعتمد على تنفيذ منظم يراعي جودة الأعمال ومتطلبات السلامة في مواقع العمل.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="number-box">3</div>
+            <h3 data-ar="مرونة في التنفيذ" data-en="Execution Flexibility">مرونة في التنفيذ</h3>
+            <p data-ar="القدرة على التعامل مع احتياجات متنوعة للمشاريع السكنية، التجارية، الحكومية، والبنية التحتية." data-en="Ability to handle various project needs across residential, commercial, governmental, and infrastructure fields.">
+              القدرة على التعامل مع احتياجات متنوعة للمشاريع السكنية، التجارية، الحكومية، والبنية التحتية.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" id="contact">
+      <div class="container">
+        <div class="cta-box">
+          <h2 data-ar="هل لديك مشروع أو استفسار؟" data-en="Have a project or inquiry?">هل لديك مشروع أو استفسار؟</h2>
+          <p data-ar="تواصل معنا الآن لمناقشة احتياجك وتحديد نطاق العمل المناسب." data-en="Contact us now to discuss your requirements and define the suitable scope of work.">
+            تواصل معنا الآن لمناقشة احتياجك وتحديد نطاق العمل المناسب.
+          </p>
+
+          <div class="cta-actions">
+            <a class="btn btn-gold whatsapp-link" href="#" target="_blank" rel="noreferrer" data-ar="تواصل عبر واتساب" data-en="Contact via WhatsApp">تواصل عبر واتساب</a>
+            <a class="btn btn-white" href="tel:+966503343313" dir="ltr">+966503343313</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img class="footer-logo" src="https://ecode.sa/mutazsk/logo-transparent.png" alt="Mutaz Alshammari Contracting Logo" onerror="this.src='https://ecode.sa/mutazsk/favicon.webp'">
+            <div>
+              <h3 data-ar="مؤسسة معتز الشمري" data-en="Mutaz Alshammari">مؤسسة معتز الشمري</h3>
+              <div class="gold-text" data-ar="للمقاولات" data-en="Contracting">للمقاولات</div>
+            </div>
+          </div>
+
+          <p data-ar="مؤسسة سعودية متخصصة في المقاولات العامة، الإنشاءات، البنية التحتية، التشطيبات، والتطوير العقاري." data-en="A Saudi establishment specialized in general contracting, construction, infrastructure, finishing works, and real estate development.">
+            مؤسسة سعودية متخصصة في المقاولات العامة، الإنشاءات، البنية التحتية، التشطيبات، والتطوير العقاري.
+          </p>
+
+          <p class="gold-text" style="margin-top:14px;" data-ar="مؤسسة معتز سعود خلف الشمري" data-en="MUTAZ SAUD KH ALSHAMMARI Establishment">مؤسسة معتز سعود خلف الشمري</p>
+          <p class="gold-text" dir="ltr" data-ar="الرقم الوطني الموحد: 7054234989" data-en="National Number: 7054234989">الرقم الوطني الموحد: 7054234989</p>
+        </div>
+
+        <div>
+          <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+          <ul>
+            <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+            <li><a href="#about" data-ar="من نحن" data-en="About">من نحن</a></li>
+            <li><a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+            <li><a href="#sectors" data-ar="مجالات العمل" data-en="Work Fields">مجالات العمل</a></li>
+            <li><a href="#why" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 data-ar="تواصل معنا" data-en="Contact">تواصل معنا</h4>
+          <ul>
+            <li><a href="tel:+966503343313" dir="ltr">+966503343313</a></li>
+            <li><a class="whatsapp-link" href="#" target="_blank" rel="noreferrer">WhatsApp</a></li>
+            <li data-ar="المملكة العربية السعودية" data-en="Saudi Arabia">المملكة العربية السعودية</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom" data-ar="جميع الحقوق محفوظة © 2026" data-en="All rights reserved © 2026">
+        جميع الحقوق محفوظة © 2026
+      </div>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp whatsapp-link" href="#" target="_blank" rel="noreferrer" aria-label="WhatsApp">☏</a>
+
+  <script>
+    const WHATSAPP_NUMBER = "966503343313";
+    let currentLang = "ar";
+
+    const header = document.getElementById("siteHeader");
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const langBtn = document.getElementById("langBtn");
+
+    function updateWhatsappLinks() {
+      const message =
+        currentLang === "ar"
+          ? "السلام عليكم، أود الاستفسار عن خدمات مؤسسة معتز الشمري للمقاولات."
+          : "Hello, I would like to inquire about Mutaz Alshammari Contracting services.";
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+      document.querySelectorAll(".whatsapp-link").forEach(link => {
+        link.href = url;
+      });
     }
 
-    function App() {
-      const [lang, setLang] = useState('ar');
-      const [isMenuOpen, setIsMenuOpen] = useState(false);
-      const [scrolled, setScrolled] = useState(false);
+    function setLanguage(lang) {
+      currentLang = lang;
 
-      const t = content[lang];
-      const isRtl = lang === 'ar';
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
-      const whatsappMessage = isRtl
-        ? 'السلام عليكم، أود الاستفسار عن خدمات مؤسسة معتز الشمري للمقاولات.'
-        : 'Hello, I would like to inquire about Mutaz Alshammari Contracting services.';
+      document.querySelectorAll("[data-ar][data-en]").forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
 
-      const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+      langBtn.textContent = lang === "ar" ? "EN" : "عربي";
 
-      useEffect(() => {
-        document.documentElement.dir = t.dir;
-        document.documentElement.lang = lang;
-      }, [lang, t.dir]);
+      document.title =
+        lang === "ar"
+          ? "مؤسسة معتز الشمري للمقاولات | Mutaz Alshammari Contracting"
+          : "Mutaz Alshammari Contracting | مؤسسة معتز الشمري للمقاولات";
 
-      useEffect(() => {
-        const handleScroll = () => {
-          setScrolled(window.scrollY > 40);
-        };
-
-        handleScroll();
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-      }, []);
-
-      const toggleLang = () => {
-        setLang(lang === 'ar' ? 'en' : 'ar');
-        setIsMenuOpen(false);
-      };
-
-      const navLinks = [
-        { name: t.nav.home, href: '#home' },
-        { name: t.nav.about, href: '#about' },
-        { name: t.nav.services, href: '#services' },
-        { name: t.nav.sectors, href: '#sectors' },
-        { name: t.nav.why, href: '#why' }
-      ];
-
-      return (
-        <div className="min-h-screen bg-brand-concrete text-brand-text font-cairo">
-
-          {/* Navigation */}
-          <nav className={`fixed w-full z-50 transition-all duration-300 ${
-            scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-2' : 'bg-brand-navy text-white py-4'
-          }`}>
-            <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-
-              {/* Logo */}
-              <a href="#home" className="flex items-center gap-3">
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center overflow-hidden border shadow-sm ${
-                  scrolled ? 'bg-white border-brand-gold/40' : 'bg-white border-brand-gold'
-                }`}>
-                  <img
-                    src={LOGO_URL}
-                    onError={(e) => { e.currentTarget.src = FAVICON_URL; }}
-                    alt={isRtl ? 'شعار مؤسسة معتز الشمري للمقاولات' : 'Mutaz Alshammari Contracting Logo'}
-                    className="w-full h-full object-contain p-1.5"
-                  />
-                </div>
-
-                <div className="flex flex-col">
-                  <span className={`font-extrabold text-base md:text-lg leading-tight ${
-                    scrolled ? 'text-brand-navy' : 'text-white'
-                  }`}>
-                    {isRtl ? 'مؤسسة معتز الشمري' : 'Mutaz Alshammari'}
-                  </span>
-                  <span className="text-xs md:text-sm text-brand-gold font-bold">
-                    {isRtl ? 'للمقاولات' : 'Contracting'}
-                  </span>
-                </div>
-              </a>
-
-              {/* Desktop Menu */}
-              <div className="hidden lg:flex items-center gap-8">
-                <ul className="flex items-center gap-6">
-                  {navLinks.map((link) => (
-                    <li key={link.name}>
-                      <a
-                        href={link.href}
-                        className={`text-sm font-bold hover:text-brand-gold transition-colors ${
-                          scrolled ? 'text-gray-700' : 'text-gray-100'
-                        }`}
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={toggleLang}
-                    className={`flex items-center gap-2 text-sm font-extrabold uppercase hover:text-brand-gold transition-colors ${
-                      scrolled ? 'text-brand-navy' : 'text-white'
-                    }`}
-                    aria-label="Change language"
-                  >
-                    <Globe className="w-4 h-4" />
-                    {t.langLabel}
-                  </button>
-
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="bg-brand-gold text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-brand-goldDark transition-colors shadow-sm"
-                  >
-                    {t.nav.contact}
-                  </a>
-                </div>
-              </div>
-
-              {/* Mobile Controls */}
-              <div className="lg:hidden flex items-center gap-4">
-                <button
-                  onClick={toggleLang}
-                  className={`text-sm font-extrabold uppercase ${
-                    scrolled ? 'text-brand-navy' : 'text-white'
-                  }`}
-                  aria-label="Change language"
-                >
-                  {t.langLabel}
-                </button>
-
-                <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className={scrolled ? 'text-brand-navy' : 'text-white'}
-                  aria-label="Toggle menu"
-                >
-                  {isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Menu */}
-            {isMenuOpen && (
-              <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 py-4 px-4">
-                <div className="flex flex-col gap-2">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block text-gray-800 font-bold py-3 border-b border-gray-100"
-                    >
-                      {link.name}
-                    </a>
-                  ))}
-
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-3 w-full bg-brand-navy text-white text-center py-3 rounded-xl font-bold"
-                  >
-                    {t.nav.contact}
-                  </a>
-                </div>
-              </div>
-            )}
-          </nav>
-
-          {/* Hero */}
-          <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-brand-navy overflow-hidden">
-            <div className="absolute inset-0 hero-pattern opacity-80"></div>
-
-            <div className={`absolute top-24 ${isRtl ? 'left-[-120px]' : 'right-[-120px]'} w-80 h-80 rounded-full bg-brand-gold/10 blur-3xl`}></div>
-            <div className={`absolute bottom-[-120px] ${isRtl ? 'right-[-120px]' : 'left-[-120px]'} w-96 h-96 rounded-full bg-white/10 blur-3xl`}></div>
-
-            <div className="container mx-auto px-4 md:px-8 relative z-10">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-                <div className="max-w-3xl">
-                  <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2 mb-6">
-                    <Ruler className="w-4 h-4 text-brand-gold" />
-                    <span className="text-sm font-bold text-brand-gold">{t.hero.eyebrow}</span>
-                  </div>
-
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
-                    {t.hero.title}
-                  </h1>
-
-                  <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
-                    {t.hero.subtitle}
-                  </p>
-
-                  <div className="flex flex-wrap gap-4">
-                    <a
-                      href={whatsappLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-brand-gold hover:bg-brand-goldDark text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-lg flex items-center gap-2"
-                    >
-                      <Phone className="w-5 h-5" />
-                      {t.hero.cta}
-                    </a>
-
-                    <a
-                      href="#services"
-                      className="bg-transparent border border-white/80 hover:bg-white hover:text-brand-navy text-white px-8 py-3.5 rounded-xl font-bold transition-all"
-                    >
-                      {t.hero.secondaryCta}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="hidden lg:flex justify-center">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-brand-gold/20 blur-3xl rounded-full"></div>
-                    <div className="relative bg-white/95 rounded-[2rem] p-10 shadow-2xl border border-white/40">
-                      <img
-                        src={LOGO_URL}
-                        onError={(e) => { e.currentTarget.src = FAVICON_URL; }}
-                        alt={isRtl ? 'شعار مؤسسة معتز الشمري' : 'Mutaz Alshammari Logo'}
-                        className="w-80 h-auto object-contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Stats */}
-              <div className="grid sm:grid-cols-3 gap-4 mt-16">
-                {t.stats.map((item, index) => (
-                  <div key={index} className="bg-white/10 border border-white/15 rounded-2xl p-5 backdrop-blur-sm">
-                    <div className="text-2xl font-black text-white mb-1" dir="ltr">{item.value}</div>
-                    <div className="text-sm text-gray-300 font-bold">{item.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* About */}
-          <section id="about" className="py-20 bg-white">
-            <div className="container mx-auto px-4 md:px-8">
-              <SectionHeading title={t.about.title} subtitle={t.about.subtitle} />
-
-              <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-                <div className="bg-brand-concrete p-8 rounded-3xl border border-gray-100 shadow-soft relative overflow-hidden">
-                  <div className={`absolute top-0 ${isRtl ? 'right-0' : 'left-0'} w-2 h-full bg-brand-gold`}></div>
-                  <IconBox icon={Target} className="mb-6" />
-                  <h3 className="text-2xl font-black text-brand-navy mb-4">{t.about.visionTitle}</h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">{t.about.visionDesc}</p>
-                </div>
-
-                <div className="bg-brand-concrete p-8 rounded-3xl border border-gray-100 shadow-soft relative overflow-hidden">
-                  <div className={`absolute top-0 ${isRtl ? 'right-0' : 'left-0'} w-2 h-full bg-brand-navy`}></div>
-                  <IconBox icon={CheckCircle2} className="mb-6" />
-                  <h3 className="text-2xl font-black text-brand-navy mb-4">{t.about.missionTitle}</h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">{t.about.missionDesc}</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Services */}
-          <section id="services" className="py-20 bg-brand-concrete">
-            <div className="container mx-auto px-4 md:px-8">
-              <SectionHeading title={t.services.title} subtitle={t.services.subtitle} />
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {t.services.items.map((service, index) => {
-                  const Icon = service.icon;
-                  return (
-                    <div
-                      key={index}
-                      className="bg-white p-7 rounded-3xl shadow-sm hover:shadow-soft transition-all duration-300 border border-gray-100 hover:border-brand-gold/70 group"
-                    >
-                      <IconBox icon={Icon} className="mb-6 group-hover:bg-brand-gold/10 transition-colors" />
-                      <h3 className="text-xl font-black text-brand-navy mb-3">{service.title}</h3>
-                      <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                        {service.desc}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-
-          {/* Sectors */}
-          <section id="sectors" className="py-20 bg-white">
-            <div className="container mx-auto px-4 md:px-8">
-              <SectionHeading title={t.sectors.title} subtitle={t.sectors.subtitle} />
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {t.sectors.items.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <div
-                      key={index}
-                      className="group relative overflow-hidden rounded-3xl bg-brand-navy min-h-[250px] flex items-end p-6 border border-gray-200"
-                    >
-                      <div className="absolute inset-0 hero-pattern opacity-20"></div>
-                      <div className="absolute top-6 right-6 rtl:right-auto rtl:left-6 opacity-20">
-                        <Icon className="w-28 h-28 text-white" />
-                      </div>
-                      <div className="relative z-10 bg-white/95 backdrop-blur-sm p-5 w-full rounded-2xl shadow-sm transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                        <p className="text-sm text-brand-gold font-extrabold mb-1">{item.category}</p>
-                        <h3 className="text-lg font-black text-brand-navy leading-snug">{item.title}</h3>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-
-          {/* Why Us */}
-          <section id="why" className="py-20 bg-brand-concrete">
-            <div className="container mx-auto px-4 md:px-8">
-              <SectionHeading title={t.why.title} subtitle={t.why.subtitle} />
-
-              <div className="grid md:grid-cols-3 gap-6">
-                {t.why.items.map((item, index) => (
-                  <div key={index} className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
-                    <div className="w-12 h-12 rounded-2xl bg-brand-gold text-white flex items-center justify-center font-black text-xl mb-6">
-                      {index + 1}
-                    </div>
-                    <h3 className="text-xl font-black text-brand-navy mb-3">{item.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Contact CTA */}
-          <section id="contact" className="py-20 bg-white">
-            <div className="container mx-auto px-4 md:px-8">
-              <div className="relative overflow-hidden bg-brand-navy rounded-[2rem] p-8 md:p-12 text-center shadow-2xl">
-                <div className="absolute inset-0 hero-pattern opacity-20"></div>
-                <div className="relative z-10 max-w-3xl mx-auto">
-                  <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-                    {t.contact.title}
-                  </h2>
-                  <p className="text-gray-300 leading-relaxed mb-8">
-                    {t.contact.subtitle}
-                  </p>
-
-                  <div className="flex flex-wrap justify-center gap-4">
-                    <a
-                      href={whatsappLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-brand-gold hover:bg-brand-goldDark text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-lg inline-flex items-center gap-2"
-                    >
-                      <MessageCircle className="w-5 h-5" />
-                      {t.contact.button}
-                    </a>
-
-                    <a
-                      href={`tel:+${WHATSAPP_NUMBER}`}
-                      className="bg-white hover:bg-gray-100 text-brand-navy px-8 py-3.5 rounded-xl font-bold transition-all inline-flex items-center gap-2"
-                      dir="ltr"
-                    >
-                      <Phone className="w-5 h-5" />
-                      +{WHATSAPP_NUMBER}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Footer */}
-          <footer className="bg-brand-navy text-gray-300 py-12 border-t-4 border-brand-gold">
-            <div className="container mx-auto px-4 md:px-8 grid md:grid-cols-3 gap-10">
-
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-brand-gold">
-                    <img
-                      src={LOGO_URL}
-                      onError={(e) => { e.currentTarget.src = FAVICON_URL; }}
-                      alt={isRtl ? 'شعار مؤسسة معتز الشمري' : 'Mutaz Alshammari Logo'}
-                      className="w-full h-full object-contain p-1.5"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-black text-white text-lg leading-tight">
-                      {isRtl ? 'مؤسسة معتز الشمري' : 'Mutaz Alshammari'}
-                    </h3>
-                    <p className="text-brand-gold font-bold text-sm">
-                      {isRtl ? 'للمقاولات' : 'Contracting'}
-                    </p>
-                  </div>
-                </div>
-
-                <p className="text-sm mb-4 leading-relaxed">{t.footer.desc}</p>
-                <p className="text-sm font-bold text-white mb-1">{t.footer.legalName}</p>
-                <p className="text-sm font-bold text-brand-gold" dir="ltr">{t.footer.cr}</p>
-              </div>
-
-              <div>
-                <h4 className="text-white font-black mb-6 text-lg">
-                  {isRtl ? 'روابط سريعة' : 'Quick Links'}
-                </h4>
-                <ul className="space-y-3">
-                  {navLinks.map((link) => (
-                    <li key={link.name}>
-                      <a href={link.href} className="text-sm hover:text-brand-gold transition-colors flex items-center gap-2">
-                        <ChevronRight className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-white font-black mb-6 text-lg">{t.nav.contact}</h4>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <Phone className="w-5 h-5 text-brand-gold shrink-0 mt-1" />
-                    <a href={`tel:+${WHATSAPP_NUMBER}`} className="hover:text-white inline-block" dir="ltr">
-                      +{WHATSAPP_NUMBER}
-                    </a>
-                  </li>
-
-                  <li className="flex items-start gap-3">
-                    <MessageCircle className="w-5 h-5 text-brand-gold shrink-0 mt-1" />
-                    <a href={whatsappLink} target="_blank" rel="noreferrer" className="hover:text-white inline-flex items-center gap-2">
-                      WhatsApp
-                      <ArrowUpRight className="w-4 h-4" />
-                    </a>
-                  </li>
-
-                  <li className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-brand-gold shrink-0 mt-1" />
-                    <span>{isRtl ? 'المملكة العربية السعودية' : 'Saudi Arabia'}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="container mx-auto px-4 md:px-8 mt-12 pt-8 border-t border-white/10 text-center text-sm">
-              <p>{t.footer.rights}</p>
-            </div>
-          </footer>
-
-          {/* Floating WhatsApp */}
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noreferrer"
-            className={`fixed bottom-6 ${isRtl ? 'left-6' : 'right-6'} z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-all hover:scale-110 flex items-center justify-center`}
-            title="Contact us on WhatsApp"
-            aria-label="Contact us on WhatsApp"
-          >
-            <MessageCircle className="w-8 h-8" />
-          </a>
-        </div>
-      );
+      updateWhatsappLinks();
     }
 
-    const root = createRoot(document.getElementById('root'));
-    root.render(<App />);
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("active");
+      menuBtn.textContent = mobileMenu.classList.contains("active") ? "×" : "☰";
+    });
+
+    document.querySelectorAll(".mobile-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    langBtn.addEventListener("click", () => {
+      setLanguage(currentLang === "ar" ? "en" : "ar");
+      mobileMenu.classList.remove("active");
+      menuBtn.textContent = "☰";
+    });
+
+    setLanguage("ar");
   </script>
 </body>
 </html>
