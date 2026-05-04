@@ -36,6 +36,50 @@
       --shadow: 0 16px 40px rgba(0, 31, 65, 0.08);
       --radius: 24px;
     }
+    .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 12px;
+  color: #D1D5DB;
+  font-size: 13px;
+  font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.social-links a:hover {
+  color: white;
+  border-color: var(--gold);
+  background: rgba(193, 154, 91, 0.12);
+}
+
+.social-links span {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: rgba(193, 154, 91, 0.14);
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.disabled-social {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 
     * {
       box-sizing: border-box;
@@ -1072,51 +1116,75 @@
   </main>
 
   <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">
-            <img class="footer-logo" src="https://ecode.sa/mutazsk/favicon.webp" alt="Mutaz Alshammari Contracting Logo" onerror="this.src='https://ecode.sa/mutazsk/favicon.webp'">
-            <div>
-              <h3 data-ar="مؤسسة معتز الشمري" data-en="Mutaz Alshammari">مؤسسة معتز الشمري</h3>
-              <div class="gold-text" data-ar="للمقاولات" data-en="Contracting">للمقاولات</div>
-            </div>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img class="footer-logo" src="https://ecode.sa/mutazsk/logo-transparent.png" alt="Mutaz Alshammari Contracting Logo" onerror="this.src='https://ecode.sa/mutazsk/favicon.webp'">
+          <div>
+            <h3 data-ar="مؤسسة معتز الشمري" data-en="Mutaz Alshammari">مؤسسة معتز الشمري</h3>
+            <div class="gold-text" data-ar="للمقاولات" data-en="Contracting">للمقاولات</div>
           </div>
-
-          <p data-ar="مؤسسة سعودية متخصصة في المقاولات العامة، الإنشاءات، البنية التحتية، التشطيبات، والتطوير العقاري." data-en="A Saudi establishment specialized in general contracting, construction, infrastructure, finishing works, and real estate development.">
-            مؤسسة سعودية متخصصة في المقاولات العامة، الإنشاءات، البنية التحتية، التشطيبات، والتطوير العقاري.
-          </p>
-
-          <p class="gold-text" style="margin-top:14px;" data-ar="مؤسسة معتز سعود خلف الشمري" data-en="MUTAZ SAUD KH ALSHAMMARI Establishment">مؤسسة معتز سعود خلف الشمري</p>
-          <p class="gold-text" dir="ltr" data-ar="الرقم الوطني الموحد: 7054234989" data-en="National Number: 7054234989">الرقم الوطني الموحد: 7054234989</p>
         </div>
 
-        <div>
-          <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
-          <ul>
-            <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
-            <li><a href="#about" data-ar="من نحن" data-en="About">من نحن</a></li>
-            <li><a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
-            <li><a href="#sectors" data-ar="مجالات العمل" data-en="Work Fields">مجالات العمل</a></li>
-            <li><a href="#why" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
-          </ul>
-        </div>
+        <p data-ar="مؤسسة سعودية متخصصة في المقاولات العامة، الإنشاءات، البنية التحتية، التشطيبات، والتطوير العقاري." data-en="A Saudi establishment specialized in general contracting, construction, infrastructure, finishing works, and real estate development.">
+          مؤسسة سعودية متخصصة في المقاولات العامة، الإنشاءات، البنية التحتية، التشطيبات، والتطوير العقاري.
+        </p>
 
-        <div>
-          <h4 data-ar="تواصل معنا" data-en="Contact">تواصل معنا</h4>
-          <ul>
-            <li><a href="tel:+966503343313" dir="ltr">+966503343313</a></li>
-            <li><a class="whatsapp-link" href="#" target="_blank" rel="noreferrer">WhatsApp</a></li>
-            <li data-ar="المملكة العربية السعودية" data-en="Saudi Arabia">المملكة العربية السعودية</li>
-          </ul>
-        </div>
+        <p class="gold-text" style="margin-top:14px;" data-ar="مؤسسة معتز سعود خلف الشمري" data-en="MUTAZ SAUD KH ALSHAMMARI Establishment">مؤسسة معتز سعود خلف الشمري</p>
+        <p class="gold-text" dir="ltr" data-ar="الرقم الوطني الموحد: 7054234989" data-en="National Number: 7054234989">الرقم الوطني الموحد: 7054234989</p>
       </div>
 
-      <div class="footer-bottom" data-ar="جميع الحقوق محفوظة © 2026" data-en="All rights reserved © 2026">
-        جميع الحقوق محفوظة © 2026
+      <div>
+        <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+        <ul>
+          <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+          <li><a href="#about" data-ar="من نحن" data-en="About">من نحن</a></li>
+          <li><a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+          <li><a href="#sectors" data-ar="مجالات العمل" data-en="Work Fields">مجالات العمل</a></li>
+          <li><a href="#why" data-ar="لماذا نحن" data-en="Why Us">لماذا نحن</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 data-ar="تواصل معنا" data-en="Contact">تواصل معنا</h4>
+        <ul>
+          <li><a href="tel:+966503343313" dir="ltr">+966503343313</a></li>
+          <li><a class="whatsapp-link" href="#" target="_blank" rel="noreferrer">WhatsApp</a></li>
+          <li data-ar="المملكة العربية السعودية" data-en="Saudi Arabia">المملكة العربية السعودية</li>
+        </ul>
+
+        <h4 style="margin-top:28px;" data-ar="تابعنا" data-en="Follow Us">تابعنا</h4>
+
+        <div class="social-links">
+          <a href="https://www.instagram.com/mutaz_ksa" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <span>◎</span>
+            Instagram
+          </a>
+
+          <a href="https://www.tiktok.com/@mutaz_ksa" target="_blank" rel="noreferrer" aria-label="TikTok">
+            <span>♪</span>
+            TikTok
+          </a>
+
+          <a href="https://x.com/mutaz_ksa" target="_blank" rel="noreferrer" aria-label="X">
+            <span>𝕏</span>
+            X
+          </a>
+
+          <a href="#" aria-label="LinkedIn" onclick="return false;" class="disabled-social">
+            <span>in</span>
+            LinkedIn
+          </a>
+        </div>
       </div>
     </div>
-  </footer>
+
+    <div class="footer-bottom" data-ar="جميع الحقوق محفوظة © 2026" data-en="All rights reserved © 2026">
+      جميع الحقوق محفوظة © 2026
+    </div>
+  </div>
+</footer>
 
   <a class="floating-whatsapp whatsapp-link" href="#" target="_blank" rel="noreferrer" aria-label="WhatsApp">☏</a>
 
