@@ -24,6 +24,12 @@
     <meta name="apple-mobile-web-app-title" content="Ali Pasha">
     <link rel="apple-touch-icon" href="https://ecode.sa/AliPasha/alipasha.png">
     
+    <!-- Website Favicon / App Icon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://ecode.sa/AliPasha/alipasha.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://ecode.sa/AliPasha/alipasha.png">
+    <link rel="shortcut icon" href="https://ecode.sa/AliPasha/alipasha.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ecode.sa/AliPasha/alipasha.png">
+    
     <link rel="manifest" id="my-manifest-placeholder">
 
     <!-- Tailwind CSS -->
@@ -379,7 +385,7 @@
         </div>
 
         <div class="border-t border-zinc-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-             &copy; 2025 Falafel Ali Pasha. All rights reserved.
+             &copy; 2026 Falafel Ali Pasha. All rights reserved.
         </div>
     </footer>
 
@@ -411,26 +417,28 @@
     <script>
         // --- 1. PWA Manifest ---
         const manifest = {
-            "name": "Falafel Ali Pasha",
-            "short_name": "Ali Pasha",
-            "start_url": ".",
-            "display": "standalone",
-            "background_color": "#18181b", 
-            "theme_color": "#dc2626",
-            "orientation": "portrait",
-            "icons": [
-                {
-                    "src": "https://ecode.sa/AliPasha/alipasha.png",
-                    "sizes": "192x192",
-                    "type": "image/png"
-                },
-                {
-                    "src": "https://ecode.sa/AliPasha/alipasha.png",
-                    "sizes": "512x512",
-                    "type": "image/png"
-                }
-            ]
-        };
+    "name": "Falafel Ali Pasha",
+    "short_name": "Ali Pasha",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#18181b", 
+    "theme_color": "#dc2626",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "https://ecode.sa/AliPasha/alipasha.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "https://ecode.sa/AliPasha/alipasha.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+};
         const stringManifest = JSON.stringify(manifest);
         const blob = new Blob([stringManifest], {type: 'application/json'});
         const manifestURL = URL.createObjectURL(blob);
