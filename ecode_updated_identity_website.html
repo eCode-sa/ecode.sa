@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electronic Code | eCode | شركة خدمات أعمال متكاملة</title>
+  <meta name="description" content="Electronic Code is a Saudi integrated business services company combining marketing, creative production, technology, consulting, events, exhibitions, design and fit-out." />
+  <meta name="theme-color" content="#6F63FF" />
+  <link rel="canonical" href="https://ecode.sa/" />
+
+  <!-- Fonts: Brand Guideline -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            tajawal: ['Tajawal', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif']
+          },
+          colors: {
+            lavenderLight: '#8F80FF',
+            lavenderDark: '#6F63FF',
+            skyBlue: '#49B3F1',
+            digitalBlue: '#3F87FF',
+            charcoal: '#2B2D35',
+            paper: '#F7F8FC',
+            dark: '#111827',
+            darker: '#070A12'
+          },
+          boxShadow: {
+            soft: '0 20px 55px rgba(43,45,53,.10)',
+            glow: '0 20px 70px rgba(111,99,255,.24)'
+          },
+          borderRadius: {
+            brand: '28px'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- PWA / Icons -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" href="/favicon.webp" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ecode.sa/" />
+  <meta property="og:title" content="Electronic Code | eCode" />
+  <meta property="og:description" content="شركة خدمات أعمال متكاملة تجمع بين التسويق، الإنتاج، التقنية، التصميم، والتنفيذ." />
+  <meta property="og:image" content="https://ecode.sa/favicon.webp" />
+  <meta property="og:site_name" content="eCode" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Electronic Code | eCode" />
+  <meta name="twitter:description" content="Integrated business services company combining marketing, production, technology, design and execution." />
+  <meta name="twitter:image" content="https://ecode.sa/favicon.webp" />
+
+  <style>
+    :root{
+      --brand-1:#8F80FF;
+      --brand-2:#6F63FF;
+      --brand-3:#49B3F1;
+      --brand-4:#3F87FF;
+      --charcoal:#2B2D35;
+      --paper:#F7F8FC;
+      --text-main:'Tajawal',sans-serif;
+    }
+    html[lang="en"]{--text-main:'Outfit',sans-serif;}
+    body{font-family:var(--text-main); background:var(--paper);}
+    .brand-gradient{background:linear-gradient(135deg,var(--brand-1),var(--brand-2) 48%,var(--brand-3));}
+    .brand-gradient-text{background:linear-gradient(135deg,var(--brand-2),var(--brand-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .glass{background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(111,99,255,.12);}
+    html.dark .glass{background:rgba(17,24,39,.78);border-color:rgba(255,255,255,.08);}
+    .section-kicker{display:inline-flex;align-items:center;gap:.55rem;padding:.45rem .9rem;border-radius:999px;background:rgba(111,99,255,.09);color:#6F63FF;font-weight:800;font-size:.82rem;}
+    html.dark .section-kicker{background:rgba(143,128,255,.14);color:#C4BDFF;}
+    .card{border:1px solid rgba(111,99,255,.10);border-radius:28px;background:white;box-shadow:0 12px 45px rgba(43,45,53,.055);transition:.28s ease;}
+    .card:hover{transform:translateY(-6px);box-shadow:0 22px 65px rgba(43,45,53,.11);}
+    html.dark .card{background:#111827;border-color:rgba(255,255,255,.08);box-shadow:0 12px 45px rgba(0,0,0,.20);}
+    .soft-icon{width:54px;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(143,128,255,.16),rgba(73,179,241,.16));color:#6F63FF;font-size:21px;}
+    html.dark .soft-icon{color:#BFB8FF;background:linear-gradient(135deg,rgba(143,128,255,.18),rgba(73,179,241,.14));}
+    .nav-link{position:relative;font-weight:700;color:#475569;transition:.25s ease;white-space:nowrap;}
+    html.dark .nav-link{color:#CBD5E1;}
+    .nav-link:hover{color:#6F63FF;}
+    .nav-link:after{content:"";position:absolute;bottom:-8px;right:0;width:0;height:2px;border-radius:99px;background:linear-gradient(90deg,#6F63FF,#49B3F1);transition:.25s ease;}
+    html[dir="ltr"] .nav-link:after{right:auto;left:0;}
+    .nav-link:hover:after{width:100%;}
+    .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.85rem 1.35rem;border-radius:999px;background:linear-gradient(135deg,#6F63FF,#49B3F1);color:white;font-weight:800;box-shadow:0 14px 35px rgba(111,99,255,.25);transition:.25s ease;}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 45px rgba(111,99,255,.34);}
+    .btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.85rem 1.35rem;border-radius:999px;border:1px solid rgba(111,99,255,.18);background:white;color:#2B2D35;font-weight:800;transition:.25s ease;}
+    .btn-secondary:hover{border-color:#6F63FF;color:#6F63FF;transform:translateY(-2px);}
+    html.dark .btn-secondary{background:#111827;color:#F8FAFC;border-color:rgba(255,255,255,.12);}
+    .header{position:fixed;top:0;left:0;width:100%;z-index:50;padding:14px 0;}
+    .logo-img{width:46px;height:46px;border-radius:14px;object-fit:contain;background:white;padding:4px;box-shadow:0 10px 25px rgba(111,99,255,.12);}
+    .hero-grid{background-image:linear-gradient(rgba(111,99,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(111,99,255,.05) 1px,transparent 1px);background-size:48px 48px;}
+    .orb{position:absolute;border-radius:999px;filter:blur(50px);opacity:.30;pointer-events:none;}
+    .metric{border-radius:24px;background:rgba(255,255,255,.72);border:1px solid rgba(111,99,255,.12);padding:20px;box-shadow:0 12px 35px rgba(43,45,53,.06);}
+    html.dark .metric{background:rgba(17,24,39,.72);border-color:rgba(255,255,255,.08);}
+    .portfolio-card img{transition:opacity 900ms ease, transform .4s ease;}
+    .portfolio-card:hover img{transform:scale(1.03);}
+    .tag{display:inline-flex;align-items:center;padding:.38rem .72rem;border-radius:999px;background:rgba(111,99,255,.10);color:#6F63FF;font-size:.75rem;font-weight:800;}
+    html.dark .tag{background:rgba(143,128,255,.15);color:#C4BDFF;}
+    .news-track{animation:news-scroll-rtl 38s linear infinite;}
+    html[dir="ltr"] .news-track{animation-name:news-scroll-ltr;}
+    .news-track:hover{animation-play-state:paused;}
+    @keyframes news-scroll-rtl{from{transform:translateX(0)}to{transform:translateX(50%)}}
+    @keyframes news-scroll-ltr{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .whatsapp-float{position:fixed;bottom:26px;left:26px;width:62px;height:62px;border-radius:999px;background:#25D366;color:white;display:flex;align-items:center;justify-content:center;font-size:30px;z-index:90;box-shadow:0 16px 38px rgba(37,211,102,.35);animation:pulse 2s infinite;}
+    html[dir="ltr"] .whatsapp-float{left:auto;right:26px;}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}70%{box-shadow:0 0 0 17px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+    @media(max-width:1080px){
+      .desktop-nav{display:none;}
+      .mobile-menu{display:none;position:absolute;top:86px;left:16px;right:16px;padding:18px;border-radius:24px;background:white;box-shadow:0 25px 70px rgba(43,45,53,.18);border:1px solid rgba(111,99,255,.12);}
+      html.dark .mobile-menu{background:#111827;border-color:rgba(255,255,255,.08);}
+      .mobile-menu.active{display:flex;}
+    }
+    @media(min-width:1081px){.mobile-toggle,.mobile-menu{display:none!important;}}
+  </style>
+</head>
+<body class="text-slate-800 dark:bg-darker dark:text-slate-100 transition-colors duration-300">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container mx-auto px-4">
+      <div class="glass rounded-full px-4 md:px-6 py-3 flex items-center justify-between gap-4 shadow-soft">
+        <a href="#home" class="flex items-center gap-3 shrink-0" aria-label="eCode Home">
+          <img class="logo-img" src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='/favicon.webp'">
+          <div>
+            <div class="text-xl md:text-2xl font-black leading-none text-charcoal dark:text-white" data-i18n="brand_name">eCode</div>
+            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-1" data-i18n="brand_tagline">نصنع الأثر</div>
+          </div>
+        </a>
+
+        <nav class="desktop-nav flex items-center gap-6">
+          <a class="nav-link" href="#home" data-i18n="nav_home">الرئيسية</a>
+          <a class="nav-link" href="#about" data-i18n="nav_about">من نحن</a>
+          <a class="nav-link" href="#services" data-i18n="nav_services">الخدمات</a>
+          <a class="nav-link" href="#process" data-i18n="nav_process">رحلة العميل</a>
+          <a class="nav-link" href="#portfolio" data-i18n="nav_portfolio">أعمالنا</a>
+          <a class="nav-link" href="#news" data-i18n="nav_news">الأخبار</a>
+        </nav>
+
+        <div class="flex items-center gap-2 md:gap-3">
+          <button onclick="toggleTheme()" class="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center hover:text-lavenderDark transition" aria-label="Toggle Theme">
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
+          </button>
+          <button onclick="toggleLanguage()" class="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center text-lg transition" aria-label="Switch Language">
+            <span id="lang-icon">🇬🇧</span>
+          </button>
+          <a href="https://wa.me/966503666316" target="_blank" class="btn-primary hidden md:inline-flex" data-i18n="nav_contact">تواصل معنا</a>
+          <button class="mobile-toggle w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center" onclick="document.querySelector('.mobile-menu').classList.toggle('active')" aria-label="Open Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+
+        <nav class="mobile-menu flex-col gap-4">
+          <a class="nav-link" href="#home" data-i18n="nav_home">الرئيسية</a>
+          <a class="nav-link" href="#about" data-i18n="nav_about">من نحن</a>
+          <a class="nav-link" href="#services" data-i18n="nav_services">الخدمات</a>
+          <a class="nav-link" href="#process" data-i18n="nav_process">رحلة العميل</a>
+          <a class="nav-link" href="#portfolio" data-i18n="nav_portfolio">أعمالنا</a>
+          <a class="nav-link" href="#news" data-i18n="nav_news">الأخبار</a>
+          <a href="https://wa.me/966503666316" target="_blank" class="btn-primary w-full" data-i18n="nav_contact">تواصل معنا</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden hero-grid">
+    <div class="orb top-12 right-[-80px] w-[440px] h-[440px] brand-gradient"></div>
+    <div class="orb bottom-[-120px] left-[-120px] w-[520px] h-[520px] bg-skyBlue"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="section-kicker mb-6"><i class="fa-solid fa-sparkles"></i><span data-i18n="hero_badge">شركة خدمات أعمال متكاملة</span></span>
+          <h1 class="text-5xl md:text-7xl font-black leading-[1.12] mb-6 text-charcoal dark:text-white">
+            <span data-i18n="hero_title_1">نصنع حضورك.</span><br>
+            <span class="brand-gradient-text" data-i18n="hero_title_2">نطوّر أعمالك.</span><br>
+            <span data-i18n="hero_title_3">وننفّذ فكرتك.</span>
+          </h1>
+          <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-9 max-w-2xl mb-9" data-i18n="hero_desc">
+            شركة سعودية تربط الإبداع بالتنفيذ والقياس، وتقدم خدمات أعمال متكاملة تجمع بين التسويق، الإنتاج، التقنية، التصميم، الفعاليات، والتجهيز.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#services" class="btn-primary"><i class="fa-solid fa-layer-group"></i><span data-i18n="btn_services">استكشف الخدمات</span></a>
+            <a href="#portfolio" class="btn-secondary"><i class="fa-regular fa-images"></i><span data-i18n="btn_portfolio">شاهد أعمالنا</span></a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="card p-4 md:p-5 overflow-hidden">
+            <div class="relative h-[460px] rounded-[24px] overflow-hidden bg-slate-100 dark:bg-slate-900">
+              <img src="/web1.webp" alt="eCode workspace" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80'">
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
+              <div class="absolute bottom-6 right-6 left-6 text-white">
+                <div class="text-sm font-bold opacity-90 mb-2" data-i18n="hero_visual_label">من الفكرة إلى أثر ملموس</div>
+                <div class="text-2xl font-black" data-i18n="hero_visual_title">وكالة سعودية تربط الإبداع بالتنفيذ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+        <div class="metric"><div class="text-4xl font-black brand-gradient-text">40+</div><div class="font-bold text-slate-600 dark:text-slate-300" data-i18n="metric_clients">عملاء سعداء</div></div>
+        <div class="metric"><div class="text-4xl font-black brand-gradient-text">100+</div><div class="font-bold text-slate-600 dark:text-slate-300" data-i18n="metric_projects">فعالية ومشروع</div></div>
+        <div class="metric"><div class="text-4xl font-black brand-gradient-text">24/7</div><div class="font-bold text-slate-600 dark:text-slate-300" data-i18n="metric_support">دعم متاح</div></div>
+        <div class="metric"><div class="text-4xl font-black brand-gradient-text">98%</div><div class="font-bold text-slate-600 dark:text-slate-300" data-i18n="metric_satisfaction">نسبة الرضا</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 bg-white dark:bg-dark">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-4xl mx-auto mb-14">
+        <span class="section-kicker mb-5"><i class="fa-regular fa-building"></i><span data-i18n="about_kicker">من نحن</span></span>
+        <h2 class="text-4xl md:text-5xl font-black mb-5 text-charcoal dark:text-white" data-i18n="about_title">شريك تنفيذي وإبداعي تحت مظلة رقمية واحدة</h2>
+        <p class="text-lg leading-9 text-slate-600 dark:text-slate-300" data-i18n="about_desc">
+          إلكترونيك كود شركة سعودية تقدم خدمات أعمال متكاملة تساعد العملاء على تحويل الأفكار إلى حضور قابل للتنفيذ والنمو، من التخطيط والتصميم إلى التسويق والإنتاج والتقنية والفعاليات والتجهيز.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-eye"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="vision_title">رؤيتنا</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8" data-i18n="vision_desc">أن نكون خيارًا سعوديًا موثوقًا للشركات ورواد الأعمال والجهات التي تبحث عن شريك واحد يجمع بين التفكير الإبداعي، التنفيذ العملي، والحلول المتكاملة.</p>
+        </div>
+        <div class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-bullseye"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="mission_title">رسالتنا</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8" data-i18n="mission_desc">مساعدة عملائنا على النمو والظهور بشكل أفضل من خلال خدمات مترابطة تغطي التخطيط، التصميم، التسويق، الإنتاج، التقنية، التنفيذ، والتجهيز.</p>
+        </div>
+        <div class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-handshake-angle"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="promise_title">وعدنا</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8" data-i18n="promise_desc">تجربة عمل واضحة ومنظمة، تنفيذ مرن، جودة بصرية وتشغيلية عالية، ونتائج تمنح العميل حضورًا واثقًا أمام جمهوره.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-24 bg-paper dark:bg-darker">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-4xl mx-auto mb-14">
+        <span class="section-kicker mb-5"><i class="fa-solid fa-grid-2"></i><span data-i18n="services_kicker">منظومة الخدمات</span></span>
+        <h2 class="text-4xl md:text-5xl font-black mb-5 text-charcoal dark:text-white" data-i18n="services_title">تصنيف واضح للخدمات تحت مظلة واحدة</h2>
+        <p class="text-lg leading-9 text-slate-600 dark:text-slate-300" data-i18n="services_desc">نعرض خدماتنا بلغة نتيجة: ماذا سننجز؟ ماذا سيستفيد العميل؟ وكيف سيظهر الأثر؟</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-bullhorn"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="service_marketing_title">التسويق الرقمي والإنتاج الإبداعي</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8 mb-5" data-i18n="service_marketing_desc">حملات، صناعة محتوى، إدارة سوشل ميديا، هوية بصرية، تصوير، فيديو، موشن جرافيك، وتحليل أداء.</p>
+          <span class="tag" data-i18n="service_marketing_result">زيادة الوعي وجذب عملاء جدد</span>
+        </article>
+
+        <article class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-code"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="service_tech_title">الحلول التقنية والتحول الرقمي</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8 mb-5" data-i18n="service_tech_desc">تصميم وتطوير المواقع، المنصات، التطبيقات، لوحات التحكم، تكامل الأنظمة، وأتمتة العمليات.</p>
+          <span class="tag" data-i18n="service_tech_result">أنظمة تبسط العمل وترفع الكفاءة</span>
+        </article>
+
+        <article class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-store"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="service_events_title">الفعاليات والمعارض والبوثات</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8 mb-5" data-i18n="service_events_desc">تنظيم وإدارة فعاليات، تصميم وتجهيز بوثات، تشغيل ميداني، ضيافة، إدارة تسجيل، ودعوات.</p>
+          <span class="tag" data-i18n="service_events_result">فعاليات تعكس صورة العلامة</span>
+        </article>
+
+        <article class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-compass-drafting"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="service_branding_title">الهوية البصرية والتصميم</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8 mb-5" data-i18n="service_branding_desc">شعارات، أدلة هوية، تطبيقات سوشل، قرطاسية، تغليف، زي، ونظام بصري قابل للتوسع.</p>
+          <span class="tag" data-i18n="service_branding_result">اتساق أعلى وثقة أكبر</span>
+        </article>
+
+        <article class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-couch"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="service_fitout_title">التصميم والديكور والتجهيزات</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8 mb-5" data-i18n="service_fitout_desc">تصميم داخلي، واجهات، لوحات، تعريف بصري، تجهيزات تجارية وشخصية، وربط المساحة بالهوية.</p>
+          <span class="tag" data-i18n="service_fitout_result">مساحة عملية وأنيقة</span>
+        </article>
+
+        <article class="card p-8">
+          <div class="soft-icon mb-5"><i class="fa-solid fa-chart-simple"></i></div>
+          <h3 class="text-2xl font-black mb-3" data-i18n="service_consulting_title">الاستشارات والدعم والنمو</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-8 mb-5" data-i18n="service_consulting_desc">تموضع، نماذج أعمال، حوكمة مشاريع، سياسات وإجراءات، إدارة حسابات، تقارير وتحسين مستمر.</p>
+          <span class="tag" data-i18n="service_consulting_result">قرارات أوضح ونمو قابل للقياس</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Applications -->
+  <section class="py-24 bg-white dark:bg-dark">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="section-kicker mb-5"><i class="fa-solid fa-window-restore"></i><span data-i18n="digital_kicker">التطبيقات الرقمية</span></span>
+          <h2 class="text-4xl md:text-5xl font-black mb-6 text-charcoal dark:text-white" data-i18n="digital_title">موقع، واجهات، عروض، وقوالب قابلة للتوسع</h2>
+          <p class="text-lg leading-9 text-slate-600 dark:text-slate-300 mb-8" data-i18n="digital_desc">
+            ندعم المشاريع الرقمية من مرحلة الفكرة والواجهة إلى نماذج العرض، الصفحات، القوالب، لوحات التحكم، وتجهيز المحتوى، مع أولوية واضحة لسرعة الفهم ثم الجماليات.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="flex gap-3 items-start"><i class="fa-solid fa-circle-check text-lavenderDark mt-1"></i><span data-i18n="digital_1">تصميم مواقع وصفحات هبوط</span></div>
+            <div class="flex gap-3 items-start"><i class="fa-solid fa-circle-check text-lavenderDark mt-1"></i><span data-i18n="digital_2">واجهات استخدام ولوحات تحكم</span></div>
+            <div class="flex gap-3 items-start"><i class="fa-solid fa-circle-check text-lavenderDark mt-1"></i><span data-i18n="digital_3">قوالب توسعية للمحتوى والخدمات</span></div>
+            <div class="flex gap-3 items-start"><i class="fa-solid fa-circle-check text-lavenderDark mt-1"></i><span data-i18n="digital_4">تهيئة الهوية داخل المنتجات الرقمية</span></div>
+          </div>
+        </div>
+        <div class="card p-4">
+          <img src="/digital-apps.webp" alt="Digital applications mockup" class="rounded-[24px] w-full h-[480px] object-cover" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="py-24 bg-paper dark:bg-darker">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-4xl mx-auto mb-14">
+        <span class="section-kicker mb-5"><i class="fa-solid fa-route"></i><span data-i18n="process_kicker">رحلة العميل</span></span>
+        <h2 class="text-4xl md:text-5xl font-black mb-5 text-charcoal dark:text-white" data-i18n="process_title">من أول تواصل إلى قياس الأثر</h2>
+        <p class="text-lg leading-9 text-slate-600 dark:text-slate-300" data-i18n="process_desc">مسار واضح يقلل التعقيد ويحوّل الفكرة إلى مخرجات قابلة للاستخدام والنمو.</p>
+      </div>
+
+      <div class="grid md:grid-cols-5 gap-5">
+        <div class="card p-6"><div class="text-4xl font-black brand-gradient-text mb-4">01</div><h3 class="font-black text-xl mb-2" data-i18n="step1_title">اكتشاف</h3><p class="text-sm leading-7 text-slate-600 dark:text-slate-300" data-i18n="step1_desc">فهم التحدي والهدف التجاري.</p></div>
+        <div class="card p-6"><div class="text-4xl font-black brand-gradient-text mb-4">02</div><h3 class="font-black text-xl mb-2" data-i18n="step2_title">تصميم</h3><p class="text-sm leading-7 text-slate-600 dark:text-slate-300" data-i18n="step2_desc">بناء الحل والرسالة والهوية.</p></div>
+        <div class="card p-6"><div class="text-4xl font-black brand-gradient-text mb-4">03</div><h3 class="font-black text-xl mb-2" data-i18n="step3_title">تنفيذ</h3><p class="text-sm leading-7 text-slate-600 dark:text-slate-300" data-i18n="step3_desc">تشغيل العمل وفق خطة واضحة.</p></div>
+        <div class="card p-6"><div class="text-4xl font-black brand-gradient-text mb-4">04</div><h3 class="font-black text-xl mb-2" data-i18n="step4_title">إطلاق</h3><p class="text-sm leading-7 text-slate-600 dark:text-slate-300" data-i18n="step4_desc">نشر المخرجات ومتابعة الأداء.</p></div>
+        <div class="card p-6"><div class="text-4xl font-black brand-gradient-text mb-4">05</div><h3 class="font-black text-xl mb-2" data-i18n="step5_title">قياس</h3><p class="text-sm leading-7 text-slate-600 dark:text-slate-300" data-i18n="step5_desc">تحليل النتائج والتحسين المستمر.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="py-24 bg-white dark:bg-dark">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="card p-4 order-2 lg:order-1">
+          <img src="/customer-journey.webp" alt="Customer journey" class="rounded-[24px] w-full h-[540px] object-cover" onerror="this.src='https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1200&q=80'">
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="section-kicker mb-5"><i class="fa-solid fa-award"></i><span data-i18n="why_kicker">لماذا إلكترونيك كود؟</span></span>
+          <h2 class="text-4xl md:text-5xl font-black mb-6 text-charcoal dark:text-white" data-i18n="why_title">ثقة تشغيلية، فهم محلي، وربط عملي بين الإبداع والتقنية</h2>
+          <div class="space-y-5">
+            <div class="flex gap-4"><div class="soft-icon shrink-0">01</div><div><h3 class="font-black text-xl mb-1" data-i18n="why1_title">نقطة اتصال واحدة</h3><p class="text-slate-600 dark:text-slate-300 leading-7" data-i18n="why1_desc">نخفف تعقيد إدارة عدة مزودين ونرتب مسار العمل.</p></div></div>
+            <div class="flex gap-4"><div class="soft-icon shrink-0">02</div><div><h3 class="font-black text-xl mb-1" data-i18n="why2_title">فهم السوق السعودي</h3><p class="text-slate-600 dark:text-slate-300 leading-7" data-i18n="why2_desc">نصمم الحلول بما يناسب طبيعة الجمهور والقطاع.</p></div></div>
+            <div class="flex gap-4"><div class="soft-icon shrink-0">03</div><div><h3 class="font-black text-xl mb-1" data-i18n="why3_title">تنفيذ منظم وواضح</h3><p class="text-slate-600 dark:text-slate-300 leading-7" data-i18n="why3_desc">نحدد النطاق، الميزانية، الأولويات، والجدول قبل البدء.</p></div></div>
+            <div class="flex gap-4"><div class="soft-icon shrink-0">04</div><div><h3 class="font-black text-xl mb-1" data-i18n="why4_title">ربط الإبداع بالتقنية</h3><p class="text-slate-600 dark:text-slate-300 leading-7" data-i18n="why4_desc">نحوّل التصميم والمحتوى إلى أدوات عملية قابلة للنمو.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-24 bg-paper dark:bg-darker">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-4xl mx-auto mb-14">
+        <span class="section-kicker mb-5"><i class="fa-regular fa-images"></i><span data-i18n="portfolio_kicker">نماذج من أعمالنا</span></span>
+        <h2 class="text-4xl md:text-5xl font-black mb-5 text-charcoal dark:text-white" data-i18n="portfolio_title">أعمال ومشاريع تعكس تنوع خبرتنا</h2>
+        <p class="text-lg leading-9 text-slate-600 dark:text-slate-300" data-i18n="portfolio_desc">نماذج في التسويق، الهويات، السوشل ميديا، المنصات التقنية، المعارض، البوثات، التصميم، والتجهيزات.</p>
+      </div>
+
+      <div id="portfolioGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section id="news" class="py-24 bg-white dark:bg-dark overflow-hidden">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-4xl mx-auto mb-14">
+        <span class="section-kicker mb-5"><i class="fa-regular fa-newspaper"></i><span data-i18n="news_kicker">المركز الإعلامي</span></span>
+        <h2 class="text-4xl md:text-5xl font-black mb-5 text-charcoal dark:text-white" data-i18n="news_title">آخر الأخبار والمستجدات</h2>
+        <p class="text-lg leading-9 text-slate-600 dark:text-slate-300" data-i18n="news_desc">تابع أحدث إنجازاتنا، شراكاتنا، ومشاريعنا في التسويق، التقنية، الفعاليات، التصميم، والتجهيزات.</p>
+      </div>
+      <div class="relative w-full overflow-hidden">
+        <div id="newsTrack" class="news-track flex gap-6 w-max"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 brand-gradient text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-15 hero-grid"></div>
+    <div class="container mx-auto px-6 relative z-10 text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-5" data-i18n="cta_title">هل أنت جاهز لتطوير حضورك القادم؟</h2>
+      <p class="text-lg md:text-xl leading-9 text-white/90 max-w-3xl mx-auto mb-9" data-i18n="cta_desc">فريقنا جاهز لتحويل فكرتك إلى مشروع قابل للتنفيذ، سواء في التسويق، التقنية، الهوية، الفعاليات، أو التصميم والتجهيز.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://wa.me/966503666316" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-charcoal font-black hover:scale-[1.02] transition"><i class="fa-brands fa-whatsapp text-[#25D366] text-2xl"></i><span dir="ltr">+966 503 666 316</span></a>
+        <a href="mailto:info@ecode.sa" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-charcoal/25 text-white font-black border border-white/20 hover:bg-charcoal/35 transition"><i class="fa-regular fa-envelope text-2xl"></i><span dir="ltr">info@ecode.sa</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-slate-200 dark:border-white/10">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-10 mb-12">
+        <div>
+          <a href="#home" class="flex items-center gap-3 mb-5">
+            <img class="logo-img" src="https://ecode.sa/favicon.webp" alt="eCode Logo">
+            <div>
+              <div class="text-2xl font-black text-charcoal dark:text-white">eCode</div>
+              <div class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="brand_tagline">نصنع الأثر</div>
+            </div>
+          </a>
+          <p class="text-slate-600 dark:text-slate-300 leading-8" data-i18n="footer_desc">لنصنع حضورك القادم معًا. خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-black mb-5" data-i18n="contact_title">معلومات التواصل</h3>
+          <div class="space-y-4">
+            <a class="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-lavenderDark transition" href="https://www.ecode.sa" target="_blank"><span class="soft-icon !w-11 !h-11 !rounded-2xl"><i class="fa-solid fa-globe"></i></span><span dir="ltr">www.eCode.sa</span></a>
+            <a class="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-lavenderDark transition" href="mailto:info@ecode.sa"><span class="soft-icon !w-11 !h-11 !rounded-2xl"><i class="fa-regular fa-envelope"></i></span><span dir="ltr">info@ecode.sa</span></a>
+            <a class="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-lavenderDark transition" href="tel:+966503666316"><span class="soft-icon !w-11 !h-11 !rounded-2xl"><i class="fa-solid fa-mobile-screen-button"></i></span><span dir="ltr">+966 503 666 316</span></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-black mb-5" data-i18n="follow_us">تابعنا</h3>
+          <div class="flex flex-wrap gap-3">
+            <a class="soft-icon !w-11 !h-11 hover:scale-110 transition" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a class="soft-icon !w-11 !h-11 hover:scale-110 transition" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="soft-icon !w-11 !h-11 hover:scale-110 transition" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a class="soft-icon !w-11 !h-11 hover:scale-110 transition" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a class="soft-icon !w-11 !h-11 hover:scale-110 transition" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+            <a class="soft-icon !w-11 !h-11 hover:scale-110 transition" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a class="soft-icon !w-11 !h-11 hover:scale-110 transition" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-slate-200 dark:border-white/10 pt-8 text-center text-sm text-slate-500 dark:text-slate-400" data-i18n="copyright">© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.</div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <script>
+    const translations = {
+      ar: {
+        brand_name:"eCode", brand_tagline:"نصنع الأثر",
+        nav_home:"الرئيسية", nav_about:"من نحن", nav_services:"الخدمات", nav_process:"رحلة العميل", nav_portfolio:"أعمالنا", nav_news:"الأخبار", nav_contact:"تواصل معنا",
+        hero_badge:"شركة خدمات أعمال متكاملة", hero_title_1:"نصنع حضورك.", hero_title_2:"نطوّر أعمالك.", hero_title_3:"وننفّذ فكرتك.",
+        hero_desc:"شركة سعودية تربط الإبداع بالتنفيذ والقياس، وتقدم خدمات أعمال متكاملة تجمع بين التسويق، الإنتاج، التقنية، التصميم، الفعاليات، والتجهيز.",
+        btn_services:"استكشف الخدمات", btn_portfolio:"شاهد أعمالنا", hero_visual_label:"من الفكرة إلى أثر ملموس", hero_visual_title:"وكالة سعودية تربط الإبداع بالتنفيذ",
+        metric_clients:"عملاء سعداء", metric_projects:"فعالية ومشروع", metric_support:"دعم متاح", metric_satisfaction:"نسبة الرضا",
+        about_kicker:"من نحن", about_title:"شريك تنفيذي وإبداعي تحت مظلة رقمية واحدة",
+        about_desc:"إلكترونيك كود شركة سعودية تقدم خدمات أعمال متكاملة تساعد العملاء على تحويل الأفكار إلى حضور قابل للتنفيذ والنمو، من التخطيط والتصميم إلى التسويق والإنتاج والتقنية والفعاليات والتجهيز.",
+        vision_title:"رؤيتنا", vision_desc:"أن نكون خيارًا سعوديًا موثوقًا للشركات ورواد الأعمال والجهات التي تبحث عن شريك واحد يجمع بين التفكير الإبداعي، التنفيذ العملي، والحلول المتكاملة.",
+        mission_title:"رسالتنا", mission_desc:"مساعدة عملائنا على النمو والظهور بشكل أفضل من خلال خدمات مترابطة تغطي التخطيط، التصميم، التسويق، الإنتاج، التقنية، التنفيذ، والتجهيز.",
+        promise_title:"وعدنا", promise_desc:"تجربة عمل واضحة ومنظمة، تنفيذ مرن، جودة بصرية وتشغيلية عالية، ونتائج تمنح العميل حضورًا واثقًا أمام جمهوره.",
+        services_kicker:"منظومة الخدمات", services_title:"تصنيف واضح للخدمات تحت مظلة واحدة", services_desc:"نعرض خدماتنا بلغة نتيجة: ماذا سننجز؟ ماذا سيستفيد العميل؟ وكيف سيظهر الأثر؟",
+        service_marketing_title:"التسويق الرقمي والإنتاج الإبداعي", service_marketing_desc:"حملات، صناعة محتوى، إدارة سوشل ميديا، هوية بصرية، تصوير، فيديو، موشن جرافيك، وتحليل أداء.", service_marketing_result:"زيادة الوعي وجذب عملاء جدد",
+        service_tech_title:"الحلول التقنية والتحول الرقمي", service_tech_desc:"تصميم وتطوير المواقع، المنصات، التطبيقات، لوحات التحكم، تكامل الأنظمة، وأتمتة العمليات.", service_tech_result:"أنظمة تبسط العمل وترفع الكفاءة",
+        service_events_title:"الفعاليات والمعارض والبوثات", service_events_desc:"تنظيم وإدارة فعاليات، تصميم وتجهيز بوثات، تشغيل ميداني، ضيافة، إدارة تسجيل، ودعوات.", service_events_result:"فعاليات تعكس صورة العلامة",
+        service_branding_title:"الهوية البصرية والتصميم", service_branding_desc:"شعارات، أدلة هوية، تطبيقات سوشل، قرطاسية، تغليف، زي، ونظام بصري قابل للتوسع.", service_branding_result:"اتساق أعلى وثقة أكبر",
+        service_fitout_title:"التصميم والديكور والتجهيزات", service_fitout_desc:"تصميم داخلي، واجهات، لوحات، تعريف بصري، تجهيزات تجارية وشخصية، وربط المساحة بالهوية.", service_fitout_result:"مساحة عملية وأنيقة",
+        service_consulting_title:"الاستشارات والدعم والنمو", service_consulting_desc:"تموضع، نماذج أعمال، حوكمة مشاريع، سياسات وإجراءات، إدارة حسابات، تقارير وتحسين مستمر.", service_consulting_result:"قرارات أوضح ونمو قابل للقياس",
+        digital_kicker:"التطبيقات الرقمية", digital_title:"موقع، واجهات، عروض، وقوالب قابلة للتوسع",
+        digital_desc:"ندعم المشاريع الرقمية من مرحلة الفكرة والواجهة إلى نماذج العرض، الصفحات، القوالب، لوحات التحكم، وتجهيز المحتوى، مع أولوية واضحة لسرعة الفهم ثم الجماليات.",
+        digital_1:"تصميم مواقع وصفحات هبوط", digital_2:"واجهات استخدام ولوحات تحكم", digital_3:"قوالب توسعية للمحتوى والخدمات", digital_4:"تهيئة الهوية داخل المنتجات الرقمية",
+        process_kicker:"رحلة العميل", process_title:"من أول تواصل إلى قياس الأثر", process_desc:"مسار واضح يقلل التعقيد ويحوّل الفكرة إلى مخرجات قابلة للاستخدام والنمو.",
+        step1_title:"اكتشاف", step1_desc:"فهم التحدي والهدف التجاري.", step2_title:"تصميم", step2_desc:"بناء الحل والرسالة والهوية.", step3_title:"تنفيذ", step3_desc:"تشغيل العمل وفق خطة واضحة.", step4_title:"إطلاق", step4_desc:"نشر المخرجات ومتابعة الأداء.", step5_title:"قياس", step5_desc:"تحليل النتائج والتحسين المستمر.",
+        why_kicker:"لماذا إلكترونيك كود؟", why_title:"ثقة تشغيلية، فهم محلي، وربط عملي بين الإبداع والتقنية",
+        why1_title:"نقطة اتصال واحدة", why1_desc:"نخفف تعقيد إدارة عدة مزودين ونرتب مسار العمل.", why2_title:"فهم السوق السعودي", why2_desc:"نصمم الحلول بما يناسب طبيعة الجمهور والقطاع.", why3_title:"تنفيذ منظم وواضح", why3_desc:"نحدد النطاق، الميزانية، الأولويات، والجدول قبل البدء.", why4_title:"ربط الإبداع بالتقنية", why4_desc:"نحوّل التصميم والمحتوى إلى أدوات عملية قابلة للنمو.",
+        portfolio_kicker:"نماذج من أعمالنا", portfolio_title:"أعمال ومشاريع تعكس تنوع خبرتنا", portfolio_desc:"نماذج في التسويق، الهويات، السوشل ميديا، المنصات التقنية، المعارض، البوثات، التصميم، والتجهيزات.",
+        news_kicker:"المركز الإعلامي", news_title:"آخر الأخبار والمستجدات", news_desc:"تابع أحدث إنجازاتنا، شراكاتنا، ومشاريعنا في التسويق، التقنية، الفعاليات، التصميم، والتجهيزات.",
+        cta_title:"هل أنت جاهز لتطوير حضورك القادم؟", cta_desc:"فريقنا جاهز لتحويل فكرتك إلى مشروع قابل للتنفيذ، سواء في التسويق، التقنية، الهوية، الفعاليات، أو التصميم والتجهيز.",
+        footer_desc:"لنصنع حضورك القادم معًا. خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.", contact_title:"معلومات التواصل", follow_us:"تابعنا", copyright:"© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة."
+      },
+      en: {
+        brand_name:"eCode", brand_tagline:"Innovate Impact",
+        nav_home:"Home", nav_about:"About", nav_services:"Services", nav_process:"Client Journey", nav_portfolio:"Portfolio", nav_news:"News", nav_contact:"Contact Us",
+        hero_badge:"Integrated Business Services Company", hero_title_1:"We Build Your Presence.", hero_title_2:"We Grow Your Business.", hero_title_3:"We Execute Your Vision.",
+        hero_desc:"A Saudi company connecting creativity, execution, and measurement through integrated business services across marketing, production, technology, design, events, and fit-out.",
+        btn_services:"Explore Services", btn_portfolio:"View Our Work", hero_visual_label:"From Idea to Tangible Impact", hero_visual_title:"A Saudi agency connecting creativity with execution",
+        metric_clients:"Happy Clients", metric_projects:"Events & Projects", metric_support:"Available Support", metric_satisfaction:"Satisfaction Rate",
+        about_kicker:"About Us", about_title:"An execution and creative partner under one digital umbrella",
+        about_desc:"Electronic Code is a Saudi company providing integrated business services that help clients turn ideas into scalable, executable presence, from planning and design to marketing, production, technology, events, and fit-out.",
+        vision_title:"Our Vision", vision_desc:"To become a trusted Saudi choice for companies, entrepreneurs, and organizations looking for one partner that combines creative thinking, practical execution, and integrated solutions.",
+        mission_title:"Our Mission", mission_desc:"To help our clients grow and present themselves better through connected services covering planning, design, marketing, production, technology, execution, and fit-out.",
+        promise_title:"Our Promise", promise_desc:"A clear and organized working experience, flexible execution, strong visual and operational quality, and outcomes that give clients a confident presence.",
+        services_kicker:"Service Ecosystem", services_title:"Clear service categories under one umbrella", services_desc:"We present services through outcomes: what will be delivered, what the client gains, and how impact appears.",
+        service_marketing_title:"Digital Marketing & Creative Production", service_marketing_desc:"Campaigns, content creation, social media management, visual identity, photography, video, motion graphics, and performance analysis.", service_marketing_result:"More awareness and new leads",
+        service_tech_title:"Technology & Digital Transformation", service_tech_desc:"Websites, platforms, applications, dashboards, integrations, and workflow automation.", service_tech_result:"Systems that simplify work",
+        service_events_title:"Events, Exhibitions & Booths", service_events_desc:"Event management, booth design and fit-out, field operations, hospitality, registration, and invitations.", service_events_result:"Events that reflect the brand",
+        service_branding_title:"Visual Identity & Design", service_branding_desc:"Logos, brand guidelines, social applications, stationery, packaging, uniforms, and scalable visual systems.", service_branding_result:"More consistency and trust",
+        service_fitout_title:"Interior Design, Décor & Fit-Out", service_fitout_desc:"Interior design, facades, signage, visual identification, commercial and personal fit-outs, and brand-space alignment.", service_fitout_result:"Practical and elegant spaces",
+        service_consulting_title:"Consulting, Support & Growth", service_consulting_desc:"Positioning, business models, project governance, policies and procedures, account management, reports, and continuous improvement.", service_consulting_result:"Clearer decisions and measurable growth",
+        digital_kicker:"Digital Applications", digital_title:"Websites, interfaces, decks, and scalable templates",
+        digital_desc:"We support digital projects from idea and interface to presentation models, pages, templates, dashboards, and content preparation, prioritizing clarity before aesthetics.",
+        digital_1:"Websites and landing pages", digital_2:"User interfaces and dashboards", digital_3:"Scalable content and service templates", digital_4:"Brand application inside digital products",
+        process_kicker:"Client Journey", process_title:"From first contact to impact measurement", process_desc:"A clear path that reduces complexity and turns ideas into usable, scalable outputs.",
+        step1_title:"Discover", step1_desc:"Understand the challenge and business goal.", step2_title:"Design", step2_desc:"Build the solution, message, and identity.", step3_title:"Execute", step3_desc:"Run the work through a clear plan.", step4_title:"Launch", step4_desc:"Publish outputs and monitor performance.", step5_title:"Measure", step5_desc:"Analyze results and improve continuously.",
+        why_kicker:"Why eCode?", why_title:"Operational trust, local understanding, and practical connection between creativity and technology",
+        why1_title:"One Point of Contact", why1_desc:"We reduce the complexity of managing multiple vendors and organize the work path.", why2_title:"Saudi Market Understanding", why2_desc:"We design solutions that fit the audience, sector, and local context.", why3_title:"Clear Organized Execution", why3_desc:"We define scope, budget, priorities, and timeline before execution begins.", why4_title:"Creativity Connected with Technology", why4_desc:"We turn design and content into practical tools built for growth.",
+        portfolio_kicker:"Selected Work", portfolio_title:"Projects that reflect our diverse experience", portfolio_desc:"Selected work across marketing, branding, social media, digital platforms, exhibitions, booths, design, and fit-out.",
+        news_kicker:"Media Center", news_title:"Latest News & Updates", news_desc:"Follow our latest achievements, partnerships, and projects across marketing, technology, events, design, and fit-out.",
+        cta_title:"Ready to Build Your Next Presence?", cta_desc:"Our team is ready to turn your idea into an executable project, whether in marketing, technology, branding, events, or design and fit-out.",
+        footer_desc:"Let’s build your next presence together. Integrated business services covering marketing, production, technology, events, design, and fit-out.", contact_title:"Contact Info", follow_us:"Follow Us", copyright:"© 2026 Electronic Code Company. All rights reserved."
+      }
+    };
+
+    const portfolioItems = [
+      {tagAr:"معارض",tagEn:"Exhibitions",titleAr:"تصميم وتجهيز بوث لمعرض LEAP",titleEn:"Booth Design & Fit-Out for LEAP",descAr:"تصميم وتجهيز بوث احترافي للمشاركة في معرض LEAP، بهوية عصرية وتجربة عرض تعكس حضور العلامة التجارية داخل المعرض.",descEn:"A professional booth design and fit-out for LEAP with a modern identity and brand-focused visitor experience.",img:"/both_1/both1.webp"},
+      {tagAr:"معارض",tagEn:"Exhibitions",titleAr:"تصميم بوث لأحد عملائنا في معرض متخصص",titleEn:"Booth Design for a Specialized Exhibition",descAr:"تصميم وتنفيذ بوث مخصص يبرز الهوية البصرية ويقدم تجربة عرض احترافية وجاذبة للزوار.",descEn:"Customized booth design and execution focused on visual identity and an engaging visitor experience.",img:"/both_2/both1.webp"},
+      {tagAr:"هوية بصرية",tagEn:"Branding",titleAr:"هوية بصرية متكاملة لعلامة أزياء فاخرة",titleEn:"Complete Visual Identity for a Luxury Fashion Brand",descAr:"هوية راقية بطابع تحريري فاخر تجعل تفاصيل المنتج وخاماته العنصر الأبرز في التجربة البصرية.",descEn:"A refined editorial identity that lets the product details and fabrics remain the core visual focus.",img:"/blueeyes/bost1.webp"},
+      {tagAr:"سوشل ميديا",tagEn:"Social Media",titleAr:"إدارة حسابات السوشل ميديا لمطعم علي باشا",titleEn:"Social Media Management for Ali Pasha",descAr:"تصميم بوستات، تصوير منتجات، وتجهيز محتوى يعكس جودة المطعم وهويته.",descEn:"Post design, product photography, and content preparation reflecting the restaurant’s quality and identity.",img:"/Alipasha_post/Alipasha_1.webp"},
+      {tagAr:"هوية وتسويق",tagEn:"Branding & Marketing",titleAr:"هوية بصرية وإدارة سوشل ميديا لمؤسسة مقاولات",titleEn:"Brand Identity & Social Media for Contracting",descAr:"تطوير هوية احترافية ومحتوى يعكس موثوقية المؤسسة وخبرتها في قطاع المقاولات.",descEn:"A professional identity and content system reflecting reliability and contracting expertise.",img:"/mutaz/bost1.webp"},
+      {tagAr:"هوية وسوشل",tagEn:"Branding & Social",titleAr:"هوية وتصاميم سوشل ميديا لمنصة DutiesBook",titleEn:"Branding & Social Designs for DutiesBook",descAr:"محتوى وهوية لمنصة توحد محادثات العملاء في صندوق وارد واحد لتحسين سرعة الاستجابة.",descEn:"Branding and content for a unified inbox platform that improves response speed and customer experience.",img:"/DutiesBook/bost1.webp"},
+      {tagAr:"هوية وسوشل",tagEn:"Branding & Social",titleAr:"هوية وتصاميم سوشل ميديا لمنصة AndroHealth",titleEn:"Branding & Social Designs for AndroHealth",descAr:"محتوى بصري وهوية رقمية لمنظومة معلومات صحية شاملة للمراكز والعيادات والمستشفيات.",descEn:"Visual content and digital identity for a comprehensive healthcare information system.",img:"/androhelth/bost1.webp"},
+      {tagAr:"سوشل ميديا",tagEn:"Social Media",titleAr:"تصاميم سوشل ميديا لمنصة CyanCare",titleEn:"Social Media Designs for CyanCare",descAr:"محتوى طبي هادئ يعكس الثقة وسهولة الوصول للرعاية الصحية والطب الاتصالي.",descEn:"Calm medical-style content reflecting trust and accessible telemedicine and home healthcare.",img:"/CyanCare/bost1.webp"},
+      {tagAr:"هوية متكاملة",tagEn:"Full Identity",titleAr:"هوية بصرية متكاملة لصالون وقت المقص الذهبي",titleEn:"Complete Identity for Golden Scissor Time",descAr:"هوية تشغيلية وبصرية لصالون رجالي فاخر تشمل الشعار، الألوان، الخطوط، الواجهة، الزي، والتغليف.",descEn:"A complete premium men’s salon identity covering logo, colors, typography, storefront, uniforms, and packaging.",img:"/Golden_Scissor_Time/bost1.webp"}
+    ];
+
+    const newsItems = [
+      {dateAr:"28 أبريل 2026",dateEn:"April 28, 2026",titleAr:"إطلاق الهوية البصرية الجديدة لـ eCode",titleEn:"Launch of eCode’s New Visual Identity",descAr:"أطلقنا الهوية البصرية الجديدة لتعكس توجهًا أكثر احترافية وابتكارًا وتأثيرًا.",descEn:"We launched eCode’s new identity to reflect a more professional, innovative, and impactful direction.",img:"/news/news_ecode_identity.webp"},
+      {dateAr:"مايو 2026",dateEn:"May 2026",titleAr:"توقيع مذكرة تفاهم مع مؤسسة معتز الشمري للمقاولات",titleEn:"Signing an MoU with Mutaz Alshammari Contracting",descAr:"تعاون لتعزيز الأعمال الرقمية والهوية والتواجد الإلكتروني.",descEn:"A collaboration to enhance digital works, identity, and online presence.",img:"/news/news_mutaz_ecode.webp"},
+      {dateAr:"2026",dateEn:"2026",titleAr:"تأجيل معرض LEAP 2026 إلى أغسطس القادم",titleEn:"LEAP 2026 Postponed to August",descAr:"تم تأجيل المعرض إلى 31 أغسطس - 3 سبتمبر 2026 في الرياض.",descEn:"The exhibition has been postponed to August 31 - September 3, 2026 in Riyadh.",img:"/news/leap.webp"}
+    ];
+
+    let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+    function setDirection(){
+      const html = document.documentElement;
+      const langIcon = document.getElementById('lang-icon');
+      html.setAttribute('lang', currentLang);
+      html.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+      langIcon.textContent = currentLang === 'ar' ? '🇬🇧' : '🇸🇦';
+    }
+
+    function updateContent(){
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        if(translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+      });
+      renderPortfolio();
+      renderNews();
+    }
+
+    function toggleLanguage(){
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      localStorage.setItem('userLanguage', currentLang);
+      setDirection();
+      updateContent();
+      document.querySelector('.mobile-menu')?.classList.remove('active');
+    }
+
+    function initTheme(){
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const dark = localStorage.theme === 'dark' || (!('theme' in localStorage) && prefersDark);
+      document.documentElement.classList.toggle('dark', dark);
+      document.getElementById('theme-icon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+
+    function toggleTheme(){
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      localStorage.theme = isDark ? 'dark' : 'light';
+      document.getElementById('theme-icon').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+
+    function renderPortfolio(){
+      const grid = document.getElementById('portfolioGrid');
+      if(!grid) return;
+      grid.innerHTML = portfolioItems.map(item=>{
+        const tag = currentLang === 'ar' ? item.tagAr : item.tagEn;
+        const title = currentLang === 'ar' ? item.titleAr : item.titleEn;
+        const desc = currentLang === 'ar' ? item.descAr : item.descEn;
+        return `
+          <article class="portfolio-card card overflow-hidden">
+            <div class="relative h-60 bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img src="${item.img}" alt="${title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80'">
+              <div class="absolute top-4 right-4 left-auto tag bg-white/90 backdrop-blur">${tag}</div>
+            </div>
+            <div class="p-7">
+              <h3 class="text-xl font-black mb-3">${title}</h3>
+              <p class="text-slate-600 dark:text-slate-300 leading-8 text-sm">${desc}</p>
+            </div>
+          </article>`;
+      }).join('');
+    }
+
+    function renderNews(){
+      const track = document.getElementById('newsTrack');
+      if(!track) return;
+      const doubled = [...newsItems, ...newsItems];
+      track.innerHTML = doubled.map((item, index)=>{
+        const date = currentLang === 'ar' ? item.dateAr : item.dateEn;
+        const title = currentLang === 'ar' ? item.titleAr : item.titleEn;
+        const desc = currentLang === 'ar' ? item.descAr : item.descEn;
+        return `
+          <article class="card overflow-hidden w-[330px] md:w-[380px] shrink-0" ${index>2 ? 'aria-hidden="true"' : ''}>
+            <div class="h-48 bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img src="${item.img}" alt="${title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80'">
+            </div>
+            <div class="p-7">
+              <div class="text-lavenderDark font-black text-sm mb-3 flex items-center gap-2"><i class="fa-regular fa-calendar"></i><span>${date}</span></div>
+              <h3 class="font-black text-xl mb-3 leading-8">${title}</h3>
+              <p class="text-slate-600 dark:text-slate-300 leading-8 text-sm">${desc}</p>
+            </div>
+          </article>`;
+      }).join('');
+    }
+
+    document.addEventListener('click', e=>{
+      if(e.target.closest('.mobile-menu a')) document.querySelector('.mobile-menu')?.classList.remove('active');
+    });
+
+    window.addEventListener('load', ()=>{
+      setDirection();
+      initTheme();
+      updateContent();
+      if('serviceWorker' in navigator){
+        navigator.serviceWorker.register('/service-worker.js').catch(error=>console.error('Service Worker registration failed:', error));
+      }
+    });
+  </script>
+</body>
+</html>
