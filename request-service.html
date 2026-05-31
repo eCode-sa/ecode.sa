@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب خدمة | eCode</title>
+    <meta name="description" content="اطلب خدمة من eCode وشاركنا تفاصيل مشروعك لنساعدك في التسويق، التصميم، التقنية، الاستشارات، الفعاليات، التجهيزات، أو الخدمات المخصصة.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/request-service.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecode.sa/request-service.html">
+    <meta property="og:title" content="طلب خدمة | eCode">
+    <meta property="og:description" content="شاركنا تفاصيل مشروعك وسنساعدك في تحديد الخدمة المناسبة.">
+    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:site_name" content="eCode">
+
+    <style>
+        :root {
+            --text-main: 'Cairo', sans-serif;
+        }
+
+        html[lang="en"] {
+            --text-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--text-main);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name {
+            color: #f8fafc;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline {
+            color: #94a3b8;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #475569;
+            transition: color 0.3s ease;
+        }
+
+        html.dark .nav a {
+            color: #cbd5e1;
+        }
+
+        .nav a:hover,
+        .nav a.active-link {
+            color: #4F46E5;
+        }
+
+        html.dark .nav a:hover,
+        html.dark .nav a.active-link {
+            color: #818cf8;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 32px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        }
+
+        .dark .form-card {
+            background: #0f172a;
+            border-color: #1f2937;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .input-field,
+        .select-field,
+        .textarea-field {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 18px;
+            padding: 14px 16px;
+            outline: none;
+            transition: all 0.25s ease;
+            font-weight: 600;
+        }
+
+        .dark .input-field,
+        .dark .select-field,
+        .dark .textarea-field {
+            background: #020617;
+            color: #f8fafc;
+            border-color: #1f2937;
+        }
+
+        .input-field:focus,
+        .select-field:focus,
+        .textarea-field:focus {
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+        }
+
+        .textarea-field {
+            min-height: 145px;
+            resize: vertical;
+        }
+
+        .field-label {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+
+        .dark .field-label {
+            color: #f8fafc;
+        }
+
+        .hint {
+            font-size: 0.82rem;
+            color: #64748b;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        .dark .hint {
+            color: #94a3b8;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 28px;
+            padding: 28px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .dark .info-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+            border-color: rgba(79, 70, 229, 0.35);
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .dark .icon-box {
+            background: rgba(129, 140, 248, 0.15);
+            color: #c7d2fe;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.18);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            }
+
+            html.dark .nav.active {
+                background: #0f172a;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50">
+        <div class="header-inner">
+            <a href="https://ecode.sa/" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name" data-i18n="brand_name">eCode</div>
+                    <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                </div>
+            </a>
+
+            <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav">
+                <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
+                <a href="https://ecode.sa/about.html" data-i18n="nav_about">من نحن</a>
+                <a href="https://ecode.sa/services.html" data-i18n="nav_services">الخدمات</a>
+                <a href="https://ecode.sa/request-service.html" class="active-link" data-i18n="nav_request">اطلب خدمة</a>
+                <a href="https://ecode.sa/#portfolio" data-i18n="nav_portfolio">أعمالنا</a>
+
+                <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
+                    <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+                        <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+                    </button>
+                </div>
+
+                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative pt-36 pb-16 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20 dark:opacity-10 pointer-events-none">
+            <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
+            <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">
+                طلب خدمة
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                <span data-i18n="hero_title_1">شاركنا تفاصيل مشروعك</span>
+                <br>
+                <span class="gradient-text" data-i18n="hero_title_2">ونساعدك بالحل الأنسب</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium" data-i18n="hero_desc">
+                سواء كنت تحتاج خدمة محددة أو طلب مخصص، عبئ النموذج التالي وسنحوّل التفاصيل إلى رسالة واضحة لفريق eCode عبر واتساب.
+            </p>
+        </div>
+    </section>
+
+    <!-- Request Form -->
+    <main class="pb-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+
+                <!-- Form -->
+                <div class="lg:col-span-2 form-card p-6 md:p-10">
+                    <div class="mb-8">
+                        <h2 class="text-2xl md:text-3xl font-black mb-3" data-i18n="form_title">نموذج طلب الخدمة</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="form_desc">
+                            اكتب التفاصيل المتوفرة لديك، ولا يلزم أن تكون كل المعلومات نهائية. الهدف أن نفهم احتياجك ونقترح عليك المسار المناسب.
+                        </p>
+                    </div>
+
+                    <form id="requestForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="field-label" for="clientName" data-i18n="label_name">الاسم</label>
+                            <input id="clientName" type="text" class="input-field" placeholder="مثال: أيمن المغربي" data-i18n-placeholder="ph_name" required>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="phone" data-i18n="label_phone">رقم الجوال</label>
+                            <input id="phone" type="tel" class="input-field" placeholder="05xxxxxxxx" data-i18n-placeholder="ph_phone" required>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="email" data-i18n="label_email">البريد الإلكتروني</label>
+                            <input id="email" type="email" class="input-field" placeholder="name@example.com" data-i18n-placeholder="ph_email">
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="clientType" data-i18n="label_client_type">نوع العميل</label>
+                            <select id="clientType" class="select-field" required>
+                                <option value="" data-i18n="option_select">اختر</option>
+                                <option value="فرد" data-i18n="client_individual">فرد</option>
+                                <option value="شركة / مؤسسة" data-i18n="client_company">شركة / مؤسسة</option>
+                                <option value="مشروع ناشئ" data-i18n="client_startup">مشروع ناشئ</option>
+                                <option value="جهة / منظمة" data-i18n="client_org">جهة / منظمة</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="serviceType" data-i18n="label_service">نوع الخدمة</label>
+                            <select id="serviceType" class="select-field" required>
+                                <option value="" data-i18n="option_select">اختر</option>
+                                <option value="التسويق والإنتاج" data-i18n="service_marketing">التسويق والإنتاج</option>
+                                <option value="الهوية والتصميم" data-i18n="service_branding">الهوية والتصميم</option>
+                                <option value="الخدمات التقنية" data-i18n="service_tech">الخدمات التقنية</option>
+                                <option value="الاستشارات" data-i18n="service_consulting">الاستشارات</option>
+                                <option value="الفعاليات والمعارض" data-i18n="service_events">الفعاليات والمعارض</option>
+                                <option value="التجهيزات والديكور" data-i18n="service_fitout">التجهيزات والديكور</option>
+                                <option value="خدمة شهرية" data-i18n="service_monthly">خدمة شهرية</option>
+                                <option value="طلب مخصص" data-i18n="service_custom">طلب مخصص</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="budget" data-i18n="label_budget">الميزانية التقريبية</label>
+                            <select id="budget" class="select-field">
+                                <option value="" data-i18n="option_optional">اختياري</option>
+                                <option value="أقل من 1,000 ريال" data-i18n="budget_1">أقل من 1,000 ريال</option>
+                                <option value="1,000 - 3,000 ريال" data-i18n="budget_2">1,000 - 3,000 ريال</option>
+                                <option value="3,000 - 7,000 ريال" data-i18n="budget_3">3,000 - 7,000 ريال</option>
+                                <option value="7,000 - 15,000 ريال" data-i18n="budget_4">7,000 - 15,000 ريال</option>
+                                <option value="أكثر من 15,000 ريال" data-i18n="budget_5">أكثر من 15,000 ريال</option>
+                                <option value="غير محددة بعد" data-i18n="budget_unknown">غير محددة بعد</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="timeline" data-i18n="label_timeline">متى تحتاج الخدمة؟</label>
+                            <select id="timeline" class="select-field">
+                                <option value="" data-i18n="option_optional">اختياري</option>
+                                <option value="بشكل عاجل" data-i18n="time_urgent">بشكل عاجل</option>
+                                <option value="خلال أسبوع" data-i18n="time_week">خلال أسبوع</option>
+                                <option value="خلال شهر" data-i18n="time_month">خلال شهر</option>
+                                <option value="غير مستعجل" data-i18n="time_flexible">غير مستعجل</option>
+                                <option value="حسب العرض" data-i18n="time_offer">حسب العرض</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="contactMethod" data-i18n="label_contact_method">طريقة التواصل المفضلة</label>
+                            <select id="contactMethod" class="select-field">
+                                <option value="واتساب" data-i18n="contact_whatsapp">واتساب</option>
+                                <option value="اتصال" data-i18n="contact_call">اتصال</option>
+                                <option value="بريد إلكتروني" data-i18n="contact_email">بريد إلكتروني</option>
+                            </select>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="field-label" for="projectDetails" data-i18n="label_details">تفاصيل الطلب</label>
+                            <textarea id="projectDetails" class="textarea-field" placeholder="اكتب وصف مختصر عن مشروعك، الخدمة المطلوبة، الهدف، وأي تفاصيل مهمة..." data-i18n-placeholder="ph_details" required></textarea>
+                            <p class="hint" data-i18n="details_hint">كلما كانت التفاصيل أوضح، قدرنا نساعدك بشكل أفضل.</p>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="field-label" for="notes" data-i18n="label_notes">ملاحظات إضافية</label>
+                            <textarea id="notes" class="textarea-field" placeholder="روابط، أمثلة، حسابات، مراجع، أو أي ملاحظات أخرى..." data-i18n-placeholder="ph_notes"></textarea>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <button type="submit" class="w-full px-8 py-4 rounded-full bg-[#25D366] text-white font-black text-lg hover:shadow-lg transition transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                                <span data-i18n="submit_btn">إرسال الطلب عبر واتساب</span>
+                            </button>
+
+                            <p class="hint text-center" data-i18n="submit_hint">
+                                سيتم فتح واتساب برسالة جاهزة تحتوي على بيانات الطلب، ويمكنك مراجعتها قبل الإرسال.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Side Info -->
+                <aside class="space-y-6">
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fa-solid fa-circle-check"></i></div>
+                        <h3 class="text-xl font-black mb-3" data-i18n="side_1_title">ماذا يحدث بعد الإرسال؟</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="side_1_desc">
+                            نراجع التفاصيل، نفهم الاحتياج، ثم نرد عليك بالأسئلة المهمة أو التصور المبدئي للخدمة المناسبة.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3 class="text-xl font-black mb-3" data-i18n="side_2_title">ما تعرف تختار الخدمة؟</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="side_2_desc">
+                            اختر “طلب مخصص” واكتب احتياجك، ونحن نساعدك في تحديد التصنيف والخدمة المناسبة.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="text-xl font-black mb-3" data-i18n="side_3_title">بياناتك بأمان</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="side_3_desc">
+                            يتم استخدام بياناتك فقط للتواصل معك وفهم طلبك، وفق سياسة الخصوصية الخاصة بـ eCode.
+                        </p>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Process Summary -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-5xl font-black mb-5" data-i18n="process_title">رحلة الطلب باختصار</h2>
+                <p class="text-white/90 text-lg leading-loose" data-i18n="process_desc">
+                    نرتب الطلب من أول رسالة حتى الوصول إلى عرض واضح أو خطة تنفيذ مناسبة.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="step_1_title">استقبال الطلب</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="step_1_desc">نستلم تفاصيلك ونراجع نوع الخدمة المطلوبة.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="step_2_title">فهم الاحتياج</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="step_2_desc">نسأل الأسئلة المهمة ونحدد الهدف ونطاق العمل.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="step_3_title">تقديم التصور</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="step_3_desc">نقترح الخدمة أو الباقة أو المسار المناسب.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="step_4_title">بدء التنفيذ</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="step_4_desc">بعد الاعتماد، نبدأ العمل وفق نطاق واضح ومتفق عليه.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+
+                <div class="md:w-1/3">
+                    <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
+                        <div class="logo-icon">
+                            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                        </div>
+                        <div class="logo-text">
+                            <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                            <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                        </div>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                    </p>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                                <span class="contact-text" dir="ltr">www.eCode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-text" dir="ltr">info@ecode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-text" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/terms.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+                © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const translations = {
+            ar: {
+                brand_name: "eCode",
+                brand_tagline: "تصنع الأثر",
+
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "الخدمات",
+                nav_request: "اطلب خدمة",
+                nav_portfolio: "أعمالنا",
+                nav_contact: "تواصل معنا",
+
+                hero_badge: "طلب خدمة",
+                hero_title_1: "شاركنا تفاصيل مشروعك",
+                hero_title_2: "ونساعدك بالحل الأنسب",
+                hero_desc: "سواء كنت تحتاج خدمة محددة أو طلب مخصص، عبئ النموذج التالي وسنحوّل التفاصيل إلى رسالة واضحة لفريق eCode عبر واتساب.",
+
+                form_title: "نموذج طلب الخدمة",
+                form_desc: "اكتب التفاصيل المتوفرة لديك، ولا يلزم أن تكون كل المعلومات نهائية. الهدف أن نفهم احتياجك ونقترح عليك المسار المناسب.",
+
+                label_name: "الاسم",
+                label_phone: "رقم الجوال",
+                label_email: "البريد الإلكتروني",
+                label_client_type: "نوع العميل",
+                label_service: "نوع الخدمة",
+                label_budget: "الميزانية التقريبية",
+                label_timeline: "متى تحتاج الخدمة؟",
+                label_contact_method: "طريقة التواصل المفضلة",
+                label_details: "تفاصيل الطلب",
+                label_notes: "ملاحظات إضافية",
+
+                ph_name: "مثال: أيمن المغربي",
+                ph_phone: "05xxxxxxxx",
+                ph_email: "name@example.com",
+                ph_details: "اكتب وصف مختصر عن مشروعك، الخدمة المطلوبة، الهدف، وأي تفاصيل مهمة...",
+                ph_notes: "روابط، أمثلة، حسابات، مراجع، أو أي ملاحظات أخرى...",
+
+                option_select: "اختر",
+                option_optional: "اختياري",
+
+                client_individual: "فرد",
+                client_company: "شركة / مؤسسة",
+                client_startup: "مشروع ناشئ",
+                client_org: "جهة / منظمة",
+
+                service_marketing: "التسويق والإنتاج",
+                service_branding: "الهوية والتصميم",
+                service_tech: "الخدمات التقنية",
+                service_consulting: "الاستشارات",
+                service_events: "الفعاليات والمعارض",
+                service_fitout: "التجهيزات والديكور",
+                service_monthly: "خدمة شهرية",
+                service_custom: "طلب مخصص",
+
+                budget_1: "أقل من 1,000 ريال",
+                budget_2: "1,000 - 3,000 ريال",
+                budget_3: "3,000 - 7,000 ريال",
+                budget_4: "7,000 - 15,000 ريال",
+                budget_5: "أكثر من 15,000 ريال",
+                budget_unknown: "غير محددة بعد",
+
+                time_urgent: "بشكل عاجل",
+                time_week: "خلال أسبوع",
+                time_month: "خلال شهر",
+                time_flexible: "غير مستعجل",
+                time_offer: "حسب العرض",
+
+                contact_whatsapp: "واتساب",
+                contact_call: "اتصال",
+                contact_email: "بريد إلكتروني",
+
+                details_hint: "كلما كانت التفاصيل أوضح، قدرنا نساعدك بشكل أفضل.",
+                submit_btn: "إرسال الطلب عبر واتساب",
+                submit_hint: "سيتم فتح واتساب برسالة جاهزة تحتوي على بيانات الطلب، ويمكنك مراجعتها قبل الإرسال.",
+
+                side_1_title: "ماذا يحدث بعد الإرسال؟",
+                side_1_desc: "نراجع التفاصيل، نفهم الاحتياج، ثم نرد عليك بالأسئلة المهمة أو التصور المبدئي للخدمة المناسبة.",
+                side_2_title: "ما تعرف تختار الخدمة؟",
+                side_2_desc: "اختر “طلب مخصص” واكتب احتياجك، ونحن نساعدك في تحديد التصنيف والخدمة المناسبة.",
+                side_3_title: "بياناتك بأمان",
+                side_3_desc: "يتم استخدام بياناتك فقط للتواصل معك وفهم طلبك، وفق سياسة الخصوصية الخاصة بـ eCode.",
+
+                process_title: "رحلة الطلب باختصار",
+                process_desc: "نرتب الطلب من أول رسالة حتى الوصول إلى عرض واضح أو خطة تنفيذ مناسبة.",
+                step_1_title: "استقبال الطلب",
+                step_1_desc: "نستلم تفاصيلك ونراجع نوع الخدمة المطلوبة.",
+                step_2_title: "فهم الاحتياج",
+                step_2_desc: "نسأل الأسئلة المهمة ونحدد الهدف ونطاق العمل.",
+                step_3_title: "تقديم التصور",
+                step_3_desc: "نقترح الخدمة أو الباقة أو المسار المناسب.",
+                step_4_title: "بدء التنفيذ",
+                step_4_desc: "بعد الاعتماد، نبدأ العمل وفق نطاق واضح ومتفق عليه.",
+
+                footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+                contact_title: "معلومات التواصل",
+                follow_us: "تابعنا",
+                privacy_footer_link: "سياسة الخصوصية",
+                terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب"
+            },
+
+            en: {
+                brand_name: "eCode",
+                brand_tagline: "Innovate Impact",
+
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_request: "Request Service",
+                nav_portfolio: "Portfolio",
+                nav_contact: "Contact Us",
+
+                hero_badge: "Request Service",
+                hero_title_1: "Share Your Project Details",
+                hero_title_2: "and We’ll Help You Choose the Right Solution",
+                hero_desc: "Whether you need a specific service or a custom request, fill out the form and we will convert your details into a clear WhatsApp message for the eCode team.",
+
+                form_title: "Service Request Form",
+                form_desc: "Share the details you currently have. The information does not need to be final. The goal is to understand your need and suggest the right path.",
+
+                label_name: "Name",
+                label_phone: "Phone Number",
+                label_email: "Email",
+                label_client_type: "Client Type",
+                label_service: "Service Type",
+                label_budget: "Estimated Budget",
+                label_timeline: "When do you need the service?",
+                label_contact_method: "Preferred Contact Method",
+                label_details: "Request Details",
+                label_notes: "Additional Notes",
+
+                ph_name: "Example: Ayman Almaghrabi",
+                ph_phone: "05xxxxxxxx",
+                ph_email: "name@example.com",
+                ph_details: "Write a short description of your project, requested service, goal, and any important details...",
+                ph_notes: "Links, examples, accounts, references, or any other notes...",
+
+                option_select: "Select",
+                option_optional: "Optional",
+
+                client_individual: "Individual",
+                client_company: "Company / Establishment",
+                client_startup: "Startup",
+                client_org: "Organization",
+
+                service_marketing: "Marketing & Production",
+                service_branding: "Branding & Design",
+                service_tech: "Technology Services",
+                service_consulting: "Consulting",
+                service_events: "Events & Exhibitions",
+                service_fitout: "Fit-Out & Décor",
+                service_monthly: "Monthly Service",
+                service_custom: "Custom Request",
+
+                budget_1: "Less than SAR 1,000",
+                budget_2: "SAR 1,000 - 3,000",
+                budget_3: "SAR 3,000 - 7,000",
+                budget_4: "SAR 7,000 - 15,000",
+                budget_5: "More than SAR 15,000",
+                budget_unknown: "Not defined yet",
+
+                time_urgent: "Urgent",
+                time_week: "Within a week",
+                time_month: "Within a month",
+                time_flexible: "Flexible",
+                time_offer: "Based on proposal",
+
+                contact_whatsapp: "WhatsApp",
+                contact_call: "Phone Call",
+                contact_email: "Email",
+
+                details_hint: "The clearer the details, the better we can help.",
+                submit_btn: "Send Request via WhatsApp",
+                submit_hint: "WhatsApp will open with a ready message containing your request details. You can review it before sending.",
+
+                side_1_title: "What Happens After Sending?",
+                side_1_desc: "We review the details, understand the need, then respond with important questions or an initial direction for the suitable service.",
+                side_2_title: "Not Sure Which Service to Choose?",
+                side_2_desc: "Choose “Custom Request” and describe your need. We will help define the right category and service.",
+                side_3_title: "Your Data Is Safe",
+                side_3_desc: "Your data is only used to contact you and understand your request, according to eCode’s Privacy Policy.",
+
+                process_title: "Request Journey in Brief",
+                process_desc: "We organize the request from the first message until reaching a clear proposal or suitable execution plan.",
+                step_1_title: "Receive Request",
+                step_1_desc: "We receive your details and review the requested service type.",
+                step_2_title: "Understand the Need",
+                step_2_desc: "We ask key questions and define the objective and scope.",
+                step_3_title: "Provide Direction",
+                step_3_desc: "We suggest the suitable service, package, or path.",
+                step_4_title: "Start Execution",
+                step_4_desc: "After approval, we start working according to a clear agreed scope.",
+
+                footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+                contact_title: "Contact Info",
+                follow_us: "Follow Us",
+                privacy_footer_link: "Privacy Policy",
+                terms_footer_link: "Terms & Conditions and Refund Policy",
+                footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+                whatsapp_tooltip: "Contact via WhatsApp"
+            }
+        };
+
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+        function initTheme() {
+            const icon = document.getElementById('theme-icon');
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('title', translations[currentLang][key]);
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('placeholder', translations[currentLang][key]);
+                }
+            });
+
+            if (currentLang === 'ar') {
+                document.title = "طلب خدمة | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "اطلب خدمة من eCode وشاركنا تفاصيل مشروعك لنساعدك في التسويق، التصميم، التقنية، الاستشارات، الفعاليات، التجهيزات، أو الخدمات المخصصة."
+                );
+            } else {
+                document.title = "Request Service | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "Request a service from eCode and share your project details for marketing, design, technology, consulting, events, fit-out, or custom services."
+                );
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            localStorage.setItem('userLanguage', currentLang);
+            updateContent();
+        }
+
+        function initRequestForm() {
+            const form = document.getElementById('requestForm');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const name = document.getElementById('clientName').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const clientType = document.getElementById('clientType').value;
+                const serviceType = document.getElementById('serviceType').value;
+                const budget = document.getElementById('budget').value || 'غير محددة';
+                const timeline = document.getElementById('timeline').value || 'غير محدد';
+                const contactMethod = document.getElementById('contactMethod').value;
+                const projectDetails = document.getElementById('projectDetails').value.trim();
+                const notes = document.getElementById('notes').value.trim() || 'لا يوجد';
+
+                if (!name || !phone || !clientType || !serviceType || !projectDetails) {
+                    alert(currentLang === 'ar' ? 'فضلاً عبئ الحقول المطلوبة.' : 'Please fill in the required fields.');
+                    return;
+                }
+
+                const messageAr =
+`مرحبًا فريق eCode،
+
+أرغب بطلب خدمة، وهذه تفاصيل الطلب:
+
+الاسم: ${name}
+رقم الجوال: ${phone}
+البريد الإلكتروني: ${email || 'غير مضاف'}
+نوع العميل: ${clientType}
+نوع الخدمة: ${serviceType}
+الميزانية التقريبية: ${budget}
+وقت التنفيذ المطلوب: ${timeline}
+طريقة التواصل المفضلة: ${contactMethod}
+
+تفاصيل الطلب:
+${projectDetails}
+
+ملاحظات إضافية:
+${notes}`;
+
+                const messageEn =
+`Hello eCode Team,
+
+I would like to request a service. Here are the details:
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email || 'Not provided'}
+Client Type: ${clientType}
+Service Type: ${serviceType}
+Estimated Budget: ${budget}
+Required Timeline: ${timeline}
+Preferred Contact Method: ${contactMethod}
+
+Request Details:
+${projectDetails}
+
+Additional Notes:
+${notes}`;
+
+                const finalMessage = currentLang === 'ar' ? messageAr : messageEn;
+                const whatsappUrl = `https://wa.me/966503666316?text=${encodeURIComponent(finalMessage)}`;
+
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+        });
+
+        window.onload = () => {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            initTheme();
+            updateContent();
+            initRequestForm();
+        };
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
