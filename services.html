@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -39,10 +39,27 @@
     <!-- Icons -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#4F46E5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="eCode">
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
     <link rel="icon" type="image/png" href="/favicon.webp">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="canonical" href="https://ecode.sa/services.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecode.sa/services.html">
+    <meta property="og:title" content="الخدمات | eCode">
+    <meta property="og:description" content="استكشف خدمات eCode في التسويق، التصميم، التقنية، الاستشارات، الفعاليات، التجهيزات، والخدمات المخصصة حسب احتياجك.">
+    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:site_name" content="eCode">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="الخدمات | eCode">
+    <meta name="twitter:description" content="استكشف خدمات eCode في التسويق، التصميم، التقنية، الاستشارات، الفعاليات، التجهيزات، والخدمات المخصصة حسب احتياجك.">
+    <meta name="twitter:image" content="https://ecode.sa/favicon.webp">
 
     <style>
         :root {
@@ -61,6 +78,10 @@
             background: linear-gradient(to right, #4F46E5, #9333EA);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
         }
 
         .header-inner {
@@ -122,14 +143,15 @@
         .nav {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .nav a {
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-weight: 700;
+            font-size: 0.9rem;
             color: #475569;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
 
         html.dark .nav a {
@@ -140,13 +162,17 @@
             color: #4F46E5;
         }
 
+        html.dark .nav a:hover {
+            color: #818cf8;
+        }
+
         .btn-primary {
             background: linear-gradient(to right, #4F46E5, #7C3AED);
             color: white !important;
             padding: 0.5rem 1.25rem;
             border-radius: 9999px;
-            font-weight: 600;
-            transition: opacity 0.3s;
+            font-weight: 700;
+            transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -154,6 +180,7 @@
 
         .btn-primary:hover {
             opacity: 0.9;
+            transform: translateY(-2px);
         }
 
         .filter-btn {
@@ -162,7 +189,7 @@
             border: 1px solid #e5e7eb;
             background: #ffffff;
             color: #475569;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.92rem;
             transition: all 0.25s ease;
             white-space: nowrap;
@@ -390,13 +417,23 @@
         }
 
         html[dir="rtl"] .contact-link {
-            flex-direction: row-reverse;
+            flex-direction: row;
             text-align: right;
         }
 
         html[dir="ltr"] .contact-link {
             flex-direction: row;
             text-align: left;
+        }
+
+        @media (max-width: 1180px) {
+            .nav {
+                gap: 0.75rem;
+            }
+
+            .nav a {
+                font-size: 0.82rem;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -407,6 +444,7 @@
             .nav.active {
                 display: flex;
                 flex-direction: column;
+                align-items: stretch;
                 position: absolute;
                 top: 100%;
                 left: 0;
@@ -422,6 +460,10 @@
 
             .mobile-toggle {
                 display: block;
+            }
+
+            .header-inner {
+                padding: 0.9rem 1rem;
             }
         }
 
@@ -454,10 +496,12 @@
 
             <nav class="nav">
                 <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
-                <a href="https://ecode.sa/#about" data-i18n="nav_about">من نحن</a>
-                <a href="https://ecode.sa/services.html" data-i18n="nav_services">الخدمات</a>
-                <a href="https://ecode.sa/#portfolio" data-i18n="nav_portfolio">أعمالنا</a>
-                <a href="https://ecode.sa/#news" data-i18n="nav_news">الأخبار</a>
+                <a href="about.html" data-i18n="nav_about">من نحن</a>
+                <a href="services.html" data-i18n="nav_services">الخدمات</a>
+                <a href="process.html" data-i18n="nav_process">آلية العمل</a>
+                <a href="industries.html" data-i18n="nav_industries">القطاعات</a>
+                <a href="case-studies.html" data-i18n="nav_cases">دراسات الحالة</a>
+                <a href="faq.html" data-i18n="nav_faq">الأسئلة الشائعة</a>
 
                 <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
                     <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
@@ -469,7 +513,7 @@
                     </button>
                 </div>
 
-                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+                <a href="request-service.html" class="btn-primary" data-i18n="nav_request">اطلب خدمة</a>
             </nav>
         </div>
     </header>
@@ -530,7 +574,7 @@
                     <p class="text-white/90 leading-loose mb-6 flex-grow" data-i18n="custom_desc">
                         إذا ما لقيت الخدمة المناسبة، شاركنا تفاصيل طلبك، طبيعة مشروعك، ميزانيتك، والنتيجة اللي تبغاها، وفريقنا يساعدك في تحديد الحل الأنسب أو يربطك بمزود الخدمة المناسب.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، لدي طلب مخصص وأرغب بمشاركة التفاصيل مع فريق eCode." target="_blank" class="mt-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white text-primary font-black hover:shadow-lg transition">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، لدي طلب مخصص وأرغب بمشاركة التفاصيل مع فريق eCode." target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white text-primary font-black hover:shadow-lg transition">
                         <i class="fa-brands fa-whatsapp"></i>
                         <span data-i18n="custom_btn">شاركنا طلبك</span>
                     </a>
@@ -544,7 +588,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_social_desc">
                         إدارة المحتوى، جدولة المنشورات، تنسيق الهوية البصرية، ورفع جودة حضورك الرقمي بشكل منظم.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة إدارة حسابات التواصل الاجتماعي من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة إدارة حسابات التواصل الاجتماعي من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -556,7 +600,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_photo_desc">
                         تصوير منتجات، تغطيات، فيديوهات قصيرة، موشن جرافيك، ومحتوى مرئي مناسب للسوشيال ميديا والحملات.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة التصوير والإنتاج المرئي من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة التصوير والإنتاج المرئي من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -568,7 +612,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_campaigns_desc">
                         إعداد الحملات، تحسين الاستهداف، متابعة الأداء، وتقديم توصيات تساعدك على رفع العائد من الإعلانات.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة إدارة الحملات الإعلانية من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة إدارة الحملات الإعلانية من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -581,7 +625,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_logo_desc">
                         بناء شعار وهوية بصرية متكاملة تشمل الألوان، الخطوط، الاستخدامات، والتطبيقات الأساسية للعلامة.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم شعار وهوية بصرية من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم شعار وهوية بصرية من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -593,7 +637,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_profile_desc">
                         إعداد وتصميم ملفات تعريفية وعروض تقديمية احترافية تعكس قوة الشركة وخدماتها أمام العملاء والشركاء.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة بروفايل شركة أو عرض تقديمي من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة بروفايل شركة أو عرض تقديمي من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -605,7 +649,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_posts_desc">
                         تصميم بوستات، ستوريات، ثمنيل، قوالب محتوى، وإعلانات رقمية متوافقة مع هوية علامتك.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصاميم السوشيال ميديا من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصاميم السوشيال ميديا من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -618,7 +662,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_website_desc">
                         مواقع تعريفية وصفحات هبوط ومواقع خدمات بتصميم عصري وتجربة مستخدم واضحة ومتجاوبة مع الجوال.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم وتطوير موقع إلكتروني من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم وتطوير موقع إلكتروني من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -630,7 +674,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_ui_desc">
                         تصميم واجهات مواقع وتطبيقات ومنصات رقمية بطريقة منظمة، جميلة، وسهلة الاستخدام.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم واجهات وتجربة مستخدم من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم واجهات وتجربة مستخدم من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -642,7 +686,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_automation_desc">
                         حلول تساعدك على استقبال الطلبات، تنظيم البيانات، إرسال التنبيهات، وربط النماذج بأدوات العمل.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة أتمتة النماذج والطلبات من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة أتمتة النماذج والطلبات من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -655,7 +699,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_idea_desc">
                         نساعدك في تحويل الفكرة إلى نموذج واضح، خدمات محددة، شرائح عملاء، وآلية تنفيذ قابلة للتطبيق.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تطوير فكرة مشروع من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تطوير فكرة مشروع من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -667,7 +711,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_journey_desc">
                         تحليل نقاط التواصل مع العميل من أول تواصل حتى التسليم، وتحسين تجربة الطلب والمتابعة.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تحسين رحلة العميل من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تحسين رحلة العميل من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -679,7 +723,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_packages_desc">
                         تحويل خدماتك إلى باقات واضحة وسهلة البيع مع تسعير مبدئي ورحلة طلب مفهومة للعميل.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تنظيم الخدمات والباقات من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تنظيم الخدمات والباقات من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -692,7 +736,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_booth_desc">
                         تصميم بوثات وأجنحة معارض تعكس هوية العلامة وتساعد على جذب الزوار وتقديم تجربة احترافية.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم وتجهيز بوث معرض من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم وتجهيز بوث معرض من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -704,7 +748,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_event_desc">
                         دعم تشغيل الفعاليات، استقبال الضيوف، إدارة الحركة، التنسيق الميداني، وتجهيز تجربة الحضور.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تنظيم وتشغيل الفعاليات من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تنظيم وتشغيل الفعاليات من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -717,7 +761,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_interior_desc">
                         حلول تصميم وتجهيز للمكاتب، المحلات، نقاط البيع، والمساحات التجارية بما يتوافق مع هوية المكان.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة التصميم الداخلي والتجهيز التجاري من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة التصميم الداخلي والتجهيز التجاري من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -729,7 +773,7 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_signage_desc">
                         تصميم وتنفيذ تطبيقات الهوية على الواجهات، اللوحات، التغليف، الهدايا، والمواد المطبوعة.
                     </p>
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة الواجهات واللوحات والتغليف من eCode." target="_blank" class="btn-primary w-full">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة الواجهات واللوحات والتغليف من eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full">
                         <span data-i18n="request_service">اطلب الخدمة</span>
                     </a>
                 </article>
@@ -749,7 +793,7 @@
                     ارسل لنا تفاصيل مشروعك، ونعطيك تصور مبدئي للخدمة المناسبة وآلية التنفيذ.
                 </p>
 
-                <a href="https://wa.me/966503666316?text=مرحبًا، لدي مشروع وأرغب بمساعدتكم في تحديد الخدمة المناسبة." target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
+                <a href="https://wa.me/966503666316?text=مرحبًا، لدي مشروع وأرغب بمساعدتكم في تحديد الخدمة المناسبة." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
                     <i class="fa-brands fa-whatsapp text-2xl"></i>
                     <span data-i18n="cta_btn">تواصل معنا الآن</span>
                 </a>
@@ -758,78 +802,183 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+    <footer id="footer" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12 text-center md:text-start">
 
-                <div class="md:w-1/3">
+                <!-- Brand / Social -->
+                <div>
                     <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
                         <div class="logo-icon">
                             <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
                         </div>
+
                         <div class="logo-text">
                             <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
                             <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
                         </div>
                     </a>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
-                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-loose" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br>
+                        خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
                     </p>
+
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" rel="noopener noreferrer" title="Snapchat" aria-label="Snapchat">
+                            <i class="fa-brands fa-snapchat"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="md:w-1/3">
+                <!-- Important Links -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footer_pages_title">روابط مهمة</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="about.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-building"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_about_link">من نحن</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="services.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_services_link">الخدمات</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="request-service.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_request_link">اطلب خدمة</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="partners.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_partners_link">انضم كمزود خدمة</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="process.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-route"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_process_link">آلية العمل</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="faq.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-circle-question"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_faq_link">الأسئلة الشائعة</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact / Policies -->
+                <div>
                     <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
 
                     <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
                         <li>
-                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                            <a href="https://www.ecode.sa" target="_blank" rel="noopener noreferrer" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-globe"></i>
+                                </span>
                                 <span class="contact-text" dir="ltr">www.eCode.sa</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </span>
                                 <span class="contact-text" dir="ltr">info@ecode.sa</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </span>
                                 <span class="contact-text" dir="ltr">+966 503 666 316</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                            <a href="privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </span>
                                 <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="https://ecode.sa/terms.html" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                            <a href="terms.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-file-contract"></i>
+                                </span>
                                 <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="cookies.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-cookie-bite"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="cookies_footer_link">سياسة ملفات تعريف الارتباط</span>
                             </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="md:w-1/3">
-                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
-                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
-                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
-                    </div>
-                </div>
             </div>
 
             <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
@@ -839,7 +988,7 @@
     </footer>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -852,9 +1001,11 @@
                 nav_home: "الرئيسية",
                 nav_about: "من نحن",
                 nav_services: "الخدمات",
-                nav_portfolio: "أعمالنا",
-                nav_news: "الأخبار",
-                nav_contact: "تواصل معنا",
+                nav_process: "آلية العمل",
+                nav_industries: "القطاعات",
+                nav_cases: "دراسات الحالة",
+                nav_faq: "الأسئلة الشائعة",
+                nav_request: "اطلب خدمة",
 
                 hero_badge: "خدمات eCode",
                 hero_title_1: "اختر الخدمة المناسبة",
@@ -927,11 +1078,19 @@
                 cta_desc: "ارسل لنا تفاصيل مشروعك، ونعطيك تصور مبدئي للخدمة المناسبة وآلية التنفيذ.",
                 cta_btn: "تواصل معنا الآن",
 
+                footer_pages_title: "روابط مهمة",
                 footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
                 contact_title: "معلومات التواصل",
                 follow_us: "تابعنا",
+                footer_about_link: "من نحن",
+                footer_services_link: "الخدمات",
+                footer_request_link: "اطلب خدمة",
+                footer_partners_link: "انضم كمزود خدمة",
+                footer_process_link: "آلية العمل",
+                footer_faq_link: "الأسئلة الشائعة",
                 privacy_footer_link: "سياسة الخصوصية",
                 terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                cookies_footer_link: "سياسة ملفات تعريف الارتباط",
                 footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
                 whatsapp_tooltip: "تواصل معنا عبر واتساب"
             },
@@ -943,9 +1102,11 @@
                 nav_home: "Home",
                 nav_about: "About Us",
                 nav_services: "Services",
-                nav_portfolio: "Portfolio",
-                nav_news: "News",
-                nav_contact: "Contact Us",
+                nav_process: "Process",
+                nav_industries: "Industries",
+                nav_cases: "Case Studies",
+                nav_faq: "FAQ",
+                nav_request: "Request Service",
 
                 hero_badge: "eCode Services",
                 hero_title_1: "Choose the Right Service",
@@ -1018,11 +1179,19 @@
                 cta_desc: "Send us your project details and we will provide an initial direction for the suitable service and execution approach.",
                 cta_btn: "Contact Us Now",
 
+                footer_pages_title: "Important Links",
                 footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
                 contact_title: "Contact Info",
                 follow_us: "Follow Us",
+                footer_about_link: "About Us",
+                footer_services_link: "Services",
+                footer_request_link: "Request Service",
+                footer_partners_link: "Join as Provider",
+                footer_process_link: "Process",
+                footer_faq_link: "FAQ",
                 privacy_footer_link: "Privacy Policy",
                 terms_footer_link: "Terms & Conditions and Refund Policy",
+                cookies_footer_link: "Cookie Policy",
                 footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
                 whatsapp_tooltip: "Contact via WhatsApp"
             }
@@ -1068,14 +1237,14 @@
         function updateContent() {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
+                if (translations[currentLang] && translations[currentLang][key]) {
                     el.innerHTML = translations[currentLang][key];
                 }
             });
 
             document.querySelectorAll('[data-i18n-title]').forEach(el => {
                 const key = el.getAttribute('data-i18n-title');
-                if (translations[currentLang][key]) {
+                if (translations[currentLang] && translations[currentLang][key]) {
                     el.setAttribute('title', translations[currentLang][key]);
                 }
             });
@@ -1127,9 +1296,9 @@
                     button.classList.add('active');
 
                     items.forEach(item => {
-                        const categories = item.getAttribute('data-category');
+                        const categories = item.getAttribute('data-category') || '';
 
-                        if (filter === 'all' || categories.includes(filter)) {
+                        if (filter === 'all' || categories.split(' ').includes(filter)) {
                             item.style.display = 'flex';
                         } else {
                             item.style.display = 'none';
@@ -1140,7 +1309,10 @@
         }
 
         document.querySelectorAll('.nav a').forEach(link => {
-            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+            link.addEventListener('click', () => {
+                const nav = document.querySelector('.nav');
+                if (nav) nav.classList.remove('active');
+            });
         });
 
         window.onload = () => {
