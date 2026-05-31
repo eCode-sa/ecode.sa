@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دراسات الحالة | eCode</title>
+    <meta name="description" content="استعرض دراسات حالة من مشاريع eCode في الهوية البصرية، السوشيال ميديا، المعارض، البوثات، المنصات الرقمية، والتصميم.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/case-studies.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecode.sa/case-studies.html">
+    <meta property="og:title" content="دراسات الحالة | eCode">
+    <meta property="og:description" content="مشاريع مختارة من أعمال eCode مع عرض التحدي والحل والخدمات المقدمة.">
+    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:site_name" content="eCode">
+
+    <style>
+        :root {
+            --text-main: 'Cairo', sans-serif;
+        }
+
+        html[lang="en"] {
+            --text-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--text-main);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name {
+            color: #f8fafc;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline {
+            color: #94a3b8;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #475569;
+            transition: color 0.3s ease;
+        }
+
+        html.dark .nav a {
+            color: #cbd5e1;
+        }
+
+        .nav a:hover,
+        .nav a.active-link {
+            color: #4F46E5;
+        }
+
+        html.dark .nav a:hover,
+        html.dark .nav a.active-link {
+            color: #818cf8;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.15rem;
+            border-radius: 9999px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            color: #475569;
+            font-weight: 800;
+            font-size: 0.92rem;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .dark .filter-btn {
+            background: #0f172a;
+            color: #cbd5e1;
+            border-color: #1f2937;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: #ffffff;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.22);
+        }
+
+        .case-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 32px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark .case-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+            border-color: rgba(79, 70, 229, 0.35);
+        }
+
+        .dark .case-card:hover {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+        }
+
+        .case-image {
+            height: 250px;
+            background: #e5e7eb;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .dark .case-image {
+            background: #1f2937;
+        }
+
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .case-badge {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(255,255,255,0.92);
+            color: #4F46E5;
+            border-radius: 9999px;
+            padding: 8px 14px;
+            font-size: 0.78rem;
+            font-weight: 900;
+            backdrop-filter: blur(10px);
+        }
+
+        html[dir="ltr"] .case-badge {
+            right: auto;
+            left: 18px;
+        }
+
+        .dark .case-badge {
+            background: rgba(15, 23, 42, 0.88);
+            color: #c7d2fe;
+        }
+
+        .case-content {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .case-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0 20px;
+        }
+
+        .case-tag {
+            display: inline-flex;
+            padding: 7px 11px;
+            border-radius: 9999px;
+            background: rgba(79,70,229,0.08);
+            color: #4F46E5;
+            font-weight: 800;
+            font-size: 0.78rem;
+        }
+
+        .dark .case-tag {
+            background: rgba(129,140,248,0.13);
+            color: #c7d2fe;
+        }
+
+        .detail-box {
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+            border-radius: 22px;
+            padding: 20px;
+            margin-top: 14px;
+        }
+
+        .dark .detail-box {
+            background: rgba(30, 41, 59, 0.45);
+            border-color: #1f2937;
+        }
+
+        .detail-box h4 {
+            color: #0f172a;
+            font-weight: 900;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dark .detail-box h4 {
+            color: #f8fafc;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            }
+
+            html.dark .nav.active {
+                background: #0f172a;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50">
+        <div class="header-inner">
+            <a href="https://ecode.sa/" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name" data-i18n="brand_name">eCode</div>
+                    <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                </div>
+            </a>
+
+            <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav">
+                <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
+                <a href="https://ecode.sa/about.html" data-i18n="nav_about">من نحن</a>
+                <a href="https://ecode.sa/services.html" data-i18n="nav_services">الخدمات</a>
+                <a href="https://ecode.sa/process.html" data-i18n="nav_process">آلية العمل</a>
+                <a href="https://ecode.sa/case-studies.html" class="active-link" data-i18n="nav_cases">دراسات الحالة</a>
+                <a href="https://ecode.sa/request-service.html" data-i18n="nav_request">اطلب خدمة</a>
+
+                <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
+                    <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+                        <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+                    </button>
+                </div>
+
+                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative pt-36 pb-16 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20 dark:opacity-10 pointer-events-none">
+            <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
+            <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">
+                دراسات الحالة
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                <span data-i18n="hero_title_1">مشاريع نعرضها</span>
+                <br>
+                <span class="gradient-text" data-i18n="hero_title_2">بطريقة أوضح من مجرد صور</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium" data-i18n="hero_desc">
+                هنا نستعرض نماذج من الأعمال بصيغة توضّح التحدي، الحل، الخدمات المقدمة، والمخرجات التي ساعدت العميل على الظهور بشكل أفضل.
+            </p>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="pb-12">
+        <div class="container mx-auto px-6">
+            <div class="gradient-bg rounded-[2rem] p-8 md:p-10 text-white shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                    <div class="stat-card">
+                        <div class="text-3xl font-black mb-1">01</div>
+                        <p class="text-white/85 font-bold" data-i18n="stat_1">فهم التحدي</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-3xl font-black mb-1">02</div>
+                        <p class="text-white/85 font-bold" data-i18n="stat_2">اقتراح الحل</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-3xl font-black mb-1">03</div>
+                        <p class="text-white/85 font-bold" data-i18n="stat_3">تنفيذ المخرجات</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-3xl font-black mb-1">04</div>
+                        <p class="text-white/85 font-bold" data-i18n="stat_4">تحسين الحضور</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="pb-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">الكل</button>
+                <button class="filter-btn" data-filter="branding" data-i18n="filter_branding">هوية وتصميم</button>
+                <button class="filter-btn" data-filter="social" data-i18n="filter_social">سوشيال ميديا</button>
+                <button class="filter-btn" data-filter="events" data-i18n="filter_events">معارض وفعاليات</button>
+                <button class="filter-btn" data-filter="tech" data-i18n="filter_tech">منصات رقمية</button>
+                <button class="filter-btn" data-filter="fitout" data-i18n="filter_fitout">تجهيزات وهوية مكانية</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases -->
+    <main class="pb-20">
+        <div class="container mx-auto px-6">
+            <div id="casesGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- Case 1 -->
+                <article class="case-card case-item" data-category="events fitout">
+                    <div class="case-image">
+                        <img src="/both_1/both1.webp" alt="LEAP Exhibition Booth" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80'">
+                        <span class="case-badge" data-i18n="case1_badge">معارض</span>
+                    </div>
+                    <div class="case-content">
+                        <h2 class="text-2xl font-black mb-3" data-i18n="case1_title">تصميم بوث لأحد العملاء في معرض LEAP</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case1_intro">
+                            مشروع تصميم وتجهيز بوث احترافي يعكس حضور العلامة داخل بيئة معرض تقنية مزدحمة بالمنافسين والزوار.
+                        </p>
+
+                        <div class="case-meta">
+                            <span class="case-tag" data-i18n="tag_booth">تصميم بوث</span>
+                            <span class="case-tag" data-i18n="tag_exhibition">معارض</span>
+                            <span class="case-tag" data-i18n="tag_brand_presence">حضور بصري</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case1_challenge">
+                                الحاجة إلى بوث واضح وجاذب داخل معرض كبير، مع إبراز الهوية وتسهيل تجربة الزائر من أول نظرة.
+                            </p>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case1_solution">
+                                تصميم مساحة عرض منظمة، واجهة بصرية قوية، توزيع واضح لعناصر الهوية، وتجربة زيارة تساعد على التواصل السريع.
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-6">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج تصميم بوث معرض وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                                <span data-i18n="request_similar">اطلب مشروع مشابه</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case 2 -->
+                <article class="case-card case-item" data-category="social branding">
+                    <div class="case-image">
+                        <img src="/Alipasha_post/Alipasha_1.webp" alt="Ali Pasha Social Media" onerror="this.src='https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=80'">
+                        <span class="case-badge" data-i18n="case2_badge">سوشيال ميديا</span>
+                    </div>
+                    <div class="case-content">
+                        <h2 class="text-2xl font-black mb-3" data-i18n="case2_title">إدارة محتوى السوشيال ميديا لمطعم علي باشا</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case2_intro">
+                            تطوير حضور بصري مناسب لمطعم فلافل محلي في مكة، مع إبراز جودة المنتجات وطابع المطعم.
+                        </p>
+
+                        <div class="case-meta">
+                            <span class="case-tag" data-i18n="tag_social">سوشيال ميديا</span>
+                            <span class="case-tag" data-i18n="tag_food">مطاعم</span>
+                            <span class="case-tag" data-i18n="tag_content">محتوى بصري</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case2_challenge">
+                                الحاجة إلى محتوى يجمع بين الشهية، البساطة، والطابع المحلي، دون ازدحام نصي أو تشتيت بصري.
+                            </p>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case2_solution">
+                                تصميم بوستات وقوالب مرئية تركّز على المنتج، الألوان، والعناصر البصرية المناسبة لحسابات المطعم.
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-6">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج إدارة محتوى مطعم وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                                <span data-i18n="request_similar">اطلب مشروع مشابه</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case 3 -->
+                <article class="case-card case-item" data-category="branding">
+                    <div class="case-image">
+                        <img src="/blueeyes/bost1.webp" alt="Blue Eyes Branding" onerror="this.src='https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80'">
+                        <span class="case-badge" data-i18n="case3_badge">هوية بصرية</span>
+                    </div>
+                    <div class="case-content">
+                        <h2 class="text-2xl font-black mb-3" data-i18n="case3_title">هوية بصرية لعلامة أزياء فاخرة</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case3_intro">
+                            بناء توجه بصري راقٍ لعلامة أزياء تحتاج إلى هوية هادئة تجعل المنتج هو البطل الأساسي في التجربة.
+                        </p>
+
+                        <div class="case-meta">
+                            <span class="case-tag" data-i18n="tag_branding">هوية</span>
+                            <span class="case-tag" data-i18n="tag_luxury">فاخر</span>
+                            <span class="case-tag" data-i18n="tag_fashion">أزياء</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case3_challenge">
+                                الحاجة إلى هوية لا تطغى على تفاصيل الفساتين والخامات، وفي نفس الوقت تعطي إحساسًا بالثقة والفخامة.
+                            </p>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case3_solution">
+                                اعتماد أسلوب بصري ناعم، ألوان هادئة، قوالب راقية، وتطبيقات مرئية تساعد العلامة على الظهور بطابع تحريري فاخر.
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-6">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج الهوية البصرية وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                                <span data-i18n="request_similar">اطلب مشروع مشابه</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case 4 -->
+                <article class="case-card case-item" data-category="branding social tech">
+                    <div class="case-image">
+                        <img src="/DutiesBook/bost1.webp" alt="Duties Book Branding" onerror="this.src='https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80'">
+                        <span class="case-badge" data-i18n="case4_badge">منصة رقمية</span>
+                    </div>
+                    <div class="case-content">
+                        <h2 class="text-2xl font-black mb-3" data-i18n="case4_title">هوية ومحتوى لمنصة Duties Book</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case4_intro">
+                            تصميم توجه بصري ومحتوى سوشيال ميديا لمنصة رقمية تساعد على تنظيم محادثات العملاء في صندوق وارد موحد.
+                        </p>
+
+                        <div class="case-meta">
+                            <span class="case-tag" data-i18n="tag_tech">تقنية</span>
+                            <span class="case-tag" data-i18n="tag_branding">هوية</span>
+                            <span class="case-tag" data-i18n="tag_social">سوشيال ميديا</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case4_challenge">
+                                تبسيط فكرة تقنية قد تبدو معقدة، وتحويلها إلى رسائل بصرية سهلة الفهم ومناسبة للشركات.
+                            </p>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case4_solution">
+                                استخدام لغة بصرية نظيفة، عناوين مباشرة، وقوالب تعرض قيمة المنصة بطريقة سهلة ومقنعة.
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-6">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج منصة رقمية وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                                <span data-i18n="request_similar">اطلب مشروع مشابه</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case 5 -->
+                <article class="case-card case-item" data-category="branding fitout">
+                    <div class="case-image">
+                        <img src="/Golden_Scissor_Time/bost1.webp" alt="Golden Scissor Time Identity" onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80'">
+                        <span class="case-badge" data-i18n="case5_badge">هوية متكاملة</span>
+                    </div>
+                    <div class="case-content">
+                        <h2 class="text-2xl font-black mb-3" data-i18n="case5_title">هوية بصرية متكاملة لصالون وقت المقص الذهبي</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case5_intro">
+                            تطوير هوية متكاملة لصالون رجالي فاخر تشمل الشعار، الألوان، التطبيقات، الواجهة، والهوية المكانية.
+                        </p>
+
+                        <div class="case-meta">
+                            <span class="case-tag" data-i18n="tag_full_identity">هوية متكاملة</span>
+                            <span class="case-tag" data-i18n="tag_fitout">هوية مكانية</span>
+                            <span class="case-tag" data-i18n="tag_luxury">فاخر</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case5_challenge">
+                                بناء هوية تعكس الدقة، الحرفة، الفخامة، واحترام الوقت، مع إمكانية تطبيقها على الواجهة والزي والتغليف.
+                            </p>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case5_solution">
+                                تطوير منظومة بصرية متكاملة تعتمد على المقص الذهبي، الأسود الفاخر، التطبيقات العملية، ونماذج استخدام واضحة.
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-6">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج الهوية المتكاملة وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                                <span data-i18n="request_similar">اطلب مشروع مشابه</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case 6 -->
+                <article class="case-card case-item" data-category="branding social">
+                    <div class="case-image">
+                        <img src="/androhelth/bost1.webp" alt="AndroHealth Social Media" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80'">
+                        <span class="case-badge" data-i18n="case6_badge">صحي تقني</span>
+                    </div>
+                    <div class="case-content">
+                        <h2 class="text-2xl font-black mb-3" data-i18n="case6_title">محتوى بصري لمنصة AndroHealth</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case6_intro">
+                            إعداد توجه بصري ومحتوى سوشيال ميديا لمنصة معلومات صحية موجهة للمراكز والعيادات والمستشفيات.
+                        </p>
+
+                        <div class="case-meta">
+                            <span class="case-tag" data-i18n="tag_health">قطاع صحي</span>
+                            <span class="case-tag" data-i18n="tag_tech">تقنية</span>
+                            <span class="case-tag" data-i18n="tag_social">سوشيال ميديا</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case6_challenge">
+                                تقديم نظام صحي تقني بطريقة مفهومة وموثوقة للجمهور المهني، مع المحافظة على طابع طبي واضح.
+                            </p>
+                        </div>
+
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case6_solution">
+                                تصميم محتوى بصري يوازن بين الجانب التقني والطبي، مع عناوين مباشرة وقوالب مناسبة للمنصات الرقمية.
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-6">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج المحتوى الصحي التقني وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                                <span data-i18n="request_similar">اطلب مشروع مشابه</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-black mb-6" data-i18n="cta_title">
+                    ودك نسوي مشروعك بنفس المنهجية؟
+                </h2>
+                <p class="text-white/90 mb-10 text-lg leading-loose" data-i18n="cta_desc">
+                    شاركنا تفاصيل مشروعك، ونساعدك في تحديد التحدي، الحل، الخدمات المناسبة، وخطة التنفيذ.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://ecode.sa/request-service.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span data-i18n="cta_btn_request">ابدأ طلبك</span>
+                    </a>
+
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بمناقشة مشروع مشابه لدراسات الحالة في موقع eCode." target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-black hover:bg-white/15 transition transform hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span data-i18n="cta_btn_whatsapp">تواصل عبر واتساب</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+
+                <div class="md:w-1/3">
+                    <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
+                        <div class="logo-icon">
+                            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                        </div>
+                        <div class="logo-text">
+                            <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                            <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                        </div>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                    </p>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                                <span class="contact-text" dir="ltr">www.eCode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-text" dir="ltr">info@ecode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-text" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/terms.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+                © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const translations = {
+            ar: {
+                brand_name: "eCode",
+                brand_tagline: "تصنع الأثر",
+
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "الخدمات",
+                nav_process: "آلية العمل",
+                nav_cases: "دراسات الحالة",
+                nav_request: "اطلب خدمة",
+                nav_contact: "تواصل معنا",
+
+                hero_badge: "دراسات الحالة",
+                hero_title_1: "مشاريع نعرضها",
+                hero_title_2: "بطريقة أوضح من مجرد صور",
+                hero_desc: "هنا نستعرض نماذج من الأعمال بصيغة توضّح التحدي، الحل، الخدمات المقدمة، والمخرجات التي ساعدت العميل على الظهور بشكل أفضل.",
+
+                stat_1: "فهم التحدي",
+                stat_2: "اقتراح الحل",
+                stat_3: "تنفيذ المخرجات",
+                stat_4: "تحسين الحضور",
+
+                filter_all: "الكل",
+                filter_branding: "هوية وتصميم",
+                filter_social: "سوشيال ميديا",
+                filter_events: "معارض وفعاليات",
+                filter_tech: "منصات رقمية",
+                filter_fitout: "تجهيزات وهوية مكانية",
+
+                challenge_label: "التحدي",
+                solution_label: "الحل",
+                request_similar: "اطلب مشروع مشابه",
+
+                tag_booth: "تصميم بوث",
+                tag_exhibition: "معارض",
+                tag_brand_presence: "حضور بصري",
+                tag_social: "سوشيال ميديا",
+                tag_food: "مطاعم",
+                tag_content: "محتوى بصري",
+                tag_branding: "هوية",
+                tag_luxury: "فاخر",
+                tag_fashion: "أزياء",
+                tag_tech: "تقنية",
+                tag_full_identity: "هوية متكاملة",
+                tag_fitout: "هوية مكانية",
+                tag_health: "قطاع صحي",
+
+                case1_badge: "معارض",
+                case1_title: "تصميم بوث لأحد العملاء في معرض LEAP",
+                case1_intro: "مشروع تصميم وتجهيز بوث احترافي يعكس حضور العلامة داخل بيئة معرض تقنية مزدحمة بالمنافسين والزوار.",
+                case1_challenge: "الحاجة إلى بوث واضح وجاذب داخل معرض كبير، مع إبراز الهوية وتسهيل تجربة الزائر من أول نظرة.",
+                case1_solution: "تصميم مساحة عرض منظمة، واجهة بصرية قوية، توزيع واضح لعناصر الهوية، وتجربة زيارة تساعد على التواصل السريع.",
+
+                case2_badge: "سوشيال ميديا",
+                case2_title: "إدارة محتوى السوشيال ميديا لمطعم علي باشا",
+                case2_intro: "تطوير حضور بصري مناسب لمطعم فلافل محلي في مكة، مع إبراز جودة المنتجات وطابع المطعم.",
+                case2_challenge: "الحاجة إلى محتوى يجمع بين الشهية، البساطة، والطابع المحلي، دون ازدحام نصي أو تشتيت بصري.",
+                case2_solution: "تصميم بوستات وقوالب مرئية تركّز على المنتج، الألوان، والعناصر البصرية المناسبة لحسابات المطعم.",
+
+                case3_badge: "هوية بصرية",
+                case3_title: "هوية بصرية لعلامة أزياء فاخرة",
+                case3_intro: "بناء توجه بصري راقٍ لعلامة أزياء تحتاج إلى هوية هادئة تجعل المنتج هو البطل الأساسي في التجربة.",
+                case3_challenge: "الحاجة إلى هوية لا تطغى على تفاصيل الفساتين والخامات، وفي نفس الوقت تعطي إحساسًا بالثقة والفخامة.",
+                case3_solution: "اعتماد أسلوب بصري ناعم، ألوان هادئة، قوالب راقية، وتطبيقات مرئية تساعد العلامة على الظهور بطابع تحريري فاخر.",
+
+                case4_badge: "منصة رقمية",
+                case4_title: "هوية ومحتوى لمنصة Duties Book",
+                case4_intro: "تصميم توجه بصري ومحتوى سوشيال ميديا لمنصة رقمية تساعد على تنظيم محادثات العملاء في صندوق وارد موحد.",
+                case4_challenge: "تبسيط فكرة تقنية قد تبدو معقدة، وتحويلها إلى رسائل بصرية سهلة الفهم ومناسبة للشركات.",
+                case4_solution: "استخدام لغة بصرية نظيفة، عناوين مباشرة، وقوالب تعرض قيمة المنصة بطريقة سهلة ومقنعة.",
+
+                case5_badge: "هوية متكاملة",
+                case5_title: "هوية بصرية متكاملة لصالون وقت المقص الذهبي",
+                case5_intro: "تطوير هوية متكاملة لصالون رجالي فاخر تشمل الشعار، الألوان، التطبيقات، الواجهة، والهوية المكانية.",
+                case5_challenge: "بناء هوية تعكس الدقة، الحرفة، الفخامة، واحترام الوقت، مع إمكانية تطبيقها على الواجهة والزي والتغليف.",
+                case5_solution: "تطوير منظومة بصرية متكاملة تعتمد على المقص الذهبي، الأسود الفاخر، التطبيقات العملية، ونماذج استخدام واضحة.",
+
+                case6_badge: "صحي تقني",
+                case6_title: "محتوى بصري لمنصة AndroHealth",
+                case6_intro: "إعداد توجه بصري ومحتوى سوشيال ميديا لمنصة معلومات صحية موجهة للمراكز والعيادات والمستشفيات.",
+                case6_challenge: "تقديم نظام صحي تقني بطريقة مفهومة وموثوقة للجمهور المهني، مع المحافظة على طابع طبي واضح.",
+                case6_solution: "تصميم محتوى بصري يوازن بين الجانب التقني والطبي، مع عناوين مباشرة وقوالب مناسبة للمنصات الرقمية.",
+
+                cta_title: "ودك نسوي مشروعك بنفس المنهجية؟",
+                cta_desc: "شاركنا تفاصيل مشروعك، ونساعدك في تحديد التحدي، الحل، الخدمات المناسبة، وخطة التنفيذ.",
+                cta_btn_request: "ابدأ طلبك",
+                cta_btn_whatsapp: "تواصل عبر واتساب",
+
+                footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+                contact_title: "معلومات التواصل",
+                follow_us: "تابعنا",
+                privacy_footer_link: "سياسة الخصوصية",
+                terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب"
+            },
+
+            en: {
+                brand_name: "eCode",
+                brand_tagline: "Innovate Impact",
+
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_process: "Process",
+                nav_cases: "Case Studies",
+                nav_request: "Request Service",
+                nav_contact: "Contact Us",
+
+                hero_badge: "Case Studies",
+                hero_title_1: "Projects Presented",
+                hero_title_2: "Beyond Just Images",
+                hero_desc: "Here we present selected work in a format that explains the challenge, solution, provided services, and outputs that helped the client show up better.",
+
+                stat_1: "Understanding Challenge",
+                stat_2: "Proposing Solution",
+                stat_3: "Executing Outputs",
+                stat_4: "Improving Presence",
+
+                filter_all: "All",
+                filter_branding: "Branding & Design",
+                filter_social: "Social Media",
+                filter_events: "Events & Exhibitions",
+                filter_tech: "Digital Platforms",
+                filter_fitout: "Fit-Out & Spatial Identity",
+
+                challenge_label: "Challenge",
+                solution_label: "Solution",
+                request_similar: "Request Similar Project",
+
+                tag_booth: "Booth Design",
+                tag_exhibition: "Exhibitions",
+                tag_brand_presence: "Visual Presence",
+                tag_social: "Social Media",
+                tag_food: "Restaurants",
+                tag_content: "Visual Content",
+                tag_branding: "Branding",
+                tag_luxury: "Luxury",
+                tag_fashion: "Fashion",
+                tag_tech: "Technology",
+                tag_full_identity: "Full Identity",
+                tag_fitout: "Spatial Identity",
+                tag_health: "Healthcare",
+
+                case1_badge: "Exhibitions",
+                case1_title: "Booth Design for a Client at LEAP",
+                case1_intro: "A professional booth design and setup project that reflected the brand’s presence within a busy technology exhibition environment.",
+                case1_challenge: "The need for a clear and attractive booth within a large exhibition, highlighting the identity and simplifying the visitor experience from the first glance.",
+                case1_solution: "Designing an organized display space, strong visual façade, clear identity distribution, and a visitor experience that supports quick communication.",
+
+                case2_badge: "Social Media",
+                case2_title: "Social Media Content for Ali Pasha Restaurant",
+                case2_intro: "Developing a suitable visual presence for a local falafel restaurant in Makkah while highlighting product quality and brand character.",
+                case2_challenge: "The need for content that combines appetite, simplicity, and local character without text overload or visual distraction.",
+                case2_solution: "Designing posts and visual templates focused on the product, colors, and suitable visual elements for the restaurant’s accounts.",
+
+                case3_badge: "Visual Identity",
+                case3_title: "Visual Identity for a Luxury Fashion Brand",
+                case3_intro: "Building an elegant visual direction for a fashion brand that needed a calm identity where the product remains the hero of the experience.",
+                case3_challenge: "The need for an identity that does not overpower dress details and fabrics while still communicating trust and luxury.",
+                case3_solution: "Adopting a soft visual style, calm colors, elegant templates, and visual applications that help the brand appear in a luxury editorial style.",
+
+                case4_badge: "Digital Platform",
+                case4_title: "Branding and Content for Duties Book",
+                case4_intro: "Designing visual direction and social media content for a digital platform that organizes customer conversations into one unified inbox.",
+                case4_challenge: "Simplifying a technical idea that may seem complex and turning it into easy-to-understand visual messages suitable for companies.",
+                case4_solution: "Using a clean visual language, direct headlines, and templates that present the platform’s value simply and convincingly.",
+
+                case5_badge: "Full Identity",
+                case5_title: "Complete Visual Identity for Golden Scissor Time Salon",
+                case5_intro: "Developing a complete identity for a premium men’s salon including logo, colors, applications, storefront, and spatial identity.",
+                case5_challenge: "Building an identity that reflects precision, craftsmanship, luxury, and respect for time, while being applicable to storefront, uniforms, and packaging.",
+                case5_solution: "Developing a complete visual system based on the golden scissors, premium black, practical applications, and clear usage mockups.",
+
+                case6_badge: "Health Tech",
+                case6_title: "Visual Content for AndroHealth Platform",
+                case6_intro: "Creating visual direction and social media content for a healthcare information platform targeting centers, clinics, and hospitals.",
+                case6_challenge: "Presenting a health-tech system in a clear and trustworthy way for a professional audience while maintaining a clear medical tone.",
+                case6_solution: "Designing visual content that balances technical and medical aspects with direct headlines and templates suitable for digital platforms.",
+
+                cta_title: "Want Us to Build Your Project with the Same Approach?",
+                cta_desc: "Share your project details, and we will help define the challenge, solution, suitable services, and execution plan.",
+                cta_btn_request: "Start Your Request",
+                cta_btn_whatsapp: "Contact via WhatsApp",
+
+                footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+                contact_title: "Contact Info",
+                follow_us: "Follow Us",
+                privacy_footer_link: "Privacy Policy",
+                terms_footer_link: "Terms & Conditions and Refund Policy",
+                footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+                whatsapp_tooltip: "Contact via WhatsApp"
+            }
+        };
+
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+        function initTheme() {
+            const icon = document.getElementById('theme-icon');
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('title', translations[currentLang][key]);
+                }
+            });
+
+            if (currentLang === 'ar') {
+                document.title = "دراسات الحالة | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "استعرض دراسات حالة من مشاريع eCode في الهوية البصرية، السوشيال ميديا، المعارض، البوثات، المنصات الرقمية، والتصميم."
+                );
+            } else {
+                document.title = "Case Studies | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "Explore eCode case studies in branding, social media, exhibitions, booths, digital platforms, and design."
+                );
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            localStorage.setItem('userLanguage', currentLang);
+            updateContent();
+        }
+
+        function initFilters() {
+            const buttons = document.querySelectorAll('.filter-btn');
+            const items = document.querySelectorAll('.case-item');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    items.forEach(item => {
+                        const categories = item.getAttribute('data-category');
+
+                        if (filter === 'all' || categories.includes(filter)) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+        });
+
+        window.onload = () => {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            initTheme();
+            updateContent();
+            initFilters();
+        };
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
