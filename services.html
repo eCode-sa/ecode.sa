@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخدمات | eCode</title>
+    <meta name="description" content="استكشف خدمات eCode في التسويق، التصميم، التقنية، الاستشارات، الفعاليات، التجهيزات، والخدمات المخصصة حسب احتياجك.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/services.html">
+
+    <style>
+        :root {
+            --text-main: 'Cairo', sans-serif;
+        }
+
+        html[lang="en"] {
+            --text-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--text-main);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name {
+            color: #f8fafc;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline {
+            color: #94a3b8;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #475569;
+            transition: color 0.3s ease;
+        }
+
+        html.dark .nav a {
+            color: #cbd5e1;
+        }
+
+        .nav a:hover {
+            color: #4F46E5;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.15rem;
+            border-radius: 9999px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            color: #475569;
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .dark .filter-btn {
+            background: #0f172a;
+            color: #cbd5e1;
+            border-color: #1f2937;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: #ffffff;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.22);
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 28px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark .service-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .service-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+            border-color: rgba(79, 70, 229, 0.35);
+        }
+
+        .dark .service-card:hover {
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+        }
+
+        .service-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .dark .service-icon {
+            background: rgba(129, 140, 248, 0.15);
+            color: #c7d2fe;
+        }
+
+        .service-tag {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            padding: 0.3rem 0.75rem;
+            border-radius: 9999px;
+            background: rgba(79, 70, 229, 0.08);
+            color: #4F46E5;
+            font-size: 0.78rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .dark .service-tag {
+            background: rgba(129, 140, 248, 0.13);
+            color: #c7d2fe;
+        }
+
+        .custom-card {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: #ffffff;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-card::before {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.13);
+            top: -120px;
+            left: -90px;
+        }
+
+        .custom-card::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.10);
+            bottom: -110px;
+            right: -70px;
+        }
+
+        .custom-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .custom-card .service-icon {
+            background: rgba(255,255,255,0.15);
+            color: #ffffff;
+        }
+
+        .custom-card .service-tag {
+            background: rgba(255,255,255,0.16);
+            color: #ffffff;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            }
+
+            html.dark .nav.active {
+                background: #0f172a;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50">
+        <div class="header-inner">
+            <a href="https://ecode.sa/" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name" data-i18n="brand_name">eCode</div>
+                    <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                </div>
+            </a>
+
+            <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav">
+                <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
+                <a href="https://ecode.sa/#about" data-i18n="nav_about">من نحن</a>
+                <a href="https://ecode.sa/services.html" data-i18n="nav_services">الخدمات</a>
+                <a href="https://ecode.sa/#portfolio" data-i18n="nav_portfolio">أعمالنا</a>
+                <a href="https://ecode.sa/#news" data-i18n="nav_news">الأخبار</a>
+
+                <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
+                    <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+                        <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+                    </button>
+                </div>
+
+                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative pt-36 pb-16 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20 dark:opacity-10 pointer-events-none">
+            <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
+            <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">
+                خدمات eCode
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                <span data-i18n="hero_title_1">اختر الخدمة المناسبة</span>
+                <br>
+                <span class="gradient-text" data-i18n="hero_title_2">أو شاركنا طلبك المخصص</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium" data-i18n="hero_desc">
+                حلول متكاملة تساعدك في التسويق، التصميم، التقنية، الفعاليات، الاستشارات، والتجهيزات. وإن لم تجد ما يناسبك، شاركنا تفاصيل طلبك وسنساعدك في تحديد الحل الأنسب.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="pb-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">الكل</button>
+                <button class="filter-btn" data-filter="marketing" data-i18n="filter_marketing">التسويق والإنتاج</button>
+                <button class="filter-btn" data-filter="branding" data-i18n="filter_branding">الهوية والتصميم</button>
+                <button class="filter-btn" data-filter="tech" data-i18n="filter_tech">الخدمات التقنية</button>
+                <button class="filter-btn" data-filter="consulting" data-i18n="filter_consulting">الاستشارات</button>
+                <button class="filter-btn" data-filter="events" data-i18n="filter_events">الفعاليات والمعارض</button>
+                <button class="filter-btn" data-filter="fitout" data-i18n="filter_fitout">التجهيزات والديكور</button>
+                <button class="filter-btn" data-filter="monthly" data-i18n="filter_monthly">خدمات شهرية</button>
+                <button class="filter-btn" data-filter="custom" data-i18n="filter_custom">خدمة مخصصة</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <main class="pb-20">
+        <div class="container mx-auto px-6">
+            <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+                <!-- Custom Service -->
+                <article class="service-card custom-card service-item" data-category="custom">
+                    <span class="service-tag" data-i18n="custom_tag">خدمة مخصصة</span>
+                    <div class="service-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h2 class="text-2xl font-black mb-4" data-i18n="custom_title">عندك طلب خاص؟</h2>
+                    <p class="text-white/90 leading-loose mb-6 flex-grow" data-i18n="custom_desc">
+                        إذا ما لقيت الخدمة المناسبة، شاركنا تفاصيل طلبك، طبيعة مشروعك، ميزانيتك، والنتيجة اللي تبغاها، وفريقنا يساعدك في تحديد الحل الأنسب أو يربطك بمزود الخدمة المناسب.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، لدي طلب مخصص وأرغب بمشاركة التفاصيل مع فريق eCode." target="_blank" class="mt-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white text-primary font-black hover:shadow-lg transition">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span data-i18n="custom_btn">شاركنا طلبك</span>
+                    </a>
+                </article>
+
+                <!-- Marketing -->
+                <article class="service-card service-item" data-category="marketing monthly">
+                    <span class="service-tag" data-i18n="cat_marketing">التسويق والإنتاج</span>
+                    <div class="service-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_social_title">إدارة حسابات التواصل الاجتماعي</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_social_desc">
+                        إدارة المحتوى، جدولة المنشورات، تنسيق الهوية البصرية، ورفع جودة حضورك الرقمي بشكل منظم.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة إدارة حسابات التواصل الاجتماعي من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="marketing">
+                    <span class="service-tag" data-i18n="cat_marketing">التسويق والإنتاج</span>
+                    <div class="service-icon"><i class="fa-solid fa-camera-retro"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_photo_title">التصوير والإنتاج المرئي</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_photo_desc">
+                        تصوير منتجات، تغطيات، فيديوهات قصيرة، موشن جرافيك، ومحتوى مرئي مناسب للسوشيال ميديا والحملات.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة التصوير والإنتاج المرئي من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="marketing monthly">
+                    <span class="service-tag" data-i18n="cat_marketing">التسويق والإنتاج</span>
+                    <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_campaigns_title">إدارة الحملات الإعلانية</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_campaigns_desc">
+                        إعداد الحملات، تحسين الاستهداف، متابعة الأداء، وتقديم توصيات تساعدك على رفع العائد من الإعلانات.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة إدارة الحملات الإعلانية من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <!-- Branding -->
+                <article class="service-card service-item" data-category="branding">
+                    <span class="service-tag" data-i18n="cat_branding">الهوية والتصميم</span>
+                    <div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_logo_title">تصميم شعار وهوية بصرية</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_logo_desc">
+                        بناء شعار وهوية بصرية متكاملة تشمل الألوان، الخطوط، الاستخدامات، والتطبيقات الأساسية للعلامة.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم شعار وهوية بصرية من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="branding">
+                    <span class="service-tag" data-i18n="cat_branding">الهوية والتصميم</span>
+                    <div class="service-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_profile_title">بروفايل شركة وعروض تقديمية</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_profile_desc">
+                        إعداد وتصميم ملفات تعريفية وعروض تقديمية احترافية تعكس قوة الشركة وخدماتها أمام العملاء والشركاء.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة بروفايل شركة أو عرض تقديمي من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="branding monthly">
+                    <span class="service-tag" data-i18n="cat_branding">الهوية والتصميم</span>
+                    <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_posts_title">تصاميم السوشيال ميديا</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_posts_desc">
+                        تصميم بوستات، ستوريات، ثمنيل، قوالب محتوى، وإعلانات رقمية متوافقة مع هوية علامتك.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصاميم السوشيال ميديا من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <!-- Tech -->
+                <article class="service-card service-item" data-category="tech">
+                    <span class="service-tag" data-i18n="cat_tech">الخدمات التقنية</span>
+                    <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_website_title">تصميم وتطوير موقع إلكتروني</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_website_desc">
+                        مواقع تعريفية وصفحات هبوط ومواقع خدمات بتصميم عصري وتجربة مستخدم واضحة ومتجاوبة مع الجوال.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم وتطوير موقع إلكتروني من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="tech">
+                    <span class="service-tag" data-i18n="cat_tech">الخدمات التقنية</span>
+                    <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_ui_title">تصميم واجهات وتجربة مستخدم</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_ui_desc">
+                        تصميم واجهات مواقع وتطبيقات ومنصات رقمية بطريقة منظمة، جميلة، وسهلة الاستخدام.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم واجهات وتجربة مستخدم من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="tech">
+                    <span class="service-tag" data-i18n="cat_tech">الخدمات التقنية</span>
+                    <div class="service-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_automation_title">أتمتة النماذج والطلبات</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_automation_desc">
+                        حلول تساعدك على استقبال الطلبات، تنظيم البيانات، إرسال التنبيهات، وربط النماذج بأدوات العمل.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة أتمتة النماذج والطلبات من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <!-- Consulting -->
+                <article class="service-card service-item" data-category="consulting">
+                    <span class="service-tag" data-i18n="cat_consulting">الاستشارات</span>
+                    <div class="service-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_idea_title">تطوير فكرة المشروع</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_idea_desc">
+                        نساعدك في تحويل الفكرة إلى نموذج واضح، خدمات محددة، شرائح عملاء، وآلية تنفيذ قابلة للتطبيق.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تطوير فكرة مشروع من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="consulting">
+                    <span class="service-tag" data-i18n="cat_consulting">الاستشارات</span>
+                    <div class="service-icon"><i class="fa-solid fa-route"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_journey_title">تحسين رحلة العميل</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_journey_desc">
+                        تحليل نقاط التواصل مع العميل من أول تواصل حتى التسليم، وتحسين تجربة الطلب والمتابعة.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تحسين رحلة العميل من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="consulting">
+                    <span class="service-tag" data-i18n="cat_consulting">الاستشارات</span>
+                    <div class="service-icon"><i class="fa-solid fa-sitemap"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_packages_title">تنظيم الخدمات والباقات</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_packages_desc">
+                        تحويل خدماتك إلى باقات واضحة وسهلة البيع مع تسعير مبدئي ورحلة طلب مفهومة للعميل.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تنظيم الخدمات والباقات من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <!-- Events -->
+                <article class="service-card service-item" data-category="events">
+                    <span class="service-tag" data-i18n="cat_events">الفعاليات والمعارض</span>
+                    <div class="service-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_booth_title">تصميم وتجهيز بوث معرض</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_booth_desc">
+                        تصميم بوثات وأجنحة معارض تعكس هوية العلامة وتساعد على جذب الزوار وتقديم تجربة احترافية.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تصميم وتجهيز بوث معرض من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="events">
+                    <span class="service-tag" data-i18n="cat_events">الفعاليات والمعارض</span>
+                    <div class="service-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_event_title">تنظيم وتشغيل الفعاليات</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_event_desc">
+                        دعم تشغيل الفعاليات، استقبال الضيوف، إدارة الحركة، التنسيق الميداني، وتجهيز تجربة الحضور.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة تنظيم وتشغيل الفعاليات من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <!-- Fit Out -->
+                <article class="service-card service-item" data-category="fitout">
+                    <span class="service-tag" data-i18n="cat_fitout">التجهيزات والديكور</span>
+                    <div class="service-icon"><i class="fa-solid fa-couch"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_interior_title">التصميم الداخلي والتجهيز التجاري</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_interior_desc">
+                        حلول تصميم وتجهيز للمكاتب، المحلات، نقاط البيع، والمساحات التجارية بما يتوافق مع هوية المكان.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة التصميم الداخلي والتجهيز التجاري من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+                <article class="service-card service-item" data-category="fitout branding">
+                    <span class="service-tag" data-i18n="cat_fitout">التجهيزات والديكور</span>
+                    <div class="service-icon"><i class="fa-solid fa-store"></i></div>
+                    <h2 class="text-xl font-black mb-3" data-i18n="srv_signage_title">الواجهات واللوحات والتغليف</h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose mb-6 flex-grow" data-i18n="srv_signage_desc">
+                        تصميم وتنفيذ تطبيقات الهوية على الواجهات، اللوحات، التغليف، الهدايا، والمواد المطبوعة.
+                    </p>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب خدمة الواجهات واللوحات والتغليف من eCode." target="_blank" class="btn-primary w-full">
+                        <span data-i18n="request_service">اطلب الخدمة</span>
+                    </a>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA -->
+    <section class="py-16 bg-white dark:bg-dark border-y border-gray-100 dark:border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-black mb-5 gradient-text" data-i18n="cta_title">
+                    مو متأكد وش الخدمة المناسبة؟
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 text-lg leading-relaxed" data-i18n="cta_desc">
+                    ارسل لنا تفاصيل مشروعك، ونعطيك تصور مبدئي للخدمة المناسبة وآلية التنفيذ.
+                </p>
+
+                <a href="https://wa.me/966503666316?text=مرحبًا، لدي مشروع وأرغب بمساعدتكم في تحديد الخدمة المناسبة." target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span data-i18n="cta_btn">تواصل معنا الآن</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+
+                <div class="md:w-1/3">
+                    <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
+                        <div class="logo-icon">
+                            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                        </div>
+                        <div class="logo-text">
+                            <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                            <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                        </div>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                    </p>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                                <span class="contact-text" dir="ltr">www.eCode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-text" dir="ltr">info@ecode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-text" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/terms.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+                © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const translations = {
+            ar: {
+                brand_name: "eCode",
+                brand_tagline: "تصنع الأثر",
+
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "الخدمات",
+                nav_portfolio: "أعمالنا",
+                nav_news: "الأخبار",
+                nav_contact: "تواصل معنا",
+
+                hero_badge: "خدمات eCode",
+                hero_title_1: "اختر الخدمة المناسبة",
+                hero_title_2: "أو شاركنا طلبك المخصص",
+                hero_desc: "حلول متكاملة تساعدك في التسويق، التصميم، التقنية، الفعاليات، الاستشارات، والتجهيزات. وإن لم تجد ما يناسبك، شاركنا تفاصيل طلبك وسنساعدك في تحديد الحل الأنسب.",
+
+                filter_all: "الكل",
+                filter_marketing: "التسويق والإنتاج",
+                filter_branding: "الهوية والتصميم",
+                filter_tech: "الخدمات التقنية",
+                filter_consulting: "الاستشارات",
+                filter_events: "الفعاليات والمعارض",
+                filter_fitout: "التجهيزات والديكور",
+                filter_monthly: "خدمات شهرية",
+                filter_custom: "خدمة مخصصة",
+
+                cat_marketing: "التسويق والإنتاج",
+                cat_branding: "الهوية والتصميم",
+                cat_tech: "الخدمات التقنية",
+                cat_consulting: "الاستشارات",
+                cat_events: "الفعاليات والمعارض",
+                cat_fitout: "التجهيزات والديكور",
+
+                custom_tag: "خدمة مخصصة",
+                custom_title: "عندك طلب خاص؟",
+                custom_desc: "إذا ما لقيت الخدمة المناسبة، شاركنا تفاصيل طلبك، طبيعة مشروعك، ميزانيتك، والنتيجة اللي تبغاها، وفريقنا يساعدك في تحديد الحل الأنسب أو يربطك بمزود الخدمة المناسب.",
+                custom_btn: "شاركنا طلبك",
+
+                request_service: "اطلب الخدمة",
+
+                srv_social_title: "إدارة حسابات التواصل الاجتماعي",
+                srv_social_desc: "إدارة المحتوى، جدولة المنشورات، تنسيق الهوية البصرية، ورفع جودة حضورك الرقمي بشكل منظم.",
+                srv_photo_title: "التصوير والإنتاج المرئي",
+                srv_photo_desc: "تصوير منتجات، تغطيات، فيديوهات قصيرة، موشن جرافيك، ومحتوى مرئي مناسب للسوشيال ميديا والحملات.",
+                srv_campaigns_title: "إدارة الحملات الإعلانية",
+                srv_campaigns_desc: "إعداد الحملات، تحسين الاستهداف، متابعة الأداء، وتقديم توصيات تساعدك على رفع العائد من الإعلانات.",
+
+                srv_logo_title: "تصميم شعار وهوية بصرية",
+                srv_logo_desc: "بناء شعار وهوية بصرية متكاملة تشمل الألوان، الخطوط، الاستخدامات، والتطبيقات الأساسية للعلامة.",
+                srv_profile_title: "بروفايل شركة وعروض تقديمية",
+                srv_profile_desc: "إعداد وتصميم ملفات تعريفية وعروض تقديمية احترافية تعكس قوة الشركة وخدماتها أمام العملاء والشركاء.",
+                srv_posts_title: "تصاميم السوشيال ميديا",
+                srv_posts_desc: "تصميم بوستات، ستوريات، ثمنيل، قوالب محتوى، وإعلانات رقمية متوافقة مع هوية علامتك.",
+
+                srv_website_title: "تصميم وتطوير موقع إلكتروني",
+                srv_website_desc: "مواقع تعريفية وصفحات هبوط ومواقع خدمات بتصميم عصري وتجربة مستخدم واضحة ومتجاوبة مع الجوال.",
+                srv_ui_title: "تصميم واجهات وتجربة مستخدم",
+                srv_ui_desc: "تصميم واجهات مواقع وتطبيقات ومنصات رقمية بطريقة منظمة، جميلة، وسهلة الاستخدام.",
+                srv_automation_title: "أتمتة النماذج والطلبات",
+                srv_automation_desc: "حلول تساعدك على استقبال الطلبات، تنظيم البيانات، إرسال التنبيهات، وربط النماذج بأدوات العمل.",
+
+                srv_idea_title: "تطوير فكرة المشروع",
+                srv_idea_desc: "نساعدك في تحويل الفكرة إلى نموذج واضح، خدمات محددة، شرائح عملاء، وآلية تنفيذ قابلة للتطبيق.",
+                srv_journey_title: "تحسين رحلة العميل",
+                srv_journey_desc: "تحليل نقاط التواصل مع العميل من أول تواصل حتى التسليم، وتحسين تجربة الطلب والمتابعة.",
+                srv_packages_title: "تنظيم الخدمات والباقات",
+                srv_packages_desc: "تحويل خدماتك إلى باقات واضحة وسهلة البيع مع تسعير مبدئي ورحلة طلب مفهومة للعميل.",
+
+                srv_booth_title: "تصميم وتجهيز بوث معرض",
+                srv_booth_desc: "تصميم بوثات وأجنحة معارض تعكس هوية العلامة وتساعد على جذب الزوار وتقديم تجربة احترافية.",
+                srv_event_title: "تنظيم وتشغيل الفعاليات",
+                srv_event_desc: "دعم تشغيل الفعاليات، استقبال الضيوف، إدارة الحركة، التنسيق الميداني، وتجهيز تجربة الحضور.",
+
+                srv_interior_title: "التصميم الداخلي والتجهيز التجاري",
+                srv_interior_desc: "حلول تصميم وتجهيز للمكاتب، المحلات، نقاط البيع، والمساحات التجارية بما يتوافق مع هوية المكان.",
+                srv_signage_title: "الواجهات واللوحات والتغليف",
+                srv_signage_desc: "تصميم وتنفيذ تطبيقات الهوية على الواجهات، اللوحات، التغليف، الهدايا، والمواد المطبوعة.",
+
+                cta_title: "مو متأكد وش الخدمة المناسبة؟",
+                cta_desc: "ارسل لنا تفاصيل مشروعك، ونعطيك تصور مبدئي للخدمة المناسبة وآلية التنفيذ.",
+                cta_btn: "تواصل معنا الآن",
+
+                footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+                contact_title: "معلومات التواصل",
+                follow_us: "تابعنا",
+                privacy_footer_link: "سياسة الخصوصية",
+                terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب"
+            },
+
+            en: {
+                brand_name: "eCode",
+                brand_tagline: "Innovate Impact",
+
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_portfolio: "Portfolio",
+                nav_news: "News",
+                nav_contact: "Contact Us",
+
+                hero_badge: "eCode Services",
+                hero_title_1: "Choose the Right Service",
+                hero_title_2: "or Share a Custom Request",
+                hero_desc: "Integrated solutions for marketing, design, technology, events, consulting, and fit-out. If you do not find what you need, share your request details and we will help you define the right solution.",
+
+                filter_all: "All",
+                filter_marketing: "Marketing & Production",
+                filter_branding: "Branding & Design",
+                filter_tech: "Technology",
+                filter_consulting: "Consulting",
+                filter_events: "Events & Exhibitions",
+                filter_fitout: "Fit-Out & Décor",
+                filter_monthly: "Monthly Services",
+                filter_custom: "Custom Service",
+
+                cat_marketing: "Marketing & Production",
+                cat_branding: "Branding & Design",
+                cat_tech: "Technology",
+                cat_consulting: "Consulting",
+                cat_events: "Events & Exhibitions",
+                cat_fitout: "Fit-Out & Décor",
+
+                custom_tag: "Custom Service",
+                custom_title: "Have a Special Request?",
+                custom_desc: "If you cannot find the right service, share your project details, budget, and desired outcome. Our team will help define the right solution or connect you with the suitable service provider.",
+                custom_btn: "Share Your Request",
+
+                request_service: "Request Service",
+
+                srv_social_title: "Social Media Management",
+                srv_social_desc: "Content management, post scheduling, visual identity alignment, and organized improvement of your digital presence.",
+                srv_photo_title: "Photography & Visual Production",
+                srv_photo_desc: "Product photography, event coverage, short videos, motion graphics, and visual content for social media and campaigns.",
+                srv_campaigns_title: "Advertising Campaign Management",
+                srv_campaigns_desc: "Campaign setup, targeting improvement, performance tracking, and recommendations to improve advertising return.",
+
+                srv_logo_title: "Logo and Visual Identity Design",
+                srv_logo_desc: "Building a complete visual identity including logo, colors, typography, usage guidelines, and essential brand applications.",
+                srv_profile_title: "Company Profile and Presentations",
+                srv_profile_desc: "Preparing and designing professional company profiles and presentations that reflect your company’s strength and services.",
+                srv_posts_title: "Social Media Designs",
+                srv_posts_desc: "Posts, stories, thumbnails, content templates, and digital ads aligned with your brand identity.",
+
+                srv_website_title: "Website Design and Development",
+                srv_website_desc: "Corporate websites, landing pages, and service websites with modern design and responsive user experience.",
+                srv_ui_title: "UI/UX Design",
+                srv_ui_desc: "Designing organized, beautiful, and user-friendly interfaces for websites, apps, and digital platforms.",
+                srv_automation_title: "Forms and Request Automation",
+                srv_automation_desc: "Solutions to receive requests, organize data, send alerts, and connect forms with work tools.",
+
+                srv_idea_title: "Project Idea Development",
+                srv_idea_desc: "We help turn your idea into a clear model, defined services, customer segments, and an executable plan.",
+                srv_journey_title: "Customer Journey Improvement",
+                srv_journey_desc: "Analyzing customer touchpoints from first contact to delivery and improving the request and follow-up experience.",
+                srv_packages_title: "Services and Packages Structuring",
+                srv_packages_desc: "Turning your services into clear, sellable packages with initial pricing and a simple customer journey.",
+
+                srv_booth_title: "Exhibition Booth Design and Setup",
+                srv_booth_desc: "Designing exhibition booths and pavilions that reflect your brand and attract visitors professionally.",
+                srv_event_title: "Event Organization and Operation",
+                srv_event_desc: "Supporting event operations, guest reception, crowd movement, field coordination, and attendee experience.",
+
+                srv_interior_title: "Interior Design and Commercial Fit-Out",
+                srv_interior_desc: "Design and fit-out solutions for offices, stores, points of sale, and commercial spaces aligned with the place identity.",
+                srv_signage_title: "Signage, Facades, and Packaging",
+                srv_signage_desc: "Designing and implementing brand applications on facades, signage, packaging, gifts, and printed materials.",
+
+                cta_title: "Not Sure Which Service Fits?",
+                cta_desc: "Send us your project details and we will provide an initial direction for the suitable service and execution approach.",
+                cta_btn: "Contact Us Now",
+
+                footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+                contact_title: "Contact Info",
+                follow_us: "Follow Us",
+                privacy_footer_link: "Privacy Policy",
+                terms_footer_link: "Terms & Conditions and Refund Policy",
+                footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+                whatsapp_tooltip: "Contact via WhatsApp"
+            }
+        };
+
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+        function initTheme() {
+            const icon = document.getElementById('theme-icon');
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('title', translations[currentLang][key]);
+                }
+            });
+
+            if (currentLang === 'ar') {
+                document.title = "الخدمات | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "استكشف خدمات eCode في التسويق، التصميم، التقنية، الاستشارات، الفعاليات، التجهيزات، والخدمات المخصصة حسب احتياجك."
+                );
+            } else {
+                document.title = "Services | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "Explore eCode services in marketing, design, technology, consulting, events, fit-out, and custom service requests."
+                );
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            localStorage.setItem('userLanguage', currentLang);
+            updateContent();
+        }
+
+        function initFilters() {
+            const buttons = document.querySelectorAll('.filter-btn');
+            const items = document.querySelectorAll('.service-item');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    items.forEach(item => {
+                        const categories = item.getAttribute('data-category');
+
+                        if (filter === 'all' || categories.includes(filter)) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+        });
+
+        window.onload = () => {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            initTheme();
+            updateContent();
+            initFilters();
+        };
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
