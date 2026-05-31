@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انضم كمزود خدمة | eCode</title>
+    <meta name="description" content="انضم إلى شبكة مزودي الخدمات في eCode وشاركنا تخصصك وأعمالك لتكون ضمن شركائنا في تنفيذ خدمات التسويق، التصميم، التقنية، الفعاليات، والتجهيزات.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/partners.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecode.sa/partners.html">
+    <meta property="og:title" content="انضم كمزود خدمة | eCode">
+    <meta property="og:description" content="انضم إلى شبكة مزودي الخدمات في eCode وشاركنا تخصصك وأعمالك.">
+    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:site_name" content="eCode">
+
+    <style>
+        :root {
+            --text-main: 'Cairo', sans-serif;
+        }
+
+        html[lang="en"] {
+            --text-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--text-main);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name {
+            color: #f8fafc;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline {
+            color: #94a3b8;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #475569;
+            transition: color 0.3s ease;
+        }
+
+        html.dark .nav a {
+            color: #cbd5e1;
+        }
+
+        .nav a:hover,
+        .nav a.active-link {
+            color: #4F46E5;
+        }
+
+        html.dark .nav a:hover,
+        html.dark .nav a.active-link {
+            color: #818cf8;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 32px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        }
+
+        .dark .form-card {
+            background: #0f172a;
+            border-color: #1f2937;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .input-field,
+        .select-field,
+        .textarea-field {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 18px;
+            padding: 14px 16px;
+            outline: none;
+            transition: all 0.25s ease;
+            font-weight: 600;
+        }
+
+        .dark .input-field,
+        .dark .select-field,
+        .dark .textarea-field {
+            background: #020617;
+            color: #f8fafc;
+            border-color: #1f2937;
+        }
+
+        .input-field:focus,
+        .select-field:focus,
+        .textarea-field:focus {
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+        }
+
+        .textarea-field {
+            min-height: 135px;
+            resize: vertical;
+        }
+
+        .field-label {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+
+        .dark .field-label {
+            color: #f8fafc;
+        }
+
+        .hint {
+            font-size: 0.82rem;
+            color: #64748b;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        .dark .hint {
+            color: #94a3b8;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 28px;
+            padding: 28px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .dark .info-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+            border-color: rgba(79, 70, 229, 0.35);
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .dark .icon-box {
+            background: rgba(129, 140, 248, 0.15);
+            color: #c7d2fe;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.18);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 9999px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            color: #475569;
+            font-weight: 800;
+            font-size: 0.92rem;
+        }
+
+        .dark .badge-pill {
+            background: #0f172a;
+            border-color: #1f2937;
+            color: #cbd5e1;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            }
+
+            html.dark .nav.active {
+                background: #0f172a;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50">
+        <div class="header-inner">
+            <a href="https://ecode.sa/" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name" data-i18n="brand_name">eCode</div>
+                    <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                </div>
+            </a>
+
+            <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav">
+                <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
+                <a href="https://ecode.sa/about.html" data-i18n="nav_about">من نحن</a>
+                <a href="https://ecode.sa/services.html" data-i18n="nav_services">الخدمات</a>
+                <a href="https://ecode.sa/request-service.html" data-i18n="nav_request">اطلب خدمة</a>
+                <a href="https://ecode.sa/partners.html" class="active-link" data-i18n="nav_partners">انضم كمزود خدمة</a>
+
+                <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
+                    <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+                        <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+                    </button>
+                </div>
+
+                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative pt-36 pb-16 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20 dark:opacity-10 pointer-events-none">
+            <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
+            <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">
+                        شركاء التنفيذ
+                    </span>
+
+                    <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                        <span data-i18n="hero_title_1">انضم إلى شبكة</span>
+                        <br>
+                        <span class="gradient-text" data-i18n="hero_title_2">مزودي خدمات eCode</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-medium mb-8" data-i18n="hero_desc">
+                        إذا كنت مصممًا، مطورًا، مسوقًا، صانع محتوى، منفذ فعاليات، مزود تجهيزات، أو لديك خدمة احترافية، شاركنا بياناتك لنراجع إمكانية التعاون ضمن شبكة شركائنا.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3">
+                        <span class="badge-pill"><i class="fa-solid fa-check text-primary"></i><span data-i18n="badge_1">فرص تعاون</span></span>
+                        <span class="badge-pill"><i class="fa-solid fa-check text-primary"></i><span data-i18n="badge_2">طلبات متنوعة</span></span>
+                        <span class="badge-pill"><i class="fa-solid fa-check text-primary"></i><span data-i18n="badge_3">عمل مرن</span></span>
+                    </div>
+                </div>
+
+                <div class="gradient-bg rounded-[2rem] p-8 md:p-10 text-white shadow-2xl">
+                    <h2 class="text-2xl md:text-3xl font-black mb-6" data-i18n="hero_box_title">
+                        نبحث عن شركاء موثوقين
+                    </h2>
+                    <p class="text-white/90 leading-loose mb-8" data-i18n="hero_box_desc">
+                        نعمل على بناء شبكة مزودين تساعدنا في تنفيذ خدمات متعددة بجودة عالية، مع وضوح في النطاق، الأسعار، المواعيد، وآلية التسليم.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="step-card">
+                            <div class="step-number"><i class="fa-solid fa-user-check"></i></div>
+                            <p class="text-white/85 text-sm font-bold" data-i18n="box_1">مستقلون محترفون</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number"><i class="fa-solid fa-building"></i></div>
+                            <p class="text-white/85 text-sm font-bold" data-i18n="box_2">شركات ومؤسسات</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number"><i class="fa-solid fa-briefcase"></i></div>
+                            <p class="text-white/85 text-sm font-bold" data-i18n="box_3">مقدمو خدمات متخصصة</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number"><i class="fa-solid fa-handshake"></i></div>
+                            <p class="text-white/85 text-sm font-bold" data-i18n="box_4">شراكات تنفيذية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Who Can Join -->
+    <section class="py-20 bg-white dark:bg-dark border-y border-gray-100 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="who_badge">من يمكنه الانضمام؟</span>
+                <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="who_title">نرحب بمزودي الخدمات في المجالات التالية</h2>
+                <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="who_desc">
+                    إذا كان لديك تخصص واضح، نماذج أعمال، والتزام في التسليم، يمكننا دراسة إمكانية إضافتك إلى شبكة مزودي الخدمات لدينا.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-solid fa-palette"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="join_1_title">التصميم والهوية</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="join_1_desc">تصميم شعارات، هويات بصرية، بروفايلات، عروض تقديمية، ومطبوعات.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-solid fa-bullhorn"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="join_2_title">التسويق والمحتوى</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="join_2_desc">إدارة سوشيال ميديا، كتابة محتوى، حملات إعلانية، تحسين ظهور، وخطط تسويقية.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-solid fa-camera-retro"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="join_3_title">التصوير والإنتاج</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="join_3_desc">تصوير منتجات، فيديوهات قصيرة، مونتاج، موشن جرافيك، وتغطيات فعاليات.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-solid fa-code"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="join_4_title">التقنية والتطوير</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="join_4_desc">تطوير مواقع، صفحات هبوط، واجهات UI/UX، أتمتة، ولوحات تحكم.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-solid fa-people-roof"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="join_5_title">الفعاليات والمعارض</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="join_5_desc">تنظيم فعاليات، تشغيل ميداني، استقبال، بوثات، أجنحة، وتجربة زائر.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-box"><i class="fa-solid fa-couch"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="join_6_title">التجهيزات والديكور</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="join_6_desc">تجهيز محلات، واجهات، لوحات، تغليف، هدايا، وديكور تجاري أو مكتبي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Form -->
+    <main class="py-20 bg-gray-50 dark:bg-darker">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+
+                <!-- Form -->
+                <div class="lg:col-span-2 form-card p-6 md:p-10">
+                    <div class="mb-8">
+                        <h2 class="text-2xl md:text-3xl font-black mb-3" data-i18n="form_title">نموذج الانضمام كمزود خدمة</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="form_desc">
+                            عبئ البيانات التالية، وسيتم فتح واتساب برسالة جاهزة تحتوي على معلوماتك لمراجعتها من فريق eCode.
+                        </p>
+                    </div>
+
+                    <form id="partnerForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="field-label" for="providerName" data-i18n="label_name">الاسم / اسم المنشأة</label>
+                            <input id="providerName" type="text" class="input-field" placeholder="مثال: أحمد محمد / شركة ..." data-i18n-placeholder="ph_name" required>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="providerType" data-i18n="label_type">نوع مزود الخدمة</label>
+                            <select id="providerType" class="select-field" required>
+                                <option value="" data-i18n="option_select">اختر</option>
+                                <option value="مستقل" data-i18n="type_freelancer">مستقل</option>
+                                <option value="شركة / مؤسسة" data-i18n="type_company">شركة / مؤسسة</option>
+                                <option value="فريق عمل" data-i18n="type_team">فريق عمل</option>
+                                <option value="مزود متخصص" data-i18n="type_specialized">مزود متخصص</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="specialty" data-i18n="label_specialty">التخصص الرئيسي</label>
+                            <select id="specialty" class="select-field" required>
+                                <option value="" data-i18n="option_select">اختر</option>
+                                <option value="التصميم والهوية" data-i18n="spec_design">التصميم والهوية</option>
+                                <option value="التسويق والمحتوى" data-i18n="spec_marketing">التسويق والمحتوى</option>
+                                <option value="التصوير والإنتاج" data-i18n="spec_production">التصوير والإنتاج</option>
+                                <option value="التقنية والتطوير" data-i18n="spec_tech">التقنية والتطوير</option>
+                                <option value="الفعاليات والمعارض" data-i18n="spec_events">الفعاليات والمعارض</option>
+                                <option value="التجهيزات والديكور" data-i18n="spec_fitout">التجهيزات والديكور</option>
+                                <option value="استشارات وتطوير أعمال" data-i18n="spec_consulting">استشارات وتطوير أعمال</option>
+                                <option value="أخرى" data-i18n="spec_other">أخرى</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="city" data-i18n="label_city">المدينة</label>
+                            <input id="city" type="text" class="input-field" placeholder="مثال: الرياض" data-i18n-placeholder="ph_city" required>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="phone" data-i18n="label_phone">رقم الجوال</label>
+                            <input id="phone" type="tel" class="input-field" placeholder="05xxxxxxxx" data-i18n-placeholder="ph_phone" required>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="email" data-i18n="label_email">البريد الإلكتروني</label>
+                            <input id="email" type="email" class="input-field" placeholder="name@example.com" data-i18n-placeholder="ph_email">
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="workMode" data-i18n="label_work_mode">طريقة العمل</label>
+                            <select id="workMode" class="select-field">
+                                <option value="عن بعد" data-i18n="work_remote">عن بعد</option>
+                                <option value="حضوري" data-i18n="work_onsite">حضوري</option>
+                                <option value="عن بعد وحضوري" data-i18n="work_hybrid">عن بعد وحضوري</option>
+                                <option value="حسب المشروع" data-i18n="work_project">حسب المشروع</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="commercialRecord" data-i18n="label_cr">هل لديك سجل تجاري؟</label>
+                            <select id="commercialRecord" class="select-field">
+                                <option value="نعم" data-i18n="yes">نعم</option>
+                                <option value="لا" data-i18n="no">لا</option>
+                                <option value="قيد الإصدار" data-i18n="in_progress">قيد الإصدار</option>
+                                <option value="لا ينطبق" data-i18n="not_applicable">لا ينطبق</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="portfolio" data-i18n="label_portfolio">رابط نماذج الأعمال</label>
+                            <input id="portfolio" type="url" class="input-field" placeholder="Behance / Instagram / Website / Drive" data-i18n-placeholder="ph_portfolio">
+                            <p class="hint" data-i18n="portfolio_hint">ضع رابط أعمالك أو حسابك أو ملف يحتوي على نماذج سابقة.</p>
+                        </div>
+
+                        <div>
+                            <label class="field-label" for="priceRange" data-i18n="label_price">نطاق الأسعار التقريبي</label>
+                            <input id="priceRange" type="text" class="input-field" placeholder="مثال: تصميم بوست يبدأ من 50 ريال" data-i18n-placeholder="ph_price">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="field-label" for="services" data-i18n="label_services">الخدمات التي تقدمها</label>
+                            <textarea id="services" class="textarea-field" placeholder="اكتب الخدمات بالتفصيل، مثل: تصميم هوية، إدارة حسابات، تطوير مواقع، تصوير منتجات..." data-i18n-placeholder="ph_services" required></textarea>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="field-label" for="experience" data-i18n="label_experience">الخبرة ونبذة مختصرة</label>
+                            <textarea id="experience" class="textarea-field" placeholder="اذكر خبرتك، نوع العملاء السابقين، وأي نقاط قوة أو مميزات..." data-i18n-placeholder="ph_experience"></textarea>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="field-label" for="notes" data-i18n="label_notes">ملاحظات إضافية</label>
+                            <textarea id="notes" class="textarea-field" placeholder="أي ملاحظات حول طريقة التعاون، التوفر، المدن التي تخدمها، أو شروطك..." data-i18n-placeholder="ph_notes"></textarea>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <button type="submit" class="w-full px-8 py-4 rounded-full bg-[#25D366] text-white font-black text-lg hover:shadow-lg transition transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                                <span data-i18n="submit_btn">إرسال طلب الانضمام عبر واتساب</span>
+                            </button>
+
+                            <p class="hint text-center" data-i18n="submit_hint">
+                                سيتم فتح واتساب برسالة جاهزة، ويمكنك مراجعتها قبل الإرسال.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Side Info -->
+                <aside class="space-y-6">
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
+                        <h3 class="text-xl font-black mb-3" data-i18n="side_1_title">كيف تتم المراجعة؟</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="side_1_desc">
+                            نراجع التخصص، نماذج الأعمال، مستوى الجودة، سرعة التجاوب، ومدى مناسبة الخدمات لاحتياج عملاء eCode.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fa-solid fa-handshake-angle"></i></div>
+                        <h3 class="text-xl font-black mb-3" data-i18n="side_2_title">هل الانضمام يضمن طلبات؟</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="side_2_desc">
+                            الانضمام للشبكة لا يعني ضمان طلبات مباشرة، لكنه يتيح لنا ترشيحك عند وجود طلب مناسب لتخصصك.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <h3 class="text-xl font-black mb-3" data-i18n="side_3_title">آلية التعاون</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="side_3_desc">
+                            تختلف آلية التعاون حسب نوع الخدمة، وقد تكون إحالة، تنفيذ لصالح eCode، أو مشروع مباشر باتفاق مستقل.
+                        </p>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Process -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-5xl font-black mb-5" data-i18n="process_title">رحلة الانضمام للشبكة</h2>
+                <p class="text-white/90 text-lg leading-loose" data-i18n="process_desc">
+                    نرتب بيانات المزودين بشكل واضح حتى يسهل ترشيح الشريك المناسب عند وصول طلبات العملاء.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="step_1_title">إرسال البيانات</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="step_1_desc">ترسل لنا بياناتك وتخصصك ونماذج أعمالك.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="step_2_title">مراجعة الملف</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="step_2_desc">نراجع جودة الأعمال والخدمات التي تقدمها.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="step_3_title">التصنيف الداخلي</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="step_3_desc">نصنفك حسب التخصص، المدينة، ونوع الخدمة.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="step_4_title">الترشيح عند الحاجة</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="step_4_desc">عند وجود طلب مناسب، يتم التواصل معك للتنسيق.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+
+                <div class="md:w-1/3">
+                    <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
+                        <div class="logo-icon">
+                            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                        </div>
+                        <div class="logo-text">
+                            <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                            <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                        </div>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                    </p>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                                <span class="contact-text" dir="ltr">www.eCode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-text" dir="ltr">info@ecode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-text" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/terms.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+                © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const translations = {
+            ar: {
+                brand_name: "eCode",
+                brand_tagline: "تصنع الأثر",
+
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "الخدمات",
+                nav_request: "اطلب خدمة",
+                nav_partners: "انضم كمزود خدمة",
+                nav_contact: "تواصل معنا",
+
+                hero_badge: "شركاء التنفيذ",
+                hero_title_1: "انضم إلى شبكة",
+                hero_title_2: "مزودي خدمات eCode",
+                hero_desc: "إذا كنت مصممًا، مطورًا، مسوقًا، صانع محتوى، منفذ فعاليات، مزود تجهيزات، أو لديك خدمة احترافية، شاركنا بياناتك لنراجع إمكانية التعاون ضمن شبكة شركائنا.",
+                badge_1: "فرص تعاون",
+                badge_2: "طلبات متنوعة",
+                badge_3: "عمل مرن",
+                hero_box_title: "نبحث عن شركاء موثوقين",
+                hero_box_desc: "نعمل على بناء شبكة مزودين تساعدنا في تنفيذ خدمات متعددة بجودة عالية، مع وضوح في النطاق، الأسعار، المواعيد، وآلية التسليم.",
+                box_1: "مستقلون محترفون",
+                box_2: "شركات ومؤسسات",
+                box_3: "مقدمو خدمات متخصصة",
+                box_4: "شراكات تنفيذية",
+
+                who_badge: "من يمكنه الانضمام؟",
+                who_title: "نرحب بمزودي الخدمات في المجالات التالية",
+                who_desc: "إذا كان لديك تخصص واضح، نماذج أعمال، والتزام في التسليم، يمكننا دراسة إمكانية إضافتك إلى شبكة مزودي الخدمات لدينا.",
+                join_1_title: "التصميم والهوية",
+                join_1_desc: "تصميم شعارات، هويات بصرية، بروفايلات، عروض تقديمية، ومطبوعات.",
+                join_2_title: "التسويق والمحتوى",
+                join_2_desc: "إدارة سوشيال ميديا، كتابة محتوى، حملات إعلانية، تحسين ظهور، وخطط تسويقية.",
+                join_3_title: "التصوير والإنتاج",
+                join_3_desc: "تصوير منتجات، فيديوهات قصيرة، مونتاج، موشن جرافيك، وتغطيات فعاليات.",
+                join_4_title: "التقنية والتطوير",
+                join_4_desc: "تطوير مواقع، صفحات هبوط، واجهات UI/UX، أتمتة، ولوحات تحكم.",
+                join_5_title: "الفعاليات والمعارض",
+                join_5_desc: "تنظيم فعاليات، تشغيل ميداني، استقبال، بوثات، أجنحة، وتجربة زائر.",
+                join_6_title: "التجهيزات والديكور",
+                join_6_desc: "تجهيز محلات، واجهات، لوحات، تغليف، هدايا، وديكور تجاري أو مكتبي.",
+
+                form_title: "نموذج الانضمام كمزود خدمة",
+                form_desc: "عبئ البيانات التالية، وسيتم فتح واتساب برسالة جاهزة تحتوي على معلوماتك لمراجعتها من فريق eCode.",
+
+                label_name: "الاسم / اسم المنشأة",
+                label_type: "نوع مزود الخدمة",
+                label_specialty: "التخصص الرئيسي",
+                label_city: "المدينة",
+                label_phone: "رقم الجوال",
+                label_email: "البريد الإلكتروني",
+                label_work_mode: "طريقة العمل",
+                label_cr: "هل لديك سجل تجاري؟",
+                label_portfolio: "رابط نماذج الأعمال",
+                label_price: "نطاق الأسعار التقريبي",
+                label_services: "الخدمات التي تقدمها",
+                label_experience: "الخبرة ونبذة مختصرة",
+                label_notes: "ملاحظات إضافية",
+
+                ph_name: "مثال: أحمد محمد / شركة ...",
+                ph_city: "مثال: الرياض",
+                ph_phone: "05xxxxxxxx",
+                ph_email: "name@example.com",
+                ph_portfolio: "Behance / Instagram / Website / Drive",
+                ph_price: "مثال: تصميم بوست يبدأ من 50 ريال",
+                ph_services: "اكتب الخدمات بالتفصيل، مثل: تصميم هوية، إدارة حسابات، تطوير مواقع، تصوير منتجات...",
+                ph_experience: "اذكر خبرتك، نوع العملاء السابقين، وأي نقاط قوة أو مميزات...",
+                ph_notes: "أي ملاحظات حول طريقة التعاون، التوفر، المدن التي تخدمها، أو شروطك...",
+
+                option_select: "اختر",
+                type_freelancer: "مستقل",
+                type_company: "شركة / مؤسسة",
+                type_team: "فريق عمل",
+                type_specialized: "مزود متخصص",
+
+                spec_design: "التصميم والهوية",
+                spec_marketing: "التسويق والمحتوى",
+                spec_production: "التصوير والإنتاج",
+                spec_tech: "التقنية والتطوير",
+                spec_events: "الفعاليات والمعارض",
+                spec_fitout: "التجهيزات والديكور",
+                spec_consulting: "استشارات وتطوير أعمال",
+                spec_other: "أخرى",
+
+                work_remote: "عن بعد",
+                work_onsite: "حضوري",
+                work_hybrid: "عن بعد وحضوري",
+                work_project: "حسب المشروع",
+
+                yes: "نعم",
+                no: "لا",
+                in_progress: "قيد الإصدار",
+                not_applicable: "لا ينطبق",
+
+                portfolio_hint: "ضع رابط أعمالك أو حسابك أو ملف يحتوي على نماذج سابقة.",
+                submit_btn: "إرسال طلب الانضمام عبر واتساب",
+                submit_hint: "سيتم فتح واتساب برسالة جاهزة، ويمكنك مراجعتها قبل الإرسال.",
+
+                side_1_title: "كيف تتم المراجعة؟",
+                side_1_desc: "نراجع التخصص، نماذج الأعمال، مستوى الجودة، سرعة التجاوب، ومدى مناسبة الخدمات لاحتياج عملاء eCode.",
+                side_2_title: "هل الانضمام يضمن طلبات؟",
+                side_2_desc: "الانضمام للشبكة لا يعني ضمان طلبات مباشرة، لكنه يتيح لنا ترشيحك عند وجود طلب مناسب لتخصصك.",
+                side_3_title: "آلية التعاون",
+                side_3_desc: "تختلف آلية التعاون حسب نوع الخدمة، وقد تكون إحالة، تنفيذ لصالح eCode، أو مشروع مباشر باتفاق مستقل.",
+
+                process_title: "رحلة الانضمام للشبكة",
+                process_desc: "نرتب بيانات المزودين بشكل واضح حتى يسهل ترشيح الشريك المناسب عند وصول طلبات العملاء.",
+                step_1_title: "إرسال البيانات",
+                step_1_desc: "ترسل لنا بياناتك وتخصصك ونماذج أعمالك.",
+                step_2_title: "مراجعة الملف",
+                step_2_desc: "نراجع جودة الأعمال والخدمات التي تقدمها.",
+                step_3_title: "التصنيف الداخلي",
+                step_3_desc: "نصنفك حسب التخصص، المدينة، ونوع الخدمة.",
+                step_4_title: "الترشيح عند الحاجة",
+                step_4_desc: "عند وجود طلب مناسب، يتم التواصل معك للتنسيق.",
+
+                footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+                contact_title: "معلومات التواصل",
+                follow_us: "تابعنا",
+                privacy_footer_link: "سياسة الخصوصية",
+                terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب"
+            },
+
+            en: {
+                brand_name: "eCode",
+                brand_tagline: "Innovate Impact",
+
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_request: "Request Service",
+                nav_partners: "Join as Provider",
+                nav_contact: "Contact Us",
+
+                hero_badge: "Execution Partners",
+                hero_title_1: "Join the",
+                hero_title_2: "eCode Service Provider Network",
+                hero_desc: "If you are a designer, developer, marketer, content creator, event operator, fit-out provider, or professional service provider, share your details and we will review possible cooperation within our partner network.",
+                badge_1: "Cooperation Opportunities",
+                badge_2: "Diverse Requests",
+                badge_3: "Flexible Work",
+                hero_box_title: "We Are Looking for Trusted Partners",
+                hero_box_desc: "We are building a provider network that helps us execute multiple services with high quality, clear scope, pricing, timelines, and delivery process.",
+                box_1: "Professional Freelancers",
+                box_2: "Companies and Establishments",
+                box_3: "Specialized Providers",
+                box_4: "Execution Partnerships",
+
+                who_badge: "Who Can Join?",
+                who_title: "We Welcome Service Providers in the Following Fields",
+                who_desc: "If you have a clear specialty, work samples, and delivery commitment, we can review adding you to our service provider network.",
+                join_1_title: "Design & Branding",
+                join_1_desc: "Logo design, visual identities, company profiles, presentations, and print materials.",
+                join_2_title: "Marketing & Content",
+                join_2_desc: "Social media management, content writing, advertising campaigns, visibility improvement, and marketing plans.",
+                join_3_title: "Photography & Production",
+                join_3_desc: "Product photography, short videos, editing, motion graphics, and event coverage.",
+                join_4_title: "Technology & Development",
+                join_4_desc: "Website development, landing pages, UI/UX, automation, and dashboards.",
+                join_5_title: "Events & Exhibitions",
+                join_5_desc: "Event organization, field operations, reception, booths, pavilions, and visitor experience.",
+                join_6_title: "Fit-Out & Décor",
+                join_6_desc: "Store fit-outs, facades, signage, packaging, gifts, and commercial or office décor.",
+
+                form_title: "Service Provider Application Form",
+                form_desc: "Fill in the following details, and WhatsApp will open with a ready message containing your information for eCode’s review.",
+
+                label_name: "Name / Establishment Name",
+                label_type: "Provider Type",
+                label_specialty: "Main Specialty",
+                label_city: "City",
+                label_phone: "Phone Number",
+                label_email: "Email",
+                label_work_mode: "Work Mode",
+                label_cr: "Do you have a commercial registration?",
+                label_portfolio: "Portfolio Link",
+                label_price: "Approximate Price Range",
+                label_services: "Services You Provide",
+                label_experience: "Experience and Short Bio",
+                label_notes: "Additional Notes",
+
+                ph_name: "Example: Ahmed Mohammed / Company ...",
+                ph_city: "Example: Riyadh",
+                ph_phone: "05xxxxxxxx",
+                ph_email: "name@example.com",
+                ph_portfolio: "Behance / Instagram / Website / Drive",
+                ph_price: "Example: Post design starts from SAR 50",
+                ph_services: "Write your services in detail, such as: identity design, account management, website development, product photography...",
+                ph_experience: "Mention your experience, previous client types, and key strengths...",
+                ph_notes: "Any notes about cooperation method, availability, cities served, or conditions...",
+
+                option_select: "Select",
+                type_freelancer: "Freelancer",
+                type_company: "Company / Establishment",
+                type_team: "Team",
+                type_specialized: "Specialized Provider",
+
+                spec_design: "Design & Branding",
+                spec_marketing: "Marketing & Content",
+                spec_production: "Photography & Production",
+                spec_tech: "Technology & Development",
+                spec_events: "Events & Exhibitions",
+                spec_fitout: "Fit-Out & Décor",
+                spec_consulting: "Consulting & Business Development",
+                spec_other: "Other",
+
+                work_remote: "Remote",
+                work_onsite: "On-site",
+                work_hybrid: "Remote and On-site",
+                work_project: "Based on Project",
+
+                yes: "Yes",
+                no: "No",
+                in_progress: "In Progress",
+                not_applicable: "Not Applicable",
+
+                portfolio_hint: "Add a link to your work, account, or file containing previous samples.",
+                submit_btn: "Send Application via WhatsApp",
+                submit_hint: "WhatsApp will open with a ready message, and you can review it before sending.",
+
+                side_1_title: "How Is the Application Reviewed?",
+                side_1_desc: "We review the specialty, work samples, quality level, responsiveness, and how suitable the services are for eCode clients.",
+                side_2_title: "Does Joining Guarantee Requests?",
+                side_2_desc: "Joining the network does not guarantee immediate requests, but it allows us to recommend you when a suitable request matches your specialty.",
+                side_3_title: "Cooperation Method",
+                side_3_desc: "The cooperation method varies by service type. It may be referral, execution for eCode, or a direct project under a separate agreement.",
+
+                process_title: "Network Joining Journey",
+                process_desc: "We organize provider data clearly so we can recommend the right partner when client requests arrive.",
+                step_1_title: "Submit Details",
+                step_1_desc: "You send us your details, specialty, and work samples.",
+                step_2_title: "Profile Review",
+                step_2_desc: "We review the quality of your work and services.",
+                step_3_title: "Internal Classification",
+                step_3_desc: "We classify you by specialty, city, and service type.",
+                step_4_title: "Recommendation When Needed",
+                step_4_desc: "When a suitable request arrives, we contact you for coordination.",
+
+                footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+                contact_title: "Contact Info",
+                follow_us: "Follow Us",
+                privacy_footer_link: "Privacy Policy",
+                terms_footer_link: "Terms & Conditions and Refund Policy",
+                footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+                whatsapp_tooltip: "Contact via WhatsApp"
+            }
+        };
+
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+        function initTheme() {
+            const icon = document.getElementById('theme-icon');
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('title', translations[currentLang][key]);
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('placeholder', translations[currentLang][key]);
+                }
+            });
+
+            if (currentLang === 'ar') {
+                document.title = "انضم كمزود خدمة | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "انضم إلى شبكة مزودي الخدمات في eCode وشاركنا تخصصك وأعمالك لتكون ضمن شركائنا في تنفيذ خدمات التسويق، التصميم، التقنية، الفعاليات، والتجهيزات."
+                );
+            } else {
+                document.title = "Join as Service Provider | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "Join eCode’s service provider network and share your specialty and portfolio to become part of our execution partners."
+                );
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            localStorage.setItem('userLanguage', currentLang);
+            updateContent();
+        }
+
+        function initPartnerForm() {
+            const form = document.getElementById('partnerForm');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const providerName = document.getElementById('providerName').value.trim();
+                const providerType = document.getElementById('providerType').value;
+                const specialty = document.getElementById('specialty').value;
+                const city = document.getElementById('city').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const workMode = document.getElementById('workMode').value;
+                const commercialRecord = document.getElementById('commercialRecord').value;
+                const portfolio = document.getElementById('portfolio').value.trim();
+                const priceRange = document.getElementById('priceRange').value.trim();
+                const services = document.getElementById('services').value.trim();
+                const experience = document.getElementById('experience').value.trim();
+                const notes = document.getElementById('notes').value.trim();
+
+                if (!providerName || !providerType || !specialty || !city || !phone || !services) {
+                    alert(currentLang === 'ar' ? 'فضلاً عبئ الحقول المطلوبة.' : 'Please fill in the required fields.');
+                    return;
+                }
+
+                const messageAr =
+`مرحبًا فريق eCode،
+
+أرغب بالانضمام إلى شبكة مزودي الخدمات، وهذه بياناتي:
+
+الاسم / اسم المنشأة: ${providerName}
+نوع مزود الخدمة: ${providerType}
+التخصص الرئيسي: ${specialty}
+المدينة: ${city}
+رقم الجوال: ${phone}
+البريد الإلكتروني: ${email || 'غير مضاف'}
+طريقة العمل: ${workMode}
+هل يوجد سجل تجاري؟ ${commercialRecord}
+رابط نماذج الأعمال: ${portfolio || 'غير مضاف'}
+نطاق الأسعار التقريبي: ${priceRange || 'غير محدد'}
+
+الخدمات التي أقدمها:
+${services}
+
+الخبرة ونبذة مختصرة:
+${experience || 'غير مضافة'}
+
+ملاحظات إضافية:
+${notes || 'لا يوجد'}`;
+
+                const messageEn =
+`Hello eCode Team,
+
+I would like to join the service provider network. Here are my details:
+
+Name / Establishment Name: ${providerName}
+Provider Type: ${providerType}
+Main Specialty: ${specialty}
+City: ${city}
+Phone: ${phone}
+Email: ${email || 'Not provided'}
+Work Mode: ${workMode}
+Commercial Registration: ${commercialRecord}
+Portfolio Link: ${portfolio || 'Not provided'}
+Approximate Price Range: ${priceRange || 'Not specified'}
+
+Services I Provide:
+${services}
+
+Experience and Short Bio:
+${experience || 'Not provided'}
+
+Additional Notes:
+${notes || 'None'}`;
+
+                const finalMessage = currentLang === 'ar' ? messageAr : messageEn;
+                const whatsappUrl = `https://wa.me/966503666316?text=${encodeURIComponent(finalMessage)}`;
+
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+        });
+
+        window.onload = () => {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            initTheme();
+            updateContent();
+            initPartnerForm();
+        };
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
