@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آلية العمل | eCode</title>
+    <meta name="description" content="تعرف على آلية عمل eCode من استقبال الطلب وفهم الاحتياج حتى تقديم العرض والتنفيذ والتسليم وقياس الأثر.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/process.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecode.sa/process.html">
+    <meta property="og:title" content="آلية العمل | eCode">
+    <meta property="og:description" content="من أول تواصل إلى التسليم، تعرف على طريقة عمل eCode.">
+    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:site_name" content="eCode">
+
+    <style>
+        :root {
+            --text-main: 'Cairo', sans-serif;
+        }
+
+        html[lang="en"] {
+            --text-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--text-main);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name {
+            color: #f8fafc;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline {
+            color: #94a3b8;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #475569;
+            transition: color 0.3s ease;
+        }
+
+        html.dark .nav a {
+            color: #cbd5e1;
+        }
+
+        .nav a:hover,
+        .nav a.active-link {
+            color: #4F46E5;
+        }
+
+        html.dark .nav a:hover,
+        html.dark .nav a.active-link {
+            color: #818cf8;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .content-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 28px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .dark .content-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .content-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+            border-color: rgba(79, 70, 229, 0.35);
+        }
+
+        .dark .content-card:hover {
+            box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .dark .icon-box {
+            background: rgba(129, 140, 248, 0.15);
+            color: #c7d2fe;
+        }
+
+        .timeline-wrap {
+            position: relative;
+        }
+
+        .timeline-wrap::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            inset-inline-start: 28px;
+            width: 2px;
+            background: linear-gradient(to bottom, #4F46E5, #7C3AED);
+            opacity: 0.25;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-inline-start: 76px;
+            margin-bottom: 28px;
+        }
+
+        .timeline-number {
+            position: absolute;
+            inset-inline-start: 0;
+            top: 0;
+            width: 56px;
+            height: 56px;
+            border-radius: 20px;
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            box-shadow: 0 14px 28px rgba(79, 70, 229, 0.25);
+            z-index: 2;
+        }
+
+        .timeline-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 28px;
+            padding: 28px;
+        }
+
+        .dark .timeline-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .mini-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 9999px;
+            background: rgba(79,70,229,0.08);
+            color: #4F46E5;
+            font-weight: 800;
+            font-size: 0.86rem;
+            margin-top: 14px;
+        }
+
+        .dark .mini-pill {
+            background: rgba(129,140,248,0.13);
+            color: #c7d2fe;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.18);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            }
+
+            html.dark .nav.active {
+                background: #0f172a;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .timeline-wrap::before {
+                inset-inline-start: 22px;
+            }
+
+            .timeline-item {
+                padding-inline-start: 62px;
+            }
+
+            .timeline-number {
+                width: 44px;
+                height: 44px;
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50">
+        <div class="header-inner">
+            <a href="https://ecode.sa/" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name" data-i18n="brand_name">eCode</div>
+                    <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                </div>
+            </a>
+
+            <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav">
+                <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
+                <a href="https://ecode.sa/about.html" data-i18n="nav_about">من نحن</a>
+                <a href="https://ecode.sa/services.html" data-i18n="nav_services">الخدمات</a>
+                <a href="https://ecode.sa/process.html" class="active-link" data-i18n="nav_process">آلية العمل</a>
+                <a href="https://ecode.sa/request-service.html" data-i18n="nav_request">اطلب خدمة</a>
+                <a href="https://ecode.sa/partners.html" data-i18n="nav_partners">انضم كمزود خدمة</a>
+
+                <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
+                    <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+                        <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+                    </button>
+                </div>
+
+                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative pt-36 pb-20 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20 dark:opacity-10 pointer-events-none">
+            <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
+            <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">
+                آلية العمل
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                <span data-i18n="hero_title_1">من أول تواصل</span>
+                <br>
+                <span class="gradient-text" data-i18n="hero_title_2">إلى نتيجة قابلة للتنفيذ</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium" data-i18n="hero_desc">
+                نؤمن أن نجاح أي خدمة يبدأ من فهم الاحتياج بوضوح. لذلك نعتمد رحلة عمل منظمة تساعد العميل على معرفة الخطوة التالية من أول طلب حتى التسليم والتحسين.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-9">
+                <a href="https://ecode.sa/request-service.html" class="btn-primary px-8 py-4" data-i18n="hero_btn_request">ابدأ طلبك الآن</a>
+                <a href="https://ecode.sa/services.html" class="px-8 py-4 rounded-full border-2 border-gray-300 dark:border-gray-700 hover:border-primary dark:hover:border-primary font-bold transition" data-i18n="hero_btn_services">استكشف الخدمات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="py-20 bg-white dark:bg-dark border-y border-gray-100 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="principles_badge">قبل أن نبدأ</span>
+                <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="principles_title">ثلاثة مبادئ تنظّم طريقة عملنا</h2>
+                <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="principles_desc">
+                    نحرص أن تكون العلاقة مع العميل واضحة من البداية، حتى تكون التوقعات واقعية والتنفيذ أكثر سلاسة.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+                <div class="content-card">
+                    <div class="icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="principle_1_title">نفهم قبل أن نقترح</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="principle_1_desc">
+                        لا نقدّم حلًا جاهزًا قبل فهم طبيعة المشروع، الهدف، الجمهور، والميزانية المتاحة.
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <div class="icon-box"><i class="fa-solid fa-file-signature"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="principle_2_title">نوضح النطاق</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="principle_2_desc">
+                        نحدد المخرجات، المسؤوليات، مدة التنفيذ، وعدد المراجعات قبل بدء العمل قدر الإمكان.
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <div class="icon-box"><i class="fa-solid fa-arrows-rotate"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="principle_3_title">نراجع ونحسّن</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="principle_3_desc">
+                        نتابع الملاحظات ونطوّر المخرج ضمن النطاق المتفق عليه حتى نصل إلى نتيجة مناسبة.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Process -->
+    <main class="py-20 bg-gray-50 dark:bg-darker">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="journey_badge">رحلة العميل</span>
+                <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="journey_title">آلية العمل خطوة بخطوة</h2>
+                <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="journey_desc">
+                    قد تختلف بعض التفاصيل حسب نوع الخدمة، لكن هذه هي الرحلة العامة التي نعتمدها في أغلب المشاريع.
+                </p>
+            </div>
+
+            <div class="max-w-5xl mx-auto timeline-wrap">
+
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-card">
+                        <h3 class="text-2xl font-black mb-3" data-i18n="process_1_title">استقبال الطلب</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="process_1_desc">
+                            يبدأ العميل بإرسال طلب الخدمة عبر نموذج الطلب، واتساب، البريد الإلكتروني، أو من خلال أي قناة تواصل متاحة. في هذه المرحلة نجمع المعلومات الأولية ونحدد نوع الخدمة المطلوبة.
+                        </p>
+                        <span class="mini-pill"><i class="fa-solid fa-inbox"></i><span data-i18n="process_1_tag">المدخلات: نوع الخدمة، بيانات التواصل، وصف مختصر</span></span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-card">
+                        <h3 class="text-2xl font-black mb-3" data-i18n="process_2_title">فهم الاحتياج وتوضيح الهدف</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="process_2_desc">
+                            نراجع تفاصيل الطلب ونسأل الأسئلة المهمة لفهم الهدف، الجمهور المستهدف، المرحلة الحالية للمشروع، الميزانية، والنتيجة المطلوبة.
+                        </p>
+                        <span class="mini-pill"><i class="fa-solid fa-bullseye"></i><span data-i18n="process_2_tag">المخرج: تصور أوضح للاحتياج</span></span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-card">
+                        <h3 class="text-2xl font-black mb-3" data-i18n="process_3_title">اقتراح المسار المناسب</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="process_3_desc">
+                            بعد فهم الاحتياج، نقترح المسار الأنسب: خدمة منفردة، باقة شهرية، مشروع متكامل، أو خدمة مخصصة يتم تنفيذها داخليًا أو عبر مزود خدمة مناسب.
+                        </p>
+                        <span class="mini-pill"><i class="fa-solid fa-route"></i><span data-i18n="process_3_tag">المخرج: خدمة أو باقة أو مسار تنفيذي</span></span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-card">
+                        <h3 class="text-2xl font-black mb-3" data-i18n="process_4_title">تحديد النطاق والعرض</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="process_4_desc">
+                            نوضح نطاق العمل، المخرجات، مدة التنفيذ، آلية التواصل، عدد المراجعات، التكلفة، وشروط الدفع قبل بدء التنفيذ.
+                        </p>
+                        <span class="mini-pill"><i class="fa-solid fa-file-contract"></i><span data-i18n="process_4_tag">المخرج: عرض واضح أو اتفاق مبدئي</span></span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-card">
+                        <h3 class="text-2xl font-black mb-3" data-i18n="process_5_title">الاعتماد وبدء التنفيذ</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="process_5_desc">
+                            بعد اعتماد العميل للعرض وسداد الدفعة المطلوبة إن وجدت، يبدأ التنفيذ وفق خطة واضحة، ويتم تنسيق المهام مع الفريق أو مزودي الخدمة المعتمدين.
+                        </p>
+                        <span class="mini-pill"><i class="fa-solid fa-play"></i><span data-i18n="process_5_tag">المخرج: بدء العمل رسميًا</span></span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">6</div>
+                    <div class="timeline-card">
+                        <h3 class="text-2xl font-black mb-3" data-i18n="process_6_title">المراجعة والتعديلات</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="process_6_desc">
+                            يتم عرض المخرجات أو المراحل على العميل لأخذ الملاحظات وتنفيذ التعديلات المتفق عليها ضمن نطاق المشروع.
+                        </p>
+                        <span class="mini-pill"><i class="fa-solid fa-pen-to-square"></i><span data-i18n="process_6_tag">المخرج: نسخة محسّنة ومعتمدة</span></span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">7</div>
+                    <div class="timeline-card">
+                        <h3 class="text-2xl font-black mb-3" data-i18n="process_7_title">التسليم النهائي</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="process_7_desc">
+                            بعد اعتماد المخرج النهائي، يتم تسليم الملفات أو الروابط أو المواد أو الخدمة بالشكل المتفق عليه، مع توضيح أي تعليمات استخدام عند الحاجة.
+                        </p>
+                        <span class="mini-pill"><i class="fa-solid fa-circle-check"></i><span data-i18n="process_7_tag">المخرج: تسليم نهائي قابل للاستخدام</span></span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">8</div>
+                    <div class="timeline-card">
+                        <h3 class="text-2xl font-black mb-3" data-i18n="process_8_title">المتابعة وقياس الأثر</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="process_8_desc">
+                            في الخدمات المستمرة أو القابلة للقياس، نتابع الأداء ونقترح تحسينات تساعد العميل على تطوير النتائج مع الوقت.
+                        </p>
+                        <span class="mini-pill"><i class="fa-solid fa-chart-line"></i><span data-i18n="process_8_tag">المخرج: تحسين مستمر عند الحاجة</span></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Paths -->
+    <section class="py-20 bg-white dark:bg-dark border-y border-gray-100 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="paths_badge">أنواع المسارات</span>
+                <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="paths_title">ليست كل الطلبات تسير بنفس الطريقة</h2>
+                <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="paths_desc">
+                    نختار طريقة التعامل حسب طبيعة الطلب، حجمه، ومدى وضوح احتياج العميل.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+                <div class="content-card">
+                    <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="path_1_title">خدمة سريعة</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="path_1_desc">
+                        للطلبات الواضحة مثل تصميم بوست، صفحة هبوط، تعديل بسيط، أو ملف تعريفي محدد.
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="path_2_title">مشروع متكامل</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="path_2_desc">
+                        للطلبات التي تحتاج تخطيطًا، مراحل تنفيذ، مراجعات متعددة، وتسليمات مترابطة.
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3 class="text-xl font-black mb-3" data-i18n="path_3_title">طلب مخصص</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="path_3_desc">
+                        للعميل الذي لديه فكرة أو احتياج غير مصنف، ونساعده في تحويله إلى نطاق عمل واضح.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Responsibilities -->
+    <section class="py-20 bg-gray-50 dark:bg-darker">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="content-card">
+                    <div class="icon-box"><i class="fa-solid fa-user-check"></i></div>
+                    <h2 class="text-2xl md:text-3xl font-black mb-5" data-i18n="client_role_title">دور العميل في نجاح العمل</h2>
+                    <ul class="space-y-4 text-gray-600 dark:text-gray-400 leading-loose">
+                        <li data-i18n="client_role_1">تقديم معلومات واضحة وصحيحة عن المشروع.</li>
+                        <li data-i18n="client_role_2">تزويدنا بالمواد المطلوبة مثل الشعارات، الصور، الحسابات، أو المراجع.</li>
+                        <li data-i18n="client_role_3">تقديم الملاحظات والاعتمادات في الوقت المناسب.</li>
+                        <li data-i18n="client_role_4">الالتزام بالدفعات والمواعيد المتفق عليها.</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <div class="icon-box"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <h2 class="text-2xl md:text-3xl font-black mb-5" data-i18n="ecode_role_title">دور eCode في التنفيذ</h2>
+                    <ul class="space-y-4 text-gray-600 dark:text-gray-400 leading-loose">
+                        <li data-i18n="ecode_role_1">فهم الاحتياج وترتيب الخيارات المناسبة للعميل.</li>
+                        <li data-i18n="ecode_role_2">توضيح نطاق العمل والمخرجات قدر الإمكان قبل التنفيذ.</li>
+                        <li data-i18n="ecode_role_3">تنسيق التنفيذ مع الفريق أو مزودي الخدمة المعتمدين عند الحاجة.</li>
+                        <li data-i18n="ecode_role_4">متابعة الملاحظات وتسليم المخرجات وفق الاتفاق.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-5xl font-black mb-5" data-i18n="cta_title">
+                    جاهز تبدأ؟
+                </h2>
+                <p class="text-white/90 text-lg leading-loose" data-i18n="cta_desc">
+                    ارسل لنا تفاصيل مشروعك، وسنساعدك في تحديد الخدمة المناسبة، نطاق العمل، والخطوة التالية.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-10">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="cta_step_1_title">اختر الخدمة</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="cta_step_1_desc">أو اختر طلب مخصص إذا كان احتياجك غير واضح.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="cta_step_2_title">اكتب التفاصيل</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="cta_step_2_desc">شاركنا الهدف، الميزانية، والمدة المتوقعة.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="cta_step_3_title">نراجع الطلب</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="cta_step_3_desc">نحدد الأسئلة المهمة والتصور المناسب.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="cta_step_4_title">نبدأ التنفيذ</h3>
+                    <p class="text-white/85 leading-loose" data-i18n="cta_step_4_desc">بعد الاعتماد، نبدأ العمل وفق نطاق واضح.</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="https://ecode.sa/request-service.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span data-i18n="cta_btn">اطلب خدمة الآن</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+
+                <div class="md:w-1/3">
+                    <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
+                        <div class="logo-icon">
+                            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                        </div>
+                        <div class="logo-text">
+                            <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                            <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                        </div>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                    </p>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                                <span class="contact-text" dir="ltr">www.eCode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-text" dir="ltr">info@ecode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-text" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/terms.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+                © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const translations = {
+            ar: {
+                brand_name: "eCode",
+                brand_tagline: "تصنع الأثر",
+
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "الخدمات",
+                nav_process: "آلية العمل",
+                nav_request: "اطلب خدمة",
+                nav_partners: "انضم كمزود خدمة",
+                nav_contact: "تواصل معنا",
+
+                hero_badge: "آلية العمل",
+                hero_title_1: "من أول تواصل",
+                hero_title_2: "إلى نتيجة قابلة للتنفيذ",
+                hero_desc: "نؤمن أن نجاح أي خدمة يبدأ من فهم الاحتياج بوضوح. لذلك نعتمد رحلة عمل منظمة تساعد العميل على معرفة الخطوة التالية من أول طلب حتى التسليم والتحسين.",
+                hero_btn_request: "ابدأ طلبك الآن",
+                hero_btn_services: "استكشف الخدمات",
+
+                principles_badge: "قبل أن نبدأ",
+                principles_title: "ثلاثة مبادئ تنظّم طريقة عملنا",
+                principles_desc: "نحرص أن تكون العلاقة مع العميل واضحة من البداية، حتى تكون التوقعات واقعية والتنفيذ أكثر سلاسة.",
+                principle_1_title: "نفهم قبل أن نقترح",
+                principle_1_desc: "لا نقدّم حلًا جاهزًا قبل فهم طبيعة المشروع، الهدف، الجمهور، والميزانية المتاحة.",
+                principle_2_title: "نوضح النطاق",
+                principle_2_desc: "نحدد المخرجات، المسؤوليات، مدة التنفيذ، وعدد المراجعات قبل بدء العمل قدر الإمكان.",
+                principle_3_title: "نراجع ونحسّن",
+                principle_3_desc: "نتابع الملاحظات ونطوّر المخرج ضمن النطاق المتفق عليه حتى نصل إلى نتيجة مناسبة.",
+
+                journey_badge: "رحلة العميل",
+                journey_title: "آلية العمل خطوة بخطوة",
+                journey_desc: "قد تختلف بعض التفاصيل حسب نوع الخدمة، لكن هذه هي الرحلة العامة التي نعتمدها في أغلب المشاريع.",
+
+                process_1_title: "استقبال الطلب",
+                process_1_desc: "يبدأ العميل بإرسال طلب الخدمة عبر نموذج الطلب، واتساب، البريد الإلكتروني، أو من خلال أي قناة تواصل متاحة. في هذه المرحلة نجمع المعلومات الأولية ونحدد نوع الخدمة المطلوبة.",
+                process_1_tag: "المدخلات: نوع الخدمة، بيانات التواصل، وصف مختصر",
+
+                process_2_title: "فهم الاحتياج وتوضيح الهدف",
+                process_2_desc: "نراجع تفاصيل الطلب ونسأل الأسئلة المهمة لفهم الهدف، الجمهور المستهدف، المرحلة الحالية للمشروع، الميزانية، والنتيجة المطلوبة.",
+                process_2_tag: "المخرج: تصور أوضح للاحتياج",
+
+                process_3_title: "اقتراح المسار المناسب",
+                process_3_desc: "بعد فهم الاحتياج، نقترح المسار الأنسب: خدمة منفردة، باقة شهرية، مشروع متكامل، أو خدمة مخصصة يتم تنفيذها داخليًا أو عبر مزود خدمة مناسب.",
+                process_3_tag: "المخرج: خدمة أو باقة أو مسار تنفيذي",
+
+                process_4_title: "تحديد النطاق والعرض",
+                process_4_desc: "نوضح نطاق العمل، المخرجات، مدة التنفيذ، آلية التواصل، عدد المراجعات، التكلفة، وشروط الدفع قبل بدء التنفيذ.",
+                process_4_tag: "المخرج: عرض واضح أو اتفاق مبدئي",
+
+                process_5_title: "الاعتماد وبدء التنفيذ",
+                process_5_desc: "بعد اعتماد العميل للعرض وسداد الدفعة المطلوبة إن وجدت، يبدأ التنفيذ وفق خطة واضحة، ويتم تنسيق المهام مع الفريق أو مزودي الخدمة المعتمدين.",
+                process_5_tag: "المخرج: بدء العمل رسميًا",
+
+                process_6_title: "المراجعة والتعديلات",
+                process_6_desc: "يتم عرض المخرجات أو المراحل على العميل لأخذ الملاحظات وتنفيذ التعديلات المتفق عليها ضمن نطاق المشروع.",
+                process_6_tag: "المخرج: نسخة محسّنة ومعتمدة",
+
+                process_7_title: "التسليم النهائي",
+                process_7_desc: "بعد اعتماد المخرج النهائي، يتم تسليم الملفات أو الروابط أو المواد أو الخدمة بالشكل المتفق عليه، مع توضيح أي تعليمات استخدام عند الحاجة.",
+                process_7_tag: "المخرج: تسليم نهائي قابل للاستخدام",
+
+                process_8_title: "المتابعة وقياس الأثر",
+                process_8_desc: "في الخدمات المستمرة أو القابلة للقياس، نتابع الأداء ونقترح تحسينات تساعد العميل على تطوير النتائج مع الوقت.",
+                process_8_tag: "المخرج: تحسين مستمر عند الحاجة",
+
+                paths_badge: "أنواع المسارات",
+                paths_title: "ليست كل الطلبات تسير بنفس الطريقة",
+                paths_desc: "نختار طريقة التعامل حسب طبيعة الطلب، حجمه، ومدى وضوح احتياج العميل.",
+                path_1_title: "خدمة سريعة",
+                path_1_desc: "للطلبات الواضحة مثل تصميم بوست، صفحة هبوط، تعديل بسيط، أو ملف تعريفي محدد.",
+                path_2_title: "مشروع متكامل",
+                path_2_desc: "للطلبات التي تحتاج تخطيطًا، مراحل تنفيذ، مراجعات متعددة، وتسليمات مترابطة.",
+                path_3_title: "طلب مخصص",
+                path_3_desc: "للعميل الذي لديه فكرة أو احتياج غير مصنف، ونساعده في تحويله إلى نطاق عمل واضح.",
+
+                client_role_title: "دور العميل في نجاح العمل",
+                client_role_1: "تقديم معلومات واضحة وصحيحة عن المشروع.",
+                client_role_2: "تزويدنا بالمواد المطلوبة مثل الشعارات، الصور، الحسابات، أو المراجع.",
+                client_role_3: "تقديم الملاحظات والاعتمادات في الوقت المناسب.",
+                client_role_4: "الالتزام بالدفعات والمواعيد المتفق عليها.",
+
+                ecode_role_title: "دور eCode في التنفيذ",
+                ecode_role_1: "فهم الاحتياج وترتيب الخيارات المناسبة للعميل.",
+                ecode_role_2: "توضيح نطاق العمل والمخرجات قدر الإمكان قبل التنفيذ.",
+                ecode_role_3: "تنسيق التنفيذ مع الفريق أو مزودي الخدمة المعتمدين عند الحاجة.",
+                ecode_role_4: "متابعة الملاحظات وتسليم المخرجات وفق الاتفاق.",
+
+                cta_title: "جاهز تبدأ؟",
+                cta_desc: "ارسل لنا تفاصيل مشروعك، وسنساعدك في تحديد الخدمة المناسبة، نطاق العمل، والخطوة التالية.",
+                cta_step_1_title: "اختر الخدمة",
+                cta_step_1_desc: "أو اختر طلب مخصص إذا كان احتياجك غير واضح.",
+                cta_step_2_title: "اكتب التفاصيل",
+                cta_step_2_desc: "شاركنا الهدف، الميزانية، والمدة المتوقعة.",
+                cta_step_3_title: "نراجع الطلب",
+                cta_step_3_desc: "نحدد الأسئلة المهمة والتصور المناسب.",
+                cta_step_4_title: "نبدأ التنفيذ",
+                cta_step_4_desc: "بعد الاعتماد، نبدأ العمل وفق نطاق واضح.",
+                cta_btn: "اطلب خدمة الآن",
+
+                footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+                contact_title: "معلومات التواصل",
+                follow_us: "تابعنا",
+                privacy_footer_link: "سياسة الخصوصية",
+                terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب"
+            },
+
+            en: {
+                brand_name: "eCode",
+                brand_tagline: "Innovate Impact",
+
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_process: "Process",
+                nav_request: "Request Service",
+                nav_partners: "Join as Provider",
+                nav_contact: "Contact Us",
+
+                hero_badge: "Our Process",
+                hero_title_1: "From First Contact",
+                hero_title_2: "to an Executable Outcome",
+                hero_desc: "We believe every successful service begins with a clear understanding of the need. That is why we follow an organized journey that helps the client know the next step from the first request to delivery and improvement.",
+                hero_btn_request: "Start Your Request",
+                hero_btn_services: "Explore Services",
+
+                principles_badge: "Before We Start",
+                principles_title: "Three Principles That Guide Our Work",
+                principles_desc: "We make sure the client relationship is clear from the beginning, so expectations are realistic and execution is smoother.",
+                principle_1_title: "We Understand Before Proposing",
+                principle_1_desc: "We do not provide a ready-made solution before understanding the project, goal, audience, and available budget.",
+                principle_2_title: "We Clarify the Scope",
+                principle_2_desc: "We define deliverables, responsibilities, timeline, and number of revisions before starting whenever possible.",
+                principle_3_title: "We Review and Improve",
+                principle_3_desc: "We follow up on feedback and refine the output within the agreed scope until reaching a suitable result.",
+
+                journey_badge: "Client Journey",
+                journey_title: "The Process Step by Step",
+                journey_desc: "Some details may vary depending on the service type, but this is the general journey we follow in most projects.",
+
+                process_1_title: "Receiving the Request",
+                process_1_desc: "The client submits a service request through the request form, WhatsApp, email, or any available communication channel. At this stage, we collect initial information and identify the required service type.",
+                process_1_tag: "Inputs: service type, contact details, short description",
+
+                process_2_title: "Understanding the Need and Goal",
+                process_2_desc: "We review the request details and ask important questions to understand the goal, target audience, current project stage, budget, and desired outcome.",
+                process_2_tag: "Output: clearer understanding of the need",
+
+                process_3_title: "Suggesting the Right Path",
+                process_3_desc: "After understanding the need, we suggest the best path: a single service, monthly package, integrated project, or custom service executed internally or through a suitable provider.",
+                process_3_tag: "Output: service, package, or execution path",
+
+                process_4_title: "Defining Scope and Proposal",
+                process_4_desc: "We clarify the scope of work, deliverables, timeline, communication method, number of revisions, cost, and payment terms before execution begins.",
+                process_4_tag: "Output: clear proposal or initial agreement",
+
+                process_5_title: "Approval and Execution Start",
+                process_5_desc: "After the client approves the proposal and pays the required amount if applicable, execution begins according to a clear plan, coordinating tasks with the team or approved providers.",
+                process_5_tag: "Output: official work start",
+
+                process_6_title: "Review and Revisions",
+                process_6_desc: "Outputs or stages are presented to the client for feedback, and agreed revisions are implemented within the project scope.",
+                process_6_tag: "Output: improved and approved version",
+
+                process_7_title: "Final Delivery",
+                process_7_desc: "After final approval, files, links, materials, or services are delivered in the agreed format, with usage instructions when needed.",
+                process_7_tag: "Output: usable final delivery",
+
+                process_8_title: "Follow-Up and Impact Measurement",
+                process_8_desc: "For ongoing or measurable services, we track performance and suggest improvements that help the client develop results over time.",
+                process_8_tag: "Output: continuous improvement when needed",
+
+                paths_badge: "Path Types",
+                paths_title: "Not Every Request Follows the Same Path",
+                paths_desc: "We choose the approach based on the request nature, size, and how clear the client’s need is.",
+                path_1_title: "Quick Service",
+                path_1_desc: "For clear requests such as a post design, landing page, simple edit, or specific company profile.",
+                path_2_title: "Integrated Project",
+                path_2_desc: "For requests that need planning, execution stages, multiple reviews, and connected deliverables.",
+                path_3_title: "Custom Request",
+                path_3_desc: "For clients with an idea or uncategorized need, where we help turn it into a clear scope of work.",
+
+                client_role_title: "Client’s Role in Work Success",
+                client_role_1: "Provide clear and accurate project information.",
+                client_role_2: "Provide required materials such as logos, images, accounts, or references.",
+                client_role_3: "Provide feedback and approvals on time.",
+                client_role_4: "Commit to agreed payments and timelines.",
+
+                ecode_role_title: "eCode’s Role in Execution",
+                ecode_role_1: "Understand the need and organize suitable options for the client.",
+                ecode_role_2: "Clarify scope and deliverables as much as possible before execution.",
+                ecode_role_3: "Coordinate execution with the team or approved providers when needed.",
+                ecode_role_4: "Follow up on feedback and deliver outputs according to the agreement.",
+
+                cta_title: "Ready to Start?",
+                cta_desc: "Send us your project details, and we will help you define the suitable service, scope of work, and next step.",
+                cta_step_1_title: "Choose the Service",
+                cta_step_1_desc: "Or select a custom request if your need is not clear.",
+                cta_step_2_title: "Write the Details",
+                cta_step_2_desc: "Share the goal, budget, and expected timeline.",
+                cta_step_3_title: "We Review the Request",
+                cta_step_3_desc: "We identify the key questions and suitable direction.",
+                cta_step_4_title: "We Start Execution",
+                cta_step_4_desc: "After approval, we start working within a clear scope.",
+                cta_btn: "Request a Service Now",
+
+                footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+                contact_title: "Contact Info",
+                follow_us: "Follow Us",
+                privacy_footer_link: "Privacy Policy",
+                terms_footer_link: "Terms & Conditions and Refund Policy",
+                footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+                whatsapp_tooltip: "Contact via WhatsApp"
+            }
+        };
+
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+        function initTheme() {
+            const icon = document.getElementById('theme-icon');
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('title', translations[currentLang][key]);
+                }
+            });
+
+            if (currentLang === 'ar') {
+                document.title = "آلية العمل | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "تعرف على آلية عمل eCode من استقبال الطلب وفهم الاحتياج حتى تقديم العرض والتنفيذ والتسليم وقياس الأثر."
+                );
+            } else {
+                document.title = "Our Process | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "Learn about eCode’s process from receiving the request and understanding the need to proposal, execution, delivery, and impact measurement."
+                );
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            localStorage.setItem('userLanguage', currentLang);
+            updateContent();
+        }
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+        });
+
+        window.onload = () => {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            initTheme();
+            updateContent();
+        };
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
