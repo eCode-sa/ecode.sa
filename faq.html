@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة الشائعة | eCode</title>
+    <meta name="description" content="الأسئلة الشائعة حول خدمات eCode، آلية الطلب، الأسعار، الدفع، مدة التنفيذ، التعديلات، الاسترجاع، ومزودي الخدمات.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/faq.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecode.sa/faq.html">
+    <meta property="og:title" content="الأسئلة الشائعة | eCode">
+    <meta property="og:description" content="إجابات واضحة حول خدمات eCode وآلية العمل والدفع والتسليم.">
+    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:site_name" content="eCode">
+
+    <style>
+        :root {
+            --text-main: 'Cairo', sans-serif;
+        }
+
+        html[lang="en"] {
+            --text-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--text-main);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name {
+            color: #f8fafc;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline {
+            color: #94a3b8;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #475569;
+            transition: color 0.3s ease;
+        }
+
+        html.dark .nav a {
+            color: #cbd5e1;
+        }
+
+        .nav a:hover,
+        .nav a.active-link {
+            color: #4F46E5;
+        }
+
+        html.dark .nav a:hover,
+        html.dark .nav a.active-link {
+            color: #818cf8;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .faq-group-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 30px;
+            padding: 28px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+        }
+
+        .dark .faq-group-card {
+            background: #0f172a;
+            border-color: #1f2937;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.22);
+        }
+
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 22px;
+            background: #f8fafc;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .dark .faq-item {
+            background: rgba(30, 41, 59, 0.45);
+            border-color: #1f2937;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(79, 70, 229, 0.35);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-weight: 900;
+            color: #0f172a;
+            text-align: inherit;
+            cursor: pointer;
+        }
+
+        .dark .faq-question {
+            color: #f8fafc;
+        }
+
+        .faq-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s ease;
+        }
+
+        .dark .faq-icon {
+            background: rgba(129, 140, 248, 0.15);
+            color: #c7d2fe;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 22px 22px;
+            color: #64748b;
+            line-height: 2;
+        }
+
+        .dark .faq-answer {
+            color: #cbd5e1;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .category-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 28px;
+            padding: 26px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .dark .category-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+            border-color: rgba(79,70,229,0.35);
+        }
+
+        .icon-box {
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+
+        .dark .icon-box {
+            background: rgba(129,140,248,0.15);
+            color: #c7d2fe;
+        }
+
+        .search-box {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 9999px;
+            padding: 16px 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 720px;
+            margin: 0 auto;
+            box-shadow: 0 14px 36px rgba(15,23,42,0.07);
+        }
+
+        .dark .search-box {
+            background: #0f172a;
+            border-color: #1f2937;
+            box-shadow: 0 14px 36px rgba(0,0,0,0.22);
+        }
+
+        .search-box input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .dark .search-box input {
+            color: #f8fafc;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            }
+
+            html.dark .nav.active {
+                background: #0f172a;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50">
+        <div class="header-inner">
+            <a href="https://ecode.sa/" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name" data-i18n="brand_name">eCode</div>
+                    <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                </div>
+            </a>
+
+            <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav">
+                <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
+                <a href="https://ecode.sa/about.html" data-i18n="nav_about">من نحن</a>
+                <a href="https://ecode.sa/services.html" data-i18n="nav_services">الخدمات</a>
+                <a href="https://ecode.sa/process.html" data-i18n="nav_process">آلية العمل</a>
+                <a href="https://ecode.sa/faq.html" class="active-link" data-i18n="nav_faq">الأسئلة الشائعة</a>
+                <a href="https://ecode.sa/request-service.html" data-i18n="nav_request">اطلب خدمة</a>
+
+                <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
+                    <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+                        <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+                    </button>
+                </div>
+
+                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative pt-36 pb-16 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20 dark:opacity-10 pointer-events-none">
+            <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
+            <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">
+                الأسئلة الشائعة
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                <span data-i18n="hero_title_1">إجابات واضحة</span>
+                <br>
+                <span class="gradient-text" data-i18n="hero_title_2">قبل أن تبدأ معنا</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium mb-9" data-i18n="hero_desc">
+                جمعنا لك أكثر الأسئلة تكرارًا حول خدمات eCode، طريقة الطلب، الأسعار، الدفع، التنفيذ، التعديلات، والاسترجاع.
+            </p>
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass text-primary"></i>
+                <input id="faqSearch" type="text" placeholder="ابحث في الأسئلة..." data-i18n-placeholder="search_placeholder">
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="pb-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                <a href="#general" class="category-card">
+                    <div class="icon-box"><i class="fa-solid fa-circle-info"></i></div>
+                    <h3 class="text-lg font-black mb-2" data-i18n="cat_general_title">عام</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose text-sm" data-i18n="cat_general_desc">أسئلة حول eCode وطبيعة الخدمات.</p>
+                </a>
+
+                <a href="#services" class="category-card">
+                    <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3 class="text-lg font-black mb-2" data-i18n="cat_services_title">الخدمات</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose text-sm" data-i18n="cat_services_desc">تفاصيل الخدمات والباقات والطلبات المخصصة.</p>
+                </a>
+
+                <a href="#payment" class="category-card">
+                    <div class="icon-box"><i class="fa-solid fa-credit-card"></i></div>
+                    <h3 class="text-lg font-black mb-2" data-i18n="cat_payment_title">الدفع والاسترجاع</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose text-sm" data-i18n="cat_payment_desc">الأسعار، الدفعات، الإلغاء، والاسترداد.</p>
+                </a>
+
+                <a href="#execution" class="category-card">
+                    <div class="icon-box"><i class="fa-solid fa-gears"></i></div>
+                    <h3 class="text-lg font-black mb-2" data-i18n="cat_execution_title">التنفيذ والتسليم</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose text-sm" data-i18n="cat_execution_desc">مدة العمل، التعديلات، الملفات، والتسليم.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <main class="pb-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto space-y-8">
+
+                <!-- General -->
+                <section id="general" class="faq-group-card faq-group">
+                    <div class="mb-6">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="group_general_badge">عام</span>
+                        <h2 class="text-2xl md:text-3xl font-black" data-i18n="group_general_title">أسئلة عامة</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="faq-item" data-search="ما هي eCode؟ شركة إلكترونيك كود ماذا تقدم">
+                            <button class="faq-question">
+                                <span data-i18n="q1">ما هي eCode؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a1">
+                                eCode هي شركة سعودية تقدم خدمات أعمال متكاملة تشمل التسويق، الإنتاج الإبداعي، الهوية والتصميم، الخدمات التقنية، الاستشارات، الفعاليات، المعارض، التجهيزات، والطلبات المخصصة.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل تعملون مع أفراد أو شركات عملاء">
+                            <button class="faq-question">
+                                <span data-i18n="q2">هل تعملون مع أفراد أو شركات فقط؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a2">
+                                نعمل مع الأفراد، رواد الأعمال، الشركات الناشئة، المؤسسات، والجهات التي تحتاج خدمات تسويقية أو تقنية أو تصميمية أو تشغيلية.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل تقدمون خدمة واحدة فقط أم مشروع كامل">
+                            <button class="faq-question">
+                                <span data-i18n="q3">هل يمكن طلب خدمة واحدة فقط؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a3">
+                                نعم، يمكن طلب خدمة واحدة مثل تصميم بوست، بروفايل، صفحة هبوط، أو استشارة. كما يمكن طلب مشروع متكامل يشمل عدة خدمات مترابطة.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل eCode تنفذ داخليا ام عبر مزودي خدمات">
+                            <button class="faq-question">
+                                <span data-i18n="q4">هل تنفذ eCode جميع الخدمات داخليًا؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a4">
+                                بعض الخدمات يتم تنفيذها مباشرة، وبعضها قد يتم تنسيقه أو تنفيذه عبر مزودي خدمات أو شركاء متخصصين حسب طبيعة الطلب. وتبقى eCode نقطة التواصل الرئيسية مع العميل ما لم يتم الاتفاق على خلاف ذلك.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Services -->
+                <section id="services" class="faq-group-card faq-group">
+                    <div class="mb-6">
+                        <span class="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="group_services_badge">الخدمات</span>
+                        <h2 class="text-2xl md:text-3xl font-black" data-i18n="group_services_title">الخدمات والطلبات المخصصة</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="faq-item" data-search="ما الخدمات التي تقدمونها تسويق تصميم تقنية فعاليات استشارات">
+                            <button class="faq-question">
+                                <span data-i18n="q5">ما الخدمات التي تقدمونها؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a5">
+                                نقدم خدمات التسويق والإنتاج، الهوية والتصميم، المواقع والمنصات الرقمية، الاستشارات، تنظيم الفعاليات والمعارض، التجهيزات والديكور، إضافة إلى الخدمات المخصصة حسب طلب العميل.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="ما معنى خدمة مخصصة طلب خاص غير موجود">
+                            <button class="faq-question">
+                                <span data-i18n="q6">ما المقصود بالخدمة المخصصة؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a6">
+                                الخدمة المخصصة هي أي طلب لا يدخل مباشرة ضمن خدمة جاهزة. يشاركنا العميل تفاصيل احتياجه، ونساعده في تحويل الفكرة إلى نطاق عمل واضح أو نرشح له المسار المناسب.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل لديكم باقات شهرية سوشيال ميديا تسويق تصميم">
+                            <button class="faq-question">
+                                <span data-i18n="q7">هل تقدمون خدمات شهرية؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a7">
+                                نعم، يمكن تقديم بعض الخدمات بنظام شهري مثل إدارة حسابات التواصل الاجتماعي، تصميم المحتوى، الحملات الإعلانية، التقارير، والتحسين المستمر حسب احتياج العميل.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="لا أعرف الخدمة المناسبة ساعدوني اختيار">
+                            <button class="faq-question">
+                                <span data-i18n="q8">لا أعرف ما الخدمة المناسبة لي، ماذا أفعل؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a8">
+                                يمكنك تعبئة نموذج طلب الخدمة واختيار “طلب مخصص”، ثم كتابة هدفك أو مشكلتك أو الفكرة التي لديك، وسنساعدك في تحديد الخدمة أو الباقة المناسبة.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Payment -->
+                <section id="payment" class="faq-group-card faq-group">
+                    <div class="mb-6">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="group_payment_badge">الدفع والاسترجاع</span>
+                        <h2 class="text-2xl md:text-3xl font-black" data-i18n="group_payment_title">الأسعار والدفع والاسترجاع</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="faq-item" data-search="هل الأسعار ثابتة تكلفة الخدمة">
+                            <button class="faq-question">
+                                <span data-i18n="q9">هل الأسعار ثابتة؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a9">
+                                تختلف الأسعار حسب نوع الخدمة، حجم المشروع، مدة التنفيذ، عدد المخرجات، ومستوى التعقيد. لذلك يتم تحديد السعر بعد فهم الطلب أو من خلال الباقات المعتمدة عند توفرها.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل يوجد دفعة مقدمة دفع كامل">
+                            <button class="faq-question">
+                                <span data-i18n="q10">هل يلزم دفع مقدم قبل بدء العمل؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a10">
+                                قد تتطلب بعض الخدمات دفعة مقدمة أو سداد كامل قبل البدء، خصوصًا الخدمات الرقمية أو التصميمية أو التي تتطلب حجز موارد أو مزودي خدمات.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل يمكن الدفع على مراحل تقسيط دفعات">
+                            <button class="faq-question">
+                                <span data-i18n="q11">هل يمكن الدفع على مراحل؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a11">
+                                نعم، في بعض المشاريع المتوسطة أو الكبيرة يمكن الاتفاق على دفعات مرحلية حسب مراحل التنفيذ، ويُوضح ذلك في العرض أو الاتفاق قبل بدء العمل.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل يمكن استرجاع المبلغ سياسة الاسترجاع إلغاء">
+                            <button class="faq-question">
+                                <span data-i18n="q12">هل يمكن استرجاع المبلغ بعد الدفع؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a12">
+                                يعتمد ذلك على حالة الطلب. إذا لم يبدأ التنفيذ، يمكن دراسة الاسترجاع بعد خصم أي رسوم أو تكاليف فعلية. أما بعد بدء التنفيذ أو تسليم جزء من العمل، فقد يتم خصم قيمة الأعمال المنجزة والتكاليف غير القابلة للاسترداد وفق سياسة الاسترجاع.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Execution -->
+                <section id="execution" class="faq-group-card faq-group">
+                    <div class="mb-6">
+                        <span class="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="group_execution_badge">التنفيذ والتسليم</span>
+                        <h2 class="text-2xl md:text-3xl font-black" data-i18n="group_execution_title">مدة التنفيذ والتعديلات والتسليم</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="faq-item" data-search="كم مدة تنفيذ الخدمة مدة العمل">
+                            <button class="faq-question">
+                                <span data-i18n="q13">كم مدة تنفيذ الخدمة؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a13">
+                                تختلف مدة التنفيذ حسب نوع الخدمة وحجم المشروع وتوفر المعلومات المطلوبة. يتم توضيح المدة التقريبية قبل بدء العمل، وقد تتغير في حال تأخر العميل في تزويدنا بالملاحظات أو المواد المطلوبة.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="كم عدد التعديلات مراجعات">
+                            <button class="faq-question">
+                                <span data-i18n="q14">كم عدد التعديلات المتاحة؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a14">
+                                عدد التعديلات يختلف حسب الخدمة أو الباقة. التعديلات تشمل التغييرات المعقولة داخل نفس النطاق، ولا تشمل تغيير الفكرة بالكامل أو إعادة تنفيذ العمل من البداية إلا باتفاق جديد.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل تسلمون الملفات المفتوحة source files editable files">
+                            <button class="faq-question">
+                                <span data-i18n="q15">هل يتم تسليم الملفات المفتوحة؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a15">
+                                تسليم الملفات المفتوحة يعتمد على نوع الخدمة والاتفاق. بعض الخدمات تشمل الملفات النهائية فقط، بينما يمكن إضافة تسليم الملفات المفتوحة أو المصدرية ضمن العرض عند الحاجة.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="ماذا يحدث بعد التسليم النهائي">
+                            <button class="faq-question">
+                                <span data-i18n="q16">ماذا يحدث بعد التسليم النهائي؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a16">
+                                بعد التسليم النهائي واعتماد العميل، يعتبر العمل مكتملًا. وفي حال كانت الخدمة مستمرة أو شهرية، تستمر المتابعة والتحسين حسب نطاق الاتفاق.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Providers -->
+                <section id="providers" class="faq-group-card faq-group">
+                    <div class="mb-6">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="group_providers_badge">مزودو الخدمات</span>
+                        <h2 class="text-2xl md:text-3xl font-black" data-i18n="group_providers_title">أسئلة مزودي الخدمات والشركاء</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="faq-item" data-search="كيف انضم كمزود خدمة شريك">
+                            <button class="faq-question">
+                                <span data-i18n="q17">كيف أنضم كمزود خدمة؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a17">
+                                يمكنك تعبئة صفحة “انضم كمزود خدمة” وإرسال بياناتك، تخصصك، المدينة، نماذج أعمالك، وطريقة عملك. بعدها نراجع الملف ونصنفه داخليًا حسب الحاجة.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل الانضمام يضمن طلبات">
+                            <button class="faq-question">
+                                <span data-i18n="q18">هل الانضمام يضمن الحصول على طلبات؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a18">
+                                لا، الانضمام للشبكة لا يضمن طلبات مباشرة، لكنه يتيح لنا ترشيحك عند وجود طلب مناسب لتخصصك وجودة أعمالك وتوفرّك.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="هل يمكن التعاون عن بعد">
+                            <button class="faq-question">
+                                <span data-i18n="q19">هل يمكن التعاون عن بعد؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a19">
+                                نعم، كثير من الخدمات يمكن تنفيذها عن بعد مثل التصميم، البرمجة، التسويق، المحتوى، والاستشارات. أما الخدمات الميدانية فتخضع للمدينة وطبيعة المشروع.
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-search="ما آلية التعامل مع مزود الخدمة">
+                            <button class="faq-question">
+                                <span data-i18n="q20">ما آلية التعامل مع مزودي الخدمات؟</span>
+                                <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer" data-i18n="a20">
+                                تختلف آلية التعاون حسب نوع الخدمة. قد تكون إحالة، تنفيذ لصالح eCode، أو مشروع مباشر باتفاق مستقل. يتم توضيح التفاصيل قبل بدء أي عمل.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-black mb-6" data-i18n="cta_title">
+                    ما لقيت إجابة لسؤالك؟
+                </h2>
+                <p class="text-white/90 mb-10 text-lg leading-loose" data-i18n="cta_desc">
+                    تواصل معنا مباشرة، وشاركنا سؤالك أو تفاصيل طلبك، ونساعدك في تحديد الخطوة المناسبة.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، لدي سؤال حول خدمات eCode." target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span data-i18n="cta_btn_whatsapp">اسألنا عبر واتساب</span>
+                    </a>
+
+                    <a href="https://ecode.sa/request-service.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-black hover:bg-white/15 transition transform hover:-translate-y-1">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span data-i18n="cta_btn_request">اطلب خدمة</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+
+                <div class="md:w-1/3">
+                    <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
+                        <div class="logo-icon">
+                            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                        </div>
+                        <div class="logo-text">
+                            <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                            <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                        </div>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                    </p>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                                <span class="contact-text" dir="ltr">www.eCode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-text" dir="ltr">info@ecode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-text" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/terms.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+                © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const translations = {
+            ar: {
+                brand_name: "eCode",
+                brand_tagline: "تصنع الأثر",
+
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "الخدمات",
+                nav_process: "آلية العمل",
+                nav_faq: "الأسئلة الشائعة",
+                nav_request: "اطلب خدمة",
+                nav_contact: "تواصل معنا",
+
+                hero_badge: "الأسئلة الشائعة",
+                hero_title_1: "إجابات واضحة",
+                hero_title_2: "قبل أن تبدأ معنا",
+                hero_desc: "جمعنا لك أكثر الأسئلة تكرارًا حول خدمات eCode، طريقة الطلب، الأسعار، الدفع، التنفيذ، التعديلات، والاسترجاع.",
+                search_placeholder: "ابحث في الأسئلة...",
+
+                cat_general_title: "عام",
+                cat_general_desc: "أسئلة حول eCode وطبيعة الخدمات.",
+                cat_services_title: "الخدمات",
+                cat_services_desc: "تفاصيل الخدمات والباقات والطلبات المخصصة.",
+                cat_payment_title: "الدفع والاسترجاع",
+                cat_payment_desc: "الأسعار، الدفعات، الإلغاء، والاسترداد.",
+                cat_execution_title: "التنفيذ والتسليم",
+                cat_execution_desc: "مدة العمل، التعديلات، الملفات، والتسليم.",
+
+                group_general_badge: "عام",
+                group_general_title: "أسئلة عامة",
+                q1: "ما هي eCode؟",
+                a1: "eCode هي شركة سعودية تقدم خدمات أعمال متكاملة تشمل التسويق، الإنتاج الإبداعي، الهوية والتصميم، الخدمات التقنية، الاستشارات، الفعاليات، المعارض، التجهيزات، والطلبات المخصصة.",
+                q2: "هل تعملون مع أفراد أو شركات فقط؟",
+                a2: "نعمل مع الأفراد، رواد الأعمال، الشركات الناشئة، المؤسسات، والجهات التي تحتاج خدمات تسويقية أو تقنية أو تصميمية أو تشغيلية.",
+                q3: "هل يمكن طلب خدمة واحدة فقط؟",
+                a3: "نعم، يمكن طلب خدمة واحدة مثل تصميم بوست، بروفايل، صفحة هبوط، أو استشارة. كما يمكن طلب مشروع متكامل يشمل عدة خدمات مترابطة.",
+                q4: "هل تنفذ eCode جميع الخدمات داخليًا؟",
+                a4: "بعض الخدمات يتم تنفيذها مباشرة، وبعضها قد يتم تنسيقه أو تنفيذه عبر مزودي خدمات أو شركاء متخصصين حسب طبيعة الطلب. وتبقى eCode نقطة التواصل الرئيسية مع العميل ما لم يتم الاتفاق على خلاف ذلك.",
+
+                group_services_badge: "الخدمات",
+                group_services_title: "الخدمات والطلبات المخصصة",
+                q5: "ما الخدمات التي تقدمونها؟",
+                a5: "نقدم خدمات التسويق والإنتاج، الهوية والتصميم، المواقع والمنصات الرقمية، الاستشارات، تنظيم الفعاليات والمعارض، التجهيزات والديكور، إضافة إلى الخدمات المخصصة حسب طلب العميل.",
+                q6: "ما المقصود بالخدمة المخصصة؟",
+                a6: "الخدمة المخصصة هي أي طلب لا يدخل مباشرة ضمن خدمة جاهزة. يشاركنا العميل تفاصيل احتياجه، ونساعده في تحويل الفكرة إلى نطاق عمل واضح أو نرشح له المسار المناسب.",
+                q7: "هل تقدمون خدمات شهرية؟",
+                a7: "نعم، يمكن تقديم بعض الخدمات بنظام شهري مثل إدارة حسابات التواصل الاجتماعي، تصميم المحتوى، الحملات الإعلانية، التقارير، والتحسين المستمر حسب احتياج العميل.",
+                q8: "لا أعرف ما الخدمة المناسبة لي، ماذا أفعل؟",
+                a8: "يمكنك تعبئة نموذج طلب الخدمة واختيار “طلب مخصص”، ثم كتابة هدفك أو مشكلتك أو الفكرة التي لديك، وسنساعدك في تحديد الخدمة أو الباقة المناسبة.",
+
+                group_payment_badge: "الدفع والاسترجاع",
+                group_payment_title: "الأسعار والدفع والاسترجاع",
+                q9: "هل الأسعار ثابتة؟",
+                a9: "تختلف الأسعار حسب نوع الخدمة، حجم المشروع، مدة التنفيذ، عدد المخرجات، ومستوى التعقيد. لذلك يتم تحديد السعر بعد فهم الطلب أو من خلال الباقات المعتمدة عند توفرها.",
+                q10: "هل يلزم دفع مقدم قبل بدء العمل؟",
+                a10: "قد تتطلب بعض الخدمات دفعة مقدمة أو سداد كامل قبل البدء، خصوصًا الخدمات الرقمية أو التصميمية أو التي تتطلب حجز موارد أو مزودي خدمات.",
+                q11: "هل يمكن الدفع على مراحل؟",
+                a11: "نعم، في بعض المشاريع المتوسطة أو الكبيرة يمكن الاتفاق على دفعات مرحلية حسب مراحل التنفيذ، ويُوضح ذلك في العرض أو الاتفاق قبل بدء العمل.",
+                q12: "هل يمكن استرجاع المبلغ بعد الدفع؟",
+                a12: "يعتمد ذلك على حالة الطلب. إذا لم يبدأ التنفيذ، يمكن دراسة الاسترجاع بعد خصم أي رسوم أو تكاليف فعلية. أما بعد بدء التنفيذ أو تسليم جزء من العمل، فقد يتم خصم قيمة الأعمال المنجزة والتكاليف غير القابلة للاسترداد وفق سياسة الاسترجاع.",
+
+                group_execution_badge: "التنفيذ والتسليم",
+                group_execution_title: "مدة التنفيذ والتعديلات والتسليم",
+                q13: "كم مدة تنفيذ الخدمة؟",
+                a13: "تختلف مدة التنفيذ حسب نوع الخدمة وحجم المشروع وتوفر المعلومات المطلوبة. يتم توضيح المدة التقريبية قبل بدء العمل، وقد تتغير في حال تأخر العميل في تزويدنا بالملاحظات أو المواد المطلوبة.",
+                q14: "كم عدد التعديلات المتاحة؟",
+                a14: "عدد التعديلات يختلف حسب الخدمة أو الباقة. التعديلات تشمل التغييرات المعقولة داخل نفس النطاق، ولا تشمل تغيير الفكرة بالكامل أو إعادة تنفيذ العمل من البداية إلا باتفاق جديد.",
+                q15: "هل يتم تسليم الملفات المفتوحة؟",
+                a15: "تسليم الملفات المفتوحة يعتمد على نوع الخدمة والاتفاق. بعض الخدمات تشمل الملفات النهائية فقط، بينما يمكن إضافة تسليم الملفات المفتوحة أو المصدرية ضمن العرض عند الحاجة.",
+                q16: "ماذا يحدث بعد التسليم النهائي؟",
+                a16: "بعد التسليم النهائي واعتماد العميل، يعتبر العمل مكتملًا. وفي حال كانت الخدمة مستمرة أو شهرية، تستمر المتابعة والتحسين حسب نطاق الاتفاق.",
+
+                group_providers_badge: "مزودو الخدمات",
+                group_providers_title: "أسئلة مزودي الخدمات والشركاء",
+                q17: "كيف أنضم كمزود خدمة؟",
+                a17: "يمكنك تعبئة صفحة “انضم كمزود خدمة” وإرسال بياناتك، تخصصك، المدينة، نماذج أعمالك، وطريقة عملك. بعدها نراجع الملف ونصنفه داخليًا حسب الحاجة.",
+                q18: "هل الانضمام يضمن الحصول على طلبات؟",
+                a18: "لا، الانضمام للشبكة لا يضمن طلبات مباشرة، لكنه يتيح لنا ترشيحك عند وجود طلب مناسب لتخصصك وجودة أعمالك وتوفرّك.",
+                q19: "هل يمكن التعاون عن بعد؟",
+                a19: "نعم، كثير من الخدمات يمكن تنفيذها عن بعد مثل التصميم، البرمجة، التسويق، المحتوى، والاستشارات. أما الخدمات الميدانية فتخضع للمدينة وطبيعة المشروع.",
+                q20: "ما آلية التعامل مع مزودي الخدمات؟",
+                a20: "تختلف آلية التعاون حسب نوع الخدمة. قد تكون إحالة، تنفيذ لصالح eCode، أو مشروع مباشر باتفاق مستقل. يتم توضيح التفاصيل قبل بدء أي عمل.",
+
+                cta_title: "ما لقيت إجابة لسؤالك؟",
+                cta_desc: "تواصل معنا مباشرة، وشاركنا سؤالك أو تفاصيل طلبك، ونساعدك في تحديد الخطوة المناسبة.",
+                cta_btn_whatsapp: "اسألنا عبر واتساب",
+                cta_btn_request: "اطلب خدمة",
+
+                footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+                contact_title: "معلومات التواصل",
+                follow_us: "تابعنا",
+                privacy_footer_link: "سياسة الخصوصية",
+                terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب"
+            },
+
+            en: {
+                brand_name: "eCode",
+                brand_tagline: "Innovate Impact",
+
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_process: "Process",
+                nav_faq: "FAQ",
+                nav_request: "Request Service",
+                nav_contact: "Contact Us",
+
+                hero_badge: "FAQ",
+                hero_title_1: "Clear Answers",
+                hero_title_2: "Before You Start With Us",
+                hero_desc: "We gathered the most common questions about eCode services, request process, pricing, payment, execution, revisions, and refunds.",
+                search_placeholder: "Search questions...",
+
+                cat_general_title: "General",
+                cat_general_desc: "Questions about eCode and our service model.",
+                cat_services_title: "Services",
+                cat_services_desc: "Details about services, packages, and custom requests.",
+                cat_payment_title: "Payment & Refunds",
+                cat_payment_desc: "Pricing, payments, cancellation, and refunds.",
+                cat_execution_title: "Execution & Delivery",
+                cat_execution_desc: "Timeline, revisions, files, and delivery.",
+
+                group_general_badge: "General",
+                group_general_title: "General Questions",
+                q1: "What is eCode?",
+                a1: "eCode is a Saudi company providing integrated business services, including marketing, creative production, branding and design, technology services, consulting, events, exhibitions, fit-out, and custom requests.",
+                q2: "Do you work with individuals or companies only?",
+                a2: "We work with individuals, entrepreneurs, startups, companies, establishments, and organizations that need marketing, technology, design, or operational services.",
+                q3: "Can I request only one service?",
+                a3: "Yes. You can request a single service such as post design, company profile, landing page, or consultation. You can also request an integrated project with multiple connected services.",
+                q4: "Does eCode execute all services internally?",
+                a4: "Some services are executed directly, while others may be coordinated or executed through specialized providers or partners depending on the request. eCode remains the main point of contact with the client unless otherwise agreed.",
+
+                group_services_badge: "Services",
+                group_services_title: "Services and Custom Requests",
+                q5: "What services do you provide?",
+                a5: "We provide marketing and production, branding and design, websites and digital platforms, consulting, events and exhibitions, fit-out and décor, in addition to custom services based on client needs.",
+                q6: "What does custom service mean?",
+                a6: "A custom service is any request that does not fit directly under a ready-made service. The client shares the need details, and we help turn the idea into a clear scope of work or recommend the right path.",
+                q7: "Do you offer monthly services?",
+                a7: "Yes. Some services can be provided monthly, such as social media management, content design, advertising campaigns, reporting, and continuous improvement depending on client needs.",
+                q8: "I do not know which service fits me. What should I do?",
+                a8: "You can fill out the service request form and choose “Custom Request,” then write your goal, problem, or idea. We will help you define the right service or package.",
+
+                group_payment_badge: "Payment & Refunds",
+                group_payment_title: "Pricing, Payment, and Refunds",
+                q9: "Are prices fixed?",
+                a9: "Prices vary depending on the service type, project size, execution timeline, number of deliverables, and complexity level. Pricing is determined after understanding the request or through approved packages when available.",
+                q10: "Is an advance payment required before work starts?",
+                a10: "Some services may require an advance payment or full payment before starting, especially digital, design, or services that require booking resources or providers.",
+                q11: "Can payment be made in stages?",
+                a11: "Yes. For some medium or large projects, staged payments can be agreed upon according to execution phases. This is clarified in the proposal or agreement before work begins.",
+                q12: "Can I get a refund after payment?",
+                a12: "It depends on the request status. If execution has not started, a refund may be reviewed after deducting any actual fees or costs. After execution starts or part of the work is delivered, completed work and non-refundable costs may be deducted according to the refund policy.",
+
+                group_execution_badge: "Execution & Delivery",
+                group_execution_title: "Timeline, Revisions, and Delivery",
+                q13: "How long does a service take?",
+                a13: "The timeline varies depending on the service type, project size, and availability of required information. The estimated timeline is clarified before work starts and may change if the client delays materials or feedback.",
+                q14: "How many revisions are included?",
+                a14: "The number of revisions depends on the service or package. Revisions include reasonable changes within the same scope and do not include changing the concept completely or rebuilding the work from scratch unless agreed separately.",
+                q15: "Do you deliver editable/source files?",
+                a15: "Editable or source file delivery depends on the service type and agreement. Some services include final files only, while editable or source files can be added to the proposal when needed.",
+                q16: "What happens after final delivery?",
+                a16: "After final delivery and client approval, the work is considered complete. If the service is ongoing or monthly, follow-up and improvement continue according to the agreed scope.",
+
+                group_providers_badge: "Service Providers",
+                group_providers_title: "Service Provider and Partner Questions",
+                q17: "How can I join as a service provider?",
+                a17: "You can fill out the “Join as Service Provider” page and send your details, specialty, city, work samples, and work mode. We will then review and internally classify your profile when needed.",
+                q18: "Does joining guarantee receiving requests?",
+                a18: "No. Joining the network does not guarantee immediate requests, but it allows us to recommend you when a suitable request matches your specialty, work quality, and availability.",
+                q19: "Can cooperation be remote?",
+                a19: "Yes. Many services can be executed remotely, such as design, development, marketing, content, and consulting. Field services depend on the city and project nature.",
+                q20: "What is the cooperation method with service providers?",
+                a20: "The cooperation method varies by service type. It may be referral, execution for eCode, or a direct project under a separate agreement. Details are clarified before any work begins.",
+
+                cta_title: "Didn’t Find Your Answer?",
+                cta_desc: "Contact us directly, share your question or request details, and we will help you define the right next step.",
+                cta_btn_whatsapp: "Ask via WhatsApp",
+                cta_btn_request: "Request Service",
+
+                footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+                contact_title: "Contact Info",
+                follow_us: "Follow Us",
+                privacy_footer_link: "Privacy Policy",
+                terms_footer_link: "Terms & Conditions and Refund Policy",
+                footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+                whatsapp_tooltip: "Contact via WhatsApp"
+            }
+        };
+
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+        function initTheme() {
+            const icon = document.getElementById('theme-icon');
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('title', translations[currentLang][key]);
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('placeholder', translations[currentLang][key]);
+                }
+            });
+
+            if (currentLang === 'ar') {
+                document.title = "الأسئلة الشائعة | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "الأسئلة الشائعة حول خدمات eCode، آلية الطلب، الأسعار، الدفع، مدة التنفيذ، التعديلات، الاسترجاع، ومزودي الخدمات."
+                );
+            } else {
+                document.title = "FAQ | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "Frequently asked questions about eCode services, requests, pricing, payment, timelines, revisions, refunds, and service providers."
+                );
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            localStorage.setItem('userLanguage', currentLang);
+            updateContent();
+        }
+
+        function initFAQ() {
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = button.closest('.faq-item');
+                    item.classList.toggle('open');
+                });
+            });
+        }
+
+        function initSearch() {
+            const search = document.getElementById('faqSearch');
+            const items = document.querySelectorAll('.faq-item');
+            const groups = document.querySelectorAll('.faq-group');
+
+            search.addEventListener('input', () => {
+                const query = search.value.trim().toLowerCase();
+
+                items.forEach(item => {
+                    const text = item.innerText.toLowerCase() + " " + (item.getAttribute('data-search') || '').toLowerCase();
+                    item.style.display = text.includes(query) ? 'block' : 'none';
+                });
+
+                groups.forEach(group => {
+                    const visibleItems = group.querySelectorAll('.faq-item:not([style*="display: none"])');
+                    group.style.display = visibleItems.length > 0 ? 'block' : 'none';
+                });
+            });
+        }
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+        });
+
+        window.onload = () => {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            initTheme();
+            updateContent();
+            initFAQ();
+            initSearch();
+        };
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
