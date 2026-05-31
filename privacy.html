@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية | eCode</title>
+    <meta name="description" content="سياسة الخصوصية الخاصة بشركة Electronic Code eCode وحماية البيانات الشخصية وفقًا لنظام حماية البيانات الشخصية في المملكة العربية السعودية.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- PWA / Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="eCode">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/privacy.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecode.sa/privacy.html">
+    <meta property="og:title" content="سياسة الخصوصية | eCode">
+    <meta property="og:description" content="نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية.">
+    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:site_name" content="eCode">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="سياسة الخصوصية | eCode">
+    <meta name="twitter:description" content="نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية.">
+    <meta name="twitter:image" content="https://ecode.sa/favicon.webp">
+
+    <style>
+        :root {
+            --text-main: 'Cairo', sans-serif;
+        }
+
+        html[lang="en"] {
+            --text-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--text-main);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name {
+            color: #f8fafc;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline {
+            color: #94a3b8;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #475569;
+            transition: color 0.3s ease;
+        }
+
+        html.dark .nav a {
+            color: #cbd5e1;
+        }
+
+        .nav a:hover {
+            color: #4F46E5;
+        }
+
+        html.dark .nav a:hover {
+            color: #818cf8;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        .policy-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 28px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        }
+
+        .dark .policy-card {
+            background: #0f172a;
+            border-color: #1f2937;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .policy-section {
+            padding: 28px;
+            border-radius: 24px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .dark .policy-section {
+            background: rgba(30, 41, 59, 0.45);
+            border-color: #1f2937;
+        }
+
+        .policy-section h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: #0f172a;
+        }
+
+        .dark .policy-section h2 {
+            color: #ffffff;
+        }
+
+        .policy-section p,
+        .policy-section li {
+            color: #64748b;
+            line-height: 2;
+            font-size: 0.98rem;
+        }
+
+        .dark .policy-section p,
+        .dark .policy-section li {
+            color: #cbd5e1;
+        }
+
+        .policy-section ul {
+            margin-top: 12px;
+            padding-inline-start: 22px;
+            list-style: disc;
+        }
+
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            }
+
+            html.dark .nav.active {
+                background: #0f172a;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50">
+        <div class="header-inner">
+            <a href="https://ecode.sa/" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name" data-i18n="brand_name">eCode</div>
+                    <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                </div>
+            </a>
+
+            <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav">
+                <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
+                <a href="https://ecode.sa/#about" data-i18n="nav_about">من نحن</a>
+                <a href="https://ecode.sa/#marketing" data-i18n="nav_marketing">التسويق والإنتاج</a>
+                <a href="https://ecode.sa/#consulting" data-i18n="nav_consulting">الاستشارات</a>
+                <a href="https://ecode.sa/#tech" data-i18n="nav_tech">الخدمات التقنية</a>
+                <a href="https://ecode.sa/#events" data-i18n="nav_events">الفعاليات والتجهيزات</a>
+
+                <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
+                    <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+                        <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+                    </button>
+                </div>
+
+                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative pt-36 pb-20 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20 dark:opacity-10 pointer-events-none">
+            <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
+            <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="privacy_badge">
+                سياسة الخصوصية
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                <span data-i18n="privacy_title">نحن ملتزمون بحماية</span>
+                <span class="gradient-text" data-i18n="privacy_title_gradient">خصوصيتك</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium" data-i18n="privacy_subtitle">
+                توضح هذه السياسة كيفية جمع واستخدام وحماية بياناتك الشخصية عند استخدامك لموقع وخدمات eCode.
+            </p>
+
+            <div class="mt-8 inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white dark:bg-dark border border-gray-200 dark:border-gray-800 shadow-sm">
+                <i class="fa-regular fa-calendar text-primary"></i>
+                <span class="text-sm text-gray-600 dark:text-gray-300">
+                    <span data-i18n="last_update_label">آخر تعديل:</span>
+                    <strong data-i18n="last_update_date">31 مايو 2026</strong>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Content -->
+    <main class="pb-20">
+        <div class="container mx-auto px-6">
+            <div class="policy-card max-w-5xl mx-auto p-6 md:p-10">
+
+                <div class="grid gap-6">
+
+                    <section class="policy-section">
+                        <h2 data-i18n="section1_title">1. مقدمة</h2>
+                        <p data-i18n="section1_text">
+                            مرحبًا بكم في eCode ("نحن"، "لنا"). نحن نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية وفقًا لنظام حماية البيانات الشخصية في المملكة العربية السعودية.
+                        </p>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2 data-i18n="section2_title">2. المعلومات التي نجمعها</h2>
+                        <p data-i18n="section2_intro">قد نقوم بجمع أنواع المعلومات التالية:</p>
+                        <ul>
+                            <li data-i18n="section2_item1">
+                                <strong>المعلومات الشخصية:</strong> الاسم، البريد الإلكتروني، رقم الهاتف، وأي معلومات أخرى تقدمها عند تعبئة النماذج على موقعنا.
+                            </li>
+                            <li data-i18n="section2_item2">
+                                <strong>معلومات المشروع:</strong> تفاصيل حول مشروعك، الميزانية، والمتطلبات المحددة التي تشاركها معنا.
+                            </li>
+                            <li data-i18n="section2_item3">
+                                <strong>البيانات التقنية:</strong> عنوان IP، نوع المتصفح، معلومات الجهاز، وبيانات الاستخدام التي يتم جمعها عبر ملفات تعريف الارتباط (Cookies).
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2 data-i18n="section3_title">3. كيف نستخدم معلوماتك</h2>
+                        <p data-i18n="section3_intro">نستخدم البيانات المجمعة للأغراض التالية:</p>
+                        <ul>
+                            <li data-i18n="section3_item1">لتقديم وتحسين خدماتنا لك.</li>
+                            <li data-i18n="section3_item2">للتواصل معك بخصوص مشروعك أو استفساراتك.</li>
+                            <li data-i18n="section3_item3">لإرسال رسائل تسويقية لك في حال موافقتك.</li>
+                            <li data-i18n="section3_item4">لتحليل استخدام الموقع وتحسين تجربة المستخدم.</li>
+                            <li data-i18n="section3_item5">للامتثال للالتزامات القانونية.</li>
+                        </ul>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2 data-i18n="section4_title">4. مشاركة البيانات والإفصاح عنها</h2>
+                        <p data-i18n="section4_intro">
+                            نحن لا نبيع بياناتك الشخصية لأطراف ثالثة. قد نشارك معلوماتك مع:
+                        </p>
+                        <ul>
+                            <li data-i18n="section4_item1">
+                                <strong>مقدمي الخدمات:</strong> شركاء موثوقين يساعدوننا في تشغيل موقعنا وأعمالنا مثل خدمات الاستضافة والتحليلات.
+                            </li>
+                            <li data-i18n="section4_item2">
+                                <strong>الجهات القانونية:</strong> إذا كان ذلك مطلوبًا بموجب القانون أو لحماية حقوقنا وسلامتنا.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2 data-i18n="section5_title">5. أمن البيانات</h2>
+                        <p data-i18n="section5_text">
+                            نطبق تدابير تقنية وتنظيمية مناسبة لحماية بياناتك الشخصية من الوصول غير المصرح به، أو التغيير، أو الإفصاح، أو الإتلاف. ومع ذلك، لا توجد طريقة نقل عبر الإنترنت آمنة بنسبة 100%.
+                        </p>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2 data-i18n="section6_title">6. حقوقك</h2>
+                        <p data-i18n="section6_intro">بموجب النظام، لديك الحق في:</p>
+                        <ul>
+                            <li data-i18n="section6_item1">الوصول إلى بياناتك الشخصية.</li>
+                            <li data-i18n="section6_item2">طلب تصحيح البيانات غير الدقيقة.</li>
+                            <li data-i18n="section6_item3">طلب حذف بياناتك.</li>
+                            <li data-i18n="section6_item4">سحب موافقتك على معالجة البيانات.</li>
+                        </ul>
+                        <p class="mt-4" data-i18n="section6_contact">
+                            لممارسة هذه الحقوق، يرجى التواصل معنا عبر البريد الإلكتروني:
+                            <a href="mailto:info@ecode.sa" class="text-primary font-bold" dir="ltr">info@ecode.sa</a>
+                        </p>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2 data-i18n="section7_title">7. التغييرات على هذه السياسة</h2>
+                        <p data-i18n="section7_text">
+                            قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سيتم نشر أي تغييرات على هذه الصفحة مع تحديث تاريخ "آخر تعديل".
+                        </p>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2 data-i18n="section8_title">8. اتصل بنا</h2>
+                        <p data-i18n="section8_text">
+                            إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا:
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                            <a href="mailto:info@ecode.sa" class="flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-darker border border-gray-200 dark:border-gray-800 hover:border-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </span>
+                                <span class="font-bold" dir="ltr">info@ecode.sa</span>
+                            </a>
+
+                            <a href="tel:+966503666316" class="flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-darker border border-gray-200 dark:border-gray-800 hover:border-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </span>
+                                <span class="font-bold" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA -->
+    <section class="py-16 bg-gray-50 dark:bg-darker">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto bg-white dark:bg-dark p-10 md:p-14 rounded-[2rem] shadow-xl border border-gray-100 dark:border-gray-800">
+                <h2 class="text-3xl md:text-4xl font-bold mb-5 gradient-text" data-i18n="cta_title">
+                    هل لديك استفسار حول الخصوصية؟
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 text-lg leading-relaxed" data-i18n="cta_desc">
+                    يمكنك التواصل معنا في أي وقت بخصوص بياناتك أو طريقة استخدام المعلومات في موقع eCode.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://wa.me/966503666316" target="_blank" class="flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-full font-bold hover:shadow-lg transition transform hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span dir="ltr">+966 503 666 316</span>
+                    </a>
+
+                    <a href="mailto:info@ecode.sa" class="flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-full font-bold hover:shadow-lg transition transform hover:-translate-y-1">
+                        <i class="fa-solid fa-envelope text-2xl"></i>
+                        <span dir="ltr">info@ecode.sa</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+
+                <div class="md:w-1/3">
+                    <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
+                        <div class="logo-icon">
+                            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                        </div>
+                        <div class="logo-text">
+                            <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                            <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                        </div>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                    </p>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-globe"></i>
+                                </span>
+                                <span class="contact-text" dir="ltr">www.eCode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </span>
+                                <span class="contact-text" dir="ltr">info@ecode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </span>
+                                <span class="contact-text" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:w-1/3">
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+                © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        const translations = {
+            ar: {
+                brand_name: "eCode",
+                brand_tagline: "تصنع الأثر",
+
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_marketing: "التسويق والإنتاج",
+                nav_consulting: "الاستشارات",
+                nav_tech: "الخدمات التقنية",
+                nav_events: "الفعاليات والتجهيزات",
+                nav_contact: "تواصل معنا",
+
+                privacy_badge: "سياسة الخصوصية",
+                privacy_title: "نحن ملتزمون بحماية",
+                privacy_title_gradient: "خصوصيتك",
+                privacy_subtitle: "توضح هذه السياسة كيفية جمع واستخدام وحماية بياناتك الشخصية عند استخدامك لموقع وخدمات eCode.",
+                last_update_label: "آخر تعديل:",
+                last_update_date: "31 مايو 2026",
+
+                section1_title: "1. مقدمة",
+                section1_text: "مرحبًا بكم في eCode (\"نحن\"، \"لنا\"). نحن نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية وفقًا لنظام حماية البيانات الشخصية في المملكة العربية السعودية.",
+
+                section2_title: "2. المعلومات التي نجمعها",
+                section2_intro: "قد نقوم بجمع أنواع المعلومات التالية:",
+                section2_item1: "<strong>المعلومات الشخصية:</strong> الاسم، البريد الإلكتروني، رقم الهاتف، وأي معلومات أخرى تقدمها عند تعبئة النماذج على موقعنا.",
+                section2_item2: "<strong>معلومات المشروع:</strong> تفاصيل حول مشروعك، الميزانية، والمتطلبات المحددة التي تشاركها معنا.",
+                section2_item3: "<strong>البيانات التقنية:</strong> عنوان IP، نوع المتصفح، معلومات الجهاز، وبيانات الاستخدام التي يتم جمعها عبر ملفات تعريف الارتباط (Cookies).",
+
+                section3_title: "3. كيف نستخدم معلوماتك",
+                section3_intro: "نستخدم البيانات المجمعة للأغراض التالية:",
+                section3_item1: "لتقديم وتحسين خدماتنا لك.",
+                section3_item2: "للتواصل معك بخصوص مشروعك أو استفساراتك.",
+                section3_item3: "لإرسال رسائل تسويقية لك في حال موافقتك.",
+                section3_item4: "لتحليل استخدام الموقع وتحسين تجربة المستخدم.",
+                section3_item5: "للامتثال للالتزامات القانونية.",
+
+                section4_title: "4. مشاركة البيانات والإفصاح عنها",
+                section4_intro: "نحن لا نبيع بياناتك الشخصية لأطراف ثالثة. قد نشارك معلوماتك مع:",
+                section4_item1: "<strong>مقدمي الخدمات:</strong> شركاء موثوقين يساعدوننا في تشغيل موقعنا وأعمالنا مثل خدمات الاستضافة والتحليلات.",
+                section4_item2: "<strong>الجهات القانونية:</strong> إذا كان ذلك مطلوبًا بموجب القانون أو لحماية حقوقنا وسلامتنا.",
+
+                section5_title: "5. أمن البيانات",
+                section5_text: "نطبق تدابير تقنية وتنظيمية مناسبة لحماية بياناتك الشخصية من الوصول غير المصرح به، أو التغيير، أو الإفصاح، أو الإتلاف. ومع ذلك، لا توجد طريقة نقل عبر الإنترنت آمنة بنسبة 100%.",
+
+                section6_title: "6. حقوقك",
+                section6_intro: "بموجب النظام، لديك الحق في:",
+                section6_item1: "الوصول إلى بياناتك الشخصية.",
+                section6_item2: "طلب تصحيح البيانات غير الدقيقة.",
+                section6_item3: "طلب حذف بياناتك.",
+                section6_item4: "سحب موافقتك على معالجة البيانات.",
+                section6_contact: "لممارسة هذه الحقوق، يرجى التواصل معنا عبر البريد الإلكتروني: <a href=\"mailto:info@ecode.sa\" class=\"text-primary font-bold\" dir=\"ltr\">info@ecode.sa</a>",
+
+                section7_title: "7. التغييرات على هذه السياسة",
+                section7_text: "قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سيتم نشر أي تغييرات على هذه الصفحة مع تحديث تاريخ \"آخر تعديل\".",
+
+                section8_title: "8. اتصل بنا",
+                section8_text: "إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا:",
+
+                cta_title: "هل لديك استفسار حول الخصوصية؟",
+                cta_desc: "يمكنك التواصل معنا في أي وقت بخصوص بياناتك أو طريقة استخدام المعلومات في موقع eCode.",
+
+                footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+                contact_title: "معلومات التواصل",
+                follow_us: "تابعنا",
+                privacy_footer_link: "سياسة الخصوصية",
+                footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب"
+            },
+
+            en: {
+                brand_name: "eCode",
+                brand_tagline: "Innovate Impact",
+
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_marketing: "Marketing & Production",
+                nav_consulting: "Consulting",
+                nav_tech: "Technology",
+                nav_events: "Events & Fit-Out",
+                nav_contact: "Contact Us",
+
+                privacy_badge: "Privacy Policy",
+                privacy_title: "We Are Committed to Protecting",
+                privacy_title_gradient: "Your Privacy",
+                privacy_subtitle: "This policy explains how we collect, use, and protect your personal data when you use eCode’s website and services.",
+                last_update_label: "Last updated:",
+                last_update_date: "May 31, 2026",
+
+                section1_title: "1. Introduction",
+                section1_text: "Welcome to eCode (\"we\", \"us\"). We respect your privacy and are committed to protecting your personal data in accordance with the Personal Data Protection Law in the Kingdom of Saudi Arabia.",
+
+                section2_title: "2. Information We Collect",
+                section2_intro: "We may collect the following types of information:",
+                section2_item1: "<strong>Personal information:</strong> name, email address, phone number, and any other information you provide when filling out forms on our website.",
+                section2_item2: "<strong>Project information:</strong> details about your project, budget, and specific requirements you share with us.",
+                section2_item3: "<strong>Technical data:</strong> IP address, browser type, device information, and usage data collected through cookies.",
+
+                section3_title: "3. How We Use Your Information",
+                section3_intro: "We use the collected data for the following purposes:",
+                section3_item1: "To provide and improve our services.",
+                section3_item2: "To communicate with you regarding your project or inquiries.",
+                section3_item3: "To send marketing messages if you have consented to receive them.",
+                section3_item4: "To analyze website usage and improve user experience.",
+                section3_item5: "To comply with legal obligations.",
+
+                section4_title: "4. Data Sharing and Disclosure",
+                section4_intro: "We do not sell your personal data to third parties. We may share your information with:",
+                section4_item1: "<strong>Service providers:</strong> trusted partners who help us operate our website and business, such as hosting and analytics services.",
+                section4_item2: "<strong>Legal authorities:</strong> when required by law or to protect our rights and safety.",
+
+                section5_title: "5. Data Security",
+                section5_text: "We apply appropriate technical and organizational measures to protect your personal data from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.",
+
+                section6_title: "6. Your Rights",
+                section6_intro: "Under applicable law, you have the right to:",
+                section6_item1: "Access your personal data.",
+                section6_item2: "Request correction of inaccurate data.",
+                section6_item3: "Request deletion of your data.",
+                section6_item4: "Withdraw your consent to data processing.",
+                section6_contact: "To exercise these rights, please contact us by email: <a href=\"mailto:info@ecode.sa\" class=\"text-primary font-bold\" dir=\"ltr\">info@ecode.sa</a>",
+
+                section7_title: "7. Changes to This Policy",
+                section7_text: "We may update this Privacy Policy from time to time. Any changes will be published on this page with an updated \"Last updated\" date.",
+
+                section8_title: "8. Contact Us",
+                section8_text: "If you have any questions about this Privacy Policy, please contact us:",
+
+                cta_title: "Have a Privacy Question?",
+                cta_desc: "You can contact us anytime regarding your data or how information is used on the eCode website.",
+
+                footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+                contact_title: "Contact Info",
+                follow_us: "Follow Us",
+                privacy_footer_link: "Privacy Policy",
+                footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+                whatsapp_tooltip: "Contact via WhatsApp"
+            }
+        };
+
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+        function initTheme() {
+            const icon = document.getElementById('theme-icon');
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('title', translations[currentLang][key]);
+                }
+            });
+
+            if (currentLang === 'ar') {
+                document.title = "سياسة الخصوصية | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "سياسة الخصوصية الخاصة بشركة Electronic Code eCode وحماية البيانات الشخصية وفقًا لنظام حماية البيانات الشخصية في المملكة العربية السعودية."
+                );
+            } else {
+                document.title = "Privacy Policy | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "Privacy Policy for Electronic Code eCode and the protection of personal data."
+                );
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            localStorage.setItem('userLanguage', currentLang);
+            updateContent();
+        }
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+        });
+
+        window.onload = () => {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            initTheme();
+            updateContent();
+        };
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
