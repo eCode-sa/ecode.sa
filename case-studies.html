@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -134,14 +134,15 @@
         .nav {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .nav a {
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-weight: 700;
+            font-size: 0.9rem;
             color: #475569;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
 
         html.dark .nav a {
@@ -163,8 +164,8 @@
             color: white !important;
             padding: 0.5rem 1.25rem;
             border-radius: 9999px;
-            font-weight: 600;
-            transition: opacity 0.3s;
+            font-weight: 700;
+            transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -172,6 +173,7 @@
 
         .btn-primary:hover {
             opacity: 0.9;
+            transform: translateY(-2px);
         }
 
         .filter-btn {
@@ -431,13 +433,23 @@
         }
 
         html[dir="rtl"] .contact-link {
-            flex-direction: row-reverse;
+            flex-direction: row;
             text-align: right;
         }
 
         html[dir="ltr"] .contact-link {
             flex-direction: row;
             text-align: left;
+        }
+
+        @media (max-width: 1180px) {
+            .nav {
+                gap: 0.75rem;
+            }
+
+            .nav a {
+                font-size: 0.82rem;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -448,6 +460,7 @@
             .nav.active {
                 display: flex;
                 flex-direction: column;
+                align-items: stretch;
                 position: absolute;
                 top: 100%;
                 left: 0;
@@ -463,6 +476,10 @@
 
             .mobile-toggle {
                 display: block;
+            }
+
+            .header-inner {
+                padding: 0.9rem 1rem;
             }
         }
 
@@ -495,11 +512,12 @@
 
             <nav class="nav">
                 <a href="https://ecode.sa/#home" data-i18n="nav_home">الرئيسية</a>
-                <a href="https://ecode.sa/about.html" data-i18n="nav_about">من نحن</a>
-                <a href="https://ecode.sa/services.html" data-i18n="nav_services">الخدمات</a>
-                <a href="https://ecode.sa/process.html" data-i18n="nav_process">آلية العمل</a>
-                <a href="https://ecode.sa/case-studies.html" class="active-link" data-i18n="nav_cases">دراسات الحالة</a>
-                <a href="https://ecode.sa/request-service.html" data-i18n="nav_request">اطلب خدمة</a>
+                <a href="about.html" data-i18n="nav_about">من نحن</a>
+                <a href="services.html" data-i18n="nav_services">الخدمات</a>
+                <a href="process.html" data-i18n="nav_process">آلية العمل</a>
+                <a href="industries.html" data-i18n="nav_industries">القطاعات</a>
+                <a href="case-studies.html" class="active-link" data-i18n="nav_cases">دراسات الحالة</a>
+                <a href="faq.html" data-i18n="nav_faq">الأسئلة الشائعة</a>
 
                 <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
                     <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
@@ -511,7 +529,7 @@
                     </button>
                 </div>
 
-                <a href="https://wa.me/966503666316" target="_blank" class="btn-primary" data-i18n="nav_contact">تواصل معنا</a>
+                <a href="request-service.html" class="btn-primary" data-i18n="nav_request">اطلب خدمة</a>
             </nav>
         </div>
     </header>
@@ -549,14 +567,17 @@
                         <div class="text-3xl font-black mb-1">01</div>
                         <p class="text-white/85 font-bold" data-i18n="stat_1">فهم التحدي</p>
                     </div>
+
                     <div class="stat-card">
                         <div class="text-3xl font-black mb-1">02</div>
                         <p class="text-white/85 font-bold" data-i18n="stat_2">اقتراح الحل</p>
                     </div>
+
                     <div class="stat-card">
                         <div class="text-3xl font-black mb-1">03</div>
                         <p class="text-white/85 font-bold" data-i18n="stat_3">تنفيذ المخرجات</p>
                     </div>
+
                     <div class="stat-card">
                         <div class="text-3xl font-black mb-1">04</div>
                         <p class="text-white/85 font-bold" data-i18n="stat_4">تحسين الحضور</p>
@@ -591,8 +612,10 @@
                         <img src="/both_1/both1.webp" alt="LEAP Exhibition Booth" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80'">
                         <span class="case-badge" data-i18n="case1_badge">معارض</span>
                     </div>
+
                     <div class="case-content">
                         <h2 class="text-2xl font-black mb-3" data-i18n="case1_title">تصميم بوث لأحد العملاء في معرض LEAP</h2>
+
                         <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case1_intro">
                             مشروع تصميم وتجهيز بوث احترافي يعكس حضور العلامة داخل بيئة معرض تقنية مزدحمة بالمنافسين والزوار.
                         </p>
@@ -604,21 +627,29 @@
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-triangle-exclamation text-primary"></i>
+                                <span data-i18n="challenge_label">التحدي</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case1_challenge">
                                 الحاجة إلى بوث واضح وجاذب داخل معرض كبير، مع إبراز الهوية وتسهيل تجربة الزائر من أول نظرة.
                             </p>
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-lightbulb text-primary"></i>
+                                <span data-i18n="solution_label">الحل</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case1_solution">
                                 تصميم مساحة عرض منظمة، واجهة بصرية قوية، توزيع واضح لعناصر الهوية، وتجربة زيارة تساعد على التواصل السريع.
                             </p>
                         </div>
 
                         <div class="mt-auto pt-6">
-                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج تصميم بوث معرض وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج تصميم بوث معرض وأرغب بخدمة مشابهة." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
                                 <span data-i18n="request_similar">اطلب مشروع مشابه</span>
                             </a>
                         </div>
@@ -631,8 +662,10 @@
                         <img src="/Alipasha_post/Alipasha_1.webp" alt="Ali Pasha Social Media" onerror="this.src='https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=80'">
                         <span class="case-badge" data-i18n="case2_badge">سوشيال ميديا</span>
                     </div>
+
                     <div class="case-content">
                         <h2 class="text-2xl font-black mb-3" data-i18n="case2_title">إدارة محتوى السوشيال ميديا لمطعم علي باشا</h2>
+
                         <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case2_intro">
                             تطوير حضور بصري مناسب لمطعم فلافل محلي في مكة، مع إبراز جودة المنتجات وطابع المطعم.
                         </p>
@@ -644,21 +677,29 @@
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-triangle-exclamation text-primary"></i>
+                                <span data-i18n="challenge_label">التحدي</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case2_challenge">
                                 الحاجة إلى محتوى يجمع بين الشهية، البساطة، والطابع المحلي، دون ازدحام نصي أو تشتيت بصري.
                             </p>
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-lightbulb text-primary"></i>
+                                <span data-i18n="solution_label">الحل</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case2_solution">
                                 تصميم بوستات وقوالب مرئية تركّز على المنتج، الألوان، والعناصر البصرية المناسبة لحسابات المطعم.
                             </p>
                         </div>
 
                         <div class="mt-auto pt-6">
-                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج إدارة محتوى مطعم وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج إدارة محتوى مطعم وأرغب بخدمة مشابهة." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
                                 <span data-i18n="request_similar">اطلب مشروع مشابه</span>
                             </a>
                         </div>
@@ -671,8 +712,10 @@
                         <img src="/blueeyes/bost1.webp" alt="Blue Eyes Branding" onerror="this.src='https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80'">
                         <span class="case-badge" data-i18n="case3_badge">هوية بصرية</span>
                     </div>
+
                     <div class="case-content">
                         <h2 class="text-2xl font-black mb-3" data-i18n="case3_title">هوية بصرية لعلامة أزياء فاخرة</h2>
+
                         <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case3_intro">
                             بناء توجه بصري راقٍ لعلامة أزياء تحتاج إلى هوية هادئة تجعل المنتج هو البطل الأساسي في التجربة.
                         </p>
@@ -684,21 +727,29 @@
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-triangle-exclamation text-primary"></i>
+                                <span data-i18n="challenge_label">التحدي</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case3_challenge">
                                 الحاجة إلى هوية لا تطغى على تفاصيل الفساتين والخامات، وفي نفس الوقت تعطي إحساسًا بالثقة والفخامة.
                             </p>
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-lightbulb text-primary"></i>
+                                <span data-i18n="solution_label">الحل</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case3_solution">
                                 اعتماد أسلوب بصري ناعم، ألوان هادئة، قوالب راقية، وتطبيقات مرئية تساعد العلامة على الظهور بطابع تحريري فاخر.
                             </p>
                         </div>
 
                         <div class="mt-auto pt-6">
-                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج الهوية البصرية وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج الهوية البصرية وأرغب بخدمة مشابهة." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
                                 <span data-i18n="request_similar">اطلب مشروع مشابه</span>
                             </a>
                         </div>
@@ -711,8 +762,10 @@
                         <img src="/DutiesBook/bost1.webp" alt="Duties Book Branding" onerror="this.src='https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80'">
                         <span class="case-badge" data-i18n="case4_badge">منصة رقمية</span>
                     </div>
+
                     <div class="case-content">
                         <h2 class="text-2xl font-black mb-3" data-i18n="case4_title">هوية ومحتوى لمنصة Duties Book</h2>
+
                         <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case4_intro">
                             تصميم توجه بصري ومحتوى سوشيال ميديا لمنصة رقمية تساعد على تنظيم محادثات العملاء في صندوق وارد موحد.
                         </p>
@@ -724,21 +777,29 @@
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-triangle-exclamation text-primary"></i>
+                                <span data-i18n="challenge_label">التحدي</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case4_challenge">
                                 تبسيط فكرة تقنية قد تبدو معقدة، وتحويلها إلى رسائل بصرية سهلة الفهم ومناسبة للشركات.
                             </p>
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-lightbulb text-primary"></i>
+                                <span data-i18n="solution_label">الحل</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case4_solution">
                                 استخدام لغة بصرية نظيفة، عناوين مباشرة، وقوالب تعرض قيمة المنصة بطريقة سهلة ومقنعة.
                             </p>
                         </div>
 
                         <div class="mt-auto pt-6">
-                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج منصة رقمية وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج منصة رقمية وأرغب بخدمة مشابهة." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
                                 <span data-i18n="request_similar">اطلب مشروع مشابه</span>
                             </a>
                         </div>
@@ -751,8 +812,10 @@
                         <img src="/Golden_Scissor_Time/bost1.webp" alt="Golden Scissor Time Identity" onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80'">
                         <span class="case-badge" data-i18n="case5_badge">هوية متكاملة</span>
                     </div>
+
                     <div class="case-content">
                         <h2 class="text-2xl font-black mb-3" data-i18n="case5_title">هوية بصرية متكاملة لصالون وقت المقص الذهبي</h2>
+
                         <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case5_intro">
                             تطوير هوية متكاملة لصالون رجالي فاخر تشمل الشعار، الألوان، التطبيقات، الواجهة، والهوية المكانية.
                         </p>
@@ -764,21 +827,29 @@
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-triangle-exclamation text-primary"></i>
+                                <span data-i18n="challenge_label">التحدي</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case5_challenge">
                                 بناء هوية تعكس الدقة، الحرفة، الفخامة، واحترام الوقت، مع إمكانية تطبيقها على الواجهة والزي والتغليف.
                             </p>
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-lightbulb text-primary"></i>
+                                <span data-i18n="solution_label">الحل</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case5_solution">
                                 تطوير منظومة بصرية متكاملة تعتمد على المقص الذهبي، الأسود الفاخر، التطبيقات العملية، ونماذج استخدام واضحة.
                             </p>
                         </div>
 
                         <div class="mt-auto pt-6">
-                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج الهوية المتكاملة وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج الهوية المتكاملة وأرغب بخدمة مشابهة." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
                                 <span data-i18n="request_similar">اطلب مشروع مشابه</span>
                             </a>
                         </div>
@@ -791,8 +862,10 @@
                         <img src="/androhelth/bost1.webp" alt="AndroHealth Social Media" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80'">
                         <span class="case-badge" data-i18n="case6_badge">صحي تقني</span>
                     </div>
+
                     <div class="case-content">
                         <h2 class="text-2xl font-black mb-3" data-i18n="case6_title">محتوى بصري لمنصة AndroHealth</h2>
+
                         <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case6_intro">
                             إعداد توجه بصري ومحتوى سوشيال ميديا لمنصة معلومات صحية موجهة للمراكز والعيادات والمستشفيات.
                         </p>
@@ -804,21 +877,29 @@
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-triangle-exclamation text-primary"></i><span data-i18n="challenge_label">التحدي</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-triangle-exclamation text-primary"></i>
+                                <span data-i18n="challenge_label">التحدي</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case6_challenge">
                                 تقديم نظام صحي تقني بطريقة مفهومة وموثوقة للجمهور المهني، مع المحافظة على طابع طبي واضح.
                             </p>
                         </div>
 
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-lightbulb text-primary"></i><span data-i18n="solution_label">الحل</span></h4>
+                            <h4>
+                                <i class="fa-solid fa-lightbulb text-primary"></i>
+                                <span data-i18n="solution_label">الحل</span>
+                            </h4>
+
                             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="case6_solution">
                                 تصميم محتوى بصري يوازن بين الجانب التقني والطبي، مع عناوين مباشرة وقوالب مناسبة للمنصات الرقمية.
                             </p>
                         </div>
 
                         <div class="mt-auto pt-6">
-                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج المحتوى الصحي التقني وأرغب بخدمة مشابهة." target="_blank" class="btn-primary w-full py-3">
+                            <a href="https://wa.me/966503666316?text=مرحبًا، أعجبني نموذج المحتوى الصحي التقني وأرغب بخدمة مشابهة." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
                                 <span data-i18n="request_similar">اطلب مشروع مشابه</span>
                             </a>
                         </div>
@@ -836,17 +917,18 @@
                 <h2 class="text-3xl md:text-5xl font-black mb-6" data-i18n="cta_title">
                     ودك نسوي مشروعك بنفس المنهجية؟
                 </h2>
+
                 <p class="text-white/90 mb-10 text-lg leading-loose" data-i18n="cta_desc">
                     شاركنا تفاصيل مشروعك، ونساعدك في تحديد التحدي، الحل، الخدمات المناسبة، وخطة التنفيذ.
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://ecode.sa/request-service.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
+                    <a href="request-service.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
                         <i class="fa-solid fa-paper-plane"></i>
                         <span data-i18n="cta_btn_request">ابدأ طلبك</span>
                     </a>
 
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بمناقشة مشروع مشابه لدراسات الحالة في موقع eCode." target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-black hover:bg-white/15 transition transform hover:-translate-y-1">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بمناقشة مشروع مشابه لدراسات الحالة في موقع eCode." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-black hover:bg-white/15 transition transform hover:-translate-y-1">
                         <i class="fa-brands fa-whatsapp text-2xl"></i>
                         <span data-i18n="cta_btn_whatsapp">تواصل عبر واتساب</span>
                     </a>
@@ -856,78 +938,183 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+    <footer id="footer" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 text-center md:text-start">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12 text-center md:text-start">
 
-                <div class="md:w-1/3">
+                <!-- Brand / Social -->
+                <div>
                     <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
                         <div class="logo-icon">
                             <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
                         </div>
+
                         <div class="logo-text">
                             <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
                             <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
                         </div>
                     </a>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6" data-i18n="footer_desc">
-                        لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-loose" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br>
+                        خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
                     </p>
+
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" rel="noopener noreferrer" title="Snapchat" aria-label="Snapchat">
+                            <i class="fa-brands fa-snapchat"></i>
+                        </a>
+
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="md:w-1/3">
+                <!-- Important Links -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footer_pages_title">روابط مهمة</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="about.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-building"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_about_link">من نحن</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="services.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_services_link">الخدمات</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="request-service.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_request_link">اطلب خدمة</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="partners.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_partners_link">انضم كمزود خدمة</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="process.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-route"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_process_link">آلية العمل</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="faq.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-circle-question"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="footer_faq_link">الأسئلة الشائعة</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact / Policies -->
+                <div>
                     <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
 
                     <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
                         <li>
-                            <a href="https://www.ecode.sa" target="_blank" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                            <a href="https://www.ecode.sa" target="_blank" rel="noopener noreferrer" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-globe"></i>
+                                </span>
                                 <span class="contact-text" dir="ltr">www.eCode.sa</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </span>
                                 <span class="contact-text" dir="ltr">info@ecode.sa</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </span>
                                 <span class="contact-text" dir="ltr">+966 503 666 316</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="https://ecode.sa/privacy.html" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                            <a href="privacy.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </span>
                                 <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="https://ecode.sa/terms.html" class="contact-link hover:text-primary transition">
-                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                            <a href="terms.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-file-contract"></i>
+                                </span>
                                 <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="cookies.html" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon">
+                                    <i class="fa-solid fa-cookie-bite"></i>
+                                </span>
+                                <span class="contact-text" data-i18n="cookies_footer_link">سياسة ملفات تعريف الارتباط</span>
                             </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="md:w-1/3">
-                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
-                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
-                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
-                    </div>
-                </div>
             </div>
 
             <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
@@ -937,7 +1124,7 @@
     </footer>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -951,9 +1138,10 @@
                 nav_about: "من نحن",
                 nav_services: "الخدمات",
                 nav_process: "آلية العمل",
+                nav_industries: "القطاعات",
                 nav_cases: "دراسات الحالة",
+                nav_faq: "الأسئلة الشائعة",
                 nav_request: "اطلب خدمة",
-                nav_contact: "تواصل معنا",
 
                 hero_badge: "دراسات الحالة",
                 hero_title_1: "مشاريع نعرضها",
@@ -1031,11 +1219,19 @@
                 cta_btn_request: "ابدأ طلبك",
                 cta_btn_whatsapp: "تواصل عبر واتساب",
 
+                footer_pages_title: "روابط مهمة",
                 footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
                 contact_title: "معلومات التواصل",
                 follow_us: "تابعنا",
+                footer_about_link: "من نحن",
+                footer_services_link: "الخدمات",
+                footer_request_link: "اطلب خدمة",
+                footer_partners_link: "انضم كمزود خدمة",
+                footer_process_link: "آلية العمل",
+                footer_faq_link: "الأسئلة الشائعة",
                 privacy_footer_link: "سياسة الخصوصية",
                 terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                cookies_footer_link: "سياسة ملفات تعريف الارتباط",
                 footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
                 whatsapp_tooltip: "تواصل معنا عبر واتساب"
             },
@@ -1048,9 +1244,10 @@
                 nav_about: "About Us",
                 nav_services: "Services",
                 nav_process: "Process",
+                nav_industries: "Industries",
                 nav_cases: "Case Studies",
+                nav_faq: "FAQ",
                 nav_request: "Request Service",
-                nav_contact: "Contact Us",
 
                 hero_badge: "Case Studies",
                 hero_title_1: "Projects Presented",
@@ -1128,11 +1325,19 @@
                 cta_btn_request: "Start Your Request",
                 cta_btn_whatsapp: "Contact via WhatsApp",
 
+                footer_pages_title: "Important Links",
                 footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
                 contact_title: "Contact Info",
                 follow_us: "Follow Us",
+                footer_about_link: "About Us",
+                footer_services_link: "Services",
+                footer_request_link: "Request Service",
+                footer_partners_link: "Join as Provider",
+                footer_process_link: "Process",
+                footer_faq_link: "FAQ",
                 privacy_footer_link: "Privacy Policy",
                 terms_footer_link: "Terms & Conditions and Refund Policy",
+                cookies_footer_link: "Cookie Policy",
                 footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
                 whatsapp_tooltip: "Contact via WhatsApp"
             }
@@ -1178,14 +1383,14 @@
         function updateContent() {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
+                if (translations[currentLang] && translations[currentLang][key]) {
                     el.innerHTML = translations[currentLang][key];
                 }
             });
 
             document.querySelectorAll('[data-i18n-title]').forEach(el => {
                 const key = el.getAttribute('data-i18n-title');
-                if (translations[currentLang][key]) {
+                if (translations[currentLang] && translations[currentLang][key]) {
                     el.setAttribute('title', translations[currentLang][key]);
                 }
             });
@@ -1237,9 +1442,9 @@
                     button.classList.add('active');
 
                     items.forEach(item => {
-                        const categories = item.getAttribute('data-category');
+                        const categories = item.getAttribute('data-category') || '';
 
-                        if (filter === 'all' || categories.includes(filter)) {
+                        if (filter === 'all' || categories.split(' ').includes(filter)) {
                             item.style.display = 'flex';
                         } else {
                             item.style.display = 'none';
@@ -1250,7 +1455,10 @@
         }
 
         document.querySelectorAll('.nav a').forEach(link => {
-            link.addEventListener('click', () => document.querySelector('.nav').classList.remove('active'));
+            link.addEventListener('click', () => {
+                const nav = document.querySelector('.nav');
+                if (nav) nav.classList.remove('active');
+            });
         });
 
         window.onload = () => {
