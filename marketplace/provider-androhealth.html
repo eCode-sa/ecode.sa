@@ -4,70 +4,620 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AndroHealth | ماركت بليس eCode</title>
-    <meta name="description" content="نظام معلومات مستشفيات سحابي للمنشآت الصحية في السعودية، يدعم إدارة المرضى والمواعيد والكشوفات السريرية والفوترة ومطالبات التأمين عبر نفيس.">
+    <meta name="description" content="AndroHealth نظام معلومات مستشفيات سحابي معتمد من نفيس وتقنية سعودية، يدعم إدارة المنشآت الصحية، المرضى، المواعيد، السجلات الطبية، الفوترة، ومطالبات التأمين.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
-        tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{cairo:['Cairo','sans-serif'],outfit:['Outfit','sans-serif']},colors:{primary:'#4F46E5',secondary:'#7C3AED',dark:'#0f172a',darker:'#020617'}}}}
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        health: '#16a34a',
+                        cyan: '#0891b2'
+                    }
+                }
+            }
+        }
     </script>
+
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#4F46E5">
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="icon" type="image/png" href="favicon.webp">
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="canonical" href="https://ecode.sa/provider-androhealth">
+    <link rel="canonical" href="https://ecode.sa/marketplace/androhealth/">
+
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ecode.sa/provider-androhealth">
+    <meta property="og:url" content="https://ecode.sa/marketplace/androhealth/">
     <meta property="og:title" content="AndroHealth | ماركت بليس eCode">
-    <meta property="og:description" content="نظام معلومات مستشفيات سحابي للمنشآت الصحية في السعودية، يدعم إدارة المرضى والمواعيد والكشوفات السريرية والفوترة ومطالبات التأمين عبر نفيس.">
-    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:description" content="نظام معلومات مستشفيات سحابي معتمد من نفيس وتقنية سعودية للمنشآت الصحية في المملكة.">
+    <meta property="og:image" content="https://ecode.sa/marketplace/androhealth/bost1.webp">
     <meta property="og:site_name" content="eCode">
+
     <style>
-:root{--text-main:'Cairo',sans-serif}html[lang="en"]{--text-main:'Outfit',sans-serif}body{font-family:var(--text-main)}
-.gradient-text{background:linear-gradient(to right,#4F46E5,#9333EA);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.gradient-bg{background:linear-gradient(135deg,#4F46E5,#7C3AED)}
-.header-inner{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.05);transition:all .3s ease}html.dark .header-inner{background:rgba(15,23,42,.85);border-bottom:1px solid rgba(255,255,255,.05)}
-.logo-container{display:flex;align-items:center;gap:12px;text-decoration:none}.logo-icon img{height:44px;width:auto;border-radius:8px;object-fit:contain}.logo-text{display:flex;flex-direction:column}.brand-name{font-weight:800;font-size:1.25rem;line-height:1.1;color:#1e293b}html.dark .brand-name{color:#f8fafc}.brand-tagline{font-size:.75rem;color:#64748b;font-weight:600}html.dark .brand-tagline{color:#94a3b8}
-.nav{display:flex;align-items:center;gap:1rem}.nav a{font-weight:700;font-size:.9rem;color:#475569;transition:color .3s ease;white-space:nowrap}html.dark .nav a{color:#cbd5e1}.nav a:hover,.nav a.active-link{color:#4F46E5}html.dark .nav a:hover,html.dark .nav a.active-link{color:#818cf8}
-.btn-primary{background:linear-gradient(to right,#4F46E5,#7C3AED);color:white!important;padding:.5rem 1.25rem;border-radius:9999px;font-weight:800;transition:all .3s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px}.btn-primary:hover{opacity:.92;transform:translateY(-2px);box-shadow:0 14px 30px rgba(79,70,229,.22)}
-.btn-outline{background:#fff;color:#4F46E5;border:1px solid rgba(79,70,229,.22);padding:.5rem 1.25rem;border-radius:9999px;font-weight:800;transition:all .3s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px}.dark .btn-outline{background:#0f172a;color:#c7d2fe;border-color:rgba(129,140,248,.25)}.btn-outline:hover{border-color:#4F46E5;transform:translateY(-2px);box-shadow:0 14px 30px rgba(15,23,42,.08)}
-.hero-visual{background:radial-gradient(circle at top right,rgba(255,255,255,.25),transparent 32%),linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:2rem;min-height:390px;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(79,70,229,.25)}
-.hero-visual:before{content:"";position:absolute;width:360px;height:360px;border-radius:9999px;background:rgba(255,255,255,.13);top:-150px;right:-90px}.hero-visual:after{content:"";position:absolute;width:260px;height:260px;border-radius:9999px;background:rgba(255,255,255,.10);bottom:-110px;left:-80px}
-.hero-icon{width:116px;height:116px;border-radius:34px;background:rgba(255,255,255,.17);color:#fff;display:flex;align-items:center;justify-content:center;font-size:52px;backdrop-filter:blur(12px);position:relative;z-index:2;box-shadow:0 18px 40px rgba(0,0,0,.16)}
-.info-card,.section-card{background:#fff;border:1px solid #e5e7eb;border-radius:30px;padding:28px;transition:all .3s ease;height:100%}.dark .info-card,.dark .section-card{background:#0f172a;border-color:#1f2937}.info-card:hover,.section-card:hover{transform:translateY(-6px);box-shadow:0 18px 45px rgba(15,23,42,.10);border-color:rgba(79,70,229,.35)}
-.icon-box{width:56px;height:56px;border-radius:18px;background:rgba(79,70,229,.10);color:#4F46E5;display:inline-flex;align-items:center;justify-content:center;font-size:23px;margin-bottom:18px}.dark .icon-box{background:rgba(129,140,248,.15);color:#c7d2fe}
-.feature-list{list-style:none;margin:0;padding:0;display:grid;gap:13px}.feature-list li{display:flex;gap:10px;align-items:flex-start;color:#64748b;line-height:1.9;font-weight:700}.dark .feature-list li{color:#cbd5e1}.feature-list i{color:#4F46E5;margin-top:7px;flex:0 0 auto}
-.price-card{background:#fff;border:1px solid #e5e7eb;border-radius:32px;padding:30px;box-shadow:0 18px 45px rgba(15,23,42,.07)}.dark .price-card{background:#0f172a;border-color:#1f2937;box-shadow:0 18px 45px rgba(0,0,0,.22)}
-.gallery-tile{height:190px;border-radius:26px;background:radial-gradient(circle at 25% 25%,rgba(255,255,255,.65),transparent 30%),linear-gradient(135deg,rgba(79,70,229,.15),rgba(124,58,237,.22));border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;color:#4F46E5;font-size:34px}.dark .gallery-tile{border-color:#1f2937;background:linear-gradient(135deg,rgba(79,70,229,.20),rgba(124,58,237,.26));color:#c7d2fe}
-.social-link{display:inline-flex;justify-content:center;align-items:center;width:40px;height:40px;border-radius:50%;background:rgba(79,70,229,.1);color:#4F46E5;transition:all .3s ease;margin:0 5px}html.dark .social-link{background:rgba(255,255,255,.1);color:#fff}.social-link:hover{background:#4F46E5;color:white;transform:translateY(-3px)}
-.whatsapp-float{position:fixed;bottom:30px;right:30px;background-color:#25d366;color:#fff;border-radius:50px;text-align:center;font-size:30px;box-shadow:0 4px 10px rgba(37,211,102,.3);z-index:100;width:60px;height:60px;display:flex;align-items:center;justify-content:center;transition:all .3s ease;animation:pulse-whatsapp 2s infinite}html[dir="rtl"] .whatsapp-float{right:auto;left:30px}.whatsapp-float:hover{background-color:#128C7E;color:white;transform:scale(1.1)}@keyframes pulse-whatsapp{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-.contact-list{list-style:none;margin:0;padding:0}.contact-link{display:flex;align-items:center;gap:12px;text-decoration:none;width:100%}.contact-icon{width:36px;height:36px;min-width:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(79,70,229,.10);color:#4F46E5;font-size:15px;flex:0 0 auto}.dark .contact-icon{background:rgba(255,255,255,.08);color:#d8d4fe}.contact-text{line-height:1.6;unicode-bidi:plaintext}html[dir="rtl"] .contact-link{flex-direction:row;text-align:right}html[dir="ltr"] .contact-link{flex-direction:row;text-align:left}
-@media(max-width:1180px){.nav{gap:.75rem}.nav a{font-size:.82rem}}@media(max-width:1024px){.nav{display:none}.nav.active{display:flex;flex-direction:column;align-items:stretch;position:absolute;top:100%;left:0;width:100%;background:white;padding:1.5rem;box-shadow:0 10px 15px -3px rgba(0,0,0,.1)}html.dark .nav.active{background:#0f172a}.mobile-toggle{display:block}.header-inner{padding:.9rem 1rem}}@media(min-width:1025px){.mobile-toggle{display:none}}
-</style>
+        :root { --text-main: 'Cairo', sans-serif; }
+        html[lang="en"] { --text-main: 'Outfit', sans-serif; }
+        body { font-family: var(--text-main); }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg { background: linear-gradient(135deg, #4F46E5, #7C3AED); }
+
+        .health-gradient {
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,.22), transparent 30%),
+                linear-gradient(135deg, #0f766e, #2563eb, #7C3AED);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,.05);
+            transition: all .3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15,23,42,.85);
+            border-bottom: 1px solid rgba(255,255,255,.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text { display: flex; flex-direction: column; }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name { color: #f8fafc; }
+
+        .brand-tagline {
+            font-size: .75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline { color: #94a3b8; }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav a {
+            font-weight: 700;
+            font-size: .9rem;
+            color: #475569;
+            transition: color .3s ease;
+            white-space: nowrap;
+        }
+
+        html.dark .nav a { color: #cbd5e1; }
+
+        .nav a:hover,
+        .nav a.active-link { color: #4F46E5; }
+
+        html.dark .nav a:hover,
+        html.dark .nav a.active-link { color: #818cf8; }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: .5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            transition: all .3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            opacity: .92;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(79,70,229,.22);
+        }
+
+        .btn-outline {
+            background: #fff;
+            color: #4F46E5;
+            border: 1px solid rgba(79,70,229,.22);
+            padding: .5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            transition: all .3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dark .btn-outline {
+            background: #0f172a;
+            color: #c7d2fe;
+            border-color: rgba(129,140,248,.25);
+        }
+
+        .btn-outline:hover {
+            border-color: #4F46E5;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(15,23,42,.08);
+        }
+
+        .hero-visual {
+            border-radius: 2rem;
+            min-height: 430px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(79,70,229,.25);
+        }
+
+        .hero-visual img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to top, rgba(2,6,23,.72), rgba(2,6,23,.12)),
+                radial-gradient(circle at top right, rgba(79,70,229,.22), transparent 38%);
+        }
+
+        .hero-logo-card {
+            position: absolute;
+            right: 28px;
+            bottom: 28px;
+            left: 28px;
+            background: rgba(255,255,255,.92);
+            border: 1px solid rgba(255,255,255,.55);
+            border-radius: 26px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            backdrop-filter: blur(14px);
+        }
+
+        html[dir="ltr"] .hero-logo-card { flex-direction: row; }
+
+        .dark .hero-logo-card {
+            background: rgba(15,23,42,.84);
+            border-color: rgba(255,255,255,.12);
+        }
+
+        .provider-logo {
+            width: 62px;
+            height: 62px;
+            border-radius: 20px;
+            background: #fff;
+            object-fit: contain;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .dark .provider-logo {
+            background: #fff;
+            border-color: transparent;
+        }
+
+        .info-card,
+        .section-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 30px;
+            padding: 28px;
+            transition: all .3s ease;
+            height: 100%;
+        }
+
+        .dark .info-card,
+        .dark .section-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .info-card:hover,
+        .section-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 45px rgba(15,23,42,.10);
+            border-color: rgba(79,70,229,.35);
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: rgba(79,70,229,.10);
+            color: #4F46E5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 18px;
+        }
+
+        .dark .icon-box {
+            background: rgba(129,140,248,.15);
+            color: #c7d2fe;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 13px;
+        }
+
+        .feature-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: #64748b;
+            line-height: 1.9;
+            font-weight: 700;
+        }
+
+        .dark .feature-list li { color: #cbd5e1; }
+
+        .feature-list i {
+            color: #4F46E5;
+            margin-top: 7px;
+            flex: 0 0 auto;
+        }
+
+        .price-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 32px;
+            padding: 30px;
+            box-shadow: 0 18px 45px rgba(15,23,42,.07);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark .price-card {
+            background: #0f172a;
+            border-color: #1f2937;
+            box-shadow: 0 18px 45px rgba(0,0,0,.22);
+        }
+
+        .price-card.featured {
+            border-color: rgba(79,70,229,.45);
+            box-shadow: 0 24px 60px rgba(79,70,229,.16);
+        }
+
+        .price-badge {
+            width: fit-content;
+            border-radius: 9999px;
+            padding: 7px 12px;
+            font-size: .78rem;
+            font-weight: 900;
+            background: rgba(79,70,229,.10);
+            color: #4F46E5;
+            margin-bottom: 16px;
+        }
+
+        .dark .price-badge {
+            background: rgba(129,140,248,.14);
+            color: #c7d2fe;
+        }
+
+        .plan-price {
+            color: #4F46E5;
+            font-weight: 900;
+            font-size: 2rem;
+            line-height: 1.1;
+        }
+
+        .plan-sub {
+            color: #64748b;
+            font-weight: 800;
+            margin-top: 6px;
+        }
+
+        .dark .plan-sub { color: #cbd5e1; }
+
+        .cert-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 26px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            height: 100%;
+        }
+
+        .dark .cert-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .cert-card img {
+            width: 76px;
+            height: 76px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 20px;
+            padding: 8px;
+            border: 1px solid #eef2f7;
+        }
+
+        .gallery-card {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            min-height: 250px;
+            border: 1px solid #e5e7eb;
+            background: #e5e7eb;
+        }
+
+        .dark .gallery-card { border-color: #1f2937; }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 250px;
+            object-fit: cover;
+            transition: transform .4s ease;
+        }
+
+        .gallery-card:hover img { transform: scale(1.05); }
+
+        .gallery-label {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            left: 18px;
+            background: rgba(15,23,42,.70);
+            color: white;
+            border-radius: 18px;
+            padding: 14px 16px;
+            font-weight: 900;
+            backdrop-filter: blur(10px);
+        }
+
+        html[dir="ltr"] .gallery-label {
+            right: 18px;
+            left: 18px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79,70,229,.1);
+            color: #4F46E5;
+            transition: all .3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255,255,255,.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37,211,102,.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37,211,102,.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+            100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79,70,229,.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255,255,255,.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        @media(max-width:1180px) {
+            .nav { gap: .75rem; }
+            .nav a { font-size: .82rem; }
+        }
+
+        @media(max-width:1024px) {
+            .nav { display: none; }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
+            }
+
+            html.dark .nav.active { background: #0f172a; }
+
+            .mobile-toggle { display: block; }
+
+            .header-inner { padding: .9rem 1rem; }
+
+            .hero-logo-card {
+                right: 16px;
+                left: 16px;
+                bottom: 16px;
+            }
+        }
+
+        @media(min-width:1025px) {
+            .mobile-toggle { display: none; }
+        }
+    </style>
 </head>
+
 <body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
 <header class="fixed w-full top-0 z-50">
     <div class="header-inner">
         <a href="https://ecode.sa/" class="logo-container">
-            <div class="logo-icon"><img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'"></div>
-            <div class="logo-text"><div class="brand-name" data-i18n="brand_name">eCode</div><div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div></div>
+            <div class="logo-icon">
+                <img src="/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+            </div>
+            <div class="logo-text">
+                <div class="brand-name" data-i18n="brand_name">eCode</div>
+                <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+            </div>
         </a>
-        <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+
+        <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <nav class="nav">
             <a href="https://ecode.sa/" data-i18n="nav_home">الرئيسية</a>
             <a href="https://ecode.sa/about" data-i18n="nav_about">من نحن</a>
             <a href="https://ecode.sa/services" data-i18n="nav_services">الخدمات</a>
-            <a href="https://ecode.sa/marketplace" class="active-link" data-i18n="nav_marketplace">ماركت بليس</a>
+            <a href="https://ecode.sa/marketplace/" class="active-link" data-i18n="nav_marketplace">ماركت بليس</a>
             <a href="https://ecode.sa/process" data-i18n="nav_process">آلية العمل</a>
             <a href="https://ecode.sa/industries" data-i18n="nav_industries">القطاعات</a>
             <a href="https://ecode.sa/case-studies" data-i18n="nav_cases">دراسات الحالة</a>
             <a href="https://ecode.sa/faq" data-i18n="nav_faq">الأسئلة الشائعة</a>
+
             <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
-                <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme"><i class="fas fa-sun" id="theme-icon"></i></button>
-                <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none;border:none;cursor:pointer;padding:0;"><span id="lang-icon" style="font-size:20px;line-height:1;">🇬🇧</span></button>
+                <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+
+                <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none;border:none;cursor:pointer;padding:0;">
+                    <span id="lang-icon" style="font-size:20px;line-height:1;">🇬🇧</span>
+                </button>
             </div>
+
             <a href="https://ecode.sa/request-service" class="btn-primary" data-i18n="nav_request">اطلب خدمة</a>
         </nav>
     </div>
@@ -78,20 +628,53 @@
         <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
         <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
     </div>
+
     <div class="container mx-auto px-6">
-        <a href="https://ecode.sa/marketplace" class="inline-flex items-center gap-2 text-primary font-black mb-8"><i class="fa-solid fa-arrow-right"></i><span data-i18n="back_market">العودة إلى ماركت بليس</span></a>
+        <a href="../" class="inline-flex items-center gap-2 text-primary font-black mb-8">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span data-i18n="back_market">العودة إلى ماركت بليس</span>
+        </a>
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-                <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">تقنية صحية</span>
-                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight"><span data-i18n="provider_title">AndroHealth</span><br><span class="gradient-text" data-i18n="trusted">مزود موثوق</span></h1>
-                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-medium mb-8" data-i18n="provider_summary">نظام معلومات مستشفيات سحابي للمنشآت الصحية في السعودية، يدعم إدارة المرضى والمواعيد والكشوفات السريرية والفوترة ومطالبات التأمين عبر نفيس.</p>
+                <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">
+                    تقنية صحية
+                </span>
+
+                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                    <span data-i18n="provider_title">AndroHealth</span>
+                    <br>
+                    <span class="gradient-text" data-i18n="trusted">مزود موثوق</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-medium mb-8" data-i18n="provider_summary">
+                    نظام معلومات مستشفيات سحابي متكامل مصمم للأداء والأتمتة والنمو، معتمد من نفيس وتقنية سعودية، ويغطي رحلة المريض من التسجيل حتى الفوترة ومطالبات التأمين.
+                </p>
+
                 <div class="flex flex-wrap gap-4">
-                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة AndroHealth في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-primary px-8 py-4"><i class="fa-brands fa-whatsapp text-xl"></i><span data-i18n="request_provider">طلب الخدمة عبر eCode</span></a>
-                    <a href="https://ahhis.com/" target="_blank" rel="noopener noreferrer" class="btn-outline px-8 py-4"><i class="fa-solid fa-arrow-up-right-from-square"></i><span data-i18n="visit_provider">زيارة موقع المزود</span></a>
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة AndroHealth في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-primary px-8 py-4">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span data-i18n="request_provider">طلب الخدمة عبر eCode</span>
+                    </a>
+
+                    <a href="https://ahhis.com/pricing" target="_blank" rel="noopener noreferrer" class="btn-outline px-8 py-4">
+                        <i class="fa-solid fa-tag"></i>
+                        <span data-i18n="pricing_link">صفحة الأسعار الرسمية</span>
+                    </a>
                 </div>
             </div>
-            <div class="hero-visual flex items-center justify-center">
-                <div class="hero-icon"><i class="fa-solid fa-hospital-user"></i></div>
+
+            <div class="hero-visual">
+                <img src="bost1.webp" alt="AndroHealth preview" onerror="this.src='logo.webp'">
+                <div class="hero-overlay"></div>
+
+                <div class="hero-logo-card">
+                    <img src="logo.webp" class="provider-logo" alt="AndroHealth Logo">
+                    <div>
+                        <div class="font-black text-xl text-slate-900 dark:text-white" data-i18n="provider_title">AndroHealth</div>
+                        <div class="text-gray-600 dark:text-gray-300 font-bold" data-i18n="hero_cert_line">معتمد من نفيس وتقنية سعودية</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -103,42 +686,55 @@
             <div class="lg:col-span-2 info-card">
                 <div class="icon-box"><i class="fa-solid fa-circle-info"></i></div>
                 <h2 class="text-2xl font-black mb-4" data-i18n="overview_title">نظرة عامة</h2>
-                <p class="text-gray-600 dark:text-gray-400 leading-loose text-lg" data-i18n="overview_text">AndroHealth مناسب للمنشآت الصحية التي تحتاج نظامًا تشغيليًا لإدارة العمليات اليومية، من تسجيل المرضى والمواعيد إلى الملفات الطبية والفوترة والمطالبات.</p>
+                <p class="text-gray-600 dark:text-gray-400 leading-loose text-lg" data-i18n="overview_text">
+                    AndroHealth هو نظام معلومات مستشفيات سحابي للمنشآت الصحية في المملكة، يساعد على إدارة العمليات اليومية مثل المرضى، المواعيد، السجلات الصحية، الوصفات، الفوترة، المدفوعات، ومطالبات التأمين، مع توافق وامتثال لبيئة الرعاية الصحية السعودية.
+                </p>
             </div>
-            <div class="price-card">
-                <div class="icon-box"><i class="fa-solid fa-tag"></i></div>
-                <h2 class="text-2xl font-black mb-4" data-i18n="pricing_title">الأسعار وطريقة الطلب</h2>
-                <p class="text-gray-500 dark:text-gray-400 font-bold" data-i18n="price_label">حسب نطاق المنشأة</p>
-                <div class="text-3xl font-black text-primary my-2" data-i18n="price_value">طلب عرض توضيحي</div>
-                <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="price_note">يتم تحديد السعر بناءً على عدد المستخدمين، الوحدات المطلوبة، الربط، والتجهيزات التشغيلية.</p>
+
+            <div class="info-card">
+                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                <h2 class="text-2xl font-black mb-4" data-i18n="compliance_title">الاعتمادات والامتثال</h2>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="compliance_1">معتمد من نفيس</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="compliance_2">معتمد كتقنية سعودية</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="compliance_3">متوافق مع متطلبات الرعاية الصحية السعودية</span></li>
+                </ul>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-7">
             <div class="section-card">
-                <div class="icon-box"><i class="fa-solid fa-stars"></i></div>
+                <div class="icon-box"><i class="fa-solid fa-hospital-user"></i></div>
                 <h2 class="text-2xl font-black mb-5" data-i18n="features_title">أبرز المميزات</h2>
-                <ul class="feature-list"><li><i class="fa-solid fa-check"></i><span data-i18n="feature_1">نظام HIS سحابي متكامل</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="feature_2">إدارة رحلة المريض من التسجيل إلى المطالبات</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="feature_3">تكامل مع نفيس ومطالبات التأمين</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="feature_4">مناسب للعيادات والمراكز والمجمعات الطبية</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="feature_5">دعم عربي وإنجليزي حسب بيئة المنشأة</span></li></ul>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="feature_1">إدارة المرضى والتسجيل والملفات</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="feature_2">جدولة المواعيد والتذكيرات الآلية</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="feature_3">السجلات الصحية الإلكترونية EHR</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="feature_4">إدارة الوصفات الطبية الرقمية</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="feature_5">الفوترة والمحاسبة ومطالبات التأمين</span></li>
+                </ul>
             </div>
+
             <div class="section-card">
-                <div class="icon-box"><i class="fa-solid fa-bullseye"></i></div>
-                <h2 class="text-2xl font-black mb-5" data-i18n="usecases_title">الاستخدامات المناسبة</h2>
-                <ul class="feature-list"><li><i class="fa-solid fa-check"></i><span data-i18n="usecase_1">العيادات والمراكز الصحية</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="usecase_2">المجمعات الطبية</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="usecase_3">المنشآت التي تحتاج ربط نفيس</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="usecase_4">المنشآت التي ترغب في رقمنة العمليات الطبية والإدارية</span></li></ul>
+                <div class="icon-box"><i class="fa-solid fa-stethoscope"></i></div>
+                <h2 class="text-2xl font-black mb-5" data-i18n="clinical_title">التشغيل الطبي</h2>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="clinical_1">ملفات طبية وتشخيصات وعلاجات</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="clinical_2">إدارة الأدوية والحساسيات</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="clinical_3">توثيق الزيارات والنتائج الطبية</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="clinical_4">دعم القرار السريري والتنبيهات</span></li>
+                </ul>
             </div>
+
             <div class="section-card">
                 <div class="icon-box"><i class="fa-solid fa-handshake"></i></div>
-                <h2 class="text-2xl font-black mb-5" data-i18n="deliverables_title">كيف تساعدك eCode؟</h2>
-                <ul class="feature-list"><li><i class="fa-solid fa-check"></i><span data-i18n="deliverable_1">تحليل احتياج المنشأة</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="deliverable_2">تجهيز العرض المناسب</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="deliverable_3">تنسيق العرض التوضيحي</span></li>
-<li><i class="fa-solid fa-check"></i><span data-i18n="deliverable_4">تحديد متطلبات الربط والتشغيل</span></li></ul>
+                <h2 class="text-2xl font-black mb-5" data-i18n="ecode_help_title">كيف تساعدك eCode؟</h2>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="deliverable_1">تحليل احتياج المنشأة</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="deliverable_2">تحديد الباقة أو المسار المناسب</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="deliverable_3">تنسيق العرض التوضيحي</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="deliverable_4">متابعة الطلب حتى الوصول للمزود</span></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -147,13 +743,139 @@
 <section class="py-20 bg-white dark:bg-dark border-y border-gray-100 dark:border-gray-800">
     <div class="container mx-auto px-6">
         <div class="text-center max-w-3xl mx-auto mb-12">
-            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="gallery_title">صور ومخرجات مقترحة</span>
-            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="gallery_desc">يمكن لاحقًا استبدال هذه المساحات بصور فعلية أو موك أب خاص بالمزود.</p>
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="pricing_badge">الأسعار</span>
+            <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="pricing_title">خطط أسعار AndroHealth</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="pricing_desc">
+                حسب صفحة الأسعار الرسمية، توجد خطط: المبتدئ، المحترف، والمؤسسات. الخطة المحترفة تبدأ من 4,450 ريال شهريًا، وخطة المؤسسات تكون مخصصة حسب حجم المنشأة.
+            </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
-            <div class="gallery-tile"><div class="text-center"><i class="fa-solid fa-image mb-3"></i><div class="text-base font-black" data-i18n="gallery_1">صورة المنتج</div></div></div>
-            <div class="gallery-tile"><div class="text-center"><i class="fa-solid fa-desktop mb-3"></i><div class="text-base font-black" data-i18n="gallery_2">واجهة الخدمة</div></div></div>
-            <div class="gallery-tile"><div class="text-center"><i class="fa-solid fa-diagram-project mb-3"></i><div class="text-base font-black" data-i18n="gallery_3">نموذج استخدام</div></div></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
+            <div class="price-card">
+                <span class="price-badge" data-i18n="starter_badge">للمنشآت الصغيرة</span>
+                <h3 class="text-2xl font-black mb-3" data-i18n="starter_title">المبتدئ</h3>
+                <div class="plan-price" data-i18n="starter_price">اطلب السعر</div>
+                <div class="plan-sub" data-i18n="starter_sub">مناسب للبداية والتجربة</div>
+
+                <ul class="feature-list mt-6 flex-grow">
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f1">الميزات الأساسية لإدارة المنشأة</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f2">إدارة المرضى والمواعيد</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f3">بداية مناسبة للعيادات الصغيرة</span></li>
+                </ul>
+
+                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بمعرفة تفاصيل باقة المبتدئ في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3 mt-7">
+                    <span data-i18n="ask_price">استفسر عن الباقة</span>
+                </a>
+            </div>
+
+            <div class="price-card featured">
+                <span class="price-badge" data-i18n="pro_badge">الأكثر طلبًا</span>
+                <h3 class="text-2xl font-black mb-3" data-i18n="pro_title">المحترف</h3>
+                <div class="plan-price" data-i18n="pro_price">4,450 ريال</div>
+                <div class="plan-sub" data-i18n="pro_sub">شهريًا</div>
+
+                <ul class="feature-list mt-6 flex-grow">
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f1">مناسب للمنشآت الصحية النشطة</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f2">إدارة تشغيلية أوسع</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f3">خيار مناسب للنمو والتوسع</span></li>
+                </ul>
+
+                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب باقة المحترف في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3 mt-7">
+                    <span data-i18n="request_plan">طلب الباقة</span>
+                </a>
+            </div>
+
+            <div class="price-card">
+                <span class="price-badge" data-i18n="enterprise_badge">للشبكات والمستشفيات</span>
+                <h3 class="text-2xl font-black mb-3" data-i18n="enterprise_title">المؤسسات</h3>
+                <div class="plan-price" data-i18n="enterprise_price">مخصص</div>
+                <div class="plan-sub" data-i18n="enterprise_sub">حسب حجم المنشأة</div>
+
+                <ul class="feature-list mt-6 flex-grow">
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f1">مناسب للمستشفيات الكبيرة والشبكات</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f2">نطاق تشغيل وتكامل أوسع</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f3">عرض سعر مخصص حسب الاحتياج</span></li>
+                </ul>
+
+                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بعرض سعر مخصص لخطة المؤسسات في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3 mt-7">
+                    <span data-i18n="custom_quote">طلب عرض مخصص</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-8 rounded-[2rem] p-6 bg-gray-50 dark:bg-darker border border-gray-200 dark:border-gray-800">
+            <p class="text-gray-600 dark:text-gray-400 leading-loose font-bold" data-i18n="pricing_note">
+                ملاحظة: قد تختلف التفاصيل النهائية بحسب عدد المستخدمين، الوحدات المطلوبة، الربط، الإعداد، والتشغيل. يتم تأكيد السعر النهائي بعد مراجعة احتياج المنشأة.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-gray-50 dark:bg-darker">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="cert_badge">اعتمادات AndroHealth</span>
+            <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="cert_title">اعتمادات تعزز الثقة والامتثال</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+            <div class="cert-card">
+                <img src="nphies.webp" alt="NPHIES">
+                <div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="nphies_title">معتمد من نفيس</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="nphies_desc">يدعم التكامل مع نفيس ومتطلبات المطالبات والتأمين للمنشآت الصحية.</p>
+                </div>
+            </div>
+
+            <div class="cert-card">
+                <img src="sauditech.webp" alt="Saudi Tech">
+                <div>
+                    <h3 class="text-xl font-black mb-2" data-i18n="sauditech_title">معتمد كتقنية سعودية</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="sauditech_desc">يدعم توجه المنشآت لاستخدام حلول تقنية محلية موثوقة.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-white dark:bg-dark border-y border-gray-100 dark:border-gray-800">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="gallery_title">صور من AndroHealth</span>
+            <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="gallery_heading">واجهات ومخرجات النظام</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="gallery_desc">تم استخدام الصور المرفوعة داخل مجلد AndroHealth.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            <div class="gallery-card">
+                <img src="bost1.webp" alt="AndroHealth screen 1">
+                <div class="gallery-label" data-i18n="gallery_1">لوحة AndroHealth</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="bost2.webp" alt="AndroHealth screen 2">
+                <div class="gallery-label" data-i18n="gallery_2">واجهة تشغيلية</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="bost3.webp" alt="AndroHealth screen 3">
+                <div class="gallery-label" data-i18n="gallery_3">إدارة المنشأة الصحية</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="bost4.webp" alt="AndroHealth screen 4">
+                <div class="gallery-label" data-i18n="gallery_4">سجلات ومواعيد</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="bost5.webp" alt="AndroHealth screen 5">
+                <div class="gallery-label" data-i18n="gallery_5">فواتير ومطالبات</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="bost6.webp" alt="AndroHealth screen 6">
+                <div class="gallery-label" data-i18n="gallery_6">نظام سحابي متكامل</div>
+            </div>
         </div>
     </div>
 </section>
@@ -161,11 +883,21 @@
 <section class="py-20 gradient-bg text-white">
     <div class="container mx-auto px-6 text-center">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-black mb-6" data-i18n="cta_title">جاهز تطلب هذه الخدمة؟</h2>
-            <p class="text-white/90 mb-10 text-lg leading-loose" data-i18n="cta_desc">ارسل لنا اسم المزود واحتياجك، ونساعدك في ترتيب الطلب أو العرض التوضيحي أو عرض السعر.</p>
+            <h2 class="text-3xl md:text-5xl font-black mb-6" data-i18n="cta_title">جاهز تطلب AndroHealth؟</h2>
+            <p class="text-white/90 mb-10 text-lg leading-loose" data-i18n="cta_desc">
+                ارسل لنا نوع منشأتك وعدد المستخدمين والوحدات المطلوبة، ونساعدك في تنسيق العرض التوضيحي أو عرض السعر.
+            </p>
+
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة AndroHealth في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1"><i class="fa-brands fa-whatsapp text-2xl"></i><span data-i18n="cta_btn_whatsapp">تواصل عبر واتساب</span></a>
-                <a href="https://ecode.sa/marketplace" class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-black hover:bg-white/15 transition transform hover:-translate-y-1"><i class="fa-solid fa-store"></i><span data-i18n="cta_btn_market">رجوع للماركت بليس</span></a>
+                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن AndroHealth من ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span data-i18n="cta_btn_whatsapp">تواصل عبر واتساب</span>
+                </a>
+
+                <a href="../" class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-black hover:bg-white/15 transition transform hover:-translate-y-1">
+                    <i class="fa-solid fa-store"></i>
+                    <span data-i18n="cta_btn_market">رجوع للماركت بليس</span>
+                </a>
             </div>
         </div>
     </div>
@@ -176,11 +908,22 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12 text-center md:text-start">
             <div>
                 <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
-                    <div class="logo-icon"><img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto"></div>
-                    <div class="logo-text"><div class="brand-name text-2xl" data-i18n="brand_name">eCode</div><div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div></div>
+                    <div class="logo-icon">
+                        <img src="/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                    </div>
+                    <div class="logo-text">
+                        <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                        <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                    </div>
                 </a>
-                <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-loose" data-i18n="footer_desc">لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.</p>
+
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-loose" data-i18n="footer_desc">
+                    لنصنع حضورك القادم معًا.<br>
+                    خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                </p>
+
                 <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+
                 <div class="flex flex-wrap justify-center md:justify-start gap-2">
                     <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" rel="noopener noreferrer" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                     <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -191,19 +934,23 @@
                     <a class="social-link" href="https://x.com/eCode_sa" target="_blank" rel="noopener noreferrer" title="X"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
+
             <div>
                 <h4 class="font-bold text-lg mb-4" data-i18n="footer_pages_title">روابط مهمة</h4>
+
                 <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
                     <li><a href="https://ecode.sa/about" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-building"></i></span><span class="contact-text" data-i18n="footer_about_link">من نحن</span></a></li>
                     <li><a href="https://ecode.sa/services" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-layer-group"></i></span><span class="contact-text" data-i18n="footer_services_link">الخدمات</span></a></li>
-                    <li><a href="https://ecode.sa/marketplace" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-store"></i></span><span class="contact-text" data-i18n="footer_marketplace_link">ماركت بليس</span></a></li>
+                    <li><a href="https://ecode.sa/marketplace/" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-store"></i></span><span class="contact-text" data-i18n="footer_marketplace_link">ماركت بليس</span></a></li>
                     <li><a href="https://ecode.sa/request-service" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-paper-plane"></i></span><span class="contact-text" data-i18n="footer_request_link">اطلب خدمة</span></a></li>
                     <li><a href="https://ecode.sa/partners" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-user-plus"></i></span><span class="contact-text" data-i18n="footer_partners_link">انضم كمزود خدمة</span></a></li>
                     <li><a href="https://ecode.sa/faq" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-circle-question"></i></span><span class="contact-text" data-i18n="footer_faq_link">الأسئلة الشائعة</span></a></li>
                 </ul>
             </div>
+
             <div>
                 <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
                 <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
                     <li><a href="https://www.ecode.sa" target="_blank" rel="noopener noreferrer" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-globe"></i></span><span class="contact-text" dir="ltr">www.eCode.sa</span></a></li>
                     <li><a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition"><span class="contact-icon"><i class="fa-solid fa-envelope"></i></span><span class="contact-text" dir="ltr">info@ecode.sa</span></a></li>
@@ -214,156 +961,385 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.</div>
+
+        <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+            © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+        </div>
     </div>
 </footer>
-<a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip"><i class="fa-brands fa-whatsapp"></i></a>
+
+<a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
 
 <script>
-const translations = {
-                "ar": {
-                                "brand_name": "eCode",
-                                "brand_tagline": "تصنع الأثر",
-                                "nav_home": "الرئيسية",
-                                "nav_about": "من نحن",
-                                "nav_services": "الخدمات",
-                                "nav_marketplace": "ماركت بليس",
-                                "nav_process": "آلية العمل",
-                                "nav_industries": "القطاعات",
-                                "nav_cases": "دراسات الحالة",
-                                "nav_faq": "الأسئلة الشائعة",
-                                "nav_request": "اطلب خدمة",
-                                "back_market": "العودة إلى ماركت بليس",
-                                "trusted": "مزود موثوق",
-                                "hero_badge": "تقنية صحية",
-                                "provider_title": "AndroHealth",
-                                "provider_summary": "نظام معلومات مستشفيات سحابي للمنشآت الصحية في السعودية، يدعم إدارة المرضى والمواعيد والكشوفات السريرية والفوترة ومطالبات التأمين عبر نفيس.",
-                                "visit_provider": "زيارة موقع المزود",
-                                "request_provider": "طلب الخدمة عبر eCode",
-                                "overview_title": "نظرة عامة",
-                                "overview_text": "AndroHealth مناسب للمنشآت الصحية التي تحتاج نظامًا تشغيليًا لإدارة العمليات اليومية، من تسجيل المرضى والمواعيد إلى الملفات الطبية والفوترة والمطالبات.",
-                                "features_title": "أبرز المميزات",
-                                "usecases_title": "الاستخدامات المناسبة",
-                                "deliverables_title": "كيف تساعدك eCode؟",
-                                "pricing_title": "الأسعار وطريقة الطلب",
-                                "price_label": "حسب نطاق المنشأة",
-                                "price_value": "طلب عرض توضيحي",
-                                "price_note": "يتم تحديد السعر بناءً على عدد المستخدمين، الوحدات المطلوبة، الربط، والتجهيزات التشغيلية.",
-                                "gallery_title": "صور ومخرجات مقترحة",
-                                "gallery_desc": "يمكن لاحقًا استبدال هذه المساحات بصور فعلية أو موك أب خاص بالمزود.",
-                                "gallery_1": "صورة المنتج",
-                                "gallery_2": "واجهة الخدمة",
-                                "gallery_3": "نموذج استخدام",
-                                "cta_title": "جاهز تطلب هذه الخدمة؟",
-                                "cta_desc": "ارسل لنا اسم المزود واحتياجك، ونساعدك في ترتيب الطلب أو العرض التوضيحي أو عرض السعر.",
-                                "cta_btn_whatsapp": "تواصل عبر واتساب",
-                                "cta_btn_market": "رجوع للماركت بليس",
-                                "footer_pages_title": "روابط مهمة",
-                                "footer_desc": "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
-                                "contact_title": "معلومات التواصل",
-                                "follow_us": "تابعنا",
-                                "footer_about_link": "من نحن",
-                                "footer_services_link": "الخدمات",
-                                "footer_marketplace_link": "ماركت بليس",
-                                "footer_request_link": "اطلب خدمة",
-                                "footer_partners_link": "انضم كمزود خدمة",
-                                "footer_faq_link": "الأسئلة الشائعة",
-                                "privacy_footer_link": "سياسة الخصوصية",
-                                "terms_footer_link": "الشروط والأحكام وسياسة الاسترجاع",
-                                "cookies_footer_link": "سياسة ملفات تعريف الارتباط",
-                                "footer_copyright": "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
-                                "whatsapp_tooltip": "تواصل معنا عبر واتساب",
-                                "feature_1": "نظام HIS سحابي متكامل",
-                                "feature_2": "إدارة رحلة المريض من التسجيل إلى المطالبات",
-                                "feature_3": "تكامل مع نفيس ومطالبات التأمين",
-                                "feature_4": "مناسب للعيادات والمراكز والمجمعات الطبية",
-                                "feature_5": "دعم عربي وإنجليزي حسب بيئة المنشأة",
-                                "usecase_1": "العيادات والمراكز الصحية",
-                                "usecase_2": "المجمعات الطبية",
-                                "usecase_3": "المنشآت التي تحتاج ربط نفيس",
-                                "usecase_4": "المنشآت التي ترغب في رقمنة العمليات الطبية والإدارية",
-                                "deliverable_1": "تحليل احتياج المنشأة",
-                                "deliverable_2": "تجهيز العرض المناسب",
-                                "deliverable_3": "تنسيق العرض التوضيحي",
-                                "deliverable_4": "تحديد متطلبات الربط والتشغيل"
-                },
-                "en": {
-                                "brand_name": "eCode",
-                                "brand_tagline": "Innovate Impact",
-                                "nav_home": "Home",
-                                "nav_about": "About Us",
-                                "nav_services": "Services",
-                                "nav_marketplace": "Marketplace",
-                                "nav_process": "Process",
-                                "nav_industries": "Industries",
-                                "nav_cases": "Case Studies",
-                                "nav_faq": "FAQ",
-                                "nav_request": "Request Service",
-                                "back_market": "Back to Marketplace",
-                                "trusted": "Trusted Provider",
-                                "hero_badge": "Health Tech",
-                                "provider_title": "AndroHealth",
-                                "provider_summary": "A cloud-based Hospital Information System for healthcare facilities in Saudi Arabia, supporting patient management, appointments, clinical encounters, billing, and insurance claims through NPHIES.",
-                                "visit_provider": "Visit Provider Website",
-                                "request_provider": "Request via eCode",
-                                "overview_title": "Overview",
-                                "overview_text": "AndroHealth is suitable for healthcare facilities that need an operational system to manage daily workflows, from patient registration and appointments to medical records, billing, and claims.",
-                                "features_title": "Key Features",
-                                "usecases_title": "Suitable Use Cases",
-                                "deliverables_title": "How eCode Helps",
-                                "pricing_title": "Pricing and Request Method",
-                                "price_label": "Based on facility scope",
-                                "price_value": "Request Demo",
-                                "price_note": "Pricing depends on users, required modules, integrations, and operational setup.",
-                                "gallery_title": "Suggested Visuals and Outputs",
-                                "gallery_desc": "These placeholders can later be replaced with real images or provider mockups.",
-                                "gallery_1": "Product Image",
-                                "gallery_2": "Service Interface",
-                                "gallery_3": "Use Case Mockup",
-                                "cta_title": "Ready to Request This Service?",
-                                "cta_desc": "Send us the provider name and your need, and we will help arrange the request, demo, or quotation.",
-                                "cta_btn_whatsapp": "Contact via WhatsApp",
-                                "cta_btn_market": "Back to Marketplace",
-                                "footer_pages_title": "Important Links",
-                                "footer_desc": "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
-                                "contact_title": "Contact Info",
-                                "follow_us": "Follow Us",
-                                "footer_about_link": "About Us",
-                                "footer_services_link": "Services",
-                                "footer_marketplace_link": "Marketplace",
-                                "footer_request_link": "Request Service",
-                                "footer_partners_link": "Join as Provider",
-                                "footer_faq_link": "FAQ",
-                                "privacy_footer_link": "Privacy Policy",
-                                "terms_footer_link": "Terms & Conditions and Refund Policy",
-                                "cookies_footer_link": "Cookie Policy",
-                                "footer_copyright": "© 2026 Electronic Code Company. All rights reserved.",
-                                "whatsapp_tooltip": "Contact via WhatsApp",
-                                "feature_1": "Integrated cloud HIS",
-                                "feature_2": "Patient journey from registration to claims",
-                                "feature_3": "NPHIES and insurance claims integration",
-                                "feature_4": "Suitable for clinics, centers, and medical complexes",
-                                "feature_5": "Arabic and English support based on facility setup",
-                                "usecase_1": "Clinics and healthcare centers",
-                                "usecase_2": "Medical complexes",
-                                "usecase_3": "Facilities requiring NPHIES integration",
-                                "usecase_4": "Facilities digitizing medical and administrative operations",
-                                "deliverable_1": "Facility needs analysis",
-                                "deliverable_2": "Suitable proposal preparation",
-                                "deliverable_3": "Demo coordination",
-                                "deliverable_4": "Integration and go-live requirements definition"
-                }
-};
-let currentLang = localStorage.getItem('userLanguage') || 'ar';
-function initTheme(){const icon=document.getElementById('theme-icon');if(localStorage.theme==='dark'||(!('theme' in localStorage)&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');if(icon){icon.classList.remove('fa-moon');icon.classList.add('fa-sun')}}else{document.documentElement.classList.remove('dark');if(icon){icon.classList.remove('fa-sun');icon.classList.add('fa-moon')}}}
-function toggleTheme(){const html=document.documentElement;const icon=document.getElementById('theme-icon');if(html.classList.contains('dark')){html.classList.remove('dark');localStorage.theme='light';icon.classList.remove('fa-sun');icon.classList.add('fa-moon')}else{html.classList.add('dark');localStorage.theme='dark';icon.classList.remove('fa-moon');icon.classList.add('fa-sun')}}
-function updateContent(){document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(translations[currentLang]&&translations[currentLang][key]) el.innerHTML=translations[currentLang][key];});document.querySelectorAll('[data-i18n-title]').forEach(el=>{const key=el.getAttribute('data-i18n-title');if(translations[currentLang]&&translations[currentLang][key]) el.setAttribute('title',translations[currentLang][key]);});if(currentLang==='ar'){document.title=translations.ar.provider_title+" | ماركت بليس eCode";document.querySelector('meta[name="description"]').setAttribute("content",translations.ar.provider_summary);}else{document.title=translations.en.provider_title+" | eCode Marketplace";document.querySelector('meta[name="description"]').setAttribute("content",translations.en.provider_summary);}}
-function toggleLanguage(){currentLang=currentLang==='ar'?'en':'ar';const html=document.documentElement;const langIcon=document.getElementById('lang-icon');if(currentLang==='ar'){html.setAttribute('lang','ar');html.setAttribute('dir','rtl');langIcon.textContent='🇬🇧';}else{html.setAttribute('lang','en');html.setAttribute('dir','ltr');langIcon.textContent='🇸🇦';}localStorage.setItem('userLanguage',currentLang);updateContent();}
-document.querySelectorAll('.nav a').forEach(link=>{link.addEventListener('click',()=>{const nav=document.querySelector('.nav');if(nav) nav.classList.remove('active');});});
-window.onload=()=>{const html=document.documentElement;const langIcon=document.getElementById('lang-icon');if(currentLang==='ar'){html.setAttribute('lang','ar');html.setAttribute('dir','rtl');langIcon.textContent='🇬🇧';}else{html.setAttribute('lang','en');html.setAttribute('dir','ltr');langIcon.textContent='🇸🇦';}initTheme();updateContent();};
+    const translations = {
+        ar: {
+            brand_name: "eCode",
+            brand_tagline: "تصنع الأثر",
+
+            nav_home: "الرئيسية",
+            nav_about: "من نحن",
+            nav_services: "الخدمات",
+            nav_marketplace: "ماركت بليس",
+            nav_process: "آلية العمل",
+            nav_industries: "القطاعات",
+            nav_cases: "دراسات الحالة",
+            nav_faq: "الأسئلة الشائعة",
+            nav_request: "اطلب خدمة",
+
+            back_market: "العودة إلى ماركت بليس",
+            trusted: "مزود موثوق",
+            hero_badge: "تقنية صحية",
+            provider_title: "AndroHealth",
+            provider_summary: "نظام معلومات مستشفيات سحابي متكامل مصمم للأداء والأتمتة والنمو، معتمد من نفيس وتقنية سعودية، ويغطي رحلة المريض من التسجيل حتى الفوترة ومطالبات التأمين.",
+            hero_cert_line: "معتمد من نفيس وتقنية سعودية",
+
+            request_provider: "طلب الخدمة عبر eCode",
+            pricing_link: "صفحة الأسعار الرسمية",
+
+            overview_title: "نظرة عامة",
+            overview_text: "AndroHealth هو نظام معلومات مستشفيات سحابي للمنشآت الصحية في المملكة، يساعد على إدارة العمليات اليومية مثل المرضى، المواعيد، السجلات الصحية، الوصفات، الفوترة، المدفوعات، ومطالبات التأمين، مع توافق وامتثال لبيئة الرعاية الصحية السعودية.",
+
+            compliance_title: "الاعتمادات والامتثال",
+            compliance_1: "معتمد من نفيس",
+            compliance_2: "معتمد كتقنية سعودية",
+            compliance_3: "متوافق مع متطلبات الرعاية الصحية السعودية",
+
+            features_title: "أبرز المميزات",
+            feature_1: "إدارة المرضى والتسجيل والملفات",
+            feature_2: "جدولة المواعيد والتذكيرات الآلية",
+            feature_3: "السجلات الصحية الإلكترونية EHR",
+            feature_4: "إدارة الوصفات الطبية الرقمية",
+            feature_5: "الفوترة والمحاسبة ومطالبات التأمين",
+
+            clinical_title: "التشغيل الطبي",
+            clinical_1: "ملفات طبية وتشخيصات وعلاجات",
+            clinical_2: "إدارة الأدوية والحساسيات",
+            clinical_3: "توثيق الزيارات والنتائج الطبية",
+            clinical_4: "دعم القرار السريري والتنبيهات",
+
+            ecode_help_title: "كيف تساعدك eCode؟",
+            deliverable_1: "تحليل احتياج المنشأة",
+            deliverable_2: "تحديد الباقة أو المسار المناسب",
+            deliverable_3: "تنسيق العرض التوضيحي",
+            deliverable_4: "متابعة الطلب حتى الوصول للمزود",
+
+            pricing_badge: "الأسعار",
+            pricing_title: "خطط أسعار AndroHealth",
+            pricing_desc: "حسب صفحة الأسعار الرسمية، توجد خطط: المبتدئ، المحترف، والمؤسسات. الخطة المحترفة تبدأ من 4,450 ريال شهريًا، وخطة المؤسسات تكون مخصصة حسب حجم المنشأة.",
+            starter_badge: "للمنشآت الصغيرة",
+            starter_title: "المبتدئ",
+            starter_price: "اطلب السعر",
+            starter_sub: "مناسب للبداية والتجربة",
+            starter_f1: "الميزات الأساسية لإدارة المنشأة",
+            starter_f2: "إدارة المرضى والمواعيد",
+            starter_f3: "بداية مناسبة للعيادات الصغيرة",
+            ask_price: "استفسر عن الباقة",
+
+            pro_badge: "الأكثر طلبًا",
+            pro_title: "المحترف",
+            pro_price: "4,450 ريال",
+            pro_sub: "شهريًا",
+            pro_f1: "مناسب للمنشآت الصحية النشطة",
+            pro_f2: "إدارة تشغيلية أوسع",
+            pro_f3: "خيار مناسب للنمو والتوسع",
+            request_plan: "طلب الباقة",
+
+            enterprise_badge: "للشبكات والمستشفيات",
+            enterprise_title: "المؤسسات",
+            enterprise_price: "مخصص",
+            enterprise_sub: "حسب حجم المنشأة",
+            enterprise_f1: "مناسب للمستشفيات الكبيرة والشبكات",
+            enterprise_f2: "نطاق تشغيل وتكامل أوسع",
+            enterprise_f3: "عرض سعر مخصص حسب الاحتياج",
+            custom_quote: "طلب عرض مخصص",
+
+            pricing_note: "ملاحظة: قد تختلف التفاصيل النهائية بحسب عدد المستخدمين، الوحدات المطلوبة، الربط، الإعداد، والتشغيل. يتم تأكيد السعر النهائي بعد مراجعة احتياج المنشأة.",
+
+            cert_badge: "اعتمادات AndroHealth",
+            cert_title: "اعتمادات تعزز الثقة والامتثال",
+            nphies_title: "معتمد من نفيس",
+            nphies_desc: "يدعم التكامل مع نفيس ومتطلبات المطالبات والتأمين للمنشآت الصحية.",
+            sauditech_title: "معتمد كتقنية سعودية",
+            sauditech_desc: "يدعم توجه المنشآت لاستخدام حلول تقنية محلية موثوقة.",
+
+            gallery_title: "صور من AndroHealth",
+            gallery_heading: "واجهات ومخرجات النظام",
+            gallery_desc: "تم استخدام الصور المرفوعة داخل مجلد AndroHealth.",
+            gallery_1: "لوحة AndroHealth",
+            gallery_2: "واجهة تشغيلية",
+            gallery_3: "إدارة المنشأة الصحية",
+            gallery_4: "سجلات ومواعيد",
+            gallery_5: "فواتير ومطالبات",
+            gallery_6: "نظام سحابي متكامل",
+
+            cta_title: "جاهز تطلب AndroHealth؟",
+            cta_desc: "ارسل لنا نوع منشأتك وعدد المستخدمين والوحدات المطلوبة، ونساعدك في تنسيق العرض التوضيحي أو عرض السعر.",
+            cta_btn_whatsapp: "تواصل عبر واتساب",
+            cta_btn_market: "رجوع للماركت بليس",
+
+            footer_pages_title: "روابط مهمة",
+            footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+            contact_title: "معلومات التواصل",
+            follow_us: "تابعنا",
+            footer_about_link: "من نحن",
+            footer_services_link: "الخدمات",
+            footer_marketplace_link: "ماركت بليس",
+            footer_request_link: "اطلب خدمة",
+            footer_partners_link: "انضم كمزود خدمة",
+            footer_faq_link: "الأسئلة الشائعة",
+            privacy_footer_link: "سياسة الخصوصية",
+            terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+            cookies_footer_link: "سياسة ملفات تعريف الارتباط",
+            footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+            whatsapp_tooltip: "تواصل معنا عبر واتساب"
+        },
+
+        en: {
+            brand_name: "eCode",
+            brand_tagline: "Innovate Impact",
+
+            nav_home: "Home",
+            nav_about: "About Us",
+            nav_services: "Services",
+            nav_marketplace: "Marketplace",
+            nav_process: "Process",
+            nav_industries: "Industries",
+            nav_cases: "Case Studies",
+            nav_faq: "FAQ",
+            nav_request: "Request Service",
+
+            back_market: "Back to Marketplace",
+            trusted: "Trusted Provider",
+            hero_badge: "Health Tech",
+            provider_title: "AndroHealth",
+            provider_summary: "An integrated cloud-based Hospital Information System built for performance, automation, and growth, certified by NPHIES and Saudi Tech, covering the patient journey from registration to billing and insurance claims.",
+            hero_cert_line: "NPHIES and Saudi Tech certified",
+
+            request_provider: "Request via eCode",
+            pricing_link: "Official Pricing Page",
+
+            overview_title: "Overview",
+            overview_text: "AndroHealth is a cloud Hospital Information System for healthcare facilities in Saudi Arabia. It helps manage daily operations such as patients, appointments, EHR, prescriptions, billing, payments, and insurance claims with alignment to the Saudi healthcare environment.",
+
+            compliance_title: "Compliance and Certifications",
+            compliance_1: "NPHIES certified",
+            compliance_2: "Saudi Tech certified",
+            compliance_3: "Aligned with Saudi healthcare requirements",
+
+            features_title: "Key Features",
+            feature_1: "Patient registration and records",
+            feature_2: "Appointment scheduling and reminders",
+            feature_3: "Electronic Health Records EHR",
+            feature_4: "Digital prescription management",
+            feature_5: "Billing, accounting, and insurance claims",
+
+            clinical_title: "Clinical Operations",
+            clinical_1: "Medical records, diagnoses, and treatments",
+            clinical_2: "Medication and allergy management",
+            clinical_3: "Visit documentation and medical results",
+            clinical_4: "Clinical decision support and alerts",
+
+            ecode_help_title: "How eCode Helps",
+            deliverable_1: "Facility needs analysis",
+            deliverable_2: "Plan or path recommendation",
+            deliverable_3: "Demo coordination",
+            deliverable_4: "Request follow-up with the provider",
+
+            pricing_badge: "Pricing",
+            pricing_title: "AndroHealth Pricing Plans",
+            pricing_desc: "According to the official pricing page, the available plans are Starter, Professional, and Enterprise. The Professional plan starts from SAR 4,450 per month, while Enterprise is customized based on facility size.",
+            starter_badge: "For small facilities",
+            starter_title: "Starter",
+            starter_price: "Ask for price",
+            starter_sub: "Suitable for starting and trial",
+            starter_f1: "Core facility management features",
+            starter_f2: "Patients and appointments management",
+            starter_f3: "Suitable starting point for small clinics",
+            ask_price: "Ask About Plan",
+
+            pro_badge: "Most Requested",
+            pro_title: "Professional",
+            pro_price: "SAR 4,450",
+            pro_sub: "Monthly",
+            pro_f1: "Suitable for active healthcare facilities",
+            pro_f2: "Broader operational management",
+            pro_f3: "Suitable for growth and expansion",
+            request_plan: "Request Plan",
+
+            enterprise_badge: "For networks and hospitals",
+            enterprise_title: "Enterprise",
+            enterprise_price: "Custom",
+            enterprise_sub: "Based on facility size",
+            enterprise_f1: "Suitable for large hospitals and networks",
+            enterprise_f2: "Wider operation and integration scope",
+            enterprise_f3: "Custom quotation based on need",
+            custom_quote: "Request Custom Quote",
+
+            pricing_note: "Note: Final details may vary depending on users, modules, integrations, setup, and operation. Final pricing is confirmed after reviewing the facility needs.",
+
+            cert_badge: "AndroHealth Certifications",
+            cert_title: "Certifications That Build Trust and Compliance",
+            nphies_title: "NPHIES Certified",
+            nphies_desc: "Supports integration with NPHIES and insurance claim requirements for healthcare facilities.",
+            sauditech_title: "Saudi Tech Certified",
+            sauditech_desc: "Supports the adoption of trusted local technology solutions.",
+
+            gallery_title: "AndroHealth Visuals",
+            gallery_heading: "System Interfaces and Outputs",
+            gallery_desc: "Images uploaded inside the AndroHealth folder were used.",
+            gallery_1: "AndroHealth Dashboard",
+            gallery_2: "Operational Interface",
+            gallery_3: "Healthcare Facility Management",
+            gallery_4: "Records and Appointments",
+            gallery_5: "Billing and Claims",
+            gallery_6: "Integrated Cloud System",
+
+            cta_title: "Ready to Request AndroHealth?",
+            cta_desc: "Send us your facility type, number of users, and required modules, and we will help coordinate the demo or quotation.",
+            cta_btn_whatsapp: "Contact via WhatsApp",
+            cta_btn_market: "Back to Marketplace",
+
+            footer_pages_title: "Important Links",
+            footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+            contact_title: "Contact Info",
+            follow_us: "Follow Us",
+            footer_about_link: "About Us",
+            footer_services_link: "Services",
+            footer_marketplace_link: "Marketplace",
+            footer_request_link: "Request Service",
+            footer_partners_link: "Join as Provider",
+            footer_faq_link: "FAQ",
+            privacy_footer_link: "Privacy Policy",
+            terms_footer_link: "Terms & Conditions and Refund Policy",
+            cookies_footer_link: "Cookie Policy",
+            footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+            whatsapp_tooltip: "Contact via WhatsApp"
+        }
+    };
+
+    let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+    function initTheme() {
+        const icon = document.getElementById('theme-icon');
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            if (icon) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        } else {
+            document.documentElement.classList.remove('dark');
+            if (icon) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    }
+
+    function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById('theme-icon');
+
+        if (html.classList.contains('dark')) {
+            html.classList.remove('dark');
+            localStorage.theme = 'light';
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            html.classList.add('dark');
+            localStorage.theme = 'dark';
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+
+    function updateContent() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang] && translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            const key = el.getAttribute('data-i18n-title');
+            if (translations[currentLang] && translations[currentLang][key]) {
+                el.setAttribute('title', translations[currentLang][key]);
+            }
+        });
+
+        if (currentLang === 'ar') {
+            document.title = "AndroHealth | ماركت بليس eCode";
+            document.querySelector('meta[name="description"]').setAttribute(
+                "content",
+                "AndroHealth نظام معلومات مستشفيات سحابي معتمد من نفيس وتقنية سعودية، يدعم إدارة المنشآت الصحية، المرضى، المواعيد، السجلات الطبية، الفوترة، ومطالبات التأمين."
+            );
+        } else {
+            document.title = "AndroHealth | eCode Marketplace";
+            document.querySelector('meta[name="description"]').setAttribute(
+                "content",
+                "AndroHealth is a cloud-based Hospital Information System certified by NPHIES and Saudi Tech, supporting healthcare operations, patients, appointments, EHR, billing, and insurance claims."
+            );
+        }
+    }
+
+    function toggleLanguage() {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+        const html = document.documentElement;
+        const langIcon = document.getElementById('lang-icon');
+
+        if (currentLang === 'ar') {
+            html.setAttribute('lang', 'ar');
+            html.setAttribute('dir', 'rtl');
+            langIcon.textContent = '🇬🇧';
+        } else {
+            html.setAttribute('lang', 'en');
+            html.setAttribute('dir', 'ltr');
+            langIcon.textContent = '🇸🇦';
+        }
+
+        localStorage.setItem('userLanguage', currentLang);
+        updateContent();
+    }
+
+    document.querySelectorAll('.nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            const nav = document.querySelector('.nav');
+            if (nav) nav.classList.remove('active');
+        });
+    });
+
+    window.onload = () => {
+        const html = document.documentElement;
+        const langIcon = document.getElementById('lang-icon');
+
+        if (currentLang === 'ar') {
+            html.setAttribute('lang', 'ar');
+            html.setAttribute('dir', 'rtl');
+            langIcon.textContent = '🇬🇧';
+        } else {
+            html.setAttribute('lang', 'en');
+            html.setAttribute('dir', 'ltr');
+            langIcon.textContent = '🇸🇦';
+        }
+
+        initTheme();
+        updateContent();
+    };
 </script>
+
 <script>
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/service-worker.js').catch(error=>console.error('Service Worker registration failed:',error));});}
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .catch(error => console.error('Service Worker registration failed:', error));
+        });
+    }
 </script>
+
 </body>
 </html>
