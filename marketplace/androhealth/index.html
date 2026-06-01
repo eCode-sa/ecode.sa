@@ -46,7 +46,7 @@
     <meta property="og:url" content="https://ecode.sa/marketplace/androhealth/">
     <meta property="og:title" content="AndroHealth | ماركت بليس eCode">
     <meta property="og:description" content="نظام معلومات مستشفيات سحابي معتمد من نفيس وتقنية سعودية للمنشآت الصحية في المملكة.">
-    <meta property="og:image" content="https://ecode.sa/marketplace/androhealth/bost1.webp">
+    <meta property="og:image" content="https://ecode.sa/marketplace/androhealth/favicon.webp">
     <meta property="og:site_name" content="eCode">
 
     <style>
@@ -61,12 +61,6 @@
         }
 
         .gradient-bg { background: linear-gradient(135deg, #4F46E5, #7C3AED); }
-
-        .health-gradient {
-            background:
-                radial-gradient(circle at top right, rgba(255,255,255,.22), transparent 30%),
-                linear-gradient(135deg, #0f766e, #2563eb, #7C3AED);
-        }
 
         .header-inner {
             display: flex;
@@ -189,60 +183,31 @@
             min-height: 430px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 24px 60px rgba(79,70,229,.25);
-        }
-
-        .hero-visual img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
+            box-shadow: 0 24px 60px rgba(15,23,42,.08);
             background:
-                linear-gradient(to top, rgba(2,6,23,.72), rgba(2,6,23,.12)),
-                radial-gradient(circle at top right, rgba(79,70,229,.22), transparent 38%);
-        }
-
-        .hero-logo-card {
-            position: absolute;
-            right: 28px;
-            bottom: 28px;
-            left: 28px;
-            background: rgba(255,255,255,.92);
-            border: 1px solid rgba(255,255,255,.55);
-            border-radius: 26px;
-            padding: 20px;
+                radial-gradient(circle at top right, rgba(79,70,229,.08), transparent 34%),
+                radial-gradient(circle at bottom left, rgba(124,58,237,.08), transparent 34%),
+                #ffffff;
+            border: 1px solid #e5e7eb;
             display: flex;
             align-items: center;
-            gap: 16px;
-            backdrop-filter: blur(14px);
+            justify-content: center;
         }
 
-        html[dir="ltr"] .hero-logo-card { flex-direction: row; }
-
-        .dark .hero-logo-card {
-            background: rgba(15,23,42,.84);
-            border-color: rgba(255,255,255,.12);
+        .dark .hero-visual {
+            background:
+                radial-gradient(circle at top right, rgba(129,140,248,.12), transparent 34%),
+                radial-gradient(circle at bottom left, rgba(124,58,237,.10), transparent 34%),
+                #0f172a;
+            border-color: #1f2937;
         }
 
-        .provider-logo {
-            width: 62px;
-            height: 62px;
-            border-radius: 20px;
-            background: #fff;
+        .hero-main-logo {
+            width: min(72%, 430px);
+            max-height: 230px;
             object-fit: contain;
-            padding: 8px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .dark .provider-logo {
-            background: #fff;
-            border-color: transparent;
+            display: block;
+            filter: drop-shadow(0 22px 40px rgba(15,23,42,.12));
         }
 
         .info-card,
@@ -409,27 +374,10 @@
             min-height: 250px;
             object-fit: cover;
             transition: transform .4s ease;
+            display: block;
         }
 
         .gallery-card:hover img { transform: scale(1.05); }
-
-        .gallery-label {
-            position: absolute;
-            right: 18px;
-            bottom: 18px;
-            left: 18px;
-            background: rgba(15,23,42,.70);
-            color: white;
-            border-radius: 18px;
-            padding: 14px 16px;
-            font-weight: 900;
-            backdrop-filter: blur(10px);
-        }
-
-        html[dir="ltr"] .gallery-label {
-            right: 18px;
-            left: 18px;
-        }
 
         .social-link {
             display: inline-flex;
@@ -566,12 +514,6 @@
             .mobile-toggle { display: block; }
 
             .header-inner { padding: .9rem 1rem; }
-
-            .hero-logo-card {
-                right: 16px;
-                left: 16px;
-                bottom: 16px;
-            }
         }
 
         @media(min-width:1025px) {
@@ -665,16 +607,7 @@
             </div>
 
             <div class="hero-visual">
-                <img src="bost1.webp" alt="AndroHealth preview" onerror="this.src='logo.webp'">
-                <div class="hero-overlay"></div>
-
-                <div class="hero-logo-card">
-                    <img src="logo.webp" class="provider-logo" alt="AndroHealth Logo">
-                    <div>
-                        <div class="font-black text-xl text-slate-900 dark:text-white" data-i18n="provider_title">AndroHealth</div>
-                        <div class="text-gray-600 dark:text-gray-300 font-bold" data-i18n="hero_cert_line">معتمد من نفيس وتقنية سعودية</div>
-                    </div>
-                </div>
+                <img src="favicon.webp" class="hero-main-logo" alt="AndroHealth Logo" onerror="this.src='logo.webp'">
             </div>
         </div>
     </div>
@@ -746,58 +679,68 @@
             <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="pricing_badge">الأسعار</span>
             <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="pricing_title">خطط أسعار AndroHealth</h2>
             <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="pricing_desc">
-                حسب صفحة الأسعار الرسمية، توجد خطط: المبتدئ، المحترف، والمؤسسات. الخطة المحترفة تبدأ من 4,450 ريال شهريًا، وخطة المؤسسات تكون مخصصة حسب حجم المنشأة.
+                حسب قائمة الأسعار، توجد ثلاث باقات: الباقة الأولى للمنشآت الناشئة والصغيرة، الباقة الثانية للمنشآت المتوسطة والمتوسعة بسرعة، والباقة الكبيرة للمنشآت الكبيرة ذات المتطلبات المعقدة.
             </p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
             <div class="price-card">
-                <span class="price-badge" data-i18n="starter_badge">للمنشآت الصغيرة</span>
-                <h3 class="text-2xl font-black mb-3" data-i18n="starter_title">المبتدئ</h3>
-                <div class="plan-price" data-i18n="starter_price">اطلب السعر</div>
-                <div class="plan-sub" data-i18n="starter_sub">مناسب للبداية والتجربة</div>
+                <span class="price-badge" data-i18n="starter_badge">للمنشآت الناشئة والصغيرة</span>
+                <h3 class="text-2xl font-black mb-3" data-i18n="starter_title">الباقة الأولى</h3>
+                <div class="plan-price" data-i18n="starter_price">990 ريال</div>
+                <div class="plan-sub" data-i18n="starter_sub">شهريًا</div>
 
                 <ul class="feature-list mt-6 flex-grow">
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f1">الميزات الأساسية لإدارة المنشأة</span></li>
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f2">إدارة المرضى والمواعيد</span></li>
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f3">بداية مناسبة للعيادات الصغيرة</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f1">إدارة المرضى</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f2">تسجيل المرضى</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f3">إدارة العيادات الخارجية</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f4">تكامل نفيس</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f5">حتى 10 مستخدمين</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="starter_f6">10 شاشات مخصصة</span></li>
                 </ul>
 
-                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بمعرفة تفاصيل باقة المبتدئ في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3 mt-7">
-                    <span data-i18n="ask_price">استفسر عن الباقة</span>
+                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب الباقة الأولى في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3 mt-7">
+                    <span data-i18n="request_plan">طلب الباقة</span>
                 </a>
             </div>
 
             <div class="price-card featured">
-                <span class="price-badge" data-i18n="pro_badge">الأكثر طلبًا</span>
-                <h3 class="text-2xl font-black mb-3" data-i18n="pro_title">المحترف</h3>
+                <span class="price-badge" data-i18n="pro_badge">للمنشآت المتوسطة والمتوسعة</span>
+                <h3 class="text-2xl font-black mb-3" data-i18n="pro_title">الباقة الثانية</h3>
                 <div class="plan-price" data-i18n="pro_price">4,450 ريال</div>
                 <div class="plan-sub" data-i18n="pro_sub">شهريًا</div>
 
                 <ul class="feature-list mt-6 flex-grow">
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f1">مناسب للمنشآت الصحية النشطة</span></li>
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f2">إدارة تشغيلية أوسع</span></li>
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f3">خيار مناسب للنمو والتوسع</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f1">تسجيل المرضى</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f2">إدارة العيادات الخارجية</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f3">أداة تصميم الشاشات</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f4">حتى 50 مستخدم</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f5">50 شاشة مخصصة</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="pro_f6">جدولة المواعيد</span></li>
                 </ul>
 
-                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب باقة المحترف في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3 mt-7">
+                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بطلب الباقة الثانية في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3 mt-7">
                     <span data-i18n="request_plan">طلب الباقة</span>
                 </a>
             </div>
 
             <div class="price-card">
-                <span class="price-badge" data-i18n="enterprise_badge">للشبكات والمستشفيات</span>
-                <h3 class="text-2xl font-black mb-3" data-i18n="enterprise_title">المؤسسات</h3>
-                <div class="plan-price" data-i18n="enterprise_price">مخصص</div>
-                <div class="plan-sub" data-i18n="enterprise_sub">حسب حجم المنشأة</div>
+                <span class="price-badge" data-i18n="enterprise_badge">للمنشآت الكبيرة</span>
+                <h3 class="text-2xl font-black mb-3" data-i18n="enterprise_title">الباقة الكبيرة</h3>
+                <div class="plan-price" data-i18n="enterprise_price">تواصل معنا</div>
+                <div class="plan-sub" data-i18n="enterprise_sub">حسب المتطلبات</div>
 
                 <ul class="feature-list mt-6 flex-grow">
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f1">مناسب للمستشفيات الكبيرة والشبكات</span></li>
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f2">نطاق تشغيل وتكامل أوسع</span></li>
-                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f3">عرض سعر مخصص حسب الاحتياج</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f1">إدارة المرضى</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f2">إدارة العيادات الخارجية</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f3">أداة تصميم الشاشات</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f4">مصمم سير العمل</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f5">تكامل نفيس</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f6">حتى 200 مستخدم</span></li>
+                    <li><i class="fa-solid fa-check"></i><span data-i18n="enterprise_f7">100 شاشة مخصصة</span></li>
                 </ul>
 
-                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بعرض سعر مخصص لخطة المؤسسات في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3 mt-7">
+                <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بعرض سعر مخصص للباقـة الكبيرة في AndroHealth." target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3 mt-7">
                     <span data-i18n="custom_quote">طلب عرض مخصص</span>
                 </a>
             </div>
@@ -843,38 +786,31 @@
         <div class="text-center max-w-3xl mx-auto mb-12">
             <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block" data-i18n="gallery_title">صور من AndroHealth</span>
             <h2 class="text-3xl md:text-4xl font-black mb-4" data-i18n="gallery_heading">واجهات ومخرجات النظام</h2>
-            <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="gallery_desc">تم استخدام الصور المرفوعة داخل مجلد AndroHealth.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
             <div class="gallery-card">
                 <img src="bost1.webp" alt="AndroHealth screen 1">
-                <div class="gallery-label" data-i18n="gallery_1">لوحة AndroHealth</div>
             </div>
 
             <div class="gallery-card">
                 <img src="bost2.webp" alt="AndroHealth screen 2">
-                <div class="gallery-label" data-i18n="gallery_2">واجهة تشغيلية</div>
             </div>
 
             <div class="gallery-card">
                 <img src="bost3.webp" alt="AndroHealth screen 3">
-                <div class="gallery-label" data-i18n="gallery_3">إدارة المنشأة الصحية</div>
             </div>
 
             <div class="gallery-card">
                 <img src="bost4.webp" alt="AndroHealth screen 4">
-                <div class="gallery-label" data-i18n="gallery_4">سجلات ومواعيد</div>
             </div>
 
             <div class="gallery-card">
                 <img src="bost5.webp" alt="AndroHealth screen 5">
-                <div class="gallery-label" data-i18n="gallery_5">فواتير ومطالبات</div>
             </div>
 
             <div class="gallery-card">
                 <img src="bost6.webp" alt="AndroHealth screen 6">
-                <div class="gallery-label" data-i18n="gallery_6">نظام سحابي متكامل</div>
             </div>
         </div>
     </div>
@@ -993,7 +929,6 @@
             hero_badge: "تقنية صحية",
             provider_title: "AndroHealth",
             provider_summary: "نظام معلومات مستشفيات سحابي متكامل مصمم للأداء والأتمتة والنمو، معتمد من نفيس وتقنية سعودية، ويغطي رحلة المريض من التسجيل حتى الفوترة ومطالبات التأمين.",
-            hero_cert_line: "معتمد من نفيس وتقنية سعودية",
 
             request_provider: "طلب الخدمة عبر eCode",
             pricing_link: "صفحة الأسعار الرسمية",
@@ -1027,32 +962,42 @@
 
             pricing_badge: "الأسعار",
             pricing_title: "خطط أسعار AndroHealth",
-            pricing_desc: "حسب صفحة الأسعار الرسمية، توجد خطط: المبتدئ، المحترف، والمؤسسات. الخطة المحترفة تبدأ من 4,450 ريال شهريًا، وخطة المؤسسات تكون مخصصة حسب حجم المنشأة.",
-            starter_badge: "للمنشآت الصغيرة",
-            starter_title: "المبتدئ",
-            starter_price: "اطلب السعر",
-            starter_sub: "مناسب للبداية والتجربة",
-            starter_f1: "الميزات الأساسية لإدارة المنشأة",
-            starter_f2: "إدارة المرضى والمواعيد",
-            starter_f3: "بداية مناسبة للعيادات الصغيرة",
-            ask_price: "استفسر عن الباقة",
+            pricing_desc: "حسب قائمة الأسعار، توجد ثلاث باقات: الباقة الأولى للمنشآت الناشئة والصغيرة، الباقة الثانية للمنشآت المتوسطة والمتوسعة بسرعة، والباقة الكبيرة للمنشآت الكبيرة ذات المتطلبات المعقدة.",
 
-            pro_badge: "الأكثر طلبًا",
-            pro_title: "المحترف",
+            starter_badge: "للمنشآت الناشئة والصغيرة",
+            starter_title: "الباقة الأولى",
+            starter_price: "990 ريال",
+            starter_sub: "شهريًا",
+            starter_f1: "إدارة المرضى",
+            starter_f2: "تسجيل المرضى",
+            starter_f3: "إدارة العيادات الخارجية",
+            starter_f4: "تكامل نفيس",
+            starter_f5: "حتى 10 مستخدمين",
+            starter_f6: "10 شاشات مخصصة",
+
+            pro_badge: "للمنشآت المتوسطة والمتوسعة",
+            pro_title: "الباقة الثانية",
             pro_price: "4,450 ريال",
             pro_sub: "شهريًا",
-            pro_f1: "مناسب للمنشآت الصحية النشطة",
-            pro_f2: "إدارة تشغيلية أوسع",
-            pro_f3: "خيار مناسب للنمو والتوسع",
+            pro_f1: "تسجيل المرضى",
+            pro_f2: "إدارة العيادات الخارجية",
+            pro_f3: "أداة تصميم الشاشات",
+            pro_f4: "حتى 50 مستخدم",
+            pro_f5: "50 شاشة مخصصة",
+            pro_f6: "جدولة المواعيد",
             request_plan: "طلب الباقة",
 
-            enterprise_badge: "للشبكات والمستشفيات",
-            enterprise_title: "المؤسسات",
-            enterprise_price: "مخصص",
-            enterprise_sub: "حسب حجم المنشأة",
-            enterprise_f1: "مناسب للمستشفيات الكبيرة والشبكات",
-            enterprise_f2: "نطاق تشغيل وتكامل أوسع",
-            enterprise_f3: "عرض سعر مخصص حسب الاحتياج",
+            enterprise_badge: "للمنشآت الكبيرة",
+            enterprise_title: "الباقة الكبيرة",
+            enterprise_price: "تواصل معنا",
+            enterprise_sub: "حسب المتطلبات",
+            enterprise_f1: "إدارة المرضى",
+            enterprise_f2: "إدارة العيادات الخارجية",
+            enterprise_f3: "أداة تصميم الشاشات",
+            enterprise_f4: "مصمم سير العمل",
+            enterprise_f5: "تكامل نفيس",
+            enterprise_f6: "حتى 200 مستخدم",
+            enterprise_f7: "100 شاشة مخصصة",
             custom_quote: "طلب عرض مخصص",
 
             pricing_note: "ملاحظة: قد تختلف التفاصيل النهائية بحسب عدد المستخدمين، الوحدات المطلوبة، الربط، الإعداد، والتشغيل. يتم تأكيد السعر النهائي بعد مراجعة احتياج المنشأة.",
@@ -1066,13 +1011,6 @@
 
             gallery_title: "صور من AndroHealth",
             gallery_heading: "واجهات ومخرجات النظام",
-            gallery_desc: "تم استخدام الصور المرفوعة داخل مجلد AndroHealth.",
-            gallery_1: "لوحة AndroHealth",
-            gallery_2: "واجهة تشغيلية",
-            gallery_3: "إدارة المنشأة الصحية",
-            gallery_4: "سجلات ومواعيد",
-            gallery_5: "فواتير ومطالبات",
-            gallery_6: "نظام سحابي متكامل",
 
             cta_title: "جاهز تطلب AndroHealth؟",
             cta_desc: "ارسل لنا نوع منشأتك وعدد المستخدمين والوحدات المطلوبة، ونساعدك في تنسيق العرض التوضيحي أو عرض السعر.",
@@ -1115,7 +1053,6 @@
             hero_badge: "Health Tech",
             provider_title: "AndroHealth",
             provider_summary: "An integrated cloud-based Hospital Information System built for performance, automation, and growth, certified by NPHIES and Saudi Tech, covering the patient journey from registration to billing and insurance claims.",
-            hero_cert_line: "NPHIES and Saudi Tech certified",
 
             request_provider: "Request via eCode",
             pricing_link: "Official Pricing Page",
@@ -1149,32 +1086,42 @@
 
             pricing_badge: "Pricing",
             pricing_title: "AndroHealth Pricing Plans",
-            pricing_desc: "According to the official pricing page, the available plans are Starter, Professional, and Enterprise. The Professional plan starts from SAR 4,450 per month, while Enterprise is customized based on facility size.",
-            starter_badge: "For small facilities",
-            starter_title: "Starter",
-            starter_price: "Ask for price",
-            starter_sub: "Suitable for starting and trial",
-            starter_f1: "Core facility management features",
-            starter_f2: "Patients and appointments management",
-            starter_f3: "Suitable starting point for small clinics",
-            ask_price: "Ask About Plan",
+            pricing_desc: "According to the pricing list, there are three plans: the first plan for emerging and small facilities, the second plan for medium and fast-growing facilities, and the large plan for large facilities with complex requirements.",
 
-            pro_badge: "Most Requested",
-            pro_title: "Professional",
+            starter_badge: "For emerging and small facilities",
+            starter_title: "First Package",
+            starter_price: "SAR 990",
+            starter_sub: "Monthly",
+            starter_f1: "Patient management",
+            starter_f2: "Patient registration",
+            starter_f3: "Outpatient clinic management",
+            starter_f4: "NPHIES integration",
+            starter_f5: "Up to 10 users",
+            starter_f6: "10 custom screens",
+
+            pro_badge: "For medium and growing facilities",
+            pro_title: "Second Package",
             pro_price: "SAR 4,450",
             pro_sub: "Monthly",
-            pro_f1: "Suitable for active healthcare facilities",
-            pro_f2: "Broader operational management",
-            pro_f3: "Suitable for growth and expansion",
+            pro_f1: "Patient registration",
+            pro_f2: "Outpatient clinic management",
+            pro_f3: "Screen designer tool",
+            pro_f4: "Up to 50 users",
+            pro_f5: "50 custom screens",
+            pro_f6: "Appointment scheduling",
             request_plan: "Request Plan",
 
-            enterprise_badge: "For networks and hospitals",
-            enterprise_title: "Enterprise",
-            enterprise_price: "Custom",
-            enterprise_sub: "Based on facility size",
-            enterprise_f1: "Suitable for large hospitals and networks",
-            enterprise_f2: "Wider operation and integration scope",
-            enterprise_f3: "Custom quotation based on need",
+            enterprise_badge: "For large facilities",
+            enterprise_title: "Large Package",
+            enterprise_price: "Contact us",
+            enterprise_sub: "Based on requirements",
+            enterprise_f1: "Patient management",
+            enterprise_f2: "Outpatient clinic management",
+            enterprise_f3: "Screen designer tool",
+            enterprise_f4: "Workflow designer",
+            enterprise_f5: "NPHIES integration",
+            enterprise_f6: "Up to 200 users",
+            enterprise_f7: "100 custom screens",
             custom_quote: "Request Custom Quote",
 
             pricing_note: "Note: Final details may vary depending on users, modules, integrations, setup, and operation. Final pricing is confirmed after reviewing the facility needs.",
@@ -1188,13 +1135,6 @@
 
             gallery_title: "AndroHealth Visuals",
             gallery_heading: "System Interfaces and Outputs",
-            gallery_desc: "Images uploaded inside the AndroHealth folder were used.",
-            gallery_1: "AndroHealth Dashboard",
-            gallery_2: "Operational Interface",
-            gallery_3: "Healthcare Facility Management",
-            gallery_4: "Records and Appointments",
-            gallery_5: "Billing and Claims",
-            gallery_6: "Integrated Cloud System",
 
             cta_title: "Ready to Request AndroHealth?",
             cta_desc: "Send us your facility type, number of users, and required modules, and we will help coordinate the demo or quotation.",
