@@ -45,7 +45,7 @@
     <meta property="og:url" content="https://ecode.sa/marketplace/CyanCare/">
     <meta property="og:title" content="CyanCare | ماركت بليس eCode">
     <meta property="og:description" content="منصة طب اتصالي للمنشآت الطبية تتيح إطلاق الاستشارات المرئية والصوتية والمحادثة والوصفات الإلكترونية تحت هوية المنشأة.">
-    <meta property="og:image" content="https://ecode.sa/marketplace/CyanCare/bost1.webp">
+    <meta property="og:image" content="https://ecode.sa/marketplace/CyanCare/favicon.webp">
     <meta property="og:site_name" content="eCode">
 
     <style>
@@ -180,59 +180,41 @@
         }
 
         .hero-visual {
-            border-radius: 2rem;
-            min-height: 430px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 24px 60px rgba(79,70,229,.22);
-            background: #ffffff;
-        }
+    border-radius: 2rem;
+    min-height: 430px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(79,70,229,.16);
+    background:
+        radial-gradient(circle at top right, rgba(6,182,212,.10), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(124,58,237,.10), transparent 38%),
+        #ffffff;
+    border: 1px solid #e5e7eb;
+}
 
-        .hero-visual img.hero-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.dark .hero-visual {
+    background:
+        radial-gradient(circle at top right, rgba(6,182,212,.16), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(124,58,237,.18), transparent 38%),
+        #0f172a;
+    border-color: #1f2937;
+}
 
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(to top, rgba(2,6,23,.68), rgba(2,6,23,.08)),
-                radial-gradient(circle at top right, rgba(6,182,212,.22), transparent 38%);
-        }
+.logo-only-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+}
 
-        .hero-logo-card {
-            position: absolute;
-            right: 28px;
-            bottom: 28px;
-            left: 28px;
-            background: rgba(255,255,255,.94);
-            border: 1px solid rgba(255,255,255,.65);
-            border-radius: 26px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            backdrop-filter: blur(14px);
-        }
+.hero-logo-only {
+    width: min(360px, 78%);
+    height: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 18px 35px rgba(15,23,42,.10));
+}
 
-        .dark .hero-logo-card {
-            background: rgba(15,23,42,.84);
-            border-color: rgba(255,255,255,.12);
-        }
-
-        .provider-logo {
-            width: 66px;
-            height: 66px;
-            border-radius: 20px;
-            background: #fff;
-            object-fit: contain;
-            padding: 8px;
-            border: 1px solid #e5e7eb;
-        }
 
         .info-card,
         .section-card {
@@ -472,11 +454,6 @@
 
             .header-inner { padding: .9rem 1rem; }
 
-            .hero-logo-card {
-                right: 16px;
-                left: 16px;
-                bottom: 16px;
-            }
         }
 
         @media(min-width:1025px) {
@@ -569,18 +546,9 @@
                 </div>
             </div>
 
-            <div class="hero-visual">
-                <img src="bost1.webp" alt="CyanCare preview" class="hero-img" onerror="this.src='favicon.webp'">
-                <div class="hero-overlay"></div>
-
-                <div class="hero-logo-card">
-                    <img src="favicon.webp" class="provider-logo" alt="CyanCare Logo">
-                    <div>
-                        <div class="font-black text-xl text-slate-900 dark:text-white" data-i18n="provider_title">CyanCare</div>
-                        <div class="text-gray-600 dark:text-gray-300 font-bold" data-i18n="hero_cert_line">طب اتصالي وتجربة رعاية رقمية</div>
-                    </div>
-                </div>
-            </div>
+            <div class="hero-visual logo-only-hero">
+    <img src="favicon.webp" alt="CyanCare Logo" class="hero-logo-only">
+</div>
         </div>
     </div>
 </section>
@@ -793,7 +761,6 @@
             hero_badge: "تقنية صحية",
             provider_title: "CyanCare",
             provider_summary: "منصة طب اتصالي للمنشآت الطبية، تتيح إطلاق الاستشارات المرئية والصوتية والمحادثة والوصفات الإلكترونية والمتابعة الرقمية تحت هوية المنشأة.",
-            hero_cert_line: "طب اتصالي وتجربة رعاية رقمية",
 
             visit_provider: "زيارة موقع المزود",
             request_provider: "طلب الخدمة عبر eCode",
@@ -869,7 +836,7 @@
             hero_badge: "Health Tech",
             provider_title: "CyanCare",
             provider_summary: "A telemedicine platform for healthcare facilities, enabling video, voice, and chat consultations, e-prescriptions, and digital follow-up under the facility’s own brand.",
-            hero_cert_line: "Telemedicine and digital care experience",
+            
 
             visit_provider: "Visit Provider Website",
             request_provider: "Request via eCode",
