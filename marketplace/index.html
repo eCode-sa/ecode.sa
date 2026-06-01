@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ماركت بليس | eCode</title>
+    <meta name="description" content="استعرض مزودي الخدمات الموثوقين في ماركت بليس eCode، بما يشمل الحلول الصحية التقنية، إدارة التواصل، الفعاليات، والمقاولات.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#7C3AED',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="eCode">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/favicon.webp">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://ecode.sa/marketplace">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ecode.sa/marketplace">
+    <meta property="og:title" content="ماركت بليس | eCode">
+    <meta property="og:description" content="مزودو خدمات موثوقون ضمن شبكة eCode في التقنية الصحية، إدارة التواصل، الفعاليات، والمقاولات.">
+    <meta property="og:image" content="https://ecode.sa/favicon.webp">
+    <meta property="og:site_name" content="eCode">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ماركت بليس | eCode">
+    <meta name="twitter:description" content="استعرض مزودي الخدمات الموثوقين في ماركت بليس eCode.">
+    <meta name="twitter:image" content="https://ecode.sa/favicon.webp">
+
+    <style>
+        :root {
+            --text-main: 'Cairo', sans-serif;
+        }
+
+        html[lang="en"] {
+            --text-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--text-main);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #9333EA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        html.dark .header-inner {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon img {
+            height: 44px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            color: #1e293b;
+        }
+
+        html.dark .brand-name {
+            color: #f8fafc;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        html.dark .brand-tagline {
+            color: #94a3b8;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav a {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #475569;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        html.dark .nav a {
+            color: #cbd5e1;
+        }
+
+        .nav a:hover,
+        .nav a.active-link {
+            color: #4F46E5;
+        }
+
+        html.dark .nav a:hover,
+        html.dark .nav a.active-link {
+            color: #818cf8;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(79, 70, 229, 0.22);
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            color: #4F46E5;
+            border: 1px solid rgba(79, 70, 229, 0.22);
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dark .btn-outline {
+            background: #0f172a;
+            color: #c7d2fe;
+            border-color: rgba(129, 140, 248, 0.25);
+        }
+
+        .btn-outline:hover {
+            border-color: #4F46E5;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .filter-panel {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 30px;
+            padding: 24px;
+            position: sticky;
+            top: 105px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+        }
+
+        .dark .filter-panel {
+            background: #0f172a;
+            border-color: #1f2937;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+        }
+
+        .filter-btn {
+            width: 100%;
+            padding: 0.95rem 1.05rem;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            color: #475569;
+            font-weight: 900;
+            font-size: 0.92rem;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .dark .filter-btn {
+            background: #020617;
+            color: #cbd5e1;
+            border-color: #1f2937;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(to right, #4F46E5, #7C3AED);
+            color: #ffffff;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.22);
+        }
+
+        .search-box {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 9999px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 14px 36px rgba(15,23,42,0.07);
+        }
+
+        .dark .search-box {
+            background: #0f172a;
+            border-color: #1f2937;
+            box-shadow: 0 14px 36px rgba(0,0,0,0.22);
+        }
+
+        .search-box input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .dark .search-box input {
+            color: #f8fafc;
+        }
+
+        .market-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 32px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark .market-card {
+            background: #0f172a;
+            border-color: #1f2937;
+        }
+
+        .market-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+            border-color: rgba(79,70,229,0.35);
+        }
+
+        .dark .market-card:hover {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+        }
+
+        .market-media {
+            height: 190px;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.22), transparent 32%),
+                linear-gradient(135deg, #4F46E5, #7C3AED);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .market-media::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.13);
+            top: -140px;
+            right: -90px;
+        }
+
+        .market-media::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.10);
+            bottom: -110px;
+            left: -70px;
+        }
+
+        .market-icon {
+            width: 86px;
+            height: 86px;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.17);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+        }
+
+        .provider-badge {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(255,255,255,0.92);
+            color: #4F46E5;
+            border-radius: 9999px;
+            padding: 8px 14px;
+            font-size: 0.78rem;
+            font-weight: 900;
+            backdrop-filter: blur(10px);
+            z-index: 3;
+        }
+
+        html[dir="ltr"] .provider-badge {
+            right: auto;
+            left: 18px;
+        }
+
+        .market-content {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .market-tag {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            padding: 0.35rem 0.8rem;
+            border-radius: 9999px;
+            background: rgba(79,70,229,0.08);
+            color: #4F46E5;
+            font-size: 0.78rem;
+            font-weight: 900;
+            margin-bottom: 14px;
+        }
+
+        .dark .market-tag {
+            background: rgba(129,140,248,0.13);
+            color: #c7d2fe;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 18px 0 0;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .dark .feature-list li {
+            color: #cbd5e1;
+        }
+
+        .feature-list i {
+            color: #4F46E5;
+            margin-top: 7px;
+            flex: 0 0 auto;
+        }
+
+        .price-box {
+            margin-top: 22px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+            border-radius: 22px;
+            padding: 18px;
+        }
+
+        .dark .price-box {
+            background: rgba(30,41,59,0.45);
+            border-color: #1f2937;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        html[dir="rtl"] .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .social-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        html.dark .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.10);
+            color: #4F46E5;
+            font-size: 15px;
+            flex: 0 0 auto;
+        }
+
+        .dark .contact-icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: #d8d4fe;
+        }
+
+        .contact-text {
+            line-height: 1.6;
+            unicode-bidi: plaintext;
+        }
+
+        html[dir="rtl"] .contact-link {
+            flex-direction: row;
+            text-align: right;
+        }
+
+        html[dir="ltr"] .contact-link {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        @media (max-width: 1180px) {
+            .nav {
+                gap: 0.75rem;
+            }
+
+            .nav a {
+                font-size: 0.82rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            }
+
+            html.dark .nav.active {
+                background: #0f172a;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .header-inner {
+                padding: 0.9rem 1rem;
+            }
+
+            .filter-panel {
+                position: static;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50">
+        <div class="header-inner">
+            <a href="https://ecode.sa/" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" onerror="this.src='https://via.placeholder.com/44x44?text=eCode'">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name" data-i18n="brand_name">eCode</div>
+                    <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                </div>
+            </a>
+
+            <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav">
+                <a href="https://ecode.sa/" data-i18n="nav_home">الرئيسية</a>
+                <a href="https://ecode.sa/about" data-i18n="nav_about">من نحن</a>
+                <a href="https://ecode.sa/services" data-i18n="nav_services">الخدمات</a>
+                <a href="https://ecode.sa/marketplace" class="active-link" data-i18n="nav_marketplace">ماركت بليس</a>
+                <a href="https://ecode.sa/process" data-i18n="nav_process">آلية العمل</a>
+                <a href="https://ecode.sa/industries" data-i18n="nav_industries">القطاعات</a>
+                <a href="https://ecode.sa/case-studies" data-i18n="nav_cases">دراسات الحالة</a>
+                <a href="https://ecode.sa/faq" data-i18n="nav_faq">الأسئلة الشائعة</a>
+
+                <div class="flex items-center gap-3 border-s border-gray-300 dark:border-gray-700 ps-4 mx-2">
+                    <button class="theme-toggle hover:text-primary transition" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <button onclick="toggleLanguage()" class="lang-switcher transition transform hover:scale-110" aria-label="Switch Language" style="background:none; border:none; cursor:pointer; padding:0;">
+                        <span id="lang-icon" style="font-size: 20px; line-height: 1;">🇬🇧</span>
+                    </button>
+                </div>
+
+                <a href="https://ecode.sa/request-service" class="btn-primary" data-i18n="nav_request">اطلب خدمة</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative pt-36 pb-16 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20 dark:opacity-10 pointer-events-none">
+            <div class="absolute top-[-15%] right-[-8%] w-[520px] h-[520px] rounded-full bg-primary blur-3xl"></div>
+            <div class="absolute bottom-[-20%] left-[-12%] w-[620px] h-[620px] rounded-full bg-secondary blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-bold mb-6 text-sm tracking-wider uppercase" data-i18n="hero_badge">
+                        ماركت بليس eCode
+                    </span>
+
+                    <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                        <span data-i18n="hero_title_1">مزودو خدمات</span>
+                        <br>
+                        <span class="gradient-text" data-i18n="hero_title_2">موثوقون ضمن شبكة واحدة</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-medium mb-8" data-i18n="hero_desc">
+                        استعرض مزودي الخدمات المعتمدين لدى eCode في الحلول الصحية التقنية، إدارة التواصل، الفعاليات، والمقاولات، واطلب الخدمة المناسبة عبر نقطة تواصل واحدة.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3">
+                        <span class="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-white dark:bg-dark border border-gray-200 dark:border-gray-800 font-black text-sm">
+                            <i class="fa-solid fa-shield-halved text-primary"></i>
+                            <span data-i18n="hero_pill_1">مزودون موثوقون</span>
+                        </span>
+
+                        <span class="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-white dark:bg-dark border border-gray-200 dark:border-gray-800 font-black text-sm">
+                            <i class="fa-solid fa-layer-group text-primary"></i>
+                            <span data-i18n="hero_pill_2">خدمات متنوعة</span>
+                        </span>
+
+                        <span class="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-white dark:bg-dark border border-gray-200 dark:border-gray-800 font-black text-sm">
+                            <i class="fa-solid fa-comments text-primary"></i>
+                            <span data-i18n="hero_pill_3">طلب عبر eCode</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="gradient-bg rounded-[2rem] p-8 md:p-10 text-white shadow-2xl">
+                    <h2 class="text-2xl md:text-3xl font-black mb-6" data-i18n="hero_box_title">
+                        منصة عرض لمقدمي الخدمات
+                    </h2>
+
+                    <p class="text-white/90 leading-loose mb-8" data-i18n="hero_box_desc">
+                        بدل البحث بين جهات متعددة، نوفر لك مساحة واحدة تعرض مزودي خدمات موثوقين يمكن طلبهم أو الاستفسار عنهم من خلال eCode.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="stat-card">
+                            <div class="text-3xl font-black mb-1">05</div>
+                            <p class="text-white/85 text-sm font-bold" data-i18n="stat_1">مزودون حاليًا</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="text-3xl font-black mb-1">04</div>
+                            <p class="text-white/85 text-sm font-bold" data-i18n="stat_2">تصنيفات رئيسية</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="text-3xl font-black mb-1">01</div>
+                            <p class="text-white/85 text-sm font-bold" data-i18n="stat_3">نقطة تواصل</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="text-3xl font-black mb-1">∞</div>
+                            <p class="text-white/85 text-sm font-bold" data-i18n="stat_4">قابل للتوسع</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketplace -->
+    <main class="pb-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+
+                <!-- Sidebar -->
+                <aside class="lg:col-span-1 filter-panel">
+                    <div class="mb-6">
+                        <h2 class="text-xl font-black mb-2" data-i18n="filter_title">فلترة المزودين</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose text-sm" data-i18n="filter_desc">
+                            اختر التصنيف المناسب لعرض مزودي الخدمات الموثوقين في eCode.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <button class="filter-btn active" data-filter="all">
+                            <span data-i18n="filter_all">كل المزودين</span>
+                            <i class="fa-solid fa-border-all"></i>
+                        </button>
+
+                        <button class="filter-btn" data-filter="health">
+                            <span data-i18n="filter_health">تقنية صحية</span>
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </button>
+
+                        <button class="filter-btn" data-filter="tech">
+                            <span data-i18n="filter_tech">حلول تقنية</span>
+                            <i class="fa-solid fa-code"></i>
+                        </button>
+
+                        <button class="filter-btn" data-filter="marketing">
+                            <span data-i18n="filter_marketing">تسويق وتواصل</span>
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </button>
+
+                        <button class="filter-btn" data-filter="events">
+                            <span data-i18n="filter_events">فعاليات ومعارض</span>
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </button>
+
+                        <button class="filter-btn" data-filter="fitout">
+                            <span data-i18n="filter_fitout">تجهيزات وتشطيبات</span>
+                            <i class="fa-solid fa-couch"></i>
+                        </button>
+
+                        <button class="filter-btn" data-filter="contracting">
+                            <span data-i18n="filter_contracting">مقاولات</span>
+                            <i class="fa-solid fa-helmet-safety"></i>
+                        </button>
+
+                        <button class="filter-btn" data-filter="monthly">
+                            <span data-i18n="filter_monthly">اشتراكات شهرية</span>
+                            <i class="fa-solid fa-rotate"></i>
+                        </button>
+                    </div>
+
+                    <div class="mt-8 p-5 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                        <h3 class="font-black mb-2" data-i18n="provider_cta_title">هل أنت مزود خدمة؟</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-loose text-sm mb-4" data-i18n="provider_cta_desc">
+                            أضف خدماتك إلى شبكة eCode ليتم ترشيحك عند وصول طلب مناسب.
+                        </p>
+                        <a href="https://ecode.sa/partners" class="btn-primary w-full py-3">
+                            <span data-i18n="provider_cta_btn">انضم الآن</span>
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Content -->
+                <section class="lg:col-span-3">
+                    <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-7">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-black" data-i18n="market_title">مزودو الخدمات</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">
+                                <span data-i18n="result_label">عدد المزودين:</span>
+                                <span id="resultCount" class="font-black text-primary">5</span>
+                            </p>
+                        </div>
+
+                        <div class="search-box md:min-w-[360px]">
+                            <i class="fa-solid fa-magnifying-glass text-primary"></i>
+                            <input id="marketSearch" type="text" placeholder="ابحث عن مزود أو خدمة..." data-i18n-placeholder="search_placeholder">
+                        </div>
+                    </div>
+
+                    <div id="marketGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7">
+
+                        <!-- AndroHealth -->
+                        <article class="market-card market-item" data-category="health tech" data-search="اندروهيلث androhealth نظام معلومات مستشفيات HIS نفيس nphies عيادات مراكز صحية مطالبات تأمين">
+                            <div class="market-media">
+                                <span class="provider-badge" data-i18n="provider_verified">مزود موثوق</span>
+                                <div class="market-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                            </div>
+
+                            <div class="market-content">
+                                <span class="market-tag" data-i18n="cat_health_tech">تقنية صحية</span>
+
+                                <h2 class="text-xl font-black mb-3" data-i18n="provider_androhealth_title">AndroHealth</h2>
+
+                                <p class="text-gray-600 dark:text-gray-400 leading-loose flex-grow" data-i18n="provider_androhealth_desc">
+                                    نظام معلومات مستشفيات سحابي للمنشآت الصحية في السعودية، يدعم إدارة المرضى والمواعيد والكشوفات السريرية والفوترة ومطالبات التأمين عبر نفيس.
+                                </p>
+
+                                <ul class="feature-list">
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_androhealth_f1">نظام HIS سحابي متكامل</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_androhealth_f2">تكامل مع نفيس ومطالبات التأمين</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_androhealth_f3">مناسب للعيادات والمراكز والمجمعات الطبية</span></li>
+                                </ul>
+
+                                <div class="price-box">
+                                    <div class="text-sm text-gray-500 dark:text-gray-400 font-bold" data-i18n="price_by_scope">حسب نطاق المنشأة</div>
+                                    <div class="text-2xl font-black text-primary" data-i18n="price_demo">طلب عرض توضيحي</div>
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-3 mt-5">
+                                    <a href="https://ahhis.com/" target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
+                                        <span data-i18n="visit_provider">زيارة موقع المزود</span>
+                                    </a>
+
+                                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة AndroHealth في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
+                                        <span data-i18n="request_provider">طلب الخدمة عبر eCode</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Duties Book -->
+                        <article class="market-card market-item" data-category="tech marketing monthly" data-search="ديوتيز بوك duties book صندوق وارد موحد واتساب انستغرام ماسنجر بريد الكتروني خدمة عملاء omnichannel">
+                            <div class="market-media">
+                                <span class="provider-badge" data-i18n="provider_verified">مزود موثوق</span>
+                                <div class="market-icon"><i class="fa-solid fa-inbox"></i></div>
+                            </div>
+
+                            <div class="market-content">
+                                <span class="market-tag" data-i18n="cat_customer_comm">إدارة التواصل</span>
+
+                                <h2 class="text-xl font-black mb-3" data-i18n="provider_duties_title">Duties Book</h2>
+
+                                <p class="text-gray-600 dark:text-gray-400 leading-loose flex-grow" data-i18n="provider_duties_desc">
+                                    منصة تواصل موحّدة تجمع واتساب Business API، إنستغرام، فيسبوك ماسنجر، والبريد الإلكتروني في صندوق وارد واحد لإدارة محادثات العملاء.
+                                </p>
+
+                                <ul class="feature-list">
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_duties_f1">صندوق وارد موحّد متعدد القنوات</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_duties_f2">تجربة مجانية لمدة 14 يومًا</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_duties_f3">واتساب، إنستغرام، ماسنجر، وبريد إلكتروني</span></li>
+                                </ul>
+
+                                <div class="price-box">
+                                    <div class="text-sm text-gray-500 dark:text-gray-400 font-bold" data-i18n="price_start">يبدأ من</div>
+                                    <div class="text-2xl font-black text-primary" data-i18n="provider_duties_price">300 ريال / شهر</div>
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-3 mt-5">
+                                    <a href="https://db.androhealthsolutions.com/" target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
+                                        <span data-i18n="visit_provider">زيارة موقع المزود</span>
+                                    </a>
+
+                                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة Duties Book في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
+                                        <span data-i18n="request_provider">طلب الخدمة عبر eCode</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- CyanCare -->
+                        <article class="market-card market-item" data-category="health tech" data-search="سيان كير cyancare طب عن بعد استشارات مرئية وصفات الكترونية مراسلات امنة عيادات مستشفيات">
+                            <div class="market-media">
+                                <span class="provider-badge" data-i18n="provider_verified">مزود موثوق</span>
+                                <div class="market-icon"><i class="fa-solid fa-video"></i></div>
+                            </div>
+
+                            <div class="market-content">
+                                <span class="market-tag" data-i18n="cat_health_tech">تقنية صحية</span>
+
+                                <h2 class="text-xl font-black mb-3" data-i18n="provider_cyan_title">CyanCare</h2>
+
+                                <p class="text-gray-600 dark:text-gray-400 leading-loose flex-grow" data-i18n="provider_cyan_desc">
+                                    منصة طب عن بُعد للمنشآت الطبية، تتيح إطلاق خدمات الاستشارات المرئية والوصفات الإلكترونية والمراسلات الآمنة تحت هوية المنشأة.
+                                </p>
+
+                                <ul class="feature-list">
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f1">استشارات فيديو وصوت ومحادثة</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f2">وصفات إلكترونية ومراسلات آمنة</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f3">تطبيق وواجهة تحت هوية المنشأة</span></li>
+                                </ul>
+
+                                <div class="price-box">
+                                    <div class="text-sm text-gray-500 dark:text-gray-400 font-bold" data-i18n="price_by_scope">حسب نطاق المنشأة</div>
+                                    <div class="text-2xl font-black text-primary" data-i18n="price_demo">طلب عرض توضيحي</div>
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-3 mt-5">
+                                    <a href="https://cyancare.sa/" target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
+                                        <span data-i18n="visit_provider">زيارة موقع المزود</span>
+                                    </a>
+
+                                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة CyanCare في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
+                                        <span data-i18n="request_provider">طلب الخدمة عبر eCode</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Opal Event -->
+                        <article class="market-card market-item" data-category="events fitout marketing" data-search="اوبال ايفنت opal event فعاليات معارض تنظيم تشغيل ضيافة بروتوكول بوث تجربة زائر">
+                            <div class="market-media">
+                                <span class="provider-badge" data-i18n="provider_verified">مزود موثوق</span>
+                                <div class="market-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                            </div>
+
+                            <div class="market-content">
+                                <span class="market-tag" data-i18n="cat_events">الفعاليات والمعارض</span>
+
+                                <h2 class="text-xl font-black mb-3" data-i18n="provider_opal_title">Opal Event</h2>
+
+                                <p class="text-gray-600 dark:text-gray-400 leading-loose flex-grow" data-i18n="provider_opal_desc">
+                                    مزود خدمات فعاليات يغطي رحلة الفعالية من الفكرة إلى التنفيذ، بما يشمل التخطيط، التشغيل، التجهيز، الخدمات المساندة، وتجربة الزوار.
+                                </p>
+
+                                <ul class="feature-list">
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_opal_f1">تخطيط وتنظيم الفعاليات</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_opal_f2">تشغيل ميداني وخدمات مساندة</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_opal_f3">تجهيزات وتجربة زائر وبروتوكول</span></li>
+                                </ul>
+
+                                <div class="price-box">
+                                    <div class="text-sm text-gray-500 dark:text-gray-400 font-bold" data-i18n="price_by_scope_event">حسب نطاق الفعالية</div>
+                                    <div class="text-2xl font-black text-primary" data-i18n="custom_quote">عرض سعر مخصص</div>
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-3 mt-5">
+                                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة Opal Event في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
+                                        <span data-i18n="request_provider">طلب الخدمة عبر eCode</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Mutaz Contracting -->
+                        <article class="market-card market-item" data-category="contracting fitout" data-search="مؤسسة معتز الشمري للمقاولات mutaz مقاولات عامة بنية تحتية تطوير عقاري تشطيبات كود البناء السعودي">
+                            <div class="market-media">
+                                <span class="provider-badge" data-i18n="provider_verified">مزود موثوق</span>
+                                <div class="market-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+                            </div>
+
+                            <div class="market-content">
+                                <span class="market-tag" data-i18n="cat_contracting">مقاولات وتطوير عقاري</span>
+
+                                <h2 class="text-xl font-black mb-3" data-i18n="provider_mutaz_title">مؤسسة معتز الشمري للمقاولات</h2>
+
+                                <p class="text-gray-600 dark:text-gray-400 leading-loose flex-grow" data-i18n="provider_mutaz_desc">
+                                    مؤسسة سعودية متخصصة في المقاولات العامة والتطوير العقاري، تشمل الإنشاءات، البنية التحتية، التشطيبات، الشبكات، والمرافق المتخصصة.
+                                </p>
+
+                                <ul class="feature-list">
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_mutaz_f1">مقاولات عامة وإنشاءات</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_mutaz_f2">بنية تحتية وشبكات وتمديدات</span></li>
+                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_mutaz_f3">تشطيبات وديكور وتطوير عقاري</span></li>
+                                </ul>
+
+                                <div class="price-box">
+                                    <div class="text-sm text-gray-500 dark:text-gray-400 font-bold" data-i18n="price_by_scope_project">حسب نطاق المشروع</div>
+                                    <div class="text-2xl font-black text-primary" data-i18n="custom_quote">عرض سعر مخصص</div>
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-3 mt-5">
+                                    <a href="https://mutaz.sa/" target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
+                                        <span data-i18n="visit_provider">زيارة موقع المزود</span>
+                                    </a>
+
+                                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مؤسسة معتز الشمري للمقاولات في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-primary w-full py-3">
+                                        <span data-i18n="request_provider">طلب الخدمة عبر eCode</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <div id="emptyState" class="hidden mt-8 p-10 text-center rounded-[2rem] bg-white dark:bg-dark border border-gray-200 dark:border-gray-800">
+                        <div class="text-4xl text-primary mb-4"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <h3 class="text-2xl font-black mb-3" data-i18n="empty_title">لا توجد نتائج مطابقة</h3>
+                        <p class="text-gray-600 dark:text-gray-400" data-i18n="empty_desc">جرّب كلمة بحث مختلفة أو اختر تصنيفًا آخر.</p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-black mb-6" data-i18n="cta_title">
+                    تحتاج خدمة من أحد المزودين؟
+                </h2>
+
+                <p class="text-white/90 mb-10 text-lg leading-loose" data-i18n="cta_desc">
+                    ارسل لنا اسم المزود أو نوع الخدمة المطلوبة، ونساعدك في توجيه الطلب وترتيب الخطوة التالية.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن أحد مزودي الخدمات في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-full font-black hover:shadow-lg transition transform hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span data-i18n="cta_btn_whatsapp">تواصل عبر واتساب</span>
+                    </a>
+
+                    <a href="https://ecode.sa/request-service" class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-black hover:bg-white/15 transition transform hover:-translate-y-1">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span data-i18n="cta_btn_request">اطلب خدمة</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-white dark:bg-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12 text-center md:text-start">
+
+                <!-- Brand / Social -->
+                <div>
+                    <a href="https://ecode.sa/" class="logo-container inline-flex mb-4 text-slate-800 dark:text-white">
+                        <div class="logo-icon">
+                            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="h-12 w-auto">
+                        </div>
+
+                        <div class="logo-text">
+                            <div class="brand-name text-2xl" data-i18n="brand_name">eCode</div>
+                            <div class="brand-tagline" data-i18n="brand_tagline">تصنع الأثر</div>
+                        </div>
+                    </a>
+
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-loose" data-i18n="footer_desc">
+                        لنصنع حضورك القادم معًا.<br>
+                        خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.
+                    </p>
+
+                    <h4 class="font-bold text-lg mb-4" data-i18n="follow_us">تابعنا</h4>
+
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                        <a class="social-link" href="https://www.youtube.com/@eCode_sa" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="social-link" href="https://www.facebook.com/ecode.sa" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a class="social-link" href="https://www.tiktok.com/@ecode_sa" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="social-link" href="https://www.instagram.com/ecode_sa" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-link" href="https://www.snapchat.com/add/ecode_sa" target="_blank" rel="noopener noreferrer" title="Snapchat" aria-label="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                        <a class="social-link" href="https://www.linkedin.com/company/ecode-sa" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a class="social-link" href="https://x.com/eCode_sa" target="_blank" rel="noopener noreferrer" title="X" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Important Links -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footer_pages_title">روابط مهمة</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://ecode.sa/about" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-building"></i></span>
+                                <span class="contact-text" data-i18n="footer_about_link">من نحن</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/services" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-layer-group"></i></span>
+                                <span class="contact-text" data-i18n="footer_services_link">الخدمات</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/marketplace" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-store"></i></span>
+                                <span class="contact-text" data-i18n="footer_marketplace_link">ماركت بليس</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/request-service" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-paper-plane"></i></span>
+                                <span class="contact-text" data-i18n="footer_request_link">اطلب خدمة</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/partners" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-user-plus"></i></span>
+                                <span class="contact-text" data-i18n="footer_partners_link">انضم كمزود خدمة</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/faq" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-circle-question"></i></span>
+                                <span class="contact-text" data-i18n="footer_faq_link">الأسئلة الشائعة</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact / Policies -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="contact_title">معلومات التواصل</h4>
+
+                    <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-3 contact-list">
+                        <li>
+                            <a href="https://www.ecode.sa" target="_blank" rel="noopener noreferrer" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-globe"></i></span>
+                                <span class="contact-text" dir="ltr">www.eCode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:info@ecode.sa" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-text" dir="ltr">info@ecode.sa</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:+966503666316" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <span class="contact-text" dir="ltr">+966 503 666 316</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/privacy" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span class="contact-text" data-i18n="privacy_footer_link">سياسة الخصوصية</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/terms" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                <span class="contact-text" data-i18n="terms_footer_link">الشروط والأحكام وسياسة الاسترجاع</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://ecode.sa/cookies" class="contact-link hover:text-primary transition">
+                                <span class="contact-icon"><i class="fa-solid fa-cookie-bite"></i></span>
+                                <span class="contact-text" data-i18n="cookies_footer_link">سياسة ملفات تعريف الارتباط</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom border-t border-gray-200 dark:border-gray-800 pt-8 text-center text-sm text-gray-500 dark:text-gray-400" data-i18n="footer_copyright">
+                © 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/966503666316" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const translations = {
+            ar: {
+                brand_name: "eCode",
+                brand_tagline: "تصنع الأثر",
+
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "الخدمات",
+                nav_marketplace: "ماركت بليس",
+                nav_process: "آلية العمل",
+                nav_industries: "القطاعات",
+                nav_cases: "دراسات الحالة",
+                nav_faq: "الأسئلة الشائعة",
+                nav_request: "اطلب خدمة",
+
+                hero_badge: "ماركت بليس eCode",
+                hero_title_1: "مزودو خدمات",
+                hero_title_2: "موثوقون ضمن شبكة واحدة",
+                hero_desc: "استعرض مزودي الخدمات المعتمدين لدى eCode في الحلول الصحية التقنية، إدارة التواصل، الفعاليات، والمقاولات، واطلب الخدمة المناسبة عبر نقطة تواصل واحدة.",
+                hero_pill_1: "مزودون موثوقون",
+                hero_pill_2: "خدمات متنوعة",
+                hero_pill_3: "طلب عبر eCode",
+                hero_box_title: "منصة عرض لمقدمي الخدمات",
+                hero_box_desc: "بدل البحث بين جهات متعددة، نوفر لك مساحة واحدة تعرض مزودي خدمات موثوقين يمكن طلبهم أو الاستفسار عنهم من خلال eCode.",
+                stat_1: "مزودون حاليًا",
+                stat_2: "تصنيفات رئيسية",
+                stat_3: "نقطة تواصل",
+                stat_4: "قابل للتوسع",
+
+                market_title: "مزودو الخدمات",
+                result_label: "عدد المزودين:",
+                search_placeholder: "ابحث عن مزود أو خدمة...",
+
+                filter_title: "فلترة المزودين",
+                filter_desc: "اختر التصنيف المناسب لعرض مزودي الخدمات الموثوقين في eCode.",
+                filter_all: "كل المزودين",
+                filter_health: "تقنية صحية",
+                filter_tech: "حلول تقنية",
+                filter_marketing: "تسويق وتواصل",
+                filter_events: "فعاليات ومعارض",
+                filter_fitout: "تجهيزات وتشطيبات",
+                filter_contracting: "مقاولات",
+                filter_monthly: "اشتراكات شهرية",
+
+                provider_cta_title: "هل أنت مزود خدمة؟",
+                provider_cta_desc: "أضف خدماتك إلى شبكة eCode ليتم ترشيحك عند وصول طلب مناسب.",
+                provider_cta_btn: "انضم الآن",
+                provider_verified: "مزود موثوق",
+
+                cat_health_tech: "تقنية صحية",
+                cat_customer_comm: "إدارة التواصل",
+                cat_events: "الفعاليات والمعارض",
+                cat_contracting: "مقاولات وتطوير عقاري",
+
+                price_start: "يبدأ من",
+                price_by_scope: "حسب نطاق المنشأة",
+                price_by_scope_event: "حسب نطاق الفعالية",
+                price_by_scope_project: "حسب نطاق المشروع",
+                price_demo: "طلب عرض توضيحي",
+                custom_quote: "عرض سعر مخصص",
+                visit_provider: "زيارة موقع المزود",
+                request_provider: "طلب الخدمة عبر eCode",
+
+                provider_androhealth_title: "AndroHealth",
+                provider_androhealth_desc: "نظام معلومات مستشفيات سحابي للمنشآت الصحية في السعودية، يدعم إدارة المرضى والمواعيد والكشوفات السريرية والفوترة ومطالبات التأمين عبر نفيس.",
+                provider_androhealth_f1: "نظام HIS سحابي متكامل",
+                provider_androhealth_f2: "تكامل مع نفيس ومطالبات التأمين",
+                provider_androhealth_f3: "مناسب للعيادات والمراكز والمجمعات الطبية",
+
+                provider_duties_title: "Duties Book",
+                provider_duties_desc: "منصة تواصل موحّدة تجمع واتساب Business API، إنستغرام، فيسبوك ماسنجر، والبريد الإلكتروني في صندوق وارد واحد لإدارة محادثات العملاء.",
+                provider_duties_f1: "صندوق وارد موحّد متعدد القنوات",
+                provider_duties_f2: "تجربة مجانية لمدة 14 يومًا",
+                provider_duties_f3: "واتساب، إنستغرام، ماسنجر، وبريد إلكتروني",
+                provider_duties_price: "300 ريال / شهر",
+
+                provider_cyan_title: "CyanCare",
+                provider_cyan_desc: "منصة طب عن بُعد للمنشآت الطبية، تتيح إطلاق خدمات الاستشارات المرئية والوصفات الإلكترونية والمراسلات الآمنة تحت هوية المنشأة.",
+                provider_cyan_f1: "استشارات فيديو وصوت ومحادثة",
+                provider_cyan_f2: "وصفات إلكترونية ومراسلات آمنة",
+                provider_cyan_f3: "تطبيق وواجهة تحت هوية المنشأة",
+
+                provider_opal_title: "Opal Event",
+                provider_opal_desc: "مزود خدمات فعاليات يغطي رحلة الفعالية من الفكرة إلى التنفيذ، بما يشمل التخطيط، التشغيل، التجهيز، الخدمات المساندة، وتجربة الزوار.",
+                provider_opal_f1: "تخطيط وتنظيم الفعاليات",
+                provider_opal_f2: "تشغيل ميداني وخدمات مساندة",
+                provider_opal_f3: "تجهيزات وتجربة زائر وبروتوكول",
+
+                provider_mutaz_title: "مؤسسة معتز الشمري للمقاولات",
+                provider_mutaz_desc: "مؤسسة سعودية متخصصة في المقاولات العامة والتطوير العقاري، تشمل الإنشاءات، البنية التحتية، التشطيبات، الشبكات، والمرافق المتخصصة.",
+                provider_mutaz_f1: "مقاولات عامة وإنشاءات",
+                provider_mutaz_f2: "بنية تحتية وشبكات وتمديدات",
+                provider_mutaz_f3: "تشطيبات وديكور وتطوير عقاري",
+
+                empty_title: "لا توجد نتائج مطابقة",
+                empty_desc: "جرّب كلمة بحث مختلفة أو اختر تصنيفًا آخر.",
+
+                cta_title: "تحتاج خدمة من أحد المزودين؟",
+                cta_desc: "ارسل لنا اسم المزود أو نوع الخدمة المطلوبة، ونساعدك في توجيه الطلب وترتيب الخطوة التالية.",
+                cta_btn_whatsapp: "تواصل عبر واتساب",
+                cta_btn_request: "اطلب خدمة",
+
+                footer_pages_title: "روابط مهمة",
+                footer_desc: "لنصنع حضورك القادم معًا.<br> خدمات أعمال متكاملة تشمل التسويق، الإنتاج، التقنية، الفعاليات، التصميم، والتجهيزات.",
+                contact_title: "معلومات التواصل",
+                follow_us: "تابعنا",
+                footer_about_link: "من نحن",
+                footer_services_link: "الخدمات",
+                footer_marketplace_link: "ماركت بليس",
+                footer_request_link: "اطلب خدمة",
+                footer_partners_link: "انضم كمزود خدمة",
+                footer_faq_link: "الأسئلة الشائعة",
+                privacy_footer_link: "سياسة الخصوصية",
+                terms_footer_link: "الشروط والأحكام وسياسة الاسترجاع",
+                cookies_footer_link: "سياسة ملفات تعريف الارتباط",
+                footer_copyright: "© 2026 شركة إلكترونيك كود. جميع الحقوق محفوظة.",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب"
+            },
+
+            en: {
+                brand_name: "eCode",
+                brand_tagline: "Innovate Impact",
+
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_marketplace: "Marketplace",
+                nav_process: "Process",
+                nav_industries: "Industries",
+                nav_cases: "Case Studies",
+                nav_faq: "FAQ",
+                nav_request: "Request Service",
+
+                hero_badge: "eCode Marketplace",
+                hero_title_1: "Trusted Service",
+                hero_title_2: "Providers in One Network",
+                hero_desc: "Explore eCode trusted providers across health-tech solutions, customer communication, events, and contracting, and request the suitable service through one point of contact.",
+                hero_pill_1: "Trusted Providers",
+                hero_pill_2: "Diverse Services",
+                hero_pill_3: "Request via eCode",
+                hero_box_title: "A Marketplace for Service Providers",
+                hero_box_desc: "Instead of searching across multiple vendors, we provide one space that displays trusted providers you can request or inquire about through eCode.",
+                stat_1: "Current Providers",
+                stat_2: "Main Categories",
+                stat_3: "Point of Contact",
+                stat_4: "Scalable",
+
+                market_title: "Service Providers",
+                result_label: "Providers count:",
+                search_placeholder: "Search provider or service...",
+
+                filter_title: "Provider Filters",
+                filter_desc: "Choose a category to view eCode trusted service providers.",
+                filter_all: "All Providers",
+                filter_health: "Health Tech",
+                filter_tech: "Technology Solutions",
+                filter_marketing: "Marketing & Communication",
+                filter_events: "Events & Exhibitions",
+                filter_fitout: "Fit-Out & Finishing",
+                filter_contracting: "Contracting",
+                filter_monthly: "Monthly Subscriptions",
+
+                provider_cta_title: "Are You a Service Provider?",
+                provider_cta_desc: "Add your services to eCode’s network so we can recommend you when a suitable request arrives.",
+                provider_cta_btn: "Join Now",
+                provider_verified: "Trusted Provider",
+
+                cat_health_tech: "Health Tech",
+                cat_customer_comm: "Customer Communication",
+                cat_events: "Events & Exhibitions",
+                cat_contracting: "Contracting & Real Estate Development",
+
+                price_start: "Starts from",
+                price_by_scope: "Based on facility scope",
+                price_by_scope_event: "Based on event scope",
+                price_by_scope_project: "Based on project scope",
+                price_demo: "Request Demo",
+                custom_quote: "Custom Quote",
+                visit_provider: "Visit Provider Website",
+                request_provider: "Request via eCode",
+
+                provider_androhealth_title: "AndroHealth",
+                provider_androhealth_desc: "A cloud-based Hospital Information System for healthcare facilities in Saudi Arabia, supporting patient management, appointments, clinical encounters, billing, and insurance claims through NPHIES.",
+                provider_androhealth_f1: "Integrated cloud HIS",
+                provider_androhealth_f2: "NPHIES and insurance claims integration",
+                provider_androhealth_f3: "Suitable for clinics, centers, and medical complexes",
+
+                provider_duties_title: "Duties Book",
+                provider_duties_desc: "A unified communication platform that brings WhatsApp Business API, Instagram, Facebook Messenger, and email into one shared inbox for customer conversations.",
+                provider_duties_f1: "Unified multi-channel inbox",
+                provider_duties_f2: "14-day free trial",
+                provider_duties_f3: "WhatsApp, Instagram, Messenger, and email",
+                provider_duties_price: "SAR 300 / month",
+
+                provider_cyan_title: "CyanCare",
+                provider_cyan_desc: "A telemedicine platform for healthcare facilities, enabling video consultations, e-prescriptions, and secure messaging under the facility’s own brand.",
+                provider_cyan_f1: "Video, voice, and chat consultations",
+                provider_cyan_f2: "E-prescriptions and secure messaging",
+                provider_cyan_f3: "Portal and apps under facility branding",
+
+                provider_opal_title: "Opal Event",
+                provider_opal_desc: "An event services provider covering the event journey from idea to execution, including planning, operations, setup, support services, and visitor experience.",
+                provider_opal_f1: "Event planning and management",
+                provider_opal_f2: "Field operations and support services",
+                provider_opal_f3: "Setup, visitor experience, and protocol",
+
+                provider_mutaz_title: "Mutaz Alshammari Contracting",
+                provider_mutaz_desc: "A Saudi contracting and real estate development provider covering construction, infrastructure, finishing, networks, and specialized facilities.",
+                provider_mutaz_f1: "General contracting and construction",
+                provider_mutaz_f2: "Infrastructure, networks, and utilities",
+                provider_mutaz_f3: "Finishing, décor, and real estate development",
+
+                empty_title: "No Matching Results",
+                empty_desc: "Try another keyword or choose a different category.",
+
+                cta_title: "Need a Service from One of the Providers?",
+                cta_desc: "Send us the provider name or service type, and we will help route the request and arrange the next step.",
+                cta_btn_whatsapp: "Contact via WhatsApp",
+                cta_btn_request: "Request Service",
+
+                footer_pages_title: "Important Links",
+                footer_desc: "Let’s build your next presence together.<br> Integrated business services covering marketing, production, technology, events, design, and fit-out.",
+                contact_title: "Contact Info",
+                follow_us: "Follow Us",
+                footer_about_link: "About Us",
+                footer_services_link: "Services",
+                footer_marketplace_link: "Marketplace",
+                footer_request_link: "Request Service",
+                footer_partners_link: "Join as Provider",
+                footer_faq_link: "FAQ",
+                privacy_footer_link: "Privacy Policy",
+                terms_footer_link: "Terms & Conditions and Refund Policy",
+                cookies_footer_link: "Cookie Policy",
+                footer_copyright: "© 2026 Electronic Code Company. All rights reserved.",
+                whatsapp_tooltip: "Contact via WhatsApp"
+            }
+        };
+
+        let currentLang = localStorage.getItem('userLanguage') || 'ar';
+        let currentFilter = 'all';
+
+        function initTheme() {
+            const icon = document.getElementById('theme-icon');
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (icon) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    el.setAttribute('title', translations[currentLang][key]);
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    el.setAttribute('placeholder', translations[currentLang][key]);
+                }
+            });
+
+            if (currentLang === 'ar') {
+                document.title = "ماركت بليس | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "استعرض مزودي الخدمات الموثوقين في ماركت بليس eCode، بما يشمل الحلول الصحية التقنية، إدارة التواصل، الفعاليات، والمقاولات."
+                );
+            } else {
+                document.title = "Marketplace | eCode";
+                document.querySelector('meta[name="description"]').setAttribute(
+                    "content",
+                    "Explore eCode trusted providers across health-tech, customer communication, events, and contracting services."
+                );
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            localStorage.setItem('userLanguage', currentLang);
+            updateContent();
+        }
+
+        function applyMarketplaceFilters() {
+            const searchInput = document.getElementById('marketSearch');
+            const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+            const items = document.querySelectorAll('.market-item');
+            const resultCount = document.getElementById('resultCount');
+            const emptyState = document.getElementById('emptyState');
+
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const categories = (item.getAttribute('data-category') || '').split(' ');
+                const searchText = (
+                    item.innerText + ' ' + (item.getAttribute('data-search') || '')
+                ).toLowerCase();
+
+                const categoryMatch = currentFilter === 'all' || categories.includes(currentFilter);
+                const searchMatch = !query || searchText.includes(query);
+
+                if (categoryMatch && searchMatch) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (resultCount) resultCount.textContent = visibleCount;
+            if (emptyState) emptyState.classList.toggle('hidden', visibleCount !== 0);
+        }
+
+        function initFilters() {
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    currentFilter = button.getAttribute('data-filter');
+
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    applyMarketplaceFilters();
+                });
+            });
+        }
+
+        function initSearch() {
+            const searchInput = document.getElementById('marketSearch');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', applyMarketplaceFilters);
+            }
+        }
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.querySelector('.nav');
+                if (nav) nav.classList.remove('active');
+            });
+        });
+
+        window.onload = () => {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+
+            if (currentLang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langIcon.textContent = '🇬🇧';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langIcon.textContent = '🇸🇦';
+            }
+
+            initTheme();
+            updateContent();
+            initFilters();
+            initSearch();
+            applyMarketplaceFilters();
+        };
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .catch(error => console.error('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
