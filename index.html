@@ -53,7 +53,8 @@
     .header-inner{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.05);transition:all .3s ease}
     html.dark .header-inner{background:rgba(15,23,42,.85);border-bottom:1px solid rgba(255,255,255,.05)}
     .logo-container{display:flex;align-items:center;gap:12px;text-decoration:none}.logo-icon img{height:44px;width:auto;border-radius:8px;object-fit:contain}.logo-text{display:flex;flex-direction:column}.brand-name{font-weight:800;font-size:1.25rem;line-height:1.1;color:#1e293b}html.dark .brand-name{color:#f8fafc}.brand-tagline{font-size:.75rem;color:#64748b;font-weight:600}html.dark .brand-tagline{color:#94a3b8}
-    .nav{display:flex;align-items:center;gap:1rem}.nav a{font-weight:700;font-size:.9rem;color:#475569;transition:color .3s ease;white-space:nowrap}html.dark .nav a{color:#cbd5e1}.nav a:hover{color:#4F46E5}html.dark .nav a:hover{color:#818cf8}
+    .nav{display:flex;align-items:center;gap:1rem}.nav a{font-weight:700;font-size:.9rem;color:#475569;transition:color .3s ease;white-space:nowrap}html.dark .nav a{color:#cbd5e1}} .nav a:hover, .nav a.active-link {color: #4F46E5;}html.dark .nav a:hover, html.dark .nav a.active-link {color: #818cf8;
+        }
     .btn-primary{background:linear-gradient(to right,#4F46E5,#7C3AED);color:white!important;padding:.5rem 1.25rem;border-radius:9999px;font-weight:700;transition:all .3s;display:inline-flex;align-items:center;justify-content:center}.btn-primary:hover{opacity:.9;transform:translateY(-2px)}
     .home-card,.service-card{background:#fff;border:1px solid #e5e7eb;border-radius:28px;padding:28px;transition:all .3s ease;height:100%}.dark .home-card,.dark .service-card{background:#0f172a;border-color:#1f2937}.home-card:hover,.service-card:hover{transform:translateY(-6px);box-shadow:0 18px 45px rgba(15,23,42,.10);border-color:rgba(79,70,229,.35)}
     .home-icon{width:56px;height:56px;border-radius:18px;background:rgba(79,70,229,.10);color:#4F46E5;display:inline-flex;align-items:center;justify-content:center;font-size:23px;margin-bottom:20px}.dark .home-icon{background:rgba(129,140,248,.15);color:#c7d2fe}
@@ -81,7 +82,7 @@
       </a>
       <button class="mobile-toggle text-2xl text-slate-800 dark:text-slate-200" onclick="document.querySelector('.nav').classList.toggle('active')" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
       <nav class="nav">
-        <a href="https://ecode.sa/" data-i18n="nav_home">الرئيسية</a>
+        <a href="https://ecode.sa/" class="active-link" data-i18n="nav_home">الرئيسية</a>
         <a href="about" data-i18n="nav_about">من نحن</a>
         <a href="services" data-i18n="nav_services">الخدمات</a>
         <a href="process" data-i18n="nav_process">آلية العمل</a>
