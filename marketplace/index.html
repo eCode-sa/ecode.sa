@@ -118,6 +118,28 @@
             display: flex;
             flex-direction: column;
         }
+        .market-media.logo-provider-media {
+    background:
+        radial-gradient(circle at top right, rgba(6, 182, 212, 0.10), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.10), transparent 38%),
+        #ffffff;
+}
+
+.dark .market-media.logo-provider-media {
+    background:
+        radial-gradient(circle at top right, rgba(6, 182, 212, 0.16), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.18), transparent 38%),
+        #0f172a;
+}
+
+.provider-card-logo {
+    width: min(220px, 70%);
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 14px 26px rgba(15, 23, 42, 0.10));
+}
 
         .brand-name {
             font-weight: 800;
@@ -924,12 +946,12 @@
                                 </div>
 
                                 <div class="grid grid-cols-1 gap-3 mt-5">
-                                    <a href="provider-duties-book.html" class="btn-primary w-full py-3">
+                                    <a href="dutiesbook" class="btn-primary w-full py-3">
                                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                         <span data-i18n="view_details">عرض التفاصيل والأسعار</span>
                                     </a>
 
-                                    <a href="https://ahhis.com/" target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
+                                    <a href="https://db.androhealthsolutions.com/" target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
                                         <span data-i18n="visit_provider">زيارة موقع المزود</span>
                                     </a>
 
@@ -940,49 +962,49 @@
                             </div>
                         </article>
 
-                        <!-- CyanCare -->
-                        <article class="market-card market-item" data-category="health tech" data-search="سيان كير cyancare طب عن بعد استشارات مرئية وصفات الكترونية مراسلات امنة عيادات مستشفيات">
-                            <div class="market-media">
-                                <span class="provider-badge" data-i18n="provider_verified">مزود موثوق</span>
-                                <div class="market-icon"><i class="fa-solid fa-video"></i></div>
-                            </div>
+                       <!-- CyanCare -->
+<article class="market-card market-item" data-category="health tech" data-search="سيان كير cyancare طب عن بعد استشارات مرئية وصفات الكترونية مراسلات امنة عيادات مستشفيات">
+    <div class="market-media logo-provider-media">
+        <span class="provider-badge" data-i18n="provider_verified">مزود موثوق</span>
+        <img src="CyanCare/favicon.webp" alt="CyanCare Logo" class="provider-card-logo">
+    </div>
 
-                            <div class="market-content">
-                                <span class="market-tag" data-i18n="cat_health_tech">تقنية صحية</span>
+    <div class="market-content">
+        <span class="market-tag" data-i18n="cat_health_tech">تقنية صحية</span>
 
-                                <h2 class="text-xl font-black mb-3" data-i18n="provider_cyan_title">CyanCare</h2>
+        <h2 class="text-xl font-black mb-3" data-i18n="provider_cyan_title">CyanCare</h2>
 
-                                <p class="text-gray-600 dark:text-gray-400 leading-loose flex-grow" data-i18n="provider_cyan_desc">
-                                    منصة طب عن بُعد للمنشآت الطبية، تتيح إطلاق خدمات الاستشارات المرئية والوصفات الإلكترونية والمراسلات الآمنة تحت هوية المنشأة.
-                                </p>
+        <p class="text-gray-600 dark:text-gray-400 leading-loose flex-grow" data-i18n="provider_cyan_desc">
+            منصة طب عن بُعد للمنشآت الطبية، تتيح إطلاق خدمات الاستشارات المرئية والوصفات الإلكترونية والمراسلات الآمنة تحت هوية المنشأة.
+        </p>
 
-                                <ul class="feature-list">
-                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f1">استشارات فيديو وصوت ومحادثة</span></li>
-                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f2">وصفات إلكترونية ومراسلات آمنة</span></li>
-                                    <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f3">تطبيق وواجهة تحت هوية المنشأة</span></li>
-                                </ul>
+        <ul class="feature-list">
+            <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f1">استشارات فيديو وصوت ومحادثة</span></li>
+            <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f2">وصفات إلكترونية ومراسلات آمنة</span></li>
+            <li><i class="fa-solid fa-check"></i><span data-i18n="provider_cyan_f3">تطبيق وواجهة تحت هوية المنشأة</span></li>
+        </ul>
 
-                                <div class="price-box">
-                                    <div class="text-sm text-gray-500 dark:text-gray-400 font-bold" data-i18n="price_by_scope">حسب نطاق المنشأة</div>
-                                    <div class="text-2xl font-black text-primary" data-i18n="price_demo">طلب عرض توضيحي</div>
-                                </div>
+        <div class="price-box">
+            <div class="text-sm text-gray-500 dark:text-gray-400 font-bold" data-i18n="price_by_scope">حسب نطاق المنشأة</div>
+            <div class="text-2xl font-black text-primary" data-i18n="price_demo">طلب عرض توضيحي</div>
+        </div>
 
-                                <div class="grid grid-cols-1 gap-3 mt-5">
-                                    <a href="CyanCare" class="btn-primary w-full py-3">
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                        <span data-i18n="view_details">عرض التفاصيل والأسعار</span>
-                                    </a>
+        <div class="grid grid-cols-1 gap-3 mt-5">
+            <a href="CyanCare" class="btn-primary w-full py-3">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span data-i18n="view_details">عرض التفاصيل والأسعار</span>
+            </a>
 
-                                    <a href="https://cyancare.sa/" target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
-                                        <span data-i18n="visit_provider">زيارة موقع المزود</span>
-                                    </a>
+            <a href="https://cyancare.sa/" target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
+                <span data-i18n="visit_provider">زيارة موقع المزود</span>
+            </a>
 
-                                    <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة CyanCare في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
-                                        <span data-i18n="request_provider">طلب الخدمة عبر eCode</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
+            <a href="https://wa.me/966503666316?text=مرحبًا، أرغب بالاستفسار عن مزود الخدمة CyanCare في ماركت بليس eCode." target="_blank" rel="noopener noreferrer" class="btn-outline w-full py-3">
+                <span data-i18n="request_provider">طلب الخدمة عبر eCode</span>
+            </a>
+        </div>
+    </div>
+</article>
 
                         <!-- Opal Event -->
                         <article class="market-card market-item" data-category="events fitout marketing" data-search="اوبال ايفنت opal event فعاليات معارض تنظيم تشغيل ضيافة بروتوكول بوث تجربة زائر">
