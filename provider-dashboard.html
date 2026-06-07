@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>لوحة مزود الخدمة | eCode</title>
+  <meta name="description" content="لوحة تحكم مزود الخدمة في منصة eCode لإدارة صفحة الخدمات، الطلبات، الحملات، الملف الشخصي، الإعدادات، والدعم." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif']
+          },
+          colors: {
+            primary: '#4F46E5',
+            secondary: '#7C3AED',
+            dark: '#0f172a',
+            darker: '#020617'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  <link rel="icon" type="image/png" href="/favicon.webp">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <style>
+    :root { --text-main: 'Cairo', sans-serif; }
+    html[lang="en"] { --text-main: 'Outfit', sans-serif; }
+    body { font-family: var(--text-main); }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #4F46E5, #9333EA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .dashboard-shell {
+      min-height: 100vh;
+      display: flex;
+      background: #f8fafc;
+    }
+
+    .dark .dashboard-shell {
+      background: #020617;
+    }
+
+    .sidebar {
+      width: 290px;
+      min-height: 100vh;
+      background: rgba(255,255,255,.92);
+      border-inline-end: 1px solid #e5e7eb;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 40;
+      transition: all .3s ease;
+      backdrop-filter: blur(14px);
+    }
+
+    html[dir="ltr"] .sidebar {
+      right: auto;
+      left: 0;
+      border-inline-end: none;
+      border-inline-start: 1px solid #e5e7eb;
+    }
+
+    .dark .sidebar {
+      background: rgba(15,23,42,.94);
+      border-color: #1f2937;
+    }
+
+    .main-area {
+      width: 100%;
+      margin-inline-end: 290px;
+      transition: all .3s ease;
+    }
+
+    html[dir="ltr"] .main-area {
+      margin-inline-end: 0;
+      margin-inline-start: 290px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 18px;
+      font-weight: 800;
+      color: #475569;
+      transition: all .25s ease;
+      cursor: pointer;
+    }
+
+    .dark .sidebar-link {
+      color: #cbd5e1;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: linear-gradient(to right, #4F46E5, #7C3AED);
+      color: #fff;
+      box-shadow: 0 12px 25px rgba(79,70,229,.22);
+      transform: translateY(-1px);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(248,250,252,.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .dark .topbar {
+      background: rgba(2,6,23,.86);
+      border-color: #1f2937;
+    }
+
+    .dashboard-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 28px;
+      padding: 26px;
+      transition: all .25s ease;
+      height: 100%;
+    }
+
+    .dark .dashboard-card {
+      background: #0f172a;
+      border-color: #1f2937;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(15,23,42,.08);
+      border-color: rgba(79,70,229,.35);
+    }
+
+    .dark .dashboard-card:hover {
+      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: rgba(79,70,229,.10);
+      color: #4F46E5;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex: 0 0 auto;
+    }
+
+    .dark .icon-box {
+      background: rgba(129,140,248,.15);
+      color: #c7d2fe;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .status-progress {
+      background: rgba(79,70,229,.10);
+      color: #4F46E5;
+    }
+
+    .status-done {
+      background: rgba(34,197,94,.12);
+      color: #16a34a;
+    }
+
+    .status-pending {
+      background: rgba(245,158,11,.14);
+      color: #d97706;
+    }
+
+    .status-rejected {
+      background: rgba(239,68,68,.12);
+      color: #dc2626;
+    }
+
+    .dark .status-progress {
+      background: rgba(129,140,248,.16);
+      color: #c7d2fe;
+    }
+
+    .dark .status-done {
+      background: rgba(34,197,94,.16);
+      color: #86efac;
+    }
+
+    .dark .status-pending {
+      background: rgba(245,158,11,.18);
+      color: #fbbf24;
+    }
+
+    .dark .status-rejected {
+      background: rgba(239,68,68,.18);
+      color: #fca5a5;
+    }
+
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #4F46E5, #7C3AED);
+      color: white !important;
+      padding: .75rem 1.2rem;
+      border-radius: 9999px;
+      font-weight: 900;
+      transition: all .25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      opacity: .94;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(79,70,229,.24);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: #4F46E5;
+      border: 1px solid rgba(79,70,229,.22);
+      padding: .75rem 1.2rem;
+      border-radius: 9999px;
+      font-weight: 900;
+      transition: all .25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .dark .btn-outline {
+      background: #0f172a;
+      color: #c7d2fe;
+      border-color: rgba(129,140,248,.25);
+    }
+
+    .btn-outline:hover {
+      border-color: #4F46E5;
+      transform: translateY(-2px);
+    }
+
+    .input-field {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      padding: 14px 16px;
+      outline: none;
+      font-weight: 700;
+      color: #0f172a;
+      transition: all .25s ease;
+    }
+
+    .dark .input-field {
+      background: #020617;
+      border-color: #1f2937;
+      color: #f8fafc;
+    }
+
+    .input-field:focus {
+      border-color: #4F46E5;
+      box-shadow: 0 0 0 4px rgba(79,70,229,.10);
+    }
+
+    .service-cover {
+      height: 170px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.22), transparent 34%),
+        linear-gradient(135deg, #4F46E5, #7C3AED);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 44px;
+      overflow: hidden;
+    }
+
+    .mobile-sidebar-overlay {
+      display: none;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(110%);
+      }
+
+      html[dir="ltr"] .sidebar {
+        transform: translateX(-110%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main-area {
+        margin-inline-end: 0;
+        margin-inline-start: 0;
+      }
+
+      html[dir="ltr"] .main-area {
+        margin-inline-start: 0;
+      }
+
+      .mobile-sidebar-overlay.active {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(15,23,42,.45);
+        z-index: 35;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+  <div class="mobile-sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+
+  <div class="dashboard-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar p-5" id="sidebar">
+
+      <div class="flex items-center justify-between gap-3 mb-8">
+        <a href="https://ecode.sa/" class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-slate-900 flex items-center justify-center p-2">
+            <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <div class="text-2xl font-black">eCode</div>
+            <div class="text-gray-500 dark:text-gray-400 text-xs font-bold" data-i18n="provider_portal">بوابة مزود الخدمة</div>
+          </div>
+        </a>
+
+        <button class="lg:hidden text-xl" onclick="toggleSidebar(false)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="rounded-3xl gradient-bg text-white p-5 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-white/18 flex items-center justify-center">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <div>
+            <div class="font-black" data-i18n="demo_provider">مزود خدمة تجريبي</div>
+            <div class="text-white/75 text-sm font-bold">provider@ecode.sa</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="space-y-2">
+        <button class="sidebar-link active w-full" data-page="dashboard" onclick="showDashboardPage('dashboard')">
+          <i class="fa-solid fa-chart-pie w-5"></i>
+          <span data-i18n="nav_dashboard">الداش بورد</span>
+        </button>
+
+        <button class="sidebar-link w-full" data-page="requests" onclick="showDashboardPage('requests')">
+          <i class="fa-solid fa-inbox w-5"></i>
+          <span data-i18n="nav_requests">طلبات العملاء</span>
+        </button>
+
+        <button class="sidebar-link w-full" data-page="services" onclick="showDashboardPage('services')">
+          <i class="fa-solid fa-store w-5"></i>
+          <span data-i18n="nav_services">إدارة الخدمات</span>
+        </button>
+
+        <button class="sidebar-link w-full" data-page="campaigns" onclick="showDashboardPage('campaigns')">
+          <i class="fa-solid fa-bullhorn w-5"></i>
+          <span data-i18n="nav_campaigns">الحملات والعروض</span>
+        </button>
+
+        <button class="sidebar-link w-full" data-page="profile" onclick="showDashboardPage('profile')">
+          <i class="fa-solid fa-building-user w-5"></i>
+          <span data-i18n="nav_profile">ملف المزود</span>
+        </button>
+
+        <button class="sidebar-link w-full" data-page="settings" onclick="showDashboardPage('settings')">
+          <i class="fa-solid fa-gear w-5"></i>
+          <span data-i18n="nav_settings">الإعدادات</span>
+        </button>
+
+        <button class="sidebar-link w-full" data-page="support" onclick="showDashboardPage('support')">
+          <i class="fa-solid fa-headset w-5"></i>
+          <span data-i18n="nav_support">الدعم</span>
+        </button>
+      </nav>
+
+      <div class="mt-8 pt-5 border-t border-gray-200 dark:border-gray-800">
+        <button onclick="logoutDemo()" class="sidebar-link w-full">
+          <i class="fa-solid fa-right-from-bracket w-5"></i>
+          <span data-i18n="logout">تسجيل الخروج</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-area">
+
+      <!-- Topbar -->
+      <header class="topbar px-5 md:px-8 py-4">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <button class="lg:hidden w-11 h-11 rounded-2xl bg-white dark:bg-dark border border-gray-200 dark:border-gray-800 flex items-center justify-center" onclick="toggleSidebar(true)">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+              <h1 class="text-xl md:text-2xl font-black" id="pageTitle" data-i18n="page_dashboard_title">لوحة مزود الخدمة</h1>
+              <p class="text-gray-500 dark:text-gray-400 text-sm font-bold" id="pageSubtitle" data-i18n="page_dashboard_subtitle">نظرة عامة على خدماتك وطلبات العملاء</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button onclick="toggleTheme()" class="w-11 h-11 rounded-2xl bg-white dark:bg-dark border border-gray-200 dark:border-gray-800 flex items-center justify-center">
+              <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+
+            <button onclick="toggleLanguage()" class="w-11 h-11 rounded-2xl bg-white dark:bg-dark border border-gray-200 dark:border-gray-800 flex items-center justify-center">
+              <span id="lang-icon" style="font-size:20px;">🇬🇧</span>
+            </button>
+
+            <div class="hidden md:flex items-center gap-3 rounded-full bg-white dark:bg-dark border border-gray-200 dark:border-gray-800 px-4 py-2">
+              <div class="w-9 h-9 rounded-full gradient-bg text-white flex items-center justify-center">
+                <i class="fa-solid fa-store"></i>
+              </div>
+              <div>
+                <div class="text-sm font-black" data-i18n="demo_provider">مزود خدمة تجريبي</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Provider</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-5 md:p-8">
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="page-section active">
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+            <div class="dashboard-card">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <p class="text-gray-500 dark:text-gray-400 font-bold mb-2" data-i18n="stat_new_requests">طلبات جديدة</p>
+                  <h3 class="text-4xl font-black">07</h3>
+                </div>
+                <div class="icon-box"><i class="fa-solid fa-inbox"></i></div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <p class="text-gray-500 dark:text-gray-400 font-bold mb-2" data-i18n="stat_active_services">خدمات منشورة</p>
+                  <h3 class="text-4xl font-black">05</h3>
+                </div>
+                <div class="icon-box"><i class="fa-solid fa-store"></i></div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <p class="text-gray-500 dark:text-gray-400 font-bold mb-2" data-i18n="stat_quotes_sent">عروض مرسلة</p>
+                  <h3 class="text-4xl font-black">12</h3>
+                </div>
+                <div class="icon-box"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <p class="text-gray-500 dark:text-gray-400 font-bold mb-2" data-i18n="stat_conversion">طلبات مقبولة</p>
+                  <h3 class="text-4xl font-black">04</h3>
+                </div>
+                <div class="icon-box"><i class="fa-solid fa-circle-check"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div class="dashboard-card xl:col-span-2">
+              <div class="flex items-center justify-between gap-4 mb-6">
+                <div>
+                  <h2 class="text-2xl font-black" data-i18n="latest_requests">آخر طلبات العملاء</h2>
+                  <p class="text-gray-500 dark:text-gray-400 font-bold" data-i18n="latest_requests_desc">طلبات تحتاج متابعة أو عرض سعر</p>
+                </div>
+                <button class="btn-outline" onclick="showDashboardPage('requests')" data-i18n="view_all">عرض الكل</button>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-4 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div>
+                      <h3 class="font-black mb-1" data-i18n="request_1_title">طلب تنظيم فعالية شركة</h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400 font-bold">REQ-P-2001</p>
+                    </div>
+                    <span class="status-pill status-pending"><i class="fa-solid fa-clock"></i><span data-i18n="status_waiting_quote">بانتظار عرض السعر</span></span>
+                  </div>
+                </div>
+
+                <div class="p-4 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div>
+                      <h3 class="font-black mb-1" data-i18n="request_2_title">طلب تصميم بوث معرض</h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400 font-bold">REQ-P-2002</p>
+                    </div>
+                    <span class="status-pill status-progress"><i class="fa-solid fa-spinner"></i><span data-i18n="status_under_review">قيد المراجعة</span></span>
+                  </div>
+                </div>
+
+                <div class="p-4 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div>
+                      <h3 class="font-black mb-1" data-i18n="request_3_title">طلب تجهيز استقبال وضيافة</h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400 font-bold">REQ-P-2003</p>
+                    </div>
+                    <span class="status-pill status-done"><i class="fa-solid fa-circle-check"></i><span data-i18n="status_quote_sent">تم إرسال العرض</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <h2 class="text-2xl font-black mb-5" data-i18n="quick_actions">إجراءات سريعة</h2>
+
+              <div class="space-y-3">
+                <button class="btn-primary w-full" onclick="showDashboardPage('services')">
+                  <i class="fa-solid fa-plus"></i>
+                  <span data-i18n="add_service">إضافة خدمة</span>
+                </button>
+
+                <button class="btn-outline w-full" onclick="showDashboardPage('requests')">
+                  <i class="fa-solid fa-inbox"></i>
+                  <span data-i18n="review_requests">مراجعة الطلبات</span>
+                </button>
+
+                <button class="btn-outline w-full" onclick="showDashboardPage('profile')">
+                  <i class="fa-solid fa-building-user"></i>
+                  <span data-i18n="update_provider_profile">تحديث ملف المزود</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Requests -->
+        <section id="requests" class="page-section">
+          <div class="dashboard-card">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 class="text-2xl font-black" data-i18n="requests_title">طلبات العملاء</h2>
+                <p class="text-gray-500 dark:text-gray-400 font-bold" data-i18n="requests_desc">استعرض الطلبات الواردة من eCode وجهز عروض الأسعار</p>
+              </div>
+              <button class="btn-primary" onclick="alertDemo()" data-i18n="export_requests">تصدير الطلبات</button>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-800">
+                    <th class="py-4 text-start" data-i18n="table_request">الطلب</th>
+                    <th class="py-4 text-start" data-i18n="table_service">الخدمة</th>
+                    <th class="py-4 text-start" data-i18n="table_client">العميل</th>
+                    <th class="py-4 text-start" data-i18n="table_status">الحالة</th>
+                    <th class="py-4 text-start" data-i18n="table_action">الإجراء</th>
+                  </tr>
+                </thead>
+
+                <tbody class="font-bold">
+                  <tr class="border-b border-gray-100 dark:border-gray-800">
+                    <td class="py-4">REQ-P-2001</td>
+                    <td class="py-4" data-i18n="request_1_title">طلب تنظيم فعالية شركة</td>
+                    <td class="py-4" data-i18n="client_1">شركة تجريبية</td>
+                    <td class="py-4"><span class="status-pill status-pending" data-i18n="status_waiting_quote">بانتظار عرض السعر</span></td>
+                    <td class="py-4"><button class="btn-outline py-2 px-4" onclick="alertDemo()" data-i18n="send_quote">إرسال عرض</button></td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 dark:border-gray-800">
+                    <td class="py-4">REQ-P-2002</td>
+                    <td class="py-4" data-i18n="request_2_title">طلب تصميم بوث معرض</td>
+                    <td class="py-4" data-i18n="client_2">مؤسسة ناشئة</td>
+                    <td class="py-4"><span class="status-pill status-progress" data-i18n="status_under_review">قيد المراجعة</span></td>
+                    <td class="py-4"><button class="btn-outline py-2 px-4" onclick="alertDemo()" data-i18n="view_details">عرض التفاصيل</button></td>
+                  </tr>
+
+                  <tr>
+                    <td class="py-4">REQ-P-2003</td>
+                    <td class="py-4" data-i18n="request_3_title">طلب تجهيز استقبال وضيافة</td>
+                    <td class="py-4" data-i18n="client_3">جهة تنظيمية</td>
+                    <td class="py-4"><span class="status-pill status-done" data-i18n="status_quote_sent">تم إرسال العرض</span></td>
+                    <td class="py-4"><button class="btn-outline py-2 px-4" onclick="alertDemo()" data-i18n="follow_up">متابعة</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Services -->
+        <section id="services" class="page-section">
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div class="xl:col-span-2">
+              <div class="mb-6">
+                <h2 class="text-3xl font-black mb-2" data-i18n="services_title">إدارة الخدمات</h2>
+                <p class="text-gray-500 dark:text-gray-400 font-bold" data-i18n="services_desc">هذه الخدمات تظهر في صفحة مزودك داخل سوق الخدمات.</p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="dashboard-card">
+                  <div class="service-cover mb-5">
+                    <i class="fa-solid fa-calendar-check"></i>
+                  </div>
+                  <div class="flex items-center justify-between gap-3 mb-3">
+                    <h3 class="text-xl font-black" data-i18n="service_1_title">تنظيم الفعاليات</h3>
+                    <span class="status-pill status-done" data-i18n="published">منشورة</span>
+                  </div>
+                  <p class="text-gray-500 dark:text-gray-400 leading-loose mb-5" data-i18n="service_1_desc">تخطيط وتنفيذ الفعاليات من الفكرة حتى التشغيل.</p>
+                  <button class="btn-outline w-full" onclick="alertDemo()" data-i18n="edit_service">تعديل الخدمة</button>
+                </div>
+
+                <div class="dashboard-card">
+                  <div class="service-cover mb-5">
+                    <i class="fa-solid fa-person-booth"></i>
+                  </div>
+                  <div class="flex items-center justify-between gap-3 mb-3">
+                    <h3 class="text-xl font-black" data-i18n="service_2_title">تصميم وتجهيز البوثات</h3>
+                    <span class="status-pill status-done" data-i18n="published">منشورة</span>
+                  </div>
+                  <p class="text-gray-500 dark:text-gray-400 leading-loose mb-5" data-i18n="service_2_desc">تصميم أجنحة المعارض وتجهيزها وفق هوية العميل.</p>
+                  <button class="btn-outline w-full" onclick="alertDemo()" data-i18n="edit_service">تعديل الخدمة</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <h2 class="text-2xl font-black mb-5" data-i18n="add_new_service">إضافة خدمة جديدة</h2>
+
+              <form class="space-y-4" onsubmit="event.preventDefault(); alertDemo();">
+                <input class="input-field" data-i18n-placeholder="ph_service_name" placeholder="اسم الخدمة">
+                <select class="input-field">
+                  <option data-i18n="cat_events">فعاليات ومعارض</option>
+                  <option data-i18n="cat_fitout">تجهيزات وتشطيبات</option>
+                  <option data-i18n="cat_marketing">تسويق وتواصل</option>
+                  <option data-i18n="cat_tech">حلول تقنية</option>
+                </select>
+                <input class="input-field" data-i18n-placeholder="ph_price" placeholder="السعر أو طريقة التسعير">
+                <textarea class="input-field min-h-[140px]" data-i18n-placeholder="ph_service_desc" placeholder="وصف مختصر للخدمة"></textarea>
+                <button class="btn-primary w-full" data-i18n="save_service">حفظ الخدمة</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Campaigns -->
+        <section id="campaigns" class="page-section">
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div class="dashboard-card xl:col-span-2">
+              <h2 class="text-2xl font-black mb-5" data-i18n="offers_title">الحملات والعروض</h2>
+
+              <div class="space-y-4">
+                <div class="p-5 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                      <h3 class="font-black text-lg" data-i18n="offer_1_title">عرض باقة الفعاليات للشركات</h3>
+                      <p class="text-gray-500 dark:text-gray-400 font-bold text-sm" data-i18n="offer_1_desc">خصم خاص على إدارة الفعاليات المتكاملة</p>
+                    </div>
+                    <span class="status-pill status-done" data-i18n="active">نشط</span>
+                  </div>
+                </div>
+
+                <div class="p-5 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                      <h3 class="font-black text-lg" data-i18n="offer_2_title">عرض تجهيز البوثات</h3>
+                      <p class="text-gray-500 dark:text-gray-400 font-bold text-sm" data-i18n="offer_2_desc">باقة تصميم وتنفيذ للمعارض الموسمية</p>
+                    </div>
+                    <span class="status-pill status-pending" data-i18n="draft">مسودة</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <h2 class="text-2xl font-black mb-5" data-i18n="add_offer">إضافة عرض</h2>
+
+              <form class="space-y-4" onsubmit="event.preventDefault(); alertDemo();">
+                <input class="input-field" data-i18n-placeholder="ph_offer_name" placeholder="اسم العرض">
+                <input class="input-field" data-i18n-placeholder="ph_offer_duration" placeholder="مدة العرض">
+                <textarea class="input-field min-h-[130px]" data-i18n-placeholder="ph_offer_desc" placeholder="وصف العرض"></textarea>
+                <button class="btn-primary w-full" data-i18n="save_offer">حفظ العرض</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Profile -->
+        <section id="profile" class="page-section">
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div class="dashboard-card">
+              <div class="text-center">
+                <div class="w-24 h-24 rounded-[2rem] gradient-bg text-white flex items-center justify-center text-4xl mx-auto mb-5">
+                  <i class="fa-solid fa-store"></i>
+                </div>
+                <h2 class="text-2xl font-black mb-1" data-i18n="demo_provider">مزود خدمة تجريبي</h2>
+                <p class="text-gray-500 dark:text-gray-400 font-bold">provider@ecode.sa</p>
+                <div class="mt-5">
+                  <span class="status-pill status-done" data-i18n="verified_provider">مزود موثوق</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card xl:col-span-2">
+              <h2 class="text-2xl font-black mb-5" data-i18n="provider_profile_title">بيانات مزود الخدمة</h2>
+
+              <form class="grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="event.preventDefault(); alertDemo();">
+                <input class="input-field" data-i18n-placeholder="ph_provider_name" placeholder="اسم مزود الخدمة" value="Opal Event">
+                <input class="input-field" placeholder="provider@ecode.sa" dir="ltr">
+                <input class="input-field" placeholder="+966 5XXXXXXXX" dir="ltr">
+                <input class="input-field" data-i18n-placeholder="ph_website" placeholder="رابط الموقع">
+                <select class="input-field">
+                  <option data-i18n="cat_events">فعاليات ومعارض</option>
+                  <option data-i18n="cat_fitout">تجهيزات وتشطيبات</option>
+                  <option data-i18n="cat_marketing">تسويق وتواصل</option>
+                  <option data-i18n="cat_tech">حلول تقنية</option>
+                </select>
+                <input class="input-field" data-i18n-placeholder="ph_city" placeholder="المدينة">
+                <textarea class="input-field md:col-span-2 min-h-[150px]" data-i18n-placeholder="ph_provider_desc" placeholder="نبذة عن مزود الخدمة"></textarea>
+                <div class="md:col-span-2">
+                  <button class="btn-primary" data-i18n="save_changes">حفظ التغييرات</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Settings -->
+        <section id="settings" class="page-section">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="dashboard-card">
+              <h2 class="text-2xl font-black mb-5" data-i18n="settings_title">الإعدادات</h2>
+
+              <div class="space-y-4">
+                <label class="flex items-center justify-between gap-4 p-4 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <span class="font-black" data-i18n="request_notifications">تنبيهات الطلبات الجديدة</span>
+                  <input type="checkbox" checked>
+                </label>
+
+                <label class="flex items-center justify-between gap-4 p-4 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <span class="font-black" data-i18n="email_notifications">تنبيهات البريد الإلكتروني</span>
+                  <input type="checkbox" checked>
+                </label>
+
+                <label class="flex items-center justify-between gap-4 p-4 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <span class="font-black" data-i18n="whatsapp_notifications">تنبيهات واتساب</span>
+                  <input type="checkbox">
+                </label>
+
+                <label class="flex items-center justify-between gap-4 p-4 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <span class="font-black" data-i18n="dark_mode_label">الوضع الداكن</span>
+                  <button class="btn-outline" onclick="toggleTheme()" data-i18n="toggle">تبديل</button>
+                </label>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <h2 class="text-2xl font-black mb-5" data-i18n="security_title">الأمان</h2>
+
+              <form class="space-y-4" onsubmit="event.preventDefault(); alertDemo();">
+                <input class="input-field" type="password" data-i18n-placeholder="ph_current_password" placeholder="كلمة المرور الحالية">
+                <input class="input-field" type="password" data-i18n-placeholder="ph_new_password" placeholder="كلمة المرور الجديدة">
+                <input class="input-field" type="password" data-i18n-placeholder="ph_confirm_password" placeholder="تأكيد كلمة المرور">
+                <button class="btn-primary" data-i18n="update_password">تحديث كلمة المرور</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section id="support" class="page-section">
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div class="dashboard-card xl:col-span-2">
+              <h2 class="text-2xl font-black mb-5" data-i18n="support_title">الدعم</h2>
+
+              <div class="space-y-4">
+                <div class="p-5 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-100 dark:border-gray-800">
+                  <div class="flex items-center justify-between gap-4">
+                    <div>
+                      <h3 class="font-black" data-i18n="ticket_1">مشكلة في ظهور صفحة المزود</h3>
+                      <p class="text-gray-500 dark:text-gray-400 text-sm font-bold">TIC-P-3001</p>
+                    </div>
+                    <span class="status-pill status-progress" data-i18n="status_progress">قيد التنفيذ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card">
+              <h2 class="text-2xl font-black mb-5" data-i18n="open_new_ticket">فتح تذكرة جديدة</h2>
+
+              <form class="space-y-4" onsubmit="event.preventDefault(); alertDemo();">
+                <input class="input-field" data-i18n-placeholder="ph_ticket_subject" placeholder="عنوان التذكرة">
+                <select class="input-field">
+                  <option data-i18n="ticket_type_general">استفسار عام</option>
+                  <option data-i18n="ticket_type_service">مشكلة في خدمة</option>
+                  <option data-i18n="ticket_type_request">مشكلة في طلب عميل</option>
+                </select>
+                <textarea class="input-field min-h-[130px]" data-i18n-placeholder="ph_ticket_message" placeholder="اكتب رسالتك"></textarea>
+                <button class="btn-primary" data-i18n="send_ticket">إرسال التذكرة</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    const translations = {
+      ar: {
+        provider_portal: "بوابة مزود الخدمة",
+        demo_provider: "مزود خدمة تجريبي",
+
+        nav_dashboard: "الداش بورد",
+        nav_requests: "طلبات العملاء",
+        nav_services: "إدارة الخدمات",
+        nav_campaigns: "الحملات والعروض",
+        nav_profile: "ملف المزود",
+        nav_settings: "الإعدادات",
+        nav_support: "الدعم",
+        logout: "تسجيل الخروج",
+
+        page_dashboard_title: "لوحة مزود الخدمة",
+        page_dashboard_subtitle: "نظرة عامة على خدماتك وطلبات العملاء",
+        page_requests_title: "طلبات العملاء",
+        page_requests_subtitle: "مراجعة الطلبات الواردة وتجهيز عروض الأسعار",
+        page_services_title: "إدارة الخدمات",
+        page_services_subtitle: "إدارة الخدمات التي تظهر في سوق الخدمات",
+        page_campaigns_title: "الحملات والعروض",
+        page_campaigns_subtitle: "إدارة العروض والحملات الخاصة بالمزود",
+        page_profile_title: "ملف المزود",
+        page_profile_subtitle: "تحديث بيانات مزود الخدمة وظهوره في السوق",
+        page_settings_title: "الإعدادات",
+        page_settings_subtitle: "إدارة التنبيهات والأمان والتفضيلات",
+        page_support_title: "الدعم",
+        page_support_subtitle: "تذاكر الدعم والاستفسارات",
+
+        stat_new_requests: "طلبات جديدة",
+        stat_active_services: "خدمات منشورة",
+        stat_quotes_sent: "عروض مرسلة",
+        stat_conversion: "طلبات مقبولة",
+
+        latest_requests: "آخر طلبات العملاء",
+        latest_requests_desc: "طلبات تحتاج متابعة أو عرض سعر",
+        view_all: "عرض الكل",
+
+        request_1_title: "طلب تنظيم فعالية شركة",
+        request_2_title: "طلب تصميم بوث معرض",
+        request_3_title: "طلب تجهيز استقبال وضيافة",
+
+        status_waiting_quote: "بانتظار عرض السعر",
+        status_under_review: "قيد المراجعة",
+        status_quote_sent: "تم إرسال العرض",
+        status_progress: "قيد التنفيذ",
+
+        quick_actions: "إجراءات سريعة",
+        add_service: "إضافة خدمة",
+        review_requests: "مراجعة الطلبات",
+        update_provider_profile: "تحديث ملف المزود",
+
+        requests_title: "طلبات العملاء",
+        requests_desc: "استعرض الطلبات الواردة من eCode وجهز عروض الأسعار",
+        export_requests: "تصدير الطلبات",
+        table_request: "الطلب",
+        table_service: "الخدمة",
+        table_client: "العميل",
+        table_status: "الحالة",
+        table_action: "الإجراء",
+        client_1: "شركة تجريبية",
+        client_2: "مؤسسة ناشئة",
+        client_3: "جهة تنظيمية",
+        send_quote: "إرسال عرض",
+        view_details: "عرض التفاصيل",
+        follow_up: "متابعة",
+
+        services_title: "إدارة الخدمات",
+        services_desc: "هذه الخدمات تظهر في صفحة مزودك داخل سوق الخدمات.",
+        service_1_title: "تنظيم الفعاليات",
+        service_1_desc: "تخطيط وتنفيذ الفعاليات من الفكرة حتى التشغيل.",
+        service_2_title: "تصميم وتجهيز البوثات",
+        service_2_desc: "تصميم أجنحة المعارض وتجهيزها وفق هوية العميل.",
+        published: "منشورة",
+        edit_service: "تعديل الخدمة",
+        add_new_service: "إضافة خدمة جديدة",
+        ph_service_name: "اسم الخدمة",
+        ph_price: "السعر أو طريقة التسعير",
+        ph_service_desc: "وصف مختصر للخدمة",
+        save_service: "حفظ الخدمة",
+        cat_events: "فعاليات ومعارض",
+        cat_fitout: "تجهيزات وتشطيبات",
+        cat_marketing: "تسويق وتواصل",
+        cat_tech: "حلول تقنية",
+
+        offers_title: "الحملات والعروض",
+        offer_1_title: "عرض باقة الفعاليات للشركات",
+        offer_1_desc: "خصم خاص على إدارة الفعاليات المتكاملة",
+        offer_2_title: "عرض تجهيز البوثات",
+        offer_2_desc: "باقة تصميم وتنفيذ للمعارض الموسمية",
+        active: "نشط",
+        draft: "مسودة",
+        add_offer: "إضافة عرض",
+        ph_offer_name: "اسم العرض",
+        ph_offer_duration: "مدة العرض",
+        ph_offer_desc: "وصف العرض",
+        save_offer: "حفظ العرض",
+
+        verified_provider: "مزود موثوق",
+        provider_profile_title: "بيانات مزود الخدمة",
+        ph_provider_name: "اسم مزود الخدمة",
+        ph_website: "رابط الموقع",
+        ph_city: "المدينة",
+        ph_provider_desc: "نبذة عن مزود الخدمة",
+        save_changes: "حفظ التغييرات",
+
+        settings_title: "الإعدادات",
+        request_notifications: "تنبيهات الطلبات الجديدة",
+        email_notifications: "تنبيهات البريد الإلكتروني",
+        whatsapp_notifications: "تنبيهات واتساب",
+        dark_mode_label: "الوضع الداكن",
+        toggle: "تبديل",
+
+        security_title: "الأمان",
+        ph_current_password: "كلمة المرور الحالية",
+        ph_new_password: "كلمة المرور الجديدة",
+        ph_confirm_password: "تأكيد كلمة المرور",
+        update_password: "تحديث كلمة المرور",
+
+        support_title: "الدعم",
+        ticket_1: "مشكلة في ظهور صفحة المزود",
+        open_new_ticket: "فتح تذكرة جديدة",
+        ph_ticket_subject: "عنوان التذكرة",
+        ticket_type_general: "استفسار عام",
+        ticket_type_service: "مشكلة في خدمة",
+        ticket_type_request: "مشكلة في طلب عميل",
+        ph_ticket_message: "اكتب رسالتك",
+        send_ticket: "إرسال التذكرة",
+
+        demo_alert: "هذه نسخة ديمو. لاحقًا سيتم ربطها بقاعدة البيانات والباك إند."
+      },
+
+      en: {
+        provider_portal: "Provider Portal",
+        demo_provider: "Demo Provider",
+
+        nav_dashboard: "Dashboard",
+        nav_requests: "Client Requests",
+        nav_services: "Service Management",
+        nav_campaigns: "Campaigns & Offers",
+        nav_profile: "Provider Profile",
+        nav_settings: "Settings",
+        nav_support: "Support",
+        logout: "Logout",
+
+        page_dashboard_title: "Provider Dashboard",
+        page_dashboard_subtitle: "Overview of your services and client requests",
+        page_requests_title: "Client Requests",
+        page_requests_subtitle: "Review incoming requests and prepare quotations",
+        page_services_title: "Service Management",
+        page_services_subtitle: "Manage services displayed in the marketplace",
+        page_campaigns_title: "Campaigns & Offers",
+        page_campaigns_subtitle: "Manage provider offers and promotional campaigns",
+        page_profile_title: "Provider Profile",
+        page_profile_subtitle: "Update provider information and marketplace presence",
+        page_settings_title: "Settings",
+        page_settings_subtitle: "Manage notifications, security, and preferences",
+        page_support_title: "Support",
+        page_support_subtitle: "Support tickets and inquiries",
+
+        stat_new_requests: "New Requests",
+        stat_active_services: "Published Services",
+        stat_quotes_sent: "Quotes Sent",
+        stat_conversion: "Accepted Requests",
+
+        latest_requests: "Latest Client Requests",
+        latest_requests_desc: "Requests that need follow-up or quotation",
+        view_all: "View All",
+
+        request_1_title: "Corporate Event Request",
+        request_2_title: "Exhibition Booth Design Request",
+        request_3_title: "Reception and Hospitality Setup Request",
+
+        status_waiting_quote: "Waiting for Quote",
+        status_under_review: "Under Review",
+        status_quote_sent: "Quote Sent",
+        status_progress: "In Progress",
+
+        quick_actions: "Quick Actions",
+        add_service: "Add Service",
+        review_requests: "Review Requests",
+        update_provider_profile: "Update Provider Profile",
+
+        requests_title: "Client Requests",
+        requests_desc: "Review requests received from eCode and prepare quotations",
+        export_requests: "Export Requests",
+        table_request: "Request",
+        table_service: "Service",
+        table_client: "Client",
+        table_status: "Status",
+        table_action: "Action",
+        client_1: "Demo Company",
+        client_2: "Startup Entity",
+        client_3: "Organizing Entity",
+        send_quote: "Send Quote",
+        view_details: "View Details",
+        follow_up: "Follow Up",
+
+        services_title: "Service Management",
+        services_desc: "These services appear on your provider page in the marketplace.",
+        service_1_title: "Event Management",
+        service_1_desc: "Planning and executing events from concept to operations.",
+        service_2_title: "Booth Design and Setup",
+        service_2_desc: "Designing and preparing exhibition booths based on client identity.",
+        published: "Published",
+        edit_service: "Edit Service",
+        add_new_service: "Add New Service",
+        ph_service_name: "Service name",
+        ph_price: "Price or pricing method",
+        ph_service_desc: "Brief service description",
+        save_service: "Save Service",
+        cat_events: "Events & Exhibitions",
+        cat_fitout: "Fit-Out & Finishing",
+        cat_marketing: "Marketing & Communication",
+        cat_tech: "Technology Solutions",
+
+        offers_title: "Campaigns & Offers",
+        offer_1_title: "Corporate Events Package Offer",
+        offer_1_desc: "Special discount on integrated event management",
+        offer_2_title: "Booth Setup Offer",
+        offer_2_desc: "Design and execution package for seasonal exhibitions",
+        active: "Active",
+        draft: "Draft",
+        add_offer: "Add Offer",
+        ph_offer_name: "Offer name",
+        ph_offer_duration: "Offer duration",
+        ph_offer_desc: "Offer description",
+        save_offer: "Save Offer",
+
+        verified_provider: "Trusted Provider",
+        provider_profile_title: "Provider Information",
+        ph_provider_name: "Provider name",
+        ph_website: "Website URL",
+        ph_city: "City",
+        ph_provider_desc: "Provider overview",
+        save_changes: "Save Changes",
+
+        settings_title: "Settings",
+        request_notifications: "New Request Notifications",
+        email_notifications: "Email Notifications",
+        whatsapp_notifications: "WhatsApp Notifications",
+        dark_mode_label: "Dark Mode",
+        toggle: "Toggle",
+
+        security_title: "Security",
+        ph_current_password: "Current password",
+        ph_new_password: "New password",
+        ph_confirm_password: "Confirm password",
+        update_password: "Update Password",
+
+        support_title: "Support",
+        ticket_1: "Issue with provider page visibility",
+        open_new_ticket: "Open New Ticket",
+        ph_ticket_subject: "Ticket subject",
+        ticket_type_general: "General Inquiry",
+        ticket_type_service: "Service Issue",
+        ticket_type_request: "Client Request Issue",
+        ph_ticket_message: "Write your message",
+        send_ticket: "Send Ticket",
+
+        demo_alert: "This is a demo version. Later, it will be connected to the database and backend."
+      }
+    };
+
+    let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+    const pageMeta = {
+      dashboard: ['page_dashboard_title', 'page_dashboard_subtitle'],
+      requests: ['page_requests_title', 'page_requests_subtitle'],
+      services: ['page_services_title', 'page_services_subtitle'],
+      campaigns: ['page_campaigns_title', 'page_campaigns_subtitle'],
+      profile: ['page_profile_title', 'page_profile_subtitle'],
+      settings: ['page_settings_title', 'page_settings_subtitle'],
+      support: ['page_support_title', 'page_support_subtitle']
+    };
+
+    function toggleSidebar(force) {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+
+      const shouldOpen = typeof force === 'boolean' ? force : !sidebar.classList.contains('open');
+
+      sidebar.classList.toggle('open', shouldOpen);
+      overlay.classList.toggle('active', shouldOpen);
+    }
+
+    function showDashboardPage(pageId) {
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      const target = document.getElementById(pageId);
+      if (target) target.classList.add('active');
+
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      const activeLink = document.querySelector(`.sidebar-link[data-page="${pageId}"]`);
+      if (activeLink) activeLink.classList.add('active');
+
+      updatePageTitle(pageId);
+      toggleSidebar(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updatePageTitle(pageId) {
+      const title = document.getElementById('pageTitle');
+      const subtitle = document.getElementById('pageSubtitle');
+      const meta = pageMeta[pageId] || pageMeta.dashboard;
+
+      if (title) title.innerHTML = translations[currentLang][meta[0]];
+      if (subtitle) subtitle.innerHTML = translations[currentLang][meta[1]];
+
+      if (currentLang === 'ar') {
+        document.title = `${translations.ar[meta[0]]} | eCode`;
+      } else {
+        document.title = `${translations.en[meta[0]]} | eCode`;
+      }
+    }
+
+    function initTheme() {
+      const icon = document.getElementById('theme-icon');
+
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+        if (icon) {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        }
+      } else {
+        document.documentElement.classList.remove('dark');
+        if (icon) {
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        }
+      }
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.theme = 'light';
+        if (icon) {
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        }
+      } else {
+        html.classList.add('dark');
+        localStorage.theme = 'dark';
+        if (icon) {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        }
+      }
+    }
+
+    function updateContent() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.innerHTML = translations[currentLang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.setAttribute('placeholder', translations[currentLang][key]);
+        }
+      });
+
+      const activeSection = document.querySelector('.page-section.active');
+      updatePageTitle(activeSection ? activeSection.id : 'dashboard');
+
+      if (currentLang === 'ar') {
+        document.querySelector('meta[name="description"]').setAttribute(
+          'content',
+          'لوحة تحكم مزود الخدمة في منصة eCode لإدارة صفحة الخدمات، الطلبات، الحملات، الملف الشخصي، الإعدادات، والدعم.'
+        );
+      } else {
+        document.querySelector('meta[name="description"]').setAttribute(
+          'content',
+          'Provider dashboard for managing eCode services, client requests, campaigns, profile, settings, and support.'
+        );
+      }
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+      const html = document.documentElement;
+      const langIcon = document.getElementById('lang-icon');
+
+      if (currentLang === 'ar') {
+        html.setAttribute('lang', 'ar');
+        html.setAttribute('dir', 'rtl');
+        if (langIcon) langIcon.textContent = '🇬🇧';
+      } else {
+        html.setAttribute('lang', 'en');
+        html.setAttribute('dir', 'ltr');
+        if (langIcon) langIcon.textContent = '🇸🇦';
+      }
+
+      localStorage.setItem('userLanguage', currentLang);
+      updateContent();
+    }
+
+    function initLanguage() {
+      const html = document.documentElement;
+      const langIcon = document.getElementById('lang-icon');
+
+      if (currentLang === 'ar') {
+        html.setAttribute('lang', 'ar');
+        html.setAttribute('dir', 'rtl');
+        if (langIcon) langIcon.textContent = '🇬🇧';
+      } else {
+        html.setAttribute('lang', 'en');
+        html.setAttribute('dir', 'ltr');
+        if (langIcon) langIcon.textContent = '🇸🇦';
+      }
+
+      updateContent();
+    }
+
+    function alertDemo() {
+      alert(translations[currentLang].demo_alert);
+    }
+
+    function logoutDemo() {
+      localStorage.removeItem('demoMode');
+      localStorage.removeItem('demoAccountType');
+      window.location.href = 'login.html';
+    }
+
+    window.onload = () => {
+      initTheme();
+      initLanguage();
+    };
+  </script>
+
+</body>
+</html>
