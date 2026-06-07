@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>تسجيل الدخول | eCode</title>
+  <meta name="description" content="صفحة تسجيل الدخول وإنشاء الحساب والتحقق لمنصة eCode." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif']
+          },
+          colors: {
+            primary: '#4F46E5',
+            secondary: '#7C3AED',
+            dark: '#0f172a',
+            darker: '#020617'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  <link rel="icon" type="image/png" href="/favicon.webp">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <style>
+    :root {
+      --text-main: 'Cairo', sans-serif;
+    }
+
+    html[lang="en"] {
+      --text-main: 'Outfit', sans-serif;
+    }
+
+    body {
+      font-family: var(--text-main);
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #4F46E5, #9333EA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    }
+
+    .auth-shell {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-shell::before {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      border-radius: 9999px;
+      background: rgba(79, 70, 229, 0.18);
+      top: -180px;
+      right: -160px;
+      filter: blur(55px);
+      z-index: 0;
+    }
+
+    .auth-shell::after {
+      content: "";
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      border-radius: 9999px;
+      background: rgba(124, 58, 237, 0.16);
+      bottom: -220px;
+      left: -180px;
+      filter: blur(60px);
+      z-index: 0;
+    }
+
+    .auth-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+    }
+
+    .dark .auth-card {
+      background: rgba(15, 23, 42, 0.88);
+      border-color: rgba(31, 41, 55, 0.9);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .side-panel {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.28), transparent 32%),
+        linear-gradient(135deg, #4F46E5, #7C3AED);
+    }
+
+    .side-panel::before {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,.13);
+      top: -130px;
+      right: -90px;
+    }
+
+    .side-panel::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,.10);
+      bottom: -110px;
+      left: -80px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon img {
+      height: 44px;
+      width: auto;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.25rem;
+      line-height: 1.1;
+      color: #1e293b;
+    }
+
+    .dark .brand-name {
+      color: #f8fafc;
+    }
+
+    .brand-tagline {
+      font-size: .75rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .dark .brand-tagline {
+      color: #94a3b8;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #4F46E5, #7C3AED);
+      color: white !important;
+      padding: .85rem 1.25rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      transition: all .3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      opacity: .94;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(79, 70, 229, .24);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: #4F46E5;
+      border: 1px solid rgba(79,70,229,.22);
+      padding: .75rem 1.1rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      transition: all .3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .dark .btn-outline {
+      background: #0f172a;
+      color: #c7d2fe;
+      border-color: rgba(129,140,248,.25);
+    }
+
+    .btn-outline:hover {
+      border-color: #4F46E5;
+      transform: translateY(-2px);
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input,
+    .input-wrap select {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 14px 46px 14px 18px;
+      outline: none;
+      font-weight: 700;
+      color: #0f172a;
+      transition: all .25s ease;
+    }
+
+    html[dir="ltr"] .input-wrap input,
+    html[dir="ltr"] .input-wrap select {
+      padding: 14px 18px 14px 46px;
+    }
+
+    .dark .input-wrap input,
+    .dark .input-wrap select {
+      background: #020617;
+      border-color: #1f2937;
+      color: #f8fafc;
+    }
+
+    .input-wrap input:focus,
+    .input-wrap select:focus {
+      border-color: #4F46E5;
+      box-shadow: 0 0 0 4px rgba(79,70,229,.10);
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      color: #4F46E5;
+      z-index: 2;
+    }
+
+    html[dir="ltr"] .input-icon {
+      right: auto;
+      left: 16px;
+    }
+
+    .auth-page {
+      display: none;
+    }
+
+    .auth-page.active {
+      display: block;
+    }
+
+    .otp-input {
+      width: 48px;
+      height: 56px;
+      text-align: center;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      font-size: 22px;
+      font-weight: 900;
+      outline: none;
+    }
+
+    .dark .otp-input {
+      background: #020617;
+      border-color: #1f2937;
+      color: #fff;
+    }
+
+    .otp-input:focus {
+      border-color: #4F46E5;
+      box-shadow: 0 0 0 4px rgba(79,70,229,.10);
+    }
+
+    .tab-link {
+      color: #4F46E5;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .tab-link:hover {
+      opacity: .8;
+    }
+
+    @media (max-width: 1024px) {
+      .side-panel {
+        min-height: 260px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 dark:bg-darker dark:text-slate-200 transition-colors duration-300">
+
+  <main class="auth-shell flex items-center justify-center p-4 md:p-8">
+
+    <div class="auth-card w-full max-w-6xl rounded-[2rem] overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+
+      <!-- Visual Side -->
+      <section class="side-panel text-white p-8 md:p-12 flex flex-col justify-between min-h-[360px] lg:min-h-[720px]">
+
+        <div class="relative z-10 flex items-center justify-between gap-4">
+          <a href="https://ecode.sa/" class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-white/95 flex items-center justify-center p-2">
+              <img src="https://ecode.sa/favicon.webp" alt="eCode Logo" class="w-full h-full object-contain">
+            </div>
+            <div>
+              <div class="text-2xl font-black">eCode</div>
+              <div class="text-white/80 text-sm font-bold" data-i18n="brand_tagline">تصنع الأثر</div>
+            </div>
+          </a>
+
+          <div class="flex items-center gap-3">
+            <button onclick="toggleTheme()" class="w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 transition flex items-center justify-center" aria-label="Toggle Theme">
+              <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+
+            <button onclick="toggleLanguage()" class="w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 transition flex items-center justify-center" aria-label="Switch Language">
+              <span id="lang-icon" style="font-size:20px;">🇬🇧</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="relative z-10 my-12">
+          <span class="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-white/15 text-white font-black text-sm mb-6">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span data-i18n="side_badge">بوابة eCode الرقمية</span>
+          </span>
+
+          <h1 class="text-4xl md:text-5xl font-black leading-tight mb-6" data-i18n="side_title">
+            إدارة طلباتك وخدماتك من مكان واحد
+          </h1>
+
+          <p class="text-white/85 text-lg leading-loose max-w-xl" data-i18n="side_desc">
+            سجل دخولك للوصول إلى لوحة التحكم، إدارة الحملات، سوق الخدمات، الملف الشخصي، والدعم.
+          </p>
+        </div>
+
+        <div class="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="rounded-3xl bg-white/12 border border-white/15 p-5 backdrop-blur">
+            <div class="text-2xl font-black mb-1"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="font-black" data-i18n="side_feature_1">خدمات</div>
+          </div>
+
+          <div class="rounded-3xl bg-white/12 border border-white/15 p-5 backdrop-blur">
+            <div class="text-2xl font-black mb-1"><i class="fa-solid fa-bullhorn"></i></div>
+            <div class="font-black" data-i18n="side_feature_2">حملات</div>
+          </div>
+
+          <div class="rounded-3xl bg-white/12 border border-white/15 p-5 backdrop-blur">
+            <div class="text-2xl font-black mb-1"><i class="fa-solid fa-store"></i></div>
+            <div class="font-black" data-i18n="side_feature_3">سوق الخدمات</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Form Side -->
+      <section class="p-6 md:p-10 lg:p-12 flex items-center">
+
+        <div class="w-full max-w-xl mx-auto">
+
+          <!-- Login -->
+          <div id="loginPage" class="auth-page active">
+            <div class="mb-8">
+              <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-black mb-5 text-sm" data-i18n="login_badge">
+                تسجيل الدخول
+              </span>
+
+              <h2 class="text-3xl md:text-4xl font-black mb-3" data-i18n="login_title">
+                مرحبًا بعودتك
+              </h2>
+
+              <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="login_desc">
+                أدخل بياناتك للوصول إلى لوحة تحكم eCode.
+              </p>
+            </div>
+
+            <form class="space-y-5" onsubmit="event.preventDefault(); goToDashboardDemo();">
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_email_username">البريد الإلكتروني أو اسم المستخدم</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-user input-icon"></i>
+                  <input type="text" required data-i18n-placeholder="ph_email_username" placeholder="example@email.com">
+                </div>
+              </div>
+
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_password">كلمة المرور</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock input-icon"></i>
+                  <input type="password" required data-i18n-placeholder="ph_password" placeholder="••••••••">
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between gap-4 text-sm">
+                <label class="inline-flex items-center gap-2 font-bold text-gray-600 dark:text-gray-300">
+                  <input type="checkbox" class="rounded border-gray-300">
+                  <span data-i18n="remember_me">تذكرني</span>
+                </label>
+
+                <button type="button" onclick="showPage('forgotPage')" class="tab-link" data-i18n="forgot_password">
+                  نسيت كلمة المرور؟
+                </button>
+              </div>
+
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span data-i18n="login_btn">تسجيل الدخول</span>
+              </button>
+            </form>
+
+            <p class="mt-8 text-center text-gray-600 dark:text-gray-400 font-bold">
+              <span data-i18n="no_account">ليس لديك حساب؟</span>
+              <button class="tab-link" onclick="showPage('registerPage')" data-i18n="create_account">إنشاء حساب</button>
+            </p>
+          </div>
+
+          <!-- Register -->
+          <div id="registerPage" class="auth-page">
+            <div class="mb-8">
+              <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-black mb-5 text-sm" data-i18n="register_badge">
+                حساب جديد
+              </span>
+
+              <h2 class="text-3xl md:text-4xl font-black mb-3" data-i18n="register_title">
+                إنشاء حساب في eCode
+              </h2>
+
+              <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="register_desc">
+                أنشئ حسابك للوصول إلى لوحة التحكم وإدارة طلباتك.
+              </p>
+            </div>
+
+            <form class="space-y-5" onsubmit="event.preventDefault(); showPage('otpPage');">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label class="block mb-2 font-black" data-i18n="label_full_name">الاسم الكامل</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-id-card input-icon"></i>
+                    <input type="text" required data-i18n-placeholder="ph_full_name" placeholder="أيمن المغربي">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block mb-2 font-black" data-i18n="label_username">اسم المستخدم</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-at input-icon"></i>
+                    <input type="text" required data-i18n-placeholder="ph_username" placeholder="ayman">
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_email">البريد الإلكتروني</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-envelope input-icon"></i>
+                  <input type="email" required data-i18n-placeholder="ph_email" placeholder="example@email.com">
+                </div>
+              </div>
+
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_mobile">رقم الجوال</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-mobile-screen-button input-icon"></i>
+                  <input type="tel" required dir="ltr" placeholder="+966 5XXXXXXXX">
+                </div>
+              </div>
+
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_account_type">نوع الحساب</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-user-gear input-icon"></i>
+                  <select required>
+                    <option value="client" data-i18n="account_client">عميل</option>
+                    <option value="provider" data-i18n="account_provider">مزود خدمة</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label class="block mb-2 font-black" data-i18n="label_password">كلمة المرور</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" required data-i18n-placeholder="ph_password" placeholder="••••••••">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block mb-2 font-black" data-i18n="label_confirm_password">تأكيد كلمة المرور</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" required data-i18n-placeholder="ph_confirm_password" placeholder="••••••••">
+                  </div>
+                </div>
+              </div>
+
+              <label class="inline-flex items-start gap-2 font-bold text-gray-600 dark:text-gray-300 text-sm leading-loose">
+                <input type="checkbox" required class="mt-2 rounded border-gray-300">
+                <span data-i18n="agree_terms">أوافق على الشروط والأحكام وسياسة الخصوصية.</span>
+              </label>
+
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-user-plus"></i>
+                <span data-i18n="register_btn">إنشاء الحساب</span>
+              </button>
+            </form>
+
+            <p class="mt-8 text-center text-gray-600 dark:text-gray-400 font-bold">
+              <span data-i18n="have_account">لديك حساب؟</span>
+              <button class="tab-link" onclick="showPage('loginPage')" data-i18n="login_now">تسجيل الدخول</button>
+            </p>
+          </div>
+
+          <!-- OTP -->
+          <div id="otpPage" class="auth-page">
+            <div class="mb-8 text-center">
+              <div class="w-20 h-20 rounded-3xl gradient-bg text-white flex items-center justify-center text-3xl mx-auto mb-6">
+                <i class="fa-solid fa-shield-check"></i>
+              </div>
+
+              <h2 class="text-3xl md:text-4xl font-black mb-3" data-i18n="otp_title">
+                تحقق من حسابك
+              </h2>
+
+              <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="otp_desc">
+                أدخل رمز التحقق المرسل إلى بريدك الإلكتروني أو رقم جوالك.
+              </p>
+            </div>
+
+            <form class="space-y-6" onsubmit="event.preventDefault(); goToDashboardDemo();">
+              <div class="flex justify-center gap-2 md:gap-3" dir="ltr">
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+              </div>
+
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-circle-check"></i>
+                <span data-i18n="verify_btn">تحقق</span>
+              </button>
+            </form>
+
+            <div class="mt-8 text-center space-y-3">
+              <button class="tab-link" data-i18n="resend_code">إعادة إرسال الرمز</button>
+              <br>
+              <button class="text-gray-500 dark:text-gray-400 font-bold hover:text-primary transition" onclick="showPage('registerPage')" data-i18n="back_register">
+                الرجوع لإنشاء الحساب
+              </button>
+            </div>
+          </div>
+
+          <!-- Forgot Password -->
+          <div id="forgotPage" class="auth-page">
+            <div class="mb-8">
+              <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-black mb-5 text-sm" data-i18n="forgot_badge">
+                استعادة الحساب
+              </span>
+
+              <h2 class="text-3xl md:text-4xl font-black mb-3" data-i18n="forgot_title">
+                نسيت كلمة المرور؟
+              </h2>
+
+              <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="forgot_desc">
+                أدخل بريدك الإلكتروني أو رقم جوالك وسنرسل لك رمز التحقق.
+              </p>
+            </div>
+
+            <form class="space-y-5" onsubmit="event.preventDefault(); showPage('resetPage');">
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_email_mobile">البريد الإلكتروني أو رقم الجوال</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-envelope-open-text input-icon"></i>
+                  <input type="text" required data-i18n-placeholder="ph_email_mobile" placeholder="example@email.com أو +966">
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span data-i18n="send_code_btn">إرسال رمز التحقق</span>
+              </button>
+            </form>
+
+            <p class="mt-8 text-center">
+              <button class="tab-link" onclick="showPage('loginPage')" data-i18n="back_login">
+                الرجوع لتسجيل الدخول
+              </button>
+            </p>
+          </div>
+
+          <!-- Reset Password -->
+          <div id="resetPage" class="auth-page">
+            <div class="mb-8">
+              <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-black mb-5 text-sm" data-i18n="reset_badge">
+                كلمة مرور جديدة
+              </span>
+
+              <h2 class="text-3xl md:text-4xl font-black mb-3" data-i18n="reset_title">
+                إعادة تعيين كلمة المرور
+              </h2>
+
+              <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="reset_desc">
+                أدخل رمز التحقق وكلمة المرور الجديدة.
+              </p>
+            </div>
+
+            <form class="space-y-5" onsubmit="event.preventDefault(); showPage('loginPage');">
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_otp_code">رمز التحقق</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-key input-icon"></i>
+                  <input type="text" required data-i18n-placeholder="ph_otp_code" placeholder="123456">
+                </div>
+              </div>
+
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_new_password">كلمة المرور الجديدة</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock input-icon"></i>
+                  <input type="password" required data-i18n-placeholder="ph_password" placeholder="••••••••">
+                </div>
+              </div>
+
+              <div>
+                <label class="block mb-2 font-black" data-i18n="label_confirm_password">تأكيد كلمة المرور</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock input-icon"></i>
+                  <input type="password" required data-i18n-placeholder="ph_confirm_password" placeholder="••••••••">
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-rotate"></i>
+                <span data-i18n="reset_btn">تحديث كلمة المرور</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    const translations = {
+      ar: {
+        brand_tagline: "تصنع الأثر",
+        side_badge: "بوابة eCode الرقمية",
+        side_title: "إدارة طلباتك وخدماتك من مكان واحد",
+        side_desc: "سجل دخولك للوصول إلى لوحة التحكم، إدارة الحملات، سوق الخدمات، الملف الشخصي، والدعم.",
+        side_feature_1: "خدمات",
+        side_feature_2: "حملات",
+        side_feature_3: "سوق الخدمات",
+
+        login_badge: "تسجيل الدخول",
+        login_title: "مرحبًا بعودتك",
+        login_desc: "أدخل بياناتك للوصول إلى لوحة تحكم eCode.",
+        label_email_username: "البريد الإلكتروني أو اسم المستخدم",
+        label_password: "كلمة المرور",
+        remember_me: "تذكرني",
+        forgot_password: "نسيت كلمة المرور؟",
+        login_btn: "تسجيل الدخول",
+        no_account: "ليس لديك حساب؟",
+        create_account: "إنشاء حساب",
+
+        register_badge: "حساب جديد",
+        register_title: "إنشاء حساب في eCode",
+        register_desc: "أنشئ حسابك للوصول إلى لوحة التحكم وإدارة طلباتك.",
+        label_full_name: "الاسم الكامل",
+        label_username: "اسم المستخدم",
+        label_email: "البريد الإلكتروني",
+        label_mobile: "رقم الجوال",
+        label_account_type: "نوع الحساب",
+        account_client: "عميل",
+        account_provider: "مزود خدمة",
+        label_confirm_password: "تأكيد كلمة المرور",
+        agree_terms: "أوافق على الشروط والأحكام وسياسة الخصوصية.",
+        register_btn: "إنشاء الحساب",
+        have_account: "لديك حساب؟",
+        login_now: "تسجيل الدخول",
+
+        otp_title: "تحقق من حسابك",
+        otp_desc: "أدخل رمز التحقق المرسل إلى بريدك الإلكتروني أو رقم جوالك.",
+        verify_btn: "تحقق",
+        resend_code: "إعادة إرسال الرمز",
+        back_register: "الرجوع لإنشاء الحساب",
+
+        forgot_badge: "استعادة الحساب",
+        forgot_title: "نسيت كلمة المرور؟",
+        forgot_desc: "أدخل بريدك الإلكتروني أو رقم جوالك وسنرسل لك رمز التحقق.",
+        label_email_mobile: "البريد الإلكتروني أو رقم الجوال",
+        send_code_btn: "إرسال رمز التحقق",
+        back_login: "الرجوع لتسجيل الدخول",
+
+        reset_badge: "كلمة مرور جديدة",
+        reset_title: "إعادة تعيين كلمة المرور",
+        reset_desc: "أدخل رمز التحقق وكلمة المرور الجديدة.",
+        label_otp_code: "رمز التحقق",
+        label_new_password: "كلمة المرور الجديدة",
+        reset_btn: "تحديث كلمة المرور",
+
+        ph_email_username: "example@email.com",
+        ph_password: "••••••••",
+        ph_full_name: "أيمن المغربي",
+        ph_username: "ayman",
+        ph_email: "example@email.com",
+        ph_confirm_password: "••••••••",
+        ph_email_mobile: "example@email.com أو +966",
+        ph_otp_code: "123456"
+      },
+
+      en: {
+        brand_tagline: "Innovate Impact",
+        side_badge: "eCode Digital Portal",
+        side_title: "Manage Your Requests and Services in One Place",
+        side_desc: "Sign in to access your dashboard, campaigns, service marketplace, profile, and support.",
+        side_feature_1: "Services",
+        side_feature_2: "Campaigns",
+        side_feature_3: "Marketplace",
+
+        login_badge: "Login",
+        login_title: "Welcome Back",
+        login_desc: "Enter your details to access your eCode dashboard.",
+        label_email_username: "Email or Username",
+        label_password: "Password",
+        remember_me: "Remember me",
+        forgot_password: "Forgot password?",
+        login_btn: "Login",
+        no_account: "Don’t have an account?",
+        create_account: "Create Account",
+
+        register_badge: "New Account",
+        register_title: "Create Your eCode Account",
+        register_desc: "Create your account to access the dashboard and manage your requests.",
+        label_full_name: "Full Name",
+        label_username: "Username",
+        label_email: "Email",
+        label_mobile: "Mobile Number",
+        label_account_type: "Account Type",
+        account_client: "Client",
+        account_provider: "Service Provider",
+        label_confirm_password: "Confirm Password",
+        agree_terms: "I agree to the Terms, Conditions, and Privacy Policy.",
+        register_btn: "Create Account",
+        have_account: "Already have an account?",
+        login_now: "Login",
+
+        otp_title: "Verify Your Account",
+        otp_desc: "Enter the verification code sent to your email or mobile number.",
+        verify_btn: "Verify",
+        resend_code: "Resend Code",
+        back_register: "Back to registration",
+
+        forgot_badge: "Account Recovery",
+        forgot_title: "Forgot Your Password?",
+        forgot_desc: "Enter your email or mobile number and we will send you a verification code.",
+        label_email_mobile: "Email or Mobile Number",
+        send_code_btn: "Send Verification Code",
+        back_login: "Back to Login",
+
+        reset_badge: "New Password",
+        reset_title: "Reset Password",
+        reset_desc: "Enter the verification code and your new password.",
+        label_otp_code: "Verification Code",
+        label_new_password: "New Password",
+        reset_btn: "Update Password",
+
+        ph_email_username: "example@email.com",
+        ph_password: "••••••••",
+        ph_full_name: "Ayman Almaghrabi",
+        ph_username: "ayman",
+        ph_email: "example@email.com",
+        ph_confirm_password: "••••••••",
+        ph_email_mobile: "example@email.com or +966",
+        ph_otp_code: "123456"
+      }
+    };
+
+    let currentLang = localStorage.getItem('userLanguage') || 'ar';
+
+    function showPage(pageId) {
+      document.querySelectorAll('.auth-page').forEach(page => {
+        page.classList.remove('active');
+      });
+
+      const target = document.getElementById(pageId);
+      if (target) target.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function initTheme() {
+      const icon = document.getElementById('theme-icon');
+
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+        if (icon) {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        }
+      } else {
+        document.documentElement.classList.remove('dark');
+        if (icon) {
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        }
+      }
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.theme = 'light';
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      } else {
+        html.classList.add('dark');
+        localStorage.theme = 'dark';
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      }
+    }
+
+    function updateContent() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.innerHTML = translations[currentLang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.setAttribute('placeholder', translations[currentLang][key]);
+        }
+      });
+
+      if (currentLang === 'ar') {
+        document.title = 'تسجيل الدخول | eCode';
+        document.querySelector('meta[name="description"]').setAttribute(
+          'content',
+          'صفحة تسجيل الدخول وإنشاء الحساب والتحقق لمنصة eCode.'
+        );
+      } else {
+        document.title = 'Login | eCode';
+        document.querySelector('meta[name="description"]').setAttribute(
+          'content',
+          'Login, registration, and verification page for the eCode platform.'
+        );
+      }
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+
+      const html = document.documentElement;
+      const langIcon = document.getElementById('lang-icon');
+
+      if (currentLang === 'ar') {
+        html.setAttribute('lang', 'ar');
+        html.setAttribute('dir', 'rtl');
+        langIcon.textContent = '🇬🇧';
+      } else {
+        html.setAttribute('lang', 'en');
+        html.setAttribute('dir', 'ltr');
+        langIcon.textContent = '🇸🇦';
+      }
+
+      localStorage.setItem('userLanguage', currentLang);
+      updateContent();
+    }
+
+    function initLanguage() {
+      const html = document.documentElement;
+      const langIcon = document.getElementById('lang-icon');
+
+      if (currentLang === 'ar') {
+        html.setAttribute('lang', 'ar');
+        html.setAttribute('dir', 'rtl');
+        langIcon.textContent = '🇬🇧';
+      } else {
+        html.setAttribute('lang', 'en');
+        html.setAttribute('dir', 'ltr');
+        langIcon.textContent = '🇸🇦';
+      }
+
+      updateContent();
+    }
+
+    function initOtpInputs() {
+      const inputs = document.querySelectorAll('.otp-input');
+
+      inputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+          input.value = input.value.replace(/[^0-9]/g, '');
+
+          if (input.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        });
+
+        input.addEventListener('keydown', (event) => {
+          if (event.key === 'Backspace' && !input.value && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+      });
+    }
+
+    function goToDashboardDemo() {
+      alert(currentLang === 'ar'
+        ? 'تمت العملية بنجاح. لاحقًا سيتم تحويل المستخدم إلى لوحة التحكم.'
+        : 'Success. Later, the user will be redirected to the dashboard.'
+      );
+
+      /*
+        لاحقًا بعد بناء الداش بورد:
+        window.location.href = "dashboard.html";
+      */
+    }
+
+    window.onload = () => {
+      initTheme();
+      initLanguage();
+      initOtpInputs();
+    };
+  </script>
+
+</body>
+</html>
