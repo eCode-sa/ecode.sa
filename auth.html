@@ -53,12 +53,6 @@
       font-family: var(--text-main);
     }
 
-    .gradient-text {
-      background: linear-gradient(to right, #4F46E5, #9333EA);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
     .gradient-bg {
       background: linear-gradient(135deg, #4F46E5, #7C3AED);
     }
@@ -138,46 +132,6 @@
       background: rgba(255,255,255,.10);
       bottom: -110px;
       left: -80px;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .logo-icon img {
-      height: 44px;
-      width: auto;
-      border-radius: 8px;
-      object-fit: contain;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-name {
-      font-weight: 800;
-      font-size: 1.25rem;
-      line-height: 1.1;
-      color: #1e293b;
-    }
-
-    .dark .brand-name {
-      color: #f8fafc;
-    }
-
-    .brand-tagline {
-      font-size: .75rem;
-      color: #64748b;
-      font-weight: 600;
-    }
-
-    .dark .brand-tagline {
-      color: #94a3b8;
     }
 
     .btn-primary {
@@ -316,6 +270,34 @@
       opacity: .8;
     }
 
+    .demo-card {
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      transition: all .25s ease;
+    }
+
+    .dark .demo-card {
+      background: #020617;
+      border-color: #1f2937;
+    }
+
+    .demo-card:hover {
+      border-color: #4F46E5;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+    }
+
+    .demo-card.selected-demo {
+      border-color: #4F46E5;
+      background: rgba(79, 70, 229, 0.08);
+      box-shadow: 0 12px 26px rgba(79, 70, 229, 0.12);
+    }
+
+    .dark .demo-card.selected-demo {
+      background: rgba(79, 70, 229, 0.18);
+      border-color: rgba(129,140,248,.65);
+    }
+
     @media (max-width: 1024px) {
       .side-panel {
         min-height: 260px;
@@ -330,7 +312,6 @@
 
     <div class="auth-card w-full max-w-6xl rounded-[2rem] overflow-hidden grid grid-cols-1 lg:grid-cols-2">
 
-      <!-- Visual Side -->
       <section class="side-panel text-white p-8 md:p-12 flex flex-col justify-between min-h-[360px] lg:min-h-[720px]">
 
         <div class="relative z-10 flex items-center justify-between gap-4">
@@ -389,12 +370,10 @@
 
       </section>
 
-      <!-- Form Side -->
       <section class="p-6 md:p-10 lg:p-12 flex items-center">
 
         <div class="w-full max-w-xl mx-auto">
 
-          <!-- Login -->
           <div id="loginPage" class="auth-page active">
             <div class="mb-8">
               <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-black mb-5 text-sm" data-i18n="login_badge">
@@ -408,6 +387,45 @@
               <p class="text-gray-600 dark:text-gray-400 leading-loose" data-i18n="login_desc">
                 أدخل بياناتك للوصول إلى لوحة تحكم eCode.
               </p>
+            </div>
+
+            <div class="mb-8 p-5 rounded-3xl bg-gray-50 dark:bg-slate-900/60 border border-gray-200 dark:border-gray-800">
+              <label class="block mb-3 font-black" data-i18n="demo_account_label">
+                اختر نوع حساب الديمو
+              </label>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label class="demo-option cursor-pointer">
+                  <input type="radio" name="demoAccountType" value="client" class="hidden" checked>
+                  <div class="demo-card selected-demo rounded-2xl p-4">
+                    <div class="text-primary text-2xl mb-2">
+                      <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="font-black mb-1" data-i18n="demo_client_title">حساب عميل</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="demo_client_desc">
+                      تجربة لوحة العميل، الطلبات، الحملات، والدعم.
+                    </div>
+                  </div>
+                </label>
+
+                <label class="demo-option cursor-pointer">
+                  <input type="radio" name="demoAccountType" value="provider" class="hidden">
+                  <div class="demo-card rounded-2xl p-4">
+                    <div class="text-primary text-2xl mb-2">
+                      <i class="fa-solid fa-store"></i>
+                    </div>
+                    <div class="font-black mb-1" data-i18n="demo_provider_title">حساب مزود خدمة</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="demo_provider_desc">
+                      تجربة إدارة صفحة الخدمة، الأسعار، الطلبات، والملف التجاري.
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <button type="button" onclick="loginDemoAccount()" class="btn-outline w-full mt-4">
+                <i class="fa-solid fa-play"></i>
+                <span data-i18n="demo_login_btn">الدخول بحساب ديمو</span>
+              </button>
             </div>
 
             <form class="space-y-5" onsubmit="event.preventDefault(); goToDashboardDemo();">
@@ -450,7 +468,6 @@
             </p>
           </div>
 
-          <!-- Register -->
           <div id="registerPage" class="auth-page">
             <div class="mb-8">
               <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-black mb-5 text-sm" data-i18n="register_badge">
@@ -497,7 +514,7 @@
                 <label class="block mb-2 font-black" data-i18n="label_mobile">رقم الجوال</label>
                 <div class="input-wrap">
                   <i class="fa-solid fa-mobile-screen-button input-icon"></i>
-                  <input type="tel" required dir="ltr" placeholder="+966 5XXXXXXXX">
+                  <input type="tel" required dir="ltr" data-i18n-placeholder="ph_mobile" placeholder="+966 5XXXXXXXX">
                 </div>
               </div>
 
@@ -505,7 +522,7 @@
                 <label class="block mb-2 font-black" data-i18n="label_account_type">نوع الحساب</label>
                 <div class="input-wrap">
                   <i class="fa-solid fa-user-gear input-icon"></i>
-                  <select required>
+                  <select id="registerAccountType" required>
                     <option value="client" data-i18n="account_client">عميل</option>
                     <option value="provider" data-i18n="account_provider">مزود خدمة</option>
                   </select>
@@ -547,7 +564,6 @@
             </p>
           </div>
 
-          <!-- OTP -->
           <div id="otpPage" class="auth-page">
             <div class="mb-8 text-center">
               <div class="w-20 h-20 rounded-3xl gradient-bg text-white flex items-center justify-center text-3xl mx-auto mb-6">
@@ -563,7 +579,7 @@
               </p>
             </div>
 
-            <form class="space-y-6" onsubmit="event.preventDefault(); goToDashboardDemo();">
+            <form class="space-y-6" onsubmit="event.preventDefault(); completeRegisterDemo();">
               <div class="flex justify-center gap-2 md:gap-3" dir="ltr">
                 <input class="otp-input" maxlength="1" inputmode="numeric">
                 <input class="otp-input" maxlength="1" inputmode="numeric">
@@ -588,7 +604,6 @@
             </div>
           </div>
 
-          <!-- Forgot Password -->
           <div id="forgotPage" class="auth-page">
             <div class="mb-8">
               <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-black mb-5 text-sm" data-i18n="forgot_badge">
@@ -626,7 +641,6 @@
             </p>
           </div>
 
-          <!-- Reset Password -->
           <div id="resetPage" class="auth-page">
             <div class="mb-8">
               <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-primary dark:bg-indigo-900/30 dark:text-indigo-300 font-black mb-5 text-sm" data-i18n="reset_badge">
@@ -704,6 +718,13 @@
         no_account: "ليس لديك حساب؟",
         create_account: "إنشاء حساب",
 
+        demo_account_label: "اختر نوع حساب الديمو",
+        demo_client_title: "حساب عميل",
+        demo_client_desc: "تجربة لوحة العميل، الطلبات، الحملات، والدعم.",
+        demo_provider_title: "حساب مزود خدمة",
+        demo_provider_desc: "تجربة إدارة صفحة الخدمة، الأسعار، الطلبات، والملف التجاري.",
+        demo_login_btn: "الدخول بحساب ديمو",
+
         register_badge: "حساب جديد",
         register_title: "إنشاء حساب في eCode",
         register_desc: "أنشئ حسابك للوصول إلى لوحة التحكم وإدارة طلباتك.",
@@ -745,6 +766,7 @@
         ph_full_name: "أيمن المغربي",
         ph_username: "ayman",
         ph_email: "example@email.com",
+        ph_mobile: "+966 5XXXXXXXX",
         ph_confirm_password: "••••••••",
         ph_email_mobile: "example@email.com أو +966",
         ph_otp_code: "123456"
@@ -769,6 +791,13 @@
         login_btn: "Login",
         no_account: "Don’t have an account?",
         create_account: "Create Account",
+
+        demo_account_label: "Choose Demo Account Type",
+        demo_client_title: "Client Account",
+        demo_client_desc: "Preview the client dashboard, requests, campaigns, and support.",
+        demo_provider_title: "Service Provider Account",
+        demo_provider_desc: "Preview service page management, pricing, requests, and business profile.",
+        demo_login_btn: "Enter Demo Account",
 
         register_badge: "New Account",
         register_title: "Create Your eCode Account",
@@ -811,6 +840,7 @@
         ph_full_name: "Ayman Almaghrabi",
         ph_username: "ayman",
         ph_email: "example@email.com",
+        ph_mobile: "+966 5XXXXXXXX",
         ph_confirm_password: "••••••••",
         ph_email_mobile: "example@email.com or +966",
         ph_otp_code: "123456"
@@ -858,13 +888,17 @@
       if (html.classList.contains('dark')) {
         html.classList.remove('dark');
         localStorage.theme = 'light';
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
+        if (icon) {
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        }
       } else {
         html.classList.add('dark');
         localStorage.theme = 'dark';
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+        if (icon) {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        }
       }
     }
 
@@ -909,11 +943,11 @@
       if (currentLang === 'ar') {
         html.setAttribute('lang', 'ar');
         html.setAttribute('dir', 'rtl');
-        langIcon.textContent = '🇬🇧';
+        if (langIcon) langIcon.textContent = '🇬🇧';
       } else {
         html.setAttribute('lang', 'en');
         html.setAttribute('dir', 'ltr');
-        langIcon.textContent = '🇸🇦';
+        if (langIcon) langIcon.textContent = '🇸🇦';
       }
 
       localStorage.setItem('userLanguage', currentLang);
@@ -927,11 +961,11 @@
       if (currentLang === 'ar') {
         html.setAttribute('lang', 'ar');
         html.setAttribute('dir', 'rtl');
-        langIcon.textContent = '🇬🇧';
+        if (langIcon) langIcon.textContent = '🇬🇧';
       } else {
         html.setAttribute('lang', 'en');
         html.setAttribute('dir', 'ltr');
-        langIcon.textContent = '🇸🇦';
+        if (langIcon) langIcon.textContent = '🇸🇦';
       }
 
       updateContent();
@@ -957,22 +991,58 @@
       });
     }
 
-    function goToDashboardDemo() {
-      alert(currentLang === 'ar'
-        ? 'تمت العملية بنجاح. لاحقًا سيتم تحويل المستخدم إلى لوحة التحكم.'
-        : 'Success. Later, the user will be redirected to the dashboard.'
-      );
+    function initDemoAccountSelector() {
+      const options = document.querySelectorAll('input[name="demoAccountType"]');
 
-      /*
-        لاحقًا بعد بناء الداش بورد:
-        window.location.href = "dashboard.html";
-      */
+      options.forEach(option => {
+        option.addEventListener('change', () => {
+          document.querySelectorAll('.demo-card').forEach(card => {
+            card.classList.remove('selected-demo');
+          });
+
+          const selectedCard = option.closest('.demo-option').querySelector('.demo-card');
+          if (selectedCard) selectedCard.classList.add('selected-demo');
+        });
+      });
+    }
+
+    function getSelectedDemoAccountType() {
+      const selectedDemo = document.querySelector('input[name="demoAccountType"]:checked');
+      return selectedDemo ? selectedDemo.value : 'client';
+    }
+
+    function redirectByAccountType(accountType) {
+      localStorage.setItem('demoMode', 'true');
+      localStorage.setItem('demoAccountType', accountType);
+
+      if (accountType === 'provider') {
+        window.location.href = 'provider-dashboard.html';
+      } else {
+        window.location.href = 'client-dashboard.html';
+      }
+    }
+
+    function loginDemoAccount() {
+      const accountType = getSelectedDemoAccountType();
+      redirectByAccountType(accountType);
+    }
+
+    function goToDashboardDemo() {
+      const accountType = getSelectedDemoAccountType();
+      redirectByAccountType(accountType);
+    }
+
+    function completeRegisterDemo() {
+      const accountSelect = document.getElementById('registerAccountType');
+      const accountType = accountSelect ? accountSelect.value : 'client';
+      redirectByAccountType(accountType);
     }
 
     window.onload = () => {
       initTheme();
       initLanguage();
       initOtpInputs();
+      initDemoAccountSelector();
     };
   </script>
 
