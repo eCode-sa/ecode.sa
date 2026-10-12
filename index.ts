@@ -1,1 +1,0 @@
-export type ModuleKey='home'|'tower'|'legal'|'cases'|'legal-ai'|'governance'|'risk'|'compliance'|'library'|'contracts'|'contract-requests'|'review'|'approvals'|'obligations'|'renewals'|'ip'|'memory'|'egov'|'commerce'|'najiz'|'nafath'|'spl'|'hr'|'finance-gov'|'operations'|'documents'|'mail'|'reports'|'notifications'|'audit'|'settings'|'about'|'profile';
