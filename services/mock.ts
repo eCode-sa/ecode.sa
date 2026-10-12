@@ -1,3 +1,0 @@
-const wait=(ms=650)=>new Promise(resolve=>setTimeout(resolve,ms));
-export async function simulateQuery(kind:string,query:string){await wait();return {kind,query,reference:`SIM-${Date.now().toString().slice(-6)}`,timestamp:new Date().toLocaleString('ar-SA'),status:'نجح الاستعلام التجريبي',company:'شركة بحر العرب لأنظمة المعلومات',registry:'1010456789',activity:'تقنية المعلومات وخدمات الأعمال',capital:'120,000,000 ر.س',branches:7};}
-export async function simulateAI(prompt:string){await wait(950);return {score:72,summary:'يظهر التحليل الأولي وجود نقاط تحتاج إلى مراجعة قانونية قبل الاعتماد.',findings:['مسؤولية غير محدودة دون سقف للتعويض','عدم وضوح آلية الإنهاء والإشعار','غياب مؤشرات مستوى الخدمة (SLA)','شرط تجديد تلقائي دون نافذة إلغاء واضحة'],prompt};}
